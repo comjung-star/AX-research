@@ -33,4 +33,6 @@ AX-research/
 
 ## Current Step
 
-먼저 20~30건 규모의 Pilot AX 사례 데이터셋과 Ground Truth 기준을 정리한 뒤, Single-query Dense Retrieval baseline부터 구현합니다.
+Pilot 20건의 공식 원천 검증, Blind RCA, Root Cause Factor 및 Strategy taxonomy 1차 검증을 완료했습니다.
+
+다음 단계는 국내 사례와 Prediction/Detection·Expert Judgment 중심의 보완 사례 10~20건을 추가해 Pilot을 30~40건으로 확장한 뒤 taxonomy v1을 Freeze하는 것입니다.
