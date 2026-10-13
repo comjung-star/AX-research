@@ -54,6 +54,6 @@ Pilot Dataset은 현재 아래 공식 공개 Customer Story에서 사례를 추�
 
 `pilot_cases.csv`에는 공식 공개 Customer Story 기반 20건을 1차 수록했습니다.
 
-- Root Cause Factor: 아직 Blind RCA 전이므로 `PENDING_BLIND_RCA`
-- Strategy: 현재 연구계획서의 초기 taxonomy를 사용한 **임시 매핑**
-- 최종 학습 데이터로 확정하기 전 원문 재검증과 Pilot 품질검토 필요
+- Root Cause Factor: Problem View만 사용한 1차 Blind RCA를 완료했으며 `root_cause_factors.csv`의 Pilot Dictionary를 적용
+- Strategy: `strategy_taxonomy.csv`의 6개 Pilot taxonomy로 재검증했으며 Main Dataset 전까지는 provisional 상태
+- 공식 원천 20/20건 재검증 완료. 상세 결과는 `pilot_validation.md` 참고
