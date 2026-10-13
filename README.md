@@ -3,4 +3,4 @@
 
 ## Documents
 
-- [4차 연구계획서](docs/research-plan-4th.md)
+- [연구계획서](docs/research-plan.md)
