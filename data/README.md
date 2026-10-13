@@ -5,6 +5,7 @@ AX 사례 데이터셋을 관리하는 영역입니다.
 ## Documents
 
 - [데이터 스키마 및 작성 기준](schema.md)
+- [Pilot 사례 데이터 입력 템플릿](pilot_cases.csv)
 
 ## 기본 원칙
 
