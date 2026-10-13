@@ -8,6 +8,7 @@ AX 사례 데이터셋을 관리하는 영역입니다.
 - [Pilot 사례 데이터셋](pilot_cases.csv)
 - [데이터 원천 카탈로그](source_catalog.md)
 - [Pilot 데이터 검증 결과](pilot_validation.md)
+- [Pilot QA 메타데이터](qa_metadata.csv)
 - [Root Cause Factor Dictionary](root_cause_factors.csv)
 - [Strategy Taxonomy](strategy_taxonomy.csv)
 
