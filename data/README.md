@@ -6,6 +6,11 @@ AX 사례 데이터셋을 관리하는 영역입니다.
 
 - [데이터 스키마 및 작성 기준](schema.md)
 - [Core Pilot 사례 데이터셋 42건](pilot_cases.csv)
+- [공개 PDF/XLSX Source Screening](public_source_screening.md)
+- [Supplemental 후보 Pool](supplemental_candidate_pool.csv)
+- [Main 후보 Pool](main_candidate_pool.csv)
+- [Main Dataset v1 QA](main_qa_metadata_v1.csv)
+- [Main Dataset v1 — 현재 52건](main_cases_v1.csv)
 - [Supplemental 공공부문 사례 3건](supplemental_public_cases.csv)
 - [데이터 원천 카탈로그](source_catalog.md)
 - [Pilot 데이터 검증 결과](pilot_validation.md)
@@ -39,4 +44,4 @@ Outcome
 Source
 ```
 
-Core Pilot 42건과 Supplemental Public 3건을 확보했고, Root Cause Dictionary v1(9종)과 Strategy Taxonomy v1(6종)을 Freeze했습니다. Pilot 단계는 종료했으며 다음 단계는 동일한 v1 기준으로 Main Dataset 100~150건을 구축하는 것입니다.
+Core Pilot 42건과 Supplemental Public 3건의 Pilot 검증을 완료했고, Root Cause Dictionary v1(9종)과 Strategy Taxonomy v1(6종)을 Freeze했습니다. 공개 PDF/XLSX 원천을 추가 분석해 검증된 10건을 Main Dataset v1에 편입했으며 현재 Main Dataset은 52건입니다. 다음 목표는 동일한 v1 기준으로 100~150건까지 확장하는 것입니다.
