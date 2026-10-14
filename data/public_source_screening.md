@@ -186,3 +186,18 @@ KOSA 공식 자료는 사례집이 단순 AI 제품 소개가 아니라:
 7. Case ID AX0043 이후 부여
 8. HOLD/REVIEW 후보는 병행 원출처 추가 검증
 9. 이후 NIPA 잔여 기업 및 『실전 AX 리포트』 EPUB 사례와 합쳐 100~150건까지 확장
+
+
+## 10. Promotion 완료
+
+검증 완료된 READY 후보 10건을 `main_cases_v1.csv`에 AX0043~AX0052로 정식 편입했다.
+
+- 기존 Pilot 42건은 버리지 않고 Main Dataset v1의 초기 42건으로 포함
+- 신규 편입 10건
+- Main Dataset v1 현재 총 **52건**
+- 신규 편입 사례는 정식 스키마로 다시 작성
+- Root Cause는 후보표의 provisional 값을 그대로 복사하지 않고 Problem View만 기준으로 다시 판정
+- 정량 성과가 공개되지 않은 사례는 임의 수치를 만들지 않고 UNKNOWN 처리
+- Main용 QA는 `main_qa_metadata_v1.csv`로 별도 관리
+
+현재 HOLD / REVIEW 6건은 Main에 넣지 않았다.
