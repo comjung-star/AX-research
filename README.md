@@ -33,6 +33,14 @@ AX-research/
 
 ## Current Step
 
-Pilot 20건의 공식 원천 검증, Blind RCA, Root Cause Factor 및 Strategy taxonomy 1차 검증을 완료했습니다.
+Core Pilot을 **34건**으로 확장했고, 공공부문 Supplemental 사례 **3건**을 별도로 확보했습니다.
 
-다음 단계는 국내 사례와 Prediction/Detection·Expert Judgment 중심의 보완 사례 10~20건을 추가해 Pilot을 30~40건으로 확장한 뒤 taxonomy v1을 Freeze하는 것입니다.
+현재까지:
+- 공식/공개 원천 기반 구조화
+- Problem / Task / Context 분리
+- Blind RCA
+- Root Cause Factor 9종 재검증
+- Strategy Taxonomy 6종 재검증
+- QA metadata 기록
+
+다음 단계는 NIPA 등 다른 국내 원천에서 **출처 다양화용 6~10건**을 보완한 뒤 Root Cause Dictionary v1과 Strategy Taxonomy v1을 Freeze하는 것입니다.
