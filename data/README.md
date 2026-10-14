@@ -5,7 +5,8 @@ AX 사례 데이터셋을 관리하는 영역입니다.
 ## Documents
 
 - [데이터 스키마 및 작성 기준](schema.md)
-- [Pilot 사례 데이터셋](pilot_cases.csv)
+- [Core Pilot 사례 데이터셋 34건](pilot_cases.csv)
+- [Supplemental 공공부문 사례 3건](supplemental_public_cases.csv)
 - [데이터 원천 카탈로그](source_catalog.md)
 - [Pilot 데이터 검증 결과](pilot_validation.md)
 - [Pilot QA 메타데이터](qa_metadata.csv)
@@ -35,4 +36,4 @@ Outcome
 Source
 ```
 
-초기에는 20~30건의 Pilot Set부터 구성한 뒤 전체 100~150건으로 확대합니다.
+현재 Core Pilot 34건과 Supplemental Public 3건을 확보했습니다. 출처 다양화용 사례 6~10건을 추가 검증한 뒤 Root Cause Dictionary v1과 Strategy Taxonomy v1을 Freeze하고 Main Dataset 100~150건으로 확대합니다.
