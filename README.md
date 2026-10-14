@@ -33,19 +33,15 @@ AX-research/
 
 ## Current Step
 
-Pilot 검증을 **42건**으로 마무리했습니다.
+Pilot 검증 42건을 완료하고 Root Cause Dictionary v1(9종) / Strategy Taxonomy v1(6종)을 Freeze했습니다.
 
-현재까지:
-- Core Pilot 42건
-- Supplemental Public 3건
-- 공식/공개 원천 기반 구조화
-- Problem / Task / Context 분리
-- Blind RCA
-- Root Cause Dictionary v1 **9종 Freeze**
-- Strategy Taxonomy v1 **6종 Freeze**
-- QA metadata 기록
-- Pilot Validation **PASS**
+공개 PDF/XLSX 원천(KOSA, NIA, Deloitte, WEF, Federal Reserve 등)을 추가 분석해 기존 42건과 중복을 제거했고, 10건을 검증 후 **AX0043~AX0052**로 Main Dataset v1에 편입했습니다.
 
-이제 Pilot 단계는 종료하고 **Main Dataset v1 100~150건 구축**으로 이동합니다.
+현재:
+- Core Pilot: 42건 (완료)
+- Supplemental Public: 3건
+- Main Dataset v1: **52건**
+- Main 후보 HOLD/REVIEW: 6건
+- Public source screening / QA metadata 기록 완료
 
-Main Dataset에서는 Freeze된 v1 기준을 동일하게 적용하며, 새로운 패턴이 반복적으로 확인되는 경우에만 기존 v1을 덮어쓰지 않고 v2 후보로 별도 관리합니다.
+다음 목표는 동일한 v1 기준으로 Main Dataset을 **100~150건**까지 확장하는 것입니다. 『실전 AX 리포트』 EPUB가 제공되면 기존 52건과 중복 제거 후 다음 편입 배치로 사용합니다.
