@@ -123,3 +123,26 @@ Main Dataset v1을 **100~150건**으로 확장한다.
 - source/industry diversity 유지
 - 동일 v1 taxonomy 적용
 - 변경 필요 시 v1을 덮어쓰지 않고 v2 후보로 별도 관리
+
+
+## 7. 공개 PDF/XLSX Screening
+
+추가로 다음 공개 원천을 검토했다.
+
+- KOSA AX 사례집
+- NIA 공공AI 서비스 실증 사례집 110건
+- NIA 해외 AI 활용 사례 인벤토리 XLSX
+- 2026 AI 정부 서비스 사례집
+- Deloitte 식품·식자재 유통 생성형 AI PDF
+- Deloitte 생성형 AI 활용서 6대 산업 PDF
+- WEF AI-First Operating System
+- Federal Reserve AI Use Case Inventory
+
+상세 결과:
+- `public_source_screening.md`
+- `main_candidate_pool.csv`
+- `supplemental_candidate_pool.csv`
+
+Main Dataset에 바로 편입 가능한 것으로 검증된 10건은 AX0043~AX0052로 `main_cases_v1.csv`에 반영했다.
+
+공공기관 중심 대량자료(NIA 110건, Federal Reserve Inventory)는 기업 AX Main 분포를 왜곡하지 않도록 Supplemental/외적 타당성 검증용으로 분리한다.
