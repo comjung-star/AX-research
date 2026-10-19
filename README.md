@@ -41,6 +41,8 @@ AX-research/
 - Main Dataset v1 **100건 구축 및 Freeze**
 - Main QA Metadata **100건**
 - Supplemental Public **4건**
+- 교수 Word 코멘트(BM25/Dense 단일질의 한계) 연구계획서 반영 완료
+- 평가 기준에 Single-query BM25 및 Perspective Coverage@K 반영
 
 ### 현재 단계
 
@@ -49,8 +51,9 @@ AX-research/
 Main Dataset v1은 AX0001~AX0100의 100건으로 고정해 검색·추천 실험에 사용한다.
 
 다음 작업:
-1. 평가용 Business Problem Query 설계
-2. Query별 Multi-Perspective 정답 관점 정의
+1. Ground Truth 라벨링 규칙 및 평가용 Business Problem Query 설계
+2. Query별 Multi-Perspective Gold 관점 정의
 3. Perspective × Case 관련도 0~4 라벨링
 4. Gold Relevant Cases / Gold Strategy Set 확정
-5. Single-query Dense Retrieval baseline 구축
+5. 동일 Search Budget에서 Single-query BM25 / Dense Retrieval / GPT-only baseline 구축
+6. Recall@K / Perspective Coverage@K / Strategy Coverage@K 비교
