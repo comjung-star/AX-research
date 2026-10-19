@@ -45,7 +45,7 @@
 
 본 연구의 목적은 하나의 기업 업무문제를 LLM으로 복수 Perspective로 분해하고, Problem·Task·Context 기반 Multi-view 표현과 학습형 Neural Retrieval을 이용해 관련 AX 사례를 관점별로 검색한 뒤, Root Cause Factor와 Wald 통계근거를 Evidence로 결합하여 관점별 AX Strategy를 설명 가능하게 추천하는 모델을 설계·검증하는 것이다.
 
-- **RQ1**: LLM으로 생성한 복수 문제관점을 Retrieval 단계까지 유지하는 검색모델이 단일질의 검색 또는 GPT-only 방식보다 관련 AX 사례의 Recall@K를 향상시키는가?
+- **RQ1**: LLM으로 생성한 복수 문제관점을 Retrieval 단계까지 유지하는 검색모델이 원질의 기반 단일 BM25, 단일 Dense Retrieval 또는 GPT-only 방식보다 관련 AX 사례의 Recall@K와 관점별 Coverage를 향상시키는가?
 - **RQ2**: Problem·Task·Context를 분리한 Multi-view Embedding과 Gated Fusion, Hybrid Retrieval, Query-Case Interaction이 단일 Dense 표현 중심 검색보다 관점별 관련 사례 검색 품질을 향상시키는가?
 - **RQ3**: 검색된 사례의 Evidence를 Root Cause Factor Anchor와 Wald 통계근거에 연결하고 Evidence Fusion으로 결합할 때, 관련 사례로부터 발견되는 AX Strategy Coverage와 추천 근거의 추적성이 향상되는가?
 - **RQ4**: FAME-AX + LLM 구조가 Perspective별 Branch를 유지한 상태에서 Recommended Strategies, Traceable Evidence Path, Actionable Explanation, Confidence/Priority를 일관된 근거 기반 출력으로 제공할 수 있는가?
@@ -221,9 +221,10 @@ FAME-AX 전체 모델은 Strategy Loss, Ranking Loss, Factor Loss, Diversity Los
 
 ### 핵심 성능평가
 
-최종 검증의 중심은 관련 AX 사례 **Recall@K**와 **Strategy Coverage@K**로 둔다.
+최종 검증의 중심은 관련 AX 사례 **Recall@K**와 **Strategy Coverage@K**로 두고, 교수 피드백의 "관점별 검색 결과 보존"을 확인하기 위해 **Perspective Coverage@K**를 보조 검색지표로 함께 사용한다.
 
 - Recall@K: Gold Relevant Cases 중 모델이 Top-K에서 회수한 비율
+- Perspective Coverage@K: Gold Perspective 중 Top-K 결과에서 적어도 하나 이상의 관련 사례로 대표된 관점의 비율
 - Strategy Coverage@K: Gold Strategy Set 중 추천 사례를 통해 발견한 전략 범위
 
 Gold Label은 제안모델의 검색점수·추천결과와 분리된 독립 절차로 구축하며 세부 기준은 Pilot에서 확정한다.
@@ -232,8 +233,9 @@ Gold Label은 제안모델의 검색점수·추천결과와 분리된 독립 절
 
 제안모델은 다음을 기본 비교대상으로 둔다.
 
-1. 원질의 기반 단일 Dense Retrieval
-2. GPT-only 사례 판단/추천
+1. 원질의 기반 단일 BM25(Sparse Retrieval)
+2. 원질의 기반 단일 Dense Retrieval
+3. GPT-only 사례 판단/추천
 
 동일한 Search Budget/출력 건수 조건에서 비교하여 단순히 더 많은 후보를 검색했기 때문에 Recall이 증가하는 효과를 통제한다.
 
@@ -261,7 +263,7 @@ Actionable Explanation이 실제 Evidence에 근거하는지 검토한다. Wald 
 
 ### 유효성 판단 원칙
 
-단일 성능지표만으로 결론을 내리지 않고, Search Model의 Recall 개선과 Full FAME-AX의 Strategy Coverage 및 근거 추적성을 함께 평가한다. 특히 교수 피드백에서 제시된 **“단일질의/GPT-only 대비 다중관점 검색·추천의 실질적 개선”**을 최종 유효성 판단의 중심으로 둔다.
+단일 성능지표만으로 결론을 내리지 않고, Search Model의 Recall 및 Perspective Coverage 개선과 Full FAME-AX의 Strategy Coverage 및 근거 추적성을 함께 평가한다. 특히 교수 피드백에서 제시된 **“BM25/Dense 등 단일질의 검색 및 GPT-only 대비 다중관점 검색·추천의 실질적 개선”**을 최종 유효성 판단의 중심으로 둔다.
 
 ---
 
@@ -269,7 +271,7 @@ Actionable Explanation이 실제 Evidence에 근거하는지 검토한다. Wald 
 
 첫째, 기업 업무문제를 하나의 Query로 고정하지 않고 복수 Perspective로 분해하여 Retrieval 단계까지 Branch를 유지하는 LLM-Augmented Multi-View Neural Search 모델을 제안한다.
 
-둘째, Problem·Task·Context의 분리 표현과 Gated Fusion, Hybrid Retrieval, Query-Case Interaction을 결합하여 단일 임베딩 검색의 Recall 한계를 개선하는지 검증한다.
+둘째, Problem·Task·Context의 분리 표현과 Gated Fusion, Hybrid Retrieval, Query-Case Interaction을 결합하여 단일질의 기반 검색에서 발생할 수 있는 관점 누락과 초기 Retrieval Recall 한계를 개선하는지 검증한다.
 
 셋째, 검색된 사례 Evidence를 Root Cause Factor Anchor와 Wald Statistics에 연결하고 Evidence Fusion을 통해 Strategy 추천으로 확장하는 FAME-AX + LLM 구조를 검증한다.
 
