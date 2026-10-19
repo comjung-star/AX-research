@@ -114,15 +114,22 @@ File:
 - **Pilot 종료**
 
 ### Supplemental
-- **3건**
+- **4건**
+
+### Main Dataset v1
+- **100건**
+- AX0001~AX0100
+- QA 100건
+- Root Cause v1 / Strategy v1 동일 적용
+- 2026-10-19 **v1 Freeze**
+
+### Supplemental
+- **4건**
 
 ### Next
-Main Dataset v1을 **100~150건**으로 확장한다.
+Retrieval Ground Truth를 구축한다.
 
-확장 시:
-- source/industry diversity 유지
-- 동일 v1 taxonomy 적용
-- 변경 필요 시 v1을 덮어쓰지 않고 v2 후보로 별도 관리
+Main Dataset에 추가 사례가 발견되더라도 현재 AX0001~AX0100은 v1 실험 기준으로 유지하고, 추가분은 확장셋 또는 차기 버전으로 분리한다.
 
 
 ## 7. 공개 PDF/XLSX Screening
@@ -146,3 +153,16 @@ Main Dataset v1을 **100~150건**으로 확장한다.
 Main Dataset에 바로 편입 가능한 것으로 검증된 10건은 AX0043~AX0052로 `main_cases_v1.csv`에 반영했다.
 
 공공기관 중심 대량자료(NIA 110건, Federal Reserve Inventory)는 기업 AX Main 분포를 왜곡하지 않도록 Supplemental/외적 타당성 검증용으로 분리한다.
+
+
+## 8. 실전 AX 리포트 및 100건 확장
+
+『실전 AX 리포트』 PART 5 13건을 별도 검증했다.
+
+- Main 편입: 7건 (AX0053~AX0059)
+- Supplemental: 1건 (PUB0004)
+- HOLD: 5건
+
+이후 Microsoft, AWS, Google Cloud, IBM 및 국내 기업 공식 고객사례를 추가 검증해 AX0060~AX0100을 구축했다.
+
+최종 Main Dataset v1은 **100건**이며 상세 검증은 `main_dataset_validation_v1.md`를 따른다.
