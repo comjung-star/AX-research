@@ -173,14 +173,25 @@ The main research question is whether multi-perspective retrieval improves the d
 Primary metrics:
 
 - `Recall@K`
+- `Perspective Coverage@K` (auxiliary retrieval metric for checking whether distinct Gold perspectives are represented in retrieved results)
 - `Strategy Coverage@K`
 
 Primary baselines:
 
+- Single-query BM25 / sparse lexical retrieval
 - Single-query Dense Retrieval
 - GPT-only recommendation/judgment
 
+The core comparison is not "dense vs. proposed" alone. The research must test whether preserving multiple problem perspectives improves retrieval over single-query retrieval regardless of whether the single-query baseline is lexical (BM25) or dense.
+
 Use comparable search/output budgets when comparing systems.
+
+For Retrieval Ground Truth:
+- Build labels independently from model outputs.
+- Use Problem View information (Business Problem / AX Target / Business Context) for case relevance judgment to reduce solution leakage.
+- Preserve Gold perspectives separately instead of collapsing them into one global relevance label.
+- Store Perspective × Case relevance on a 0–4 scale; the exact Gold threshold and adjudication rule must be documented as an experimental decision before baseline evaluation.
+- Derive Gold Strategy Set only after relevant cases are fixed, using the frozen Strategy taxonomy.
 
 Perform staged ablation to test the value of each component.
 
