@@ -201,3 +201,26 @@ KOSA 공식 자료는 사례집이 단순 AI 제품 소개가 아니라:
 - Main용 QA는 `main_qa_metadata_v1.csv`로 별도 관리
 
 현재 HOLD / REVIEW 6건은 Main에 넣지 않았다.
+
+
+## 11. Main Dataset 100건 확장 완료
+
+2026-10-19 추가 검증을 통해 Main Dataset v1을 52건에서 **100건**으로 확장했다.
+
+추가 48건 구성:
+- 『실전 AX 리포트』 검증 사례 7
+- Microsoft 공식 고객사례 10
+- AWS 공식 고객사례 8
+- Google Cloud 공식 고객사례 11
+- IBM 공식 고객사례 8
+- 국내 기업 공개사례 4
+
+검증 후:
+- 필수필드 누락 0
+- Case ID 중복 0
+- Business Problem 완전중복 0
+- Task 완전중복 0
+- Main QA 100건
+- 신규 Root Cause/Strategy 필요 없음
+
+Main Dataset v1은 AX0001~AX0100으로 Freeze하고 다음 단계인 Ground Truth 구축으로 이동한다.
