@@ -24,6 +24,10 @@ AX 사례 데이터셋과 평가용 정답 데이터를 관리하는 영역입�
 - [Strategy Taxonomy](strategy_taxonomy.csv)
 - [Strategy Taxonomy v1 snapshot](strategy_taxonomy_v1.csv)
 - [Taxonomy Freeze v1](taxonomy_freeze_v1.md)
+- [Retrieval Ground Truth Protocol v0.1](ground_truth_protocol.md)
+- [Retrieval Query Draft v0.1](retrieval_queries_v0.1.csv)
+- [Perspective × Case Relevance v0.1](perspective_case_relevance_v0.1.csv)
+- [Retrieval Gold v0.1](retrieval_gold_v0.1.csv)
 
 ## 기본 원칙
 
@@ -58,4 +62,6 @@ Source
 - Supplemental: **4건**
 - Root Cause v1: 9종
 - Strategy v1: 6종
-- 다음 단계: **Retrieval Ground Truth 구축**
+- Retrieval Ground Truth: **Protocol v0.1 / Query Draft 10건 생성**
+- Perspective × Case 0~4 라벨링: **다음 작업**
+- 다음 단계: **Ground Truth Pilot 라벨링 및 Gold 확정 규칙 검증**
