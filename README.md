@@ -7,6 +7,7 @@
 - [아키텍처 정리](docs/architecture.md)
 - [실험 로드맵](docs/experiments.md)
 - [작업일지](worklog/README.md)
+- [학습용 쉬운 설명](study/README.md)
 
 ## Repository Structure
 
@@ -17,6 +18,7 @@ AX-research/
 ├─ docs/
 ├─ data/
 ├─ worklog/
+├─ study/
 ├─ src/
 ├─ configs/
 ├─ experiments/
