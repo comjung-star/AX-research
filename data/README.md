@@ -30,6 +30,7 @@ AX 사례 데이터셋과 평가용 정답 데이터를 관리하는 영역입�
 - [Retrieval Gold v0.1](retrieval_gold_v0.1.csv)
 - [GTQ001 Ground Truth Pilot Review](gtq001_pilot_review.md)
 - [GTQ001 Perspective Adjudication](gtq001_adjudication.md)
+- [GTQ002 Ground Truth Pilot Review](gtq002_pilot_review.md)
 
 ## 기본 원칙
 
@@ -68,4 +69,6 @@ Source
 - GTQ001 Perspective × Case 0~4 라벨링: **300개 완료**
 - GTQ001 Gold: **PILOT_GOLD_ADJUDICATED**
 - Perspective overlap: **허용 / 별도 기록**
-- 다음 단계: **GTQ002 Ground Truth 라벨링**
+- GTQ002 Ground Truth: **300개 라벨 + Adjudication 완료**
+- GTQ001~GTQ002: **PILOT_GOLD_ADJUDICATED**
+- 다음 단계: **GTQ003~GTQ010 Ground Truth 확대**
