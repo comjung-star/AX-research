@@ -190,6 +190,11 @@ The core comparison is not "dense vs. proposed" alone. The research must test wh
 Use comparable search/output budgets when comparing systems.
 
 For Retrieval Ground Truth:
+- Treat current `GTQ001~GTQ010` as Dev/Pilot queries, not the final held-out test.
+- Build the final held-out Test queries only after model/prompt/evaluation rules are frozen; do not tune the system after seeing held-out results.
+- Interpret stored Gold Perspectives as Reference Perspectives: minimum benchmark aspects, not an exhaustive closed category list.
+- Runtime LLM perspectives remain dynamic in count and type.
+- A generated perspective outside the Reference set is not automatically wrong; evaluate whether it is query-grounded, non-redundant, and recovers additional relevant cases.
 - Build labels independently from model outputs.
 - Use Problem View information (Business Problem / AX Target / Business Context) for case relevance judgment to reduce solution leakage.
 - Preserve Gold perspectives separately instead of collapsing them into one global relevance label.
