@@ -55,11 +55,12 @@ Main Dataset v1은 AX0001~AX0100의 100건으로 고정해 검색·추천 실험
 현재 진행:
 - GTQ001: 300개 라벨 + Adjudication + Pilot Gold 확정
 - GTQ002: 300개 라벨 + Adjudication + Pilot Gold 확정
-- 누적 Perspective × Case 라벨: **600개**
-- GTQ001~GTQ002에서 Ground Truth 규칙 재현성 확인
+- 누적 Perspective × Case 라벨: **900개**
+- GTQ001~GTQ003 Gold 확정 및 Ground Truth 규칙 재현성 확인
+- GTQ003에서 관점별 고유 Gold Case 확인(P2-only 5건 / P3-only 2건)
 
 다음 작업:
-1. GTQ003~GTQ010 Perspective × Case 관련도 0~4 라벨링
+1. GTQ004~GTQ010 Perspective × Case 관련도 0~4 라벨링
 2. Query별 Gold Perspective / Gold Relevant Cases / Gold Strategy Set 확정
 3. Ground Truth v1 Freeze
 4. 동일 Search Budget에서 Single-query BM25 / Dense Retrieval / GPT-only baseline 구축
