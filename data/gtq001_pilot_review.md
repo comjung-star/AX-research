@@ -246,3 +246,21 @@ P2와 다른 Perspective의 관련사례 중첩이 높아 Perspective 분리성�
 ## 한 줄 결론
 
 **GTQ001 300개 Pilot 라벨링은 성공적으로 완료했지만, P2 관련사례가 P1/P3와 모두 겹쳐 Perspective Coverage 평가의 변별력이 약해질 수 있다는 중요한 설계 이슈를 발견했다. 따라서 Final Gold 확정 전에 Perspective Adjudication을 한 번 거치는 것이 필요하다.**
+
+
+## 10. Adjudication 결과
+
+후속 검토 결과 P1/P2/P3는 모두 유지한다.
+
+- P1: 처리용량/규모 문제
+- P2: 반복업무/인력집중 문제
+- P3: 지식접근/답변품질 문제
+
+P2의 Gold Case가 P1/P3와 겹치는 것은 제거 사유로 보지 않는다. 하나의 AX 사례가 여러 문제차원을 동시에 해결할 수 있으므로 Case의 복수 Perspective 소속을 허용한다.
+
+다만 Perspective Coverage@K의 과도한 해석을 피하기 위해 Query별 Gold Case overlap을 별도 기록한다.
+
+GTQ001 상태:
+- `PILOT_GOLD_ADJUDICATED`
+
+세부 결정은 `data/gtq001_adjudication.md`에 기록한다.
