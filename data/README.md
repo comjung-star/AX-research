@@ -32,6 +32,7 @@ AX 사례 데이터셋과 평가용 정답 데이터를 관리하는 영역입�
 - [GTQ001 Perspective Adjudication](gtq001_adjudication.md)
 - [GTQ002 Ground Truth Pilot Review](gtq002_pilot_review.md)
 - [GTQ003 Ground Truth Review](gtq003_ground_truth_review.md)
+- [GTQ004 Ground Truth Review](gtq004_ground_truth_review.md)
 
 ## 기본 원칙
 
@@ -71,7 +72,7 @@ Source
 - GTQ001 Gold: **PILOT_GOLD_ADJUDICATED**
 - Perspective overlap: **허용 / 별도 기록**
 - GTQ002 Ground Truth: **300개 라벨 + Adjudication 완료**
-- GTQ001~GTQ003: **PILOT_GOLD_ADJUDICATED**
-- 누적 Perspective × Case 라벨: **900개**
+- GTQ001~GTQ004: **PILOT_GOLD_ADJUDICATED**
+- 누적 Perspective × Case 라벨: **1200개**
 - GTQ003: P2-only 5건 / P3-only 2건으로 관점별 고유 관련사례 확인
-- 다음 단계: **GTQ004~GTQ010 Ground Truth 확대**
+- 다음 단계: **GTQ005~GTQ010 Dev Ground Truth 확대**
