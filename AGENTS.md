@@ -68,6 +68,9 @@ Business Problem Query
 - Perspectives must be preserved as separate branches through retrieval and recommendation.
 - Do not collapse perspectives into one global ranking too early.
 - Perspective decomposition generates problem viewpoints, not solutions.
+- Gold perspectives are evaluation references only; they are **not** fixed runtime perspectives or prompts.
+- At runtime, the LLM must dynamically generate `P1 ... Pk` from each user Business Problem Query.
+- The number of generated perspectives is not fixed to three unless an experiment explicitly imposes that constraint.
 
 ### Multi-view representation
 
