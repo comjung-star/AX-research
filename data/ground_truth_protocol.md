@@ -29,7 +29,27 @@ Ground Truth 구축 및 baseline 실험 중에는 Main Dataset v1의 사례 구�
 
 ---
 
-## 3. Query 작성 원칙
+## 3. Query 역할과 작성 원칙
+
+### 3.1 Dev / Pilot Query
+
+현재 `GTQ001~GTQ010`은 **개발·검증용 Dev/Pilot Query**다.
+
+- Main Dataset의 여러 AX 사례에서 반복되는 Business Problem 패턴을 바탕으로 연구용 문장으로 재구성한다.
+- Ground Truth 기준, Prompt, 모델 구조, threshold 등 개발·검증 과정에서 반복적으로 사용할 수 있다.
+- 따라서 최종 성능을 주장하는 Held-out Test Set으로 사용하지 않는다.
+
+### 3.2 Held-out Test Query
+
+최종 Test Query는 **모델·Prompt·평가규칙을 확정한 뒤 별도로 생성**한다.
+
+- 개발 중 사용한 GTQ001~GTQ010과 분리한다.
+- 가능하면 새로운 업무문제 시나리오나 독립 작성자가 만든 Query를 사용한다.
+- Query 문장을 먼저 Freeze한 뒤 모델 출력과 독립적으로 Ground Truth를 구축한다.
+- Test 결과를 확인한 뒤 Prompt나 모델을 다시 조정하지 않는다. 조정이 필요하면 해당 Test는 더 이상 최종 Test가 아니며 Dev로 재분류한다.
+- 최종 Test Query 수와 작성자 구성은 실험 직전 별도 확정한다.
+
+### 3.3 공통 Query 작성 원칙
 
 평가 Query는 실제 기업 사용자가 입력할 법한 **Business Problem 중심 문장**으로 작성한다.
 
@@ -48,9 +68,13 @@ Ground Truth 구축 및 baseline 실험 중에는 Main Dataset v1의 사례 구�
 
 ---
 
-## 4. Gold Perspective
+## 4. Reference / Gold Perspective
 
 하나의 Business Problem Query에 복수의 타당한 문제관점이 존재할 수 있다.
+
+현재 파일 호환성을 위해 `gold_perspectives`라는 이름을 유지하지만, 의미상 **Reference Perspective(평가용 기준 관점)**로 사용한다.
+
+Reference Perspective는 해당 Query에서 **최소한 놓치지 않기를 기대하는 기준 관점**이며, 가능한 모든 타당한 관점을 닫힌 목록으로 완전 열거한다는 뜻이 아니다.
 
 각 Query는 다음처럼 Perspective를 별도 Branch로 정의한다.
 
@@ -74,12 +98,24 @@ Perspective는 **해결책이 아니라 문제를 바라보는 관점**이어야
 
 ### Runtime Perspective와 Gold Perspective 구분
 
-- **Gold Perspective**: 평가자가 사전에 확정한 평가용 정답 관점
+- **Reference / Gold Perspective**: 평가자가 사전에 확정한 최소 기준 관점
 - **Generated Perspective**: 실제 사용 시 LLM이 사용자 Query를 보고 동적으로 생성하는 관점
 
-Gold Perspective는 모델 입력에 제공하지 않는다. 실제 모델은 사용자 Query만 보고 `P1 ... Pk`를 동적으로 생성하며, 관점 개수도 고정하지 않는다.
+Reference Perspective는 모델 입력에 제공하지 않는다. 실제 모델은 사용자 Query만 보고 `P1 ... Pk`를 동적으로 생성하며, 관점 개수와 종류도 고정하지 않는다.
 
-Ground Truth의 Gold Perspective는 나중에 Generated Perspective 및 관점별 검색결과가 적절했는지 평가하기 위한 기준이다.
+Ground Truth의 Reference Perspective는 Generated Perspective 및 관점별 검색결과가 최소 기준을 얼마나 잘 포괄했는지 평가하기 위한 Benchmark다. **Ground Truth는 모델 입력용이 아니라 모델 평가용이다.**
+
+### Reference에 없는 새로운 Generated Perspective
+
+LLM이 Reference Perspective에 없는 관점을 생성했다고 해서 자동으로 오답 처리하지 않는다.
+
+새 관점은 다음을 별도로 검토한다.
+
+1. 사용자 Query에 직접적인 근거가 있는가
+2. 기존 Reference/Generated Perspective의 단순한 표현 변경이 아닌가
+3. 실제로 추가적인 Relevant Case를 회수하거나 독립적인 문제차원을 설명하는가
+
+이 기준을 만족하는 관점은 **Novel Valid Perspective 후보**로 기록할 수 있다. 구체적인 정량화 방식은 Dev 실험에서 검증 후 최종 Test 전에 Freeze한다.
 
 ---
 
@@ -173,6 +209,7 @@ Gold Strategy Set 중 검색/추천 결과를 통해 발견된 Strategy의 비�
 
 ## 9. Annotation / 검토 절차
 
+### Dev/Pilot
 현재 실험안:
 
 1. Query 및 Draft Perspective 생성
@@ -182,7 +219,15 @@ Gold Strategy Set 중 검색/추천 결과를 통해 발견된 Strategy의 비�
 5. 연구자 검토 후 Gold 확정
 6. 확정 전 파일은 `DRAFT` 또는 `PILOT` 상태 유지
 
-반복 횟수와 집계 방식(예: median)은 Pilot 라벨 안정성 확인 후 v1 전에 고정한다.
+반복 횟수와 집계 방식(예: median)은 Pilot 라벨 안정성 확인 후 Dev Ground Truth v1 전에 고정한다.
+
+### Held-out Test
+1. 모델·Prompt·평가규칙 Freeze
+2. 독립적인 Test Query 작성 및 Query Freeze
+3. 모델 결과를 보지 않은 상태에서 Reference Perspective / Case relevance Ground Truth 구축
+4. Ground Truth Freeze
+5. 최종 모델 1회 평가
+6. 결과 확인 후 모델을 다시 조정하지 않음
 
 ---
 
@@ -209,7 +254,7 @@ Query × Perspective × Case 관련도 0~4 저장.
 
 ## 11. 현재 상태
 
-- Protocol: v0.1 작성
+- Protocol: v0.1 작성 + 2026-10-20 교수 피드백 반영(Dev/Test 분리, Reference Perspective, Novel Perspective 처리)
 - Query: 10건 Draft 작성
 - GTQ001 Perspective × Case 라벨링: 300개 완료
 - GTQ001 Gold: PILOT_GOLD_ADJUDICATED
@@ -218,6 +263,6 @@ Query × Perspective × Case 관련도 0~4 저장.
 - GTQ003 Perspective × Case 라벨링: 300개 완료
 - GTQ003 Gold: PILOT_GOLD_ADJUDICATED
 - 누적 라벨: 900개
-- GTQ001~GTQ002에서 0~4 척도 / 3점 threshold / overlap 허용 / Strategy co-label 검토 규칙 재현성 확인
+- GTQ001~GTQ003에서 0~4 척도 / 3점 threshold / overlap 허용 / Strategy co-label 검토 규칙 재현성 확인
 - GTQ004~GTQ010: Draft
 - Baseline 실행: Ground Truth v1 확대·확정 후 시작
