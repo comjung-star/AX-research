@@ -72,6 +72,15 @@ Perspective는 **해결책이 아니라 문제를 바라보는 관점**이어야
 
 초기 Query 파일의 Perspective는 `DRAFT_UNADJUDICATED` 상태로 시작하고, 관련도 라벨링을 거친 뒤 Gold로 확정한다.
 
+### Runtime Perspective와 Gold Perspective 구분
+
+- **Gold Perspective**: 평가자가 사전에 확정한 평가용 정답 관점
+- **Generated Perspective**: 실제 사용 시 LLM이 사용자 Query를 보고 동적으로 생성하는 관점
+
+Gold Perspective는 모델 입력에 제공하지 않는다. 실제 모델은 사용자 Query만 보고 `P1 ... Pk`를 동적으로 생성하며, 관점 개수도 고정하지 않는다.
+
+Ground Truth의 Gold Perspective는 나중에 Generated Perspective 및 관점별 검색결과가 적절했는지 평가하기 위한 기준이다.
+
 ---
 
 ## 5. Perspective × Case 관련도 0~4
@@ -148,6 +157,14 @@ Gold Perspective 중 Top-K 검색 결과에서 **관련 사례(관련도 3 이�
 
 이 지표는 단일 Query가 놓칠 수 있는 복수 관점을 다중관점 검색이 얼마나 보존하는지 확인하기 위한 보조 검색지표다.
 
+### Perspective 중복 허용 원칙
+
+하나의 AX Case가 둘 이상의 Gold Perspective에서 관련도 3 이상을 받을 수 있다. 이는 오류가 아니라 실제 기업 사례가 여러 문제요소를 동시에 해결할 수 있기 때문에 허용한다.
+
+따라서 Perspective Coverage@K는 "서로 다른 Case 수"가 아니라 **각 Gold Perspective를 대표할 수 있는 관련 Case가 Top-K 안에 존재하는지**를 측정한다.
+
+단, 한 Case가 여러 Perspective를 동시에 cover해 지표가 쉽게 높아지는지 확인하기 위해 Query별 Perspective 간 Gold Case overlap을 별도로 기록하고 해석한다.
+
 ### Strategy Coverage@K
 
 Gold Strategy Set 중 검색/추천 결과를 통해 발견된 Strategy의 비율.
@@ -194,6 +211,8 @@ Query × Perspective × Case 관련도 0~4 저장.
 
 - Protocol: v0.1 작성
 - Query: 10건 Draft 작성
-- Perspective × Case 라벨링: 미착수
-- Gold 확정: 미착수
-- Baseline 실행: Ground Truth 확정 후 시작
+- GTQ001 Perspective × Case 라벨링: 300개 완료
+- GTQ001 Perspective Adjudication: 완료
+- GTQ001 Gold: PILOT_GOLD_ADJUDICATED
+- GTQ002~GTQ010: Draft
+- Baseline 실행: Ground Truth 확대 후 시작
