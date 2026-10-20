@@ -28,6 +28,7 @@ AX 사례 데이터셋과 평가용 정답 데이터를 관리하는 영역입�
 - [Retrieval Query Draft v0.1](retrieval_queries_v0.1.csv)
 - [Perspective × Case Relevance v0.1](perspective_case_relevance_v0.1.csv)
 - [Retrieval Gold v0.1](retrieval_gold_v0.1.csv)
+- [GTQ001 Ground Truth Pilot Review](gtq001_pilot_review.md)
 
 ## 기본 원칙
 
@@ -63,5 +64,7 @@ Source
 - Root Cause v1: 9종
 - Strategy v1: 6종
 - Retrieval Ground Truth: **Protocol v0.1 / Query Draft 10건 생성**
-- Perspective × Case 0~4 라벨링: **다음 작업**
-- 다음 단계: **Ground Truth Pilot 라벨링 및 Gold 확정 규칙 검증**
+- GTQ001 Perspective × Case 0~4 라벨링: **300개 완료**
+- GTQ001 Gold: **Provisional / Final 아님**
+- 발견 이슈: **P2 독립 Gold Case 0건 → Perspective Adjudication 필요**
+- 다음 단계: **GTQ001 Perspective Adjudication 및 반복 일관성 검토**
