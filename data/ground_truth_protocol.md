@@ -215,7 +215,9 @@ Query × Perspective × Case 관련도 0~4 저장.
 - GTQ001 Gold: PILOT_GOLD_ADJUDICATED
 - GTQ002 Perspective × Case 라벨링: 300개 완료
 - GTQ002 Gold: PILOT_GOLD_ADJUDICATED
-- 누적 라벨: 600개
+- GTQ003 Perspective × Case 라벨링: 300개 완료
+- GTQ003 Gold: PILOT_GOLD_ADJUDICATED
+- 누적 라벨: 900개
 - GTQ001~GTQ002에서 0~4 척도 / 3점 threshold / overlap 허용 / Strategy co-label 검토 규칙 재현성 확인
-- GTQ003~GTQ010: Draft
+- GTQ004~GTQ010: Draft
 - Baseline 실행: Ground Truth v1 확대·확정 후 시작
