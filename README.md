@@ -56,7 +56,7 @@ Main Dataset v1은 AX0001~AX0100의 100건으로 고정해 검색·추천 실험
 - GTQ001: 300개 라벨 + Adjudication + Pilot Gold 확정
 - GTQ002: 300개 라벨 + Adjudication + Pilot Gold 확정
 - 누적 Perspective × Case 라벨: **900개**
-- GTQ001~GTQ003 Gold 확정 및 Ground Truth 규칙 재현성 확인
+- GTQ001~GTQ003 Dev/Pilot Gold 확정 및 Ground Truth 규칙 재현성 확인
 - GTQ003에서 관점별 고유 Gold Case 확인(P2-only 5건 / P3-only 2건)
 
 다음 작업:
@@ -65,3 +65,12 @@ Main Dataset v1은 AX0001~AX0100의 100건으로 고정해 검색·추천 실험
 3. Ground Truth v1 Freeze
 4. 동일 Search Budget에서 Single-query BM25 / Dense Retrieval / GPT-only baseline 구축
 5. Recall@K / Perspective Coverage@K / Strategy Coverage@K 비교
+
+
+### Evaluation split clarification (2026-10-20)
+
+- `GTQ001~GTQ010`: Dev/Pilot Query
+- Final Held-out Test: model/prompt/evaluation rule Freeze 후 별도 생성
+- Gold Perspective: closed category가 아니라 Reference Perspective(최소 기준 관점)
+- Runtime: LLM이 Query마다 `P1...Pk`를 동적으로 생성
+- Reference에 없는 Generated Perspective도 자동 오답 처리하지 않고 Query grounding / redundancy / 추가 relevant-case 회수를 검토
