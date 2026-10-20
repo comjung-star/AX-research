@@ -96,6 +96,34 @@ Perspective는 **해결책이 아니라 문제를 바라보는 관점**이어야
 
 초기 Query 파일의 Perspective는 `DRAFT_UNADJUDICATED` 상태로 시작하고, 관련도 라벨링을 거친 뒤 Gold로 확정한다.
 
+### Reference Perspective 작성 원칙
+
+Reference Perspective는 임의의 고정 Category에서 선택하지 않고, **각 Query 문장에 직접 드러난 독립적인 문제차원**을 분해해 작성한다.
+
+작성 규칙:
+
+1. **Query-grounded**  
+   Query 문장 또는 함께 제공된 업무맥락에 직접 근거가 있는 문제요소만 관점 후보로 사용한다.
+
+2. **Problem-oriented**  
+   Perspective는 해결책이 아니라 문제를 바라보는 차원이어야 한다.  
+   예: `지식 분산`, `검색 지연`, `반복 검증 부담`은 가능하지만 `RAG 도입`, `Agent 구축`은 제외한다.
+
+3. **Semantic independence**  
+   같은 뜻을 표현만 바꾼 관점은 중복으로 채택하지 않는다. 서로 다른 원인·부담·위험·업무결과 등 독립적인 문제차원을 우선한다.
+
+4. **No solution leakage**  
+   Strategy, AI Technology, Implementation 등 Solution View를 보고 Perspective를 역으로 만들지 않는다.
+
+5. **No fixed perspective count**  
+   Reference Perspective 수는 원칙적으로 고정하지 않는다. Query에 근거한 독립 문제차원 수에 따라 달라질 수 있다.  
+   현재 `GTQ001~GTQ010`이 모두 3개 Perspective로 작성된 것은 **Pilot 단계의 비교·라벨링 편의를 위한 초기 형식**이며, Runtime 모델의 관점 수를 3개로 제한하는 규칙이 아니다.
+
+6. **Draft → Adjudication**  
+   최초 Perspective는 연구자의 해석에 기반한 Draft이며, Perspective × Case relevance 라벨링, 경계사례 검토, overlap 분석을 거쳐 Reference Perspective로 확정한다.
+
+즉 Reference Perspective는 완전한 객관적 자연법칙처럼 자동 생성되는 정답이 아니라, **명시된 작성 규칙에 따라 Query를 분해하고 이후 검토를 거쳐 확정하는 평가용 기준**이다.
+
 ### Runtime Perspective와 Gold Perspective 구분
 
 - **Reference / Gold Perspective**: 평가자가 사전에 확정한 최소 기준 관점
