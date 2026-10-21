@@ -48,3 +48,12 @@ Dev/Pilot Query (GTQ001~GTQ010)
 ```
 
 Test 결과를 본 뒤 모델을 수정해야 한다면 해당 Query는 Dev로 이동시키고 새로운 Held-out Test를 준비합니다.
+
+
+## Current milestone — Dev Ground Truth complete
+
+As of 2026-10-21:
+- GTQ001~GTQ010 active Dev/Pilot queries adjudicated
+- 3000 active Perspective × Case relevance labels
+- low-discrimination pilot queries retained in archive for auditability
+- baseline experiments may now begin against the frozen Dev benchmark
