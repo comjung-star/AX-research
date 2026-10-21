@@ -266,7 +266,7 @@ Runtime 원칙은 고정 3개가 아니다.
 
 상·하한은 실험 안정성 및 Search Budget 통제를 위한 실험조건이다.
 
-`REVIEW_REQUIRED`: 2~5 범위 최종 승인
+결정: **Runtime Perspective 2~5개 동적 생성으로 APPROVED**
 
 ### 출력 Schema
 
@@ -595,7 +595,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 2. ~~BM25 Korean tokenizer~~ → **APPROVED: Kiwi**
 3. ~~Dense baseline model = `BAAI/bge-m3`~~ → **APPROVED: BAAI/bge-m3**
 4. ~~K = {5, 10, 20}~~ → **APPROVED: {5, 10, 20}**
-5. Runtime Perspective = 2~5개
+5. ~~Runtime Perspective = 2~5개~~ → **APPROVED: 동적 2~5개**
 6. branch-balanced unique selection 방식
 7. GPT-only 실행 모델
 8. LLM 반복 횟수 = 3
