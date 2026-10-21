@@ -309,7 +309,7 @@ Multi-Perspective가 단순히 더 많은 결과를 가져와서 유리해지는
 - Perspective Coverage@5 / @10 / @20
 - Strategy Coverage@5 / @10 / @20
 
-`REVIEW_REQUIRED`: K={5,10,20} 최종 승인
+결정: **K={5,10,20}으로 APPROVED**
 
 ### Single-query
 각 방식은 100 Case를 score/rank하지만 평가 시 상위 K개 unique Case만 사용한다.
@@ -594,7 +594,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 1. ~~Primary Query를 `business_problem_query only`로 할지~~ → **APPROVED: Business Problem only**
 2. ~~BM25 Korean tokenizer~~ → **APPROVED: Kiwi**
 3. ~~Dense baseline model = `BAAI/bge-m3`~~ → **APPROVED: BAAI/bge-m3**
-4. K = {5, 10, 20}
+4. ~~K = {5, 10, 20}~~ → **APPROVED: {5, 10, 20}**
 5. Runtime Perspective = 2~5개
 6. branch-balanced unique selection 방식
 7. GPT-only 실행 모델
