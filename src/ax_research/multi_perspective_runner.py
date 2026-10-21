@@ -1,18 +1,11 @@
 """Multi-Perspective Retrieval 공통 실행기.
 
-중요:
-- LLM은 Business Problem만 보고 Perspective 2~5개를 생성합니다.
-- 각 Perspective는 독립 branch로 검색합니다.
+RQ1 v1.2 Primary 규칙:
+- LLM은 Original Business Problem만 보고 Perspective 2~5개를 생성합니다.
+- 실제 BM25/Dense branch 검색에는 생성된 Perspective text만 사용합니다.
+- Original Business Problem을 각 branch 검색문장에 다시 붙이지 않습니다.
 - branch ranking을 점수로 합치지 않습니다.
-- 최종 Top-K는 branch-balanced unique 방식으로만 선택합니다.
-
-현재 구현은 두 branch query 형식을 모두 지원합니다.
-실제 Dev 실험을 실행하기 전에 어느 형식을 Primary로 쓸지 확정하면 됩니다.
-
-1) perspective_only
-   생성된 Perspective title + description만 검색
-2) original_plus_perspective
-   원 Business Problem + 생성 Perspective를 함께 검색
+- 최종 Top-K는 branch-balanced unique 방식으로 선택합니다.
 """
 
 from __future__ import annotations
@@ -47,35 +40,36 @@ class PerspectiveClient(Protocol):
     ) -> list[Perspective]: ...
 
 
-def build_branch_query(
-    *,
-    business_problem: str,
-    perspective: Perspective,
-    mode: str,
-) -> str:
-    """Perspective branch가 실제 Retriever에 넣을 검색문장을 만듭니다."""
+def build_branch_query(*, perspective: Perspective) -> str:
+    """v1.2 규칙대로 Perspective 자체만 검색문장으로 만듭니다."""
 
-    perspective_text = f"{perspective.title}\n{perspective.description}"
-
-    if mode == "perspective_only":
-        return perspective_text
-
-    if mode == "original_plus_perspective":
-        return (
-            f"[ORIGINAL PROBLEM] {business_problem}\n"
-            f"[PERSPECTIVE] {perspective_text}"
-        )
-
-    raise ValueError(
-        "branch_query_mode must be 'perspective_only' or "
-        "'original_plus_perspective'"
-    )
+    return f"{perspective.title}\n{perspective.description}"
 
 
 def _jaccard(left: Sequence[str], right: Sequence[str]) -> float:
     a, b = set(left), set(right)
     union = a | b
     return 1.0 if not union else len(a & b) / len(union)
+
+
+def _duplicate_candidate_rate(
+    branch_rankings: dict[str, list[str]],
+    local_k: int,
+) -> float:
+    """branch Top-N 전체 후보 중 중복이 차지하는 비율.
+
+    예: 3개 branch × Top-20 = 60개 슬롯인데 unique case가 40개라면
+    duplicate rate = 1 - 40/60 = 0.333...
+    """
+
+    flattened = [
+        case_id
+        for ranking in branch_rankings.values()
+        for case_id in ranking[:local_k]
+    ]
+    if not flattened:
+        return 0.0
+    return 1.0 - (len(set(flattened)) / len(flattened))
 
 
 def run_multi_perspective(
@@ -89,9 +83,13 @@ def run_multi_perspective(
     labels: Sequence[RelevanceLabel],
     gold_records: Sequence[GoldRecord],
     output_dir: str | Path,
-    branch_query_mode: str,
 ) -> tuple[Path, Path, Path]:
     """Multi-Perspective를 Query별 3회 실행하고 결과/평가를 저장합니다."""
+
+    if config.branch_query_mode != "perspective_only":
+        raise ValueError(
+            "RQ1 v1.2 Primary 실행은 perspective_only만 허용합니다."
+        )
 
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
@@ -123,9 +121,7 @@ def run_multi_perspective(
 
             for perspective in perspectives:
                 branch_query = build_branch_query(
-                    business_problem=query.business_problem_query,
                     perspective=perspective,
-                    mode=branch_query_mode,
                 )
                 ranked = list(retriever.search(branch_query, top_k=None))
                 branch_rankings[perspective.id] = [
@@ -139,19 +135,19 @@ def run_multi_perspective(
                             "system": system_name,
                             "run_id": run_index,
                             "query_id": query_id,
-                            "branch_query_mode": branch_query_mode,
+                            "llm_model": config.llm_model,
+                            "temperature": config.temperature,
+                            "branch_query_mode": config.branch_query_mode,
                             "perspective_id": perspective.id,
                             "perspective_title": perspective.title,
                             "perspective_description": perspective.description,
+                            "branch_query_text": branch_query,
                             "local_rank": local_rank,
                             "case_id": item.case_id,
                             "score": item.score,
                         }
                     )
 
-            # max K까지 한 번 선택합니다.
-            # branch-balanced selection은 prefix-consistent라
-            # 이 결과의 앞 5/10/20개를 각각 @5/@10/@20으로 평가할 수 있습니다.
             selected = branch_balanced_unique(
                 branch_rankings,
                 k=max_k,
@@ -167,16 +163,16 @@ def run_multi_perspective(
                         "system": system_name,
                         "run_id": run_index,
                         "query_id": query_id,
-                        "branch_query_mode": branch_query_mode,
+                        "branch_query_mode": config.branch_query_mode,
                         "final_rank": final_rank,
                         "source_perspective_id": source_branch,
                         "case_id": case_id,
                     }
                 )
 
-            # branch들이 실제로 다른 결과를 내는지 확인하기 위한 평균 Jaccard.
             local_sets = {
-                pid: ids[:max_k] for pid, ids in branch_rankings.items()
+                pid: ids[:max_k]
+                for pid, ids in branch_rankings.items()
             }
             pair_scores = [
                 _jaccard(local_sets[a], local_sets[b])
@@ -186,6 +182,10 @@ def run_multi_perspective(
                 sum(pair_scores) / len(pair_scores)
                 if pair_scores
                 else 1.0
+            )
+            duplicate_rate = _duplicate_candidate_rate(
+                branch_rankings,
+                local_k=max_k,
             )
 
             for k in config.evaluation_k:
@@ -203,10 +203,10 @@ def run_multi_perspective(
                         "system": system_name,
                         "run_id": run_index,
                         "query_id": query_id,
-                        "branch_query_mode": branch_query_mode,
                         **asdict(metrics),
                         "generated_perspective_count": len(perspectives),
                         "mean_branch_jaccard_at_max_k": mean_branch_jaccard,
+                        "duplicate_candidate_rate_at_max_k": duplicate_rate,
                     }
                 )
 
