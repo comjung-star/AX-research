@@ -1,11 +1,14 @@
 # AX-research
-기업 업무문제 기반 다중관점 AX 사례 추천 모델 연구
+
+기업 업무문제 기반 다중관점 AX 사례 검색·전략 추천 모델 연구
 
 ## Documents
 
 - [연구계획서](docs/research-plan.md)
 - [아키텍처 정리](docs/architecture.md)
 - [실험 로드맵](docs/experiments.md)
+- [RQ1 검색실험 명세 v1 초안](docs/experiment-spec-rq1-v1-draft.md)
+- [Dev Ground Truth v1 Freeze](data/dev_ground_truth_freeze_v1.md)
 - [작업일지](worklog/README.md)
 - [학습용 쉬운 설명](study/README.md)
 
@@ -15,71 +18,55 @@
 AX-research/
 ├─ AGENTS.md
 ├─ README.md
-├─ docs/
-├─ data/
-├─ worklog/
-├─ study/
-├─ src/
-├─ configs/
-├─ experiments/
-├─ tests/
-└─ notebooks/
+├─ docs/          # 연구계획서, 아키텍처, 실험 명세/로드맵
+├─ data/          # Dataset, Ground Truth, Freeze/Archive
+├─ configs/       # 재현 가능한 실험 설정
+├─ experiments/   # 실험별 실행기록·결과
+├─ src/           # 실제 구현 코드
+├─ tests/         # 평가/검색/데이터 변환 테스트
+├─ notebooks/     # 탐색적 분석 및 시각화
+├─ study/         # 학습용 쉬운 설명
+└─ worklog/       # 날짜별 공식 작업일지
 ```
 
-## Current Step
+## Current Status — 2026-10-21
 
 ### 완료
 
 - 교수 제안 아키텍처 기준 연구 방향 확정
-- RRF / Weighted-RRF 폐기
-- Core Pilot 42건 검증 완료
-- Root Cause Dictionary v1 9종 Freeze
-- Strategy Taxonomy v1 6종 Freeze
-- 공개 PDF/XLSX 사례원천 검증
-- 『실전 AX 리포트』 PART 5 13개 사례 검증 완료
-  - Main 7건
-  - Supplemental 1건
-  - HOLD 5건
-- Main Dataset v1 **100건 구축 및 Freeze**
-- Main QA Metadata **100건**
-- Supplemental Public **4건**
-- 교수 Word 코멘트(BM25/Dense 단일질의 한계) 연구계획서 반영 완료
-- 평가 기준에 Single-query BM25 및 Perspective Coverage@K 반영
+- Main Dataset v1: **AX0001~AX0100 / 100건 Freeze**
+- Root Cause Dictionary v1: **9종 Freeze**
+- Strategy Taxonomy v1: **6종 Freeze**
+- Dev/Pilot Query: **GTQ001~GTQ010 10건**
+- Active Perspective × Case relevance: **3000 labels**
+- Active Query 10/10: `PILOT_GOLD_ADJUDICATED`
+- Low-discrimination / sparse 초기 Pilot Query는 Archive 보존
+- **Dev Ground Truth v1 Freeze 완료**
 
 ### 현재 단계
 
-**Retrieval Ground Truth 구축**
+**RQ1 Retrieval Experiment Specification Review**
 
-Main Dataset v1은 AX0001~AX0100의 100건으로 고정해 검색·추천 실험에 사용한다.
+현재 실험의 핵심 질문:
 
-현재 진행:
-- GTQ001: 300개 라벨 + Adjudication + Pilot Gold 확정
-- GTQ002: 300개 라벨 + Adjudication + Pilot Gold 확정
-- 누적 Perspective × Case 라벨: **1200개**
-- GTQ001~GTQ004 Dev/Pilot Gold 확정 및 Ground Truth 규칙 재현성 확인
-- GTQ003에서 관점별 고유 Gold Case 확인(P2-only 5건 / P3-only 2건)
+> Single-query BM25 / Dense / GPT-only보다 LLM Multi-Perspective branch 검색이 관련 AX 사례의 Recall과 Perspective Coverage를 개선하는가?
 
-다음 작업:
-1. GTQ005~GTQ010 Perspective × Case 관련도 0~4 라벨링
-2. Query별 Gold Perspective / Gold Relevant Cases / Gold Strategy Set 확정
-3. Ground Truth v1 Freeze
-4. 동일 Search Budget에서 Single-query BM25 / Dense Retrieval / GPT-only baseline 구축
-5. Recall@K / Perspective Coverage@K / Strategy Coverage@K 비교
+현재 작성된 초안:
+- `docs/experiment-spec-rq1-v1-draft.md`
+- `configs/experiment_rq1_v1_draft.yaml`
+- `experiments/rq1_retrieval/README.md`
 
+사용자 검토 후 실험 명세를 Freeze하고 구현을 시작한다.
 
-### Evaluation split clarification (2026-10-20)
+### 다음 순서
 
-- `GTQ001~GTQ010`: Dev/Pilot Query
-- Final Held-out Test: model/prompt/evaluation rule Freeze 후 별도 생성
-- Gold Perspective: closed category가 아니라 Reference Perspective(최소 기준 관점)
-- Runtime: LLM이 Query마다 `P1...Pk`를 동적으로 생성
-- Reference에 없는 Generated Perspective도 자동 오답 처리하지 않고 Query grounding / redundancy / 추가 relevant-case 회수를 검토
-
-
-### Dev Ground Truth milestone — 2026-10-21
-
-- GTQ001~GTQ010 Active Dev Query: **10/10 Adjudicated**
-- Perspective × Case relevance: **3000 labels**
-- Low-discrimination Pilot Query는 Archive에 보존하고 screening을 통과한 replacement Query로 교체
-- Ground Truth는 Runtime 입력이 아니라 평가 Benchmark
-- 다음 실험: Single-query BM25 → Dense → GPT-only → Multi-Perspective 비교
+1. RQ1 실험 명세 검토 및 Freeze
+2. 공통 Data Loader / Evaluation Engine 구현
+3. Single-query BM25
+4. Single-query Dense Retrieval
+5. GPT-only
+6. Multi-Perspective + BM25 diagnostic
+7. Multi-Perspective + Dense primary Stage 1
+8. Dev 결과 검토
+9. Multi-view / Gated Fusion / Hybrid Retrieval 등 후속 단계
+10. 모델·Prompt·평가규칙 Freeze 후 별도 Held-out Test
