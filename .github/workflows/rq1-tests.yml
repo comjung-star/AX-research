@@ -38,4 +38,11 @@ jobs:
           python -m pip install pytest PyYAML pydantic numpy
 
       - name: Run unit tests
-        run: pytest -q
+        run: pytest -q --junitxml=pytest-results.xml
+
+      - name: Upload pytest report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-results
+          path: pytest-results.xml
