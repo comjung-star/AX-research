@@ -1,0 +1,51 @@
+name: RQ1 BM25 and Dense baselines
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rq1-baselines.yml"
+  workflow_dispatch:
+
+jobs:
+  baselines:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-bge-m3-${{ runner.os }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install -r requirements-rq1.txt
+
+      - name: Run BM25 baseline
+        run: |
+          python -m ax_research.cli bm25 --output-dir experiments/rq1_retrieval/results/baseline_ci
+
+      - name: Run Dense baseline
+        run: |
+          python -m ax_research.cli dense --output-dir experiments/rq1_retrieval/results/baseline_ci
+
+      - name: Show generated files
+        run: |
+          find experiments/rq1_retrieval/results/baseline_ci -maxdepth 2 -type f -print
+
+      - name: Upload baseline results
+        uses: actions/upload-artifact@v4
+        with:
+          name: rq1-baseline-results
+          path: experiments/rq1_retrieval/results/baseline_ci
