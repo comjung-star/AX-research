@@ -46,12 +46,19 @@ systems:
     similarity: cosine
     normalize_embeddings: true
 
+  common_llm:
+    model: REVIEW_REQUIRED  # shared by GPT-only and Perspective Generator
+
   gpt_only:
     enabled: true
-    model: REVIEW_REQUIRED
+    model_ref: common_llm
     case_view: problem_only
     repeats: 3  # REVIEW_REQUIRED
     temperature: REVIEW_REQUIRED
+
+  perspective_generator:
+    enabled: true
+    model_ref: common_llm
 
   multi_perspective_bm25:
     enabled: true
