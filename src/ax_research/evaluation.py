@@ -25,8 +25,21 @@ class MetricsAtK:
     strategy_coverage: float
 
 
+@dataclass(frozen=True)
+class GoldDelta:
+    """Baseline 대비 Proposed가 얻고 잃은 Gold를 함께 기록합니다."""
+
+    gained: frozenset[str]
+    lost: frozenset[str]
+
+    @property
+    def net(self) -> int:
+        return len(self.gained) - len(self.lost)
+
+
 def _top_k_unique(case_ids: Sequence[str], k: int) -> list[str]:
     """랭킹 순서를 유지하면서 중복을 제거해 상위 K개의 Case ID만 남긴다."""
+
     seen: set[str] = set()
     result: list[str] = []
     for case_id in case_ids:
@@ -39,7 +52,11 @@ def _top_k_unique(case_ids: Sequence[str], k: int) -> list[str]:
     return result
 
 
-def recall_at_k(ranked_case_ids: Sequence[str], gold_case_ids: Iterable[str], k: int) -> float:
+def recall_at_k(
+    ranked_case_ids: Sequence[str],
+    gold_case_ids: Iterable[str],
+    k: int,
+) -> float:
     gold = set(gold_case_ids)
     if not gold:
         return 0.0
@@ -54,6 +71,7 @@ def build_perspective_gold(
     threshold: int = 3,
 ) -> dict[str, set[str]]:
     """한 Query의 Reference Perspective별 Gold Case 집합을 만든다."""
+
     result: dict[str, set[str]] = defaultdict(set)
     for label in labels:
         if label.query_id == query_id and label.relevance >= threshold:
@@ -67,10 +85,15 @@ def perspective_coverage_at_k(
     k: int,
 ) -> float:
     """Reference Perspective 중 Top-K에서 1개 이상 관련 Case가 잡힌 비율."""
+
     if not perspective_gold:
         return 0.0
     retrieved = set(_top_k_unique(ranked_case_ids, k))
-    covered = sum(1 for gold_cases in perspective_gold.values() if retrieved & gold_cases)
+    covered = sum(
+        1
+        for gold_cases in perspective_gold.values()
+        if retrieved & gold_cases
+    )
     return covered / len(perspective_gold)
 
 
@@ -80,7 +103,8 @@ def strategy_coverage_at_k(
     gold_strategies: Iterable[str],
     k: int,
 ) -> float:
-    """Top-K 사례가 가진 Strategy label union이 Gold Strategy를 얼마나 포함하는지 계산."""
+    """Top-K 사례의 Strategy union이 Gold Strategy를 얼마나 포함하는지 계산."""
+
     gold = set(gold_strategies)
     if not gold:
         return 0.0
@@ -94,17 +118,44 @@ def strategy_coverage_at_k(
     return len(retrieved_strategies & gold) / len(gold)
 
 
+def gold_delta_at_k(
+    baseline_case_ids: Sequence[str],
+    proposed_case_ids: Sequence[str],
+    gold_case_ids: Iterable[str],
+    k: int,
+) -> GoldDelta:
+    """Single Dense 대비 MP Dense가 새로 얻은 Gold와 잃은 Gold를 함께 계산합니다.
+
+    Unique Gold Recovery만 보면 '새로 찾은 것'만 보여서 오해할 수 있습니다.
+    예를 들어 2개를 새로 찾았지만 3개를 잃었다면 순효과는 -1입니다.
+    """
+
+    gold = set(gold_case_ids)
+    baseline_hit = set(_top_k_unique(baseline_case_ids, k)) & gold
+    proposed_hit = set(_top_k_unique(proposed_case_ids, k)) & gold
+
+    return GoldDelta(
+        gained=frozenset(proposed_hit - baseline_hit),
+        lost=frozenset(baseline_hit - proposed_hit),
+    )
+
+
 def unique_gold_recovery(
     baseline_case_ids: Sequence[str],
     proposed_case_ids: Sequence[str],
     gold_case_ids: Iterable[str],
     k: int,
 ) -> set[str]:
-    """Baseline이 놓쳤지만 Proposed가 새로 찾은 Gold Case를 반환."""
-    gold = set(gold_case_ids)
-    baseline_hit = set(_top_k_unique(baseline_case_ids, k)) & gold
-    proposed_hit = set(_top_k_unique(proposed_case_ids, k)) & gold
-    return proposed_hit - baseline_hit
+    """하위 호환 helper: 새로 얻은 Gold만 반환합니다."""
+
+    return set(
+        gold_delta_at_k(
+            baseline_case_ids,
+            proposed_case_ids,
+            gold_case_ids,
+            k,
+        ).gained
+    )
 
 
 def evaluate_at_k(
@@ -117,9 +168,14 @@ def evaluate_at_k(
     k: int,
 ) -> MetricsAtK:
     """세 핵심 지표를 한 번에 계산하는 공통 진입점."""
+
     return MetricsAtK(
         k=k,
         recall=recall_at_k(ranked_case_ids, gold_case_ids, k),
-        perspective_coverage=perspective_coverage_at_k(ranked_case_ids, perspective_gold, k),
-        strategy_coverage=strategy_coverage_at_k(ranked_case_ids, case_index, gold_strategies, k),
+        perspective_coverage=perspective_coverage_at_k(
+            ranked_case_ids, perspective_gold, k
+        ),
+        strategy_coverage=strategy_coverage_at_k(
+            ranked_case_ids, case_index, gold_strategies, k
+        ),
     )
