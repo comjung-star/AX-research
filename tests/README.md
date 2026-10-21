@@ -1,20 +1,33 @@
 # Tests
 
-데이터 변환, 검색 점수, 평가 지표 등 재현성이 필요한 로직의 테스트를 관리합니다.
+RQ1 구현의 재현성과 계산 오류를 자동 검증합니다.
 
-현재 테스트:
-- `test_evaluation.py` — Recall / Coverage / Unique Gold Recovery / 반복 Run 요약
-- `test_selection.py` — branch-balanced unique selection
-- `test_frozen_dev_data.py` — Frozen Dev 데이터 건수/상태
-- `test_bm25.py` — 간단한 한국어 BM25 ranking
-- `test_dense.py` — Dense 입력 검증
+현재 테스트 범위:
+- Frozen v1.2 config
+- Frozen Dev 데이터 100 Case / 10 Query / 3000 labels
+- Recall / Perspective Coverage / Strategy Coverage
+- Gold gained / lost / net
+- branch-balanced unique selection
+- Perspective-only branch query
+- Duplicate candidate rate
+- BM25 기본 ranking
+- Dense 입력 검증
+- GPT-only 반복 실행 runner
+- Prompt leakage 방지
+- Single-query runner
+- Baseline vs Multi-Perspective 비교 diagnostics
+- 반복 Run summary
 
-실행:
+GitHub Actions:
+- `.github/workflows/rq1-tests.yml`
+
+로컬 실행:
 
 ```bash
 python -m pip install -e .
-python -m unittest discover -s tests -v
+python -m pip install pytest PyYAML pydantic numpy
+pytest -q
 ```
 
-BGE-M3 실제 모델 다운로드/추론은 무거운 통합실험에 해당하므로
-기본 unit test에서는 모델 다운로드를 강제하지 않습니다.
+BGE-M3 실제 모델 다운로드와 OpenAI API 호출은 unit test에서 강제하지 않습니다.
+이는 실제 Dev experiment 실행 단계에서 검증합니다.
