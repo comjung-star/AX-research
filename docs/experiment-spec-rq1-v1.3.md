@@ -434,13 +434,13 @@ LLM이 들어가는:
 - Query별 각 Run metric을 모두 저장하고, summary에서는 mean / min / max 또는 mean ± std 기록
 - LLM prompt와 model version 고정
 - 가능한 경우 seed 기록
-- temperature는 낮게 설정
+- `gpt-6-luna`는 temperature 파라미터를 지원하지 않으므로 API 기본값 사용
 
 `APPROVED`:
 - repeats = **3** (Query별 독립 Run)
 
 `REVIEW_REQUIRED`:
-- temperature = **0.5 (APPROVED)**
+- temperature = **API default / parameter omitted (v1.3)**
 
 Dev에서는 안정성을 확인하고, Held-out Test 전에 실행규칙을 Freeze한다.
 
@@ -615,7 +615,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 6. ~~branch-balanced unique selection 방식~~ → **APPROVED**
 7. ~~GPT-only + Perspective Generator 공통 LLM 모델~~ → **APPROVED: GPT-6 Luna**
 8. ~~LLM 반복 횟수 = 3~~ → **APPROVED: Query별 3회 독립 실행**
-9. ~~LLM temperature~~ → **APPROVED: 0.5**
+9. ~~LLM temperature~~ → **v1.3: API default / parameter omitted** (v1.2의 0.5 계획은 실제 API 비지원으로 superseded)
 10. **APPROVED:** Recall / Perspective Coverage / Unique Gold Recovery를 함께 해석
 
 본 v1.2는 구현 및 Dev 실행 기준으로 Freeze한다. v1의 유일한 실험조건 변경은 공통 LLM API 모델 ID 교정이며, 이후 변경은 새 버전으로 기록한다.
@@ -651,7 +651,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 - 영향:
   - Multi-Perspective BM25와 Multi-Perspective Dense 모두 동일 규칙 적용
   - Single BM25 / Dense / GPT-only 입력은 변경 없음
-  - Ground Truth, K, LLM, temperature, repeats, final selection, 평가 지표는 변경 없음
+  - Ground Truth, K, LLM model, repeats, final selection, 평가 지표는 변경 없음
 
 
 ---
