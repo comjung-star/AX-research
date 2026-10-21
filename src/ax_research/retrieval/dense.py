@@ -1,62 +1,89 @@
-"""BGE-M3 Dense Retrieval baseline."""
+"""BGE-M3 기반 Dense Retrieval.
+
+Dense Retrieval은 Query와 Case 문장을 embedding(숫자 벡터)으로 바꾼 뒤
+벡터 방향이 얼마나 비슷한지(cosine similarity)로 검색합니다.
+
+RQ1 v1에서는 Single Dense와 Multi-Perspective Dense가
+동일한 BAAI/bge-m3 인코더를 공유합니다.
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Mapping
 
 import numpy as np
 
-from ..data import AXCase
-
 
 @dataclass(frozen=True)
-class DenseRankedCase:
+class RankedCase:
     case_id: str
     score: float
 
 
-class BGEM3DenseRetriever:
-    """BAAI/bge-m3 임베딩 + cosine similarity 검색기.
+class DenseRetriever:
+    """SentenceTransformers를 이용한 BGE-M3 Dense Retriever."""
 
-    Single Dense와 Multi-Perspective Dense가 같은 클래스/모델을 사용해야
-    Perspective 분해 외의 모델 차이를 통제할 수 있습니다.
-    """
+    def __init__(
+        self,
+        documents: Mapping[str, str],
+        model_name: str = "BAAI/bge-m3",
+        normalize_embeddings: bool = True,
+        device: str | None = None,
+    ) -> None:
+        if not documents:
+            raise ValueError("documents must not be empty")
 
-    def __init__(self, cases: Sequence[AXCase], model_name: str = "BAAI/bge-m3"):
         try:
             from sentence_transformers import SentenceTransformer
         except ImportError as exc:
             raise RuntimeError(
-                "Dense 실행에는 sentence-transformers가 필요합니다. "
-                "pip install -r requirements-rq1.txt 로 설치하세요."
+                "Dense Retrieval을 사용하려면 'sentence-transformers'가 필요합니다."
             ) from exc
 
-        self._cases = list(cases)
-        self._model_name = model_name
-        self._model = SentenceTransformer(model_name)
-        documents = [case.problem_view_text() for case in self._cases]
-        self._case_embeddings = self._model.encode(
-            documents,
-            normalize_embeddings=True,
-            convert_to_numpy=True,
-            show_progress_bar=False,
-        )
+        self.model_name = model_name
+        self.normalize_embeddings = normalize_embeddings
+        self._case_ids = list(documents.keys())
+        self._model = SentenceTransformer(model_name, device=device)
 
-    def search(self, query: str, top_k: int | None = None) -> list[DenseRankedCase]:
-        """Query embedding과 Case embedding의 cosine similarity로 순위를 만든다."""
+        texts = [documents[case_id] for case_id in self._case_ids]
+
+        # Case가 100건이므로 v1에서는 ANN/Vector DB를 쓰지 않고
+        # 100개 전체를 직접 비교합니다. 근사검색 오차를 실험에서 제거하기 위함입니다.
+        self._document_embeddings = self._model.encode(
+            texts,
+            convert_to_numpy=True,
+            normalize_embeddings=normalize_embeddings,
+            show_progress_bar=False,
+        ).astype(np.float32)
+
+    def search(self, query: str, top_k: int) -> list[RankedCase]:
+        """Query와 모든 Case의 cosine similarity를 계산해 Top-K를 반환합니다."""
+
+        if top_k <= 0:
+            raise ValueError("top_k must be greater than 0")
+
         query_embedding = self._model.encode(
             [query],
-            normalize_embeddings=True,
             convert_to_numpy=True,
+            normalize_embeddings=self.normalize_embeddings,
             show_progress_bar=False,
-        )[0]
+        )[0].astype(np.float32)
 
-        # normalize_embeddings=True이므로 dot product가 cosine similarity와 같습니다.
-        scores = np.dot(self._case_embeddings, query_embedding)
-        order = np.argsort(-scores)
-        ranked = [
-            DenseRankedCase(self._cases[i].case_id, float(scores[i]))
-            for i in order
-        ]
-        return ranked if top_k is None else ranked[:top_k]
+        if self.normalize_embeddings:
+            # normalize된 벡터끼리는 dot product가 cosine similarity입니다.
+            scores = self._document_embeddings @ query_embedding
+        else:
+            doc_norm = np.linalg.norm(self._document_embeddings, axis=1)
+            query_norm = np.linalg.norm(query_embedding)
+            denominator = np.maximum(doc_norm * query_norm, 1e-12)
+            scores = (self._document_embeddings @ query_embedding) / denominator
+
+        ranked = sorted(
+            (
+                RankedCase(case_id=case_id, score=float(score))
+                for case_id, score in zip(self._case_ids, scores, strict=True)
+            ),
+            key=lambda item: (-item.score, item.case_id),
+        )
+        return ranked[:top_k]
