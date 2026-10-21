@@ -4,17 +4,17 @@
 
 ## 현재 RQ1 실행 명세
 
-- Draft specification: `docs/experiment-spec-rq1-v1-draft.md`
-- Draft config: `configs/experiment_rq1_v1_draft.yaml`
+- Frozen specification: `docs/experiment-spec-rq1-v1.md`
+- Frozen config: `configs/experiment_rq1_v1.yaml`
 - Dev Ground Truth Freeze: `data/dev_ground_truth_freeze_v1.md`
 
-명세 승인 전까지 baseline 결과를 생성하지 않고, 승인 후 frozen config를 기준으로 구현·실행한다.
+명세 v1은 2026-10-21 Freeze 완료. 이후 구현·실행은 frozen config를 기준으로 하며, 보완이 필요하면 v1.1 또는 v2로 버전 관리한다.
 
 ## 권장 진행 순서
 
 1. Dataset / Retrieval Ground Truth 준비 ✅
-2. RQ1 Experiment Spec Freeze ← 현재
-3. Common Evaluation Engine
+2. RQ1 Experiment Spec Freeze ✅
+3. Common Evaluation Engine ← 현재
 4. Single-query BM25 baseline
 5. Single-query Dense Retrieval baseline
 6. GPT-only baseline
