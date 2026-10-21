@@ -57,7 +57,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--config",
-        default="configs/experiment_rq1_v1.2.yaml",
+        default="configs/experiment_rq1_v1.3.yaml",
         help="Frozen experiment config",
     )
     parser.add_argument("--repo-root", default=".")
