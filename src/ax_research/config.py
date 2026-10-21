@@ -31,17 +31,18 @@ class RQ1Config:
     temperature: float = 0.5
     perspective_min: int = 2
     perspective_max: int = 5
+    branch_query_mode: str = "perspective_only"
     status: str = "FROZEN_FOR_IMPLEMENTATION"
 
 
 def load_rq1_config(path: str | Path | None = None) -> RQ1Config:
-    """Frozen v1.1 YAML을 읽어 RQ1Config로 변환합니다.
+    """Frozen v1.2 YAML을 읽어 RQ1Config로 변환합니다.
 
-    path를 생략하면 현재 구현 기준인 v1.1 config를 사용합니다.
+    path를 생략하면 현재 구현/Dev 실행 기준인 v1.2 config를 사용합니다.
     """
 
     path = Path(path) if path is not None else (
-        REPO_ROOT / "configs" / "experiment_rq1_v1.1.yaml"
+        REPO_ROOT / "configs" / "experiment_rq1_v1.2.yaml"
     )
 
     with path.open("r", encoding="utf-8") as f:
@@ -52,6 +53,13 @@ def load_rq1_config(path: str | Path | None = None) -> RQ1Config:
         raise ValueError(
             "RQ1 runner는 Frozen config만 실행합니다. "
             f"현재 status={status}"
+        )
+
+    branch_mode = raw["systems"]["perspective_generator"]["branch_query_mode"]
+    if branch_mode != "perspective_only":
+        raise ValueError(
+            "RQ1 v1.2 Primary branch query는 perspective_only로 Freeze되어 있습니다. "
+            f"현재 값={branch_mode}"
         )
 
     return RQ1Config(
@@ -72,5 +80,6 @@ def load_rq1_config(path: str | Path | None = None) -> RQ1Config:
         perspective_max=int(
             raw["systems"]["multi_perspective_dense"]["perspective_max"]
         ),
+        branch_query_mode=branch_mode,
         status=status,
     )
