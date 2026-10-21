@@ -429,15 +429,17 @@ LLM이 들어가는:
 
 은 실행 변동 가능성이 있다.
 
-### 초안 권장안
-- Primary report: 동일 조건 **3회 반복**
-- Query별 metric의 mean / min / max 또는 mean ± std 기록
+### 확정안
+- Primary report: 동일 조건 **3회 독립 반복**
+- Query별 각 Run metric을 모두 저장하고, summary에서는 mean / min / max 또는 mean ± std 기록
 - LLM prompt와 model version 고정
 - 가능한 경우 seed 기록
 - temperature는 낮게 설정
 
+`APPROVED`:
+- repeats = **3** (Query별 독립 Run)
+
 `REVIEW_REQUIRED`:
-- repeats = 3
 - temperature 값
 
 Dev에서는 안정성을 확인하고, Held-out Test 전에 실행규칙을 Freeze한다.
@@ -606,7 +608,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 5. ~~Runtime Perspective = 2~5개~~ → **APPROVED: 동적 2~5개**
 6. ~~branch-balanced unique selection 방식~~ → **APPROVED**
 7. ~~GPT-only + Perspective Generator 공통 LLM 모델~~ → **APPROVED: GPT-5.6 Luna**
-8. LLM 반복 횟수 = 3
+8. ~~LLM 반복 횟수 = 3~~ → **APPROVED: Query별 3회 독립 실행**
 9. LLM temperature
 10. Dev Stage 1 성공판정 해석
 
