@@ -440,7 +440,7 @@ LLM이 들어가는:
 - repeats = **3** (Query별 독립 Run)
 
 `REVIEW_REQUIRED`:
-- temperature 값
+- temperature = **0.5 (APPROVED)**
 
 Dev에서는 안정성을 확인하고, Held-out Test 전에 실행규칙을 Freeze한다.
 
@@ -609,7 +609,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 6. ~~branch-balanced unique selection 방식~~ → **APPROVED**
 7. ~~GPT-only + Perspective Generator 공통 LLM 모델~~ → **APPROVED: GPT-5.6 Luna**
 8. ~~LLM 반복 횟수 = 3~~ → **APPROVED: Query별 3회 독립 실행**
-9. LLM temperature
+9. ~~LLM temperature~~ → **APPROVED: 0.5**
 10. Dev Stage 1 성공판정 해석
 
 이 항목을 사용자와 확정한 뒤 본 문서를 `FROZEN` 상태로 바꾸고 구현을 시작한다.
