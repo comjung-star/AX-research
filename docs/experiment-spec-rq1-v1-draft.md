@@ -137,12 +137,12 @@ Business Problem Query
 목적:
 - Sparse lexical single-query baseline
 
-초안 구현:
+확정 구현:
 - Python BM25
-- Korean tokenizer: Kiwi 계열 형태소 토큰화
+- Korean tokenizer: **Kiwi 형태소 토큰화**
 - tokenizer / package version 기록
 
-`REVIEW_REQUIRED`: 최종 tokenizer 방식
+결정: **Kiwi 사용으로 APPROVED**
 
 ---
 
@@ -592,7 +592,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 사용자 검토가 필요한 값:
 
 1. ~~Primary Query를 `business_problem_query only`로 할지~~ → **APPROVED: Business Problem only**
-2. BM25 Korean tokenizer
+2. ~~BM25 Korean tokenizer~~ → **APPROVED: Kiwi**
 3. Dense baseline model = `BAAI/bge-m3`
 4. K = {5, 10, 20}
 5. Runtime Perspective = 2~5개
