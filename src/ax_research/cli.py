@@ -1,5 +1,7 @@
 """RQ1 Stage 1 실행 CLI.
 
+Primary v1.2 실행은 config에 Freeze된 조건을 그대로 사용합니다.
+
 예시
 ----
 Single BM25:
@@ -12,10 +14,10 @@ GPT-only:
     python -m ax_research.cli gpt-only
 
 Multi-Perspective BM25:
-    python -m ax_research.cli mp-bm25 --branch-query-mode perspective_only
+    python -m ax_research.cli mp-bm25
 
 Multi-Perspective Dense:
-    python -m ax_research.cli mp-dense --branch-query-mode perspective_only
+    python -m ax_research.cli mp-dense
 
 LLM 시스템은 OPENAI_API_KEY 환경변수가 필요합니다.
 API Key는 Git에 저장하지 않습니다.
@@ -55,25 +57,13 @@ def main() -> None:
     )
     parser.add_argument(
         "--config",
-        default="configs/experiment_rq1_v1.1.yaml",
+        default="configs/experiment_rq1_v1.2.yaml",
         help="Frozen experiment config",
     )
-    parser.add_argument(
-        "--repo-root",
-        default=".",
-    )
+    parser.add_argument("--repo-root", default=".")
     parser.add_argument(
         "--output-dir",
         default="experiments/rq1_retrieval/results",
-    )
-    parser.add_argument(
-        "--branch-query-mode",
-        choices=["perspective_only", "original_plus_perspective"],
-        default=None,
-        help=(
-            "Multi-Perspective branch 검색문장 구성. "
-            "mp-bm25/mp-dense 실행 시 반드시 명시."
-        ),
     )
     args = parser.parse_args()
 
@@ -132,12 +122,6 @@ def main() -> None:
         )
         return
 
-    if args.branch_query_mode is None:
-        parser.error(
-            "--branch-query-mode is required for mp-bm25/mp-dense. "
-            "Primary mode must be chosen before running the experiment."
-        )
-
     if args.system == "mp-bm25":
         retriever = KiwiBM25Retriever(cases)
         system_name = "multi_perspective_bm25"
@@ -159,7 +143,6 @@ def main() -> None:
         labels=labels,
         gold_records=gold,
         output_dir=output,
-        branch_query_mode=args.branch_query_mode,
     )
 
 
