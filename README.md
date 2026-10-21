@@ -74,3 +74,12 @@ Main Dataset v1은 AX0001~AX0100의 100건으로 고정해 검색·추천 실험
 - Gold Perspective: closed category가 아니라 Reference Perspective(최소 기준 관점)
 - Runtime: LLM이 Query마다 `P1...Pk`를 동적으로 생성
 - Reference에 없는 Generated Perspective도 자동 오답 처리하지 않고 Query grounding / redundancy / 추가 relevant-case 회수를 검토
+
+
+### Dev Ground Truth milestone — 2026-10-21
+
+- GTQ001~GTQ010 Active Dev Query: **10/10 Adjudicated**
+- Perspective × Case relevance: **3000 labels**
+- Low-discrimination Pilot Query는 Archive에 보존하고 screening을 통과한 replacement Query로 교체
+- Ground Truth는 Runtime 입력이 아니라 평가 Benchmark
+- 다음 실험: Single-query BM25 → Dense → GPT-only → Multi-Perspective 비교
