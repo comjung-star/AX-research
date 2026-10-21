@@ -2,6 +2,7 @@ from ax_research.data import AXCase, RelevanceLabel
 from ax_research.evaluation import (
     build_perspective_gold,
     evaluate_at_k,
+    gold_delta_at_k,
     perspective_coverage_at_k,
     recall_at_k,
     unique_gold_recovery,
@@ -38,6 +39,18 @@ def test_unique_gold_recovery():
         k=3,
     )
     assert result == {"C", "D"}
+
+
+def test_gold_delta_records_gained_lost_and_net():
+    delta = gold_delta_at_k(
+        baseline_case_ids=["A", "B", "C"],
+        proposed_case_ids=["A", "D", "X"],
+        gold_case_ids={"A", "B", "C", "D"},
+        k=3,
+    )
+    assert delta.gained == frozenset({"D"})
+    assert delta.lost == frozenset({"B", "C"})
+    assert delta.net == -1
 
 
 def test_evaluate_at_k():
