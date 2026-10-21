@@ -7,7 +7,7 @@
 - [연구계획서](docs/research-plan.md)
 - [아키텍처 정리](docs/architecture.md)
 - [실험 로드맵](docs/experiments.md)
-- [RQ1 검색실험 명세 v1](docs/experiment-spec-rq1-v1.md)
+- [RQ1 검색실험 명세 v1.1](docs/experiment-spec-rq1-v1.1.md)
 - [Dev Ground Truth v1 Freeze](data/dev_ground_truth_freeze_v1.md)
 - [작업일지](worklog/README.md)
 - [학습용 쉬운 설명](study/README.md)
@@ -52,21 +52,21 @@ AX-research/
 > Single-query BM25 / Dense / GPT-only보다 LLM Multi-Perspective branch 검색이 관련 AX 사례의 Recall과 Perspective Coverage를 개선하는가?
 
 현재 작성된 초안:
-- `docs/experiment-spec-rq1-v1.md` — FROZEN
-- `configs/experiment_rq1_v1.yaml` — FROZEN
+- `docs/experiment-spec-rq1-v1.1.md` — FROZEN
+- `configs/experiment_rq1_v1.1.yaml` — FROZEN
 - `experiments/rq1_retrieval/README.md`
 
-사용자 검토를 완료했으며 이제 공통 평가기부터 구현을 시작한다.
+공통 Data Loader/Evaluation, BM25, BGE-M3 Dense, GPT-only, Perspective Generator, Multi-Perspective 실행기까지 구현했다. GitHub Actions unit test도 통과했다.
 
 ### 다음 순서
 
 1. RQ1 실험 명세 검토 및 Freeze ✅
-2. 공통 Data Loader / Evaluation Engine 구현 ← 다음
-3. Single-query BM25
-4. Single-query Dense Retrieval
-5. GPT-only
-6. Multi-Perspective + BM25 diagnostic
-7. Multi-Perspective + Dense primary Stage 1
-8. Dev 결과 검토
+2. 공통 Data Loader / Evaluation Engine 구현 ✅
+3. Single-query BM25 ✅
+4. Single-query Dense Retrieval ✅
+5. GPT-only ✅
+6. Multi-Perspective + BM25 diagnostic ✅ 구현
+7. Multi-Perspective + Dense primary Stage 1 ✅ 구현
+8. Branch Query 구성 확정 후 Dev 실행 ← 현재
 9. Multi-view / Gated Fusion / Hybrid Retrieval 등 후속 단계
 10. 모델·Prompt·평가규칙 Freeze 후 별도 Held-out Test
