@@ -1,10 +1,8 @@
-"""RQ1 실험용 데이터 로더.
+"""RQ1 실험용 공통 Data Loader.
 
-왜 별도 Data Loader를 두는가?
----------------------------
-BM25, Dense, GPT-only, Multi-Perspective가 서로 다른 방식으로 파일을 읽으면
-같은 데이터셋을 사용한다고 해도 미묘하게 입력이 달라질 수 있습니다.
-그래서 모든 실험이 이 모듈을 통해 동일한 Query / Case / Ground Truth를 읽도록 합니다.
+모든 비교 시스템이 같은 파일을 같은 규칙으로 읽도록 한 곳에서 관리합니다.
+Primary RQ1에서는 Query의 goal/context가 아니라 business_problem_query만
+검색 입력으로 사용합니다.
 """
 
 from __future__ import annotations
@@ -15,13 +13,12 @@ from pathlib import Path
 from typing import Iterable
 
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
 @dataclass(frozen=True)
 class AXCase:
-    """검색 대상 AX 사례 1건.
-
-    Retrieval에는 Problem View만 사용합니다.
-    Strategy는 검색 입력이 아니라 Strategy Coverage 평가에만 사용합니다.
-    """
+    """검색 대상 AX 사례 한 건."""
 
     case_id: str
     business_problem: str
@@ -30,7 +27,8 @@ class AXCase:
     strategy: tuple[str, ...]
 
     def problem_view_text(self) -> str:
-        """Freeze된 명세대로 Problem/Task/Context를 하나의 검색 문서로 직렬화."""
+        """Retrieval에 허용된 Problem View만 직렬화합니다."""
+
         return (
             f"[PROBLEM] {self.business_problem}\n"
             f"[TASK] {self.ax_target_task}\n"
@@ -40,12 +38,6 @@ class AXCase:
 
 @dataclass(frozen=True)
 class RetrievalQuery:
-    """RQ1에서 사용하는 Dev Query 1건.
-
-    Primary RQ1 입력은 business_problem_query만 사용합니다.
-    goal/context는 CSV에 존재하지만 첫 실험 검색입력에는 넣지 않습니다.
-    """
-
     query_id: str
     business_problem_query: str
     goal: str
@@ -72,14 +64,16 @@ class GoldRecord:
 
 
 def _split_pipe(value: str) -> tuple[str, ...]:
-    """CSV의 A|B|C 형태 multi-label을 안전하게 tuple로 변환."""
     return tuple(x.strip() for x in (value or "").split("|") if x.strip())
 
 
-def load_cases(path: str | Path) -> list[AXCase]:
-    """main_cases_v1.csv를 읽는다."""
+def load_cases(path: str | Path | None = None) -> list[AXCase]:
+    """main_cases_v1.csv를 읽습니다."""
+
+    path = Path(path) if path is not None else REPO_ROOT / "data" / "main_cases_v1.csv"
     rows: list[AXCase] = []
-    with Path(path).open("r", encoding="utf-8-sig", newline="") as f:
+
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
             rows.append(
                 AXCase(
@@ -90,13 +84,19 @@ def load_cases(path: str | Path) -> list[AXCase]:
                     strategy=_split_pipe(row.get("strategy", "")),
                 )
             )
+
     return rows
 
 
-def load_queries(path: str | Path) -> list[RetrievalQuery]:
-    """retrieval_queries_v0.1.csv를 읽는다."""
+def load_queries(path: str | Path | None = None) -> list[RetrievalQuery]:
+    """Dev Query를 읽습니다."""
+
+    path = Path(path) if path is not None else (
+        REPO_ROOT / "data" / "retrieval_queries_v0.1.csv"
+    )
     rows: list[RetrievalQuery] = []
-    with Path(path).open("r", encoding="utf-8-sig", newline="") as f:
+
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
             rows.append(
                 RetrievalQuery(
@@ -108,16 +108,22 @@ def load_queries(path: str | Path) -> list[RetrievalQuery]:
                     status=row.get("status", "").strip(),
                 )
             )
+
     return rows
 
 
-def load_relevance_labels(path: str | Path) -> list[RelevanceLabel]:
-    """Perspective x Case 관련도(0~4)를 읽는다."""
+def load_relevance_labels(path: str | Path | None = None) -> list[RelevanceLabel]:
+    """Perspective × Case relevance 0~4 라벨을 읽습니다."""
+
+    path = Path(path) if path is not None else (
+        REPO_ROOT / "data" / "perspective_case_relevance_v0.1.csv"
+    )
     rows: list[RelevanceLabel] = []
-    with Path(path).open("r", encoding="utf-8-sig", newline="") as f:
+
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
             score = int(row["relevance_0_4"])
-            if score < 0 or score > 4:
+            if not 0 <= score <= 4:
                 raise ValueError(f"Invalid relevance score: {score}")
             rows.append(
                 RelevanceLabel(
@@ -127,28 +133,40 @@ def load_relevance_labels(path: str | Path) -> list[RelevanceLabel]:
                     relevance=score,
                 )
             )
+
     return rows
 
 
-def load_gold(path: str | Path) -> list[GoldRecord]:
-    """Query 단위 Gold union / Strategy set을 읽는다."""
+def load_gold(path: str | Path | None = None) -> list[GoldRecord]:
+    """Query 단위 확정 Gold를 읽습니다."""
+
+    path = Path(path) if path is not None else (
+        REPO_ROOT / "data" / "retrieval_gold_v0.1.csv"
+    )
     rows: list[GoldRecord] = []
-    with Path(path).open("r", encoding="utf-8-sig", newline="") as f:
+
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
             rows.append(
                 GoldRecord(
                     query_id=row["query_id"].strip(),
                     gold_perspectives=_split_pipe(row.get("gold_perspectives", "")),
-                    gold_relevant_cases=_split_pipe(row.get("gold_relevant_cases", "")),
+                    gold_relevant_cases=_split_pipe(
+                        row.get("gold_relevant_cases", "")
+                    ),
                     gold_strategy_set=_split_pipe(row.get("gold_strategy_set", "")),
-                    adjudication_status=row.get("adjudication_status", "").strip(),
+                    adjudication_status=row.get(
+                        "adjudication_status", ""
+                    ).strip(),
                 )
             )
+
     return rows
 
 
 def index_by(items: Iterable, attr: str) -> dict[str, object]:
-    """작은 Dev 데이터셋에서 ID 기반 접근을 간단히 하기 위한 공통 helper."""
+    """dataclass 목록을 ID 기반 dict로 바꾸는 공통 helper."""
+
     result: dict[str, object] = {}
     for item in items:
         key = getattr(item, attr)
