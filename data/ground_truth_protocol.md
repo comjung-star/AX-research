@@ -124,6 +124,25 @@ Reference Perspective는 임의의 고정 Category에서 선택하지 않고, **
 
 즉 Reference Perspective는 완전한 객관적 자연법칙처럼 자동 생성되는 정답이 아니라, **명시된 작성 규칙에 따라 Query를 분해하고 이후 검토를 거쳐 확정하는 평가용 기준**이다.
 
+### Dev Benchmark Query Screening
+
+Dev/Pilot Query는 최종 성능을 주장하는 Test가 아니라 **모델과 평가방법의 변별력을 검증하기 위한 개발용 Benchmark**이므로, Draft 단계에서 아래 적합성 screening을 수행할 수 있다.
+
+1. Query가 실제 기업 사용자가 입력할 법한 자연스러운 Business Problem인가
+2. Reference Perspective가 Query에 직접 근거하고 의미적으로 독립적인가
+3. 각 Perspective가 Main Dataset 안에서 최소한의 관련사례 근거를 갖는가
+4. Preliminary relevance 검토에서 **모든 Perspective의 관련사례 집합이 완전히 동일하지 않은가**
+5. 적어도 하나의 Perspective branch가 다른 branch에 없는 추가 Relevant Case를 포함하여, multi-perspective retrieval의 branch 보존을 평가할 여지가 있는가
+
+이 screening의 목적은 **연구 가설에 유리한 정답을 인위적으로 만드는 것이 아니라, Perspective Coverage / branch preservation을 실제로 측정할 수 없는 저변별 Query를 Dev Benchmark에서 걸러내는 것**이다.
+
+Screening 탈락 Query와 라벨은 삭제하지 않고 별도 Archive에 보존하며 탈락 이유를 기록한다.
+
+중요:
+- 관련사례 집합이 서로 완전히 분리될 필요는 없다. 공통 핵심 Case의 overlap은 자연스럽게 허용한다.
+- Query를 통과시키기 위해 relevance 점수를 임의로 올리거나 내리지 않는다.
+- **Held-out Test Query에는 이 변별력 기준으로 사후 선별하지 않는다.** 실제 사용 분포를 반영해야 하므로 overlap이 큰 Test Query도 그대로 평가한다.
+
 ### Runtime Perspective와 Gold Perspective 구분
 
 - **Reference / Gold Perspective**: 평가자가 사전에 확정한 최소 기준 관점
