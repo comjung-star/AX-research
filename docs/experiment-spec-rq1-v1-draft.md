@@ -77,10 +77,12 @@ Ground Truth는 Runtime 입력으로 사용하지 않는다.
 
 ## 4. 검색 입력 정의
 
-### 4.1 사용자 Query 입력 — Primary
+### 4.1 사용자 Query 입력 — Primary ✅ APPROVED
 Primary RQ1 실험에서는 다음만 사용한다.
 
 `business_problem_query`
+
+결정: **Business Problem only로 확정**
 
 이유:
 - 연구의 핵심 입력이 Business Problem이기 때문
@@ -589,7 +591,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 
 사용자 검토가 필요한 값:
 
-1. Primary Query를 `business_problem_query only`로 할지
+1. ~~Primary Query를 `business_problem_query only`로 할지~~ → **APPROVED: Business Problem only**
 2. BM25 Korean tokenizer
 3. Dense baseline model = `BAAI/bge-m3`
 4. K = {5, 10, 20}
