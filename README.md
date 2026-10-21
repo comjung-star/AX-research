@@ -7,7 +7,7 @@
 - [연구계획서](docs/research-plan.md)
 - [아키텍처 정리](docs/architecture.md)
 - [실험 로드맵](docs/experiments.md)
-- [RQ1 검색실험 명세 v1 초안](docs/experiment-spec-rq1-v1-draft.md)
+- [RQ1 검색실험 명세 v1](docs/experiment-spec-rq1-v1.md)
 - [Dev Ground Truth v1 Freeze](data/dev_ground_truth_freeze_v1.md)
 - [작업일지](worklog/README.md)
 - [학습용 쉬운 설명](study/README.md)
@@ -45,23 +45,23 @@ AX-research/
 
 ### 현재 단계
 
-**RQ1 Retrieval Experiment Specification Review**
+**RQ1 Retrieval Experiment Implementation**
 
 현재 실험의 핵심 질문:
 
 > Single-query BM25 / Dense / GPT-only보다 LLM Multi-Perspective branch 검색이 관련 AX 사례의 Recall과 Perspective Coverage를 개선하는가?
 
 현재 작성된 초안:
-- `docs/experiment-spec-rq1-v1-draft.md`
-- `configs/experiment_rq1_v1_draft.yaml`
+- `docs/experiment-spec-rq1-v1.md` — FROZEN
+- `configs/experiment_rq1_v1.yaml` — FROZEN
 - `experiments/rq1_retrieval/README.md`
 
-사용자 검토 후 실험 명세를 Freeze하고 구현을 시작한다.
+사용자 검토를 완료했으며 이제 공통 평가기부터 구현을 시작한다.
 
 ### 다음 순서
 
-1. RQ1 실험 명세 검토 및 Freeze
-2. 공통 Data Loader / Evaluation Engine 구현
+1. RQ1 실험 명세 검토 및 Freeze ✅
+2. 공통 Data Loader / Evaluation Engine 구현 ← 다음
 3. Single-query BM25
 4. Single-query Dense Retrieval
 5. GPT-only
