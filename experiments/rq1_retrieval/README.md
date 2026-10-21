@@ -41,3 +41,22 @@
 
 아직 실제 실험결과는 생성하지 않았다.
 다음은 Multi-Perspective branch에 어떤 검색문장을 전달할지 확정한 뒤 BM25/Dense pipeline을 연결한다.
+
+
+## 구현 상태 — 2026-10-21
+
+완료:
+- Common Data Loader
+- Common Evaluation Engine
+- Branch-balanced unique selection
+- Single-query BM25 Retriever
+- Single-query BGE-M3 Dense Retriever
+- 공통 baseline runner / 결과 CSV·JSON schema
+- Unit test 코드
+
+대기:
+- GPT-only
+- Perspective Generator
+- Multi-Perspective BM25/Dense pipeline
+
+LLM 구현 전 API에서 사용할 실제 모델 ID를 확정해야 한다.
