@@ -7,6 +7,9 @@ on:
       - ".github/workflows/rq1-baselines.yml"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   baselines:
     runs-on: ubuntu-latest
@@ -34,18 +37,48 @@ jobs:
 
       - name: Run BM25 baseline
         run: |
-          python -m ax_research.cli bm25 --output-dir experiments/rq1_retrieval/results/baseline_ci
+          python -m ax_research.cli bm25 --output-dir experiments/rq1_retrieval/results/rq1_v1_2_baseline
 
       - name: Run Dense baseline
         run: |
-          python -m ax_research.cli dense --output-dir experiments/rq1_retrieval/results/baseline_ci
+          python -m ax_research.cli dense --output-dir experiments/rq1_retrieval/results/rq1_v1_2_baseline
 
-      - name: Show generated files
+      - name: Create baseline macro summary
         run: |
-          find experiments/rq1_retrieval/results/baseline_ci -maxdepth 2 -type f -print
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          root=Path("experiments/rq1_retrieval/results/rq1_v1_2_baseline")
+          out={}
+          for system in ("single_bm25","single_dense"):
+              rows=list(csv.DictReader((root/f"{system}_metrics.csv").open(encoding="utf-8")))
+              out[system]={}
+              for k in (5,10,20):
+                  rs=[r for r in rows if int(r["k"])==k]
+                  out[system][str(k)]={
+                      "macro_recall":sum(float(r["recall"]) for r in rs)/len(rs),
+                      "macro_perspective_coverage":sum(float(r["perspective_coverage"]) for r in rs)/len(rs),
+                      "macro_strategy_coverage":sum(float(r["strategy_coverage"]) for r in rs)/len(rs),
+                  }
+          (root/"baseline_macro_summary.json").write_text(
+              json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8"
+          )
+          PY
+
+      - name: Persist baseline results in repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/rq1_retrieval/results/rq1_v1_2_baseline
+          if git diff --cached --quiet; then
+            echo "No baseline result changes."
+          else
+            git commit -m "results: persist RQ1 v1.2 BM25 and Dense baselines"
+            git push
+          fi
 
       - name: Upload baseline results
         uses: actions/upload-artifact@v4
         with:
           name: rq1-baseline-results
-          path: experiments/rq1_retrieval/results/baseline_ci
+          path: experiments/rq1_retrieval/results/rq1_v1_2_baseline
