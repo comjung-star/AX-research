@@ -201,7 +201,7 @@ LLM 공정성 원칙:
 - 이렇게 해야 LLM 능력 차이가 아니라 `direct judgment`와 `perspective decomposition + retrieval` 구조 차이를 비교하기 쉽다.
 
 `REVIEW_REQUIRED`:
-- 공통 LLM 모델명/버전
+- ~~공통 LLM 모델명/버전~~ → **GPT-5.6 Luna (APPROVED)**
 - 1회 deterministic 실행 또는 3회 반복 실행
 
 ---
@@ -254,7 +254,7 @@ LLM 입력:
 
 모델:
 - GPT-only와 **동일한 LLM 모델/버전 사용**
-- 공통 LLM 모델은 REVIEW_REQUIRED
+- 공통 LLM 모델: **GPT-5.6 Luna (APPROVED)**
 
 LLM에게 요구하는 Perspective:
 - 문제관점이어야 함
@@ -605,7 +605,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 4. ~~K = {5, 10, 20}~~ → **APPROVED: {5, 10, 20}**
 5. ~~Runtime Perspective = 2~5개~~ → **APPROVED: 동적 2~5개**
 6. ~~branch-balanced unique selection 방식~~ → **APPROVED**
-7. GPT-only + Perspective Generator 공통 LLM 모델
+7. ~~GPT-only + Perspective Generator 공통 LLM 모델~~ → **APPROVED: GPT-5.6 Luna**
 8. LLM 반복 횟수 = 3
 9. LLM temperature
 10. Dev Stage 1 성공판정 해석
