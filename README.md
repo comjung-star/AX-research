@@ -7,7 +7,7 @@
 - [연구계획서](docs/research-plan.md)
 - [아키텍처 정리](docs/architecture.md)
 - [실험 로드맵](docs/experiments.md)
-- [RQ1 검색실험 명세 v1.1](docs/experiment-spec-rq1-v1.1.md)
+- [RQ1 검색실험 명세 v1.2](docs/experiment-spec-rq1-v1.2.md)
 - [Dev Ground Truth v1 Freeze](data/dev_ground_truth_freeze_v1.md)
 - [작업일지](worklog/README.md)
 - [학습용 쉬운 설명](study/README.md)
@@ -18,55 +18,58 @@
 AX-research/
 ├─ AGENTS.md
 ├─ README.md
-├─ docs/          # 연구계획서, 아키텍처, 실험 명세/로드맵
-├─ data/          # Dataset, Ground Truth, Freeze/Archive
-├─ configs/       # 재현 가능한 실험 설정
-├─ experiments/   # 실험별 실행기록·결과
-├─ src/           # 실제 구현 코드
-├─ tests/         # 평가/검색/데이터 변환 테스트
-├─ notebooks/     # 탐색적 분석 및 시각화
-├─ study/         # 학습용 쉬운 설명
-└─ worklog/       # 날짜별 공식 작업일지
+├─ docs/
+├─ data/
+├─ configs/
+├─ experiments/
+├─ src/
+├─ tests/
+├─ notebooks/
+├─ study/
+└─ worklog/
 ```
 
 ## Current Status — 2026-10-21
 
 ### 완료
 
-- 교수 제안 아키텍처 기준 연구 방향 확정
 - Main Dataset v1: **AX0001~AX0100 / 100건 Freeze**
-- Root Cause Dictionary v1: **9종 Freeze**
-- Strategy Taxonomy v1: **6종 Freeze**
 - Dev/Pilot Query: **GTQ001~GTQ010 10건**
 - Active Perspective × Case relevance: **3000 labels**
-- Active Query 10/10: `PILOT_GOLD_ADJUDICATED`
-- Low-discrimination / sparse 초기 Pilot Query는 Archive 보존
-- **Dev Ground Truth v1 Freeze 완료**
+- Dev Ground Truth v1 Freeze
+- RQ1 Experiment Spec **v1.2 Freeze**
+- Common Data Loader / Evaluation Engine
+- Single-query BM25 (Kiwi)
+- Single-query Dense (BAAI/bge-m3)
+- GPT-only runner (gpt-6-luna)
+- Perspective Generator (gpt-6-luna)
+- Multi-Perspective + BM25
+- Multi-Perspective + Dense
+- branch-balanced unique selection
+- Perspective-only branch query rule
+- Branch overlap / duplicate candidate diagnostics
+- Gold gained / lost / net diagnostics
+- 반복 Run summary
+- GitHub Actions unit test
 
 ### 현재 단계
 
-**RQ1 Retrieval Experiment Implementation**
+**RQ1 Stage 1 구현 완료 → Dev 실행 준비**
 
-현재 실험의 핵심 질문:
+Primary Multi-Perspective 흐름:
 
-> Single-query BM25 / Dense / GPT-only보다 LLM Multi-Perspective branch 검색이 관련 AX 사례의 Recall과 Perspective Coverage를 개선하는가?
+```text
+Business Problem
+→ gpt-6-luna Perspective 2~5개 생성
+→ 각 Perspective title + description만 branch 검색
+→ BM25 또는 BGE-M3
+→ branch-balanced unique Top-K
+→ Recall / Perspective Coverage / Strategy Coverage
+```
 
-현재 작성된 초안:
-- `docs/experiment-spec-rq1-v1.1.md` — FROZEN
-- `configs/experiment_rq1_v1.1.yaml` — FROZEN
-- `experiments/rq1_retrieval/README.md`
+현재 Frozen 실행 기준:
+- `docs/experiment-spec-rq1-v1.2.md`
+- `configs/experiment_rq1_v1.2.yaml`
 
-공통 Data Loader/Evaluation, BM25, BGE-M3 Dense, GPT-only, Perspective Generator, Multi-Perspective 실행기까지 구현했다. GitHub Actions unit test도 통과했다.
-
-### 다음 순서
-
-1. RQ1 실험 명세 검토 및 Freeze ✅
-2. 공통 Data Loader / Evaluation Engine 구현 ✅
-3. Single-query BM25 ✅
-4. Single-query Dense Retrieval ✅
-5. GPT-only ✅
-6. Multi-Perspective + BM25 diagnostic ✅ 구현
-7. Multi-Perspective + Dense primary Stage 1 ✅ 구현
-8. Branch Query 구성 확정 후 Dev 실행 ← 현재
-9. Multi-view / Gated Fusion / Hybrid Retrieval 등 후속 단계
-10. 모델·Prompt·평가규칙 Freeze 후 별도 Held-out Test
+다음 단계는 실제 Dev 실행이다.
+LLM 기반 실험에는 `OPENAI_API_KEY`가 필요하며 Secret은 Git에 저장하지 않는다.
