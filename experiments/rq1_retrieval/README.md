@@ -60,3 +60,21 @@
 - Multi-Perspective BM25/Dense pipeline
 
 LLM 구현 전 API에서 사용할 실제 모델 ID를 확정해야 한다.
+
+
+## 구현 업데이트 — GPT-6 Luna / Multi-Perspective pipeline
+
+- 공통 LLM: `gpt-6-luna`
+- GPT-only runner 구현
+- Perspective Generator 구현
+- Multi-Perspective + BM25 / Dense 공통 runner 구현
+- 두 branch query 방식 모두 코드로 지원
+  - `perspective_only`
+  - `original_plus_perspective`
+- 잘못 생성된 중복 runner는 제거하고 `runner.py`를 공통 Single-query runner로 유지
+- GitHub Actions 테스트 workflow 추가
+- 2026-10-21 기준 unit test workflow: **SUCCESS**
+
+실제 Multi-Perspective Dev 실행 전 남은 결정:
+- 각 Perspective branch에 검색 입력을 Perspective만 줄지,
+  Original Business Problem과 Perspective를 함께 줄지 Primary 규칙을 확정해야 함.
