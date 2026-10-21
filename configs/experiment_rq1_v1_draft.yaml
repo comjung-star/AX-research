@@ -1,0 +1,78 @@
+# RQ1 Retrieval Experiment v1 — DRAFT
+# Source of truth: docs/experiment-spec-rq1-v1-draft.md
+# Do not treat REVIEW_REQUIRED values as frozen until user approval.
+
+experiment:
+  id: rq1_retrieval_v1
+  status: DRAFT_FOR_REVIEW
+  dataset: main_cases_v1
+  ground_truth: dev_ground_truth_v1
+  queries:
+    ids: [GTQ001, GTQ002, GTQ003, GTQ004, GTQ005, GTQ006, GTQ007, GTQ008, GTQ009, GTQ010]
+    primary_input: business_problem_query
+
+case_document:
+  fields:
+    - business_problem
+    - ax_target_task
+    - business_context
+  exclude_from_retrieval:
+    - strategy
+    - ai_technology
+    - implementation
+    - outcome
+
+evaluation:
+  k: [5, 10, 20]  # REVIEW_REQUIRED
+  gold_relevance_threshold: 3
+  metrics:
+    - recall
+    - perspective_coverage
+    - strategy_coverage
+  diagnostics:
+    - branch_jaccard
+    - unique_gold_recovery
+    - duplicate_candidate_rate
+    - generated_perspective_count
+
+systems:
+  single_bm25:
+    enabled: true
+    tokenizer: kiwi  # REVIEW_REQUIRED
+
+  single_dense:
+    enabled: true
+    model: BAAI/bge-m3  # REVIEW_REQUIRED
+    similarity: cosine
+    normalize_embeddings: true
+
+  gpt_only:
+    enabled: true
+    model: REVIEW_REQUIRED
+    case_view: problem_only
+    repeats: 3  # REVIEW_REQUIRED
+    temperature: REVIEW_REQUIRED
+
+  multi_perspective_bm25:
+    enabled: true
+    role: diagnostic
+    perspective_min: 2  # REVIEW_REQUIRED
+    perspective_max: 5  # REVIEW_REQUIRED
+    final_selection: branch_balanced_unique  # REVIEW_REQUIRED
+
+  multi_perspective_dense:
+    enabled: true
+    role: primary_proposed_stage1
+    dense_model: BAAI/bge-m3  # must match single_dense after freeze
+    perspective_min: 2
+    perspective_max: 5
+    final_selection: branch_balanced_unique
+
+reproducibility:
+  random_seed: 42
+  record_git_sha: true
+  record_python_version: true
+  record_package_versions: true
+  record_model_revision: true
+  record_prompt_hash: true
+  record_device: true
