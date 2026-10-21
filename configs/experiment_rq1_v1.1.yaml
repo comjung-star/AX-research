@@ -1,0 +1,98 @@
+# RQ1 Retrieval Experiment v1.1 — FROZEN
+# Source of truth: docs/experiment-spec-rq1-v1.1.md
+# v1.1: common LLM API model ID corrected to gpt-6-luna on 2026-10-21.
+
+experiment:
+  id: rq1_retrieval_v1_1
+  status: FROZEN_FOR_IMPLEMENTATION
+  dataset: main_cases_v1
+  ground_truth: dev_ground_truth_v1
+  queries:
+    ids: [GTQ001, GTQ002, GTQ003, GTQ004, GTQ005, GTQ006, GTQ007, GTQ008, GTQ009, GTQ010]
+    primary_input: business_problem_query  # APPROVED
+
+case_document:
+  fields:
+    - business_problem
+    - ax_target_task
+    - business_context
+  exclude_from_retrieval:
+    - strategy
+    - ai_technology
+    - implementation
+    - outcome
+
+evaluation:
+  k: [5, 10, 20]  # APPROVED
+  gold_relevance_threshold: 3
+  metrics:
+    - recall
+    - perspective_coverage
+    - strategy_coverage
+  diagnostics:
+    - branch_jaccard
+    - unique_gold_recovery
+    - duplicate_candidate_rate
+    - generated_perspective_count
+
+systems:
+  single_bm25:
+    enabled: true
+    tokenizer: kiwi  # APPROVED
+
+  single_dense:
+    enabled: true
+    model: BAAI/bge-m3  # APPROVED
+    similarity: cosine
+    normalize_embeddings: true
+
+  common_llm:
+    model: gpt-6-luna  # APPROVED; shared by GPT-only and Perspective Generator
+
+  gpt_only:
+    enabled: true
+    model_ref: common_llm
+    case_view: problem_only
+    repeats: 3  # APPROVED; independent runs per query
+    temperature: 0.5  # APPROVED
+
+  perspective_generator:
+    enabled: true
+    model_ref: common_llm
+
+  multi_perspective_bm25:
+    enabled: true
+    role: diagnostic
+    perspective_min: 2  # APPROVED
+    perspective_max: 5  # APPROVED
+    final_selection: branch_balanced_unique  # APPROVED
+
+  multi_perspective_dense:
+    enabled: true
+    role: primary_proposed_stage1
+    dense_model: BAAI/bge-m3  # APPROVED; must match single_dense
+    perspective_min: 2
+    perspective_max: 5
+    final_selection: branch_balanced_unique
+
+reproducibility:
+  random_seed: 42
+  record_git_sha: true
+  record_python_version: true
+  record_package_versions: true
+  record_model_revision: true
+  record_prompt_hash: true
+  record_device: true
+
+
+interpretation:
+  stage1:
+    rule: joint_interpretation
+    metrics:
+      - recall
+      - perspective_coverage
+      - unique_gold_recovery
+    note: >
+      Do not use a post-hoc single numeric threshold. Interpret retrieval amount,
+      perspective coverage, and additional Gold recovery together. Any later change
+      must be versioned rather than silently overwriting v1.1.
