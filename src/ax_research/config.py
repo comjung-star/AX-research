@@ -1,9 +1,4 @@
-"""RQ1 실험 설정 로더.
-
-YAML을 코드 곳곳에서 직접 읽지 않고 RQ1Config 한 객체로 변환합니다.
-이렇게 해야 BM25 / Dense / GPT-only / Multi-Perspective가
-정확히 같은 실험조건을 공유할 수 있습니다.
-"""
+"""RQ1 experiment config loader."""
 
 from __future__ import annotations
 
@@ -18,8 +13,6 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 
 @dataclass(frozen=True)
 class RQ1Config:
-    """RQ1 실행에 실제로 필요한 Frozen 설정값."""
-
     experiment_id: str
     query_ids: tuple[str, ...]
     evaluation_k: tuple[int, ...]
@@ -28,7 +21,8 @@ class RQ1Config:
     normalize_embeddings: bool = True
     llm_model: str = "gpt-6-luna"
     llm_repeats: int = 3
-    temperature: float = 0.5
+    # gpt-6-luna rejects the temperature parameter. None means OMIT it.
+    temperature: float | None = None
     perspective_min: int = 2
     perspective_max: int = 5
     branch_query_mode: str = "perspective_only"
@@ -36,13 +30,10 @@ class RQ1Config:
 
 
 def load_rq1_config(path: str | Path | None = None) -> RQ1Config:
-    """Frozen v1.2 YAML을 읽어 RQ1Config로 변환합니다.
-
-    path를 생략하면 현재 구현/Dev 실행 기준인 v1.2 config를 사용합니다.
-    """
+    """Load the current frozen v1.3 config."""
 
     path = Path(path) if path is not None else (
-        REPO_ROOT / "configs" / "experiment_rq1_v1.2.yaml"
+        REPO_ROOT / "configs" / "experiment_rq1_v1.3.yaml"
     )
 
     with path.open("r", encoding="utf-8") as f:
@@ -50,17 +41,19 @@ def load_rq1_config(path: str | Path | None = None) -> RQ1Config:
 
     status = raw["experiment"]["status"]
     if status != "FROZEN_FOR_IMPLEMENTATION":
-        raise ValueError(
-            "RQ1 runner는 Frozen config만 실행합니다. "
-            f"현재 status={status}"
-        )
+        raise ValueError(f"RQ1 config must be frozen; status={status}")
 
     branch_mode = raw["systems"]["perspective_generator"]["branch_query_mode"]
     if branch_mode != "perspective_only":
         raise ValueError(
-            "RQ1 v1.2 Primary branch query는 perspective_only로 Freeze되어 있습니다. "
-            f"현재 값={branch_mode}"
+            "RQ1 v1.3 Primary branch query must be perspective_only; "
+            f"got {branch_mode}"
         )
+
+    raw_temperature = raw["systems"]["gpt_only"].get("temperature")
+    temperature = (
+        None if raw_temperature is None else float(raw_temperature)
+    )
 
     return RQ1Config(
         experiment_id=raw["experiment"]["id"],
@@ -73,7 +66,7 @@ def load_rq1_config(path: str | Path | None = None) -> RQ1Config:
         ),
         llm_model=raw["systems"]["common_llm"]["model"],
         llm_repeats=int(raw["systems"]["gpt_only"]["repeats"]),
-        temperature=float(raw["systems"]["gpt_only"]["temperature"]),
+        temperature=temperature,
         perspective_min=int(
             raw["systems"]["multi_perspective_dense"]["perspective_min"]
         ),
