@@ -331,7 +331,7 @@ Multi-Perspective가 단순히 더 많은 결과를 가져와서 유리해지는
 - 최종 출력 수는 Single-query와 동일
 - Perspective branch preservation 자체를 직접 평가 가능
 
-`REVIEW_REQUIRED`: branch-balanced unique selection 규칙
+결정: **branch-balanced unique selection으로 APPROVED**
 
 ---
 
@@ -596,7 +596,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 3. ~~Dense baseline model = `BAAI/bge-m3`~~ → **APPROVED: BAAI/bge-m3**
 4. ~~K = {5, 10, 20}~~ → **APPROVED: {5, 10, 20}**
 5. ~~Runtime Perspective = 2~5개~~ → **APPROVED: 동적 2~5개**
-6. branch-balanced unique selection 방식
+6. ~~branch-balanced unique selection 방식~~ → **APPROVED**
 7. GPT-only 실행 모델
 8. LLM 반복 횟수 = 3
 9. LLM temperature
