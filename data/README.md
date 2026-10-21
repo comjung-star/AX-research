@@ -87,3 +87,7 @@ Source
 - 저변별 초기 GTQ006/007/009 및 sparse 초기 GTQ010은 `data/archive/`에 보존
 - 대체 Query screening 기록: `replacement_query_screening_2026-10-21.md`, `gtq010_replacement_screening.md`
 - 다음 단계: Baseline retrieval 실험
+
+
+Freeze snapshot:
+- [Dev Ground Truth v1 Freeze](dev_ground_truth_freeze_v1.md)
