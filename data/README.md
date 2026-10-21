@@ -76,3 +76,14 @@ Source
 - 누적 Perspective × Case 라벨: **1200개**
 - GTQ003: P2-only 5건 / P3-only 2건으로 관점별 고유 관련사례 확인
 - 다음 단계: **GTQ005~GTQ010 Dev Ground Truth 확대**
+
+
+## Dev Ground Truth 완료 (2026-10-21)
+
+- Active Dev Query: **GTQ001~GTQ010 10건**
+- Active Perspective × Case relevance: **3000개**
+- Query당 3개 Reference Perspective의 Pilot 구성
+- 모든 Active Query: `PILOT_GOLD_ADJUDICATED`
+- 저변별 초기 GTQ006/007/009 및 sparse 초기 GTQ010은 `data/archive/`에 보존
+- 대체 Query screening 기록: `replacement_query_screening_2026-10-21.md`, `gtq010_replacement_screening.md`
+- 다음 단계: Baseline retrieval 실험
