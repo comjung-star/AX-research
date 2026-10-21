@@ -1,6 +1,4 @@
-"""Frozen Dev 데이터 자체의 기본 조건을 검사하는 통합 성격 테스트."""
-
-import unittest
+"""Frozen Dev 데이터의 기본 조건을 실제 CSV로 검사합니다."""
 
 from ax_research.data import (
     load_cases,
@@ -10,24 +8,16 @@ from ax_research.data import (
 )
 
 
-class FrozenDevDataTest(unittest.TestCase):
-    def test_frozen_dev_counts(self) -> None:
-        cases = load_cases()
-        queries = load_queries()
-        labels = load_relevance_labels()
-        gold = load_gold()
-
-        self.assertEqual(len(cases), 100)
-        self.assertEqual(len(queries), 10)
-        self.assertEqual(len(labels), 3000)
-        self.assertEqual(len(gold), 10)
-
-    def test_all_active_queries_are_adjudicated(self) -> None:
-        queries = load_queries()
-        self.assertTrue(
-            all(q.status == "PILOT_GOLD_ADJUDICATED" for q in queries.values())
-        )
+def test_frozen_dev_counts():
+    assert len(load_cases()) == 100
+    assert len(load_queries()) == 10
+    assert len(load_relevance_labels()) == 3000
+    assert len(load_gold()) == 10
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_all_active_queries_are_adjudicated():
+    queries = load_queries()
+    assert all(
+        q.status == "PILOT_GOLD_ADJUDICATED"
+        for q in queries
+    )
