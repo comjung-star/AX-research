@@ -170,7 +170,7 @@ cosine similarity
 - Dense embedding 기능만 사용
 - embedding normalize 후 cosine similarity
 
-`REVIEW_REQUIRED`: Dense model 최종 확정
+결정: **BAAI/bge-m3 사용으로 APPROVED**
 
 ---
 
@@ -593,7 +593,7 @@ API key, token 등 secret은 Git에 저장하지 않는다.
 
 1. ~~Primary Query를 `business_problem_query only`로 할지~~ → **APPROVED: Business Problem only**
 2. ~~BM25 Korean tokenizer~~ → **APPROVED: Kiwi**
-3. Dense baseline model = `BAAI/bge-m3`
+3. ~~Dense baseline model = `BAAI/bge-m3`~~ → **APPROVED: BAAI/bge-m3**
 4. K = {5, 10, 20}
 5. Runtime Perspective = 2~5개
 6. branch-balanced unique selection 방식
