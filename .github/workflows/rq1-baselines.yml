@@ -1,10 +1,6 @@
 name: RQ1 BM25 and Dense baselines
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/rq1-baselines.yml"
   workflow_dispatch:
 
 permissions:
@@ -29,11 +25,12 @@ jobs:
           path: ~/.cache/huggingface
           key: hf-bge-m3-${{ runner.os }}
 
-      - name: Install dependencies
+      - name: Install CPU retrieval dependencies
         run: |
           python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
           python -m pip install -e .
-          python -m pip install -r requirements-rq1.txt
+          python -m pip install             "numpy>=1.26"             "PyYAML>=6.0"             "kiwipiepy>=0.20"             "rank-bm25>=0.2.2"             "sentence-transformers>=3.0"
 
       - name: Run BM25 baseline
         run: |
@@ -43,28 +40,6 @@ jobs:
         run: |
           python -m ax_research.cli dense --output-dir experiments/rq1_retrieval/results/rq1_v1_2_baseline
 
-      - name: Create baseline macro summary
-        run: |
-          python - <<'PY'
-          import csv, json
-          from pathlib import Path
-          root=Path("experiments/rq1_retrieval/results/rq1_v1_2_baseline")
-          out={}
-          for system in ("single_bm25","single_dense"):
-              rows=list(csv.DictReader((root/f"{system}_metrics.csv").open(encoding="utf-8")))
-              out[system]={}
-              for k in (5,10,20):
-                  rs=[r for r in rows if int(r["k"])==k]
-                  out[system][str(k)]={
-                      "macro_recall":sum(float(r["recall"]) for r in rs)/len(rs),
-                      "macro_perspective_coverage":sum(float(r["perspective_coverage"]) for r in rs)/len(rs),
-                      "macro_strategy_coverage":sum(float(r["strategy_coverage"]) for r in rs)/len(rs),
-                  }
-          (root/"baseline_macro_summary.json").write_text(
-              json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8"
-          )
-          PY
-
       - name: Persist baseline results in repository
         run: |
           git config user.name "github-actions[bot]"
@@ -73,7 +48,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No baseline result changes."
           else
-            git commit -m "results: persist RQ1 v1.2 BM25 and Dense baselines"
+            git commit -m "results: refresh RQ1 v1.2 baselines"
             git push
           fi
 
