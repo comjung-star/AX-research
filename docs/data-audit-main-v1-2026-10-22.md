@@ -17,6 +17,7 @@ Our newly agreed unit of analysis is **one independently identifiable business-w
 - **48** rows have explicit high-priority label concern; **ALL 100** still need factor and strategy support checked against exact source passages before final v2 release.
 - `31` outcome descriptions include a term requiring clarification (expected, pilot, mixed attribution, UNKNOWN, etc.). This is a text screen, NOT a count of false claims.
 - Main dataset v1: Root Cause 1/2/3/4 labels = 6/25/60/9; Strategy 1/2/3/4 labels = 6/58/35/1. Both multiple = 91/100.
+- Stage 3-1's `stage3_case_factor_strategy_links.csv` expands the 100 cases into **651 Factor×Strategy co-label combinations**. Those are **NOT 651 source-confirmed direct remedy relationships**, nor 651 independent observations. The Wald calculation correctly uses 100 Case-level indicators; its interpretation must remain *co-occurrence*, not causal mapping.
 
 ## Independently accessed representative primary sources
 
@@ -57,3 +58,10 @@ Freeze and **preserve v1** as historical Dev corpus. Do not silently overwrite s
 5. Freeze v2 after reviewer check, then rebuild independent Dev/Test relevance and downstream retrieval / Wald / recommendation experiments.
 
 **This audit is a reasoned triage and worklist, not a completed second source-labeling pass or a new validated dataset.**
+
+## Source interpretation examples requiring targeted v2 fixes
+
+- AX0050: Microsoft describes Albert Heijn's demand forecasting and dynamic markdown as different programs, each with different KPI. Distinguish these before choosing one task per Case.
+- AX0054: a translation agent is not automatically `S2_AGENT_CONVERSATIONAL_AI` or `S6_WORKFLOW_PROCESS_AUTOMATION` under the existing Strategy definitions. Consider taxonomy coverage rather than forcing a label.
+- AX0087: Google describes virtual AI try-on image generation. `S5_OPTIMIZATION_DECISION_SUPPORT` should not be assigned solely because virtual try-on helps purchasing decisions; consider a generative visual interaction category or scope-specific approach before v2 taxonomy freeze.
+- AX0094: quoting, production planning, procurement may form one continuous manufacturing workflow or multiple autonomous Agents; do not auto-split without distinguishing intervention and metrics.
