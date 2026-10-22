@@ -11,11 +11,13 @@
 - [Stage 2-1 Multi-view 실험 명세](docs/experiment-spec-stage2-multiview-v1.md)
 - [Stage 2-2 Gated Fusion 실험 명세](docs/experiment-spec-stage2-gated-v1.md)
 - [Stage 2-3 Hybrid Retrieval 실험 명세](docs/experiment-spec-stage2-hybrid-v1.md)
+- [Stage 2-4 Query-Case Interaction 실험 명세](docs/experiment-spec-stage2-interaction-v1.md)
 - [Dev Ground Truth v1 Freeze](data/dev_ground_truth_freeze_v1.md)
 - [RQ1 v1.3 Dev 결과 분석](experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/DEV_RESULT_ANALYSIS.md)
 - [Stage 2-1 Dev 결과 분석](experiments/rq2_multiview/results/stage2_multiview_v1/DEV_RESULT_ANALYSIS.md)
 - [Stage 2-2 Dev 결과 분석](experiments/rq2_multiview/results/stage2_gated_v1/DEV_RESULT_ANALYSIS.md)
 - [Stage 2-3 Dev 결과 분석](experiments/rq2_multiview/results/stage2_hybrid_v1/DEV_RESULT_ANALYSIS.md)
+- [Stage 2-4 Dev 결과 분석](experiments/rq2_multiview/results/stage2_interaction_v1/DEV_RESULT_ANALYSIS.md)
 - [작업일지](worklog/README.md)
 - [학습용 쉬운 설명](study/README.md)
 
@@ -69,10 +71,12 @@ AX-research/
 - Query 단위 Leave-One-Out으로 Gate 학습/평가 누수 방지
 - **Stage 2-3 Dense + Sparse Candidate Union 구현/실행**
 - 동일 retrieval slot budget 기준 Hybrid vs Dense-only Candidate Recall 비교
+- **Stage 2-4 Query-Case Interaction LOQO 구현/실행**
+- `[q,c,q⊙c,|q-c|] → MLP`과 same-pool RRF 비교
 
 ### 현재 단계
 
-**Stage 2-3 Hybrid Retrieval Candidate 실험 완료 → Stage 2-4 Query-Case Interaction 준비**
+**Stage 2 Search Core 구성요소별 Dev 검증 완료 → Stage 3 Factor Anchor / Wald Evidence 준비**
 
 기존 Stage 1 Recall Macro:
 
@@ -148,3 +152,28 @@ Hybrid는 새로운 Gold를 추가로 찾았지만 같은 검색 슬롯 예산�
 - Stage 2-3의 candidate provenance를 그대로 보존해 Sparse가 추가한 후보의 최종 기여 확인
 
 Ground Truth와 Frozen 조건은 Dev 결과에 맞춰 사후 수정하지 않는다.
+
+
+### Stage 2-4 Query-Case Interaction 결과
+
+같은 Hybrid Candidate Pool에서 QCI MLP와 RRF를 비교했다.
+
+| leg_k | Final K | QCI MLP | Same-pool RRF | Delta |
+|---:|---:|---:|---:|---:|
+| 5 | 5 | 0.2435 | 0.3211 | -0.0776 |
+| 5 | 10 | 0.4281 | 0.4769 | -0.0488 |
+| 10 | 5 | 0.2194 | 0.3164 | -0.0970 |
+| 10 | 10 | 0.3635 | 0.5060 | -0.1425 |
+| 10 | 20 | 0.5853 | 0.6860 | -0.1007 |
+| 20 | 5 | 0.2044 | 0.3199 | -0.1155 |
+| 20 | 10 | 0.3335 | 0.5174 | -0.1839 |
+| 20 | 20 | 0.5489 | 0.6932 | -0.1443 |
+
+현재 QCI MLP v1은 same-pool RRF보다 낮아 **채택하지 않는다**.
+교수 제안 Query-Case Interaction 구성요소 자체를 삭제하는 것이 아니라,
+현재 10개 Dev Query와 Query-level Gold supervision에서 구현한 v1을 failed ablation으로 보존한다.
+
+다음 단계:
+- **Stage 3 Factor Anchor / Wald Evidence**
+- Search Core 결과를 근거 단계로 연결
+- 현재 Dev에서는 안정적인 ranking reference를 사용하고, QCI v1 실패 결과는 별도 보존

@@ -34,7 +34,8 @@ v1.3 핵심 조건:
 12. Stage 2-1 Multi-view Equal Dense ✅
 13. Stage 2-2 Gated Fusion LOQO ✅
 14. Stage 2-3 Hybrid Retrieval Candidate Union ✅
-15. **Stage 2-4 Query-Case Interaction 설계/실험 ← 현재**
+15. Stage 2-4 Query-Case Interaction LOQO ✅
+16. **Stage 3 Factor Anchor / Wald Evidence 설계 ← 다음**
 
 ## RQ1 v1.3 Dev Recall
 
@@ -283,3 +284,71 @@ Dense/Sparse branch mean Jaccard:
 
 Hybrid Retrieval이 가져온 Candidate Pool을 입력으로
 `[q,c,q⊙c,|q-c|] → MLP → Relevance Score` 구조의 추가 효과를 검증한다.
+
+
+---
+
+## Stage 2-4 — Query-Case Interaction
+
+Frozen specification:
+- `docs/experiment-spec-stage2-interaction-v1.md`
+- `configs/experiment_stage2_interaction_v1.yaml`
+
+교수 제안 구조:
+`[q,c,q⊙c,|q-c|] → MLP → Relevance Score`
+
+통제:
+- Stage 2-3 Hybrid Candidate Pool 그대로 사용
+- leg_k 5 / 10 / 20 모두 평가
+- BGE-M3 + Problem/Task/Context equal-mean Case representation
+- corpus-only PCA 64-d
+- MLP 256→32→1
+- Query-level LOQO
+- 동일 Candidate Pool RRF baseline
+- 동일 branch-balanced unique final selection
+
+### Stage 2-4 Dev Recall
+
+| leg_k | K | QCI MLP | Same-pool RRF | Delta |
+|---:|---:|---:|---:|---:|
+| 5 | 5 | 0.243504 | 0.321087 | -0.077583 |
+| 5 | 10 | 0.428052 | 0.476863 | -0.048811 |
+| 5 | 20 | 0.619099 | 0.619099 | 0.000000 |
+| 10 | 5 | 0.219441 | 0.316405 | -0.096964 |
+| 10 | 10 | 0.363484 | 0.506004 | -0.142520 |
+| 10 | 20 | 0.585269 | 0.685974 | -0.100705 |
+| 20 | 5 | 0.204402 | 0.319923 | -0.115521 |
+| 20 | 10 | 0.333520 | 0.517393 | -0.183873 |
+| 20 | 20 | 0.548902 | 0.693165 | -0.144263 |
+
+QCI v1은 모든 실질 비교에서 same-pool RRF보다 낮았다.
+leg_k=5, K=20의 동률은 작은 candidate pool에서 최종 후보가 사실상 모두 포함되는 경우가 많기 때문이다.
+
+Gold delta vs RRF:
+- leg_k=5: K5 net -25 / K10 net -15 / K20 net 0
+- leg_k=10: K5 net -29 / K10 net -46 / K20 net -32
+- leg_k=20: K5 net -36 / K10 net -60 / K20 net -54
+
+해석:
+- 현재 Query-level Gold union supervision에서는 branch-specific interaction 학습이 충분하지 않았을 가능성
+- 10개 Dev Query 규모에서 learned MLP의 query-level 일반화가 제한됨
+- RRF가 Dense/BM25의 rank prior를 안정적으로 보존
+- 현 v1 QCI는 채택하지 않고 failed ablation으로 보존
+- 같은 Dev 결과를 보고 즉시 hyperparameter를 사후 튜닝하지 않음
+
+상세:
+- `experiments/rq2_multiview/results/stage2_interaction_v1/DEV_RESULT_ANALYSIS.md`
+
+### Stage 2 Search Core 현재 판단
+
+교수 제안 Search Core의 Multi-view / Gated Fusion / Hybrid Retrieval / Query-Case Interaction을
+모두 구성요소별로 Dev 검증했다.
+
+현재 데이터 규모에서:
+- Multi-view 분리 자체: 중립적
+- Gated Fusion v1: 악화
+- Hybrid 50:50 Candidate Union: 보완성은 있으나 평균 Candidate Recall 악화
+- Query-Case Interaction v1: same-pool RRF보다 악화
+
+이 결과는 교수 아키텍처를 임의 삭제하는 근거가 아니라,
+각 구현의 채택 여부를 실험으로 검증한 ablation 결과다.
