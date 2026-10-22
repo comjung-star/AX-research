@@ -17,6 +17,8 @@
 - [Stage 2-3 Hybrid Retrieval](docs/experiment-spec-stage2-hybrid-v1.md)
 - [Stage 2-4 Query-Case Interaction](docs/experiment-spec-stage2-interaction-v1.md)
 
+- [Stage 3-2A Provenance freeze](docs/experiment-spec-stage3-perspective-provenance-v1.md)
+
 ## Result Analyses
 
 - [RQ1 Dev](experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/DEV_RESULT_ANALYSIS.md)
@@ -24,6 +26,7 @@
 - [Stage 2-2 Dev](experiments/rq2_multiview/results/stage2_gated_v1/DEV_RESULT_ANALYSIS.md)
 - [Stage 2-3 Dev](experiments/rq2_multiview/results/stage2_hybrid_v1/DEV_RESULT_ANALYSIS.md)
 - [Stage 2-4 Dev](experiments/rq2_multiview/results/stage2_interaction_v1/DEV_RESULT_ANALYSIS.md)
+- [Stage 3-2A Provenance Dev](experiments/rq3_evidence/results/stage3_provenance_v1/DEV_RESULT_ANALYSIS.md)
 
 ## Current Status — 2026-10-22
 
@@ -34,11 +37,15 @@ Stage 2-1 Multi-view Equal               ✅
 Stage 2-2 Gated Fusion v1                ✅ (미채택)
 Stage 2-3 Hybrid Candidate Union v1      ✅ (보완성 확인)
 Stage 2-4 Query-Case Interaction v1      ✅ (미채택)
-Stage 3 Factor Anchor / Wald Evidence    ← NEXT
+Stage 3-1 Factor–Strategy Wald Dev        ✅
+Stage 3-2A Perspective lineage replay     ✅
+Stage 3-2B Factor/Wald trace              ← NEXT
 ~~~
 
 Stage 2 Search Core의 구성요소별 Dev 검증은 완료했다.
 현재 데이터 규모에서는 학습형 Gate와 QCI MLP v1의 일반화 이득이 확인되지 않았고, Hybrid Retrieval은 Dense와 Sparse의 후보 보완성은 확인했지만 고정 50:50 배분에서 same-slot Dense-only를 넘지 못했다.
+
+Stage 3-1의 Offline Wald 관계 진단과 Stage 3-2A의 다중관점 검색 경로 복원(Top-10 검색 사례 300건, 관점별 링크 641건)까지 Dev 검증했다. 이는 **아직 전략 추천 성능 개선을 입증한 것은 아니다.**
 
 교수 제안 아키텍처의 구성요소는 삭제하지 않는다.
 효과가 확인되지 않은 **현재 v1 구현만 미채택**으로 기록하고 다음 단계에서 Factor Anchor / Wald Evidence를 검증한다.

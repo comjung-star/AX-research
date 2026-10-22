@@ -15,7 +15,8 @@ Stage 2-2 Query-Conditioned Gated Fusion v1        ✅  → 미채택
 Stage 2-3 Hybrid Retrieval Candidate Union v1      ✅  → 보완성 확인, 50:50 방식 우위 없음
 Stage 2-4 Query-Case Interaction MLP v1            ✅  → 미채택
 Stage 3-1 Factor ↔ Strategy Wald offline Dev        ✅  → 통계 진단 완료
-Stage 3-2 Case Evidence / Factor replay             ← NEXT
+Stage 3-2A Multi-Perspective provenance Dev           ✅  → 300 Cases / 641 branch links
+Stage 3-2B Factor / Wald evidence trace             ← NEXT
 Stage 4   Evidence Fusion / LLM Recommendation
 Final     Held-out Test
 ~~~
@@ -142,7 +143,7 @@ QCI MLP v1
 
 따라서 현재 결과를 숨기거나 사후 튜닝해서 맞추지 않고, 각 결과를 **구성요소 기여도 검증(ablation)**으로 보존한다.
 
-## 9. 다음 단계 — Stage 3-2
+## 9. 다음 단계 — Stage 3-2B / 3-2C
 
 ~~~text
 Retrieved Cases
@@ -186,3 +187,16 @@ Case-level association을 분석했다.
 - Stage 2-2: experiments/rq2_multiview/results/stage2_gated_v1/DEV_RESULT_ANALYSIS.md
 - Stage 2-3: experiments/rq2_multiview/results/stage2_hybrid_v1/DEV_RESULT_ANALYSIS.md
 - Stage 2-4: experiments/rq2_multiview/results/stage2_interaction_v1/DEV_RESULT_ANALYSIS.md
+
+## 12. Stage 3-2A — Perspective Provenance replay (Dev)
+
+- 프로토콜: [Stage 3-2A 동결 명세](experiment-spec-stage3-perspective-provenance-v1.md)
+- GitHub Actions: 39743868005 — SUCCESS (초점 단위테스트 및 Dev 재생 실행), 기존 전체 회귀 테스트 39743867801 — SUCCESS.
+- `stage2_same_pool_rrf`의 `leg_k=10`, Top-10, 10질의 × 3반복: 검색 사례 출현 300건.
+- 원본 Hybrid candidate provenance를 통해 관점별 링크 **641건** 복원(대표 관점 외 추가 링크 341건).
+- 다중관점으로 발견된 검색 사례 출현 **220/300 = 73.3%**. 1개 관점 80건 / 2개 110건 / 3개 99건 / 4개 11건.
+- 관점별 링크 수 P1=211 / P2=203 / P3=207 / P4=20 (Case 수가 아닌 관점별 링크 수).
+- 선택 관점 보존 300/300, 원본 후보 누락 0, 검색 결과 순위 및 Case 수 불변.
+- 이 단계는 검색·추천 성능 개선이 아니라 **구조적 관점 출처 복원**만 입증한다. RRF는 제안 모델이 아닌 진단용 고정 비교군이다.
+- 분석: [Stage 3-2A Dev 결과](../experiments/rq3_evidence/results/stage3_provenance_v1/DEV_RESULT_ANALYSIS.md).
+- 다음은 Stage 3-2B: Blind RCA Factor 및 Offline Wald 근거를 **결과 재정렬 없이** 연결한다.

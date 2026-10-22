@@ -1,6 +1,6 @@
 # Stage 3-2 Case Evidence → Factor Anchor → Wald Trace v1 (DRAFT)
 
-Status: **PROTOCOL DRAFT — no Stage 3-2 execution or performance claim yet**
+Status: **STAGE 3-2A PROVENANCE COMPLETE; STAGE 3-2B/2C PROTOCOL STILL DRAFT — no strategy performance claim**
 Date: 2026-10-22
 
 ## Objective
@@ -91,3 +91,7 @@ must be checked before marking this protocol `FROZEN_FOR_IMPLEMENTATION`.
 3. Run the Dev replay and record structural diagnostics separately from
    strategy performance.
 4. Then pre-register Stage 4 Evidence Fusion / Recommendation evaluation.
+
+## Stage 3-2A handoff — 2026-10-22
+
+Stage 3-2A was isolated and frozen as [Perspective Provenance Replay v1](experiment-spec-stage3-perspective-provenance-v1.md) before replay. The reference Top-10 ranking contains 300 Case occurrences and expands to 641 (Case, Perspective) links; 220/300 ranked occurrences have more than one source perspective. All representative paths were found. Stage 3-2B must use the **expanded perspective ledger** while counting only 300 ranked Case occurrences as the retrieval denominator. Stage 3-2B/2C denominator, Factor/Wald link schema and evaluation remain DRAFT pending a separate freeze; do not imply that Stage 3-2 as a whole is finished.
