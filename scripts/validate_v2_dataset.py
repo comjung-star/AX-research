@@ -33,9 +33,20 @@ def run() -> dict[str, int]:
     splits = load(DATA / "v2/workflow_split_drafts_v2.csv")
     holds = load(DATA / "v2/scope_hold_exclusions_v2.csv")
     pilot = load(DATA / "v2/source_relabel_pilot_v2.csv")
+    scope = load(DATA / "v2/production_scope_decisions_v2.csv")
     summary = json.loads((DATA / "v2/build_summary_v2.json").read_text(encoding="utf-8"))
 
     old_ids = {r["case_id"] for r in old}
+    scope_ids = [row["parent_case_id"] for row in scope]
+    demand(len(scope_ids) == len(set(scope_ids)), "Duplicate production scope decision")
+    demand(set(scope_ids) <= old_ids, "Unknown production scope parent")
+    for row in scope:
+        demand(row["eligibility"] in {"EXCLUDE_PILOT", "HOLD_PRODUCTION_UNVERIFIED"},
+               "Scope ledger cannot grant production approval")
+        demand(all(row[field].strip() for field in
+                   ("deployment_stage", "source_url", "evidence_anchor", "reason")),
+               "Production scope decision lacks evidence or reason")
+        demand(row["source_url"].startswith("https://"), "Invalid production evidence URL")
     staged_ids = [r["parent_v1_case_id"] for r in stage]
     hold_ids = [r["case_id"] for r in holds]
     demand(len(old) == 100 and len(old_ids) == 100, "Frozen input must have 100 distinct cases")

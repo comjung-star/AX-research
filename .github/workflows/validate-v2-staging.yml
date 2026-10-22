@@ -5,11 +5,16 @@ on:
     paths:
       - "data/v2/**"
       - "scripts/validate_v2_dataset.py"
+      - "scripts/validate_v2_evidence.py"
+      - "tests/test_v2_evidence.py"
       - ".github/workflows/validate-v2-staging.yml"
   push:
     paths:
       - "data/v2/**"
       - "scripts/validate_v2_dataset.py"
+      - "scripts/validate_v2_evidence.py"
+      - "tests/test_v2_evidence.py"
+      - ".github/workflows/validate-v2-staging.yml"
   workflow_dispatch:
 
 permissions:
@@ -20,8 +25,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - name: Validate staging parent-child lineage and unapproved state
         run: python scripts/validate_v2_dataset.py
+      - name: Validate workflow evidence and preserve historical research artifacts
+        run: python scripts/validate_v2_evidence.py --check-immutable
+      - name: Reject invalid promotions and broken evidence lineage
+        run: python -m unittest discover -s tests -p test_v2_evidence.py -v
