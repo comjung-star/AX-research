@@ -1,0 +1,24 @@
+name: AX Dataset v2 Source Adjudication Integrity
+
+on:
+  push:
+    paths:
+      - 'data/v2/qa/**'
+      - 'scripts/validate_v2_source_adjudication.py'
+      - '.github/workflows/validate-v2-source-adjudication.yml'
+  pull_request:
+    paths:
+      - 'data/v2/qa/**'
+      - 'scripts/validate_v2_source_adjudication.py'
+      - '.github/workflows/validate-v2-source-adjudication.yml'
+
+jobs:
+  check-adjudication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check 91 source-qualified and 7 held without human approval
+        run: python scripts/validate_v2_source_adjudication.py
