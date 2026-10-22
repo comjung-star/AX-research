@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import argparse
 import hashlib
 import json
 import re
@@ -59,15 +60,18 @@ def fetch(url):
     return record
 
 
-def run():
+def run(replacements=False):
     with (ROOT / "data/v2/main_case_parent_staging_v2.csv").open(encoding="utf-8-sig", newline="") as handle:
         parents = list(csv.DictReader(handle))
     associations = {row["parent_v1_case_id"]: re.findall(r"https?://[^\s;]+", row["original_source"]) for row in parents}
+    if replacements:
+        parents = json.loads((ROOT / "data/v2/replacement_cases_v2.json").read_text(encoding="utf-8"))["cases"]
+        associations = {row["id"]: [row["source"]] for row in parents}
     urls = sorted({url for sources in associations.values() for url in sources})
     with ThreadPoolExecutor(max_workers=10) as pool:
         results = dict(zip(urls, pool.map(fetch, urls)))
     output = [{"parent_case_id": parent, **results[url]} for parent, sources in associations.items() for url in sources]
-    path = ROOT / "data/v2/source_access_audit_v2.csv"
+    path = ROOT / ("data/v2/replacement_source_access_v2.csv" if replacements else "data/v2/source_access_audit_v2.csv")
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(output[0]))
         writer.writeheader()
@@ -78,4 +82,6 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--replacements", action="store_true")
+    run(replacements=parser.parse_args().replacements)

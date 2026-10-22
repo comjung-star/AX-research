@@ -1,5 +1,7 @@
 # v2 freeze decision blockers — 2026-10-22
 
+Current status is in [production replacement results](v2-production-replacements-2026-10-22.md): production-only inclusion and replacement of unresolved sources were both authorized. The questions below are historical, not new requests. Final freeze remains blocked by passage alignment/reapproval of inherited candidates and independently blinded label review, not by requiring recovery of cases now excluded.
+
 Update: the user resolved the pilot-inclusion decision in favor of production-only cases. See `v2-production-scope.md` and `v2-evidence-review-2026-10-22.md` for the subsequent work. The question below is retained as history, not a pending request.
 
 Status: NOT FROZEN. This check does not advance the 24 first-pass parents, approve any split, or complete the remaining 70 parents. Local staging validation passed with 100 v1 cases, 94 parents, 6 holds, 38 split hypotheses and zero approvals.

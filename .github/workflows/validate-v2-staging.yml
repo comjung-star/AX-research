@@ -7,6 +7,9 @@ on:
       - "scripts/validate_v2_dataset.py"
       - "scripts/validate_v2_evidence.py"
       - "tests/test_v2_evidence.py"
+      - "scripts/build_v2_replacement_release.py"
+      - "scripts/validate_v2_replacements.py"
+      - "tests/test_v2_replacements.py"
       - ".github/workflows/validate-v2-staging.yml"
   push:
     paths:
@@ -14,6 +17,9 @@ on:
       - "scripts/validate_v2_dataset.py"
       - "scripts/validate_v2_evidence.py"
       - "tests/test_v2_evidence.py"
+      - "scripts/build_v2_replacement_release.py"
+      - "scripts/validate_v2_replacements.py"
+      - "tests/test_v2_replacements.py"
       - ".github/workflows/validate-v2-staging.yml"
   workflow_dispatch:
 
@@ -36,3 +42,7 @@ jobs:
         run: python scripts/validate_v2_evidence.py --check-immutable
       - name: Reject invalid promotions and broken evidence lineage
         run: python -m unittest discover -s tests -p test_v2_evidence.py -v
+      - name: Check production replacements and deterministic candidate release
+        run: python scripts/validate_v2_replacements.py
+      - name: Reject replacement drift and premature approval
+        run: python -m unittest discover -s tests -p test_v2_replacements.py -v

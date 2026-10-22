@@ -2,6 +2,8 @@
 
 Decision date: 2026-10-22. Explicit user decision: include only cases actually deployed in business operations.
 
+Subsequent authorized replacement: 29 unresolved parent slots and 11 split holds have been excluded from the active candidate inventory and replaced with 40 newly reviewed operational workflows. The active file is `active_candidate_corpus_v2.json` (101 candidates, zero approvals), not the historical 94-parent staging list. See [replacement results and freeze restrictions](v2-production-replacements-2026-10-22.md). The production-only scope is unchanged; replacement does not constitute independent label approval.
+
 An eligible workflow needs primary-source evidence of actual operational use by an identifiable organization. A built prototype, co-creation pilot, test, demo, planned rollout or supplier capability alone is insufficient. A named product and reported performance alone do not establish operational deployment. Unknown deployment status means abstain from inclusion.
 
 `data/v2/production_scope_decisions_v2.csv` records explicit exclusions and holds. Absence from this file is not approval: every remaining candidate still needs affirmative production evidence before final acceptance. The 94-parent staging inventory and 38 historical split hypotheses remain preserved as audit inputs, not eligible-case counts. Any future accepted case must check this parent-level scope decision and independently establish its own workflow's operational use.

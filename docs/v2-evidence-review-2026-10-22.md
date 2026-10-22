@@ -2,6 +2,8 @@
 
 This report supersedes the pilot-inclusion question in the earlier blocker note. User decision: production deployments only. No new frozen corpus is claimed.
 
+Later authorized action: the unresolved 28 parents plus held AX0098 and 11 split hypotheses are now excluded from the active candidate corpus and administratively replaced by 40 new production workflow candidates. This report preserves the original source findings; its remaining-source list is historical, not a requirement to recover excluded cases. [The replacement report](v2-production-replacements-2026-10-22.md) states current scope and remaining independent-review restrictions. `validate_v2_evidence.py` still audits historical staging; the separate replacement validator governs active candidate reproducibility. Neither approves final GT.
+
 ## Completed evidence work
 
 - Inventoried all 94 candidate parents against 99 distinct cited URLs. Recorded response status, UTC access time, redirects and response SHA-256 where downloaded. A successful download is explicitly not semantic verification. Full downloaded texts and the NIPA PDF remain ignored local cache files and are not redistributed in Git.

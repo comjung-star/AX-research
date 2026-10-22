@@ -2,7 +2,13 @@
 
 The v1 nine-factor and six-strategy dictionaries remain unchanged. Fresh labels in the reconstruction files are proposals justified by newly written problem and implementation fields; seeing these fields sequentially in one review is not an independently blinded RCA experiment.
 
-## Confirmed or plausible gaps
+## Subsequent production-replacement evidence
+
+The authorized replacement review now supplies four independent organizations and four primary URLs for new branded creative content: IBM client-story drafting (AXV2N_0104), Oneisall ad images (0114), FyterTech ad images (0115), and Hisense ad images (0116). Unlike the heterogeneous gaps below, these support one common mechanism. `strategy_taxonomy_v2.csv` adds working S7_GENERATIVE_CONTENT_CREATION, covering newly composed branded text/visual creative outputs, not extraction/summarization (S3), inspection/privacy masking (S4), or recommendation without content generation (S5). All seven classes remain WORKING_V2_NOT_GT; legacy identifiers and v1 files are unchanged. This supersedes the earlier absence of repeated S7 evidence, not independent taxonomy approval.
+
+AX0087 is excluded from the active corpus because its problem boundary and component outcome attribution remain unresolved; adding S7 does not retroactively accept its old row. Translation and catalog-classification holds are also excluded, not forced into S7. Indeed (AXV2N_0109), Starling spending (0122) and Be My AI accessibility (0131) explicitly abstain on the factor: none establishes a clean fit to the v1 root-factor definitions. See [replacement report](v2-production-replacements-2026-10-22.md) for sampling limitations and the still-blocked final freeze.
+
+## Earlier confirmed or plausible gaps (retained audit history)
 
 1. **Generated visual media / virtual try-on (AX0087).** Google Cloud's Black Eyewear source separates specialist frame recommendation from Nano Banana 2 image synthesis. S5 can describe choosing frames; it does not adequately encode synthesizing an on-brand try-on image. Candidate new strategy: `S7_GENERATIVE_VISUAL_MEDIA`, defined as generating or editing image/video content as the delivered workflow output. Exclude visual classification/detection (S4), document extraction (S3), and recommendations without generated media (S5). This is a proposal, not an accepted label. No legacy F09 label is inherited merely because the solution uses a model.
 2. **Live translation (AX0054).** STT followed by industry-term-aware multilingual translation is not automatically document intelligence or a customer chatbot. Candidate strategy boundary: `LANGUAGE_TRANSFORMATION_TRANSLATION`. The checked article is secondary; primary implementation source needs passage review before proposing an accepted taxonomy extension.
