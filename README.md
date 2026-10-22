@@ -8,8 +8,10 @@
 - [아키텍처 정리](docs/architecture.md)
 - [실험 로드맵](docs/experiments.md)
 - [RQ1 검색실험 명세 v1.3](docs/experiment-spec-rq1-v1.3.md)
+- [Stage 2-1 Multi-view 실험 명세](docs/experiment-spec-stage2-multiview-v1.md)
 - [Dev Ground Truth v1 Freeze](data/dev_ground_truth_freeze_v1.md)
 - [RQ1 v1.3 Dev 결과 분석](experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/DEV_RESULT_ANALYSIS.md)
+- [Stage 2-1 Dev 결과 분석](experiments/rq2_multiview/results/stage2_multiview_v1/DEV_RESULT_ANALYSIS.md)
 - [작업일지](worklog/README.md)
 - [학습용 쉬운 설명](study/README.md)
 
@@ -51,18 +53,20 @@ AX-research/
 - Branch overlap / duplicate candidate diagnostics
 - Gold gained / lost / net diagnostics
 - Exclusive Perspective Coverage diagnostic
-- GitHub Actions unit test
 - Single BM25 / Dense Dev baseline 실제 실행
 - GPT-only 3-repeat Dev 실제 실행
 - Multi-Perspective BM25 3-repeat Dev 실제 실행
 - Multi-Perspective Dense 3-repeat Dev 실제 실행
 - RQ1 v1.3 결과 저장 및 1차 분석
+- **Stage 2-1 Multi-view Equal Dense 구현/실행**
+- **Stage 1 Generated Perspective replay로 LLM sampling 통제**
+- Problem / Task / Context별 BGE-M3 embedding 및 view score 기록
 
 ### 현재 단계
 
-**RQ1 Stage 1 Dev 실행 완료 → Dev Result Review**
+**Stage 2-1 Multi-view Dev 실행 완료 → Stage 2-2 Gated Fusion 설계/실험**
 
-Recall Macro:
+기존 Stage 1 Recall Macro:
 
 | System | @5 | @10 | @20 |
 |---|---:|---:|---:|
@@ -72,20 +76,31 @@ Recall Macro:
 | Multi-Perspective BM25 | 0.3063 | 0.4464 | 0.6547 |
 | Multi-Perspective Dense | 0.3233 | 0.5027 | 0.6565 |
 
-현재 Dev에서는 **Multi-Perspective Dense의 평균 Recall이 Single Dense보다 높지 않았다.**
-다만 Exclusive Perspective Coverage@20은 Single Dense 0.7333 대비 MP Dense 0.8389로 높아 관점 고유 사례 회수 신호가 확인됐다.
+Stage 2-1 비교:
+
+| System | @5 | @10 | @20 |
+|---|---:|---:|---:|
+| Stage 1 MP Dense | 0.323267 | 0.502667 | 0.656546 |
+| Stage 2-1 Multi-view Equal Dense | 0.323467 | 0.499295 | 0.659976 |
+| Delta | +0.000200 | -0.003372 | +0.003430 |
+
+Stage 2-1에서는 **View를 분리해 동일가중 평균한 것만으로는 의미 있는 Recall 개선이 확인되지 않았다.**
+새 Gold와 lost Gold가 거의 상쇄되어, 단순 분리보다 Query/Perspective별 View 중요도 조정의 필요성이 남았다.
 
 상세:
 - `experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/DEV_RESULT_ANALYSIS.md`
+- `experiments/rq2_multiview/results/stage2_multiview_v1/DEV_RESULT_ANALYSIS.md`
 
 현재 Frozen 실행 기준:
 - `docs/experiment-spec-rq1-v1.3.md`
 - `configs/experiment_rq1_v1.3.yaml`
+- `docs/experiment-spec-stage2-multiview-v1.md`
+- `configs/experiment_stage2_multiview_v1.yaml`
 
 다음 단계:
-- Query별 개선/악화 원인 분석
-- Perspective 품질 / branch Gold 분포 분석
-- branch-balanced unique의 Gold loss 원인 분석
-- Multi-view / Gated Fusion / Hybrid Retrieval 단계 진행 판단
+- **Stage 2-2 Gated Fusion / Attention**
+- Query/Perspective별 Problem / Task / Context 가중치 동적 조정
+- 동일 Perspective replay / 동일 K / 동일 final selection 유지
+- 학습형 Gate의 Query-level leakage 방지
 
-Ground Truth와 Frozen v1.3 조건은 Dev 결과에 맞춰 사후 수정하지 않는다.
+Ground Truth와 Frozen 조건은 Dev 결과에 맞춰 사후 수정하지 않는다.
