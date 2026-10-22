@@ -14,7 +14,8 @@ Stage 2-1 Multi-view Equal                         ✅
 Stage 2-2 Query-Conditioned Gated Fusion v1        ✅  → 미채택
 Stage 2-3 Hybrid Retrieval Candidate Union v1      ✅  → 보완성 확인, 50:50 방식 우위 없음
 Stage 2-4 Query-Case Interaction MLP v1            ✅  → 미채택
-Stage 3   Factor Anchor / Wald Evidence             ← NEXT
+Stage 3-1 Factor ↔ Strategy Wald offline Dev        ✅  → 통계 진단 완료
+Stage 3-2 Case Evidence / Factor replay             ← NEXT
 Stage 4   Evidence Fusion / LLM Recommendation
 Final     Held-out Test
 ~~~
@@ -141,7 +142,7 @@ QCI MLP v1
 
 따라서 현재 결과를 숨기거나 사후 튜닝해서 맞추지 않고, 각 결과를 **구성요소 기여도 검증(ablation)**으로 보존한다.
 
-## 9. 다음 단계 — Stage 3
+## 9. 다음 단계 — Stage 3-2
 
 ~~~text
 Retrieved Cases
@@ -152,16 +153,33 @@ Retrieved Cases
 → Strategy Recommendation
 ~~~
 
-Stage 3에서 검증할 핵심:
+Stage 3-2에서 검증할 핵심:
 1. 검색된 사례를 Root Cause Factor(F01~F09)에 안정적으로 연결할 수 있는가?
 2. Factor ↔ Strategy 관계를 Wald 통계 Evidence로 표현할 수 있는가?
 3. 단순 사례 목록보다 Strategy Coverage와 Evidence Traceability가 개선되는가?
 4. Wald 결과를 인과관계가 아니라 연관성 근거로 올바르게 사용할 수 있는가?
 
-Stage 3 설계 전에는 Stage 2 실패 구현을 억지로 결합하지 않는다.
+Stage 3-2 설계 전에는 Stage 2 실패 구현을 억지로 결합하지 않는다.
 현재 Dev에서는 안정적인 비학습 ranking reference를 사용해 Evidence 단계 자체의 효과를 분리 검증한다.
 
-## 10. 결과 문서
+## 10. Stage 3-1 — Offline Wald Evidence (Dev)
+
+Workflow 39734864597: SUCCESS / Wald-specific unit tests 5 passed.
+기존 전체 회귀 테스트 Workflow 39734864578: SUCCESS.
+
+Frozen Case 100건에서 Root Cause 9종 × Strategy 6종 = 54개의
+Case-level association을 분석했다.
+
+- Wald cell eligibility (all a,b,c,d >= 5): 35 pairs
+- Sparse/insufficient (any cell < 5): 19 pairs, Wald inference abstained
+- BH-adjusted q<0.05 among eligible: 6 pairs
+- 결과는 **univariate, observational, descriptive Dev evidence**이며, 인과 효과·추천 정확도 또는 Held-out 성능이 아니다.
+- Offline Case→Factor→Strategy trace 생성. 실제 Query Case Evidence/Factor alignment와 Strategy Coverage 개선은 아직 미검증이다.
+- 비교군으로서의 RRF와 제안 아키텍처의 Interaction 구성요소를 혼동하지 않는다.
+
+분석: [Stage 3-1 Dev Analysis](../experiments/rq3_evidence/results/stage3_wald_v1/DEV_RESULT_ANALYSIS.md)
+
+## 11. 결과 문서
 
 - RQ1: experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/DEV_RESULT_ANALYSIS.md
 - Stage 2-1: experiments/rq2_multiview/results/stage2_multiview_v1/DEV_RESULT_ANALYSIS.md
