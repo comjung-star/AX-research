@@ -30,8 +30,9 @@ v1.3 핵심 조건:
 8. Multi-Perspective + Dense 구현/3-repeat 실행 ✅
 9. Common Diagnostics / Summary ✅
 10. Dev 실행 ✅
-11. **Dev Result Review ← 현재**
-12. Next-stage Multi-view / Gated Fusion / Hybrid Retrieval
+11. Dev Result Review ✅
+12. Stage 2-1 Multi-view Equal Dense ✅
+13. **Stage 2-2 Gated Fusion 설계/실험 ← 현재**
 
 ## RQ1 v1.3 Dev Recall
 
@@ -50,7 +51,7 @@ Delta:
 - @10: -0.0149
 - @20: -0.0382
 
-## Coverage 진단
+## RQ1 Coverage 진단
 
 일반 Perspective Coverage / Strategy Coverage는 모든 시스템이 @5부터 1.0으로 saturation되어 Dev 변별력이 없었다.
 
@@ -72,6 +73,64 @@ Perspective 분해가 새로운 Gold를 찾기는 하지만 현재 branch-balanc
 
 상세 결과:
 - `experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/DEV_RESULT_ANALYSIS.md`
+
+---
+
+## Stage 2-1 — Multi-view Embedding 분리 실험
+
+Frozen specification:
+- `docs/experiment-spec-stage2-multiview-v1.md`
+- `configs/experiment_stage2_multiview_v1.yaml`
+
+목적:
+- Stage 1 MP Dense의 **실제 Generated Perspective를 그대로 replay**
+- LLM sampling을 제거한 상태에서 Case 표현만 변경
+- 기존: `Problem + Task + Context` 연결 문서 1개
+- Stage 2-1: `Problem / Task / Context`를 각각 BGE-M3 임베딩
+- 세 View cosine score를 1/3씩 동일가중 평균
+- final selection은 기존 `branch_balanced_unique` 그대로 유지
+
+### Stage 2-1 Dev Recall
+
+| System | Recall@5 | Recall@10 | Recall@20 |
+|---|---:|---:|---:|
+| Stage 1 MP Dense | 0.323267 | 0.502667 | 0.656546 |
+| Stage 2-1 Multi-view Equal Dense | 0.323467 | 0.499295 | 0.659976 |
+| Delta | +0.000200 | -0.003372 | +0.003430 |
+
+동일가중 Multi-view 분리만으로는 **뚜렷한 Recall 개선이 확인되지 않았다.**
+
+Gold gained/lost vs Stage 1 MP Dense:
+- @5: gained 20 / lost 19 / net +1
+- @10: gained 28 / lost 27 / net +1
+- @20: gained 25 / lost 27 / net -2
+
+Branch diagnostics:
+- Stage 1 MP Dense mean Jaccard: 0.3757
+- Stage 2-1 mean Jaccard: 0.4035
+- Stage 1 duplicate candidate rate: 0.4218
+- Stage 2-1 duplicate candidate rate: 0.4340
+
+즉 View를 분리하면 ranking은 바뀌지만, 모든 Query에 동일한 1/3 가중치를 적용하는 방식은
+Stage 1의 Recall trade-off를 해결하지 못했다.
+
+상세:
+- `experiments/rq2_multiview/results/stage2_multiview_v1/DEV_RESULT_ANALYSIS.md`
+
+### 다음: Stage 2-2 Gated Fusion
+
+다음 실험은 Query/Perspective별로 Problem / Task / Context 중요도를 동적으로 조정하는
+Gated Fusion / Attention의 추가 효과를 검증한다.
+
+Stage 2-1과 동일하게 다음 조건을 통제한다.
+- 동일 Stage 1 Generated Perspective replay
+- 동일 Dataset / GT
+- 동일 BGE-M3 backbone
+- 동일 K
+- 동일 branch-balanced unique final selection
+
+학습형 Gate를 사용할 경우 동일 Query의 Gold label이 학습과 평가 양쪽에 들어가지 않도록
+Query 단위 분리를 사용한다.
 
 ## Ground Truth 원칙
 
