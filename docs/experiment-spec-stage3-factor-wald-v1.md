@@ -18,9 +18,9 @@ Factor-Anchored recommender, Case Evidence Pooling model, or an improvement
 in Strategy Coverage.
 
 Input:
-- 100 frozen case records in \`data/main_cases_v1.csv\`
-- 9 frozen Root Cause IDs (\`data/root_cause_factors_v1.csv\`)
-- 6 frozen Strategy IDs (\`data/strategy_taxonomy_v1.csv\`)
+- 100 frozen case records in `data/main_cases_v1.csv`
+- 9 frozen Root Cause IDs (`data/root_cause_factors_v1.csv`)
+- 6 frozen Strategy IDs (`data/strategy_taxonomy_v1.csv`)
 - Case ID + preassigned Root Cause multi-labels + Strategy multi-labels
 - Original case source for audit trail
 
@@ -58,7 +58,7 @@ control for industry, case dependencies, or co-occurring factors.
 
 - Predeclare min(a,b,c,d) ≥ 5 as the conservative **diagnostic** Wald
   eligibility rule, not proof of validity.
-- If any cell <5, mark \`SPARSE_ABSTAIN\`; β / OR / Wald p / CI remain blank.
+- If any cell <5, mark `SPARSE_ABSTAIN`; β / OR / Wald p / CI remain blank.
   Do not fabricate a continuity-corrected Wald inference.
 - BH FDR adjustment across the complete 54-pair family; abstained pairs
   count as p=1 for the adjustment but expose no q-value as an inference.
@@ -66,10 +66,10 @@ control for industry, case dependencies, or co-occurring factors.
 
 ## Output
 
-- \`stage3_wald_pairs.csv\`: all 54 contingency tables and diagnostics
-- \`stage3_case_factor_strategy_links.csv\`: Case → Root Cause → Strategy
+- `stage3_wald_pairs.csv`: all 54 contingency tables and diagnostics
+- `stage3_case_factor_strategy_links.csv`: Case → Root Cause → Strategy
   provenance (not a model prediction)
-- \`stage3_wald_summary.json\`: sample size, sparse pairs, eligible pairs
+- `stage3_wald_summary.json`: sample size, sparse pairs, eligible pairs
   and preliminary adjusted associations
 
 All outputs are **Dev/offline descriptive evidence**. The 10 Dev queries do
@@ -79,7 +79,7 @@ not become new training cases. Existing Ground Truth is unchanged.
 
 Keep Stage 2-3 candidate provenance and Stage 2-4 ranked-case artifacts
 unaltered. As a controlled reference, replay the same
-\`stage2_same_pool_rrf\` rankings (not as the proposed model), selecting one
+`stage2_same_pool_rrf` rankings (not as the proposed model), selecting one
 fixed budget, and join each retrieved Case to its Root Cause Factor labels.
 Test, without new tuning:
 
