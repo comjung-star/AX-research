@@ -1,0 +1,31 @@
+experiment:
+  id: rq2_stage2_hybrid_v1
+  status: FROZEN_FOR_IMPLEMENTATION
+
+source:
+  rq1_config: configs/experiment_rq1_v1.3.yaml
+  stage2_equal_branch_rankings: experiments/rq2_multiview/results/stage2_multiview_v1/stage2_multiview_equal_dense_branch_rankings.csv
+
+dense:
+  source: stage2_multiview_equal_dense_replay
+
+sparse:
+  method: kiwi_bm25
+  document_fields:
+    - business_problem
+    - ax_target_task
+    - business_context
+
+candidate_union:
+  leg_k:
+    - 5
+    - 10
+    - 20
+  same_slot_dense_multiplier: 2
+  deduplicate_case_id: true
+  fill_duplicate_slots: false
+
+controls:
+  replay_stage1_generated_perspectives: true
+  rerun_llm: false
+  use_stage2_gated_v1: false
