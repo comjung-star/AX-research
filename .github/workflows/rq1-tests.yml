@@ -39,7 +39,8 @@ jobs:
           python -m pip install pytest PyYAML pydantic numpy
 
       - name: Run unit tests
-        run: pytest -q --junitxml=pytest-results.xml
+        # Module execution puts the repository root on sys.path for tests importing scripts.*
+        run: python -m pytest -q --junitxml=pytest-results.xml
 
       - name: Upload pytest report
         if: always()
