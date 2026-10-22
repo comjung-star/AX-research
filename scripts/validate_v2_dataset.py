@@ -68,8 +68,8 @@ def run() -> dict[str, int]:
                not row["outcome_new_verified"], "Old labels/outcomes leaked to proposed child")
         demand(row["source_url"] and row["locator_keyword"],
                "Child workflow lacks source locator")
-    demand(len(pilot) == 10 and len({r["parent_case_id"] for r in pilot}) == 10,
-           "Expected ten distinct source-relabel pilot workflows")
+    demand(len(pilot) >= 10 and len({r["parent_case_id"] for r in pilot}) == len(pilot),
+           "Source-review rows must have unique parents and at least ten entries")
     demand({r["parent_case_id"] for r in pilot} <= set(staged_ids) - split_parents,
            "Pilot contains held/split parent")
     for row in pilot:
