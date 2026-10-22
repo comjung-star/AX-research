@@ -1,0 +1,34 @@
+experiment:
+  id: rq2_stage2_gated_v1
+  status: FROZEN_FOR_IMPLEMENTATION
+
+source:
+  rq1_config: configs/experiment_rq1_v1.3.yaml
+  stage1_mp_dense_final_rankings: experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/multi_perspective_dense_final_rankings.csv
+  stage2_equal_branch_rankings: experiments/rq2_multiview/results/stage2_multiview_v1/stage2_multiview_equal_dense_branch_rankings.csv
+  stage2_equal_final_rankings: experiments/rq2_multiview/results/stage2_multiview_v1/stage2_multiview_equal_dense_final_rankings.csv
+
+gate:
+  encoder: BAAI/bge-m3
+  anchors:
+    business_problem: "업무에서 발생하는 문제, 병목, 오류, 지연, 부담, 위험"
+    ax_target_task: "수행해야 하는 업무, 처리 대상 작업, 과업, 업무 기능"
+    business_context: "업무 환경, 운영 조건, 조직 상황, 시스템 제약, 규모, 맥락"
+  architecture: anchor_similarity_linear_softmax
+  initialization: zero_logits_equal_softmax
+  validation: leave_one_query_out
+
+training:
+  seed: 42
+  optimizer: adamw
+  learning_rate: 0.05
+  weight_decay: 0.01
+  epochs: 120
+  pairwise_scale: 10.0
+  loss: query_balanced_pairwise_logistic
+
+controls:
+  replay_stage1_generated_perspectives: true
+  reuse_stage2_equal_view_scores: true
+  rerun_llm: false
+  final_selection: branch_balanced_unique
