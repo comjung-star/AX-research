@@ -33,7 +33,8 @@ v1.3 핵심 조건:
 11. Dev Result Review ✅
 12. Stage 2-1 Multi-view Equal Dense ✅
 13. Stage 2-2 Gated Fusion LOQO ✅
-14. **Stage 2-3 Hybrid Retrieval 설계/실험 ← 현재**
+14. Stage 2-3 Hybrid Retrieval Candidate Union ✅
+15. **Stage 2-4 Query-Case Interaction 설계/실험 ← 현재**
 
 ## RQ1 v1.3 Dev Recall
 
@@ -232,8 +233,53 @@ Branch diagnostics:
 상세:
 - `experiments/rq2_multiview/results/stage2_gated_v1/DEV_RESULT_ANALYSIS.md`
 
-### 다음: Stage 2-3 Hybrid Retrieval
+### Stage 2-3 — Hybrid Retrieval Candidate Union
 
-다음 실험에서는 Gated Fusion v1을 억지로 튜닝하지 않고,
-Dense와 Sparse(BM25) 후보 결합이 Multi-Perspective 검색의
-Gold gained/lost trade-off를 개선하는지 독립적으로 검증한다.
+Frozen specification:
+- `docs/experiment-spec-stage2-hybrid-v1.md`
+- `configs/experiment_stage2_hybrid_v1.yaml`
+
+교수 제안 아키텍처에서 Hybrid Retrieval은 최종 순위를 확정하는 단계가 아니라
+Dense + Sparse 결과를 결합해 Candidate Pool을 확보하는 단계다.
+
+따라서 Stage 2-3에서는 실패한 Gate v1을 사용하지 않고 Stage 2-1 Equal Dense를 Dense leg로 사용했으며,
+같은 Generated Perspective에 Kiwi BM25 Sparse leg를 추가했다.
+
+공정한 검색 슬롯 비교:
+- Dense Top-5 + BM25 Top-5 vs Dense Top-10
+- Dense Top-10 + BM25 Top-10 vs Dense Top-20
+- Dense Top-20 + BM25 Top-20 vs Dense Top-40
+
+### Stage 2-3 Dev Candidate Recall
+
+| leg_k | slots/branch | Hybrid | Dense same-slot | Delta |
+|---:|---:|---:|---:|---:|
+| 5 | 10 | 0.619099 | 0.649538 | -0.030439 |
+| 10 | 20 | 0.780287 | 0.793484 | -0.013196 |
+| 20 | 40 | 0.916413 | 0.935577 | -0.019164 |
+
+Gold gained/lost vs same-slot Dense:
+- leg_k=5: gained 28 / lost 36 / net -8
+- leg_k=10: gained 23 / lost 33 / net -10
+- leg_k=20: gained 12 / lost 17 / net -5
+
+Dense/Sparse branch mean Jaccard:
+- leg_k=5: 0.3483
+- leg_k=10: 0.3122
+- leg_k=20: 0.3558
+
+해석:
+- Sparse는 Dense와 다른 후보를 실제로 추가함
+- 일부 Query/Run에서는 Hybrid가 Dense-only보다 더 많은 Gold를 회수함
+- 그러나 50:50 retrieval slot 배분에서는 평균적으로 lost Gold가 더 많았음
+- 따라서 Hybrid의 보완성은 확인됐지만, Candidate Recall 우위는 확인되지 않음
+- 이 단계는 최종 Ranking이 아니므로 Hybrid 구조 전체를 기각하지 않음
+- 다음 Query-Case Interaction에서 Candidate Pool의 후보를 relevance 기준으로 재평가하는 효과를 검증함
+
+상세:
+- `experiments/rq2_multiview/results/stage2_hybrid_v1/DEV_RESULT_ANALYSIS.md`
+
+### 다음: Stage 2-4 Query-Case Interaction
+
+Hybrid Retrieval이 가져온 Candidate Pool을 입력으로
+`[q,c,q⊙c,|q-c|] → MLP → Relevance Score` 구조의 추가 효과를 검증한다.

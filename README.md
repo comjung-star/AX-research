@@ -10,10 +10,12 @@
 - [RQ1 검색실험 명세 v1.3](docs/experiment-spec-rq1-v1.3.md)
 - [Stage 2-1 Multi-view 실험 명세](docs/experiment-spec-stage2-multiview-v1.md)
 - [Stage 2-2 Gated Fusion 실험 명세](docs/experiment-spec-stage2-gated-v1.md)
+- [Stage 2-3 Hybrid Retrieval 실험 명세](docs/experiment-spec-stage2-hybrid-v1.md)
 - [Dev Ground Truth v1 Freeze](data/dev_ground_truth_freeze_v1.md)
 - [RQ1 v1.3 Dev 결과 분석](experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/DEV_RESULT_ANALYSIS.md)
 - [Stage 2-1 Dev 결과 분석](experiments/rq2_multiview/results/stage2_multiview_v1/DEV_RESULT_ANALYSIS.md)
 - [Stage 2-2 Dev 결과 분석](experiments/rq2_multiview/results/stage2_gated_v1/DEV_RESULT_ANALYSIS.md)
+- [Stage 2-3 Dev 결과 분석](experiments/rq2_multiview/results/stage2_hybrid_v1/DEV_RESULT_ANALYSIS.md)
 - [작업일지](worklog/README.md)
 - [학습용 쉬운 설명](study/README.md)
 
@@ -65,10 +67,12 @@ AX-research/
 - Problem / Task / Context별 BGE-M3 embedding 및 view score 기록
 - **Stage 2-2 Query-Conditioned Gated Fusion LOQO 구현/실행**
 - Query 단위 Leave-One-Out으로 Gate 학습/평가 누수 방지
+- **Stage 2-3 Dense + Sparse Candidate Union 구현/실행**
+- 동일 retrieval slot budget 기준 Hybrid vs Dense-only Candidate Recall 비교
 
 ### 현재 단계
 
-**Stage 2-2 Gated Fusion Dev 실행 완료 → Stage 2-3 Hybrid Retrieval 준비**
+**Stage 2-3 Hybrid Retrieval Candidate 실험 완료 → Stage 2-4 Query-Case Interaction 준비**
 
 기존 Stage 1 Recall Macro:
 
@@ -126,10 +130,21 @@ Equal Fusion 대비 Stage 2-2 Delta:
 - `docs/experiment-spec-stage2-gated-v1.md`
 - `configs/experiment_stage2_gated_v1.yaml`
 
+Stage 2-3 Hybrid Candidate Recall:
+
+| 각 Retriever Top-N | Hybrid slots/branch | Hybrid Recall | Dense-only 동일 slots | Delta |
+|---|---:|---:|---:|---:|
+| 5 | 10 | 0.6191 | 0.6495 | -0.0304 |
+| 10 | 20 | 0.7803 | 0.7935 | -0.0132 |
+| 20 | 40 | 0.9164 | 0.9356 | -0.0192 |
+
+Hybrid는 새로운 Gold를 추가로 찾았지만 같은 검색 슬롯 예산에서는 lost Gold가 더 많아
+평균 Candidate Recall 개선으로 이어지지 않았다. 다만 Dense/Sparse branch Jaccard가
+약 0.31~0.36으로 낮아 **서로 다른 후보를 가져오는 보완성 자체는 확인**됐다.
+
 다음 단계:
-- **Stage 2-3 Hybrid Retrieval**
-- Dense + Sparse 후보 결합 효과 검증
-- 현재 실패한 Gate를 억지로 튜닝하지 않고 별도 ablation으로 보존
-- 동일 Perspective replay / 동일 Dataset / 동일 K 조건 유지
+- **Stage 2-4 Query-Case Interaction**
+- Hybrid Candidate Pool 안에서 실제 관련도가 높은 Case를 재평가/정렬
+- Stage 2-3의 candidate provenance를 그대로 보존해 Sparse가 추가한 후보의 최종 기여 확인
 
 Ground Truth와 Frozen 조건은 Dev 결과에 맞춰 사후 수정하지 않는다.
