@@ -2,8 +2,8 @@
 
 Date: **2026-10-22**
 Run: [Stage 3-1 GitHub Actions 39734864597](https://github.com/comjung-star/AX-research/actions/runs/39734864597)
-Code/Protocol: \`src/ax_research/stage3_wald.py\`,
-\`docs/experiment-spec-stage3-factor-wald-v1.md\`
+Code/Protocol: `src/ax_research/stage3_wald.py`,
+`docs/experiment-spec-stage3-factor-wald-v1.md`
 
 ## Question
 
@@ -16,17 +16,17 @@ or a Factor-aware retrieval ablation.
 
 ## Reproducible execution
 
-\`\`\`bash
+```bash
 python -m ax_research.stage3_wald \
   --cases data/main_cases_v1.csv \
   --factors data/root_cause_factors_v1.csv \
   --strategies data/strategy_taxonomy_v1.csv \
   --output-dir experiments/rq3_evidence/results/stage3_wald_v1
-\`\`\`
+```
 
 CI confirmed: 5 focused unit tests passed; pre-existing full repository
 test suite also passed. Full CSV/JSON files are uploaded as the GitHub Actions
-\`stage3-wald-v1-diagnostics\` artifact. The artifact includes all 54 2×2
+`stage3-wald-v1-diagnostics` artifact. The artifact includes all 54 2×2
 tables and Case→Factor→Strategy lineage.
 
 ## Main findings
