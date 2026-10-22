@@ -1,0 +1,48 @@
+experiment:
+  id: rq2_stage2_interaction_v1
+  status: FROZEN_FOR_IMPLEMENTATION
+
+source:
+  rq1_config: configs/experiment_rq1_v1.3.yaml
+  stage2_hybrid_candidates: experiments/rq2_multiview/results/stage2_hybrid_v1/stage2_hybrid_candidate_provenance.csv
+
+interaction:
+  encoder: BAAI/bge-m3
+  case_fusion: equal_mean_problem_task_context
+  projection:
+    method: corpus_pca_svd
+    dim: 64
+  features:
+    - q
+    - c
+    - q_mul_c
+    - abs_q_minus_c
+  mlp:
+    hidden_dim: 32
+    dropout: 0.10
+
+training:
+  validation: leave_one_query_out
+  seed: 42
+  optimizer: adamw
+  learning_rate: 0.001
+  weight_decay: 0.001
+  epochs: 150
+  pairwise_scale: 5.0
+  loss: query_balanced_pairwise_logistic
+
+candidate_budgets:
+  leg_k:
+    - 5
+    - 10
+    - 20
+
+baseline:
+  method: reciprocal_rank_fusion
+  rrf_constant: 60
+
+controls:
+  replay_stage1_generated_perspectives: true
+  rerun_llm: false
+  use_stage2_gated_v1: false
+  final_selection: branch_balanced_unique
