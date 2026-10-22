@@ -32,7 +32,8 @@ v1.3 핵심 조건:
 10. Dev 실행 ✅
 11. Dev Result Review ✅
 12. Stage 2-1 Multi-view Equal Dense ✅
-13. **Stage 2-2 Gated Fusion 설계/실험 ← 현재**
+13. Stage 2-2 Gated Fusion LOQO ✅
+14. **Stage 2-3 Hybrid Retrieval 설계/실험 ← 현재**
 
 ## RQ1 v1.3 Dev Recall
 
@@ -158,3 +159,81 @@ Diagnostic:
 - LLM 3회 반복 Run variability
 
 Dev 결과는 방향성/실패사례 분석용이며, 10개 Query만으로 과도한 통계적 일반화를 하지 않습니다.
+
+
+---
+
+## Stage 2-2 — Query-Conditioned Gated Fusion
+
+Frozen specification:
+- `docs/experiment-spec-stage2-gated-v1.md`
+- `configs/experiment_stage2_gated_v1.yaml`
+
+통제:
+- Stage 1 Generated Perspective 그대로 replay
+- Stage 2-1에서 계산된 Problem / Task / Context view score 재사용
+- BGE-M3 / Dataset / GT / K / branch-balanced unique 동일
+- LLM 재호출 없음
+
+Gate:
+- branch query와 3개 semantic view anchor 간 cosine similarity를 입력 feature로 사용
+- `Linear(3→3) + Softmax`
+- 총 12개 학습 파라미터
+- 초기값은 equal weight
+- Query-level Leave-One-Out(LOQO)으로 평가 Query label 누수 방지
+- Query-level Gold를 pairwise logistic ranking loss로 학습
+
+### Stage 2-2 Dev Recall
+
+| System | Recall@5 | Recall@10 | Recall@20 |
+|---|---:|---:|---:|
+| Stage 1 MP Dense | 0.323267 | 0.502667 | 0.656546 |
+| Stage 2-1 Equal Fusion | 0.323467 | 0.499295 | 0.659976 |
+| Stage 2-2 Gated Fusion | 0.309681 | 0.464334 | 0.655820 |
+
+Stage 2-1 Equal 대비 Delta:
+- @5: -0.013785
+- @10: -0.034962
+- @20: -0.004156
+
+Gold gained/lost vs Stage 2-1 Equal:
+- @5: gained 21 / lost 25 / net -4
+- @10: gained 21 / lost 33 / net -12
+- @20: gained 19 / lost 19 / net 0
+
+평균 learned weight:
+- Problem: 0.5998
+- Task: 0.0026
+- Context: 0.3976
+
+범위:
+- Problem: 0.4652 ~ 0.8103
+- Task: 0.0012 ~ 0.0054
+- Context: 0.1861 ~ 0.5336
+
+Branch diagnostics:
+- mean Jaccard: 0.3744
+- duplicate candidate rate: 0.4211
+
+### Stage 2-2 해석
+
+현재 v1 Gate는 Query마다 weight 차이를 만들기는 했지만 Task View를 거의 0으로
+억제하는 방향으로 학습됐고, Equal Fusion보다 @5/@10 Recall이 악화됐다.
+
+따라서 현 시점 결론은:
+- "동적 가중치가 무조건 좋다"는 가설은 지지되지 않음
+- 현재의 semantic-anchor + pairwise-loss Gate v1은 채택하지 않음
+- 같은 Dev 결과를 보고 hyperparameter를 사후 조정해 성능을 끌어올리지 않음
+- 결과를 정식 ablation으로 보존하고 다음 구성요소인 Hybrid Retrieval로 진행
+
+이 결과는 Multi-view 전체를 기각하는 것이 아니라,
+**현재 Gate의 입력 feature와 학습목표가 적절한가**를 별도 연구문제로 남긴다.
+
+상세:
+- `experiments/rq2_multiview/results/stage2_gated_v1/DEV_RESULT_ANALYSIS.md`
+
+### 다음: Stage 2-3 Hybrid Retrieval
+
+다음 실험에서는 Gated Fusion v1을 억지로 튜닝하지 않고,
+Dense와 Sparse(BM25) 후보 결합이 Multi-Perspective 검색의
+Gold gained/lost trade-off를 개선하는지 독립적으로 검증한다.
