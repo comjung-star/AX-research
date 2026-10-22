@@ -1,0 +1,27 @@
+experiment:
+  id: rq2_stage2_multiview_v1
+  status: FROZEN_FOR_IMPLEMENTATION
+
+source:
+  rq1_config: configs/experiment_rq1_v1.3.yaml
+  stage1_mp_dense_branch_rankings: experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/multi_perspective_dense_branch_rankings.csv
+  stage1_mp_dense_final_rankings: experiments/rq1_retrieval/results/rq1_v1_3_llm_dev/multi_perspective_dense_final_rankings.csv
+
+multiview:
+  encoder: BAAI/bge-m3
+  normalize_embeddings: true
+  views:
+    - business_problem
+    - ax_target_task
+    - business_context
+  fusion:
+    method: equal_mean
+    weights:
+      business_problem: 0.3333333333333333
+      ax_target_task: 0.3333333333333333
+      business_context: 0.3333333333333333
+
+controls:
+  replay_stage1_generated_perspectives: true
+  rerun_llm: false
+  final_selection: branch_balanced_unique
