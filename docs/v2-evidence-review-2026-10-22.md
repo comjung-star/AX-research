@@ -1,5 +1,7 @@
 # Primary-source workflow review, production-only scope
 
+Subsequent completion: [final release report](v2-final-release-2026-10-22.md). The inherited 41-case passage alignment and user-authorized isolated AI annotation have now actually been performed. Final data contains 98 workflows, while this report preserves earlier findings and limitations. Old staging validators do not govern the separate frozen release.
+
 This report supersedes the pilot-inclusion question in the earlier blocker note. User decision: production deployments only. No new frozen corpus is claimed.
 
 Later authorized action: the unresolved 28 parents plus held AX0098 and 11 split hypotheses are now excluded from the active candidate corpus and administratively replaced by 40 new production workflow candidates. This report preserves the original source findings; its remaining-source list is historical, not a requirement to recover excluded cases. [The replacement report](v2-production-replacements-2026-10-22.md) states current scope and remaining independent-review restrictions. `validate_v2_evidence.py` still audits historical staging; the separate replacement validator governs active candidate reproducibility. Neither approves final GT.

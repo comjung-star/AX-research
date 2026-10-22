@@ -10,6 +10,9 @@ on:
       - "scripts/build_v2_replacement_release.py"
       - "scripts/validate_v2_replacements.py"
       - "tests/test_v2_replacements.py"
+      - "scripts/build_v2_final_release.py"
+      - "scripts/validate_v2_release.py"
+      - "tests/test_v2_release.py"
       - ".github/workflows/validate-v2-staging.yml"
   push:
     paths:
@@ -20,6 +23,9 @@ on:
       - "scripts/build_v2_replacement_release.py"
       - "scripts/validate_v2_replacements.py"
       - "tests/test_v2_replacements.py"
+      - "scripts/build_v2_final_release.py"
+      - "scripts/validate_v2_release.py"
+      - "tests/test_v2_release.py"
       - ".github/workflows/validate-v2-staging.yml"
   workflow_dispatch:
 
@@ -46,3 +52,7 @@ jobs:
         run: python scripts/validate_v2_replacements.py
       - name: Reject replacement drift and premature approval
         run: python -m unittest discover -s tests -p test_v2_replacements.py -v
+      - name: Validate final production-only snapshot and isolated AI reviews
+        run: python scripts/validate_v2_release.py --freeze
+      - name: Test final freeze guards and explicit abstentions
+        run: python -m unittest discover -s tests -p test_v2_release.py -v

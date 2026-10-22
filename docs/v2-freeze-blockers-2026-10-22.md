@@ -1,5 +1,7 @@
 # v2 freeze decision blockers — 2026-10-22
 
+Resolved for the separate source-curated/AI-annotated v2.0.0 data release: all inherited passage reviews and user-authorized isolated AI reviews were performed, unsupported cases/relations removed, and explicit null-label policy applied. See [final release](v2-final-release-2026-10-22.md). Human GT, held-out relevance annotation and downstream experiments remain separate research work, not claims made by this release. Historical blocker statements below are not current requests.
+
 Current status is in [production replacement results](v2-production-replacements-2026-10-22.md): production-only inclusion and replacement of unresolved sources were both authorized. The questions below are historical, not new requests. Final freeze remains blocked by passage alignment/reapproval of inherited candidates and independently blinded label review, not by requiring recovery of cases now excluded.
 
 Update: the user resolved the pilot-inclusion decision in favor of production-only cases. See `v2-production-scope.md` and `v2-evidence-review-2026-10-22.md` for the subsequent work. The question below is retained as history, not a pending request.

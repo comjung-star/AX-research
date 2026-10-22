@@ -1,0 +1,384 @@
+{
+  "review_date": "2026-10-22",
+  "review_kind": "INDEPENDENT_AI_APPLICABILITY_NOT_CAUSAL",
+  "sessions": [
+    {
+      "session_id": "01a163a4-6cdd-7392-8321-708125717d54",
+      "submitted_prompt": "Independently review proposed DIRECT applicability links for AX business workflows. This is NOT causal inference or a Wald association. Input provides the problem, actually described implementation, independently proposed primary factor and strategy and their rationales. Do not access tools/files/web/repository or spawn agents. For every case, decide whether the implementation directly addresses the stated factor in that same workflow without inventing mechanisms or combining unrelated outcomes. Return SUPPORTED_APPLICABILITY if that limited connection is grounded, otherwise ABSTAIN with an explicit reason. Do NOT force every pair to pass. Return ONLY JSON {\"reviewer_role\":\"INDEPENDENT_DIRECT_APPLICABILITY_AI\",\"records\":[{\"case_id\":...,\"decision\":\"SUPPORTED_APPLICABILITY\" or \"ABSTAIN\",\"rationale\":one short sentence}]}. Every input exactly once. Never call these ground truth, causal effects, or statistical evidence.\n[{\"case_id\":\"AXV2C_0006_01\",\"problem\":\"Manual forms and manager-HR coordination caused errors and poor experience when promotions or assignments changed.\",\"implementation\":\"Danone's deployed agentic-AI HR workflow pre-fills manager requests, validates information and checks organizational structures, replacing manual form coordination.\",\"factor\":\"F01\",\"factor_reason\":\"Manual forms and administrative coordination create errors and friction during personnel changes.\",\"strategy\":\"S6\",\"strategy_reason\":\"The deployed agentic-AI workflow coordinates HR request preparation and validation, replacing manual form coordination.\"},{\"case_id\":\"AXV2C_0006_02\",\"problem\":\"Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.\",\"implementation\":\"A Copilot Studio agent integrated with Teams compares order prices with ERP and promotion records and flags discrepancies before invoicing.\",\"factor\":\"F04\",\"factor_reason\":\"Orders arriving in varied formats create difficulties in consistently extracting and entering information.\",\"strategy\":\"S4\",\"strategy_reason\":\"The agent detects price discrepancies against ERP and promotion records before invoicing.\"},{\"case_id\":\"AXV2C_0016_01\",\"problem\":\"Customers need digital or voice support that can diagnose routine device issues without unnecessary transfers.\",\"implementation\":\"Gemini Flash voice assistants identify hardware or software issues and guide callers through fixes.\",\"factor\":\"F05\",\"factor_reason\":\"Unnecessary transfers interrupt the customer support process.\",\"strategy\":\"S2\",\"strategy_reason\":\"Voice assistants deliver interactive troubleshooting by identifying callers' problems and guiding them through fixes.\"},{\"case_id\":\"AXV2C_0017_01\",\"problem\":\"Rules-based routing cannot handle nuanced issues and customers repeat their history across channels.\",\"implementation\":\"BigQuery analyzes context for intent routing, and Gemini Enterprise for Customer Experience assistants resolve issues while retaining up to 60 days of history.\",\"factor\":\"F05\",\"factor_reason\":\"Customers must repeat their history because support context does not carry across channels.\",\"strategy\":\"S2\",\"strategy_reason\":\"The assistants deliver customer-service conversations with retained context, while routing and historical information support that service.\"},{\"case_id\":\"AXV2C_0050_01\",\"problem\":\"Uncertain sales volumes make it difficult to supply enough food while avoiding waste.\",\"implementation\":\"AI produces daily demand forecasts at store-item level; source names Azure services at initiative level rather than one forecast algorithm.\",\"factor\":\"F09\",\"factor_reason\":\"Uncertain sales volumes complicate balancing food availability against waste.\",\"strategy\":\"S4\",\"strategy_reason\":\"AI predicts future daily demand at the store-item level.\"},{\"case_id\":\"AXV2C_0068_01\",\"problem\":\"Missing or incomplete payment instructions trigger time-consuming human reviews.\",\"implementation\":\"An Eliza agentic-AI digital employee repairs missing or incomplete payment instructions semi-autonomously so payments can proceed without the previous manual review.\",\"factor\":\"F01\",\"factor_reason\":\"Incomplete payment instructions repeatedly trigger time-consuming manual reviews.\",\"strategy\":\"S6\",\"strategy_reason\":\"An agentic-AI employee repairs payment instructions semi-autonomously to advance payment processing.\"},{\"case_id\":\"AXV2C_0068_03\",\"problem\":\"Identity and risk verification requires document research and weeks of back-and-forth.\",\"implementation\":\"An Eliza agentic workflow reviews new and previous documents, seeks additional data and assists risk decisions.\",\"factor\":\"F05\",\"factor_reason\":\"Verification involves weeks of back-and-forth between process participants.\",\"strategy\":\"S6\",\"strategy_reason\":\"The agentic onboarding workflow coordinates document reviews, additional-data collection and support for risk decisions.\"},{\"case_id\":\"AXV2C_0074_02\",\"problem\":\"Compliance, verification and risk checks slowed merchant onboarding; some merchant categories had p99 turnaround of at least 24 hours.\",\"implementation\":\"Claude Haiku and Sonnet on Bedrock summarize merchant web pages; batched requests avoid throttling in onboarding information extraction.\",\"factor\":\"F08\",\"factor_reason\":\"Compliance, verification, and risk checks impose substantial onboarding delays.\",\"strategy\":\"S3\",\"strategy_reason\":\"Claude summarizes existing merchant web pages to extract onboarding information.\"},{\"case_id\":\"AXV2C_0080_01\",\"problem\":\"High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.\",\"implementation\":\"Trade Operations OCR uses Document AI to extract and digitize relevant fields across more than 200 languages.\",\"factor\":\"F01\",\"factor_reason\":\"High-volume forms require slow and error-prone manual data entry.\",\"strategy\":\"S3\",\"strategy_reason\":\"Document AI extracts and digitizes fields from trade-finance documents.\"},{\"case_id\":\"AXV2C_0080_02\",\"problem\":\"Document review must identify details that could expose the bank to regulatory or financial risks.\",\"implementation\":\"Document AI flags key details in documents to assist sanctions screening.\",\"factor\":\"F08\",\"factor_reason\":\"Document review must detect details that create regulatory or financial exposure.\",\"strategy\":\"S3\",\"strategy_reason\":\"Document AI identifies relevant document details for downstream sanctions screening without explicitly detecting sanctions violations.\"},{\"case_id\":\"AXV2C_0093_01\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"implementation\":\"A watsonx Orchestrate quality inquiry agent aggregates production and quality data for monitoring, defect analysis and root-cause inquiry.\",\"factor\":\"F07\",\"factor_reason\":\"Scattered production and quality data impede timely visibility into quality issues.\",\"strategy\":\"S4\",\"strategy_reason\":\"The agent supports production-quality monitoring, defect analysis and investigation of their causes.\"},{\"case_id\":\"AXV2C_0093_02\",\"problem\":\"Schedule changes were slow and error-prone across fragmented manufacturing systems.\",\"implementation\":\"A watsonx Orchestrate scheduling agent handles natural-language plan changes, compares alternatives and performs draft-environment risk validation before execution.\",\"factor\":\"F05\",\"factor_reason\":\"Fragmented manufacturing systems make schedule changes slow and error-prone.\",\"strategy\":\"S5\",\"strategy_reason\":\"The agent compares production-schedule alternatives and validates risks to support scheduling decisions before execution.\"},{\"case_id\":\"AXV2C_0094_01\",\"problem\":\"Manual quoting became a capacity bottleneck as customer demand grew.\",\"implementation\":\"watsonx Orchestrate analyzes historical jobs, profitability and production data to generate draft quotes under human oversight.\",\"factor\":\"F06\",\"factor_reason\":\"Growing customer demand exceeds the capacity of manual quoting.\",\"strategy\":\"S5\",\"strategy_reason\":\"Historical jobs, profitability and production data inform draft pricing quotes for human review.\"},{\"case_id\":\"AXV2C_0094_02\",\"problem\":\"Manual planning and data input constrain capacity during growth.\",\"implementation\":\"watsonx Orchestrate automates planning workflows with human oversight; a specific scheduling algorithm is not disclosed.\",\"factor\":\"F06\",\"factor_reason\":\"Manual planning and data entry constrain processing capacity during growth.\",\"strategy\":\"S6\",\"strategy_reason\":\"The AI orchestration platform automates production-planning workflow steps under human oversight.\"},{\"case_id\":\"AXV2H_0001_01\",\"problem\":\"하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움\",\"implementation\":\"RAG 기반 생성형 AI 지원 에이전트와 중앙 지식베이스 구축\",\"factor\":\"F06\",\"factor_reason\":\"Up to 600 daily inquiries exceed a small support team's ability to maintain coverage.\",\"strategy\":\"S2\",\"strategy_reason\":\"The support agent delivers autonomous customer-inquiry responses, with RAG and the central knowledge base grounding that service.\"},{\"case_id\":\"AXV2H_0002_01\",\"problem\":\"길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨\",\"implementation\":\"Bedrock/Claude 기반 이메일 스레드 자동 요약\",\"factor\":\"F04\",\"factor_reason\":\"Long and complex email threads require time to interpret key information and follow-up actions.\",\"strategy\":\"S3\",\"strategy_reason\":\"Claude summarizes existing customer-email threads.\"},{\"case_id\":\"AXV2H_0003_01\",\"problem\":\"다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함\",\"implementation\":\"생성형 AI로 보고서 검증 항목을 분석하고 인적 검토 업무를 보조\",\"factor\":\"F01\",\"factor_reason\":\"Manual comparisons across files and validation criteria delay verification.\",\"strategy\":\"S3\",\"strategy_reason\":\"Generative AI analyzes report verification items to assist human document review without explicitly detecting nonconformance.\"},{\"case_id\":\"AXV2H_0008_01\",\"problem\":\"여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움\",\"implementation\":\"Azure AI Document Intelligence로 K-1 세무서류 핵심 필드 자동 추출\",\"factor\":\"F04\",\"factor_reason\":\"Extracting information from lengthy tax documents in multiple formats is slow and error-prone.\",\"strategy\":\"S3\",\"strategy_reason\":\"Document Intelligence extracts key fields from K-1 tax documents.\"},{\"case_id\":\"AXV2H_0009_01\",\"problem\":\"매장 직원이 분산된 운영문서를 검색하는 데 시간이 걸려 고객 응대가 지연됨\",\"implementation\":\"Azure AI Search와 Azure OpenAI를 연결한 내부 운영지식 챗봇\",\"factor\":\"F02\",\"factor_reason\":\"Dispersed operating documents make information searches slow and delay customer service.\",\"strategy\":\"S1\",\"strategy_reason\":\"Search and generation provide grounded answers from internal operating knowledge, with conversation serving as the query interface.\"},{\"case_id\":\"AXV2H_0021_01\",\"problem\":\"산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼\",\"implementation\":\"로봇 동작데이터 기반 딥러닝 예지보전 시스템\",\"factor\":\"F09\",\"factor_reason\":\"Difficulty predicting robot failures creates uncertainty about production interruptions.\",\"strategy\":\"S4\",\"strategy_reason\":\"Deep learning uses robot-operation data for predictive maintenance.\"},{\"case_id\":\"AXV2H_0070_01\",\"problem\":\"대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨\",\"implementation\":\"Bedrock and Claude power voice self-service with RAG over public help-center content; live agents handle harder cases.\",\"factor\":\"F06\",\"factor_reason\":\"High call volume creates pressure for rapid support responses.\",\"strategy\":\"S2\",\"strategy_reason\":\"Voice self-service delivers automated rider consultation, while help-center RAG grounds the conversation rather than defining the primary service.\"},{\"case_id\":\"AXV2H_0075_01\",\"problem\":\"고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함\",\"implementation\":\"Amazon Bedrock Claude로 통화록 요약 후 상담노트 자동 생성\",\"factor\":\"F01\",\"factor_reason\":\"Agents manually write consultation notes after calls, increasing handling time.\",\"strategy\":\"S3\",\"strategy_reason\":\"Claude summarizes call transcripts into consultation notes.\"},{\"case_id\":\"AXV2H_0078_01\",\"problem\":\"Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.\",\"implementation\":\"Looker semantic layer와 BigQuery를 Gemini 기업용 대화형 에이전트에 연결\",\"factor\":\"F02\",\"factor_reason\":\"Needed information is split between standard reports and other sources staff must consult.\",\"strategy\":\"S1\",\"strategy_reason\":\"Gemini provides grounded natural-language access to internal management data through Looker and BigQuery, with conversation serving as the access interface.\"},{\"case_id\":\"AXV2H_0081_01\",\"problem\":\"상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함\",\"implementation\":\"Google Gemini로 고객 통화 transcript 자동 요약\",\"factor\":\"F01\",\"factor_reason\":\"People manually summarize call records after consultations.\",\"strategy\":\"S3\",\"strategy_reason\":\"Gemini summarizes existing customer-call transcripts.\"},{\"case_id\":\"AXV2H_0083_01\",\"problem\":\"엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준\",\"implementation\":\"Gemini 1.5 Pro가 티켓 내용과 담당팀 관계를 이해해 이관팀을 자동 선정\",\"factor\":\"F01\",\"factor_reason\":\"Manual assignment decisions consume over 100 hours weekly and achieve low accuracy.\",\"strategy\":\"S5\",\"strategy_reason\":\"Gemini selects the team responsible for a new ticket, making allocation the primary delivered decision.\"},{\"case_id\":\"AXV2H_0084_01\",\"problem\":\"시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움\",\"implementation\":\"앱 Product Finder가 Gemini로 자연어 상품명을 코드로 매칭하고 BigQuery에서 매장 위치·재고를 제공\",\"factor\":\"F07\",\"factor_reason\":\"Changing merchandise locations leave staff and customers without current location visibility.\",\"strategy\":\"S1\",\"strategy_reason\":\"Natural-language product matching enables grounded retrieval of store-location and inventory information.\"},{\"case_id\":\"AXV2H_0090_01\",\"problem\":\"다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가\",\"implementation\":\"AskHR uses LLM prompt classification, HR-domain routing and policy-grounded responses, with complex inquiries passed to human advisors.\",\"factor\":\"F02\",\"factor_reason\":\"Dispersed HR policies and procedures impede timely employee support.\",\"strategy\":\"S1\",\"strategy_reason\":\"The workflow primarily answers employee questions using HR policy knowledge, with conversational routing and human handoff supporting grounded knowledge delivery.\"},{\"case_id\":\"AXV2H_0091_01\",\"problem\":\"낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움\",\"implementation\":\"Ask SW Support가 RAG/LLM으로 엔지니어에게 저복잡도 지원 답변을 제시\",\"factor\":\"F03\",\"factor_reason\":\"Even simple inquiries depend on engineers whose expertise is needed for harder work.\",\"strategy\":\"S1\",\"strategy_reason\":\"RAG and an LLM provide grounded support answers to engineers rather than delivering customer-facing conversation.\"},{\"case_id\":\"AXV2N_0101\",\"problem\":\"A market analyst must manually read and count recurring sentiment themes.\",\"implementation\":\"Claude on Amazon Bedrock analyzes supplied research information and returns themes with frequency counts.\",\"factor\":\"F04\",\"factor_reason\":\"Reading sentiment and identifying recurring themes requires interpreting and structuring text.\",\"strategy\":\"S3\",\"strategy_reason\":\"Claude analyzes supplied research text to extract sentiment themes and frequency counts.\"},{\"case_id\":\"AXV2N_0102\",\"problem\":\"Staff manually read invoice attachments and check them against purchase orders.\",\"implementation\":\"Azure AI Vision extracts PDF/scanned invoice data; Power Automate matches orders, updates ERP and flags mismatches.\",\"factor\":\"F01\",\"factor_reason\":\"Staff repeatedly perform manual invoice reading and purchase-order checks.\",\"strategy\":\"S4\",\"strategy_reason\":\"The AI-supported invoice-validation workflow detects mismatches against purchase orders, with extraction and ERP updates supporting that purpose.\"},{\"case_id\":\"AXV2N_0103\",\"problem\":\"Recurring account reconciliations consume accounting staff time.\",\"implementation\":\"Copilot for Finance in Excel assists reconciliation of bank statement data.\",\"factor\":\"F01\",\"factor_reason\":\"Recurring reconciliation work consumes accounting staff time.\",\"strategy\":\"S4\",\"strategy_reason\":\"AI-assisted bank reconciliation supports identifying discrepancies in statement data.\"},{\"case_id\":\"AXV2N_0104\",\"problem\":\"A small content team lacks consistent templates and capacity for repeated story drafting and refinement.\",\"implementation\":\"RAG retrieves trusted IBM material, reranks context and generates templated story drafts with watsonx.ai models for editorial review.\",\"factor\":\"F01\",\"factor_reason\":\"Repeated story drafting and refinement burden a small content team.\",\"strategy\":\"S7\",\"strategy_reason\":\"The workflow composes new branded client-story drafts for editorial review, while RAG grounds the creative output in trusted material.\"},{\"case_id\":\"AXV2N_0105\",\"problem\":\"Associates must answer complex questions across thousands of products outside their expertise.\",\"implementation\":\"An OpenAI-based generative assistant supplies product information, project advice and inventory knowledge to associates.\",\"factor\":\"F03\",\"factor_reason\":\"Complex product questions require expertise that associates lack.\",\"strategy\":\"S1\",\"strategy_reason\":\"The assistant supplies associates with product, project and inventory knowledge, making grounded staff assistance primary despite its conversational presentation.\"},{\"case_id\":\"AXV2N_0106\",\"problem\":\"Customers need expert product and project guidance while shopping online.\",\"implementation\":\"Mylow uses OpenAI models and Lowe's expert advice to answer customer questions.\",\"factor\":\"F03\",\"factor_reason\":\"Online shopping guidance explicitly requires product and project expertise.\",\"strategy\":\"S2\",\"strategy_reason\":\"Mylow delivers customer-facing project advice through question answering, with expert knowledge supporting the conversational service.\"},{\"case_id\":\"AXV2N_0110\",\"problem\":\"Advisors spend hours searching a large internal document corpus.\",\"implementation\":\"GPT-4-powered question answering retrieves information from the firm's knowledge base.\",\"factor\":\"F02\",\"factor_reason\":\"Needed knowledge is spread across a large document corpus that advisors must search.\",\"strategy\":\"S1\",\"strategy_reason\":\"Question answering retrieves information from the firm's knowledge base, making grounded organizational knowledge access primary.\"},{\"case_id\":\"AXV2N_0111\",\"problem\":\"Meeting documentation and follow-up preparation consume advisor time.\",\"implementation\":\"Debrief uses Whisper and GPT-4 to produce notes, CRM entries and draft action-item follow-ups under human review.\",\"factor\":\"F01\",\"factor_reason\":\"Recurring meeting documentation and follow-up preparation consume advisor time.\",\"strategy\":\"S3\",\"strategy_reason\":\"The workflow transforms meeting content into notes, CRM entries and action-item follow-ups, making source-derived summarization primary.\"}]",
+      "result": {
+        "reviewer_role": "INDEPENDENT_DIRECT_APPLICABILITY_AI",
+        "records": [
+          {
+            "case_id": "AXV2C_0006_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Prefilling requests and validating personnel information directly address manual HR form preparation and coordination."
+          },
+          {
+            "case_id": "AXV2C_0006_02",
+            "decision": "ABSTAIN",
+            "rationale": "Price comparisons detect discrepancies but do not explicitly address extracting or entering orders received in varied formats."
+          },
+          {
+            "case_id": "AXV2C_0016_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Diagnosing routine issues and guiding callers through fixes directly address the troubleshooting needs associated with unnecessary transfers."
+          },
+          {
+            "case_id": "AXV2C_0017_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Retaining customer history directly addresses the need to supply prior context again during support conversations."
+          },
+          {
+            "case_id": "AXV2C_0050_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Daily store-item demand forecasts directly address uncertainty about sales volumes used for food supply planning."
+          },
+          {
+            "case_id": "AXV2C_0068_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Repairing incomplete payment instructions directly addresses the condition that previously required manual payment reviews."
+          },
+          {
+            "case_id": "AXV2C_0068_03",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Document review and additional-data collection directly address activities involved in the verification workflow's back-and-forth."
+          },
+          {
+            "case_id": "AXV2C_0074_02",
+            "decision": "ABSTAIN",
+            "rationale": "Web-page summarization supports information extraction but does not explicitly perform or resolve the compliance, verification and risk checks identified as the bottleneck."
+          },
+          {
+            "case_id": "AXV2C_0080_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Extracting and digitizing document fields directly addresses manual entry of invoices and shipping forms."
+          },
+          {
+            "case_id": "AXV2C_0080_02",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Flagging relevant document details directly assists the information review required for sanctions screening."
+          },
+          {
+            "case_id": "AXV2C_0093_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Aggregating production and quality data directly addresses scattered information that impedes quality monitoring and investigation."
+          },
+          {
+            "case_id": "AXV2C_0093_02",
+            "decision": "ABSTAIN",
+            "rationale": "Schedule comparison and risk validation support planning decisions but do not explicitly address fragmentation across manufacturing systems."
+          },
+          {
+            "case_id": "AXV2C_0094_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Generating draft quotes directly addresses manual quoting work that limits capacity as demand grows."
+          },
+          {
+            "case_id": "AXV2C_0094_02",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automating production-planning workflow steps directly addresses manual planning work that constrains capacity."
+          },
+          {
+            "case_id": "AXV2H_0001_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "A knowledge-grounded support agent directly addresses customer inquiries that burden the small support team."
+          },
+          {
+            "case_id": "AXV2H_0002_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automatically summarizing email threads directly addresses the time required to interpret lengthy correspondence."
+          },
+          {
+            "case_id": "AXV2H_0003_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Analyzing report verification items directly assists the manual review work associated with verification delays."
+          },
+          {
+            "case_id": "AXV2H_0008_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automatically extracting K-1 fields directly addresses manual information extraction from complex tax documents."
+          },
+          {
+            "case_id": "AXV2H_0009_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "The internal knowledge chatbot directly supports retrieval of operating information from dispersed documents."
+          },
+          {
+            "case_id": "AXV2H_0021_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Predictive maintenance using robot-operation data directly addresses difficulty anticipating robot failures."
+          },
+          {
+            "case_id": "AXV2H_0070_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automated voice self-service directly handles support inquiries contributing to call-volume pressure."
+          },
+          {
+            "case_id": "AXV2H_0075_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Generating consultation notes from call transcripts directly addresses manual post-call note writing."
+          },
+          {
+            "case_id": "AXV2H_0078_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Connecting the conversational agent to Looker and BigQuery directly supports access to trusted information needed for follow-up questions."
+          },
+          {
+            "case_id": "AXV2H_0081_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automatically summarizing customer-call transcripts directly addresses manual preparation of call summaries."
+          },
+          {
+            "case_id": "AXV2H_0083_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automatically selecting the responsible team directly addresses time-consuming manual ticket assignment."
+          },
+          {
+            "case_id": "AXV2H_0084_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Retrieving store-location and inventory information directly addresses difficulty locating merchandise after placement changes."
+          },
+          {
+            "case_id": "AXV2H_0090_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Policy-grounded HR responses directly address employees' need to obtain information from dispersed HR policies and procedures."
+          },
+          {
+            "case_id": "AXV2H_0091_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Providing engineers with answers to low-complexity inquiries directly assists work that otherwise requires their analysis."
+          },
+          {
+            "case_id": "AXV2N_0101",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Extracting themes and frequency counts directly addresses manual interpretation and counting of recurring sentiment themes."
+          },
+          {
+            "case_id": "AXV2N_0102",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Invoice extraction and purchase-order matching directly address repeated manual reading and checking of invoice attachments."
+          },
+          {
+            "case_id": "AXV2N_0103",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Assisting bank-statement reconciliation directly addresses recurring reconciliation work performed by accounting staff."
+          },
+          {
+            "case_id": "AXV2N_0104",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Generating templated story drafts directly addresses repeated drafting work burdening the small content team."
+          },
+          {
+            "case_id": "AXV2N_0105",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Supplying product information and project advice directly addresses knowledge gaps faced by associates answering complex questions."
+          },
+          {
+            "case_id": "AXV2N_0106",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Answering customer questions using expert advice directly addresses the need for product and project guidance while shopping online."
+          },
+          {
+            "case_id": "AXV2N_0110",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Retrieving answers from the firm's knowledge base directly addresses advisors' manual searches through internal documents."
+          },
+          {
+            "case_id": "AXV2N_0111",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Producing meeting notes, CRM entries and draft follow-ups directly addresses recurring documentation and preparation work."
+          }
+        ]
+      }
+    },
+    {
+      "session_id": "01a163a4-6d79-7951-8e8a-ab50e56d3e11",
+      "submitted_prompt": "Independently review proposed DIRECT applicability links for AX business workflows. This is NOT causal inference or a Wald association. Input provides the problem, actually described implementation, independently proposed primary factor and strategy and their rationales. Do not access tools/files/web/repository or spawn agents. For every case, decide whether the implementation directly addresses the stated factor in that same workflow without inventing mechanisms or combining unrelated outcomes. Return SUPPORTED_APPLICABILITY if that limited connection is grounded, otherwise ABSTAIN with an explicit reason. Do NOT force every pair to pass. Return ONLY JSON {\"reviewer_role\":\"INDEPENDENT_DIRECT_APPLICABILITY_AI\",\"records\":[{\"case_id\":...,\"decision\":\"SUPPORTED_APPLICABILITY\" or \"ABSTAIN\",\"rationale\":one short sentence}]}. Every input exactly once. Never call these ground truth, causal effects, or statistical evidence.\n[{\"case_id\":\"AXV2N_0117\",\"problem\":\"Manual underbody inspection must locate metal deposits that can damage cables.\",\"implementation\":\"Weld Splatter Detection uses AI image inspection to locate deposits for removal by workers.\",\"factor\":\"F08\",\"factor_reason\":\"Inspection must detect deposits that pose an explicit cable-damage risk.\",\"strategy\":\"S4\",\"strategy_reason\":\"AI visual inspection detects and locates weld-splatter defects for workers to remove.\"},{\"case_id\":\"AXV2N_0118\",\"problem\":\"Manual box unloading is strenuous and constrained by labor availability.\",\"implementation\":\"Boston Dynamics Stretch uses computer vision and autonomous arm control to identify and unload varied cartons.\",\"factor\":\"F01\",\"factor_reason\":\"Manual unloading involves repeated physical operations constrained by available labor.\",\"strategy\":\"S6\",\"strategy_reason\":\"Computer vision and autonomous robotic control execute carton unloading as a physical operational workflow.\"},{\"case_id\":\"AXV2N_0119\",\"problem\":\"Plant trips and labor-intensive analysis of many parameters impede reliable operation.\",\"implementation\":\"AI-based monitoring analyzes operating parameters continuously and flags patterns for proactive maintenance.\",\"factor\":\"F09\",\"factor_reason\":\"Analysis of many operating parameters complicates maintaining reliable plant operation.\",\"strategy\":\"S4\",\"strategy_reason\":\"Continuous AI analysis detects equipment operating patterns associated with potential failures.\"},{\"case_id\":\"AXV2N_0120\",\"problem\":\"Broad-coverage spraying wastes herbicide and exposes healthy crops.\",\"implementation\":\"Boom cameras and onboard processing identify weeds and activate individual ExactApply nozzles.\",\"factor\":\"F08\",\"factor_reason\":\"Broad spraying exposes healthy crops to herbicide and creates a stated harm risk.\",\"strategy\":\"S6\",\"strategy_reason\":\"AI-supported weed identification directly triggers individual nozzles to execute selective herbicide application.\"},{\"case_id\":\"AXV2N_0121\",\"problem\":\"Customers struggle with keyword search across bank help content and need answers to complex questions.\",\"implementation\":\"Gemini uses bank customer-facing content to answer questions directly.\",\"factor\":\"F02\",\"factor_reason\":\"Customers struggle to retrieve needed knowledge across bank help content.\",\"strategy\":\"S1\",\"strategy_reason\":\"Answers are grounded in bank customer-facing content, while an ongoing conversational service beyond question answering is not evidenced.\"},{\"case_id\":\"AXV2N_0124\",\"problem\":\"Routine benefit, leave and payroll questions take HR time away from work requiring people.\",\"implementation\":\"An internal Gemini-based chatbot supplies employee policy guidance.\",\"factor\":\"F01\",\"factor_reason\":\"Routine employee questions repeatedly consume HR staff time.\",\"strategy\":\"S1\",\"strategy_reason\":\"The chatbot delivers organizational HR policy knowledge, so policy-grounded answers are primary despite the conversational interface.\"},{\"case_id\":\"AXV2N_0125\",\"problem\":\"Sellers split attention between customers, notes and CRM updates.\",\"implementation\":\"Copilot for Sales summarizes meetings and saves actionable recaps to Salesforce CRM for sellers.\",\"factor\":\"F01\",\"factor_reason\":\"Routine note-taking and CRM updates compete with customer-facing work for sellers' attention.\",\"strategy\":\"S3\",\"strategy_reason\":\"The primary AI output is a source-grounded meeting summary and extracted next steps, with CRM saving supporting delivery.\"},{\"case_id\":\"AXV2N_0126\",\"problem\":\"Departments need to understand current customer issues in accumulated feedback.\",\"implementation\":\"Gemini summarizes feedback trends so teams can identify issues and act.\",\"factor\":\"F04\",\"factor_reason\":\"Understanding customer issues requires interpreting accumulated feedback.\",\"strategy\":\"S3\",\"strategy_reason\":\"Gemini summarizes existing customer feedback into trends for teams to review.\"},{\"case_id\":\"AXV2N_0128\",\"problem\":\"Workers perform monotonous checks that mandatory equipment is correctly placed.\",\"implementation\":\"A camera and self-learning software compare live images with stored examples to detect placement deviations.\",\"factor\":\"F01\",\"factor_reason\":\"Workers repeatedly perform monotonous equipment-placement checks.\",\"strategy\":\"S4\",\"strategy_reason\":\"Self-learning visual inspection detects warning-triangle placement deviations against stored examples.\"},{\"case_id\":\"AXV2N_0129\",\"problem\":\"Human-intensive diagnosis requires engineers to inspect large log datasets.\",\"implementation\":\"A hybrid classifier and LLM identify anomalous windows for engineer troubleshooting.\",\"factor\":\"F04\",\"factor_reason\":\"Diagnosis requires engineers to interpret large collections of log information.\",\"strategy\":\"S4\",\"strategy_reason\":\"A classifier and LLM detect anomalous diagnostic-log intervals for troubleshooting.\"},{\"case_id\":\"AXV2N_0130\",\"problem\":\"Follow-ups, status updates, closures and handoffs require repetitive engineer effort.\",\"implementation\":\"watsonx Orchestrate and watsonx.ai automate recurring case administration actions.\",\"factor\":\"F01\",\"factor_reason\":\"Follow-ups and handoffs explicitly require repetitive manual effort.\",\"strategy\":\"S6\",\"strategy_reason\":\"The implementation explicitly uses watsonx AI alongside orchestration to execute recurring support-case administration actions.\"},{\"case_id\":\"AXV2N_0132\",\"problem\":\"Manual documentation of one patient-care conversation can take over twenty minutes.\",\"implementation\":\"OpenAI API assists creation of clinical conversation documentation for staff review.\",\"factor\":\"F01\",\"factor_reason\":\"Documenting patient-care conversations is a recurring manual operation with substantial time cost.\",\"strategy\":\"S3\",\"strategy_reason\":\"AI converts existing medical-care conversations into clinical documentation for staff review.\"},{\"case_id\":\"AXV2N_0133\",\"problem\":\"Support teams must navigate complex claim decision logs and contractual variables.\",\"implementation\":\"An OpenAI-powered claims assistant navigates claim traces and prepares answers for escalation resolution.\",\"factor\":\"F04\",\"factor_reason\":\"Understanding claim decision logs and contractual content requires interpretation.\",\"strategy\":\"S1\",\"strategy_reason\":\"The assistant grounds escalation answers in retrieved claim traces, with question answering serving claim investigation rather than an evidenced conversational service.\"},{\"case_id\":\"AXV2N_0134\",\"problem\":\"Sparse or unclear merchant websites require lengthy human investigation to understand a business.\",\"implementation\":\"GPT-4 scans merchant sites and summarizes their business to help customize support.\",\"factor\":\"F04\",\"factor_reason\":\"Sparse and unclear website content requires substantial interpretation to understand a business.\",\"strategy\":\"S3\",\"strategy_reason\":\"GPT-4 interprets existing merchant website content and summarizes the merchant's business.\"},{\"case_id\":\"AXV2N_0135\",\"problem\":\"A label must have correct content and language and be placed on the correct component.\",\"implementation\":\"AI image processing checks technical label correctness while employees retain spot checks.\",\"factor\":\"F08\",\"factor_reason\":\"Incorrect label content, language or placement presents quality risks.\",\"strategy\":\"S4\",\"strategy_reason\":\"AI image processing detects incorrect technical labels on assembled vehicles.\"},{\"case_id\":\"AXV2N_0136\",\"problem\":\"Production images may contain people or protected information that must not remain identifiable.\",\"implementation\":\"AI object detection identifies relevant image areas and blurs, pixels or blocks them through the BMW labelling tool.\",\"factor\":\"F08\",\"factor_reason\":\"Identifiable people and protected information in production images create privacy risks.\",\"strategy\":\"S6\",\"strategy_reason\":\"AI object detection drives an image-anonymization workflow that executes masking operations rather than creating branded creative content.\"},{\"case_id\":\"AXV2N_0137\",\"problem\":\"Members must navigate scattered benefits information and insurance records.\",\"implementation\":\"Chatbots connected to Oscar systems, claims and care data supply personalized answers and escalate where needed.\",\"factor\":\"F02\",\"factor_reason\":\"Benefits information and insurance records are explicitly scattered.\",\"strategy\":\"S2\",\"strategy_reason\":\"The chatbots deliver personalized member assistance and escalation using connected operational data, with grounding supporting the conversational service.\"},{\"case_id\":\"AXV2N_0138\",\"problem\":\"A small legal team must repeatedly research answers for many branch managers.\",\"implementation\":\"Retail Banking Legal Assistant GPT pulls from internal knowledge sources to draft legal responses for staff.\",\"factor\":\"F01\",\"factor_reason\":\"The legal team repeatedly performs research for branch managers.\",\"strategy\":\"S1\",\"strategy_reason\":\"Internal knowledge sources ground drafted answers to legal inquiries, making retrieval-based assistance primary over conversation or creative composition.\"},{\"case_id\":\"AXV2N_0139\",\"problem\":\"Staff need understandable contract content without repeatedly interpreting legal text.\",\"implementation\":\"A custom ChatGPT Enterprise GPT produces clear contract summaries.\",\"factor\":\"F04\",\"factor_reason\":\"Staff must interpret legal text to understand contract content.\",\"strategy\":\"S3\",\"strategy_reason\":\"The GPT summarizes existing contracts for internal readers.\"},{\"case_id\":\"AXV2P2_0010_01\",\"problem\":\"Complex manufacturing product knowledge is difficult to access as expertise and skills become scarce.\",\"implementation\":\"Manufacturing Copilot combines Azure OpenAI and Azure AI Search over brand-specific manuals, help files and recordings.\",\"factor\":\"F03\",\"factor_reason\":\"Access to product knowledge depends on increasingly scarce expertise and skills.\",\"strategy\":\"S1\",\"strategy_reason\":\"Azure OpenAI and AI Search retrieve grounded product-support answers from brand-specific source materials, with conversation serving as the interface.\"},{\"case_id\":\"AXV2P2_0011_01\",\"problem\":\"Freight invoices may not match negotiated rates and manual checking burdens logistics staff.\",\"implementation\":\"Copilot analyzes freight rates and accrued charges; a Copilot Studio agent detects and routes invoice mismatches.\",\"factor\":\"F08\",\"factor_reason\":\"Potential discrepancies between invoices and negotiated rates create financial accuracy risks.\",\"strategy\":\"S4\",\"strategy_reason\":\"The primary audit function detects freight-charge mismatches and potential overcharges, with routing following detection.\"},{\"case_id\":\"AXV2P2_0012_01\",\"problem\":\"Varied insurance documents require lengthy manual classification and extraction.\",\"implementation\":\"Azure AI Vision and Document Intelligence OCR/layout extraction feed Azure OpenAI prompts to extract relevant data.\",\"factor\":\"F04\",\"factor_reason\":\"Varied insurance documents require classification and information extraction.\",\"strategy\":\"S3\",\"strategy_reason\":\"OCR, layout analysis and language-model prompts extract and classify information from insurance documents.\"},{\"case_id\":\"AXV2P2_0013_01\",\"problem\":\"High-volume confidential discovery review is time-intensive and reviewer fatigue risks inconsistent decisions.\",\"implementation\":\"Azure OpenAI models analyze documents within secure, region-constrained Relativity infrastructure.\",\"factor\":\"F08\",\"factor_reason\":\"Reviewer fatigue explicitly risks inconsistent discovery decisions.\",\"strategy\":\"S3\",\"strategy_reason\":\"Azure OpenAI analyzes discovery documents to interpret their legal relevance.\"},{\"case_id\":\"AXV2P2_0015_01\",\"problem\":\"Important oncology data are buried in large volumes of unstructured clinical documents.\",\"implementation\":\"Databricks integrates data, Document Intelligence extracts PDF text, and Azure OpenAI Batch API extracts entities such as stage and tumor histology.\",\"factor\":\"F04\",\"factor_reason\":\"Important clinical data must be recovered from unstructured documents.\",\"strategy\":\"S3\",\"strategy_reason\":\"Document processing and Azure OpenAI extract oncology entities from existing clinical documents.\"},{\"case_id\":\"AXV2P2_0019_01\",\"problem\":\"Manual journal entries require multi-system collection and extensive validation during financial close.\",\"implementation\":\"watsonx Orchestrate integrates AI validation, RPA commands, ledger checks and manager-approved scheduled submission.\",\"factor\":\"F05\",\"factor_reason\":\"Preparing journal entries requires collecting information across multiple systems.\",\"strategy\":\"S6\",\"strategy_reason\":\"AI validation participates in an orchestrated journal-entry workflow culminating in manager-approved submission.\"},{\"case_id\":\"AXV2P2_0020_01\",\"problem\":\"Manual property claim handling and inconsistent policy interpretation delay claims during disaster surges.\",\"implementation\":\"watsonx interprets insurance language while Business Automation Workflow, RPA and Orchestrate coordinate the claim-resolution process.\",\"factor\":\"F06\",\"factor_reason\":\"Disaster surges strain claim-processing capacity and delay handling.\",\"strategy\":\"S6\",\"strategy_reason\":\"AI interpretation of insurance language supports coordinated claim-resolution actions across workflow and automation systems.\"},{\"case_id\":\"AXV2P2_0035_01\",\"problem\":\"Double-reader breast screening burdens radiologist capacity while detection quality must be maintained.\",\"implementation\":\"Lunit INSIGHT MMG replaces one of two human readers in the screening protocol.\",\"factor\":\"F06\",\"factor_reason\":\"Double-reader screening creates an explicit burden on radiologist processing capacity.\",\"strategy\":\"S4\",\"strategy_reason\":\"AI performs a breast-screening reader role to detect potentially abnormal mammographic findings.\"},{\"case_id\":\"AXV2P2_0048_01\",\"problem\":\"Customers must piece together product information and reviews to choose suitable items.\",\"implementation\":\"Sparky synthesizes reviews, compares products and responds to occasion-based shopping requests.\",\"factor\":\"F02\",\"factor_reason\":\"Customers must assemble product knowledge from separate information and review sources.\",\"strategy\":\"S2\",\"strategy_reason\":\"Sparky delivers conversational shopping assistance through review synthesis, comparisons and occasion-based responses, with recommendations supporting that service.\"},{\"case_id\":\"AXV2P2_0060_01\",\"problem\":\"Millions of customer questions overwhelmed airline support, increasing costs and response delays.\",\"implementation\":\"An Azure OpenAI-based agent responds to booking, refund-policy and other service questions, escalating unresolved questions to people.\",\"factor\":\"F06\",\"factor_reason\":\"Customer-question volume explicitly overwhelms support capacity.\",\"strategy\":\"S2\",\"strategy_reason\":\"The agent delivers customer-service responses and human escalation, while organizational document retrieval is not explicitly evidenced.\"},{\"case_id\":\"AXV2P2_0061_01\",\"problem\":\"Manually summarizing large volumes of car reviews across inventory would take years.\",\"implementation\":\"Azure OpenAI generates review summaries that staff check for contextual accuracy and brand voice before publication.\",\"factor\":\"F06\",\"factor_reason\":\"Review volume makes manual summarization impractical within available processing capacity.\",\"strategy\":\"S3\",\"strategy_reason\":\"AI summarizes existing customer reviews, and brand-voice checking does not change the source-summary workflow into new creative composition.\"},{\"case_id\":\"AXV2P2_0065_01\",\"problem\":\"Fragmented paint-process data hide causes of bumper defects and delay countermeasures.\",\"implementation\":\"Sight Machine on Azure contextualizes factory data; AI/ML analyzes nearly 400 variables to narrow defect-correlated signals for engineers using shared dashboards.\",\"factor\":\"F07\",\"factor_reason\":\"Fragmented process data prevent integrated visibility into defect causes.\",\"strategy\":\"S4\",\"strategy_reason\":\"AI/ML investigates quality nonconformance by narrowing factory variables correlated with paint defects.\"},{\"case_id\":\"AXV2P2_0067_01\",\"problem\":\"Routine customer questions consume customer-contact staff capacity.\",\"implementation\":\"Copilot Studio conversational agent answers FAQs and hands unresolved requests to the customer contact system.\",\"factor\":\"F01\",\"factor_reason\":\"Handling routine customer questions repeatedly consumes staff time.\",\"strategy\":\"S2\",\"strategy_reason\":\"The conversational agent delivers website customer assistance and contact-system handoff, while a specific RAG grounding mechanism is not evidenced.\"},{\"case_id\":\"AXV2P2_0069_01\",\"problem\":\"Salespeople manually enter contact details and switch applications to keep CRM data current.\",\"implementation\":\"Copilot for Sales pre-fills contact details from email signatures and lets sellers validate and save them within their work context.\",\"factor\":\"F01\",\"factor_reason\":\"Keeping CRM records current requires recurring manual contact entry.\",\"strategy\":\"S3\",\"strategy_reason\":\"The evidenced AI contribution extracts contact details from email signatures for sellers to validate and save.\"},{\"case_id\":\"AXV2P2_0089_01\",\"problem\":\"Routine leave requests require time-consuming manual HR handling.\",\"implementation\":\"A watsonx Assistant conversational interface uses HR APIs to book leave in real time; underlying language model is Meta Llama 3 trained using watsonx.ai.\",\"factor\":\"F01\",\"factor_reason\":\"Routine leave requests require repeated manual HR processing.\",\"strategy\":\"S6\",\"strategy_reason\":\"A language-model-backed assistant invokes HR APIs to execute leave bookings, making action completion primary over conversation.\"},{\"case_id\":\"AXV2P2_0099_01\",\"problem\":\"Repeated marking tasks in a hot steel-production environment expose staff to risk and create bottlenecks.\",\"implementation\":\"CMES vision-AI robot performs the marking process at the customer site.\",\"factor\":\"F08\",\"factor_reason\":\"Marking work in a hot production environment explicitly exposes staff to risk.\",\"strategy\":\"S6\",\"strategy_reason\":\"A vision-AI robot executes the steel-marking operation at the customer site.\"},{\"case_id\":\"AXV2P2_0100_01\",\"problem\":\"Frequent recruitment requires timely review of application content, errors and plagiarism.\",\"implementation\":\"NLP/deep learning detects document errors and plagiarism and assesses content and job fit for selected applicants.\",\"factor\":\"F08\",\"factor_reason\":\"Application errors and plagiarism create explicit recruitment quality risks.\",\"strategy\":\"S3\",\"strategy_reason\":\"NLP and deep learning analyze applicant self-introductions for errors, plagiarism, content and job fit without an evidenced allocation or hiring-selection decision.\"}]",
+      "result": {
+        "reviewer_role": "INDEPENDENT_DIRECT_APPLICABILITY_AI",
+        "records": [
+          {
+            "case_id": "AXV2N_0117",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "AI image inspection locates the cable-threatening deposits for workers to remove."
+          },
+          {
+            "case_id": "AXV2N_0118",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Vision-guided robotic unloading directly performs the strenuous manual carton-handling workflow."
+          },
+          {
+            "case_id": "AXV2N_0119",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Continuous parameter analysis and maintenance flags directly support the plant-monitoring analysis described as burdensome."
+          },
+          {
+            "case_id": "AXV2N_0120",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Weed identification controls individual spray nozzles, directly addressing indiscriminate application around healthy crops."
+          },
+          {
+            "case_id": "AXV2N_0121",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Answers drawn from bank help content directly assist customers seeking information through difficult keyword searches."
+          },
+          {
+            "case_id": "AXV2N_0124",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automated employee policy guidance directly addresses routine questions that consume HR staff time."
+          },
+          {
+            "case_id": "AXV2N_0125",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Meeting summaries and CRM recaps directly assist sellers with recurring documentation and updates."
+          },
+          {
+            "case_id": "AXV2N_0126",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Feedback trend summaries directly support interpreting accumulated customer feedback to identify current issues."
+          },
+          {
+            "case_id": "AXV2N_0128",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automated visual comparison directly performs the repetitive equipment-placement checks described."
+          },
+          {
+            "case_id": "AXV2N_0129",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Identifying anomalous log intervals directly helps engineers interpret large diagnostic datasets."
+          },
+          {
+            "case_id": "AXV2N_0130",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "AI-supported orchestration directly automates the recurring case-administration actions consuming engineer effort."
+          },
+          {
+            "case_id": "AXV2N_0132",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "AI-assisted clinical documentation directly supports the recurring manual task of documenting patient-care conversations."
+          },
+          {
+            "case_id": "AXV2N_0133",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Navigating claim traces and preparing escalation answers directly supports interpreting complex claim-decision information."
+          },
+          {
+            "case_id": "AXV2N_0134",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Merchant-site summaries directly assist the interpretation needed to understand businesses from unclear website content."
+          },
+          {
+            "case_id": "AXV2N_0135",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "AI inspection of technical label correctness directly addresses the stated label-quality checking task."
+          },
+          {
+            "case_id": "AXV2N_0136",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Object detection followed by image masking directly addresses identifiable people and protected information in production images."
+          },
+          {
+            "case_id": "AXV2N_0137",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Personalized answers using connected benefits and claims data directly help members navigate scattered insurance information."
+          },
+          {
+            "case_id": "AXV2N_0138",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Drafting legal answers from internal knowledge directly assists the legal team's repeated research for branch managers."
+          },
+          {
+            "case_id": "AXV2N_0139",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Clear contract summaries directly assist staff with interpreting legal text."
+          },
+          {
+            "case_id": "AXV2P2_0010_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Search and language-model assistance over product materials directly support access to knowledge otherwise dependent on scarce expertise."
+          },
+          {
+            "case_id": "AXV2P2_0011_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Detecting invoice mismatches directly addresses discrepancies between freight charges and negotiated rates."
+          },
+          {
+            "case_id": "AXV2P2_0012_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Document extraction and language-model processing directly support recovering relevant information from varied insurance documents."
+          },
+          {
+            "case_id": "AXV2P2_0013_01",
+            "decision": "ABSTAIN",
+            "rationale": "Secure document analysis is described, but no review function or consistency safeguard connects it directly to fatigue-related inconsistent decisions."
+          },
+          {
+            "case_id": "AXV2P2_0015_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Extracting oncology entities from clinical documents directly addresses important data buried in unstructured records."
+          },
+          {
+            "case_id": "AXV2P2_0019_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Coordinating RPA commands, AI validation and ledger checks directly supports the multi-system journal-entry preparation workflow."
+          },
+          {
+            "case_id": "AXV2P2_0020_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "AI-assisted interpretation and coordinated claim processing directly support the handling workflow strained by disaster surges."
+          },
+          {
+            "case_id": "AXV2P2_0035_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Replacing one human screening reader directly addresses the radiologist capacity required by double reading."
+          },
+          {
+            "case_id": "AXV2P2_0048_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Review synthesis and product comparisons directly help customers assemble information needed for shopping choices."
+          },
+          {
+            "case_id": "AXV2P2_0060_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automated service answers with human escalation directly address customer-question volume overwhelming airline support."
+          },
+          {
+            "case_id": "AXV2P2_0061_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "AI-generated review summaries directly perform the summarization work whose volume exceeds practical manual capacity."
+          },
+          {
+            "case_id": "AXV2P2_0065_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Contextualized factory data and shared analytical dashboards directly address fragmented visibility into paint-process defects."
+          },
+          {
+            "case_id": "AXV2P2_0067_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Automated FAQ responses and unresolved-request handoffs directly support the routine customer-contact workload."
+          },
+          {
+            "case_id": "AXV2P2_0069_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "Extracting and pre-filling contact details directly assists recurring manual CRM entry."
+          },
+          {
+            "case_id": "AXV2P2_0089_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "An assistant executing leave bookings through HR APIs directly addresses repeated manual leave-request processing."
+          },
+          {
+            "case_id": "AXV2P2_0099_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "A vision-AI robot performs the marking operation that exposes workers to the hot production environment."
+          },
+          {
+            "case_id": "AXV2P2_0100_01",
+            "decision": "SUPPORTED_APPLICABILITY",
+            "rationale": "NLP analysis of application documents directly checks the errors and plagiarism identified as recruitment quality risks."
+          }
+        ]
+      }
+    }
+  ]
+}

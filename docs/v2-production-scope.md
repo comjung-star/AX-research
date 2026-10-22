@@ -1,5 +1,7 @@
 # v2 inclusion scope: production deployment only
 
+Final release update: [v2.0.0](v2-final-release-2026-10-22.md) contains 98 production workflows after complete candidate disposition and isolated AI annotation. The older inventories mentioned below remain historical, unapproved staging. Production-only inclusion has not changed, and pilot use is still excluded. Frozen data/AI annotations are not human Ground Truth.
+
 Decision date: 2026-10-22. Explicit user decision: include only cases actually deployed in business operations.
 
 Subsequent authorized replacement: 29 unresolved parent slots and 11 split holds have been excluded from the active candidate inventory and replaced with 40 newly reviewed operational workflows. The active file is `active_candidate_corpus_v2.json` (101 candidates, zero approvals), not the historical 94-parent staging list. See [replacement results and freeze restrictions](v2-production-replacements-2026-10-22.md). The production-only scope is unchanged; replacement does not constitute independent label approval.

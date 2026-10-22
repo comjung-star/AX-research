@@ -1,5 +1,7 @@
 # v2 taxonomy audit — provisional, not frozen
 
+Subsequent release: see [v2.0.0 review results](v2-final-release-2026-10-22.md). A separate `strategy_taxonomy_v2_frozen.csv` now fixes the AI-reviewed release vocabulary. The earlier working dictionary and this chronological audit remain intact. All 101 candidate problems received fresh isolated problem-text-only factor review, with 25 explicit factor abstentions in the final 98; two strategy abstentions also remain explicit. No human-GT or causal claim is implied by freezing the data snapshot.
+
 The v1 nine-factor and six-strategy dictionaries remain unchanged. Fresh labels in the reconstruction files are proposals justified by newly written problem and implementation fields; seeing these fields sequentially in one review is not an independently blinded RCA experiment.
 
 ## Subsequent production-replacement evidence
