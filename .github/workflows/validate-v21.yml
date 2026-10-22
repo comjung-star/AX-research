@@ -8,6 +8,8 @@ on:
       - 'scripts/validate_v21_freeze.py'
       - 'scripts/v21_retrieval_smoke.py'
       - 'tests/test_v21_pipeline.py'
+      - 'tests/test_v21_gt_guard.py'
+      - 'scripts/v21_evaluate.py'
       - 'experiments/rq3_evidence/results/v21_wald_contingency_2026-10-22.csv'
       - '.github/workflows/validate-v21.yml'
   pull_request:
@@ -31,7 +33,7 @@ jobs:
       - name: Validate 91-case frozen snapshot and untouched Ground Truth
         run: python scripts/validate_v21_freeze.py
       - name: Run no-dependency retrieval/evidence trace smoke tests
-        run: python -m unittest discover -s tests -p 'test_v21_pipeline.py' -v
+        run: python -m unittest discover -s tests -p 'test_v21_*.py' -v
       - name: Generate diagnostic retrieval sample (NOT a quality experiment)
         run: |
           python scripts/v21_retrieval_smoke.py --backend char_ngram --query-text "Manual factory production quotation and scheduling requires too much human effort" --output experiments/rq1_retrieval/results/v21_diagnostic_smoke.json
