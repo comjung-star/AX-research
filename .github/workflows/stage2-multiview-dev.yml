@@ -1,0 +1,83 @@
+name: Stage 2-1 Multi-view Dev Experiment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/stage2-multiview-dev.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stage2-multiview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      TOKENIZERS_PARALLELISM: "false"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Free runner disk space
+        run: |
+          sudo rm -rf /usr/local/lib/android || true
+          sudo rm -rf /opt/ghc || true
+          sudo rm -rf /usr/share/dotnet || true
+          df -h
+
+      - name: Cache Hugging Face model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: stage2-bge-m3-cpu-${{ runner.os }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e .
+          python -m pip install -r requirements-rq1.txt
+
+      - name: Run unit tests
+        run: |
+          pytest -q
+
+      - name: Run Stage 2-1 Multi-view replay
+        run: |
+          python -m ax_research.stage2_cli \
+            --config configs/experiment_stage2_multiview_v1.yaml \
+            --output-dir experiments/rq2_multiview/results/stage2_multiview_v1
+
+      - name: List result files
+        if: always()
+        run: |
+          find experiments/rq2_multiview/results/stage2_multiview_v1 -maxdepth 1 -type f -print 2>/dev/null || true
+
+      - name: Upload results artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage2-multiview-v1-results
+          path: experiments/rq2_multiview/results/stage2_multiview_v1
+          if-no-files-found: warn
+
+      - name: Persist successful results
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/rq2_multiview/results/stage2_multiview_v1
+          if git diff --cached --quiet; then
+            echo "No result changes."
+          else
+            git commit -m "results: add Stage 2-1 multi-view Dev experiment"
+            git push
+          fi
