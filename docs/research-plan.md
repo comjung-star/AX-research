@@ -3,6 +3,14 @@
 > **GENESIS AI**  
 > 본 문서는 현재 연구계획서의 Markdown 정리본이다.  > 연구의 기준 구조는 교수 피드백에 첨부된 **LLM-Augmented Multi-View Neural Search Model for AX Cases**와 **FAME-AX + LLM** 아키텍처이며, 큰 흐름을 임의로 변경하지 않고 세부 구현을 단계별 효과 검증으로 확정한다.
 
+## 현재 Dev 검증 상태 메모 (2026-10-22)
+
+> 이 메모는 연구계획서의 아키텍처를 변경하는 항목이 아니라, 현재까지의 Dev 검증 진행상황을 기록하기 위한 것이다.
+> Stage 2-1~2-4라는 번호는 교수 제안 아키텍처의 공식 명칭이 아니라 본 연구에서 구성요소 효과를 순서대로 검증하기 위해 붙인 운영 단계명이다.
+> 현재까지 Search Core의 Multi-view, Gated Fusion, Hybrid Retrieval, Query-Case Interaction을 분리 검증했다.
+> 교수 제안 아키텍처의 구성요소는 유지하되, 현재 100 Case / 10 Dev Query 조건에서 성능이 확인되지 않은 v1 세부구현은 그대로 채택하지 않고 failed ablation으로 보존한다.
+> 현재 다음 검증 대상은 **Factor Anchor / Wald Evidence**이다.
+> 세부 진행상황과 수치는 [Current Research Status](current-status.md) 및 [Experiment Plan](experiments.md)을 기준으로 한다.
 ## 기본 정보
 
 | 항목 | 내용 |
