@@ -26,15 +26,15 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install hybrid-only dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install -e .
-          python -m pip install -r requirements-rq1.txt
+          python -m pip install "PyYAML>=6.0" "kiwipiepy>=0.20" "rank-bm25>=0.2.2" "pytest>=8.0"
 
-      - name: Run unit tests
+      - name: Run hybrid unit tests
         run: |
-          pytest -q
+          pytest -q tests/test_stage2_hybrid_runner.py tests/test_selection.py tests/test_evaluation.py
 
       - name: Run Stage 2-3 Hybrid Retrieval
         run: |
