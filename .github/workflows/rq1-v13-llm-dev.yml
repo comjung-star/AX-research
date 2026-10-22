@@ -1,0 +1,133 @@
+name: RQ1 v1.3 LLM Dev Experiment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rq1-v13-llm-dev.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  llm-dev:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TOKENIZERS_PARALLELISM: "false"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Free runner disk space
+        run: |
+          sudo rm -rf /usr/local/lib/android || true
+          sudo rm -rf /opt/ghc || true
+          sudo rm -rf /usr/share/dotnet || true
+          df -h
+
+      - name: Cache Hugging Face model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: rq1-bge-m3-cpu-${{ runner.os }}
+
+      - name: Install RQ1 dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e .
+          python -m pip install -r requirements-rq1.txt
+
+      - name: OpenAI API preflight
+        run: |
+          python - <<'PY'
+          from openai import OpenAI
+          client = OpenAI()
+          response = client.responses.create(
+              model="gpt-6-luna",
+              input="Return exactly: OK",
+              max_output_tokens=16,
+          )
+          if not response.output_text.strip():
+              raise RuntimeError("OpenAI preflight returned empty output")
+          print("OpenAI API preflight: SUCCESS")
+          print("model:", response.model)
+          PY
+
+      - name: Run GPT-only 3-repeat Dev experiment
+        run: |
+          python -m ax_research.cli gpt-only \
+            --config configs/experiment_rq1_v1.3.yaml \
+            --output-dir experiments/rq1_retrieval/results/rq1_v1_3_llm_dev
+
+      - name: Run Multi-Perspective BM25 3-repeat Dev experiment
+        run: |
+          python -m ax_research.cli mp-bm25 \
+            --config configs/experiment_rq1_v1.3.yaml \
+            --output-dir experiments/rq1_retrieval/results/rq1_v1_3_llm_dev
+
+      - name: Run Multi-Perspective Dense 3-repeat Dev experiment
+        run: |
+          python -m ax_research.cli mp-dense \
+            --config configs/experiment_rq1_v1.3.yaml \
+            --output-dir experiments/rq1_retrieval/results/rq1_v1_3_llm_dev
+
+      - name: Build summaries and Dense comparison
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from ax_research.summary import summarize_metrics
+          from ax_research.comparison import compare_gold_recovery
+          from ax_research.config import load_rq1_config
+          from ax_research.data import load_gold
+
+          out = Path("experiments/rq1_retrieval/results/rq1_v1_3_llm_dev")
+          config = load_rq1_config("configs/experiment_rq1_v1.3.yaml")
+
+          summarize_metrics(out / "gpt_only_metrics.csv", out / "gpt_only_summary.csv")
+          summarize_metrics(out / "multi_perspective_bm25_metrics.csv", out / "multi_perspective_bm25_summary.csv")
+          summarize_metrics(out / "multi_perspective_dense_metrics.csv", out / "multi_perspective_dense_summary.csv")
+
+          compare_gold_recovery(
+              baseline_ranking_csv="experiments/rq1_retrieval/results/rq1_v1_2_baseline/single_dense_rankings.csv",
+              multi_perspective_final_ranking_csv=out / "multi_perspective_dense_final_rankings.csv",
+              gold_records=load_gold("data/retrieval_gold_v0.1.csv"),
+              k_values=config.evaluation_k,
+              output_csv=out / "multi_perspective_dense_gold_delta_vs_single_dense.csv",
+          )
+          PY
+
+      - name: List result files
+        if: always()
+        run: |
+          find experiments/rq1_retrieval/results/rq1_v1_3_llm_dev -maxdepth 1 -type f -print 2>/dev/null || true
+
+      - name: Upload results artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rq1-v1-3-llm-dev-results
+          path: experiments/rq1_retrieval/results/rq1_v1_3_llm_dev
+          if-no-files-found: warn
+
+      - name: Persist successful results
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/rq1_retrieval/results/rq1_v1_3_llm_dev
+          if git diff --cached --quiet; then
+            echo "No result changes."
+          else
+            git commit -m "results: add RQ1 v1.3 LLM Dev experiment"
+            git push
+          fi
