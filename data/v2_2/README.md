@@ -14,9 +14,9 @@
 
 ## Human score-only pilot policy (2026-10-23)
 - **Human free-text reasons are OPTIONAL** for v2.2 researcher first-pass scoring: each item only requires a 0–4 score, its case/query/perspective ID and first-pass evaluator identity. The existing 50/50 pilot scores have already been accepted without reasons.
-- For scientific adjudication, obtain an independent second blind human grade using the **same input wording**; disagreements need a separate documented numerical resolution by another reviewer. Do not promote to Gold automatically.
+- **A second/third-party human reviewer is OPTIONAL.** Researcher-only 0–4 scores are permitted. A final researcher-only Ground Truth may be frozen after explicit researcher approval, scope/completeness verification and documented study limitations. The present 50/2790 pilot is NOT automatically final Gold.
 - Explicit policy: [`score_only_review_protocol_v2_2.md`](score_only_review_protocol_v2_2.md). Score-only validation: `python scripts/v22_score_only_review.py`.
-- Original 91 v2.1 final-GT gate is unchanged; full v2.2 2790-slot GT requires its own future versioned adjudication process.
+- Original 91-case v2.1 final-GT gate remains unchanged for reproducibility. A separate researcher-only v2.2 Gold freeze/coverage rule must be defined; if using Pooling, unjudged items cannot silently become negative labels.
 
 ## Research conditions
 - `main_cases_v2_2.json`, `.csv`, `source_evidence_index_v2_2.csv`: full 93-case snapshot, source evidence and scope caveats.
@@ -24,9 +24,9 @@
 - `dev_query_candidates_v2_2.json`: same ten **Dev** queries (not Held-out) and draft reference perspectives; must not be passed to the runtime LLM as gold prompts.
 - `dev_relevance_annotation_sheet_v2_2.csv`: **2790 UNJUDGED** slots (10×3×93). All grades, annotator IDs, reviewer IDs, reasons remain blank; do not copy the 2730 v2.1 AI draft labels.
 - `dev_strategy_annotation_sheet_v2_2.csv`: 10 UNJUDGED strategy sets.
-- Old v2.1 corpus/manifest/test results remain fully intact, and source-screened cases must undergo independent blind Human Relevance/Factor/Strategy review before Gold-based performance claims.
+- Old v2.1 corpus/manifest/test results remain fully intact. Source-screened cases require human Relevance/Factor/Strategy review **blinded to the model outputs**, which may be done by the single researcher; no additional third-party reviewer is mandatory.
 
-**Selection bias:** These exact cases were gathered after looking at Dev coverage gaps. This changes the dataset itself and can mechanically remove an empty view. Do not represent 91→93 as a demonstrated retrieval model gain or use the same Dev measurements as independent held-out evidence. Re-evaluate all methods on the same v2.2 corpus only after independent GT and pre-registered evaluation setup; build a genuinely new held-out test independently.
+**Selection bias:** These exact cases were gathered after looking at Dev coverage gaps. This changes the dataset itself and can mechanically remove an empty view. Do not represent 91→93 as a demonstrated retrieval model gain or use the same Dev measurements as independent held-out evidence. Re-evaluate all methods on the same v2.2 corpus only after frozen researcher-only Ground Truth (or a clearly scoped evaluation pool) and pre-registered evaluation setup; build a genuinely new held-out test separately.
 
 ## Source links
 - Wayfair Google Cloud: https://cloud.google.com/customers/wayfair-ai
@@ -34,4 +34,4 @@
 - Home Credit Bank (watchlist): https://cloud.google.com/customers/homecreditbank
 - Existing source-coverage audit: ../docs/v21-two-empty-perspectives-resolution-evidence-2026-10-23.md
 
-**Status:** 93 cases committed as a versioned extension for independent review; **not** 93 human-validated Gold cases, no new Recall/Coverage results, and not frozen as an approved final benchmark.
+**Status:** 93 cases committed as a versioned extension for researcher-led blind evaluation; **not** 93 human-validated Gold cases, no new Recall/Coverage results, and not frozen as an approved final benchmark.
