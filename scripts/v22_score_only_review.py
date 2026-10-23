@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Validate score-only human first-pass pilot without pretending it is Ground Truth.
+"""Validate v2.2 score-only single-researcher pilot without automatic Gold approval.
 
-Free-text reasons are OPTIONAL in v2.2; v2.1 Gold guard is never relaxed.
+Neither free-text reasons nor independent second/third-party reviewers are mandatory.
+The old v2.1 final-Gold validation gate is intentionally preserved separately.
 """
 from __future__ import annotations
 
@@ -34,11 +35,12 @@ def validate_researcher_first_pass(rows:list[dict])->dict:
         raise ValueError("First pass needs a score, status, rater and case identity")
     # Intentionally DO NOT check human_reason; it is optional, including blank.
     return {"first_pass_count":50,"missing_scores":0,
-            "reason_required":False,"human_gold_adjudicated":False,
+            "reason_required":False,"independent_second_rater_required":False,
+            "human_gold_adjudicated":False,
             "status":"RESEARCHER_FIRST_PASS_VALID_NOT_GOLD"}
 
 def compare_independent_second_rater(first:list[dict],second:list[dict])->dict:
-    """This is score agreement only, NEVER a final-GT approval."""
+    """Optional add-on comparison if a second rater volunteers; never a GT gate."""
     validate_researcher_first_pass(first)
     if len(second)!=50:
         raise ValueError("Second rater must cover the same 50 pilot items")
@@ -64,14 +66,15 @@ def compare_independent_second_rater(first:list[dict],second:list[dict])->dict:
     # Judge provenance and final decision (if scores differ) are future steps.
     return {"first_pass_count":50,"second_pass_count":50,
             "exact_score_agreement":equal,"needs_adjudication":50-equal,
-            "reason_required":False,"human_gold_adjudicated":False,
-            "status":"DOUBLE_RATED_PILOT_PENDING_ADJUDICATION_NOT_GOLD"}
+            "reason_required":False,"independent_second_rater_required":False,
+            "human_gold_adjudicated":False,
+            "status":"OPTIONAL_DOUBLE_RATED_PILOT_NOT_GOLD"}
 
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--first",type=Path,default=BASE/"researcher_first_pass_50.csv")
     parser.add_argument("--second",type=Path,default=None,
-                        help="Optional independent second-rater score-only CSV")
+                        help="Optional only (NOT required for single-researcher v2.2 work)")
     args=parser.parse_args()
     first=csv_rows(args.first)
     outcome=(compare_independent_second_rater(first,csv_rows(args.second))

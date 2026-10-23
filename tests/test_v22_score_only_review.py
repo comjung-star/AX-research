@@ -15,6 +15,7 @@ def test_all_existing_50_valid_without_reasons():
     assert all(row["human_reason"]=="" for row in rows)
     out=validate_researcher_first_pass(rows)
     assert out["reason_required"] is False
+    assert out["independent_second_rater_required"] is False
     assert out["human_gold_adjudicated"] is False
     assert out["status"]=="RESEARCHER_FIRST_PASS_VALID_NOT_GOLD"
 
@@ -37,6 +38,7 @@ def test_two_distinct_raters_are_still_not_gold():
     # Synthetic reviewers inside unit tests are never actual human ratings.
     out=compare_independent_second_rater(first,second)
     assert out["exact_score_agreement"]==50
+    assert out["independent_second_rater_required"] is False
     assert out["human_gold_adjudicated"] is False
     second[2]["score_0_4"]="0" if second[2]["score_0_4"]!="0" else "4"
     out=compare_independent_second_rater(first,second)
