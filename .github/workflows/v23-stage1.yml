@@ -1,0 +1,52 @@
+name: AX v2.3 Stage 1 real retrieval experiment
+on:
+  push:
+    branches: [experiment/v23-stage1-to-stage4-20261023]
+    paths:
+      - scripts/v23_stage1.py
+      - .github/workflows/v23-stage1.yml
+permissions:
+  contents: write
+jobs:
+  stage1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TOKENIZERS_PARALLELISM: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Free system disk
+        run: |
+          sudo rm -rf /usr/local/lib/android /opt/ghc /usr/share/dotnet || true
+          df -h
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-bge-m3-v23-cpu
+      - name: Install evaluation dependencies
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install 'sentence-transformers>=3.0' 'kiwipiepy>=0.20' 'rank-bm25>=0.2.2' 'openai>=3.26.0' 'pydantic>=2.7' 'numpy>=1.26'
+      - name: Run frozen-corpus Stage 1 baselines and LLM perspectives
+        run: python scripts/v23_stage1.py
+      - name: Archive artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-v23-stage1-results
+          path: experiments/v23_stages/stage1
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Commit Stage 1 measurements
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experiments/v23_stages/stage1
+          git commit -m 'results(v2.3): Stage 1 retrieval baseline and multi-perspective Dev metrics'
+          git pull --rebase
+          git push
