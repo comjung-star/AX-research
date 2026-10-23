@@ -12,6 +12,12 @@
 - Current old 64 Factor–Strategy links are unchanged. Do not create Wald/association pairs for new cases without independent review.
 - 65 sampling groups (63 old + 2 new, each independently grouped).
 
+## Human score-only pilot policy (2026-10-23)
+- **Human free-text reasons are OPTIONAL** for v2.2 researcher first-pass scoring: each item only requires a 0–4 score, its case/query/perspective ID and first-pass evaluator identity. The existing 50/50 pilot scores have already been accepted without reasons.
+- For scientific adjudication, obtain an independent second blind human grade using the **same input wording**; disagreements need a separate documented numerical resolution by another reviewer. Do not promote to Gold automatically.
+- Explicit policy: [`score_only_review_protocol_v2_2.md`](score_only_review_protocol_v2_2.md). Score-only validation: `python scripts/v22_score_only_review.py`.
+- Original 91 v2.1 final-GT gate is unchanged; full v2.2 2790-slot GT requires its own future versioned adjudication process.
+
 ## Research conditions
 - `main_cases_v2_2.json`, `.csv`, `source_evidence_index_v2_2.csv`: full 93-case snapshot, source evidence and scope caveats.
 - `release_manifest_v2_2.json`: exact Git blob hashes of new data, parent v2.1 hashes and release restrictions.
