@@ -1,0 +1,342 @@
+{
+  "query_id": "V21D004",
+  "first_case": 13,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_004f8383cf6bf3e0006adaa9f5fa5c87d0b5fd616e61f9a272",
+  "input_problem_only": {
+    "query_id": "V21D004",
+    "business_problem_query": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "problem_view": "비정형 문서 검토 부담"
+      },
+      {
+        "id": "P2_COMPLIANCE_CHECK_RISK",
+        "problem_view": "규정·검증 누락 위험"
+      },
+      {
+        "id": "P3_MANUAL_VERIFICATION",
+        "problem_view": "반복 수작업 검증"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      },
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 4,
+        "reason": "무역금융 문서의 필드를 사람이 수기 입력하며 느리고 오류가 발생하기 쉬워, 문서 검토·처리 부담과 직접 맞닿아 있습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 2,
+        "reason": "금융 문서 입력 오류 위험은 겹치지만, 규정 준수 여부나 필수 항목을 검증하는 업무가 핵심으로 제시되지는 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 3,
+        "reason": "고빈도 문서에서 정보를 수작업으로 입력해 오류가 생기는 점은 반복 수작업과 관련되지만, 필수 기준 대조·검증 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 4,
+        "reason": "문서 내용을 검토해 은행의 규제·금융 위험을 드러낼 세부사항을 찾는 업무로, 문서 검토 부담과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 4,
+        "reason": "제재 심사를 위해 문서 세부사항을 표시하는 업무가 규제 위험 확인과 누락 방지라는 핵심 문제에 직접 부합합니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 3,
+        "reason": "문서 세부사항을 제재 기준에 맞춰 확인하는 검증 업무는 겹치지만, 반복 수작업 부담이나 처리 지연은 구체적으로 설명되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객의 금융 질문에 답하는 지원 업무이며, 여러 형식의 문서를 읽거나 검토하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객 질문 응대와 기존 콘텐츠 조사에 관한 사례로, 규정 준수나 검증 누락 위험이 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "은행 고객 질문에 답변하는 업무로, 항목을 반복 대조하거나 문서 내용을 검증하는 작업과 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 0,
+        "reason": "생산·품질 데이터의 분석 지연과 불량 원인 파악이 문제이며, 문서 검토 부담이나 문서 처리 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "품질 문제를 식별한다는 점은 넓게는 확인 작업과 닿지만, 규정 준수 문서 검증이나 누락 위험이 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "수작업 분석이 지연 요인으로 언급되지만, 문서의 필수 항목을 반복 확인하는 업무와는 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "제조 일정 변경과 시스템 간 계획 조정 사례로, 여러 형식의 문서를 읽고 검토하는 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 1,
+        "reason": "일정 변경에 검증이 포함되지만, 검증 대상은 제조 계획이며 규정 준수나 문서 필수 항목 확인이 아닙니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 2,
+        "reason": "일정 변경이 오류에 취약하고 검증을 수반한다는 점은 일부 겹치지만, 문서 중심의 반복 검증과는 업무 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 1,
+        "reason": "고객 견적을 작성하는 제조 업무로, 문서가 산출물일 수는 있어도 기존 문서를 읽고 검토하는 부담은 설명되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "제조 견적 작성의 처리용량 문제이며, 규정 준수나 검증 항목의 누락 위험과 관련된 근거가 없습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 1,
+        "reason": "수작업 견적 작성이 병목이라는 점만 겹치며, 문서 정보를 기준에 따라 대조·검증하는 과제와는 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 1,
+        "reason": "생산 계획과 작업지시 준비 업무로, 문서 검토 자체의 부담이나 여러 형식의 문서 확인은 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "수작업 생산 계획과 데이터 입력의 용량 제약이 문제이며, 규정 준수 확인이나 검증 누락 위험은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 1,
+        "reason": "수작업 계획과 데이터 입력은 반복될 수 있으나, 필수 항목을 확인하거나 문서를 검증하는 중심 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 서비스의 고객 문의 응답 부담이 중심이며, 문서를 읽고 필수 항목이나 내용을 검토하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "문의량과 시간 외 고객 대응 문제로, 규정 준수 확인이나 검증 과정의 누락 위험과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "고객 문의에 자율 응답하는 업무이며, 반복적인 문서 대조나 항목 검증과는 다른 작업입니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 2,
+        "reason": "장문의 이메일을 읽고 핵심과 후속조치를 파악하는 부담은 문서 검토와 일부 겹치지만, 심사·검증 문서가 아닌 고객 커뮤니케이션입니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "이메일 요약과 후속조치 파악이 과제이며, 규정 준수 여부나 필수 항목 누락을 검증하는 맥락은 없습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 1,
+        "reason": "장문 이메일을 살펴보는 수고는 있지만, 반복적으로 기준과 대조하는 검증이 아니라 요약·후속조치 파악 업무입니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 4,
+        "reason": "여러 파일과 검증 기준을 수작업으로 대조하는 직원 신원조회 보고서 검증으로, 문서 검토 부담과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 4,
+        "reason": "업무별 검증 조건과 컴플라이언스 준수가 필수인 보고서 검증 사례로, 규정 준수 확인과 누락 위험이 핵심입니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 4,
+        "reason": "다수 파일을 기준과 수작업 대조하면서 검증이 지연되는 문제와 직원 신원조회 보고서 검증 업무가 직접 맞습니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 4,
+        "reason": "양식이 다양한 긴 세무 문서에서 정보를 수기로 추출해 시간과 오류가 발생하는 점이 문서 처리 부담과 직접 부합합니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 2,
+        "reason": "세무 문서 처리와 오류 위험은 관련되지만, 세무 규정 준수 여부를 확인하거나 필수 항목을 검증한다는 과제는 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 3,
+        "reason": "대용량 세무 문서에서 정보를 수기로 반복 추출하며 오류가 생기는 점은 수작업 부담과 강하게 겹치지만, 기준 대조 검증은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "자동차 공장 로봇의 고장을 예측하고 생산 중단을 막는 제조 설비 업무로, 문서 검토와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "로봇 고장 예측과 공정 진단이 과제이며, 규정 준수 검토나 문서 검증 누락 위험은 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "제조 로봇의 예지보전 문제로, 문서나 필수 항목을 반복 수작업으로 확인하는 과제와 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원의 전화 문의에 음성으로 빠르게 응답하는 고객지원 업무이며, 문서 읽기나 검토 부담은 없습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "콜센터 문의 대응 속도와 음성 지원이 문제이며, 규정 준수 확인이나 검증 누락 위험과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 상담을 자동 응답하는 업무로, 문서 기반의 반복 확인이나 수작업 검증과는 과제가 다릅니다."
+      }
+    ]
+  }
+}
