@@ -1,0 +1,79 @@
+{
+  "query_id": "V21D004",
+  "pass_id": 2,
+  "first_case": 91,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0d8a5b99cf7abded006adacc0304e487d0b27d6a9e59265c14",
+  "input_problem_only": {
+    "query_id": "V21D004",
+    "business_problem_query": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "problem_view": "비정형 문서 검토 부담"
+      },
+      {
+        "id": "P2_COMPLIANCE_CHECK_RISK",
+        "problem_view": "규정·검증 누락 위험"
+      },
+      {
+        "id": "P3_MANUAL_VERIFICATION",
+        "problem_view": "반복 수작업 검증"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV22_0092_01",
+        "business_problem": "신규 상품의 색상·스타일 등 속성을 사람이 분류·태깅하면서 카탈로그 상품 등록과 갱신에 많은 작업시간이 듦.",
+        "ax_target_task": "신규 및 변경 상품의 색상·스타일 속성을 자동 분류해 상품 카탈로그 정보를 보강",
+        "business_context": "Wayfair의 3,000만 개 이상 상품을 취급하는 전자상거래 카탈로그 운영"
+      },
+      {
+        "case_id": "AXV22_0093_01",
+        "business_problem": "금융권 보안·망분리 및 규제 요건으로 외부 생성형 AI를 내부 업무에 그대로 도입하기 어려움.",
+        "ax_target_task": "망분리 내부 지식 기반 업무 질의응답 및 문서 업무 지원 에이전트를 운영",
+        "business_context": "제주은행의 자체 망분리 온프레미스 환경에서 전행 내부 업무 지식과 문서를 활용"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "상품 속성을 사람이 분류·태깅하는 작업으로, 여러 형식의 문서를 읽고 검토하는 업무와는 대상과 핵심 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "내부 문서 활용은 공통되지만, 문서 검토 부담이 아니라 망분리 환경의 질의응답·업무 지원이 중심입니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품 속성 분류와 카탈로그 갱신이 과제이며, 규정 준수 여부나 검증 누락 위험은 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "금융권 규제 요건이 배경에 있지만, 문서의 규정 준수 여부를 확인하거나 검증 누락을 줄이는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV22_0092_01",
+        "relevance": 2,
+        "reason": "사람이 상품 속성을 반복 분류한다는 수작업 부담은 겹치지만, 필수 항목이나 규정 준수 검증이 아닌 상품 태깅입니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "내부 문서 업무 지원은 언급되지만, 사람이 반복적으로 항목이나 규정 준수를 확인하는 검증 과제는 아닙니다."
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D005",
+  "pass_id": 3,
+  "first_case": 13,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0b5044d66afc3091006adacc33d2c087d1aba85e5d5f64ae97",
+  "input_problem_only": {
+    "query_id": "V21D005",
+    "business_problem_query": "여러 국가와 조직의 시스템에 데이터가 따로 쌓여 전체 현황을 한눈에 보기 어렵고 부서마다 다른 기준으로 분석해 의사결정이 늦어지고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_DATA_SILO",
+        "problem_view": "데이터 사일로·통합 부족"
+      },
+      {
+        "id": "P2_VISIBILITY_GAP",
+        "problem_view": "전사 현황 가시성 부족"
+      },
+      {
+        "id": "P3_DECISION_DELAY",
+        "problem_view": "분석·의사결정 지연"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      },
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "무역금융 문서의 필드 추출과 수기 입력 오류가 핵심이며, 여러 시스템 간 데이터 사일로 통합 문제는 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "제재 위험 문서 표시가 중심 과제이고, 조직·국가별 시스템에 분산된 데이터나 통합 부족은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객 금융 질문에 답하는 지원 업무로, 내부 시스템의 데이터 분산이나 통합 부족과는 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 4,
+        "reason": "MES·ERP·품질 시스템에 생산 및 품질 데이터가 흩어져 있고, 이를 모아 결함과 원인을 분석하는 문제가 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 3,
+        "reason": "제조 시스템이 분절되어 생산 일정 조정이 느리고 오류가 발생한다는 점에서 시스템 간 분산 문제가 강하게 겹칩니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "고객 견적 작성의 수작업 병목이 중심이며, 데이터 사일로나 여러 시스템의 통합 문제는 언급되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산계획과 작업지시 입력의 용량 제약이 핵심이고, 시스템별 데이터 분산이나 통합 부족은 확인되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 고객 문의 대응의 인력 및 운영시간 제약이 중심이며, 내부 데이터 사일로 문제와는 무관합니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "장문 고객 이메일 요약과 후속조치 파악이 과제이며, 여러 조직 시스템의 데이터 통합 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "여러 파일을 대조하지만 직원 신원조회 검증 업무이며, 기업 시스템 간 사일로나 통합 부족을 해결하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "다양한 세무 문서에서 정보를 추출하는 업무로, 문서 형식의 다양성은 시스템별 데이터 사일로와 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "자동차 공장 로봇의 고장을 예측하는 유지보수 과제이며, 시스템에 흩어진 전사 데이터 통합과는 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 문의에 음성으로 응답하는 지원 업무로, 여러 시스템의 데이터 분산이나 통합 문제는 없습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "무역 문서에서 정보를 추출하는 작업이며, 여러 국가와 조직의 전체 현황을 파악하는 가시성 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "제재 위험 세부사항을 문서에서 찾는 과제로, 전사 현황이나 조직 간 운영 가시성 부족은 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "외부 고객에게 금융 질문을 답하는 업무로, 내부 조직의 현황을 한눈에 볼 수 없는 문제와는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 3,
+        "reason": "분산된 MES·ERP·품질 데이터 때문에 결함 현황 파악이 늦어진다는 점이 가시성 부족과 강하게 겹치지만, 제조 영역에 한정됩니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 2,
+        "reason": "분절된 제조 시스템이 일정 조정을 어렵게 하지만, 핵심은 전사 현황 가시화보다 생산 일정 변경과 검증입니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "견적 작성량 증가로 인한 수작업 병목이 중심이며, 조직 전체 현황을 파악하기 어려운 문제는 없습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산계획과 입력의 수용 능력이 문제이며, 여러 조직의 현황을 한눈에 보는 과제는 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "문의량과 지원시간에 대응하는 고객 서비스 문제로, 전사 운영 데이터의 가시성 부족과는 다른 맥락입니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 1,
+        "reason": "이메일 스레드의 핵심 내용을 파악하기 어렵지만, 이는 개별 고객 대화 요약이며 전사 현황 가시화와는 거리가 있습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "다수 파일과 기준의 대조가 필요하지만, 직원별 신원조회 검증 업무이지 조직 간 현황을 통합해 보는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무서류 내 정보 추출의 시간과 오류가 문제이며, 전사 또는 국가별 운영 현황을 파악하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "로봇 고장을 사전에 예측하는 공정 유지보수 과제이며, 전사 현황을 통합해 보는 가시성 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 문의에 빠르게 응답하는 고객지원 업무로, 여러 국가·조직의 전체 운영 현황 가시성과는 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 1,
+        "reason": "수기 문서 입력이 느리다는 점은 있으나, 핵심은 데이터 분석이나 의사결정 지연이 아니라 처리 속도와 입력 오류입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 1,
+        "reason": "문서 심사에서 위험 세부사항을 찾는 과제이며, 분석을 통한 의사결정 지연보다 제재 위험 식별에 초점이 있습니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객 질문에 금융 정보를 제공하는 지원 과제로, 내부 부서의 분석 기준 차이나 의사결정 지연은 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 4,
+        "reason": "수작업 분석과 분산된 품질 데이터가 결함 및 원인 식별을 늦춘다는 점에서 분석 지연 문제와 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 3,
+        "reason": "분절된 시스템 때문에 생산 일정 변경이 느리고 오류가 난다는 점에서 운영 의사결정의 지연과 강하게 겹칩니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 1,
+        "reason": "견적 수작업이 수요 증가에 대응하지 못하는 병목이지만, 분석이나 의사결정이 늦어지는 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 2,
+        "reason": "수작업 계획과 데이터 입력이 생산계획을 제약하지만, 핵심 문제는 분석 지연보다 성장에 따른 처리 용량 부족입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 1,
+        "reason": "지원 인력 부족으로 고객 응답이 늦어질 수 있으나, 분석·의사결정이 아니라 문의 대응 용량과 운영시간이 중심입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 2,
+        "reason": "장문 이메일의 핵심 파악과 후속조치 확인에 시간이 든다는 점은 일부 겹치지만, 분석 의사결정이 아니라 고객 대화 처리입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "수작업 대조로 신원조회 검증이 지연되지만, 준수 검증 과제이며 부서별 분석이나 전사 의사결정 지연과는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 1,
+        "reason": "세무 문서 수기 추출에 시간이 걸리지만, 이는 정보 입력 처리 지연이며 분석이나 의사결정 지연은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 1,
+        "reason": "고장 예측이 어려워 공정 중단 위험이 있지만, 분석으로 의사결정이 늦어지는 문제보다 예지보전 과제입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 1,
+        "reason": "빠른 고객 응답이 요구되지만, 배달원 전화지원 속도 문제이며 조직의 분석이나 의사결정 지연과는 다른 업무입니다."
+      }
+    ]
+  }
+}

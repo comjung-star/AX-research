@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D007",
+  "pass_id": 1,
+  "first_case": 0,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0c24ff09f40743da006adaccd4c05487d19158ba47fcc0e1ac",
+  "input_problem_only": {
+    "query_id": "V21D007",
+    "business_problem_query": "구매와 견적 업무에서 고객 도면·요구사항과 공급업체 제안서처럼 형식이 다른 자료를 사람이 읽고 비교해야 하고, 생산가능성·원가·공급업체 선택 판단이 담당자 경험에 의존하며, 견적 작성과 조달 후속업무까지 수작업으로 이어져 처리시간이 길다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "problem_view": "도면·요구사항·제안서 검토 부담"
+      },
+      {
+        "id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "problem_view": "비교·선정 판단의 전문가 의존"
+      },
+      {
+        "id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "problem_view": "견적·조달 후속업무 수작업 병목"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0006_01",
+        "business_problem": "Manual forms and manager-HR coordination caused errors and poor experience when promotions or assignments changed.",
+        "ax_target_task": "HR organizational-change request validation",
+        "business_context": "Danone managers requesting organizational changes."
+      },
+      {
+        "case_id": "AXV2C_0006_02",
+        "business_problem": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.",
+        "ax_target_task": "Validate customer order prices before invoicing",
+        "business_context": "Danone receives thousands of orders daily through email, PDF and EDI."
+      },
+      {
+        "case_id": "AXV2C_0016_01",
+        "business_problem": "Customers need digital or voice support that can diagnose routine device issues without unnecessary transfers.",
+        "ax_target_task": "Caller self-service computer troubleshooting",
+        "business_context": "Best Buy customers calling for computer assistance."
+      },
+      {
+        "case_id": "AXV2C_0016_02",
+        "business_problem": "Human support staff need relevant troubleshooting information while handling complex customer issues.",
+        "ax_target_task": "Surface troubleshooting knowledge during assisted calls",
+        "business_context": "Best Buy service representatives during live customer conversations."
+      },
+      {
+        "case_id": "AXV2C_0017_01",
+        "business_problem": "Rules-based routing cannot handle nuanced issues and customers repeat their history across channels.",
+        "ax_target_task": "Resolve telecom customer inquiries with remembered context",
+        "business_context": "AT&T customer support across phone, online and retail contacts."
+      },
+      {
+        "case_id": "AXV2C_0042_01",
+        "business_problem": "Lawyers spend substantial time researching legal information and need reliable, source-backed answers.",
+        "ax_target_task": "Research legal information with cited answers",
+        "business_context": "Law&Company's subscribed SuperLawyer service launched in July 2024."
+      },
+      {
+        "case_id": "AXV2C_0050_01",
+        "business_problem": "Uncertain sales volumes make it difficult to supply enough food while avoiding waste.",
+        "ax_target_task": "Forecast daily store-item demand",
+        "business_context": "Albert Heijn forecasts over 15 million store-item combinations more than five weeks ahead."
+      },
+      {
+        "case_id": "AXV2C_0050_02",
+        "business_problem": "Food already on shelves can expire unsold and become waste.",
+        "ax_target_task": "Discount near-expiry food on shelves",
+        "business_context": "Albert Heijn stores with electronic shelf labels."
+      },
+      {
+        "case_id": "AXV2C_0068_01",
+        "business_problem": "Missing or incomplete payment instructions trigger time-consuming human reviews.",
+        "ax_target_task": "Repair incomplete payment instructions",
+        "business_context": "BNY cross-border payment processing."
+      },
+      {
+        "case_id": "AXV2C_0068_02",
+        "business_problem": "A transaction question previously required a human employee and potentially multiple stakeholders.",
+        "ax_target_task": "Resolve client transaction inquiries",
+        "business_context": "BNY clients asking about transactions and settlements."
+      },
+      {
+        "case_id": "AXV2C_0068_03",
+        "business_problem": "Identity and risk verification requires document research and weeks of back-and-forth.",
+        "ax_target_task": "Review documents and risk during client onboarding",
+        "business_context": "New BNY financial-services clients subject to mandatory onboarding review."
+      },
+      {
+        "case_id": "AXV2C_0074_01",
+        "business_problem": "Customer emails could take a working day to answer and self-hosted generation had cost and response quality problems as volume rose.",
+        "ax_target_task": "Generate personalized support emails",
+        "business_context": "Cashfree Payments merchant support communications in India."
+      },
+      {
+        "case_id": "AXV2C_0074_02",
+        "business_problem": "Compliance, verification and risk checks slowed merchant onboarding; some merchant categories had p99 turnaround of at least 24 hours.",
+        "ax_target_task": "Review merchant websites during onboarding",
+        "business_context": "Cashfree Payments onboarding Indian merchants; payment data stays in India."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "인사 조직변경 양식과 관리자 승인 업무로, 도면·요구사항·공급업체 제안서 검토와는 대상 문서와 업무가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 2,
+        "reason": "이메일·PDF·EDI 등 다양한 주문 자료를 확인하지만, 도면이나 제안서의 요구사항 및 생산가능성 검토가 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "고객의 컴퓨터 문제를 자가 진단하는 지원 업무로, 구매 관련 문서 검토와는 업무가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 0,
+        "reason": "상담 직원에게 문제해결 지식을 제공하는 업무이며, 고객 도면이나 공급업체 자료를 검토하지 않습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 0,
+        "reason": "통신 고객 문의의 맥락 유지와 해결이 핵심으로, 구매 요구사항 문서 검토와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 1,
+        "reason": "법률 정보 조사와 출처 확인은 정보를 살펴보는 활동이지만, 구매 도면·요구사항·제안서 검토와는 대상 및 목적이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "매장 상품 수요 예측 업무로, 문서 기반 구매 요구사항이나 제안서를 검토하는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "유통기한 임박 상품의 할인 업무로, 구매 문서 검토나 공급업체 자료 분석과 무관합니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 1,
+        "reason": "결제 지시의 누락 정보를 보완하지만, 도면·요구사항·공급업체 제안서를 읽고 검토하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 0,
+        "reason": "고객의 거래 및 결제 문의에 답하는 업무로, 구매 문서의 검토와는 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 2,
+        "reason": "신규 고객의 신원 확인 문서와 위험을 검토한다는 점은 문서 검토와 겹치지만, 조달 자료나 생산 요구사항은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "가맹점 지원 이메일 작성 업무로, 도면이나 제안서 등 구매 관련 자료 검토가 포함되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 1,
+        "reason": "가맹점 웹사이트를 확인하는 업무이지만, 구매 요구사항과 공급업체 제안서의 검토가 아니라 온보딩 심사입니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "인사 조직변경 요청의 검증 업무로, 공급업체나 견적을 비교해 구매 판단을 내리는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 2,
+        "reason": "주문별 가격을 확인하고 오류를 막는 점은 상업적 판단과 일부 겹치지만, 공급업체 제안 비교나 선정이 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "컴퓨터 문제 자가 해결 지원으로, 견적·원가·공급업체 선택을 비교 판단하는 업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 1,
+        "reason": "상담 중 문제해결 지식을 제공하지만, 전문가가 공급업체나 제안 조건을 비교해 선택하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 1,
+        "reason": "복합 고객 문의를 맥락에 따라 해결하지만, 구매 대안 비교나 공급업체 선정 판단과는 중심 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 1,
+        "reason": "법률 정보 조사에는 전문적 판단이 필요할 수 있으나, 견적·원가·공급업체 대안의 비교 선정은 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 1,
+        "reason": "판매량 예측은 불확실한 수요 판단이지만, 제안서 비교나 생산가능성·원가에 근거한 공급업체 선택과 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 1,
+        "reason": "임박 상품의 할인 여부를 다루지만, 공급업체 제안이나 구매 원가를 비교해 조달 대안을 선정하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "누락된 결제 지시를 보완하는 업무로, 대안을 비교하거나 공급업체를 선정하는 판단과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 0,
+        "reason": "거래 문의 해결이 과제이며, 구매·견적 대안을 비교하거나 전문가가 공급업체를 선택하는 내용이 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 2,
+        "reason": "고객 문서와 위험을 검토해 온보딩 여부를 판단한다는 점에서 전문가 판단과 일부 겹치지만, 조달 비교는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "고객 지원 이메일을 작성하는 업무로, 비교·선정 판단이나 구매 전문가의 판단 의존과 무관합니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 2,
+        "reason": "가맹점 웹사이트를 심사해 온보딩 위험을 검토한다는 점은 판단 업무와 겹치지만, 공급업체나 견적 선정은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "인사 조직변경의 요청·승인 흐름으로, 견적 작성이나 구매·조달 후속업무와 관계가 없습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 2,
+        "reason": "다양한 형식의 주문 가격을 검증하는 상거래 처리 업무지만, 견적 작성이나 공급업체 조달 후속업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "컴퓨터 고객지원 자가 진단 업무로, 견적·구매 주문·조달 후속 처리를 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 0,
+        "reason": "상담 중 문제해결 정보를 제공하는 업무로, 견적 또는 조달 워크플로와는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 0,
+        "reason": "통신 고객 문의를 해결하는 지원 업무이며, 견적 작성이나 구매 후속업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 0,
+        "reason": "법률 정보 조사 업무로, 구매 견적·공급업체 조달 프로세스와 연결되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 1,
+        "reason": "수요 예측이 재고 공급에 영향을 줄 수는 있지만, 명시된 과제는 견적 작성이나 조달 후속업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "매장 진열 상품의 할인 업무로, 견적이나 구매 조달 업무와는 중심 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 1,
+        "reason": "결제 지시를 보완하는 후속 처리라는 점은 일부 유사하지만, 구매 견적이나 공급업체 조달 흐름이 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 1,
+        "reason": "거래 문의를 처리하지만, 구매 견적 작성이나 조달 후속업무가 아니라 금융서비스 고객 지원입니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 1,
+        "reason": "신규 고객 온보딩 검토의 후속 흐름은 있으나, 견적 작성이나 공급업체 구매·조달 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "가맹점 지원 이메일 작성 업무로, 견적 처리나 조달 후속 단계가 포함되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 1,
+        "reason": "가맹점 온보딩 심사를 다루지만, 구매 견적이나 공급업체 조달을 처리하는 워크플로는 아닙니다."
+      }
+    ]
+  }
+}

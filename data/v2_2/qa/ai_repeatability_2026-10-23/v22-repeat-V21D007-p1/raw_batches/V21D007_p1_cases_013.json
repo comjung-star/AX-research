@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D007",
+  "pass_id": 1,
+  "first_case": 13,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_05a6166fdc8d0623006adacceb70d887d188b3ca447bbbd1e8",
+  "input_problem_only": {
+    "query_id": "V21D007",
+    "business_problem_query": "구매와 견적 업무에서 고객 도면·요구사항과 공급업체 제안서처럼 형식이 다른 자료를 사람이 읽고 비교해야 하고, 생산가능성·원가·공급업체 선택 판단이 담당자 경험에 의존하며, 견적 작성과 조달 후속업무까지 수작업으로 이어져 처리시간이 길다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "problem_view": "도면·요구사항·제안서 검토 부담"
+      },
+      {
+        "id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "problem_view": "비교·선정 판단의 전문가 의존"
+      },
+      {
+        "id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "problem_view": "견적·조달 후속업무 수작업 병목"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      },
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 2,
+        "reason": "여러 형식의 금융·무역 문서에서 정보를 추출한다는 점은 겹치지만, 도면·요구사항·제안서 검토 업무는 아니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 1,
+        "reason": "문서 처리에서 오류를 줄이는 과제일 뿐, 생산가능성·원가 비교나 공급업체 선정 판단은 포함하지 않는다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 1,
+        "reason": "수작업 문서 입력이라는 주변 업무 부담은 비슷하지만, 금융 서류 처리이며 견적·조달 후속업무와는 다르다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 2,
+        "reason": "문서 내용을 검토해 위험 세부사항을 찾는 업무는 겹치지만, 제재 심사 문서이지 고객 도면이나 공급업체 제안서가 아니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 1,
+        "reason": "위험 표시를 위한 심사 판단은 있으나 생산가능성·원가 비교나 공급업체 간 선택이 중심 과제는 아니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "은행 제재 심사 업무로, 견적 작성이나 구매·조달 후속 처리 병목과 무관하다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객의 금융 질문에 답하는 지원 업무이며, 도면·요구사항·제안서 검토와 관련이 없다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "금융 문의 응답이 중심이며 생산가능성·원가 분석이나 공급업체 선정 판단은 다루지 않는다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "은행 고객상담 업무로, 견적·구매·조달 절차의 수작업 병목과 무관하다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "생산·품질 데이터 분석 과제이지 고객 요구 문서나 공급업체 제안서를 검토하는 업무는 아니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 2,
+        "reason": "품질 결함과 원인을 분석하는 판단 업무는 일부 겹치지만, 생산가능성·원가 비교나 공급업체 선정과는 다르다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 0,
+        "reason": "제조 품질 원인 분석이 중심이며 견적 작성이나 구매 후속업무를 처리하지 않는다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "생산 일정 조정 업무로, 도면·요구사항·제안서의 내용 검토가 중심이 아니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 1,
+        "reason": "일정 대안을 조정하는 판단은 있으나 생산가능성·원가를 비교하거나 공급업체를 선정하는 과제는 아니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 2,
+        "reason": "제조 운영에서 수작업 일정 조정 부담은 겹치지만, 견적·조달 후속업무가 아니라 생산계획 변경이다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 2,
+        "reason": "제조 견적 작성은 관련되지만, 도면·요구사항·제안서 검토 부담이 사례에 구체적으로 제시되지는 않는다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 2,
+        "reason": "제조 견적 작성은 원가 판단과 일부 맞닿지만, 공급업체 비교·선정이나 생산가능성 판단은 명시되지 않는다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 4,
+        "reason": "수요 증가로 수작업 제조 견적이 처리용량 병목이 된 점이 견적 업무 수작업 문제와 직접 일치한다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산계획과 작업지시 준비가 중심이며, 고객 도면·요구사항·공급업체 제안서 검토는 다루지 않는다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 1,
+        "reason": "제조 계획 수립은 판단을 포함할 수 있지만, 생산가능성·원가의 비교나 공급업체 선택이 명시되지 않는다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 2,
+        "reason": "수작업 제조계획과 작업지시로 인한 처리능력 제약은 부분적으로 닮았지만, 견적·조달 흐름과는 다르다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 서비스 고객 문의 응답 과제로, 도면이나 구매 관련 문서 검토와 무관하다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "고객지원 문의에 답하는 업무이며 생산·원가 비교나 공급업체 선정 판단이 없다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "고객 문의량과 응답시간 문제로, 견적 작성이나 조달 후속업무 병목과 다르다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 1,
+        "reason": "장문 이메일을 읽고 요약하지만, 구매 요구사항이나 도면·제안서를 검토하는 업무와는 맥락이 다르다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "고객 이메일의 핵심과 후속조치를 요약하는 과제로, 비교·선정 판단을 수행하지 않는다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 1,
+        "reason": "이메일 후속조치 확인이라는 주변 업무는 겹치지만, 고객 커뮤니케이션 요약이며 견적·조달 처리가 아니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 2,
+        "reason": "여러 파일과 기준을 대조해 보고서를 검증하는 문서 검토 부담은 닮았지만, 신원조회·준수 맥락이다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "검증 기준 적용과 준수 판단은 있으나, 생산가능성·원가 비교나 공급업체 선정이 중심이 아니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "직원 신원조회 보고서 검증 과제로, 견적 작성이나 구매·조달 후속업무와 무관하다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 2,
+        "reason": "형식이 다양한 긴 문서에서 정보를 추출한다는 검토 부담은 비슷하지만, 세무 서류이지 구매 기술문서는 아니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서의 정보 추출 업무이며 생산가능성·원가 비교나 공급업체 선정 판단은 포함하지 않는다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무기간의 문서 처리 문제로, 견적 작성이나 조달 후속 절차와 관계가 없다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "자동차 공장 로봇 고장을 예측하는 보전 과제이며 구매 문서 검토와는 무관하다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "로봇 공정 진단과 고장 예측이 중심이며 공급업체 비교나 생산가능성·원가 선정 판단은 아니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "제조 설비 예지보전 과제로, 견적·구매·조달 후속업무 병목을 다루지 않는다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 음성 고객지원 자동응답 과제이며 도면·요구사항·제안서 검토와 무관하다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 문의에 음성으로 응답하는 업무로, 생산가능성·원가 비교나 공급업체 선택 판단은 없다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "운영 콜센터의 전화지원 문제이며 견적 작성이나 조달 후속업무와 연결되지 않는다."
+      }
+    ]
+  }
+}

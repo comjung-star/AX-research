@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D010",
+  "pass_id": 1,
+  "first_case": 13,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0297c2d5984d506b006adacddcc85c87d1adaf7b360373297e",
+  "input_problem_only": {
+    "query_id": "V21D010",
+    "business_problem_query": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "problem_view": "생산·품질·설비 데이터 분산"
+      },
+      {
+        "id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "problem_view": "품질 이상 원인분석 지연"
+      },
+      {
+        "id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "problem_view": "동적 생산계획 조정 부담"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      },
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "은행 무역금융 문서에서 항목을 추출하는 과제이며, 제조 데이터 분산이나 생산·품질 업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "은행 문서의 제재 위험을 선별하는 업무로, 제조 현장의 생산·품질·설비 데이터 문제와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "은행 고객의 금융 질문에 답하는 과제이며, 제조 운영 데이터의 분산이나 활용 문제를 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 4,
+        "reason": "MES·ERP·품질 시스템에 생산·품질 데이터가 흩어져 분석이 늦어지는 문제로, 제조 데이터 분산과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 2,
+        "reason": "제조 시스템 분산이 일정 변경을 어렵게 하지만, 중심 과제는 생산·품질·설비 데이터 통합이 아니라 일정 조정입니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "제조업 맥락은 같지만 과제는 고객 견적 작성이며, 생산·품질·설비 데이터가 분산된 문제는 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 2,
+        "reason": "생산계획과 수작업 데이터 입력이 언급되지만, 여러 생산·품질·설비 시스템에 데이터가 분산됐다는 문제는 중심이 아닙니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 서비스의 고객 문의 응대 부담을 다루며, 제조 운영 데이터 분산과는 업무와 산업 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "고객 이메일의 요약과 후속조치 파악이 과제이며, 제조 생산·품질·설비 데이터 분산과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "직원 신원조회 보고서와 검증 기준을 대조하는 업무로, 제조 데이터 시스템 분산 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 서류에서 정보를 추출하는 과제이며, 제조 현장의 생산·품질·설비 데이터 분산을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 1,
+        "reason": "제조 설비인 로봇이 등장하지만 과제는 고장 예측이며, 여러 생산·품질·설비 데이터의 분산 문제는 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 문의에 음성으로 응답하는 과제이며, 제조 데이터 분산이나 공장 운영과는 무관합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "무역금융 서류의 필드 추출을 다루며, 제조 품질 이상이나 원인 분석 지연과는 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "은행 문서에서 제재 위험을 찾는 업무로, 제조 품질 결함의 원인을 분석하는 과제와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객의 은행 관련 질문에 답하는 과제로, 제조 과정의 품질 이상이나 원인 분석을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 4,
+        "reason": "생산 품질 결함과 원인을 분석하고, 흩어진 데이터와 수작업 때문에 식별이 늦어지는 문제로 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 1,
+        "reason": "제조 시스템의 일정 변경 지연이 문제이며, 품질 이상 원인을 찾는 업무와는 중심 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "항공우주·방위 제조업의 고객 견적 작성 과제이며, 품질 이상 조사나 원인 분석 문제는 언급되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 1,
+        "reason": "제조 생산계획과 수작업 입력의 부담은 있지만, 품질 결함을 발견하거나 원인을 분석하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 서비스의 대량 고객 문의를 응대하는 문제이며, 제조 품질 분석과는 업무 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "에너지기업의 고객 이메일을 요약하는 과제이며, 제조 품질 이상이나 원인 진단을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "직원 신원조회 보고서의 준수 검증 업무로, 제조 품질 결함의 원인을 분석하는 과제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서에서 데이터를 추출하는 과제로, 제조 공정의 품질 이상이나 원인 분석과는 무관합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 1,
+        "reason": "로봇 고장 진단과 예측이라는 제조 맥락은 있으나, 품질 결함의 원인을 분석하는 과제와는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 지원 문의에 음성으로 응답하는 업무이며, 제조 품질 이상 분석과는 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "은행 무역 서류의 데이터 추출 업무이며, 주문이나 설비 변화에 따른 생산계획 조정과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "은행의 제재 심사를 위한 문서 검토 과제로, 제조 생산계획 변경이나 일정 조정과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "은행 고객 문의에 답하는 업무이며, 생산계획을 다시 조정하거나 제조 일정을 관리하는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "생산 데이터를 다루는 제조 과제이지만 중심은 품질 결함과 원인 분석이며, 변경에 따른 생산계획 조정은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 4,
+        "reason": "분산된 제조 시스템에서 일정 변경을 느리고 오류 많게 처리하는 문제와, 생산계획 조정 과제가 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "제조 고객 견적 작성으로 생산계획 수립이나 주문·설비 변화에 따른 일정 조정 업무와 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 3,
+        "reason": "수작업 생산계획과 데이터 입력이 생산 역량을 제약하는 과제로 계획 업무는 강하게 겹치지만, 동적 변경 맥락은 명시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 서비스의 고객 문의 응대 문제이며, 제조 생산계획이나 일정 조정 업무와는 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "고객 이메일 내용을 요약하는 과제로, 주문·설비 변화에 맞춘 생산계획 조정과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "직원 신원조회 자료를 검증하는 업무이며, 제조 일정이나 생산계획 조정 과제와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서 데이터 추출 문제로, 생산계획 수립이나 일정 변경 대응과 업무 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 1,
+        "reason": "로봇 고장이 생산 중단 위험을 만든다는 점은 접점이 있지만, 과제는 예지보전이며 생산계획 조정이 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 문의에 자동 응답하는 고객지원 과제로, 제조 생산계획이나 일정 변경과 관련이 없습니다."
+      }
+    ]
+  }
+}

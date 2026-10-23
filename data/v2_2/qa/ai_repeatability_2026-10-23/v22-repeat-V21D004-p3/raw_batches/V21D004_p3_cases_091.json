@@ -1,0 +1,79 @@
+{
+  "query_id": "V21D004",
+  "pass_id": 3,
+  "first_case": 91,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0160417067c764e0006adacc3a955487d197c60d072da5ceb3",
+  "input_problem_only": {
+    "query_id": "V21D004",
+    "business_problem_query": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "problem_view": "비정형 문서 검토 부담"
+      },
+      {
+        "id": "P2_COMPLIANCE_CHECK_RISK",
+        "problem_view": "규정·검증 누락 위험"
+      },
+      {
+        "id": "P3_MANUAL_VERIFICATION",
+        "problem_view": "반복 수작업 검증"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV22_0092_01",
+        "business_problem": "신규 상품의 색상·스타일 등 속성을 사람이 분류·태깅하면서 카탈로그 상품 등록과 갱신에 많은 작업시간이 듦.",
+        "ax_target_task": "신규 및 변경 상품의 색상·스타일 속성을 자동 분류해 상품 카탈로그 정보를 보강",
+        "business_context": "Wayfair의 3,000만 개 이상 상품을 취급하는 전자상거래 카탈로그 운영"
+      },
+      {
+        "case_id": "AXV22_0093_01",
+        "business_problem": "금융권 보안·망분리 및 규제 요건으로 외부 생성형 AI를 내부 업무에 그대로 도입하기 어려움.",
+        "ax_target_task": "망분리 내부 지식 기반 업무 질의응답 및 문서 업무 지원 에이전트를 운영",
+        "business_context": "제주은행의 자체 망분리 온프레미스 환경에서 전행 내부 업무 지식과 문서를 활용"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "사람이 상품 속성을 분류·태깅하는 수작업 부담은 있으나, 심사 문서를 읽고 검토하는 업무가 아니라 카탈로그 메타데이터 관리입니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품 색상·스타일 분류와 카탈로그 갱신이 중심이며, 규정 준수 여부나 검증 누락 위험을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "수작업 분류라는 점은 일부 겹치지만, 필수 항목 확인이나 결과 검증이 아니라 상품 속성 태깅 업무입니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "내부 문서 활용과 업무 지원은 언급되지만, 문서를 사람이 읽고 심사하는 부담이나 처리 지연은 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "금융 규제는 외부 AI 도입 제약 맥락일 뿐, 업무 대상의 규정 준수 여부 확인이나 누락 위험을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "망분리 환경에서 내부 지식 질의응답과 문서 지원을 운영하는 사례로, 반복적인 수작업 검증 업무는 나타나지 않습니다."
+      }
+    ]
+  }
+}

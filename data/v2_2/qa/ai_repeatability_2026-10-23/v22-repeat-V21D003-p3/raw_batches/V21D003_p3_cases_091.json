@@ -1,0 +1,79 @@
+{
+  "query_id": "V21D003",
+  "pass_id": 3,
+  "first_case": 91,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_07b62074c527e02a006adacc1c0cec87d297005700d31da08d",
+  "input_problem_only": {
+    "query_id": "V21D003",
+    "business_problem_query": "업무에 필요한 규정과 매뉴얼, 과거 사례가 여러 시스템과 문서 저장소에 흩어져 있어 직원들이 필요한 정보를 찾는 데 시간이 오래 걸리고 이미 있는 자료를 다시 만드는 경우가 많다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "problem_view": "정보·지식 분산"
+      },
+      {
+        "id": "P2_SEARCH_DELAY",
+        "problem_view": "업무정보 검색 지연"
+      },
+      {
+        "id": "P3_KNOWLEDGE_REUSE_GAP",
+        "problem_view": "기존 지식 재사용 부족"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV22_0092_01",
+        "business_problem": "신규 상품의 색상·스타일 등 속성을 사람이 분류·태깅하면서 카탈로그 상품 등록과 갱신에 많은 작업시간이 듦.",
+        "ax_target_task": "신규 및 변경 상품의 색상·스타일 속성을 자동 분류해 상품 카탈로그 정보를 보강",
+        "business_context": "Wayfair의 3,000만 개 이상 상품을 취급하는 전자상거래 카탈로그 운영"
+      },
+      {
+        "case_id": "AXV22_0093_01",
+        "business_problem": "금융권 보안·망분리 및 규제 요건으로 외부 생성형 AI를 내부 업무에 그대로 도입하기 어려움.",
+        "ax_target_task": "망분리 내부 지식 기반 업무 질의응답 및 문서 업무 지원 에이전트를 운영",
+        "business_context": "제주은행의 자체 망분리 온프레미스 환경에서 전행 내부 업무 지식과 문서를 활용"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품 색상·스타일을 분류해 카탈로그를 갱신하는 업무로, 규정·매뉴얼·사례의 분산이나 지식 접근 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV22_0093_01",
+        "relevance": 2,
+        "reason": "내부 업무 지식과 문서를 활용하는 점은 겹치지만, 핵심 문제는 정보의 분산이 아니라 외부 생성형 AI 도입 제약입니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품 속성 자동 분류와 카탈로그 갱신이 중심이며, 직원의 업무정보 검색 지연을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV22_0093_01",
+        "relevance": 3,
+        "reason": "내부 지식 기반 질의응답과 문서 지원은 업무정보를 찾아 답을 얻는 과업과 강하게 겹치지만, 검색 지연은 명시된 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품 속성 태깅 자동화가 중심으로, 기존 규정·매뉴얼·사례의 재사용 부족과는 다른 과업입니다."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV22_0093_01",
+        "relevance": 2,
+        "reason": "내부 지식과 문서를 질의응답에 활용하지만, 기존 자료를 재사용하지 못해 다시 만드는 문제가 제시되지는 않았습니다."
+      }
+    ]
+  }
+}

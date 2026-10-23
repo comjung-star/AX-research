@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D003",
+  "pass_id": 3,
+  "first_case": 13,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_08cd76aeb362033f006adacb698fd087d2ad418cd1d95929be",
+  "input_problem_only": {
+    "query_id": "V21D003",
+    "business_problem_query": "업무에 필요한 규정과 매뉴얼, 과거 사례가 여러 시스템과 문서 저장소에 흩어져 있어 직원들이 필요한 정보를 찾는 데 시간이 오래 걸리고 이미 있는 자료를 다시 만드는 경우가 많다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "problem_view": "정보·지식 분산"
+      },
+      {
+        "id": "P2_SEARCH_DELAY",
+        "problem_view": "업무정보 검색 지연"
+      },
+      {
+        "id": "P3_KNOWLEDGE_REUSE_GAP",
+        "problem_view": "기존 지식 재사용 부족"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      },
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "무역금융 문서의 항목 추출이 중심이며, 정보 저장소 분산이나 업무 지식 탐색 문제는 제시되지 않음."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "수기 입력의 속도와 오류가 문제일 뿐, 필요한 업무정보를 검색하는 과업은 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "문서 필드 추출과 기존 자료 재사용 부족은 다른 과업이며, 지식 재활용 문제도 없음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 1,
+        "reason": "문서와 규제 맥락은 일부 겹치지만, 핵심은 제재 위험 탐지이지 지식의 분산 문제가 아님."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "제재 심사를 위한 문서 검토가 중심이며, 직원의 업무정보 검색 지연과는 무관함."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "문서 위험요소를 표시하는 과업으로, 과거 지식이나 기존 자료를 재사용하는 문제는 없음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 2,
+        "reason": "기존 금융 콘텐츠를 활용해 답변하지만, 콘텐츠가 여러 시스템에 흩어졌다는 문제는 명시되지 않음."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 2,
+        "reason": "기존 콘텐츠를 찾아 금융 질문에 답하는 점은 겹치지만, 직원의 내부 검색 지연이 핵심은 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 3,
+        "reason": "기존 금융 콘텐츠를 찾아 고객 답변에 활용하는 과업이어서, 이미 있는 지식의 재사용과 강하게 맞닿음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 2,
+        "reason": "MES·ERP·품질 시스템에 데이터가 분산된 점은 맞지만, 핵심 과업은 지식 탐색이 아니라 불량 원인 분석임."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "수작업 분석이 문제지만, 필요한 규정이나 자료를 찾는 검색 지연이 아니라 품질 원인 파악의 지연임."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "품질 데이터를 분석하는 과업이며, 기존 문서나 과거 사례를 재사용하지 못하는 문제는 제시되지 않음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 2,
+        "reason": "제조 시스템 간 분절은 겹치지만, 중심 문제는 지식 저장소가 아니라 일정 변경 업무의 지연과 오류임."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 1,
+        "reason": "일정 조정이 느리다는 점만 유사하며, 업무정보를 검색해 찾는 데 걸리는 시간이 문제는 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 1,
+        "reason": "생산 일정을 조정하는 과업으로, 기존 지식이나 사례를 다시 활용하지 못한다는 근거는 없음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "견적 작성 용량 병목이 중심이며, 업무 지식이나 문서의 분산 문제는 제시되지 않음."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "수작업 견적 처리의 병목이지, 필요한 업무정보를 검색하는 시간이 오래 걸리는 사례가 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "고객 제조 견적을 작성하는 과업이며, 기존 자료를 다시 만들거나 재사용하지 못하는 문제는 없음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산 계획과 작업지시 준비의 용량 제약이 중심이며, 정보 저장소 분산과는 다른 문제임."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "계획 수립과 입력의 제약이 문제일 뿐, 직원의 업무정보 검색 지연은 제시되지 않음."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산 계획을 준비하는 과업으로, 과거 지식이나 기존 자료의 재사용 부족과 연결되지 않음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "문의량과 야간 고객 대응 역량 부족이 중심이며, 내부 규정이나 업무 지식의 분산은 언급되지 않음."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 1,
+        "reason": "고객 응답의 신속성이 요구되지만, 지연 원인은 문의량이며 직원의 정보 검색 시간이 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 1,
+        "reason": "고객 문의 자동응답 과업은 유사하지만, 기존 지식이나 자료를 재사용하지 못한다는 근거가 없음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 1,
+        "reason": "긴 이메일의 핵심 내용을 다루지만, 여러 저장소에 정보가 흩어진 문제와는 다름."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 2,
+        "reason": "긴 이메일에서 핵심 정보를 파악하는 데 시간이 걸리는 점은 일부 유사하지만, 여러 자료를 검색하는 과업은 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 1,
+        "reason": "이메일 요약과 후속조치 확인이 중심이며, 기존 사례나 업무 자료의 재사용 문제는 없음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 2,
+        "reason": "여러 파일과 검증 기준을 대조하는 점은 정보 분산과 일부 유사하지만, 업무 지식 저장소 탐색이 핵심은 아님."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "검증이 느린 점은 유사하나, 핵심은 파일 대조와 준수 확인이지 필요한 지식을 검색하는 일이 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "신원조회 보고서 검증 과업이며, 과거 자료나 기존 지식을 재사용하지 못하는 문제는 제시되지 않음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무서류에서 항목을 추출하는 과업으로, 업무 규정이나 과거 사례의 분산 문제와 다름."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "서류 데이터 수기 추출의 시간이 문제이며, 업무정보를 검색하는 지연은 해당되지 않음."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "문서에서 세무 정보를 추출하는 과업이며, 기존 자료 재사용 부족과는 관련이 없음."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "로봇 고장을 사전 예측하는 제조 유지보수 문제로, 업무 지식의 분산과 무관함."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "고장 예측이 중심이며, 직원이 규정이나 사례를 검색하는 문제는 제시되지 않음."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "제조 로봇의 상태 진단 과업으로, 기존 지식이나 자료를 재사용하지 못하는 문제와 다름."
+      },
+      {
+        "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 문의 응대가 중심이며, 직원이 참고할 업무 지식의 분산은 언급되지 않음."
+      },
+      {
+        "perspective_id": "P2_SEARCH_DELAY",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 1,
+        "reason": "빠른 응답 요구는 있으나, 지연 원인은 문의 대응 방식이며 정보 검색 시간이 아님."
+      },
+      {
+        "perspective_id": "P3_KNOWLEDGE_REUSE_GAP",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 1,
+        "reason": "상담 자동응답이라는 점만 주변적으로 유사하며, 기존 자료 재사용 부족은 사례에 드러나지 않음."
+      }
+    ]
+  }
+}

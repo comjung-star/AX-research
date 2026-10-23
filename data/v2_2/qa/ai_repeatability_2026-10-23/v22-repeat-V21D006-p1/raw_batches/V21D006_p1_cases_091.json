@@ -1,0 +1,79 @@
+{
+  "query_id": "V21D006",
+  "pass_id": 1,
+  "first_case": 91,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0ebf3da8a0c24737006adacccefc8887d088942d250fcc6016",
+  "input_problem_only": {
+    "query_id": "V21D006",
+    "business_problem_query": "상품 수가 빠르게 늘면서 신규 상품의 속성 분류와 태깅을 사람이 처리해 온보딩이 느리고, 고객 검색어가 상품 데이터와 잘 연결되지 않아 원하는 상품을 찾지 못하는 경우가 많으며, 고객 상황에 맞는 탐색 지원도 부족하다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "problem_view": "상품 속성 분류·태깅 부담"
+      },
+      {
+        "id": "P2_SEARCH_FINDABILITY_GAP",
+        "problem_view": "검색어-상품 연결 및 탐색 실패"
+      },
+      {
+        "id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "problem_view": "상황·개인조건 기반 상품발견 부족"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV22_0092_01",
+        "business_problem": "신규 상품의 색상·스타일 등 속성을 사람이 분류·태깅하면서 카탈로그 상품 등록과 갱신에 많은 작업시간이 듦.",
+        "ax_target_task": "신규 및 변경 상품의 색상·스타일 속성을 자동 분류해 상품 카탈로그 정보를 보강",
+        "business_context": "Wayfair의 3,000만 개 이상 상품을 취급하는 전자상거래 카탈로그 운영"
+      },
+      {
+        "case_id": "AXV22_0093_01",
+        "business_problem": "금융권 보안·망분리 및 규제 요건으로 외부 생성형 AI를 내부 업무에 그대로 도입하기 어려움.",
+        "ax_target_task": "망분리 내부 지식 기반 업무 질의응답 및 문서 업무 지원 에이전트를 운영",
+        "business_context": "제주은행의 자체 망분리 온프레미스 환경에서 전행 내부 업무 지식과 문서를 활용"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV22_0092_01",
+        "relevance": 4,
+        "reason": "신규 상품의 색상·스타일 속성을 사람이 분류·태깅해 등록이 지연되는 문제와, 해당 속성을 자동 분류해 카탈로그를 보강하는 업무가 직접 일치한다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV22_0092_01",
+        "relevance": 2,
+        "reason": "상품 속성 정보 보강은 검색 대상 데이터와 일부 겹치지만, 검색어와 상품의 연결이나 고객의 탐색 실패는 문제로 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "상품 속성 정보를 다룬다는 점만 부분적으로 닿으며, 고객 상황이나 개인 조건에 따른 상품 발견을 지원하는 업무는 아니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "내부 업무용 AI 도입의 보안·규제 제약과 지식 질의응답이 중심이며, 상품 속성 분류·태깅이나 카탈로그 운영과 무관하다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "은행 내부 지식과 문서에 대한 업무 질의응답이 과제이며, 고객의 상품 검색어 연결이나 상품 탐색 실패와는 맥락이 다르다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "내부 직원의 문서·지식 업무 지원을 다루며, 고객 상황이나 개인 조건에 맞춘 상품 발견 지원과는 과제가 다르다."
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D006",
+  "pass_id": 1,
+  "first_case": 26,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_02bd44a5c96e3a52006adacc60054087d0b0d8191c7f4a67cd",
+  "input_problem_only": {
+    "query_id": "V21D006",
+    "business_problem_query": "상품 수가 빠르게 늘면서 신규 상품의 속성 분류와 태깅을 사람이 처리해 온보딩이 느리고, 고객 검색어가 상품 데이터와 잘 연결되지 않아 원하는 상품을 찾지 못하는 경우가 많으며, 고객 상황에 맞는 탐색 지원도 부족하다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "problem_view": "상품 속성 분류·태깅 부담"
+      },
+      {
+        "id": "P2_SEARCH_FINDABILITY_GAP",
+        "problem_view": "검색어-상품 연결 및 탐색 실패"
+      },
+      {
+        "id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "problem_view": "상황·개인조건 기반 상품발견 부족"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "결제 고객과 내부 지원팀의 기술질문에 내부정보로 정확하게 답해야 하며 대형 프롬프트 비용이 높음",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      },
+      {
+        "case_id": "AXV2H_0075_01",
+        "business_problem": "고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함",
+        "ax_target_task": "상담 통화 내역 요약",
+        "business_context": "반복 통화의 이전 고객 맥락 조회가 필요한 핀테크 컨택센터"
+      },
+      {
+        "case_id": "AXV2H_0078_01",
+        "business_problem": "Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.",
+        "ax_target_task": "사내 관리데이터 자연어 조회",
+        "business_context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근"
+      },
+      {
+        "case_id": "AXV2H_0081_01",
+        "business_problem": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함",
+        "ax_target_task": "고객상담 대화록 요약",
+        "business_context": "영국 디지털은행의 고객지원팀 상담 이력관리"
+      },
+      {
+        "case_id": "AXV2H_0083_01",
+        "business_problem": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준",
+        "ax_target_task": "신규 버그 티켓 팀 라우팅",
+        "business_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage"
+      },
+      {
+        "case_id": "AXV2H_0084_01",
+        "business_problem": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움",
+        "ax_target_task": "고객 상품 위치 검색",
+        "business_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경"
+      },
+      {
+        "case_id": "AXV2H_0085_01",
+        "business_problem": "모기지 신청의 소득확인 검증에 여러 날이 소요되어 신청 처리시간이 지연됨",
+        "ax_target_task": "모기지 고객 소득 검증",
+        "business_context": "Lloyds Banking Group의 기존 모기지 심사단계와 데이터 플랫폼 현대화"
+      },
+      {
+        "case_id": "AXV2H_0086_01",
+        "business_problem": "Customers searching for an unstocked brand receive no results and struggle to discover relevant alternatives for their intended occasion.",
+        "ax_target_task": "고객 상품 검색·발견",
+        "business_context": "THE ICONIC 전자상거래 검색 및 분석 데이터 플랫폼"
+      },
+      {
+        "case_id": "AXV2H_0090_01",
+        "business_problem": "다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가",
+        "ax_target_task": "Answer routine employee HR policy questions",
+        "business_context": "IBM 내부 HR 지원 센터와 Workday/SAP/Concur 연계"
+      },
+      {
+        "case_id": "AXV2H_0091_01",
+        "business_problem": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움",
+        "ax_target_task": "저복잡도 지원 티켓 자동 답변",
+        "business_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색"
+      },
+      {
+        "case_id": "AXV2N_0103",
+        "business_problem": "Recurring account reconciliations consume accounting staff time.",
+        "ax_target_task": "Reconcile bank transactions at month end",
+        "business_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months."
+      },
+      {
+        "case_id": "AXV2N_0104",
+        "business_problem": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement.",
+        "ax_target_task": "Prepare review-ready client-story drafts",
+        "business_context": "Client stories workstream using Creative Assistant after its 2025 launch."
+      },
+      {
+        "case_id": "AXV2N_0105",
+        "business_problem": "Associates must answer complex questions across thousands of products outside their expertise.",
+        "ax_target_task": "Assist store associates with customer project questions",
+        "business_context": "Mylow Companion on associate sales-floor devices across over 1700 stores."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "결제 기술문의 검색·답변이 핵심이며 상품 속성 분류나 태깅 부담은 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "내부 기술정보를 찾아 답하는 지원 업무로, 고객의 상품 검색 실패와는 대상과 과업이 다르다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "기술문의 응답이 중심이며 상황이나 개인조건에 따른 상품 발견 지원과 무관하다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 통화 요약이 핵심 과업으로, 상품 속성 분류·태깅이나 카탈로그 온보딩 문제는 없다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "고객 통화 후처리 자동화 사례이며 상품 검색어나 상품 발견 과업은 다루지 않는다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 맥락 기록은 상품 추천·발견이 아니라 통화 요약을 위한 것으로 과업이 다르다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "거버넌스된 사내 관리데이터 조회 사례로, 상품 카탈로그 속성 정리나 태깅 문제는 없다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "자연어로 사내 관리데이터를 조회하지만, 고객 검색어와 상품 데이터 연결 문제는 아니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "업무 의사결정용 사내 데이터 접근이 중심이며 고객 상황별 상품 발견과는 무관하다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "은행 상담 대화록 요약 사례로, 상품 속성 분류·태깅 또는 상품 데이터 관리가 핵심이 아니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "상담 이력 정리를 자동화하는 과업이며 상품 검색어 매칭이나 탐색 실패와 무관하다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "고객지원 대화 요약이 중심이며 상품 추천이나 개인조건 기반 발견은 다루지 않는다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "버그 티켓을 엔지니어링 팀에 배정하는 문제로, 상품 속성 태깅과는 대상 및 업무가 다르다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "티켓 담당팀 분류와 라우팅이 중심이며 고객이 상품을 검색해 찾는 문제는 아니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "엔지니어링 티켓 배정 과업으로, 고객 상황에 맞춘 상품 발견 지원과 관련이 없다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 1,
+        "reason": "상품 정보가 배경에 있으나, 매장 위치 검색이 핵심이며 신규 상품 속성 분류·태깅 문제는 아니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 3,
+        "reason": "고객과 직원이 원하는 상품을 찾기 어렵다는 문제가 공통이며, 상품 위치를 검색해 찾아주는 과업이다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 1,
+        "reason": "원하는 상품을 찾는다는 점은 일부 겹치지만, 상황·개인조건 기반 발견이 아니라 매장 내 위치 조회다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 신청자의 소득 검증 지연이 중심으로, 상품 카탈로그 분류나 태깅과 무관하다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "금융 신청서의 소득 검증 과업이며 고객의 상품 검색·탐색 실패와는 다르다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 심사 처리시간 문제로, 개인조건에 맞는 상품을 발견하도록 돕는 과업은 없다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 2,
+        "reason": "상품 검색 실패와 대안 발견 문제가 관련되지만, 상품 속성 분류·태깅 부담은 명시되지 않는다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 4,
+        "reason": "재고 없는 브랜드 검색이 무결과로 끝나고 관련 상품을 찾기 어렵다는 점이 검색-상품 연결 문제와 직접 일치한다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 4,
+        "reason": "원하는 브랜드가 없을 때 의도한 상황에 맞는 대안을 찾도록 돕는 과업이 상황 기반 상품 발견과 직접 겹친다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "HR 정책 문의와 직원 지원이 중심이며 상품 속성 분류나 태깅 업무는 없다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "직원 HR 정책 문의 해결 사례로, 고객 검색어와 상품 데이터의 연결 문제와 다르다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "HR 업무 질문에 답하는 과업이며 고객 상황에 맞춘 상품 발견 지원은 아니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "저복잡도 기술지원 티켓의 답변 자동화 사례로, 상품 분류나 카탈로그 태깅과 무관하다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "제품 지식으로 기술지원 티켓에 답하지만, 고객의 상품 탐색이나 검색 실패가 핵심 문제는 아니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "기술문의 해결이 중심이며 개인조건 기반 상품 추천·발견 과업은 없다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "은행 거래 대사에 회계 인력이 쓰는 시간이 문제로, 상품 속성 정리와 무관하다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "월말 은행 거래 조정 과업이며 고객의 상품 검색어나 발견 실패와 관련이 없다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "회계 대사 업무의 반복 부담이 중심으로, 상황별 상품 발견 지원과 무관하다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 원고 초안 작성과 편집 역량이 문제이며 상품 속성 분류·태깅 과업은 없다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "콘텐츠 팀의 반복 원고 작성 과업으로, 고객이 상품을 검색하고 찾는 문제와 다르다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 문서 작성이 중심이며 상황·개인조건에 따른 상품 발견 지원은 아니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2N_0105",
+        "relevance": 1,
+        "reason": "수천 개 상품에 대한 질문을 다루지만, 상품 속성 분류·태깅이나 카탈로그 온보딩 문제는 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2N_0105",
+        "relevance": 2,
+        "reason": "상품 관련 질문에 답하며 상품 지식 접근과 일부 겹치지만, 고객 검색어 매칭이나 탐색 실패가 중심은 아니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2N_0105",
+        "relevance": 2,
+        "reason": "고객의 프로젝트 질문이라는 맥락은 있으나, 개인조건에 맞춘 상품 발견보다 매장 직원의 답변 지원이 핵심이다."
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "query_id": "V21D007",
+  "pass_id": 3,
+  "first_case": 91,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_069a75034c40e60c006adacd89f83c87d092d62cd9bac64d03",
+  "input_problem_only": {
+    "query_id": "V21D007",
+    "business_problem_query": "구매와 견적 업무에서 고객 도면·요구사항과 공급업체 제안서처럼 형식이 다른 자료를 사람이 읽고 비교해야 하고, 생산가능성·원가·공급업체 선택 판단이 담당자 경험에 의존하며, 견적 작성과 조달 후속업무까지 수작업으로 이어져 처리시간이 길다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "problem_view": "도면·요구사항·제안서 검토 부담"
+      },
+      {
+        "id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "problem_view": "비교·선정 판단의 전문가 의존"
+      },
+      {
+        "id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "problem_view": "견적·조달 후속업무 수작업 병목"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV22_0092_01",
+        "business_problem": "신규 상품의 색상·스타일 등 속성을 사람이 분류·태깅하면서 카탈로그 상품 등록과 갱신에 많은 작업시간이 듦.",
+        "ax_target_task": "신규 및 변경 상품의 색상·스타일 속성을 자동 분류해 상품 카탈로그 정보를 보강",
+        "business_context": "Wayfair의 3,000만 개 이상 상품을 취급하는 전자상거래 카탈로그 운영"
+      },
+      {
+        "case_id": "AXV22_0093_01",
+        "business_problem": "금융권 보안·망분리 및 규제 요건으로 외부 생성형 AI를 내부 업무에 그대로 도입하기 어려움.",
+        "ax_target_task": "망분리 내부 지식 기반 업무 질의응답 및 문서 업무 지원 에이전트를 운영",
+        "business_context": "제주은행의 자체 망분리 온프레미스 환경에서 전행 내부 업무 지식과 문서를 활용"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "상품 속성 분류 업무로, 도면·요구사항·제안서 같은 기술 문서를 읽고 검토하는 작업과는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "사람의 분류 작업이 있다는 점만 일부 겹치며, 공급업체 제안 비교나 생산가능성·원가 판단은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품 카탈로그 속성 보강이 중심이며, 견적 작성이나 조달 후속업무 병목과는 무관합니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "내부 지식 질의응답과 문서 지원이라는 약한 접점은 있지만, 고객 도면·요구사항·제안서 검토가 핵심 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "내부 문서 기반 질의응답을 지원하는 업무로, 대안 비교나 공급업체 선정 판단을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "은행 내부 업무 지식과 문서 지원이 맥락이며, 견적 작성·구매·조달 후속 처리 업무와는 다릅니다."
+      }
+    ]
+  }
+}
