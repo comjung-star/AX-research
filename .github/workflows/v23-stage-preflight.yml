@@ -1,0 +1,18 @@
+name: AX v2.3 stage code preflight
+on:
+  push:
+    branches: [experiment/v23-stage1-to-stage4-20261023]
+    paths: ['.github/workflows/v23-stage-preflight.yml']
+permissions:
+  contents: read
+jobs:
+  python-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile all four stage scripts and final verifier
+        run: |
+          python -m py_compile scripts/v23_stage1.py scripts/v23_stage2.py scripts/v23_stage3.py scripts/v23_stage4.py scripts/v23_verify_stages.py
