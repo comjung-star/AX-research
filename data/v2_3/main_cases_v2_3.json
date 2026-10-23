@@ -1,24 +1,29 @@
 {
   "dataset_name": "AX_OPERATIONAL_CASES",
   "dataset_release": "2.3.0",
-  "status": "V23_SOURCE_ALIGNED_PROVISIONAL_RESEARCHER_APPROVAL_PENDING",
-  "freeze_date": null,
+  "status": "FROZEN_SOURCE_ADJUDICATED_NOT_GROUND_TRUTH",
+  "freeze_date": "2026-10-23",
   "parent_release": "2.2.0",
   "counts": {
     "source_cases": 93,
-    "retained": 86,
-    "excluded": 7,
+    "retained": 84,
+    "excluded": 9,
     "missing_factor_or_strategy": 0,
     "unique_groups": 60,
     "multiple_factor_cases": 6,
-    "multiple_strategy_cases": 1
+    "multiple_strategy_cases": 0
   },
   "limitations": [
     "Source-supported changes, not human GT",
     "F10/F11 categories and S3/S7 revised boundaries need approval",
     "Do not inherit v2.2 Dev relevance as Ground Truth",
     "Do not infer causality by cartesian joins of factor x strategy",
-    "Retain v2.2 source evidence and uncertainty"
+    "Retain v2.2 source evidence and uncertainty",
+    "Case freeze is NOT Dev/Test relevance Ground Truth; no GT scores have been approved or transferred.",
+    "Factor/Strategy are evidence-based analytical categories, not proven causal effects.",
+    "Taxonomy F10/F11 and clarified S3/S7 were induced on this corpus; independent held-out validation required.",
+    "Original 86-case provisional audit retained as prior snapshot via Git history.",
+    "All nine removed cases preserved in disposition log; source selection after Dev gap remains limitation."
   ],
   "cases": [
     {
@@ -85,7 +90,7 @@
       },
       "sampling_group_id": "AXV2G_a586b255c2bc",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Turning to Agentic AI for operational transformation; managers now interact directly with an agent",
@@ -105,7 +110,7 @@
         "decision": "MULTILABEL_EXTEND",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Turning to Agentic AI for operational transformation; organizational changes required manual form-filling",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -161,7 +166,7 @@
       },
       "sampling_group_id": "AXV2G_a586b255c2bc",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Turning to Agentic AI for operational transformation; agent implemented to verify prices against ERP",
@@ -181,7 +186,7 @@
         "decision": "MULTILABEL_EXTEND",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Turning to Agentic AI for operational transformation; pricing inconsistencies and data entry errors",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -248,7 +253,7 @@
       },
       "sampling_group_id": "AXV2G_4ef92f53eda3",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Fixing problems faster with flexible AI tools; Gemini Flash troubleshooting self-service",
@@ -267,80 +272,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Extending customer care to digital and voice channels; quickly get help",
-        "status": "RESEARCHER_APPROVAL_PENDING"
-      }
-    },
-    {
-      "case_id": "AXV2C_0016_02",
-      "origin": "SPLIT_PRIMARY_REVIEW",
-      "parent_v1_case_id": "AX0016",
-      "organization": "Best Buy",
-      "industry": "Retail / Consumer Electronics",
-      "problem": "Human support staff need relevant troubleshooting information while handling complex customer issues.",
-      "task": "Surface troubleshooting knowledge during assisted calls",
-      "context": "Best Buy service representatives during live customer conversations.",
-      "implementation": "Generative Knowledge Assist listens to conversations and displays relevant troubleshooting documents.",
-      "outcome": "Immediate access to troubleshooting documents reported; no isolated numerical effect.",
-      "outcome_type": "VENDOR_REPORTED_QUALITATIVE",
-      "source_url": "https://cloud.google.com/customers/bestbuy-ai",
-      "evidence": {
-        "problem_anchor": "Fixing problems faster with flexible AI tools; support customers who need to speak to a person",
-        "context_anchor": "Staying at the leading edge of technology innovation; presents documents on agents' screens in real time",
-        "implementation_anchor": "Staying at the leading edge of technology innovation; Generative Knowledge Assist",
-        "deployment_anchor": "Staying at the leading edge of technology innovation; presents documents on agents' screens in real time",
-        "outcome_anchor": "Staying at the leading edge of technology innovation; so they can respond immediately"
-      },
-      "uncertainty": "First-pass review; not independent blind labeling or approved Ground Truth",
-      "additional_primary_sources": [],
-      "factor_label": "F07_DATA_VISIBILITY_INTEGRATION_GAP",
-      "strategy_label": "S1_KNOWLEDGE_RETRIEVAL_RAG",
-      "factor_review": {
-        "review_id": "B0004",
-        "factor": "ABSTAIN",
-        "confidence": "HIGH",
-        "rationale": "Relevant troubleshooting information is needed, but fragmentation or scarce expert dependence is not established.",
-        "session_id": "01a1639b-b68c-7502-8891-2fcae0533d0f"
-      },
-      "strategy_review": {
-        "review_id": "S0004",
-        "strategy": "S1",
-        "rationale": "The system retrieves troubleshooting documents for staff, using conversation as retrieval context rather than delivering the conversation itself.",
-        "confidence": "HIGH",
-        "session_id": "01a16399-f383-7a80-924f-699aa1e41cb3"
-      },
-      "author_factor_disagreed": true,
-      "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED_WITH_ABSTENTIONS",
-      "deployment_stage": "PRODUCTION",
-      "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
-      "human_ground_truth_approved": false,
-      "direct_mappings": [],
-      "mapping_review": {
-        "decision": "ABSTAIN",
-        "rationale": "Factor or strategy explicitly abstained; no pair is created."
-      },
-      "sampling_group_id": "AXV2G_4ef92f53eda3",
-      "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
-      "source_qa": {
-        "status": "AI_SOURCE_QA_PASS",
-        "independent_source_anchor": "Staying at leading edge; Gen Knowledge Assist presents troubleshooting documents to human agents",
-        "review_date": "2026-10-22",
-        "human_review_status": "NOT_REVIEWED"
-      },
-      "outcome_5class": "UNKNOWN",
-      "outcome_5class_is_audited": false,
-      "factor_labels": [
-        "F07_DATA_VISIBILITY_INTEGRATION_GAP"
-      ],
-      "strategy_labels": [
-        "S1_KNOWLEDGE_RETRIEVAL_RAG"
-      ],
-      "v23_source_review": {
-        "decision": "RECLASSIFY",
-        "rationale": "고객기록과 내부 지식베이스 통합",
-        "problem_source_section": "Fixing problems faster with flexible AI tools; support customers who need to speak to a person",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -407,7 +339,7 @@
       },
       "sampling_group_id": "AXV2G_b2493c98471d",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Democratizing AI; 20 percent more automated resolutions and customer-history context",
@@ -426,7 +358,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Bringing the neighborhood coffee shop feel to telecom; rigid routing and repeated explanations",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -493,7 +425,7 @@
       },
       "sampling_group_id": "AXV2G_d682352a1053",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft 'Using AI at scale' confirms daily store-item AI demand forecasts (~1 billion/day), >10% reduction only hoped-for",
@@ -512,7 +444,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Using AI at scale; better know what we are going to sell",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -574,7 +506,7 @@
       },
       "sampling_group_id": "AXV2G_d682352a1053",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Ahold Delhaize 2024 annual report 'Less food waste with more AI' explicitly says dynamic markdown discounts use AI on electronic shelf labels; combined 1.5m kg not single program",
@@ -593,8 +525,13 @@
         "decision": "RECLASSIFY",
         "rationale": "유통기한 연계 동적 할인 의사결정",
         "problem_source_section": "Using AI at scale; reduce waste once products reach shelves",
-        "status": "RESEARCHER_APPROVAL_PENDING"
-      }
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "supplement_source": "https://www.pricer.com/news/albert-heijn-combats-food-waste-with-pricer-and-wasteless-through-ai-powered-dynamic-pricing",
+        "supplement_reason": "Pricer official release documents AI-powered dynamic markdown with location, weather, inventory, sales performance; early trial vs later production separately."
+      },
+      "additional_source_urls": [
+        "https://www.pricer.com/news/albert-heijn-combats-food-waste-with-pricer-and-wasteless-through-ai-powered-dynamic-pricing"
+      ]
     },
     {
       "case_id": "AXV2C_0068_01",
@@ -660,7 +597,7 @@
       },
       "sampling_group_id": "AXV2G_7181faa30d0a",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Delegating time-consuming tasks to digital employees; >10 percent payment repair issues",
@@ -679,7 +616,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Delegating time-consuming tasks to digital employees; instructions missing or incomplete",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -746,7 +683,7 @@
       },
       "sampling_group_id": "AXV2G_7181faa30d0a",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Resolving client transaction inquiries; 25 percent assisted onboarding and 20 percent faster subset",
@@ -766,7 +703,7 @@
         "decision": "MULTILABEL_EXTEND",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Resolving client transaction inquiries; research element of onboarding",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -820,7 +757,7 @@
       },
       "sampling_group_id": "AXV2G_fdd81a2f888f",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Cashfree AWS Overview and support outcome; generative email service with 70 percent faster ticket handling",
@@ -839,7 +776,7 @@
         "decision": "RECLASSIFY",
         "rationale": "맞춤형 고객지원 이메일 문안 생성",
         "problem_source_section": "Opportunity | Improving Services and Onboarding Speeds with Generative AI; email response delay",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -895,7 +832,7 @@
       },
       "sampling_group_id": "AXV2G_fdd81a2f888f",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Cashfree AWS Opportunity and Solution; merchant onboarding website summarization and scope caveat",
@@ -914,7 +851,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Opportunity | Improving Services and Onboarding Speeds with Generative AI; 99th percentile onboarding time",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -981,7 +918,7 @@
       },
       "sampling_group_id": "AXV2G_55439c099be5",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "AI beyond the customer: Trade Operations OCR and 30 percent task efficiency",
@@ -1000,7 +937,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "AI beyond the customer; slow and complex manual operations; manual entry and human errors",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1067,7 +1004,7 @@
       },
       "sampling_group_id": "AXV2G_55439c099be5",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "AI beyond the customer: Document AI assists sanctions screening",
@@ -1086,7 +1023,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "AI beyond the customer; minimize regulatory and financial risks",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1140,7 +1077,7 @@
       },
       "sampling_group_id": "AXV2G_96f2fbc0fe32",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "From Cora to Cora+: prototype transitioned to full production",
@@ -1159,7 +1096,7 @@
         "decision": "RECLASSIFY",
         "rationale": "기존 챗봇의 외부 콘텐츠 탐색 유도와 맥락 응답 제약",
         "problem_source_section": "Moving the conversation forward; nuanced answers; From Cora to Cora+; previously directed users to existing sites",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1226,7 +1163,7 @@
       },
       "sampling_group_id": "AXV2G_99bc286c4dfe",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Orchestrating AI to unify production workflows; quality inquiry agent separately implemented",
@@ -1245,7 +1182,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Fragmented systems slow production decisions; quality analysis relied on manual effort",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1301,7 +1238,7 @@
       },
       "sampling_group_id": "AXV2G_99bc286c4dfe",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Orchestrating AI to unify production workflows; production scheduling agent separately implemented",
@@ -1320,7 +1257,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Fragmented systems slow production decisions; scheduling adjustments slow and error-prone",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1387,7 +1324,7 @@
       },
       "sampling_group_id": "AXV2G_64d59c6f1fac",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Streamlining operations with agentic AI; live manufacturing quote drafting",
@@ -1406,7 +1343,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Scaling growth amid manual process constraints; manual quoting bottlenecks",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1473,7 +1410,7 @@
       },
       "sampling_group_id": "AXV2G_64d59c6f1fac",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Streamlining operations with agentic AI; implemented planning workflow",
@@ -1492,7 +1429,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Scaling growth amid manual process constraints; planning and work-order data input",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1559,7 +1496,7 @@
       },
       "sampling_group_id": "AXV2G_0afc0be8bb69",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "AWS i-Tom Opportunities/Results, PoC succeeded then RAG support chatbot deployed live",
@@ -1578,7 +1515,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Opportunity, paragraph on 200–600 written queries across channels and after-hours responsiveness",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1645,7 +1582,7 @@
       },
       "sampling_group_id": "AXV2G_79455971533f",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Reducing Email Management Time by 87%; MVP to scaled regular monthly use",
@@ -1664,7 +1601,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Using Generative AI to Alleviate Time-Consuming Tasks, long complex email chains",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1731,7 +1668,7 @@
       },
       "sampling_group_id": "AXV2G_abc40cabe477",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "AWS Genpact Overview; deployed employee background-check report verification",
@@ -1750,7 +1687,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Solution, internal-audit background checks across up to 20 client criteria and multiple files",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1817,7 +1754,7 @@
       },
       "sampling_group_id": "AXV2G_0da56b41a006",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft EY Global Tax Platform K-1 forms automatic field extraction in use",
@@ -1836,7 +1773,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "From tedium to timeless, manual entry from complicated tax forms spanning 50 to nearly 300 pages",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1903,7 +1840,7 @@
       },
       "sampling_group_id": "AXV2G_fb9d8fbd8f89",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "MakinaRocks Hyundai robot prognostics physically used at plant; 1400 robot rollout prospective",
@@ -1922,7 +1859,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "April 23 2026 release, unexpected production-line downtime and robot condition diagnostics",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -1989,7 +1926,7 @@
       },
       "sampling_group_id": "AXV2G_23643395463d",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Outcome Launching DoorDash solution; completed rollout to all Dashers, 100Ks calls/day",
@@ -2008,7 +1945,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Opportunity, Dasher phone support and high-volume routine inquiries",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2017,7 +1954,7 @@
       "parent_v1_case_id": "AX0071",
       "organization": "BPC",
       "industry": "Payments / Customer Support",
-      "problem": "결제 고객과 내부 지원팀의 기술질문에 내부정보로 정확하게 답해야 하며 대형 프롬프트 비용이 높음",
+      "problem": "기술지원 담당자가 고객 문의를 접수·검토해 답변을 전달하는 반복 업무의 부담을 낮추면서, 정확하고 보안에 맞는 결제 기술정보 응답이 필요했다.",
       "task": "결제 기술문의 검색·답변",
       "context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공",
       "implementation": "Bedrock 기반 RAG 챗봇으로 내부 정보검색 후 Claude 3 Haiku를 사용해 기술응답을 생성",
@@ -2051,7 +1988,7 @@
       },
       "author_factor_disagreed": true,
       "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED_WITH_ABSTENTIONS",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -2062,7 +1999,7 @@
       },
       "sampling_group_id": "AXV2G_f94ee4657803",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "AWS BPC overview confirms support+developer Q&A RAG launched, separate developer AI assistant PDF was pilot only",
@@ -2078,10 +2015,11 @@
         "S1_KNOWLEDGE_RETRIEVAL_RAG"
       ],
       "v23_source_review": {
-        "decision": "RECLASSIFY",
-        "rationale": "상담원 요청 처리·답변 검토 업무부담",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "AWS BPC Customer Stories, Opportunity: agent can input the client request, review generated answer, and pass to customer; chatbot designed to reduce support-agent workload.",
         "problem_source_section": "Opportunity, support agents need accurate client-request answers under sensitive-data constraints",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "Opportunity | Using Amazon Bedrock to Build an Intelligent Customer Support Chatbot"
       }
     },
     {
@@ -2148,7 +2086,7 @@
       },
       "sampling_group_id": "AXV2G_6e4fa2113316",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Chime AWS Opportunity; 2024 live agent call summarization and 18 sec handling improvement",
@@ -2167,7 +2105,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Opportunity, agents juggle calls, manual notes and post-call summaries",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2176,7 +2114,7 @@
       "parent_v1_case_id": "AX0078",
       "organization": "Kohl's",
       "industry": "Retail / Enterprise Analytics",
-      "problem": "Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.",
+      "problem": "표준 보고서를 본 직원이 후속 질문을 해결하기 위해 다른 화면이나 방법으로 이동해야 하므로 기업 관리데이터에 맥락적으로 연속 질문하기 어려웠다.",
       "task": "사내 관리데이터 자연어 조회",
       "context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근",
       "implementation": "Looker semantic layer와 BigQuery를 Gemini 기업용 대화형 에이전트에 연결",
@@ -2192,7 +2130,7 @@
       },
       "uncertainty": "No quantified workflow effect; shopper gift finder is a separate workflow.",
       "additional_primary_sources": [],
-      "factor_label": "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION",
+      "factor_label": "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT",
       "strategy_label": "S1_KNOWLEDGE_RETRIEVAL_RAG",
       "factor_review": {
         "review_id": "B0032",
@@ -2210,7 +2148,7 @@
       },
       "author_factor_disagreed": false,
       "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -2234,7 +2172,7 @@
       },
       "sampling_group_id": "AXV2G_e491af9fe912",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google Kohl's 'Transforming analysis into action' describes employee conversational analytics with BigQuery/Looker governed data",
@@ -2244,16 +2182,17 @@
       "outcome_5class": "UNKNOWN",
       "outcome_5class_is_audited": false,
       "factor_labels": [
-        "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION"
+        "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT"
       ],
       "strategy_labels": [
         "S1_KNOWLEDGE_RETRIEVAL_RAG"
       ],
       "v23_source_review": {
-        "decision": "CARRY_FROM_V22",
-        "rationale": "기존 v2.2 출처·업무단위 판단 유지",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Kohl's Google Cloud, Reducing the cost of curiosity: standard reporting creates follow-up questions; employees must go elsewhere for answers.",
         "problem_source_section": "Reducing the cost of curiosity, standard reporting leads to questions requiring answers elsewhere",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "Reducing the cost of curiosity / Transforming analysis into action"
       }
     },
     {
@@ -2320,7 +2259,7 @@
       },
       "sampling_group_id": "AXV2G_d67746d2a0c6",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google Starling customer calls transcript recaps already used and task-specific monthly time benefits reported",
@@ -2339,7 +2278,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Helping customers section, manual summarization of customer call transcripts",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2406,7 +2345,7 @@
       },
       "sampling_group_id": "AXV2G_777173887fbe",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google Gelato 'Saving 120 hours a week triaging support tickets' Gemini 1.5 Pro now auto-assigns issues across 15 engineering teams, 60 to 90% accuracy",
@@ -2425,7 +2364,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Saving 120 hours section, 15 teams, over 100 weekly hours and 60% correct assignment",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2492,7 +2431,7 @@
       },
       "sampling_group_id": "AXV2G_c58b29c784e9",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google Morrisons Product Finder available to customers year round, separately from feedback summaries",
@@ -2511,7 +2450,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Giving customers a guided tour, seasonal shelf changes make finding products difficult",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2565,7 +2504,7 @@
       },
       "sampling_group_id": "AXV2G_3164d9bd0093",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google THE ICONIC 'Customer-first approach' live multimodal brand/occasion alternatives with near-zero null searches; platform revenue 2.6% withheld",
@@ -2584,7 +2523,7 @@
         "decision": "RECLASSIFY",
         "rationale": "미취급 브랜드 검색 실패와 고객 목적별 대안 탐색 제약",
         "problem_source_section": "Customer-first approach, searches for unstocked brands previously return zero results",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2651,7 +2590,7 @@
       },
       "sampling_group_id": "AXV2G_8f0109acf34b",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "IBM AskHR deployed tier-2 HR policy question interface with 94% common question containment; general HR automations excluded",
@@ -2670,7 +2609,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "The start of a new era, siloed HR support and repetitive employee questions",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2737,7 +2676,7 @@
       },
       "sampling_group_id": "AXV2G_8f0109acf34b",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "IBM Ask SW Support used four months, projected 10min per case and 17000h/y with 28% current accuracy note, not realized savings",
@@ -2756,7 +2695,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "AI to boost productivity and AI-Driven solutions, engineers handle routine cases alongside critical cases",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2823,7 +2762,7 @@
       },
       "sampling_group_id": "AXV2G_8a924fc6909c",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft U.S. Venture 'A difference on day one' bank statement reconciliations live three months, user says 80% less time",
@@ -2842,7 +2781,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "A difference on day one; recurring time-consuming reconciliations",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2909,7 +2848,7 @@
       },
       "sampling_group_id": "AXV2G_8f0109acf34b",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "IBM Creative Assistant 'Smarter processes, faster results' 1010 active users, 2400 customer-story drafts, review-ready time estimate 10 to 5 days",
@@ -2929,7 +2868,7 @@
         "decision": "MULTILABEL_EXTEND",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Confronting a creative conundrum; nonstandard templates and repetitive creation",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -2996,7 +2935,7 @@
       },
       "sampling_group_id": "AXV2G_b4cbddaebf34",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Lowe's corporate May 5 2025 release; Mylow Companion rolled out to 1700+ stores",
@@ -3015,7 +2954,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Associate expertise; complex projects and knowledge hurdles",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3024,13 +2963,13 @@
       "parent_v1_case_id": null,
       "organization": "Lowe's",
       "industry": "Retail",
-      "problem": "Customers need expert product and project guidance while shopping online.",
+      "problem": "주택개선 작업은 과정과 상품 선택이 복잡하여 고객이 자신의 프로젝트 맥락에 맞는 단계별 안내와 상품 추천을 한 번에 얻기 어려웠다.",
       "task": "Advise online customers on home-improvement projects",
       "context": "Customer-facing Mylow virtual advisor, distinct from the associate application.",
       "implementation": "Mylow uses OpenAI models and Lowe's expert advice to answer customer questions.",
       "outcome": "Customer service launch confirmed; no customer conversion metric imported from another report.",
       "outcome_type": "DEPLOYMENT_CONFIRMED_OUTCOME_UNKNOWN",
-      "source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-deploys-first-scale-ai-assistant-retail-associates-05-05-25",
+      "source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-launches-first-ai-powered-home-improvement-virtual-advisor-03-05-25",
       "evidence": {
         "problem_anchor": "Mylow and Mylow Companion; empower customers with helpful information",
         "context_anchor": "Mylow customer-facing virtual advisor launched earlier in 2025",
@@ -3040,7 +2979,7 @@
       },
       "uncertainty": "Announcement does not isolate effectiveness of the customer product.",
       "additional_primary_sources": [],
-      "factor_label": "F03_EXPERT_JUDGMENT_DEPENDENCY",
+      "factor_label": "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT",
       "strategy_label": "S2_AGENT_CONVERSATIONAL_AI",
       "factor_review": {
         "review_id": "B0045",
@@ -3058,7 +2997,7 @@
       },
       "author_factor_disagreed": false,
       "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -3082,7 +3021,7 @@
       },
       "sampling_group_id": "AXV2G_b4cbddaebf34",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Lowe's corporate May 5 2025; separately launched customer Mylow advisor",
@@ -3092,17 +3031,21 @@
       "outcome_5class": "UNKNOWN",
       "outcome_5class_is_audited": false,
       "factor_labels": [
-        "F03_EXPERT_JUDGMENT_DEPENDENCY"
+        "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT"
       ],
       "strategy_labels": [
         "S2_AGENT_CONVERSATIONAL_AI"
       ],
       "v23_source_review": {
-        "decision": "CARRY_FROM_V22",
-        "rationale": "기존 v2.2 출처·업무단위 판단 유지",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Lowe's 2025-03-05 customer-facing Mylow launch: home improvement inherently complex; AI links project know-how to product discovery and refines recommendations with context.",
         "problem_source_section": "Mylow and Mylow Companion; empower customers with helpful information",
-        "status": "RESEARCHER_APPROVAL_PENDING"
-      }
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "Designed to help customers navigate the many questions / home improvement is inherently complex"
+      },
+      "additional_source_urls": [
+        "https://corporate.lowes.com/newsroom/press-releases/lowes-deploys-first-scale-ai-assistant-retail-associates-05-05-25"
+      ]
     },
     {
       "case_id": "AXV2N_0107",
@@ -3155,7 +3098,7 @@
       },
       "sampling_group_id": "AXV2G_396862c56f81",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Home Depot NRF 2026 release; Magic Apron project advice available now; in-store aisle feature remains pilot and must not be included",
@@ -3174,7 +3117,7 @@
         "decision": "RECLASSIFY",
         "rationale": "제품 키워드 검색이 프로젝트 맥락을 충분히 반영 못함",
         "problem_source_section": "Magic Apron Assistant; project descriptions and expert advice",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3228,7 +3171,7 @@
       },
       "sampling_group_id": "AXV2G_396862c56f81",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Home Depot NRF 2026 release; conversational customer service live across SMS chat phone",
@@ -3247,7 +3190,7 @@
         "decision": "RECLASSIFY",
         "rationale": "고정형 고객지원 메뉴에서 대화 의도 표현 실패",
         "problem_source_section": "Bringing a new level of customer service; rigid menu-driven automation",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3273,7 +3216,7 @@
       "uncertainty": "Not a general hiring probability or causal claim beyond the reported experiment.",
       "additional_primary_sources": [],
       "factor_label": "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT",
-      "strategy_label": "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "strategy_label": "S7_GENERATIVE_CONTENT_CREATION",
       "factor_review": {
         "review_id": "B0048",
         "factor": "ABSTAIN",
@@ -3290,7 +3233,7 @@
       },
       "author_factor_disagreed": false,
       "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED_WITH_ABSTENTIONS",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -3301,7 +3244,7 @@
       },
       "sampling_group_id": "AXV2G_b702868bc57d",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "OpenAI Indeed case; contextual job-fit explanations production; gains from experiment not population causal inference",
@@ -3314,14 +3257,14 @@
         "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT"
       ],
       "strategy_labels": [
-        "S5_OPTIMIZATION_DECISION_SUPPORT",
         "S7_GENERATIVE_CONTENT_CREATION"
       ],
       "v23_source_review": {
-        "decision": "RECLASSIFY",
-        "rationale": "일자리 추천 적합성 설명 부족, 맞춤 설명문 작성",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Indeed's AI-based matching predated GenAI enhancement; the newly deployed AI workflow generates context-rich explanations. S5 matching algorithm is background context, not new strategy.",
         "problem_source_section": "Early AI experiments; adding an insightful why",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "Early AI experiments in job matching / Fine-tuning personalized match explanations"
       }
     },
     {
@@ -3388,7 +3331,7 @@
       },
       "sampling_group_id": "AXV2G_cbbf09eb333e",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Morgan Stanley AI Advisor Assistant; over 98 percent advisor team usage",
@@ -3407,7 +3350,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Building a foundation; hours of document searching",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3474,7 +3417,7 @@
       },
       "sampling_group_id": "AXV2G_cbbf09eb333e",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Morgan Stanley Debrief meeting notes/CRM followups in production, different task from Advisor Assistant",
@@ -3493,7 +3436,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Scaling success; documentation and follow-ups",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3547,7 +3490,7 @@
       },
       "sampling_group_id": "AXV2G_217e42068e37",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Amazon Ads Oneisall image generation used in real advertising campaigns; campaign YoY+50% and ACOS 22% not standalone generated-image effects",
@@ -3566,7 +3509,7 @@
         "decision": "RECLASSIFY",
         "rationale": "광고 이미지 제작비용·시간 제약",
         "problem_source_section": "Goals; expensive slow photography and creative variants",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3620,7 +3563,7 @@
       },
       "sampling_group_id": "AXV2G_0b8891d8d2d4",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "FyterTech Onkata AWS Ads: scalable creative production beyond test phase",
@@ -3639,7 +3582,7 @@
         "decision": "RECLASSIFY",
         "rationale": "사진·디자인 제작비용·소재 부족",
         "problem_source_section": "Goals; photographers and designers time and cost",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3693,7 +3636,7 @@
       },
       "sampling_group_id": "AXV2G_8e0873fbe4f4",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Hisense EPA AWS Ads: first-month always-on use and seven business line adoption",
@@ -3712,7 +3655,7 @@
         "decision": "RECLASSIFY",
         "rationale": "현지화 소재 제작 시간·비용 병목",
         "problem_source_section": "Goals; global creative mismatch and slow refresh",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3779,7 +3722,7 @@
       },
       "sampling_group_id": "AXV2G_4658a36162bd",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Audi production weld splatter image detection in series production, not future automatic removal",
@@ -3798,7 +3741,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Quality improvement; manual underbody inspection and cable risk",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -3865,7 +3808,7 @@
       },
       "sampling_group_id": "AXV2G_9e7f615bc543",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "DHL Boston Dynamics Stretch first commercial operating deployment",
@@ -3884,8 +3827,13 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Unloading boxes; physically demanding work and labor supply",
-        "status": "RESEARCHER_APPROVAL_PENDING"
-      }
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "supplement_source": "https://bostondynamics.com/blog/idea-to-application-with-stretch/",
+        "supplement_reason": "Boston Dynamics engineering details machine-learning recognition and real-time control for Stretch robots commercially used by DHL; generic Stretch model details not DHL-specific ROI."
+      },
+      "additional_source_urls": [
+        "https://bostondynamics.com/blog/idea-to-application-with-stretch/"
+      ]
     },
     {
       "case_id": "AXV2N_0119",
@@ -3951,7 +3899,7 @@
       },
       "sampling_group_id": "AXV2G_be96b76b5d74",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Shell official AI operating parameter monitoring 24/7 for proactive plant maintenance",
@@ -3970,7 +3918,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Predictive Maintenance transcript; trips and mountains of data",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4037,7 +3985,7 @@
       },
       "sampling_group_id": "AXV2G_f870ad69b070",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "John Deere See & Spray autonomous vision individual nozzle spray actual field deployment on millions of acres; manufacturer herbicide report",
@@ -4056,7 +4004,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Proven Performance; targeted application versus full coverage",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4065,7 +4013,7 @@
       "parent_v1_case_id": "AX0081",
       "organization": "Starling",
       "industry": "Banking",
-      "problem": "Customers struggle with keyword search across bank help content and need answers to complex questions.",
+      "problem": "고객이 기존 은행 도움말의 키워드 검색만으로는 복잡한 질문에 필요한 정확한 답을 쉽게 찾기 어려워 고객센터로 재문의하는 일이 발생했다.",
       "task": "Answer customer help-centre questions",
       "context": "Customer-facing help centre, distinct from call summarization.",
       "implementation": "Gemini uses bank customer-facing content to answer questions directly.",
@@ -4081,7 +4029,7 @@
       },
       "uncertainty": "Call-summary 8000 hours and Scam Intelligence metrics excluded.",
       "additional_primary_sources": [],
-      "factor_label": "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION",
+      "factor_label": "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT",
       "strategy_label": "S1_KNOWLEDGE_RETRIEVAL_RAG",
       "factor_review": {
         "review_id": "B0060",
@@ -4099,7 +4047,7 @@
       },
       "author_factor_disagreed": false,
       "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -4123,7 +4071,7 @@
       },
       "sampling_group_id": "AXV2G_d67746d2a0c6",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google Starling live customer help centre Gemini knowledge answering distinct from Spending Intelligence",
@@ -4133,16 +4081,17 @@
       "outcome_5class": "MEASURED",
       "outcome_5class_is_audited": false,
       "factor_labels": [
-        "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION"
+        "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT"
       ],
       "strategy_labels": [
         "S1_KNOWLEDGE_RETRIEVAL_RAG"
       ],
       "v23_source_review": {
-        "decision": "CARRY_FROM_V22",
-        "rationale": "기존 v2.2 출처·업무단위 판단 유지",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Starling Google Cloud: Help Centre AI helps customers move beyond frustrating keyword searches; information fragmentation is not claimed.",
         "problem_source_section": "Helping customers; frustrating keyword searches",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "Helping customers take control of their money with Gemini"
       }
     },
     {
@@ -4196,7 +4145,7 @@
       },
       "sampling_group_id": "AXV2G_d67746d2a0c6",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google Starling Gemini Spending Intelligence tool-driven natural-language finance questions separately deployed",
@@ -4215,7 +4164,7 @@
         "decision": "RECLASSIFY",
         "rationale": "금융 지출 검색 시 수동 필터·차트 탐색",
         "problem_source_section": "Spending Intelligence; filters and graphs",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4224,7 +4173,7 @@
       "parent_v1_case_id": "AX0080",
       "organization": "Hong Leong Bank",
       "industry": "Banking",
-      "problem": "A static knowledge base causes slow, restricted responses and extra agent work.",
+      "problem": "기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다.",
       "task": "Handle banking customer questions and account inquiries",
       "context": "Marina 24/7 multilingual customer banking chatbot.",
       "implementation": "Gemini 2.5 Flash provides dynamic RAG, while specialized agents make secure backend API calls for account information.",
@@ -4258,7 +4207,7 @@
       },
       "author_factor_disagreed": true,
       "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED_WITH_ABSTENTIONS",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -4269,7 +4218,7 @@
       },
       "sampling_group_id": "AXV2G_55439c099be5",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "HLB Marina real-time customer chatbot, Gemini/agent back-end API and stated production-grade LLM",
@@ -4286,10 +4235,11 @@
         "S2_AGENT_CONVERSATIONAL_AI"
       ],
       "v23_source_review": {
-        "decision": "RECLASSIFY",
-        "rationale": "수동 지식베이스 갱신·색인과 정적 Q&A 제약",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Hong Leong Bank Google Cloud, Dynamic FAQs: developers manually index/update public-website FAQ knowledge; static answers slow and contextual response limits.",
         "problem_source_section": "The accuracy imperative; static knowledge and slow response",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "The accuracy imperative / Dynamic FAQs"
       }
     },
     {
@@ -4356,7 +4306,7 @@
       },
       "sampling_group_id": "AXV2G_55439c099be5",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "AI beyond the customer: Penny deployed to over 8000 employees",
@@ -4375,7 +4325,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "AI beyond the customer; HR personnel focus on human-touch areas",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4442,7 +4392,7 @@
       },
       "sampling_group_id": "AXV2G_1d26b354c8d7",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft Schneider Electric Copilot for Sales meeting notes and Salesforce action recap in ongoing salesperson use",
@@ -4461,7 +4411,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Lightning-fast email summaries; meeting note-taking and CRM burden",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4528,7 +4478,7 @@
       },
       "sampling_group_id": "AXV2G_c58b29c784e9",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Google Morrisons continuing actual Gemini customer-feedback trend summarization separately from shopper Product Finder",
@@ -4547,80 +4497,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "A firm foundation; understand customers' particular issues",
-        "status": "RESEARCHER_APPROVAL_PENDING"
-      }
-    },
-    {
-      "case_id": "AXV2N_0127",
-      "origin": "REPLACEMENT_PRIMARY_REVIEW",
-      "parent_v1_case_id": "AX0010",
-      "organization": "Sandvik / SigmaNEST",
-      "industry": "Manufacturing software sales",
-      "problem": "New sellers need to learn extensive specialist product material before becoming effective.",
-      "task": "Onboard new salespeople on technical product knowledge",
-      "context": "SigmaNEST sales onboarding, distinct from live support problem resolution.",
-      "implementation": "Manufacturing Copilot provides natural-language access to proprietary product documentation and learning material.",
-      "outcome": "Sales manager reports onboarding taking about half the previous time.",
-      "outcome_type": "USER_REPORTED_OPERATIONAL",
-      "source_url": "https://www.microsoft.com/en/customers/story/22965-sandvik-azure-open-ai-service",
-      "evidence": {
-        "problem_anchor": "Addressing complexity; skills gap and product complexity",
-        "context_anchor": "AI in sales and support; new salesperson onboarding",
-        "implementation_anchor": "Scaling AI; proprietary documents, help files and recordings",
-        "deployment_anchor": "Internally employees use tool in training; regional sales manager quote",
-        "outcome_anchor": "AI in sales and support; onboarding about half the time"
-      },
-      "uncertainty": "No controlled training evaluation; general productivity estimates not transferred.",
-      "additional_primary_sources": [],
-      "factor_label": "F03_EXPERT_JUDGMENT_DEPENDENCY",
-      "strategy_label": "S1_KNOWLEDGE_RETRIEVAL_RAG",
-      "factor_review": {
-        "review_id": "B0066",
-        "factor": "ABSTAIN",
-        "confidence": "MEDIUM",
-        "rationale": "Learning extensive specialist material does not itself establish dependence on scarce expert judgment.",
-        "session_id": "01a1639b-b713-72f3-82b2-56011e83b430"
-      },
-      "strategy_review": {
-        "review_id": "S0066",
-        "strategy": "S1",
-        "rationale": "Natural-language access retrieves proprietary product documentation and learning material, making knowledge retrieval primary over conversation.",
-        "confidence": "HIGH",
-        "session_id": "01a16399-f418-7f53-b301-d8a4cf0e7d52"
-      },
-      "author_factor_disagreed": true,
-      "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED_WITH_ABSTENTIONS",
-      "deployment_stage": "PRODUCTION",
-      "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
-      "human_ground_truth_approved": false,
-      "direct_mappings": [],
-      "mapping_review": {
-        "decision": "ABSTAIN",
-        "rationale": "Factor or strategy explicitly abstained; no pair is created."
-      },
-      "sampling_group_id": "AXV2G_54da4ae010b3",
-      "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
-      "source_qa": {
-        "status": "AI_SOURCE_QA_PASS",
-        "independent_source_anchor": "Sandvik Manufacturing Copilot: live salesperson onboarding uses documentation",
-        "review_date": "2026-10-22",
-        "human_review_status": "NOT_REVIEWED"
-      },
-      "outcome_5class": "MEASURED",
-      "outcome_5class_is_audited": false,
-      "factor_labels": [
-        "F03_EXPERT_JUDGMENT_DEPENDENCY"
-      ],
-      "strategy_labels": [
-        "S1_KNOWLEDGE_RETRIEVAL_RAG"
-      ],
-      "v23_source_review": {
-        "decision": "RECLASSIFY",
-        "rationale": "영업사원 온보딩에서 숙련도 격차·전문지식 의존",
-        "problem_source_section": "Addressing complexity; skills gap and product complexity",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4687,7 +4564,7 @@
       },
       "sampling_group_id": "AXV2G_5902bc0a00f9",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "BMW Group production camera/self-learning warning triangle or fixture placement check",
@@ -4706,7 +4583,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Opening paragraph; monotonous warning-triangle checks",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4773,7 +4650,7 @@
       },
       "sampling_group_id": "AXV2G_8f0109acf34b",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "IBM Automate SW Support watsonx Orchestrate deployed to 2800 engineers; initial 40min/day crosses 14 use cases, withheld",
@@ -4792,7 +4669,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Automate SW Support; repetitive case administration tasks",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4859,7 +4736,7 @@
       },
       "sampling_group_id": "AXV2G_126594a99643",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "OpenAI Oscar clinical-care dialogue documentation AI staff use, combined nearly-40% effects with lab workflows excluded",
@@ -4878,7 +4755,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Clinical documentation; over twenty minutes manually",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -4945,7 +4822,7 @@
       },
       "sampling_group_id": "AXV2G_126594a99643",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "OpenAI Oscar insurance claims assistant in support workflow with vendor-reported 50% faster escalation resolution, 48k future tickets estimated",
@@ -4964,7 +4841,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Building a claims assistant; detailed logs and contractual variables",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5031,7 +4908,7 @@
       },
       "sampling_group_id": "AXV2G_d6d961f8c190",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "OpenAI Stripe GPT-4 merchant-webpage summaries actually used by Stripe to aid customization and investigation",
@@ -5050,7 +4927,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Better understanding users' businesses; sparse mysterious websites",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5117,7 +4994,7 @@
       },
       "sampling_group_id": "AXV2G_4658a36162bd",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Audi production AI technical assembly-label visual checks, manufacturer reports approx 1min saved per car",
@@ -5136,7 +5013,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Quality improvement; right content language component and position",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5203,7 +5080,7 @@
       },
       "sampling_group_id": "AXV2G_5902bc0a00f9",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "BMW official article says object-detection image anonymization is applied in production privacy processing",
@@ -5222,7 +5099,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "AI innovation and data privacy; protecting relevant information",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5289,7 +5166,7 @@
       },
       "sampling_group_id": "AXV2G_126594a99643",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "OpenAI Enterprise AI 2025 report: Oscar member-facing benefits chatbots deployed, 58% instantaneous answers and 39% no-human processing reported",
@@ -5308,7 +5185,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Oscar Health Challenge; dispersed benefits information",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5375,7 +5252,7 @@
       },
       "sampling_group_id": "AXV2G_8d0260380dc5",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "OpenAI BBVA specialized Retail Banking Legal Assistant GPT regularly used in 40k annual internal bank-branch legal inquiries",
@@ -5394,7 +5271,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Empowering every department; legal inquiries and manual research",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5461,7 +5338,7 @@
       },
       "sampling_group_id": "AXV2G_2fd78f4ea5c1",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "OpenAI Moderna internal Contract Companion GPT summarized legal agreements in ongoing enterprise use; future pilot Dose ID not imported",
@@ -5480,7 +5357,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Improving compliance; readable contract summaries",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5547,7 +5424,7 @@
       },
       "sampling_group_id": "AXV2G_54da4ae010b3",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Sandvik Manufacturing Copilot: separate application engineer customer-support workflow, same platform and sampling group",
@@ -5566,7 +5443,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Addressing complexity, skills gap and difficulty accessing product knowledge",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5633,7 +5510,7 @@
       },
       "sampling_group_id": "AXV2G_7e5b4ca8a98b",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft Dow Copilot freight invoice negotiated rate mismatch detection and routing actually used; annual savings prospective",
@@ -5652,7 +5529,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Transforming logistics, rates and invoices must match negotiated terms",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5719,7 +5596,7 @@
       },
       "sampling_group_id": "AXV2G_525df0e65be0",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft Shift Technology insurer document OCR & extraction pipeline moved to production; lifetime 2.6b claims platform figures not credited to this workflow",
@@ -5738,7 +5615,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Consolidating weeks section, varied document formats/languages require labeling and model preparation",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5794,7 +5671,7 @@
       },
       "sampling_group_id": "AXV2G_d47725ab5c00",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft Relativity aiR for Review used at scale with 100m legal review decisions, but fatigue-consistency causal link abstained",
@@ -5813,7 +5690,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Transforming legal work at scale, time-intensive discovery review and fatigue-related inconsistency",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5880,7 +5757,7 @@
       },
       "sampling_group_id": "AXV2G_e650d8cc7400",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft Ontada oncology unstructured source extraction with Azure OpenAI Batch in production, 150m documents three weeks vendor-reported",
@@ -5899,7 +5776,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Ontada sets out section, unstructured oncology components are inaccessible at manual scale",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -5966,7 +5843,7 @@
       },
       "sampling_group_id": "AXV2G_8f0109acf34b",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "IBM Finance Jobotx journal entry finance team live use; >90% and $600k modelled savings not observed outcomes",
@@ -5985,7 +5862,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Overburdened with manual journal entries, repetitive collection and validation across systems",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6052,7 +5929,7 @@
       },
       "sampling_group_id": "AXV2G_64e2f62e9c91",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "IBM Claims Connection insurance business process actual orchestrated claims platform; 70% KPI shared across integrated AI/RPA workflow",
@@ -6071,7 +5948,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Navigating the claims flood, manual handling, inconsistent interpretation and fragmented claims workflow",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6138,7 +6015,7 @@
       },
       "sampling_group_id": "AXV2G_d8548b546e67",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Lunit Capio St Goran Hospital breast imaging real clinical screening integrated mid-2023 after research trials",
@@ -6157,7 +6034,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Pioneering AI Integration, radiologist shortage and double-reader workload",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6166,7 +6043,7 @@
       "parent_v1_case_id": "AX0048",
       "organization": "Walmart",
       "industry": "Retail / E-commerce",
-      "problem": "Customers must piece together product information and reviews to choose suitable items.",
+      "problem": "고객이 수많은 상품 정보·리뷰·비교 결과를 직접 종합해야 해 특정 용도에 적합한 상품을 맥락에 맞춰 선택하기 어렵다.",
       "task": "Answer shopping questions and recommend products",
       "context": "Walmart app Ask Sparky button launched across categories in June 2025",
       "implementation": "Sparky synthesizes reviews, compares products and responds to occasion-based shopping requests.",
@@ -6182,7 +6059,7 @@
       },
       "uncertainty": "Reordering, booking and multimodal features are prospective, not part of the included implementation.",
       "additional_primary_sources": [],
-      "factor_label": "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION",
+      "factor_label": "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT",
       "strategy_label": "S2_AGENT_CONVERSATIONAL_AI",
       "factor_review": {
         "review_id": "B0092",
@@ -6200,7 +6077,7 @@
       },
       "author_factor_disagreed": true,
       "author_strategy_disagreed": false,
-      "annotation_status": "AI_REVIEWED",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -6224,7 +6101,7 @@
       },
       "sampling_group_id": "AXV2G_f8579b1e0b0f",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Walmart June 2025 press launch; Ask Sparky shopping comparison currently in app",
@@ -6234,16 +6111,17 @@
       "outcome_5class": "UNKNOWN",
       "outcome_5class_is_audited": false,
       "factor_labels": [
-        "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION"
+        "F11_CONTEXTUAL_ACCESS_INTERACTION_LIMIT"
       ],
       "strategy_labels": [
         "S2_AGENT_CONVERSATIONAL_AI"
       ],
       "v23_source_review": {
-        "decision": "CARRY_FROM_V22",
-        "rationale": "기존 v2.2 출처·업무단위 판단 유지",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Walmart corporate release 2025-06-06: Sparky synthesizes reviews, compares products, uses occasions and contextual guidance, not evidence of scattered enterprise data stores.",
         "problem_source_section": "June 6 announcement, customers need product questions answered and options compared before purchase",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "Walmart: The Future of Shopping Is Agentic / Key Insights"
       }
     },
     {
@@ -6310,7 +6188,7 @@
       },
       "sampling_group_id": "AXV2G_d87e6ed6315f",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft Air India live Azure OpenAI FAQ support approx 40k questions/day; refund-execution AI future trial not current implementation",
@@ -6329,7 +6207,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Read the story, millions of queries overwhelmed support and increased delays/costs",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6396,7 +6274,7 @@
       },
       "sampling_group_id": "AXV2G_16a48faceb90",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft CarMax live customer car review summaries on 5000 pages, 11 manual years counterfactual only",
@@ -6415,7 +6293,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Creating more customer-relevant content, thousands of reviews and impractical manual page coverage",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6425,7 +6303,7 @@
       "organization": "Toyota Industries",
       "industry": "Automotive Manufacturing",
       "problem": "Fragmented paint-process data hide causes of bumper defects and delay countermeasures.",
-      "task": "Investigate paint-quality defects",
+      "task": "Investigate paint-quality defect drivers and support root-cause decisions",
       "context": "Toyota Industries Nagakusa Plant bumper production",
       "implementation": "Sight Machine on Azure contextualizes factory data; AI/ML analyzes nearly 400 variables to narrow defect-correlated signals for engineers using shared dashboards.",
       "outcome": "Deployed analysis foundation and faster analysis reported; 25% defect reduction explicitly belongs to a pilot and is withheld as a production effect.",
@@ -6441,7 +6319,7 @@
       "uncertainty": "Correlation, not causal defect attribution; winter emissions reduction is expected.",
       "additional_primary_sources": [],
       "factor_label": "F07_DATA_VISIBILITY_INTEGRATION_GAP",
-      "strategy_label": "S4_PREDICTION_DETECTION",
+      "strategy_label": "S5_OPTIMIZATION_DECISION_SUPPORT",
       "factor_review": {
         "review_id": "B0095",
         "factor": "F07",
@@ -6458,7 +6336,7 @@
       },
       "author_factor_disagreed": false,
       "author_strategy_disagreed": true,
-      "annotation_status": "AI_REVIEWED",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION",
       "source_review_status": "AUTHOR_PRIMARY_PASSAGE_REVIEWED",
       "human_ground_truth_approved": false,
@@ -6482,7 +6360,7 @@
       },
       "sampling_group_id": "AXV2G_ac04cfafd7cf",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Toyota Industries paint line operational dashboards/AI variable analysis; 25 percent pilot defect KPI withheld",
@@ -6495,13 +6373,14 @@
         "F07_DATA_VISIBILITY_INTEGRATION_GAP"
       ],
       "strategy_labels": [
-        "S4_PREDICTION_DETECTION"
+        "S5_OPTIMIZATION_DECISION_SUPPORT"
       ],
       "v23_source_review": {
-        "decision": "CARRY_FROM_V22",
-        "rationale": "기존 v2.2 출처·업무단위 판단 유지",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Microsoft Toyota Industries 2026-04-15: AI/ML narrows nearly 400 correlated variables and accelerates engineers' root-cause decisions; not deployed per-item defect detection.",
         "problem_source_section": "Read the story, fragmented sensor/process data obscure bumper-paint defect causes",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "Accelerating innovation within a strong data culture"
       }
     },
     {
@@ -6568,7 +6447,7 @@
       },
       "sampling_group_id": "AXV2G_35d49063750d",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft HEINEKEN / Amstel website FAQ chat agent live and ~300h/y; other Power Apps logistics and 3.1m global hours excluded",
@@ -6587,7 +6466,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "AI-driven agents section, frequently asked website questions previously require contact-center attention",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6654,7 +6533,7 @@
       },
       "sampling_group_id": "AXV2G_1d26b354c8d7",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Microsoft Schneider Electric active Copilot CRM contact extraction from emails, distinct from meeting recap workflow",
@@ -6673,7 +6552,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Energizing efficiency, repetitive CRM entry and switching among screens",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6740,7 +6619,7 @@
       },
       "sampling_group_id": "AXV2G_1a5b7d2168ae",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "IBM Inspire HR leave-booking assistant live calls underlying HR API; general HR partnership KPI withheld",
@@ -6759,7 +6638,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Next-gen HR, manual time-consuming routine leave handling",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6813,7 +6692,7 @@
       },
       "sampling_group_id": "AXV2G_cfe98969f221",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "CMES Hyundai Movex Jan 2026; ten automated depalletizing machines operating in real cold-storage use",
@@ -6833,7 +6712,7 @@
         "decision": "RECLASSIFY",
         "rationale": "냉동창고 반복 하역과 안전 위험",
         "problem_source_section": "냉동 물류센터 자동화가 시급했던 이유, repetitive low-temperature work, safety and mixed box constraints",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6900,7 +6779,7 @@
       },
       "sampling_group_id": "AXV2G_68a19ccb5f85",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "CMES SeAH Besteel Aug 2025; robot actually introduced to named steel production site",
@@ -6919,7 +6798,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "기존 타각 마킹 공정, manual pin assembly near 800-degree steel and constrained space",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -6986,7 +6865,7 @@
       },
       "sampling_group_id": "AXV2G_9fd590a119c0",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "AI_SOURCE_QA_PASS",
         "independent_source_anchor": "Muhayu Saramin official release; Prism available in applicant evaluation service",
@@ -7005,7 +6884,7 @@
         "decision": "CARRY_FROM_V22",
         "rationale": "기존 v2.2 출처·업무단위 판단 유지",
         "problem_source_section": "Main article, frequent hiring and demand for fast explainable document assessment",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -7054,7 +6933,7 @@
       },
       "sampling_group_id": "AXV22G_WAYFAIR_001",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "PRIMARY_SOURCE_SCREENED",
         "independent_source_anchor": "Google Cloud Wayfair customer case — automatic product categorization in deployed catalog workflow",
@@ -7073,7 +6952,7 @@
         "decision": "RECLASSIFY",
         "rationale": "상품 속성 수작업 태깅 → 콘텐츠 자동분류",
         "problem_source_section": "Taking the friction out of home inspiration — instead of manually tagging attributes like color and style for new products",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
       }
     },
     {
@@ -7117,7 +6996,7 @@
       "strategy_review": null,
       "author_factor_disagreed": null,
       "author_strategy_disagreed": null,
-      "annotation_status": "AWAITING_INDEPENDENT_BLIND_FACTOR_AND_STRATEGY_REVIEW",
+      "annotation_status": "V23_FINAL_SOURCE_REVIEW_FROZEN",
       "deployment_stage": "PRODUCTION_SOURCE_REPORTED",
       "source_review_status": "PRIMARY_SOURCE_CHECKED_SECOND_REVIEW_PENDING",
       "human_ground_truth_approved": false,
@@ -7128,7 +7007,7 @@
       },
       "sampling_group_id": "AXV22G_JEJUBANK_001",
       "dataset_release": "2.3.0",
-      "corpus_status": "V23_PROVISIONAL_NOT_APPROVED",
+      "corpus_status": "FROZEN_SOURCE_CORPUS_NOT_GT",
       "source_qa": {
         "status": "PRIMARY_SOURCE_SCREENED",
         "independent_source_anchor": "Plateer Jeju Bank customer case — in operation / network-separated on-prem internal AI, internal Q&A agents",
@@ -7144,11 +7023,13 @@
         "S1_KNOWLEDGE_RETRIEVAL_RAG"
       ],
       "v23_source_review": {
-        "decision": "RECLASSIFY",
-        "rationale": "망분리 금융규제에 맞춘 문서 RAG 업무 Q&A",
+        "decision": "FINAL_SOURCE_ADJUDICATED",
+        "rationale": "Plateer Jeju Bank: strict network isolation and security compliance rules prevented direct external GenAI adoption. F08 is a compliance constraint/risk to manage, not a documented past rule violation.",
         "problem_source_section": "The Challenge — strict banking security and network separation; external generative AI cannot simply be adopted as is",
-        "status": "RESEARCHER_APPROVAL_PENDING"
+        "status": "FROZEN_SOURCE_QA_NOT_GROUND_TRUTH",
+        "source_section": "The Challenge / Technology applied"
       }
     }
-  ]
+  ],
+  "source_review_method": "AI public official source full-context verification; user-approved source-based corpus freeze; NOT independent human blind Factor/Strategy validation"
 }
