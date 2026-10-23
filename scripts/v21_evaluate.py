@@ -60,16 +60,29 @@ def evaluate(labels_path: Path, rank_paths: list[Path], k: int = 10) -> dict:
     for q in qmap:
         retrieved=set(rankings[q])
         relevant=set().union(*(gold[q][p] for p in qmap[q]))
-        covered=sum(bool(retrieved&gold[q][p]) for p in qmap[q])
+        # Unanswerable reference perspectives have no relevant corpus case.
+        # A retriever cannot recover an item that does not exist; never report
+        # such a perspective as a model's retrieval failure or as a success.
+        answerable=[p for p in qmap[q] if gold[q][p]]
+        unanswerable=[p for p in qmap[q] if not gold[q][p]]
+        covered=sum(bool(retrieved&gold[q][p]) for p in answerable)
         recall=(len(retrieved&relevant)/len(relevant)) if relevant else None
-        cov=covered/len(qmap[q])
+        cov=covered/len(answerable) if answerable else None
         per_query.append({"query_id":q,"recall_at_k":recall,
                           "perspective_coverage_at_k":cov,
-                          "gold_case_count":len(relevant)})
+                          "gold_case_count":len(relevant),
+                          "answerable_perspective_count":len(answerable),
+                          "unanswerable_perspective_count":len(unanswerable),
+                          "unanswerable_perspective_ids":unanswerable,
+                          "coverage_denominator":"nonempty_adjudicated_reference_perspectives"})
     observed=[x["recall_at_k"] for x in per_query if x["recall_at_k"] is not None]
+    obs_coverage=[x["perspective_coverage_at_k"] for x in per_query
+                  if x["perspective_coverage_at_k"] is not None]
     return {"dataset":"v2.1","k":k,"n_queries":len(per_query),
             "mean_recall":sum(observed)/len(observed) if observed else None,
-            "mean_perspective_coverage":sum(x["perspective_coverage_at_k"] for x in per_query)/len(per_query),
+            "mean_perspective_coverage":sum(obs_coverage)/len(obs_coverage) if obs_coverage else None,
+            "n_unanswerable_perspectives":sum(x["unanswerable_perspective_count"] for x in per_query),
+            "unanswerable_policy":"Only after independently ADJUDICATED GT: exclude empty reference views from coverage denominator; report their IDs and counts, do not infer successful abstention.",
             "metrics_scope":"DEV_ONLY_not_heldout","per_query":per_query}
 
 
