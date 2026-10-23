@@ -1,0 +1,126 @@
+{
+  "stage": "2",
+  "dataset": "v2.3.0 frozen",
+  "evaluation_source": "AI-only Silver Dev proxy, NOT human Gold",
+  "stage2_1": "problem/task/context equal weights, same perspectives as Stage1",
+  "stage2_2": "query-conditioned anchor softmax trained on other 9 queries; LOQO",
+  "stage2_3": "dense and sparse candidate union, 2k fair leg budget, without hindsight",
+  "stage2_4": "PCA64+interaction MLP on other 9 queries; LOQO; compare same hybrid candidate union RRF",
+  "train_on_heldout_query": false,
+  "reuse_stage1_generated_perspectives": true,
+  "frozen_source_dataset_changed": false,
+  "gate_folds": {
+    "V21D001": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 143,
+      "heldout_question": "V21D001"
+    },
+    "V21D002": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 167,
+      "heldout_question": "V21D002"
+    },
+    "V21D003": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 160,
+      "heldout_question": "V21D003"
+    },
+    "V21D004": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 146,
+      "heldout_question": "V21D004"
+    },
+    "V21D005": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 176,
+      "heldout_question": "V21D005"
+    },
+    "V21D006": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 175,
+      "heldout_question": "V21D006"
+    },
+    "V21D007": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 181,
+      "heldout_question": "V21D007"
+    },
+    "V21D008": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 181,
+      "heldout_question": "V21D008"
+    },
+    "V21D009": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 174,
+      "heldout_question": "V21D009"
+    },
+    "V21D010": {
+      "train_questions": 9,
+      "train_examples": 2268,
+      "positive_train": 180,
+      "heldout_question": "V21D010"
+    }
+  },
+  "mlp_folds": {
+    "V21D001": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 143
+    },
+    "V21D002": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 167
+    },
+    "V21D003": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 160
+    },
+    "V21D004": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 146
+    },
+    "V21D005": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 176
+    },
+    "V21D006": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 175
+    },
+    "V21D007": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 181
+    },
+    "V21D008": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 181
+    },
+    "V21D009": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 174
+    },
+    "V21D010": {
+      "train_queries": 9,
+      "train_rows": 2268,
+      "train_positive": 180
+    }
+  }
+}
