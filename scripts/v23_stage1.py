@@ -97,12 +97,19 @@ for q in QUERIES:
    if raw_id in I:valid.append(raw_id)
    elif raw_id.endswith("_01") and raw_id[:-3] in I:
     valid.append(raw_id[:-3]);coerced.append({"returned":raw_id,"normalized_to":raw_id[:-3]})
+   elif len([z for z in IDS if z.startswith(raw_id+"_")])==1:
+    match=next(z for z in IDS if z.startswith(raw_id+"_"))
+    valid.append(match);coerced.append({"returned":raw_id,"normalized_to":match})
    else:unrecognized.append(raw_id)
   unique=list(dict.fromkeys(valid))
-  if len(unique)<5:raise ValueError(f"GPT-only returned too few valid case IDs: {len(unique)}, hallucinations: {unrecognized}")
+  # If the baseline returns too few VALID cases, its effective retrieval depth is
+  # smaller; count missing slots as retrieval failures, never fabricate IDs.
+  # Only a completely invalid response is blocked.
+  if not unique:raise ValueError(f"GPT-only returned ZERO valid case IDs; raw: {x.case_ids}")
   gp.append(unique)
   gpt_resp.append({"pass_id":repeat,"response_id":rid,"model":model,"n":len(unique),
-    "unrecognized_case_ids":unrecognized,"normalized_unambiguous_ids":coerced})
+    "unrecognized_case_ids":unrecognized,"normalized_unambiguous_ids":coerced,
+    "missing_slots_at_k20":max(0,20-len(unique))})
  qvec=emb([query])[0];qsparse=sort_scores(bm.get_scores(tokenize(query)));qdense=sort_scores(D@qvec)
  allp=[p["title"]+"; "+p["description"] for p in perspectives]
  pv=emb(allp)

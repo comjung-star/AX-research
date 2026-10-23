@@ -23,7 +23,7 @@ for qid in qids:
  p=s1[qid]["perspectives"]
  assert 2<=len(p)<=5 and len(s1[qid]["gpt_only_responses"])==3
  for method,rank in s1[qid]["rankings"].items():
-  assert len(rank)>=5 and set(rank)<=ids and len(rank)==len(set(rank)),(qid,method)
+  assert len(rank)>=(1 if method.startswith("gpt_only") else 20) and set(rank)<=ids and len(rank)==len(set(rank)),(qid,method)
  for method,rank in s2[qid].items():
   assert len(rank)>=20 and set(rank)<=ids and len(rank)==len(set(rank)),(qid,method)
  rec=s4[qid]
