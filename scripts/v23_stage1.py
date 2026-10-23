@@ -3,6 +3,10 @@
 All relevance metrics are DEV AI-generated references (not human Gold).
 """
 import csv, json, os, hashlib, platform, time, sys
+from enum import Enum
+from pydantic import BaseModel
+from openai import OpenAI
+from ax_research.llm.prompts import GPT_ONLY_SYSTEM_PROMPT, gpt_only_user_prompt
 from collections import defaultdict, OrderedDict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -65,14 +69,34 @@ views={v:embed.encode([getattr(c,v) for c in cases],
 qt=[q["business_problem_query"] for q in QUERIES]
 qe=embed.encode(qt,normalize_embeddings=True,convert_to_numpy=True,show_progress_bar=False).astype(np.float32)
 llm=RQ1OpenAIClient(model=MODEL,temperature=None,perspective_min=2,perspective_max=5)
+# Dynamic enum constrains GPT-only to exactly the frozen v2.3 case IDs.
+# No score/solution/GT added; this changes output validity only, not the rank task.
+AllowedCase=Enum("AllowedCase",{f"CASE_{i:03d}":c.case_id for i,c in enumerate(cases)},type=str)
+class StrictRanked(BaseModel):
+ case_id:AllowedCase
+ reason:str
+class StrictAnswer(BaseModel):
+ ranked_cases:list[StrictRanked]
+strict_client=OpenAI(timeout=240,max_retries=1)
+def strictly_rank(query):
+ response=strict_client.responses.parse(model=MODEL,text_format=StrictAnswer,
+  input=[
+   {"role":"system","content":GPT_ONLY_SYSTEM_PROMPT.format(top_n=20).replace("100개의 AX 사례","84개의 AX 사례")+"\nCase ID는 반드시 명시된 enum 값만 선택하세요."},
+   {"role":"user","content":gpt_only_user_prompt(query,cases)}
+  ],max_output_tokens=8000)
+ answer=response.output_parsed
+ assert answer is not None and len(answer.ranked_cases)==20
+ ids=[row.case_id.value for row in answer.ranked_cases]
+ assert len(set(ids))==20 and set(ids)<=set(cindex)
+ return [dict(case_id=x.case_id.value,reason=x.reason) for x in answer.ranked_cases]
 def call_one(q,run):
  for attempt in range(3):
   try:
    perspectives=llm.generate_perspectives(q["business_problem_query"])
    assert 2<=len(perspectives)<=5
    assert len(set(p.id for p in perspectives))==len(perspectives)
-   gpt=llm.gpt_only_rank(q["business_problem_query"],cases,top_n=20)
-   assert len({x.case_id for x in gpt.ranked_cases})==20
+   gpt=strictly_rank(q["business_problem_query"])
+   assert len({x["case_id"] for x in gpt})==20
    return (q["query_id"],run,perspectives,gpt)
   except Exception as e:
    if attempt==2:raise
@@ -119,7 +143,7 @@ for i,q in enumerate(QUERIES):
  record("single_bm25",qid,0,single_bm)
  record("single_dense_bge_m3",qid,0,single_dense)
  for rep in (1,2,3):
-  ranked_gpt=[x.case_id for x in outputs[(qid,rep)][3].ranked_cases]
+  ranked_gpt=[x["case_id"] for x in outputs[(qid,rep)][3]]
   record("gpt_only",qid,rep,ranked_gpt)
   dranks=OrderedDict();sranks=OrderedDict()
   for idx,key in enumerate(br_keys):
