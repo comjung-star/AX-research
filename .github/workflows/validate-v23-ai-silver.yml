@@ -1,0 +1,19 @@
+name: Validate AX v2.3 AI Silver Dev Qrels
+on:
+  push:
+    branches: [experiment/v23-ground-truth-20261023]
+    paths:
+      - '.github/workflows/validate-v23-ai-silver.yml'
+      - 'scripts/v23_gt_validate.py'
+      - 'data/v2_3/ground_truth/**'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate blind consensus, 2520 rows, all 3 scores, flags, zero human Gold claims
+        run: python scripts/v23_gt_validate.py
