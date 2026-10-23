@@ -1,0 +1,64 @@
+name: AX v2.1 Blind GT AI Pilot
+
+on:
+  push:
+    branches:
+      - audit/main-dataset-v1-case-unit-review
+    paths:
+      - 'scripts/v21_provisional_ai_ground_truth.py'
+      - '.github/workflows/v21-gt-pilot.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  blind-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install structured responses dependencies
+        run: python -m pip install 'openai>=3.26.0' 'pydantic>=2.7'
+      - name: Blind pilot (1 query, 13 cases x 3 views)
+        run: |
+          python scripts/v21_provisional_ai_ground_truth.py \
+            --model gpt-6-luna \
+            --max-queries 1 \
+            --max-cases 13 \
+            --chunk-size 13 \
+            --max-requests 1 \
+            --write-raw \
+            --output-dir data/v2_1/qa/ai_pilot_2026-10-23
+      - name: Audit pilot output
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          p=Path('data/v2_1/qa/ai_pilot_2026-10-23')
+          rows=list(csv.DictReader((p/'provisional_ai_relevance.csv').open(encoding='utf-8')))
+          m=json.loads((p/'ai_judgment_manifest.json').read_text())
+          assert len(rows)==39 and m['human_approved_labels']==0
+          assert all(row['status']=='AI_DRAFT_NOT_HUMAN_GT' for row in rows)
+          print('PILOT AI draft judgment count:',len(rows))
+          print('score histogram:',m['score_histogram'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ax-v21-blind-relevance-pilot
+          path: data/v2_1/qa/ai_pilot_2026-10-23
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Persist verified pilot and raw audit
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/v2_1/qa/ai_pilot_2026-10-23
+          git commit -m "gt(v2.1): save auditable 39 AI pilot draft labels (NOT human GT)"
+          git push
