@@ -4,6 +4,7 @@ on:
     branches: [experiment/v23-stage1-to-stage4-20261023]
     paths:
       - 'experiments/v23_stages/stage1/RESULT.md'
+      - '.github/workflows/v23-stage2-4.yml'
 permissions:
   contents: write
 jobs:
@@ -82,3 +83,10 @@ jobs:
           git push
       - name: Verify all four actual stage outputs against v2.3 frozen corpus
         run: python scripts/v23_verify_stages.py
+      - name: Persist final four-stage verification report
+        if: success()
+        run: |
+          git add experiments/v23_stages/ALL_STAGES_VERIFICATION.md
+          git commit -m 'results(v2.3): four-stage reproducible Dev experiment verification'
+          git pull --rebase
+          git push
