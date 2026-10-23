@@ -1,0 +1,700 @@
+{
+  "V21D001": {
+    "query": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+    "preselected_case_ranking": [
+      "AXV2H_0001_01",
+      "AXV2N_0121",
+      "AXV2N_0126",
+      "AXV2P2_0060_01",
+      "AXV2H_0075_01",
+      "AXV2N_0133",
+      "AXV2N_0111",
+      "AXV2H_0081_01",
+      "AXV2C_0016_01",
+      "AXV2N_0108"
+    ],
+    "reference_strategy_proxy": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S7_GENERATIVE_CONTENT_CREATION"
+    ],
+    "retrieved_case_vote": [
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "observational_wald_fusion": [
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "llm_source_grounded_response_id": "resp_050b527198a195c9006adb5b06f7f887d08ba755189562d7c0",
+    "gpt_only_baseline_response_id": "resp_02ee0ee76983596b006adb5b0cb8d487d0b12d4414fb98e7ca",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S2_AGENT_CONVERSATIONAL_AI",
+        "evidence_case_ids": [
+          "AXV2H_0001_01",
+          "AXV2P2_0060_01",
+          "AXV2N_0108"
+        ],
+        "rationale": "반복적이고 많은 고객 문의에 대화형으로 응답하는 전략입니다. 전자청구 서비스의 대량·야간 문의와 항공사의 대규모 고객 문의 대응 사례가 있어, 상담 인력이 반복 질문에 소모되는 상황과 직접 관련됩니다.",
+        "source_urls": [
+          "https://aws.amazon.com/solutions/case-studies/i-tom-solutions-case-study/",
+          "https://www.microsoft.com/en/customers/story/26047-air-india-azure-openai-in-foundry-models",
+          "https://corporate.homedepot.com/news/partnerships/home-depot-and-google-cloud-launch-agentic-ai-tools-help-customers-and-associates"
+        ]
+      },
+      {
+        "strategy_id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+        "evidence_case_ids": [
+          "AXV2N_0121",
+          "AXV2N_0133"
+        ],
+        "rationale": "조직의 지식이나 기록을 근거로 질문에 답하는 전략입니다. 기존 도움말에서 복잡한 질문의 답을 찾기 어려웠던 은행 사례와 복잡한 청구 처리 기록을 조사한 사례가 있어, 답변의 일관성을 높이려는 필요와 관련됩니다. 다만 제공된 사례만으로 답변 품질 개선의 정도를 단정할 수는 없습니다.",
+        "source_urls": [
+          "https://cloud.google.com/customers/starling",
+          "https://openai.com/index/oscar/"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ]
+  },
+  "V21D002": {
+    "query": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+    "preselected_case_ranking": [
+      "AXV2N_0111",
+      "AXV2N_0126",
+      "AXV2C_0006_01",
+      "AXV2H_0002_01",
+      "AXV2C_0068_03",
+      "AXV2H_0003_01",
+      "AXV2N_0133",
+      "AXV2N_0121",
+      "AXV2H_0090_01",
+      "AXV2C_0068_01"
+    ],
+    "reference_strategy_proxy": [
+      "S3_DOCUMENT_INTELLIGENCE"
+    ],
+    "retrieved_case_vote": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "observational_wald_fusion": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "llm_source_grounded_response_id": "resp_021984a1e0afabba006adb5b0fb23c87d0af5aa036dd078608",
+    "gpt_only_baseline_response_id": "resp_0a2a41ef820515e6006adb5b1546c087d088d0834bafd806cf",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+        "evidence_case_ids": [
+          "AXV2H_0002_01",
+          "AXV2N_0111"
+        ],
+        "rationale": "가장 직접적인 근거인 AXV2H_0002_01은 장문 고객 이메일의 요약을 다루고, AXV2N_0111은 회의 내용을 요약해 후속 조치를 준비하는 사례입니다. 따라서 이메일 스레드에서 핵심 내용과 후속 조치를 정리하는 업무에 관련성이 높습니다. 다만 제공된 사례 근거는 이메일 첨부 문서까지 포함하는 처리에는 제한적이므로, 그 부분의 적합성에는 불확실성이 있습니다.",
+        "source_urls": [
+          "https://aws.amazon.com/solutions/case-studies/epilot-genai-case-study/",
+          "https://openai.com/index/morgan-stanley/"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S7_GENERATIVE_CONTENT_CREATION",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ]
+  },
+  "V21D003": {
+    "query": "업무에 필요한 규정과 매뉴얼, 과거 사례가 여러 시스템과 문서 저장소에 흩어져 있어 직원들이 필요한 정보를 찾는 데 시간이 오래 걸리고 이미 있는 자료를 다시 만드는 경우가 많다.",
+    "preselected_case_ranking": [
+      "AXV2H_0090_01",
+      "AXV2H_0003_01",
+      "AXV22_0093_01",
+      "AXV2N_0126",
+      "AXV2C_0068_03",
+      "AXV2N_0111",
+      "AXV2C_0006_01",
+      "AXV2P2_0013_01",
+      "AXV2C_0093_01",
+      "AXV2P2_0010_01"
+    ],
+    "reference_strategy_proxy": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S4_PREDICTION_DETECTION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT"
+    ],
+    "retrieved_case_vote": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S4_PREDICTION_DETECTION"
+    ],
+    "observational_wald_fusion": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S4_PREDICTION_DETECTION"
+    ],
+    "llm_source_grounded_response_id": "resp_0a30ee3431762935006adb5b18175087d0889afdcc51529e04",
+    "gpt_only_baseline_response_id": "resp_0cd05aa07e4bbaf4006adb5b1d576c87d09a6446f75c8854cf",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+        "evidence_case_ids": [
+          "AXV2N_0126",
+          "AXV2P2_0013_01"
+        ],
+        "rationale": "저장된 문서나 비정형 정보의 내용을 정리해 활용 가능하게 만드는 접근은 흩어진 자료를 찾고 재사용하는 문제에 보조적으로 관련될 수 있습니다. 다만 인용 사례는 각각 고객 피드백 요약과 법률 문서 검토로, 규정·매뉴얼·과거 사례 저장소를 정리하는 업무와의 직접적인 유사성은 제한적입니다.",
+        "source_urls": [
+          "https://cloud.google.com/customers/morrisons",
+          "https://www.microsoft.com/en/customers/story/25991-relativity-azure-openai-in-foundry-models"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [
+      {
+        "strategy": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+        "reason": "NO_VALID_SUPPORTING_SOURCE_CASE"
+      }
+    ],
+    "gpt_only_zero_shot": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE"
+    ]
+  },
+  "V21D004": {
+    "query": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "preselected_case_ranking": [
+      "AXV2H_0003_01",
+      "AXV2H_0008_01",
+      "AXV2C_0068_03",
+      "AXV2N_0111",
+      "AXV2C_0080_02",
+      "AXV2N_0133",
+      "AXV2P2_0012_01",
+      "AXV2P2_0013_01",
+      "AXV2C_0068_01",
+      "AXV2N_0119"
+    ],
+    "reference_strategy_proxy": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S4_PREDICTION_DETECTION",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ],
+    "retrieved_case_vote": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S4_PREDICTION_DETECTION"
+    ],
+    "observational_wald_fusion": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S4_PREDICTION_DETECTION"
+    ],
+    "llm_source_grounded_response_id": "resp_0201dabc5b0ff3cd006adb5b1f8e0887d08e14829aa71f530c",
+    "gpt_only_baseline_response_id": "resp_09bf8b4740e0140d006adb5b24ddcc87d0bd6b03a3d525781b",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+        "evidence_case_ids": [
+          "AXV2H_0003_01",
+          "AXV2H_0008_01",
+          "AXV2C_0080_02"
+        ],
+        "rationale": "가장 직접적으로 부합하는 전략입니다. 신원조회 보고서 검증, 다양한 세무 문서의 정보 추출, 제재 심사를 위한 문서 내 세부정보 확인 사례가 문서에서 필요한 정보를 추출·정리하거나 검토하는 업무를 다룹니다. 여러 형식의 문서에서 필수 항목을 확인하는 문제와 유사하지만, 사례가 동일한 심사 업무를 다루지는 않으므로 적용 효과는 불확실합니다.",
+        "source_urls": [
+          "https://aws.amazon.com/solutions/case-studies/genpact-case-study-generative-ai/",
+          "https://www.microsoft.com/en/customers/story/25721-ey-global-services-limited-azure-document-intelligence-in-foundry-tools",
+          "https://cloud.google.com/customers/hongleongbank"
+        ]
+      },
+      {
+        "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+        "evidence_case_ids": [
+          "AXV2C_0068_03"
+        ],
+        "rationale": "고객 온보딩 과정에서 문서와 위험을 검토하는 사례가 있어, 문서 검토를 포함한 반복 업무 흐름과의 관련성이 있습니다. 다만 제공된 사례는 여러 단계의 심사·검증 전체를 자동화했다는 근거까지 제시하지 않으므로, 문서 정보 추출보다 보조적인 후보로 보는 것이 타당합니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/27322-bny-microsoft-365-copilot"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S4_PREDICTION_DETECTION",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ]
+  },
+  "V21D005": {
+    "query": "여러 국가와 조직의 시스템에 데이터가 따로 쌓여 전체 현황을 한눈에 보기 어렵고 부서마다 다른 기준으로 분석해 의사결정이 늦어지고 있다.",
+    "preselected_case_ranking": [
+      "AXV2H_0090_01",
+      "AXV2C_0006_01",
+      "AXV2H_0003_01",
+      "AXV2N_0111",
+      "AXV2N_0137",
+      "AXV2N_0134",
+      "AXV2H_0008_01",
+      "AXV22_0093_01",
+      "AXV2N_0126",
+      "AXV2N_0133"
+    ],
+    "reference_strategy_proxy": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S4_PREDICTION_DETECTION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ],
+    "retrieved_case_vote": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S2_AGENT_CONVERSATIONAL_AI"
+    ],
+    "observational_wald_fusion": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S2_AGENT_CONVERSATIONAL_AI"
+    ],
+    "llm_source_grounded_response_id": "resp_0ac55fafa38427e6006adb5b2702a487d0b5dd720daf0388d7",
+    "gpt_only_baseline_response_id": "resp_0c2ef8e64d599619006adb5b2d9e0487d08e8286f52aa26a7e",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+        "evidence_case_ids": [
+          "AXV2H_0008_01",
+          "AXV2N_0126"
+        ],
+        "rationale": "분산된 원천의 문서·텍스트에서 정보를 추출해 활용 가능한 형태로 정리하는 업무와 관련성이 있습니다. 다만 사례는 문서 추출·피드백 요약을 다루며, 여러 시스템의 데이터를 통합하거나 부서별 분석 기준을 표준화한 근거는 아니므로 이 문제에 대한 적용 가능성은 제한적으로 봐야 합니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/25721-ey-global-services-limited-azure-document-intelligence-in-foundry-tools",
+          "https://cloud.google.com/customers/morrisons"
+        ]
+      },
+      {
+        "strategy_id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+        "evidence_case_ids": [
+          "AXV2H_0090_01",
+          "AXV22_0093_01"
+        ],
+        "rationale": "정보가 분산된 환경에서 조직 지식을 활용해 업무 질의에 답한 사례가 있어, 흩어진 정보에 접근하기 어렵다는 문제와 관련됩니다. 그러나 이 사례들이 통합 현황 분석이나 의사결정 지연을 해결했다고 볼 근거는 없으므로, 해당 목적에 대한 적합성에는 불확실성이 있습니다.",
+        "source_urls": [
+          "https://www.ibm.com/case-studies/ibm-askhr",
+          "https://labs.plateer.com/en/customers/case/jeju-bank-genai-platform"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S4_PREDICTION_DETECTION"
+    ]
+  },
+  "V21D006": {
+    "query": "상품 수가 빠르게 늘면서 신규 상품의 속성 분류와 태깅을 사람이 처리해 온보딩이 느리고, 고객 검색어가 상품 데이터와 잘 연결되지 않아 원하는 상품을 찾지 못하는 경우가 많으며, 고객 상황에 맞는 탐색 지원도 부족하다.",
+    "preselected_case_ranking": [
+      "AXV22_0092_01",
+      "AXV2H_0086_01",
+      "AXV2P2_0048_01",
+      "AXV2N_0121",
+      "AXV2C_0094_02",
+      "AXV2H_0084_01",
+      "AXV2C_0093_01",
+      "AXV2C_0016_01",
+      "AXV2C_0074_02",
+      "AXV2N_0108"
+    ],
+    "reference_strategy_proxy": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S3_DOCUMENT_INTELLIGENCE"
+    ],
+    "retrieved_case_vote": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S4_PREDICTION_DETECTION"
+    ],
+    "observational_wald_fusion": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S4_PREDICTION_DETECTION"
+    ],
+    "llm_source_grounded_response_id": "resp_05641a84ebd69a70006adb5b308ac487d0b5067b69fea8e06a",
+    "gpt_only_baseline_response_id": "resp_0e0c7e8e771e157e006adb5b36443c87d08db53aa769a1789f",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+        "evidence_case_ids": [
+          "AXV22_0092_01"
+        ],
+        "rationale": "신규 상품의 색상·스타일 속성을 자동 분류해 카탈로그 정보를 보강한 사례로, 상품 속성 분류와 태깅을 수작업으로 처리해 온보딩이 느린 문제에 가장 직접적으로 부합합니다.",
+        "source_urls": [
+          "https://cloud.google.com/customers/wayfair-ai"
+        ]
+      },
+      {
+        "strategy_id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+        "evidence_case_ids": [
+          "AXV2H_0086_01"
+        ],
+        "rationale": "재고가 없는 브랜드를 검색한 고객이 관련 대안을 발견하도록 지원한 검색·상품 발견 사례입니다. 상품 데이터와 고객 검색어의 연결 및 탐색 개선에 참고할 수 있지만, 제공된 사례만으로 현재 상품 카탈로그에 대한 적용 효과까지 단정하기는 어렵습니다.",
+        "source_urls": [
+          "https://cloud.google.com/customers/the-iconic"
+        ]
+      },
+      {
+        "strategy_id": "S2_AGENT_CONVERSATIONAL_AI",
+        "evidence_case_ids": [
+          "AXV2P2_0048_01"
+        ],
+        "rationale": "고객의 쇼핑 질문에 답하고 상품을 추천하는 사례로, 고객 상황에 맞는 탐색 지원 부족과 관련성이 있습니다. 다만 이 사례는 대화형 상품 선택 지원에 대한 근거이며, 상품 태깅이나 검색어-상품 데이터 연결 자체를 해결한다는 근거는 아닙니다.",
+        "source_urls": [
+          "https://corporate.walmart.com/news/2025/06/06/walmart-the-future-of-shopping-is-agentic-meet-sparky"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S2_AGENT_CONVERSATIONAL_AI"
+    ]
+  },
+  "V21D007": {
+    "query": "구매와 견적 업무에서 고객 도면·요구사항과 공급업체 제안서처럼 형식이 다른 자료를 사람이 읽고 비교해야 하고, 생산가능성·원가·공급업체 선택 판단이 담당자 경험에 의존하며, 견적 작성과 조달 후속업무까지 수작업으로 이어져 처리시간이 길다.",
+    "preselected_case_ranking": [
+      "AXV2N_0111",
+      "AXV2C_0094_02",
+      "AXV2H_0003_01",
+      "AXV2N_0106",
+      "AXV2C_0068_01",
+      "AXV2P2_0010_01",
+      "AXV2C_0093_01",
+      "AXV2C_0006_02",
+      "AXV2N_0134",
+      "AXV2H_0008_01"
+    ],
+    "reference_strategy_proxy": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ],
+    "retrieved_case_vote": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S4_PREDICTION_DETECTION",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "observational_wald_fusion": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S4_PREDICTION_DETECTION",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "llm_source_grounded_response_id": "resp_0d130fc1e340bae8006adb5b39ad4487d0983c7205b454e032",
+    "gpt_only_baseline_response_id": "resp_073cf2ff635a472c006adb5b432bf487d0ac225e47455abc3a",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+        "evidence_case_ids": [
+          "AXV2H_0008_01",
+          "AXV2N_0134",
+          "AXV2H_0003_01"
+        ],
+        "rationale": "이기종 도면·요구사항·공급업체 제안서처럼 사람이 읽고 대조하는 자료를 추출·분류해 활용 가능한 정보로 정리하는 업무와 가장 직접적으로 맞닿아 있습니다. 사례들은 세무 문서 추출, 웹사이트 정보 정리, 검증 문서 처리에 해당합니다. 다만 제공된 사례가 구매 견적 자료 자체를 다룬 것은 아니므로 적용 적합성에는 불확실성이 있습니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/25721-ey-global-services-limited-azure-document-intelligence-in-foundry-tools",
+          "https://openai.com/index/stripe/",
+          "https://aws.amazon.com/solutions/case-studies/genpact-case-study-generative-ai/"
+        ]
+      },
+      {
+        "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+        "evidence_case_ids": [
+          "AXV2C_0094_02",
+          "AXV2C_0068_01"
+        ],
+        "rationale": "견적 작성과 조달 후속업무에 포함된 반복 작업·업무 단계를 자동화하는 방향과 관련성이 있습니다. 근거 사례는 제조 생산계획·작업지시 준비와 불완전한 결제 지시 보완 업무입니다. 구매·견적 전체 흐름에 대한 직접 근거는 아니므로 업무 단계별 적합성은 확인이 필요합니다.",
+        "source_urls": [
+          "https://www.ibm.com/case-studies/savage-precision-fabrication",
+          "https://www.microsoft.com/en/customers/story/27322-bny-microsoft-365-copilot"
+        ]
+      },
+      {
+        "strategy_id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+        "evidence_case_ids": [
+          "AXV2P2_0010_01"
+        ],
+        "rationale": "생산가능성 판단 등 담당자 전문지식에 의존하는 부분에서 관련 조직 지식을 찾아 활용하는 전략으로 검토할 수 있습니다. 사례는 제조 소프트웨어의 CAD/CAM 제품 지원 지식을 검색하는 업무입니다. 구매·견적 판단 지원에 대한 직접 사례는 없어 이 연결은 제한적인 유사성에 근거합니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/22965-sandvik-azure-open-ai-service"
+        ]
+      },
+      {
+        "strategy_id": "S4_PREDICTION_DETECTION",
+        "evidence_case_ids": [
+          "AXV2C_0006_02",
+          "AXV2C_0093_01"
+        ],
+        "rationale": "견적·주문 자료에서 가격 불일치나 비정상·부적합 패턴을 찾는 용도로 검토할 수 있습니다. 근거 사례는 주문 가격 검증과 생산 품질 결함·원인 분석입니다. 이 전략이 생산가능성·원가·공급업체 선택을 직접 결정한다는 근거는 제공되지 않았으므로 해당 판단을 대체한다고 해석해서는 안 됩니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/25506-danone-microsoft-365-copilot",
+          "https://www.ibm.com/case-studies/suzhou"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S7_GENERATIVE_CONTENT_CREATION",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ]
+  },
+  "V21D008": {
+    "query": "수요나 생산량이 기상·시장·운영조건에 따라 크게 달라져 단순 규칙이나 담당자 경험만으로 미래 값을 예측하고 계획을 세우기 어렵다.",
+    "preselected_case_ranking": [
+      "AXV2C_0050_01",
+      "AXV2C_0094_02",
+      "AXV2C_0093_01",
+      "AXV2C_0093_02",
+      "AXV2H_0003_01",
+      "AXV2C_0006_01",
+      "AXV2H_0001_01",
+      "AXV2N_0119",
+      "AXV2N_0126",
+      "AXV22_0093_01"
+    ],
+    "reference_strategy_proxy": [
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S4_PREDICTION_DETECTION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ],
+    "retrieved_case_vote": [
+      "S4_PREDICTION_DETECTION",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "observational_wald_fusion": [
+      "S4_PREDICTION_DETECTION",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "llm_source_grounded_response_id": "resp_05d45fe98bf2282d006adb5b45dda487d0b8535cdbdfdef647",
+    "gpt_only_baseline_response_id": "resp_03a3d3812f06a915006adb5b4b94a887d0b2c3f019205157d1",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S4_PREDICTION_DETECTION",
+        "evidence_case_ids": [
+          "AXV2C_0050_01",
+          "AXV2N_0119"
+        ],
+        "rationale": "수요 변동을 예측해 계획의 입력값으로 삼는 문제에 가장 직접적으로 부합합니다. AXV2C_0050_01은 대규모 매장-상품별 수요 예측 사례이고, AXV2N_0119는 운영 조건을 바탕으로 설비 고장 위험을 예측한 사례입니다. 다만 제공된 사례만으로 기상·시장·운영 조건을 모두 반영한 예측의 효과를 단정할 수는 없습니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/1739352737304784739-albertheijn-azure-open-ai-service-retailers-en-netherlands",
+          "https://www.shell.com/what-we-do/digitalisation/artificial-intelligence.html"
+        ]
+      },
+      {
+        "strategy_id": "S5_OPTIMIZATION_DECISION_SUPPORT",
+        "evidence_case_ids": [
+          "AXV2C_0093_02"
+        ],
+        "rationale": "예측값을 생산 계획 조정에 활용하는 의사결정 지원 전략으로 검토할 수 있습니다. AXV2C_0093_02는 제조 일정 조정과 검증을 다룹니다. 다만 이 사례는 일정 조정 사례이지, 수요나 생산량의 불확실성을 예측에 연결한 사례는 아니므로 적용 근거는 제한적입니다.",
+        "source_urls": [
+          "https://www.ibm.com/case-studies/suzhou"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S4_PREDICTION_DETECTION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT"
+    ]
+  },
+  "V21D009": {
+    "query": "직원들이 생성형 AI를 업무에 활용하려 하지만 외부 도구에 민감한 내부 데이터를 보낼 수 없고, 내부 문서와 업무시스템을 안전하게 연결하기 어려우며, 부서마다 개별 도구를 만들면 보안과 운영 기준을 일관되게 유지하면서 전사로 확산하기 어렵다.",
+    "preselected_case_ranking": [
+      "AXV22_0093_01",
+      "AXV2H_0003_01",
+      "AXV2N_0136",
+      "AXV2H_0090_01",
+      "AXV2H_0078_01",
+      "AXV2N_0110",
+      "AXV2N_0126",
+      "AXV2C_0068_03",
+      "AXV2N_0105",
+      "AXV2N_0108"
+    ],
+    "reference_strategy_proxy": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S4_PREDICTION_DETECTION"
+    ],
+    "retrieved_case_vote": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S2_AGENT_CONVERSATIONAL_AI"
+    ],
+    "observational_wald_fusion": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S2_AGENT_CONVERSATIONAL_AI"
+    ],
+    "llm_source_grounded_response_id": "resp_00bb183120f448f9006adb5b4d66d087d089215ab8dcb0e986",
+    "gpt_only_baseline_response_id": "resp_05ef6e4c4d124f96006adb5b54e9ac87d0b51fc9c7e7ad2d04",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+        "evidence_case_ids": [
+          "AXV22_0093_01",
+          "AXV2H_0090_01",
+          "AXV2N_0110"
+        ],
+        "rationale": "가장 직접적으로 맞는 전략입니다. 제주은행 사례는 망분리 온프레미스 환경에서 내부 지식과 문서를 활용한 업무 질의응답을 운영해, 민감한 내부 정보를 외부 생성형 AI에 보내기 어려운 문제와 관련성이 높습니다. IBM과 Morgan Stanley 사례도 사내 정책·문서에서 지식을 찾는 업무를 다룹니다. 다만 사례만으로는 전사 공통 거버넌스와 여러 업무시스템의 안전한 연결까지 해결된다고 단정할 수 없습니다.",
+        "source_urls": [
+          "https://labs.plateer.com/en/customers/case/jeju-bank-genai-platform",
+          "https://www.ibm.com/case-studies/ibm-askhr",
+          "https://openai.com/index/morgan-stanley/"
+        ]
+      },
+      {
+        "strategy_id": "S2_AGENT_CONVERSATIONAL_AI",
+        "evidence_case_ids": [
+          "AXV2N_0108"
+        ],
+        "rationale": "직원이 업무 흐름에서 자연어로 도움을 요청하는 상호작용 방식으로 고려할 수 있습니다. Home Depot 사례는 여러 채널에서 고객 문의를 대화형으로 처리하는 업무를 다룹니다. 다만 이 사례는 내부 데이터 보안이나 사내 업무시스템 연결을 보여주지 않으므로, 이 전략만으로 질문의 보안·거버넌스 문제를 해결한다고 볼 근거는 제한적입니다.",
+        "source_urls": [
+          "https://corporate.homedepot.com/news/partnerships/home-depot-and-google-cloud-launch-agentic-ai-tools-help-customers-and-associates"
+        ]
+      },
+      {
+        "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+        "evidence_case_ids": [
+          "AXV2C_0068_03"
+        ],
+        "rationale": "기존 업무 절차와 시스템을 연결해 반복적인 업무 단계를 조정하는 방향으로 참고할 수 있습니다. BNY 사례는 고객 온보딩에서 문서 검토와 리스크 확인 업무를 다룹니다. 다만 해당 사례가 전사 공통 생성형 AI 운영 기준이나 일반적인 내부 시스템 통합을 입증하는 것은 아니므로, 적용 가능성에는 불확실성이 있습니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/27322-bny-microsoft-365-copilot"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S1_KNOWLEDGE_RETRIEVAL_RAG",
+      "S2_AGENT_CONVERSATIONAL_AI",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ]
+  },
+  "V21D010": {
+    "query": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+    "preselected_case_ranking": [
+      "AXV2C_0093_01",
+      "AXV2C_0094_02",
+      "AXV2C_0093_02",
+      "AXV2H_0003_01",
+      "AXV2P2_0010_01",
+      "AXV2N_0119",
+      "AXV2N_0126",
+      "AXV2C_0006_01",
+      "AXV2N_0134",
+      "AXV2P2_0065_01"
+    ],
+    "reference_strategy_proxy": [
+      "S4_PREDICTION_DETECTION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ],
+    "retrieved_case_vote": [
+      "S4_PREDICTION_DETECTION",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "observational_wald_fusion": [
+      "S4_PREDICTION_DETECTION",
+      "S3_DOCUMENT_INTELLIGENCE",
+      "S6_WORKFLOW_PROCESS_AUTOMATION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S1_KNOWLEDGE_RETRIEVAL_RAG"
+    ],
+    "llm_source_grounded_response_id": "resp_0634813cef90f9e6006adb5b5760cc87d0879c321fed50175d",
+    "gpt_only_baseline_response_id": "resp_0559dfc69f273728006adb5b5cd6b887d0aaccf01bce7059c5",
+    "llm_source_grounded_recommendations": [
+      {
+        "strategy_id": "S4_PREDICTION_DETECTION",
+        "evidence_case_ids": [
+          "AXV2C_0093_01"
+        ],
+        "rationale": "생산·품질 데이터가 흩어져 품질 이상과 원인을 찾기 어렵다는 문제에 가장 직접적으로 맞닿은 사례입니다. 해당 사례는 생산 품질 결함과 원인 분석을 다루며 이 전략으로 분류됐습니다. 다만 사례의 전략 라벨만으로 이 사업장에서 원인을 자동으로 확정할 수 있다고 보기는 어렵습니다.",
+        "source_urls": [
+          "https://www.ibm.com/case-studies/suzhou"
+        ]
+      },
+      {
+        "strategy_id": "S5_OPTIMIZATION_DECISION_SUPPORT",
+        "evidence_case_ids": [
+          "AXV2P2_0065_01",
+          "AXV2C_0093_02"
+        ],
+        "rationale": "분산된 공정 데이터에서 품질 결함 요인을 살펴 의사결정을 지원하거나, 제조 시스템 간 일정 변경을 조정하는 문제와 관련된 사례가 있습니다. 주문이나 설비상태 변경에 따른 계획 재조정 지원에 검토할 수 있지만, 제공된 사례만으로 기대 효과나 적용 적합성을 단정할 수는 없습니다.",
+        "source_urls": [
+          "https://www.microsoft.com/en/customers/story/26367-toyota-industries-corporation-azure",
+          "https://www.ibm.com/case-studies/suzhou"
+        ]
+      },
+      {
+        "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+        "evidence_case_ids": [
+          "AXV2C_0094_02"
+        ],
+        "rationale": "수작업에 의존하는 생산계획 준비와 데이터 입력을 다룬 제조 사례가 이 전략으로 분류됐습니다. 반복적인 계획 업무를 줄이는 방안을 검토할 근거는 있으나, 주문·설비상태 변화에 대한 자동 재계획까지 해당 사례가 입증하는 것은 아니므로 불확실성이 있습니다.",
+        "source_urls": [
+          "https://www.ibm.com/case-studies/savage-precision-fabrication"
+        ]
+      }
+    ],
+    "rejected_unfaithful_llm_recommendations": [],
+    "gpt_only_zero_shot": [
+      "S4_PREDICTION_DETECTION",
+      "S5_OPTIMIZATION_DECISION_SUPPORT",
+      "S6_WORKFLOW_PROCESS_AUTOMATION"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "stage": 4,
+  "dataset": "frozen v2.3 84 cases",
+  "ground_truth_status": "AI-Silver-derived strategy proxy, NOT independent human Gold",
+  "precommitted_retrieval": "stage2_1_equal_multiview; no posthoc best-of-stage2 system selection",
+  "methods": [
+    "GPT-only no cases",
+    "direct case weighted voting",
+    "Wald factor-strategy fusion",
+    "real LLM source-grounded recommendation"
+  ],
+  "llm_model": "gpt-6-luna",
+  "LLM_generation_completed": true,
+  "recommended_case_source_provenance_required": true,
+  "factual_support_check": "Each recommended strategy must be a label of at least one cited actually retrieved frozen case.",
+  "independent_strategy_gold": false,
+  "observational_wald_only": true,
+  "frozen_retrieval_results_modified": false,
+  "source_case_data_modified": false,
+  "limitations": [
+    "Strategies in proxy denominator were derived from positive cases in same 84-case corpus.",
+    "A retrieved case can count as both source and evaluation gold via its strategy label; this is not an independent recommendation test.",
+    "The LLM explanation has programmatic witness-id checks, not human factual quality rating.",
+    "No Held-out test or human-Gold validated claims are allowed."
+  ]
+}
