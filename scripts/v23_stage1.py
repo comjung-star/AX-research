@@ -90,12 +90,19 @@ for q in QUERIES:
  for repeat in range(1,4):
   x,rid,model=ask("gpt-6-luna",SYS_G,json.dumps({"query":query,"cases":case_context},ensure_ascii=False),GPTSelection)
   # Reject hallucinated or duplicate IDs; do not manufacture missing results.
-  unique=list(dict.fromkeys(x.case_ids))
-  invalid=set(unique)-set(IDS)
-  if invalid:raise ValueError(f"GPT-only produced unknown case IDs: {invalid}")
-  if len(unique)<5:raise ValueError(f"GPT-only returned too few cases: {len(unique)}")
+  # Preserve model hallucinations in audit. Accept ONLY exact IDs or an
+  # unambiguous trailing _01 formatting suffix if the exact base ID exists.
+  valid=[];unrecognized=[];coerced=[]
+  for raw_id in x.case_ids:
+   if raw_id in I:valid.append(raw_id)
+   elif raw_id.endswith("_01") and raw_id[:-3] in I:
+    valid.append(raw_id[:-3]);coerced.append({"returned":raw_id,"normalized_to":raw_id[:-3]})
+   else:unrecognized.append(raw_id)
+  unique=list(dict.fromkeys(valid))
+  if len(unique)<5:raise ValueError(f"GPT-only returned too few valid case IDs: {len(unique)}, hallucinations: {unrecognized}")
   gp.append(unique)
-  gpt_resp.append({"pass_id":repeat,"response_id":rid,"model":model,"n":len(unique)})
+  gpt_resp.append({"pass_id":repeat,"response_id":rid,"model":model,"n":len(unique),
+    "unrecognized_case_ids":unrecognized,"normalized_unambiguous_ids":coerced})
  qvec=emb([query])[0];qsparse=sort_scores(bm.get_scores(tokenize(query)));qdense=sort_scores(D@qvec)
  allp=[p["title"]+"; "+p["description"] for p in perspectives]
  pv=emb(allp)
