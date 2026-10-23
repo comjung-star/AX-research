@@ -116,10 +116,11 @@ docs=["Problem: "+c["problem"]+"\nTask: "+c["task"]+"\nContext: "+c["context"] f
 kiwi=Kiwi()
 def tokenize(s):return [t.form.lower() for t in kiwi.tokenize(s) if t.tag not in ("SF","SP","SS","SE","SO","SW")]
 bm=BM25Okapi([tokenize(x) for x in docs])
-hybrid_branch={};rrf_branch={}
+hybrid_branch={};rrf_branch={};sparse_branch={}
 for q in QP:
  ts=[p["title"]+"; "+p["description"] for p in data[q]["perspectives"]]
  sparse=[order(bm.get_scores(tokenize(t))) for t in ts]
+ sparse_branch[q]=sparse
  h=[];rr=[]
  for dense,sp in zip(equal_branch[q],sparse):
   pool=list(dict.fromkeys(dense[:40]+sp[:40]))
@@ -187,7 +188,7 @@ for q in QP:
  for k in (5,10,20):
   # Candidate union over per-branch k dense and k BM25 (2k slots);
   # Dense comparator k*2 alone for fairness.
-  in_h=set().union(*(set(br[:2*k]) for br in hybrid_branch[q]))
+  in_h=set().union(*(set(dense[:k]) | set(sparse[:k]) for dense,sparse in zip(equal_branch[q],sparse_branch[q])))
   in_d=set().union(*(set(br[:2*k]) for br in equal_branch[q]))
   in_rr=set().union(*(set(br[:k]) for br in rrf_branch[q]))
   h_pos=len(in_h&UNION[q]);d_pos=len(in_d&UNION[q])
