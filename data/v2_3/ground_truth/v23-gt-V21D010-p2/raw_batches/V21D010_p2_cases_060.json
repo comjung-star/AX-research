@@ -1,0 +1,319 @@
+{
+  "query_id": "V21D010",
+  "pass_id": 2,
+  "first_case": 60,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0a02f09d9642d563006adb20412a4887d1ae348ef481279593",
+  "input_problem_only": {
+    "query_id": "V21D010",
+    "business_problem_query": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "problem_view": "생산·품질·설비 데이터 분산"
+      },
+      {
+        "id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "problem_view": "품질 이상 원인분석 지연"
+      },
+      {
+        "id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "problem_view": "동적 생산계획 조정 부담"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2N_0136",
+        "business_problem": "Production images may contain people or protected information that must not remain identifiable.",
+        "ax_target_task": "Anonymize people in production images",
+        "business_context": "BMW production-system image processing described in April 2021."
+      },
+      {
+        "case_id": "AXV2N_0137",
+        "business_problem": "Members must navigate scattered benefits information and insurance records.",
+        "ax_target_task": "Answer member benefits questions",
+        "business_context": "Member-facing service separate from internal clinical notes and claim investigation."
+      },
+      {
+        "case_id": "AXV2N_0138",
+        "business_problem": "A small legal team must repeatedly research answers for many branch managers.",
+        "ax_target_task": "Draft answers to branch legal inquiries",
+        "business_context": "Nine-person retail legal team handling roughly 40000 annual inquiries."
+      },
+      {
+        "case_id": "AXV2N_0139",
+        "business_problem": "Staff need understandable contract content without repeatedly interpreting legal text.",
+        "ax_target_task": "Summarize contracts for internal teams",
+        "business_context": "Contract Companion GPT used within Moderna functions."
+      },
+      {
+        "case_id": "AXV2P2_0010_01",
+        "business_problem": "Complex manufacturing product knowledge is difficult to access as expertise and skills become scarce.",
+        "ax_target_task": "Retrieve CAD/CAM product support knowledge",
+        "business_context": "Sandvik manufacturing software support teams and customers"
+      },
+      {
+        "case_id": "AXV2P2_0011_01",
+        "business_problem": "Freight invoices may not match negotiated rates and manual checking burdens logistics staff.",
+        "ax_target_task": "Audit freight invoices for overcharges",
+        "business_context": "Dow logistics spending and emailed PDF invoices"
+      },
+      {
+        "case_id": "AXV2P2_0012_01",
+        "business_problem": "Varied insurance documents require lengthy manual classification and extraction.",
+        "ax_target_task": "Extract and classify insurance documentation",
+        "business_context": "Shift Technology's operational insurer document-processing platform"
+      },
+      {
+        "case_id": "AXV2P2_0013_01",
+        "business_problem": "High-volume confidential discovery review is time-intensive and reviewer fatigue risks inconsistent decisions.",
+        "ax_target_task": "Review discovery documents for legal relevance",
+        "business_context": "Relativity aiR for Review legal clients handling confidential evidence"
+      },
+      {
+        "case_id": "AXV2P2_0015_01",
+        "business_problem": "Important oncology data are buried in large volumes of unstructured clinical documents.",
+        "ax_target_task": "Extract oncology entities from clinical documents",
+        "business_context": "Ontada ON.Genuity clinical research data pipeline"
+      },
+      {
+        "case_id": "AXV2P2_0019_01",
+        "business_problem": "Manual journal entries require multi-system collection and extensive validation during financial close.",
+        "ax_target_task": "Prepare and submit journal entries under approval",
+        "business_context": "IBM Finance Jobotx deployment in early 2025"
+      },
+      {
+        "case_id": "AXV2P2_0020_01",
+        "business_problem": "Manual property claim handling and inconsistent policy interpretation delay claims during disaster surges.",
+        "ax_target_task": "Coordinate property insurance claim resolution",
+        "business_context": "Claims Connection Group policyholders, claim handlers and assigned vendors"
+      },
+      {
+        "case_id": "AXV2P2_0035_01",
+        "business_problem": "Double-reader breast screening burdens radiologist capacity while detection quality must be maintained.",
+        "ax_target_task": "Use AI as one reader in breast screening",
+        "business_context": "Capio S:t Göran Hospital, Sweden, full integration since mid-2023 after ScreenTrustCAD trial"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2N_0136",
+        "relevance": 1,
+        "reason": "제조현장 이미지 처리라는 맥락만 겹치며, 핵심 과제는 개인정보 익명화이지 생산·품질·설비 데이터 분산이 아니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2N_0136",
+        "relevance": 0,
+        "reason": "생산 이미지에서 사람이나 보호정보를 익명화하는 과제로, 품질 이상이나 원인분석 지연을 다루지 않는다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2N_0136",
+        "relevance": 0,
+        "reason": "이미지 익명화가 핵심 과제이며, 주문·설비상태 변화에 따른 생산계획 조정과 무관하다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2N_0137",
+        "relevance": 1,
+        "reason": "혜택 정보와 보험 기록이 흩어져 있다는 점은 제한적으로 닮았지만, 제조 운영 데이터가 아니라 회원 서비스 정보다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2N_0137",
+        "relevance": 0,
+        "reason": "회원 혜택 질문에 답하는 서비스로, 제조 품질 이상을 조사하거나 원인을 찾는 작업이 아니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2N_0137",
+        "relevance": 0,
+        "reason": "회원 보험·혜택 문의 응대가 과제이며, 생산 일정이나 계획을 재조정하는 업무가 아니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2N_0138",
+        "relevance": 0,
+        "reason": "법무팀이 지점 문의 답변을 작성하는 업무로, 제조 데이터 분산이나 생산 운영 정보 접근과 관련 없다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2N_0138",
+        "relevance": 0,
+        "reason": "법률 문의에 답변을 작성하는 업무이며, 품질 이상 원인을 분석하거나 지연을 줄이는 과제가 아니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2N_0138",
+        "relevance": 0,
+        "reason": "지점의 법률 문의 처리 업무로, 주문이나 설비 변화에 대응해 생산계획을 조정하지 않는다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2N_0139",
+        "relevance": 0,
+        "reason": "내부 팀을 위한 계약 요약이 과제이며, 생산·품질·설비 데이터의 분산 문제와 맞지 않는다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2N_0139",
+        "relevance": 0,
+        "reason": "계약 내용을 요약하는 법무 지원 업무로, 제조 품질 이상에 대한 원인분석과 무관하다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2N_0139",
+        "relevance": 0,
+        "reason": "계약 요약은 생산계획 업무가 아니며, 변화하는 주문이나 설비상태에 따른 일정 재조정을 다루지 않는다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0010_01",
+        "relevance": 2,
+        "reason": "제조 소프트웨어 제품 지식을 찾기 어렵다는 정보 접근 문제는 일부 겹치지만, 현장 생산·품질·설비 데이터 통합 과제와는 다르다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0010_01",
+        "relevance": 1,
+        "reason": "제조 맥락은 공유하지만, CAD/CAM 제품 지원 지식을 검색하는 업무이며 품질 이상 원인분석은 아니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0010_01",
+        "relevance": 1,
+        "reason": "제조업과 관련되지만 과제는 제품 지원 지식 검색이며, 생산계획을 주문이나 설비 변화에 맞춰 조정하지 않는다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0011_01",
+        "relevance": 0,
+        "reason": "운송비 청구서와 협상 요율을 대조하는 물류 비용 감사로, 제조 현장 데이터의 분산 문제가 아니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0011_01",
+        "relevance": 0,
+        "reason": "운송 청구서의 과다 청구를 확인하는 업무이며, 생산 품질 이상이나 그 원인을 분석하지 않는다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0011_01",
+        "relevance": 0,
+        "reason": "물류 비용 청구를 감사하는 과제로, 주문·설비상태에 따라 생산계획을 조정하는 업무와 다르다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0012_01",
+        "relevance": 0,
+        "reason": "보험 문서를 분류하고 정보를 추출하는 업무로, 제조 생산·품질·설비 데이터의 분산을 다루지 않는다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0012_01",
+        "relevance": 0,
+        "reason": "보험 문서 처리의 수작업 부담이 핵심이며, 제조 품질 이상 조사나 원인분석과는 과제가 다르다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0012_01",
+        "relevance": 0,
+        "reason": "보험 문서 분류·추출 플랫폼으로, 생산 일정의 동적 조정과 관련 없다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0013_01",
+        "relevance": 0,
+        "reason": "기밀 법률 증거의 관련성을 검토하는 업무로, 제조 현장의 운영 데이터 분산 문제와 무관하다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0013_01",
+        "relevance": 0,
+        "reason": "법률 문서 검토에서 일관성과 처리시간을 다루며, 제조 품질 이상 원인을 찾는 작업이 아니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0013_01",
+        "relevance": 0,
+        "reason": "증거 문서의 법률 관련성 검토가 과제이며, 생산계획 조정과는 업무 맥락이 다르다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0015_01",
+        "relevance": 0,
+        "reason": "임상 문서에서 종양학 정보를 추출하는 업무로, 제조 생산·품질·설비 데이터 통합과 관련 없다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0015_01",
+        "relevance": 0,
+        "reason": "의료 문서의 임상 정보를 추출하는 과제로, 제조 품질 이상을 조사하거나 원인을 규명하지 않는다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0015_01",
+        "relevance": 0,
+        "reason": "종양학 임상 데이터 파이프라인 업무이며, 주문이나 설비 변화에 따른 생산계획 조정과 무관하다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0019_01",
+        "relevance": 1,
+        "reason": "마감 분개를 위해 여러 시스템에서 정보를 모으는 점은 일부 닮았지만, 재무 업무이지 제조 운영 데이터 문제는 아니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0019_01",
+        "relevance": 0,
+        "reason": "재무 마감 분개를 수집·검증하는 업무로, 품질 이상 원인분석과는 대상과 작업이 다르다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0019_01",
+        "relevance": 0,
+        "reason": "승인 절차가 있는 재무 분개 준비 업무이며, 생산계획을 변경 상황에 맞춰 재조정하지 않는다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0020_01",
+        "relevance": 0,
+        "reason": "재산 보험 청구 처리의 지연과 정책 해석 불일치가 문제이며, 제조 현장 데이터 분산과 다르다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0020_01",
+        "relevance": 0,
+        "reason": "재산 피해 보험 청구를 조정하는 업무로, 제조 품질 이상이나 그 원인을 분석하지 않는다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0020_01",
+        "relevance": 0,
+        "reason": "보험 청구를 처리하고 업체와 조율하는 과제이며, 생산 일정이나 설비 기반 계획 조정과 무관하다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2P2_0035_01",
+        "relevance": 0,
+        "reason": "유방암 검진 판독 부담을 다루는 의료 업무로, 제조 생산·품질·설비 데이터의 분산 문제와 다르다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2P2_0035_01",
+        "relevance": 1,
+        "reason": "검출 품질을 유지하면서 판독 부담을 줄인다는 점은 제한적으로 닮았지만, 의료 영상 판독이지 제조 품질 원인분석은 아니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2P2_0035_01",
+        "relevance": 0,
+        "reason": "유방 검진에서 판독자 부담을 줄이는 과제로, 주문·설비 변화에 따른 생산계획 조정과 무관하다."
+      }
+    ]
+  }
+}

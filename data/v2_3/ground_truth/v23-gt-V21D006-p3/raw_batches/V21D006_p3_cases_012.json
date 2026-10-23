@@ -1,0 +1,319 @@
+{
+  "query_id": "V21D006",
+  "pass_id": 3,
+  "first_case": 12,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_02694e8897b272ba006adb1e316a4087d1bb5b717e2dede40b",
+  "input_problem_only": {
+    "query_id": "V21D006",
+    "business_problem_query": "상품 수가 빠르게 늘면서 신규 상품의 속성 분류와 태깅을 사람이 처리해 온보딩이 느리고, 고객 검색어가 상품 데이터와 잘 연결되지 않아 원하는 상품을 찾지 못하는 경우가 많으며, 고객 상황에 맞는 탐색 지원도 부족하다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "problem_view": "상품 속성 분류·태깅 부담"
+      },
+      {
+        "id": "P2_SEARCH_FINDABILITY_GAP",
+        "problem_view": "검색어-상품 연결 및 탐색 실패"
+      },
+      {
+        "id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "problem_view": "상황·개인조건 기반 상품발견 부족"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      },
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "기술지원 담당자가 고객 문의를 접수·검토해 답변을 전달하는 반복 업무의 부담을 낮추면서, 정확하고 보안에 맞는 결제 기술정보 응답이 필요했다.",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "은행 고객 질문에 금융 정보를 답하는 업무로, 신규 상품의 속성 분류나 태깅 부담과는 과업 및 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 0,
+        "reason": "제조 품질 결함과 원인을 분석하는 사례이며, 상품 정보를 분류하거나 카탈로그에 태깅하는 과업은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "생산 일정 조정과 검증이 중심이어서, 신규 상품 속성 입력·분류 업무의 부담과는 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "고객 제조 견적 작성이 핵심이며, 견적 대상 제품의 카탈로그 속성을 분류·태깅하는 문제는 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "제조 생산계획과 작업지시 준비 과업으로, 상품 온보딩이나 상품 속성 태깅과는 업무 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 서비스의 고객 문의 응답 부담을 다루며, 상품 속성 분류·태깅 업무와는 과업이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "고객 이메일의 핵심 내용과 후속조치를 요약하는 사례로, 상품 카탈로그 정보의 분류나 태깅과 무관합니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "여러 파일의 정보를 검증한다는 점만 약하게 겹치며, 직원 신원조회 준수 검증은 상품 속성 태깅과 다른 업무입니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 1,
+        "reason": "문서에서 정보를 추출한다는 좁은 유사성은 있지만, 세무자료 추출은 상품 속성 분류·태깅과 대상 및 목적이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "제조 로봇의 고장 예측과 공정 진단이 중심이며, 상품 데이터 온보딩이나 속성 태깅과는 무관합니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 문의에 음성으로 응답하는 고객지원 사례로, 상품 정보 분류나 카탈로그 관리 과업이 아닙니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "결제 기술 문의를 검색하고 답변하는 지원 업무이며, 상품 속성을 분류하거나 신규 상품을 태깅하는 문제는 없습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 1,
+        "reason": "고객이 기존 콘텐츠에서 금융 답변을 찾도록 돕는 면은 있으나, 검색어와 상품 데이터 연결 및 상품 탐색 실패와는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 0,
+        "reason": "생산 품질 데이터 분석과 결함 원인 규명이 과업이며, 고객 검색어로 상품을 찾는 문제와는 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "제조 일정 변경을 조정하고 검증하는 업무로, 검색어와 상품을 연결하거나 고객 상품 탐색을 돕지 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "제조 고객에게 견적을 작성하는 사례이며, 상품 검색의 연결 실패나 탐색 문제를 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산계획 수립과 작업지시 준비가 중심이어서, 고객의 상품 검색·발견 과업과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 1,
+        "reason": "고객 문의에 빠르게 응답한다는 점만 주변적으로 닿으며, 검색어로 상품을 찾지 못하는 문제는 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "장문 이메일 요약과 후속조치 파악이 과업이며, 상품 검색어와 카탈로그 데이터의 연결 문제와는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "직원 신원조회 자료와 준수 조건을 검증하는 업무로, 상품 검색이나 고객의 상품 발견과 무관합니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서에서 데이터를 추출하는 과업이며, 상품 검색 질의와 상품 정보를 연결하는 탐색 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "로봇 고장 예측을 위한 제조공정 진단 사례로, 고객이 검색어로 상품을 찾는 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 1,
+        "reason": "고객지원 문의에 빠른 응답을 제공하지만, 배달원 지원 전화 응답은 상품 검색 실패나 탐색 개선과 다른 과업입니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 2,
+        "reason": "고객 기술 문의에 필요한 정보를 검색해 답하는 점은 겹치지만, 결제 기술지원 지식 검색이지 상품 카탈로그 탐색은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 1,
+        "reason": "고객의 복잡한 금융 질문에 맞춘 답변이라는 주변적 유사성만 있으며, 조건별 상품 발견이나 추천 과업은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 0,
+        "reason": "제조 품질 결함 분석이 중심이며, 고객 상황이나 개인 조건에 따른 상품 탐색을 지원하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "생산 일정을 조정하는 내부 제조 운영 과업으로, 고객 개인조건 기반 상품 발견과는 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "제조 견적 작성 업무이며, 고객 상황에 맞는 상품을 찾아주거나 개인화된 탐색을 지원한다는 내용은 없습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산계획과 작업지시를 준비하는 제조 업무로, 고객 맞춤형 상품 탐색과는 과업 및 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 서비스 문의의 신속한 응답이 중심이며, 개인 상황에 맞춘 상품 발견 지원은 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "고객 이메일 내용을 요약하는 업무로, 개인 조건을 반영해 상품을 탐색하거나 발견하도록 돕지 않습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "직원 신원조회 결과와 컴플라이언스를 확인하는 업무이며, 고객 맞춤 상품 탐색과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서에서 정보를 추출하는 업무로, 고객의 상황이나 조건에 따른 상품 추천·발견과는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "산업용 로봇의 고장 예측과 공정 진단 사례로, 개인화된 고객 상품 탐색 지원과는 무관합니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 문의에 음성 응답을 제공하는 업무이며, 개인조건에 맞춘 상품 발견이나 탐색은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "결제 기술 질문에 정확한 답을 제공하는 지원 과업으로, 개인 상황별 상품 탐색이나 발견 지원은 나타나지 않습니다."
+      }
+    ]
+  }
+}

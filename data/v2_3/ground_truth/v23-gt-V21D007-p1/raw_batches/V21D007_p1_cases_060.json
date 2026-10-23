@@ -1,0 +1,319 @@
+{
+  "query_id": "V21D007",
+  "pass_id": 1,
+  "first_case": 60,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_063bb3ac12034977006adb1f60b60487d0a09ec7681d09f6d9",
+  "input_problem_only": {
+    "query_id": "V21D007",
+    "business_problem_query": "구매와 견적 업무에서 고객 도면·요구사항과 공급업체 제안서처럼 형식이 다른 자료를 사람이 읽고 비교해야 하고, 생산가능성·원가·공급업체 선택 판단이 담당자 경험에 의존하며, 견적 작성과 조달 후속업무까지 수작업으로 이어져 처리시간이 길다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "problem_view": "도면·요구사항·제안서 검토 부담"
+      },
+      {
+        "id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "problem_view": "비교·선정 판단의 전문가 의존"
+      },
+      {
+        "id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "problem_view": "견적·조달 후속업무 수작업 병목"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2N_0136",
+        "business_problem": "Production images may contain people or protected information that must not remain identifiable.",
+        "ax_target_task": "Anonymize people in production images",
+        "business_context": "BMW production-system image processing described in April 2021."
+      },
+      {
+        "case_id": "AXV2N_0137",
+        "business_problem": "Members must navigate scattered benefits information and insurance records.",
+        "ax_target_task": "Answer member benefits questions",
+        "business_context": "Member-facing service separate from internal clinical notes and claim investigation."
+      },
+      {
+        "case_id": "AXV2N_0138",
+        "business_problem": "A small legal team must repeatedly research answers for many branch managers.",
+        "ax_target_task": "Draft answers to branch legal inquiries",
+        "business_context": "Nine-person retail legal team handling roughly 40000 annual inquiries."
+      },
+      {
+        "case_id": "AXV2N_0139",
+        "business_problem": "Staff need understandable contract content without repeatedly interpreting legal text.",
+        "ax_target_task": "Summarize contracts for internal teams",
+        "business_context": "Contract Companion GPT used within Moderna functions."
+      },
+      {
+        "case_id": "AXV2P2_0010_01",
+        "business_problem": "Complex manufacturing product knowledge is difficult to access as expertise and skills become scarce.",
+        "ax_target_task": "Retrieve CAD/CAM product support knowledge",
+        "business_context": "Sandvik manufacturing software support teams and customers"
+      },
+      {
+        "case_id": "AXV2P2_0011_01",
+        "business_problem": "Freight invoices may not match negotiated rates and manual checking burdens logistics staff.",
+        "ax_target_task": "Audit freight invoices for overcharges",
+        "business_context": "Dow logistics spending and emailed PDF invoices"
+      },
+      {
+        "case_id": "AXV2P2_0012_01",
+        "business_problem": "Varied insurance documents require lengthy manual classification and extraction.",
+        "ax_target_task": "Extract and classify insurance documentation",
+        "business_context": "Shift Technology's operational insurer document-processing platform"
+      },
+      {
+        "case_id": "AXV2P2_0013_01",
+        "business_problem": "High-volume confidential discovery review is time-intensive and reviewer fatigue risks inconsistent decisions.",
+        "ax_target_task": "Review discovery documents for legal relevance",
+        "business_context": "Relativity aiR for Review legal clients handling confidential evidence"
+      },
+      {
+        "case_id": "AXV2P2_0015_01",
+        "business_problem": "Important oncology data are buried in large volumes of unstructured clinical documents.",
+        "ax_target_task": "Extract oncology entities from clinical documents",
+        "business_context": "Ontada ON.Genuity clinical research data pipeline"
+      },
+      {
+        "case_id": "AXV2P2_0019_01",
+        "business_problem": "Manual journal entries require multi-system collection and extensive validation during financial close.",
+        "ax_target_task": "Prepare and submit journal entries under approval",
+        "business_context": "IBM Finance Jobotx deployment in early 2025"
+      },
+      {
+        "case_id": "AXV2P2_0020_01",
+        "business_problem": "Manual property claim handling and inconsistent policy interpretation delay claims during disaster surges.",
+        "ax_target_task": "Coordinate property insurance claim resolution",
+        "business_context": "Claims Connection Group policyholders, claim handlers and assigned vendors"
+      },
+      {
+        "case_id": "AXV2P2_0035_01",
+        "business_problem": "Double-reader breast screening burdens radiologist capacity while detection quality must be maintained.",
+        "ax_target_task": "Use AI as one reader in breast screening",
+        "business_context": "Capio S:t Göran Hospital, Sweden, full integration since mid-2023 after ScreenTrustCAD trial"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2N_0136",
+        "relevance": 0,
+        "reason": "생산 이미지에서 개인정보를 익명화하는 과제로, 도면·요구사항·공급업체 제안서 검토와는 대상 자료와 업무가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2N_0137",
+        "relevance": 0,
+        "reason": "회원의 복리후생 정보 문의에 답하는 서비스로, 구매 관련 문서를 읽고 검토하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2N_0138",
+        "relevance": 1,
+        "reason": "법무 문의 답변을 조사·작성하지만, 도면이나 제안서 같은 구매 자료의 검토 부담을 다루지는 않습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2N_0139",
+        "relevance": 2,
+        "reason": "계약서를 요약해 내부 팀의 법률 문서 해석 부담을 줄이는 점은 닮았지만, 구매 요구사항·공급업체 제안 검토가 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0010_01",
+        "relevance": 1,
+        "reason": "제조 소프트웨어 지원 지식 접근 문제로, 구매 문서나 공급업체 제안서를 검토하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0011_01",
+        "relevance": 2,
+        "reason": "이메일로 받은 PDF 운임 청구서를 확인하는 문서 검토는 유사하지만, 고객 도면·요구사항·제안서 검토와는 자료와 목적이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0012_01",
+        "relevance": 2,
+        "reason": "다양한 보험 문서를 분류·추출하는 수작업 부담은 닮았지만, 구매 요구사항과 공급업체 제안서 비교가 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0013_01",
+        "relevance": 2,
+        "reason": "대량의 증거 문서를 검토하는 부담은 공통되지만, 법적 관련성 심사이며 생산·구매 문서의 검토와는 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0015_01",
+        "relevance": 1,
+        "reason": "임상 문서에서 종양학 정보를 추출하지만, 구매 관련 자료를 검토하거나 요구사항을 비교하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0019_01",
+        "relevance": 0,
+        "reason": "재무 마감 시 분개를 수집·검증하는 업무로, 도면이나 공급업체 제안서 검토와는 중심 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0020_01",
+        "relevance": 1,
+        "reason": "보험 약관 해석과 재산 손해 청구 처리 문제지만, 구매 문서 검토나 공급업체 제안서 판독이 핵심은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2P2_0035_01",
+        "relevance": 0,
+        "reason": "유방암 검진 판독에서 영상 판독자 부담을 다루며, 구매 문서 검토와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2N_0136",
+        "relevance": 0,
+        "reason": "이미지 속 인물 익명화 과제로, 생산가능성·원가·공급업체 선택을 비교 판단하는 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2N_0137",
+        "relevance": 0,
+        "reason": "회원 혜택 문의 응답이 중심이며, 대안을 비교해 구매·공급업체를 선택하는 판단 업무가 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2N_0138",
+        "relevance": 1,
+        "reason": "법률 문의 답변에 전문 지식이 쓰이지만, 여러 제안의 원가·생산가능성을 비교해 선택하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2N_0139",
+        "relevance": 1,
+        "reason": "계약 내용 해석을 돕지만, 공급업체 대안을 비교하거나 구매 선택을 내리는 전문가 판단과는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0010_01",
+        "relevance": 1,
+        "reason": "제조 제품 지원에서 희소한 전문지식 접근이 문제지만, 비교 평가나 공급업체 선택 판단을 다루지는 않습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0011_01",
+        "relevance": 2,
+        "reason": "운임 청구액을 협상 요율과 대조해 과다 청구를 판단하는 비교 업무는 닮았지만, 공급업체 선정이나 생산가능성 판단은 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0012_01",
+        "relevance": 1,
+        "reason": "보험 문서 분류·추출이 중심이며, 여러 공급업체 제안을 비교해 전문가가 선택하는 판단 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0013_01",
+        "relevance": 2,
+        "reason": "증거의 법적 관련성을 검토하며 판단 일관성을 유지해야 하는 점은 닮았지만, 구매 대안이나 공급업체 선택은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0015_01",
+        "relevance": 0,
+        "reason": "임상 문서에서 종양학 데이터를 추출하는 파이프라인으로, 전문가의 구매 비교·선정 판단과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0019_01",
+        "relevance": 1,
+        "reason": "분개 검증과 승인 절차는 있으나, 공급업체 대안이나 견적을 비교해 선택하는 판단 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0020_01",
+        "relevance": 2,
+        "reason": "보험 약관 해석과 청구 해결에서 판단이 필요한 점은 일부 겹치지만, 구매 원가·생산가능성·공급업체 비교와는 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2P2_0035_01",
+        "relevance": 1,
+        "reason": "유방 영상 판독에서 판독자 역할을 분담하지만, 공급업체 제안이나 구매 대안을 비교·선정하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2N_0136",
+        "relevance": 0,
+        "reason": "생산 이미지 익명화에 관한 업무로, 견적 작성이나 조달 후속 절차의 수작업 병목과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2N_0137",
+        "relevance": 0,
+        "reason": "회원 복리후생 문의 응답 서비스이며, 견적·구매·조달 후속업무를 처리하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2N_0138",
+        "relevance": 1,
+        "reason": "반복적인 법률 문의 답변 작성 부담은 있지만, 견적 작성이나 조달 후속 절차의 병목은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2N_0139",
+        "relevance": 0,
+        "reason": "내부 팀을 위한 계약 요약 업무로, 견적·조달 워크플로의 수작업 처리를 다룬다는 근거가 없습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0010_01",
+        "relevance": 0,
+        "reason": "제조 소프트웨어 제품 지원 지식 검색이 중심이며, 견적 작성이나 조달 후속업무와 연결되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0011_01",
+        "relevance": 2,
+        "reason": "운임 청구서 수작업 확인이라는 물류 업무는 닿아 있지만, 견적 작성이나 조달 후속 처리가 중심인 사례는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0012_01",
+        "relevance": 1,
+        "reason": "보험 문서 처리의 수작업 부담은 있으나, 견적·구매·조달 업무 흐름을 처리한다는 내용은 없습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0013_01",
+        "relevance": 0,
+        "reason": "법률 증거 문서의 관련성 검토 사례로, 견적이나 조달 후속업무의 자동화 병목과는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0015_01",
+        "relevance": 0,
+        "reason": "임상 문서에서 연구용 종양학 데이터를 추출하는 업무로, 견적·조달 절차와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0019_01",
+        "relevance": 1,
+        "reason": "재무 마감의 분개 수집·제출 절차는 다단계 수작업이지만, 견적 작성이나 조달 후속업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0020_01",
+        "relevance": 1,
+        "reason": "보험 청구와 지정 업체 조율이 포함되지만, 구매 견적 작성이나 조달 후속업무 병목을 다룬다고 명시되지는 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2P2_0035_01",
+        "relevance": 0,
+        "reason": "유방 검진의 영상 판독 부담을 다루는 의료 업무로, 견적·조달 워크플로와 관련이 없습니다."
+      }
+    ]
+  }
+}

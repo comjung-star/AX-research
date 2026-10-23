@@ -1,0 +1,319 @@
+{
+  "query_id": "V21D005",
+  "pass_id": 2,
+  "first_case": 0,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0ca96511cc25b32c006adb1dfd2cc887d2b57e4900b34e3081",
+  "input_problem_only": {
+    "query_id": "V21D005",
+    "business_problem_query": "여러 국가와 조직의 시스템에 데이터가 따로 쌓여 전체 현황을 한눈에 보기 어렵고 부서마다 다른 기준으로 분석해 의사결정이 늦어지고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_DATA_SILO",
+        "problem_view": "데이터 사일로·통합 부족"
+      },
+      {
+        "id": "P2_VISIBILITY_GAP",
+        "problem_view": "전사 현황 가시성 부족"
+      },
+      {
+        "id": "P3_DECISION_DELAY",
+        "problem_view": "분석·의사결정 지연"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0006_01",
+        "business_problem": "Manual forms and manager-HR coordination caused errors and poor experience when promotions or assignments changed.",
+        "ax_target_task": "HR organizational-change request validation",
+        "business_context": "Danone managers requesting organizational changes."
+      },
+      {
+        "case_id": "AXV2C_0006_02",
+        "business_problem": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.",
+        "ax_target_task": "Validate customer order prices before invoicing",
+        "business_context": "Danone receives thousands of orders daily through email, PDF and EDI."
+      },
+      {
+        "case_id": "AXV2C_0016_01",
+        "business_problem": "Customers need digital or voice support that can diagnose routine device issues without unnecessary transfers.",
+        "ax_target_task": "Caller self-service computer troubleshooting",
+        "business_context": "Best Buy customers calling for computer assistance."
+      },
+      {
+        "case_id": "AXV2C_0017_01",
+        "business_problem": "Rules-based routing cannot handle nuanced issues and customers repeat their history across channels.",
+        "ax_target_task": "Resolve telecom customer inquiries with remembered context",
+        "business_context": "AT&T customer support across phone, online and retail contacts."
+      },
+      {
+        "case_id": "AXV2C_0050_01",
+        "business_problem": "Uncertain sales volumes make it difficult to supply enough food while avoiding waste.",
+        "ax_target_task": "Forecast daily store-item demand",
+        "business_context": "Albert Heijn forecasts over 15 million store-item combinations more than five weeks ahead."
+      },
+      {
+        "case_id": "AXV2C_0050_02",
+        "business_problem": "Food already on shelves can expire unsold and become waste.",
+        "ax_target_task": "Discount near-expiry food on shelves",
+        "business_context": "Albert Heijn stores with electronic shelf labels."
+      },
+      {
+        "case_id": "AXV2C_0068_01",
+        "business_problem": "Missing or incomplete payment instructions trigger time-consuming human reviews.",
+        "ax_target_task": "Repair incomplete payment instructions",
+        "business_context": "BNY cross-border payment processing."
+      },
+      {
+        "case_id": "AXV2C_0068_03",
+        "business_problem": "Identity and risk verification requires document research and weeks of back-and-forth.",
+        "ax_target_task": "Review documents and risk during client onboarding",
+        "business_context": "New BNY financial-services clients subject to mandatory onboarding review."
+      },
+      {
+        "case_id": "AXV2C_0074_01",
+        "business_problem": "Customer emails could take a working day to answer and self-hosted generation had cost and response quality problems as volume rose.",
+        "ax_target_task": "Generate personalized support emails",
+        "business_context": "Cashfree Payments merchant support communications in India."
+      },
+      {
+        "case_id": "AXV2C_0074_02",
+        "business_problem": "Compliance, verification and risk checks slowed merchant onboarding; some merchant categories had p99 turnaround of at least 24 hours.",
+        "ax_target_task": "Review merchant websites during onboarding",
+        "business_context": "Cashfree Payments onboarding Indian merchants; payment data stays in India."
+      },
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "조직 변경 요청의 수기 양식과 조율 오류가 핵심이며, 여러 시스템의 데이터 통합 부족과는 다른 문제입니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 1,
+        "reason": "주문 형식이 다양해 가격 불일치가 생기지만, 조직·국가별 시스템에 데이터가 분산된 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "고객의 기기 문제를 자가 진단하는 지원 업무로, 데이터 사일로나 통합 부족과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 2,
+        "reason": "전화·온라인·매장 채널 간 고객 이력이 이어지지 않는 점은 맥락 공유 부족과 부분적으로 겹치지만, 전사 데이터 통합이 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "매장별 상품 수요 예측의 불확실성이 문제이며, 시스템 간 데이터 사일로나 통합 부족은 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "임박 식품 할인 업무로, 서로 다른 시스템에 쌓인 데이터의 통합과는 무관합니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "결제 지침의 누락을 보완하는 업무이며, 여러 조직 시스템의 데이터 분산이나 통합 문제는 없습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 0,
+        "reason": "신규 고객의 신원·위험 문서 검토가 핵심으로, 전사 데이터 사일로 문제와는 다른 업무입니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "고객 지원 이메일 생성의 응답 품질과 비용 문제이며, 분산된 기업 데이터 통합이 중심이 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 0,
+        "reason": "가맹점 웹사이트의 규정·위험 검토 지연이 문제이며, 데이터 사일로나 시스템 통합 부족은 언급되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 1,
+        "reason": "다국어 무역금융 문서에서 정보를 추출하지만, 문서 입력 자동화가 중심이고 조직별 데이터 사일로 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "제재 심사를 위한 문서 검토 업무로, 데이터 통합 부족이나 분산 시스템이 문제로 제시되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "인사 조직 변경 요청의 오류와 경험 개선이 중심이며, 전사 현황을 한눈에 보는 가시성 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 0,
+        "reason": "주문별 가격 불일치와 입력 오류가 문제이며, 전사 운영 현황의 가시성 부족과는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "기기 문제 해결을 위한 고객 자가 지원 업무이며, 조직 전반의 현황 파악 문제와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 2,
+        "reason": "채널을 오가며 고객 이력을 반복 설명하는 문제는 정보 가시성 부족과 일부 겹치지만, 고객별 맥락이지 전사 현황은 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 1,
+        "reason": "다수 매장·상품의 수요를 예측하지만, 중심 문제는 공급량 불확실성이지 전사 현황을 한눈에 보는 일은 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "매대 식품의 유통기한 임박 할인 업무로, 전사 현황 가시성 문제와는 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "누락된 결제 지침을 보완하는 처리 업무이며, 조직 전반의 상태를 파악하기 어려운 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 0,
+        "reason": "개별 신규 고객의 신원·위험 검토 업무로, 전사 운영 현황의 가시성 부족과는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "고객 이메일 응답 생성의 속도와 품질이 문제이며, 전사 상황을 한눈에 파악하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 0,
+        "reason": "가맹점 온보딩 심사 지연이 중심이며, 전사 현황 가시성 부족이 문제로 제시되지는 않았습니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "무역금융 문서의 수기 입력 속도와 오류가 문제이며, 전사 현황을 한눈에 보는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "제재 위험을 확인하기 위한 문서 검토로, 전사적 현황 가시성 부족과는 업무 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "조직 변경 요청의 오류와 직원 경험이 문제이며, 분석이나 의사결정 지연은 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 1,
+        "reason": "가격 오류가 분쟁과 결제 지연으로 이어지지만, 분석·의사결정 지연이 아니라 주문 입력 문제입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "고객의 기기 문제를 진단하는 지원 업무이며, 분석이나 기업 의사결정 지연과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 1,
+        "reason": "복잡한 문의에 규칙 기반 라우팅이 맞지 않지만, 서로 다른 분석 기준으로 의사결정이 늦어지는 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 1,
+        "reason": "수요 예측이 공급 판단에 도움을 줄 수는 있지만, 사례의 문제는 데이터 분석 지연이 아니라 수요 불확실성입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "유통기한 임박 식품의 할인 가격 적용 업무로, 분석·의사결정 지연이 핵심 문제가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 1,
+        "reason": "불완전한 지침을 검토하는 데 시간이 들지만, 지연 원인은 결제 정보 보완이지 분석 기준 차이가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 2,
+        "reason": "문서 조사와 반복 확인으로 온보딩 판단에 수주가 걸리는 점은 의사결정 지연과 겹치지만, 데이터 통합 부족이 원인은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 1,
+        "reason": "고객 이메일 응답이 늦어지는 문제는 있지만, 이는 지원 답변 처리 지연이지 분석이나 의사결정 지연은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 2,
+        "reason": "규정·검증·위험 점검이 가맹점 온보딩을 늦추는 점은 판단 지연과 부분적으로 겹치지만, 원인은 별도 심사 업무입니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 1,
+        "reason": "문서 수기 입력이 느리지만, 지연되는 것은 업무 입력 처리이며 분석·의사결정 지연과는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 1,
+        "reason": "제재 위험 심사에서 판단은 포함되지만, 분석 지연이나 부서별 기준 차이가 문제로 제시되지는 않았습니다."
+      }
+    ]
+  }
+}

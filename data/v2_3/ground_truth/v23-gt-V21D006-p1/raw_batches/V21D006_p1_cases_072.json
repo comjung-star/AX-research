@@ -1,0 +1,319 @@
+{
+  "query_id": "V21D006",
+  "pass_id": 1,
+  "first_case": 72,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_09f264127ee5dba2006adb1ea226b087d0ba8e3f8c928ee948",
+  "input_problem_only": {
+    "query_id": "V21D006",
+    "business_problem_query": "상품 수가 빠르게 늘면서 신규 상품의 속성 분류와 태깅을 사람이 처리해 온보딩이 느리고, 고객 검색어가 상품 데이터와 잘 연결되지 않아 원하는 상품을 찾지 못하는 경우가 많으며, 고객 상황에 맞는 탐색 지원도 부족하다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "problem_view": "상품 속성 분류·태깅 부담"
+      },
+      {
+        "id": "P2_SEARCH_FINDABILITY_GAP",
+        "problem_view": "검색어-상품 연결 및 탐색 실패"
+      },
+      {
+        "id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "problem_view": "상황·개인조건 기반 상품발견 부족"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2P2_0048_01",
+        "business_problem": "고객이 수많은 상품 정보·리뷰·비교 결과를 직접 종합해야 해 특정 용도에 적합한 상품을 맥락에 맞춰 선택하기 어렵다.",
+        "ax_target_task": "Answer shopping questions and recommend products",
+        "business_context": "Walmart app Ask Sparky button launched across categories in June 2025"
+      },
+      {
+        "case_id": "AXV2P2_0060_01",
+        "business_problem": "Millions of customer questions overwhelmed airline support, increasing costs and response delays.",
+        "ax_target_task": "Answer airline customer service questions",
+        "business_context": "Air India AI.g customer support"
+      },
+      {
+        "case_id": "AXV2P2_0061_01",
+        "business_problem": "Manually summarizing large volumes of car reviews across inventory would take years.",
+        "ax_target_task": "Write short customer-review summaries for car pages",
+        "business_context": "CarMax editorial workflow for car research webpages"
+      },
+      {
+        "case_id": "AXV2P2_0065_01",
+        "business_problem": "Fragmented paint-process data hide causes of bumper defects and delay countermeasures.",
+        "ax_target_task": "Investigate paint-quality defect drivers and support root-cause decisions",
+        "business_context": "Toyota Industries Nagakusa Plant bumper production"
+      },
+      {
+        "case_id": "AXV2P2_0067_01",
+        "business_problem": "Routine customer questions consume customer-contact staff capacity.",
+        "ax_target_task": "Answer Amstel website customer FAQs",
+        "business_context": "HEINEKEN Amstel Brewery Dutch customer website"
+      },
+      {
+        "case_id": "AXV2P2_0069_01",
+        "business_problem": "Salespeople manually enter contact details and switch applications to keep CRM data current.",
+        "ax_target_task": "Create CRM contacts from customer emails",
+        "business_context": "Schneider Electric salespeople using Salesforce, Outlook and Teams"
+      },
+      {
+        "case_id": "AXV2P2_0089_01",
+        "business_problem": "Routine leave requests require time-consuming manual HR handling.",
+        "ax_target_task": "Book employee annual leave",
+        "business_context": "Inspire internal employee HR portal"
+      },
+      {
+        "case_id": "AXV2P2_0097_01",
+        "business_problem": "Unloading varied boxes in subzero warehouses is difficult and undesirable manual work.",
+        "ax_target_task": "Depalletize boxes in a frozen warehouse",
+        "business_context": "CMES deployment with Hyundai Movex; ten systems in an actual cold logistics center"
+      },
+      {
+        "case_id": "AXV2P2_0099_01",
+        "business_problem": "Repeated marking tasks in a hot steel-production environment expose staff to risk and create bottlenecks.",
+        "ax_target_task": "Automate steel marking",
+        "business_context": "SeAH Besteel steel manufacturing line"
+      },
+      {
+        "case_id": "AXV2P2_0100_01",
+        "business_problem": "Frequent recruitment requires timely review of application content, errors and plagiarism.",
+        "ax_target_task": "Screen and assess applicant self-introductions",
+        "business_context": "Saramin 등용문S recruitment management integrated with Muhayu Prism"
+      },
+      {
+        "case_id": "AXV22_0092_01",
+        "business_problem": "신규 상품의 색상·스타일 등 속성을 사람이 분류·태깅하면서 카탈로그 상품 등록과 갱신에 많은 작업시간이 듦.",
+        "ax_target_task": "신규 및 변경 상품의 색상·스타일 속성을 자동 분류해 상품 카탈로그 정보를 보강",
+        "business_context": "Wayfair의 3,000만 개 이상 상품을 취급하는 전자상거래 카탈로그 운영"
+      },
+      {
+        "case_id": "AXV22_0093_01",
+        "business_problem": "금융권 보안·망분리 및 규제 요건으로 외부 생성형 AI를 내부 업무에 그대로 도입하기 어려움.",
+        "ax_target_task": "망분리 내부 지식 기반 업무 질의응답 및 문서 업무 지원 에이전트를 운영",
+        "business_context": "제주은행의 자체 망분리 온프레미스 환경에서 전행 내부 업무 지식과 문서를 활용"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0048_01",
+        "relevance": 0,
+        "reason": "상품 정보와 리뷰를 바탕으로 질문에 답하고 추천하지만, 신규 상품 속성 분류·태깅이나 카탈로그 보강 부담을 다루지는 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0048_01",
+        "relevance": 2,
+        "reason": "쇼핑 질문에 답하고 상품을 추천해 탐색을 돕지만, 검색어와 상품 데이터를 연결하거나 검색 실패를 해결하는 업무가 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0048_01",
+        "relevance": 4,
+        "reason": "고객의 특정 용도와 질문 맥락에 맞춰 적합한 상품을 추천하므로, 상황에 맞는 상품 탐색 지원 부족과 직접 맞닿습니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0060_01",
+        "relevance": 0,
+        "reason": "항공사 고객 문의 응답 지연과 지원 부담을 다루며, 상품 속성 분류나 전자상거래 카탈로그 태깅과는 업무가 다릅니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0060_01",
+        "relevance": 0,
+        "reason": "항공 고객지원 문의에 답하는 사례로, 고객 검색어와 상품 데이터를 연결하거나 원하는 상품을 찾게 하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0060_01",
+        "relevance": 0,
+        "reason": "항공사 고객지원 응답을 처리하며, 개인 조건이나 상황에 맞춘 상품 탐색·추천 문제와는 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0061_01",
+        "relevance": 0,
+        "reason": "자동차 리뷰를 요약해 차량 페이지를 작성하는 편집 업무이며, 신규 상품의 속성 분류·태깅이나 카탈로그 입력 부담을 해결하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0061_01",
+        "relevance": 2,
+        "reason": "차량 리뷰 요약은 고객의 상품 조사와 탐색에 일부 도움을 주지만, 검색어-상품 연결이나 검색 결과에서의 상품 발견 실패가 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0061_01",
+        "relevance": 1,
+        "reason": "리뷰 요약은 차량 비교에 참고가 되지만, 고객의 상황이나 개인 조건에 맞춘 차량 발견을 지원하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0065_01",
+        "relevance": 0,
+        "reason": "범퍼 도장 결함의 원인을 분석하는 제조 품질 업무로, 상품 카탈로그 속성 분류·태깅 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0065_01",
+        "relevance": 0,
+        "reason": "공장 공정 데이터로 결함 원인을 찾는 업무이며, 고객 검색어와 상품을 연결하거나 상품 탐색을 개선하는 사례가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0065_01",
+        "relevance": 0,
+        "reason": "제조 현장의 품질 결함 분석이 중심이라, 개인 조건이나 사용 상황에 맞춘 상품 추천·발견과는 업무 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0067_01",
+        "relevance": 0,
+        "reason": "양조장 웹사이트의 일반 고객 문의에 답하는 업무로, 상품 속성 분류와 카탈로그 정보 보강 부담을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0067_01",
+        "relevance": 0,
+        "reason": "웹사이트 고객 FAQ 응답 자동화이며, 상품 검색어와 상품 데이터를 매칭하거나 원하는 상품을 찾게 하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0067_01",
+        "relevance": 0,
+        "reason": "일반 고객 문의에 답하는 사례로, 고객의 상황·개인 조건에 맞춘 상품 탐색 부족과는 문제와 업무가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0069_01",
+        "relevance": 0,
+        "reason": "고객 이메일에서 연락처를 추출해 CRM을 갱신하는 영업 데이터 입력 업무로, 상품 속성 태깅과는 대상 데이터가 다릅니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0069_01",
+        "relevance": 0,
+        "reason": "이메일의 연락처를 CRM에 등록하는 업무이며, 고객의 상품 검색어와 카탈로그 상품을 연결하거나 탐색 실패를 줄이지 않습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0069_01",
+        "relevance": 0,
+        "reason": "영업 담당자의 CRM 연락처 입력 부담을 줄이는 사례로, 고객 맞춤 상품 추천이나 발견 지원과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0089_01",
+        "relevance": 0,
+        "reason": "직원의 연차 신청을 처리하는 사내 HR 업무이며, 상품 속성 분류·태깅이나 전자상거래 카탈로그 운영과 무관합니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0089_01",
+        "relevance": 0,
+        "reason": "직원 연차 예약을 자동화하는 업무로, 고객이 상품 검색어로 원하는 상품을 찾지 못하는 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0089_01",
+        "relevance": 0,
+        "reason": "사내 휴가 신청이라는 HR 업무를 다루며, 개인 상황에 맞춘 상품 탐색·추천과는 대상과 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0097_01",
+        "relevance": 0,
+        "reason": "냉동 물류창고에서 다양한 상자를 하역하는 로봇 자동화 사례로, 상품 카탈로그 속성 분류·태깅 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0097_01",
+        "relevance": 0,
+        "reason": "물류 현장의 상자 하역을 자동화하며, 고객 검색어와 상품 정보를 연결하거나 상품 검색 실패를 해결하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0097_01",
+        "relevance": 0,
+        "reason": "저온 창고의 반복 하역 노동을 줄이는 제조·물류 과제로, 고객 상황에 맞춘 상품 발견과 무관합니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0099_01",
+        "relevance": 0,
+        "reason": "철강 생산라인의 반복 마킹 작업과 작업자 위험을 줄이는 사례로, 상품 속성 태깅이나 카탈로그 등록 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0099_01",
+        "relevance": 0,
+        "reason": "철강 제품 마킹을 자동화하는 생산 업무이며, 고객 검색어-상품 연결이나 상품 탐색 실패를 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0099_01",
+        "relevance": 0,
+        "reason": "철강 제조 현장의 작업 안전·병목 문제로, 고객 개인 조건이나 사용 상황에 맞는 상품 추천과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV2P2_0100_01",
+        "relevance": 0,
+        "reason": "채용 지원서 자기소개서를 검토·평가하는 인사 업무이며, 상품 카탈로그 속성 분류나 태깅 부담을 해결하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV2P2_0100_01",
+        "relevance": 0,
+        "reason": "지원자 서류의 내용·오류·표절을 심사하는 채용 업무로, 상품 검색어와 카탈로그 데이터의 연결 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV2P2_0100_01",
+        "relevance": 0,
+        "reason": "채용 지원자를 평가하는 사례이며, 고객의 상황이나 개인 조건에 따른 상품 탐색·발견 지원과는 무관합니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV22_0092_01",
+        "relevance": 4,
+        "reason": "신규·변경 상품의 색상과 스타일을 자동 분류해 카탈로그를 보강하므로, 상품 속성 분류·태깅의 수작업 부담과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV22_0092_01",
+        "relevance": 2,
+        "reason": "색상·스타일 속성 보강은 상품 검색에 쓰일 카탈로그 정보를 개선하지만, 검색어 매칭이나 고객의 탐색 실패 자체가 사례의 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "상품 속성 보강은 탐색 기반에 간접 도움이 될 수 있지만, 고객의 상황이나 개인 조건에 맞춘 발견 지원은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "금융기관의 망분리 환경에서 내부 질의응답과 문서 업무를 지원하는 사례로, 상품 카탈로그 분류·태깅 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_SEARCH_FINDABILITY_GAP",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "내부 금융 지식과 문서에 대한 직원 질의응답이 중심이며, 고객의 상품 검색어와 상품 데이터 연결을 개선하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_PERSONALIZED_DISCOVERY_GAP",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "은행 내부 직원의 지식 접근·문서 업무를 지원하며, 고객 상황이나 개인 조건에 맞춘 상품 발견과는 맥락이 다릅니다."
+      }
+    ]
+  }
+}

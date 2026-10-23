@@ -1,0 +1,319 @@
+{
+  "query_id": "V21D004",
+  "pass_id": 2,
+  "first_case": 0,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_07e3289946fe0f2f006adb1d34230887d198cbdd2d129dfb96",
+  "input_problem_only": {
+    "query_id": "V21D004",
+    "business_problem_query": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "problem_view": "비정형 문서 검토 부담"
+      },
+      {
+        "id": "P2_COMPLIANCE_CHECK_RISK",
+        "problem_view": "규정·검증 누락 위험"
+      },
+      {
+        "id": "P3_MANUAL_VERIFICATION",
+        "problem_view": "반복 수작업 검증"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0006_01",
+        "business_problem": "Manual forms and manager-HR coordination caused errors and poor experience when promotions or assignments changed.",
+        "ax_target_task": "HR organizational-change request validation",
+        "business_context": "Danone managers requesting organizational changes."
+      },
+      {
+        "case_id": "AXV2C_0006_02",
+        "business_problem": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.",
+        "ax_target_task": "Validate customer order prices before invoicing",
+        "business_context": "Danone receives thousands of orders daily through email, PDF and EDI."
+      },
+      {
+        "case_id": "AXV2C_0016_01",
+        "business_problem": "Customers need digital or voice support that can diagnose routine device issues without unnecessary transfers.",
+        "ax_target_task": "Caller self-service computer troubleshooting",
+        "business_context": "Best Buy customers calling for computer assistance."
+      },
+      {
+        "case_id": "AXV2C_0017_01",
+        "business_problem": "Rules-based routing cannot handle nuanced issues and customers repeat their history across channels.",
+        "ax_target_task": "Resolve telecom customer inquiries with remembered context",
+        "business_context": "AT&T customer support across phone, online and retail contacts."
+      },
+      {
+        "case_id": "AXV2C_0050_01",
+        "business_problem": "Uncertain sales volumes make it difficult to supply enough food while avoiding waste.",
+        "ax_target_task": "Forecast daily store-item demand",
+        "business_context": "Albert Heijn forecasts over 15 million store-item combinations more than five weeks ahead."
+      },
+      {
+        "case_id": "AXV2C_0050_02",
+        "business_problem": "Food already on shelves can expire unsold and become waste.",
+        "ax_target_task": "Discount near-expiry food on shelves",
+        "business_context": "Albert Heijn stores with electronic shelf labels."
+      },
+      {
+        "case_id": "AXV2C_0068_01",
+        "business_problem": "Missing or incomplete payment instructions trigger time-consuming human reviews.",
+        "ax_target_task": "Repair incomplete payment instructions",
+        "business_context": "BNY cross-border payment processing."
+      },
+      {
+        "case_id": "AXV2C_0068_03",
+        "business_problem": "Identity and risk verification requires document research and weeks of back-and-forth.",
+        "ax_target_task": "Review documents and risk during client onboarding",
+        "business_context": "New BNY financial-services clients subject to mandatory onboarding review."
+      },
+      {
+        "case_id": "AXV2C_0074_01",
+        "business_problem": "Customer emails could take a working day to answer and self-hosted generation had cost and response quality problems as volume rose.",
+        "ax_target_task": "Generate personalized support emails",
+        "business_context": "Cashfree Payments merchant support communications in India."
+      },
+      {
+        "case_id": "AXV2C_0074_02",
+        "business_problem": "Compliance, verification and risk checks slowed merchant onboarding; some merchant categories had p99 turnaround of at least 24 hours.",
+        "ax_target_task": "Review merchant websites during onboarding",
+        "business_context": "Cashfree Payments onboarding Indian merchants; payment data stays in India."
+      },
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 2,
+        "reason": "조직 변경 요청에 수기 양식이 쓰이지만, 핵심 부담은 비정형 문서 검토가 아니라 HR 조정과 요청 처리입니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 1,
+        "reason": "요청 검증 중 오류가 발생하지만, 규정 준수나 필수 기준 누락 위험을 다루는 사례는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 3,
+        "reason": "조직 변경 요청을 양식과 HR 조정으로 수동 처리하며 오류가 발생해, 반복적인 요청 검증 부담과 맞닿습니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 3,
+        "reason": "이메일·PDF·EDI 등 다양한 형식의 주문에서 가격을 확인하므로 문서 형식 다양성과 검토 부담이 상당히 겹칩니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 2,
+        "reason": "가격 불일치와 입력 오류를 확인하지만, 규정 준수 여부나 규정상 필수 항목 검증이 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 3,
+        "reason": "다량 주문의 가격을 송장 발행 전에 검증하고 입력 오류를 막는 업무가 반복 검증 과제와 유사합니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "컴퓨터 문제 해결을 위한 고객 지원 사례이며, 문서 검토나 문서 처리 부담과는 업무가 다릅니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "기기 문제 진단과 고객 지원이 핵심이며, 규정 준수나 서류 검증 누락 위험을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "고객의 컴퓨터 문제를 해결하는 업무로, 문서나 항목을 반복 검증하는 과제와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 0,
+        "reason": "여러 채널의 통신 고객 문의를 해결하는 사례이며, 문서 검토 부담과 관련된 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 0,
+        "reason": "고객 문의의 맥락을 유지해 응대하는 과제로, 규정이나 필수 검증 항목을 확인하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 0,
+        "reason": "고객 이력에 기반한 문의 해결이 중심이고, 문서의 반복적인 수동 검증과는 과제가 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "매장 상품 수요 예측 사례로, 문서 형식이나 문서 검토에 따른 처리 부담이 없습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "식품 재고 수요를 예측하는 업무이며, 규정 준수 확인이나 검증 누락 위험과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "상품별 수요 예측이 핵심 과제이며, 문서 항목을 사람이 반복 확인하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "유통기한 임박 식품의 할인 적용 사례로, 문서를 읽고 검토하는 업무와는 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "매장 상품 할인 적용이 과제이며, 규정이나 서류의 필수 요건을 검증하는 사례가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "선반 식품의 할인 적용 업무로, 문서 내용을 반복적으로 수동 검증하는 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 2,
+        "reason": "불완전한 지급 지시를 사람이 검토하지만, 여러 형식의 문서 검토보다는 지급 지시의 보완이 중심입니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 2,
+        "reason": "지급 지시의 누락 사항이 사람의 검토를 유발하지만, 규정 준수 여부 확인이 핵심이라고 명시되지는 않습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 3,
+        "reason": "불완전한 지급 지시를 사람이 검토하고 보완하는 반복 업무가 수작업 검증 부담과 강하게 겹칩니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 4,
+        "reason": "신규 고객 온보딩에서 서류를 조사하고 검토하는 데 시간이 오래 걸려, 문서 검토 부담과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 4,
+        "reason": "의무 온보딩 심사에서 신원과 위험을 확인하므로, 규정·검증 누락 위험이라는 핵심 문제와 직접 맞닿습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 4,
+        "reason": "서류 조사와 위험 검토, 수주간의 왕복 확인이 필요한 온보딩 업무로 반복 수작업 검증과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "고객 지원 이메일의 답변 생성 사례이며, 이메일이 언급되어도 문서 검토나 검증 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "지원 이메일의 응답 속도와 품질 문제를 다루며, 규정 준수나 필수 항목 검증과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "개인화된 고객 답변 생성이 과제이며, 문서의 항목을 반복 확인하는 수작업 검증과 다릅니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 2,
+        "reason": "온보딩 중 판매자 웹사이트를 검토하지만, 여러 문서 형식의 판독보다는 웹사이트 확인이 중심입니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 4,
+        "reason": "판매자 온보딩에서 규정 준수와 검증, 위험 확인이 지연되는 문제로 해당 관점의 핵심 과제와 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 3,
+        "reason": "판매자 웹사이트를 온보딩 과정에서 검토하고 확인하는 업무로 검증 과제는 겹치지만, 수작업 반복이 명시되지는 않습니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 4,
+        "reason": "대량의 송장과 선적 서류에서 항목을 수동 입력하며 오류가 발생해, 문서 처리 부담과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 2,
+        "reason": "서류 입력 오류 위험은 공통점이지만, 규정 준수 여부나 규정상 필수 항목 검증이 주된 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 4,
+        "reason": "무역 금융 서류에서 항목을 수동으로 추출·입력하며 사람의 오류가 발생하는 반복 업무가 직접 겹칩니다."
+      },
+      {
+        "perspective_id": "P1_DOCUMENT_REVIEW_BURDEN",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 4,
+        "reason": "은행 문서를 검토해 위험을 드러낼 세부 정보를 찾아내는 업무로, 문서 검토 부담과 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 4,
+        "reason": "제재 심사를 위해 문서의 위험 세부 사항을 식별하므로 규정 검증과 누락 위험이라는 핵심 과제와 직접 맞닿습니다."
+      },
+      {
+        "perspective_id": "P3_MANUAL_VERIFICATION",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 4,
+        "reason": "제재 심사 과정에서 문서 내용을 확인하고 위험 세부 사항을 찾아야 하므로 반복적인 검증 업무와 직접 일치합니다."
+      }
+    ]
+  }
+}

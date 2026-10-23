@@ -1,0 +1,51 @@
+{
+  "name": "AX_V23_AI_SILVER_DEV_QRELS",
+  "created_at_utc": "2026-10-23T08:53:52.007005+00:00",
+  "dataset_version": "2.3.0",
+  "corpus_git_blob_sha": "1705888f3338b219d3715fe4422641865c3075e2",
+  "status": "COMPLETE_AI_ONLY_SILVER_2520_NOT_HUMAN_GROUND_TRUTH",
+  "method": "3 independent blind API re-ratings of frozen 84-case Problem/Task/Context, median with full disagreement flags",
+  "sources": {
+    "input_corpus": "data/v2_3/main_cases_v2_3.json",
+    "dev_queries": "data/v2_3/dev_query_candidates_v2_3.json",
+    "judge_script": "scripts/v23_gt_grade.py",
+    "judge_prompt": "scripts/v21_provisional_ai_ground_truth.py::SYSTEM",
+    "raw_runs": "ground_truth/v23-gt-V21D001..010-p1..p3"
+  },
+  "counts": {
+    "cases": 84,
+    "dev_questions": 10,
+    "dev_perspectives": 30,
+    "judgments": 2520,
+    "ai_api_grades": 7560,
+    "all_passes_exact": 1747,
+    "threshold_flips": 90,
+    "optional_review_queue": 119,
+    "v22_human_pilot_count": 50,
+    "v22_human_pilot_v23_included": 45,
+    "v22_human_vs_v23_ai_binary_disagree": 19,
+    "human_approved_v23": 0,
+    "silver_score_histogram": {
+      "0": 1596,
+      "1": 505,
+      "2": 232,
+      "3": 114,
+      "4": 73
+    },
+    "empty_silver_perspectives": 1
+  },
+  "model_requested": "gpt-6-luna",
+  "model_ids_observed": [
+    "gpt-6-luna"
+  ],
+  "prompt_sha256": "aa3deef86b5ed7e90a412cccefeed17b40c7a5d2098704637f33379fa2b757d0",
+  "cautions": [
+    "No human reviewed v2.3 qrels; do not call this validated Gold.",
+    "Median and repeated outputs do not establish factual correctness.",
+    "v2.2 human 50 were chosen for disagreement; comparator is not representative.",
+    "v2.3 corpus taxonomy and extra cases selected using prior Dev coverage; Dev estimates are not held-out Test.",
+    "Threshold-flip cases cannot be silently declared unambiguous positives or negatives.",
+    "Reference perspectives are draft and for evaluation only; never passed into retrieval model.",
+    "Strategy set union is a dependent candidate, not independently adjudicated query strategy Gold."
+  ]
+}

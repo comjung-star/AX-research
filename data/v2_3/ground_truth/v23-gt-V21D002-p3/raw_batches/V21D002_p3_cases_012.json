@@ -1,0 +1,319 @@
+{
+  "query_id": "V21D002",
+  "pass_id": 3,
+  "first_case": 12,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0d9b5e9805211018006adb1c7e0c4087d09a596d3b906ec104",
+  "input_problem_only": {
+    "query_id": "V21D002",
+    "business_problem_query": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "problem_view": "긴 비정형 커뮤니케이션 이해 부담"
+      },
+      {
+        "id": "P2_ACTION_ITEM_EXTRACTION",
+        "problem_view": "후속조치 식별 부담"
+      },
+      {
+        "id": "P3_REPETITIVE_SUMMARIZATION",
+        "problem_view": "반복 요약·정리 업무"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      },
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "기술지원 담당자가 고객 문의를 접수·검토해 답변을 전달하는 반복 업무의 부담을 낮추면서, 정확하고 보안에 맞는 결제 기술정보 응답이 필요했다.",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 1,
+        "reason": "금융 고객 질문에 답하는 업무로, 긴 이메일이나 첨부자료를 읽고 요지를 파악하는 문제는 명시되지 않음."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "생산 불량 원인 분석은 시스템 데이터 분석 업무이며, 비정형 고객 커뮤니케이션 이해와는 자료와 과업이 다름."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "생산 일정 조정과 계획 검증이 핵심으로, 긴 커뮤니케이션이나 문서 내용을 이해하는 문제와 무관함."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 1,
+        "reason": "고객 견적 작성의 수작업 병목은 언급되지만, 이메일 스레드나 첨부 문서의 복잡한 내용 파악은 다루지 않음."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "제조 생산계획과 작업지시 준비가 중심이며, 비정형 커뮤니케이션을 읽고 핵심을 파악하는 과업은 없음."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 1,
+        "reason": "대량 문의 대응 부담은 공통적이지만, 문의에 자율 응답하는 업무이며 장문 스레드의 이해 부담은 제시되지 않음."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 4,
+        "reason": "장문 고객 이메일 스레드에서 핵심 내용을 파악하는 데 시간이 드는 문제와 이메일 요약 과업이 직접 일치함."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 2,
+        "reason": "여러 파일과 검증 기준을 수작업으로 살피는 부담은 일부 유사하지만, 핵심 과업은 커뮤니케이션 이해가 아닌 신원조회 검증임."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 2,
+        "reason": "길고 다양한 문서를 읽어야 하는 부담은 일부 겹치지만, 세무 데이터 추출이 중심이며 이메일 커뮤니케이션 이해와는 다름."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "로봇 고장 예측과 제조공정 진단이 핵심으로, 이메일이나 문서 내용을 읽고 이해하는 업무와 무관함."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 1,
+        "reason": "전화 문의에 음성으로 응답하는 지원 업무지만, 긴 서면 스레드나 첨부 문서의 이해 문제는 다루지 않음."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "고객 기술 문의에 정확히 답하는 과업으로, 긴 이메일의 핵심을 파악하거나 첨부 내용을 이해하는 문제는 명시되지 않음."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 1,
+        "reason": "고객 질문에 금융 정보를 제공하는 업무이며, 커뮤니케이션에서 후속조치를 식별하는 과업은 제시되지 않음."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 0,
+        "reason": "생산 불량과 원인을 분석하는 작업으로, 이메일이나 문서에서 후속조치 항목을 찾아내는 과업과 무관함."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "제조 일정 조정과 계획 검증이 핵심으로, 커뮤니케이션에서 후속조치를 추출하는 문제는 없음."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "고객 견적을 작성하는 업무로, 이메일의 약속이나 후속조치 항목을 식별하는 과업과 다름."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산계획과 작업지시 준비가 중심이며, 커뮤니케이션에서 후속조치를 찾아 정리하는 업무는 다루지 않음."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 1,
+        "reason": "고객 문의 대응이라는 맥락은 일부 겹치지만, 자율 응답이 목적이며 문의에서 후속조치를 식별한다는 설명은 없음."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 4,
+        "reason": "장문 이메일에서 핵심 내용과 후속조치를 확인하는 부담을 명시해, 후속조치 식별 문제와 직접 일치함."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "보고서와 파일을 검증하는 업무지만, 검증 기준 준수와 후속조치 추출은 다른 과업임."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 1,
+        "reason": "문서에서 정보를 추출한다는 점은 일부 겹치지만, 세무 데이터 추출이며 업무상 후속조치를 찾는 과업은 아님."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "제조 로봇의 고장을 예측하는 과업으로, 커뮤니케이션에서 다음 조치를 추출하는 업무와 무관함."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 1,
+        "reason": "배달원 문의에 즉시 음성 응답하는 과업이며, 문의 내용을 후속조치 항목으로 정리한다는 증거는 없음."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "기술 문의를 검색해 답변하는 업무로, 답변 제공과 이메일 내 후속조치 식별은 서로 다른 과업임."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 1,
+        "reason": "고객 질문에 답하는 지원 업무이며, 반복적으로 이메일이나 문서를 요약·정리하는 문제는 제시되지 않음."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 0,
+        "reason": "생산 품질 데이터 분석과 원인 파악이 핵심으로, 커뮤니케이션을 반복 요약하는 업무와 무관함."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 0,
+        "reason": "생산 일정 조정이 중심이며, 반복 요약이나 이메일·문서 정리 과업은 설명되지 않음."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "제조 견적 작성의 병목을 다루며, 반복적으로 커뮤니케이션을 요약하는 문제와는 과업이 다름."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 0,
+        "reason": "생산계획과 작업지시를 준비하는 업무로, 긴 이메일이나 첨부 문서의 반복 요약과 무관함."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 1,
+        "reason": "문의량이 많아 반복 업무 부담은 있지만, 핵심 과업은 고객에게 자율 응답하는 것이지 내용을 요약하는 것이 아님."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 4,
+        "reason": "장문 고객 이메일의 요약 과업이 명시되어 있으며, 반복적인 핵심 내용 정리 부담과 직접 일치함."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 1,
+        "reason": "문서 검토가 반복될 수는 있지만, 목적은 신원조회 보고서 검증과 준수 확인이며 요약·정리가 아님."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 1,
+        "reason": "다량 문서 처리가 필요하지만, 세무 정보를 추출하는 과업이며 문서 내용을 반복 요약하는 문제는 아님."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 0,
+        "reason": "로봇 고장 예측과 공정 진단이 핵심으로, 반복적인 커뮤니케이션 요약·정리와 무관함."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 1,
+        "reason": "대량 문의에 빠르게 응답하는 지원 업무지만, 반복 요약이나 이메일·문서 정리 과업은 제시되지 않음."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "기술 문의 답변의 반복 부담은 있지만, 고객 질문에 답하는 업무이며 커뮤니케이션 요약·정리는 핵심 과업이 아님."
+      }
+    ]
+  }
+}
