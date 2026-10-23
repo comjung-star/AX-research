@@ -132,6 +132,10 @@ def run(args):
     if not os.getenv("OPENAI_API_KEY"):
         raise RuntimeError("OPENAI_API_KEY is absent; do not generate fabricated judgments")
     qs=queries()[:args.max_queries] if args.max_queries else queries()
+    if args.query_id:
+        qs=[q for q in queries() if q["query_id"]==args.query_id]
+        if len(qs)!=1:
+            raise ValueError(f"Unknown query_id {args.query_id}")
     cs=cases()[:args.max_cases] if args.max_cases else cases()
     out=Path(args.output_dir)
     out.mkdir(parents=True,exist_ok=True)
@@ -231,6 +235,7 @@ def main():
     p.add_argument("--max-attempts",type=int,default=3)
     p.add_argument("--output-tokens",type=int,default=16000)
     p.add_argument("--max-queries",type=int,default=0)
+    p.add_argument("--query-id",default="")
     p.add_argument("--max-cases",type=int,default=0)
     p.add_argument("--write-raw",action="store_true")
     a=p.parse_args()
