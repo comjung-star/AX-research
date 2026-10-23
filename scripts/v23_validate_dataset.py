@@ -12,8 +12,8 @@ m=read_json("release_manifest_v2_3.json")
 v=read_json("main_cases_v2_3.json")
 a=v["cases"]
 keys=[c["case_id"] for c in a]
-assert len(keys)==86 and len(set(keys))==86
-assert v["dataset_release"]=="2.3.0" and v["status"].endswith("RESEARCHER_APPROVAL_PENDING")
+assert len(keys)==84 and len(set(keys))==84
+assert v["dataset_release"]=="2.3.0" and v["status"]=="FROZEN_SOURCE_ADJUDICATED_NOT_GROUND_TRUTH" and v["freeze_date"]=="2026-10-23"
 fids={x["factor_id"] for x in rows("root_cause_taxonomy_v2_3.csv")}
 sids={x["strategy_id"] for x in rows("strategy_taxonomy_v2_3.csv")}
 assert len(fids)==11 and len(sids)==7
@@ -25,18 +25,18 @@ for c in a:
     assert set(c["factor_labels"])<=fids and set(c["strategy_labels"])<=sids
     assert c["factor_label"]==c["factor_labels"][0] and c["strategy_label"]==c["strategy_labels"][0]
     assert c["dataset_release"]=="2.3.0" and c["human_ground_truth_approved"] is False
-    assert c["v23_source_review"]["status"]=="RESEARCHER_APPROVAL_PENDING"
-assert v["counts"]["retained"]==86 and v["counts"]["excluded"]==7
+    assert c["v23_source_review"]["status"]=="FROZEN_SOURCE_QA_NOT_GROUND_TRUTH"
+assert v["counts"]["retained"]==84 and v["counts"]["excluded"]==9
 assert v["counts"]["multiple_factor_cases"]==sum(len(c["factor_labels"])>1 for c in a)
 assert v["counts"]["multiple_strategy_cases"]==sum(len(c["strategy_labels"])>1 for c in a)
 assert v["counts"]["unique_groups"]==len({c["sampling_group_id"] for c in a})
 old=rows("case_disposition_v2_3.csv")
 assert len(old)==93 and len({x["case_id"] for x in old})==93
-assert sum(x["status"]=="EXCLUDE" for x in old)==7
+assert sum(x["status"]=="EXCLUDE" for x in old)==9
 assert {x["case_id"] for x in old if x["status"]=="KEEP"}==set(keys)
 assert all(x["decision_reason"] and x["source_url"] for x in old)
 flat=rows("main_cases_v2_3.csv")
-assert len(flat)==86 and {x["case_id"] for x in flat}==set(keys)
+assert len(flat)==84 and {x["case_id"] for x in flat}==set(keys)
 assert all(x["root_cause_factor"] and x["strategy"] for x in flat)
 qs=read_json("dev_query_candidates_v2_3.json")["queries"]
 qids={q["query_id"] for q in qs}
@@ -44,9 +44,9 @@ assert len(qids)==10
 pairs={(q["query_id"],p["id"]) for q in qs for p in q["draft_perspectives"]}
 assert len(pairs)==30
 annotations=rows("dev_relevance_annotation_sheet_v2_3.csv")
-assert len(annotations)==2580
+assert len(annotations)==2520
 tuples={(x["query_id"],x["perspective_id"],x["case_id"]) for x in annotations}
-assert len(tuples)==2580
+assert len(tuples)==2520
 assert all((x["query_id"],x["perspective_id"]) in pairs and x["case_id"] in keys for x in annotations)
 assert all(x["status"]=="UNJUDGED" and not x["relevance_0_4"] and not x["annotator_id"] for x in annotations)
 strats=rows("dev_strategy_annotation_sheet_v2_3.csv")
@@ -56,5 +56,8 @@ for path, expected in m["git_blob_sha"].items():
     b=(d/path.removeprefix("data/v2_3/")).read_bytes()
     actual=hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()
     assert actual==expected,(path,actual,expected)
-assert m["counts"]["dev_relevance_slots"]==2580
-print("PASS: 86 valid workflows, 7 traced exclusions, F=11/S=7, 2580 UNJUDGED + all file blobs verified")
+assert m["counts"]["dev_relevance_slots"]==2520
+assert len(rows("qa/resolution_13_cases_v2_3.csv"))==13
+assert m["status"]=="FROZEN_SOURCE_ADJUDICATED_NOT_GROUND_TRUTH"
+assert m["counts"]["retained"]==84 and m["counts"]["excluded"]==9
+print("PASS: FROZEN v2.3, 84 valid workflows, 9 exclusions, F=11/S=7, 2520 UNJUDGED, 13 resolutions and all blob hashes verified")

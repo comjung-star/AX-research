@@ -1,40 +1,52 @@
 {
   "name": "AX_OPERATIONAL_CASES",
   "dataset_version": "2.3.0",
-  "date": "2026-10-23",
-  "status": "SOURCE_ALIGNED_PROVISIONAL_RESEARCHER_APPROVAL_PENDING_NOT_GROUND_TRUTH",
+  "freeze_date": "2026-10-23",
+  "status": "FROZEN_SOURCE_ADJUDICATED_NOT_GROUND_TRUTH",
   "parent_version": "2.2.0",
+  "release_branch": "release/ax-v2.3-frozen-20261023",
   "counts": {
     "source_cases": 93,
-    "retained": 86,
-    "excluded": 7,
+    "retained": 84,
+    "excluded": 9,
     "missing_factor_or_strategy": 0,
     "unique_groups": 60,
     "multiple_factor_cases": 6,
-    "multiple_strategy_cases": 1,
+    "multiple_strategy_cases": 0,
     "dev_questions": 10,
     "dev_perspectives": 30,
-    "dev_relevance_slots": 2580,
+    "dev_relevance_slots": 2520,
     "approved_human_relevance": 0
   },
   "git_blob_sha": {
-    "data/v2_3/main_cases_v2_3.json": "49fc6e71c7ce2c0ea9926896dccf8c42a25586de",
-    "data/v2_3/main_cases_v2_3.csv": "f345bf4b7df52edc7e377f635ec0174f5213b0c0",
+    "data/v2_3/main_cases_v2_3.json": "1705888f3338b219d3715fe4422641865c3075e2",
+    "data/v2_3/main_cases_v2_3.csv": "3efc56d267f89d6557e352fb1ef1bd9c6b647d32",
     "data/v2_3/adjudication_plan_v2_3.json": "0dd9eaff6730c6d18f666a96fdd0f8a1a68f193f",
-    "data/v2_3/case_disposition_v2_3.csv": "409a356ded9fb52a0e27307ed253c9f85f402a5b",
-    "data/v2_3/root_cause_taxonomy_v2_3.csv": "046afcf5e69e90089ed8ccfe929fd2b320de25cb",
-    "data/v2_3/strategy_taxonomy_v2_3.csv": "adae7aed4f68c9e20a31b32cdc82f623113d3462",
+    "data/v2_3/case_disposition_v2_3.csv": "079a248db449df285926e67065d61edd24437e99",
+    "data/v2_3/root_cause_taxonomy_v2_3.csv": "2af003f1e1ca69fd10248366083563ef4f67a720",
+    "data/v2_3/strategy_taxonomy_v2_3.csv": "be614fd0a08b0741d3efbba2f81c297e95e743b0",
     "data/v2_3/dev_query_candidates_v2_3.json": "952c6305172f17e93237b9ca49b6d0120d85e727",
-    "data/v2_3/dev_relevance_annotation_sheet_v2_3.csv": "c3c191ecd023a1911aa0ace2eb77e91428889214",
+    "data/v2_3/dev_relevance_annotation_sheet_v2_3.csv": "08d579916ba7cf5d04b0f26db8cac2fe681fd476",
     "data/v2_3/dev_strategy_annotation_sheet_v2_3.csv": "68d8993a2f8d1354b5895cbe2fcd80c6db060dd2",
-    "data/v2_3/README.md": "30bff40ee4654bb015aa189c4784e350a6b50f4f"
+    "data/v2_3/README.md": "71a25bcef382b7d245943461d7789e5fb6eb50ae",
+    "data/v2_3/qa/resolution_13_cases_v2_3.csv": "6bf6f03728704c4ad9d3e1d04251282b7455efb5"
   },
-  "guardrails": [
-    "No v1/v2.1/v2.2 files overwritten",
-    "All seven excluded case records remain in disposition file",
-    "F10/F11 and S3/S7 revisions need researcher sign-off",
-    "Source-review proposals are not independent human labels",
-    "Never interpret 2580 UNJUDGED as negatives or human Ground Truth",
-    "No Dev-adjusted corpus gain claimed as independent Test improvement"
+  "source_validation": {
+    "items_reviewed": 86,
+    "issues_resolved": 13,
+    "original_case_count": 93,
+    "excluded_count": 9,
+    "independent_human_blind_factor_strategy_review": false,
+    "user_authorized_freeze": true
+  },
+  "restrictions": [
+    "Do not modify this v2.3 source-corpus snapshot in place; future corrections become v2.4.",
+    "Historical original v1/v2.1/v2.2 cases and pilot labels remain unchanged.",
+    "No Human Ground Truth approved: 2520 Dev relevance pairs UNJUDGED, 10 strategy sets UNJUDGED.",
+    "Do not transfer old 50 pilot scores or triple AI provisional scores into Gold.",
+    "Source/solution labels are documented associations and do not constitute causal proof.",
+    "Taxonomy F10/F11 inferred from corpus; report selection and construct risk.",
+    "Wayfair/Jeju Bank entered after Dev gap inspection, a source-selection bias.",
+    "Independent held-out Test queries and separately adjudicated Gold are mandatory before final performance claim."
   ]
 }
