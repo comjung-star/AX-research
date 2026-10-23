@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D007",
+  "pass_id": 3,
+  "first_case": 26,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0c0d3037261ecbe1006adacd168a4087d09e3213a2fba2214b",
+  "input_problem_only": {
+    "query_id": "V21D007",
+    "business_problem_query": "구매와 견적 업무에서 고객 도면·요구사항과 공급업체 제안서처럼 형식이 다른 자료를 사람이 읽고 비교해야 하고, 생산가능성·원가·공급업체 선택 판단이 담당자 경험에 의존하며, 견적 작성과 조달 후속업무까지 수작업으로 이어져 처리시간이 길다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "problem_view": "도면·요구사항·제안서 검토 부담"
+      },
+      {
+        "id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "problem_view": "비교·선정 판단의 전문가 의존"
+      },
+      {
+        "id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "problem_view": "견적·조달 후속업무 수작업 병목"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "결제 고객과 내부 지원팀의 기술질문에 내부정보로 정확하게 답해야 하며 대형 프롬프트 비용이 높음",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      },
+      {
+        "case_id": "AXV2H_0075_01",
+        "business_problem": "고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함",
+        "ax_target_task": "상담 통화 내역 요약",
+        "business_context": "반복 통화의 이전 고객 맥락 조회가 필요한 핀테크 컨택센터"
+      },
+      {
+        "case_id": "AXV2H_0078_01",
+        "business_problem": "Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.",
+        "ax_target_task": "사내 관리데이터 자연어 조회",
+        "business_context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근"
+      },
+      {
+        "case_id": "AXV2H_0081_01",
+        "business_problem": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함",
+        "ax_target_task": "고객상담 대화록 요약",
+        "business_context": "영국 디지털은행의 고객지원팀 상담 이력관리"
+      },
+      {
+        "case_id": "AXV2H_0083_01",
+        "business_problem": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준",
+        "ax_target_task": "신규 버그 티켓 팀 라우팅",
+        "business_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage"
+      },
+      {
+        "case_id": "AXV2H_0084_01",
+        "business_problem": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움",
+        "ax_target_task": "고객 상품 위치 검색",
+        "business_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경"
+      },
+      {
+        "case_id": "AXV2H_0085_01",
+        "business_problem": "모기지 신청의 소득확인 검증에 여러 날이 소요되어 신청 처리시간이 지연됨",
+        "ax_target_task": "모기지 고객 소득 검증",
+        "business_context": "Lloyds Banking Group의 기존 모기지 심사단계와 데이터 플랫폼 현대화"
+      },
+      {
+        "case_id": "AXV2H_0086_01",
+        "business_problem": "Customers searching for an unstocked brand receive no results and struggle to discover relevant alternatives for their intended occasion.",
+        "ax_target_task": "고객 상품 검색·발견",
+        "business_context": "THE ICONIC 전자상거래 검색 및 분석 데이터 플랫폼"
+      },
+      {
+        "case_id": "AXV2H_0090_01",
+        "business_problem": "다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가",
+        "ax_target_task": "Answer routine employee HR policy questions",
+        "business_context": "IBM 내부 HR 지원 센터와 Workday/SAP/Concur 연계"
+      },
+      {
+        "case_id": "AXV2H_0091_01",
+        "business_problem": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움",
+        "ax_target_task": "저복잡도 지원 티켓 자동 답변",
+        "business_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색"
+      },
+      {
+        "case_id": "AXV2N_0103",
+        "business_problem": "Recurring account reconciliations consume accounting staff time.",
+        "ax_target_task": "Reconcile bank transactions at month end",
+        "business_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months."
+      },
+      {
+        "case_id": "AXV2N_0104",
+        "business_problem": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement.",
+        "ax_target_task": "Prepare review-ready client-story drafts",
+        "business_context": "Client stories workstream using Creative Assistant after its 2025 launch."
+      },
+      {
+        "case_id": "AXV2N_0105",
+        "business_problem": "Associates must answer complex questions across thousands of products outside their expertise.",
+        "ax_target_task": "Assist store associates with customer project questions",
+        "business_context": "Mylow Companion on associate sales-floor devices across over 1700 stores."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "결제 기술문의에 내부정보로 답하는 업무로, 도면·요구사항·공급업체 제안서 검토와 관련된 증거가 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "기술문의 답변 업무이며, 공급업체나 견적을 비교·선정하는 판단 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "결제 기술지원 업무로, 견적 작성이나 조달 후속업무의 수작업 병목과 무관합니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "고객 통화 내용을 요약하는 업무이며, 도면·요구사항·제안서 같은 구매 검토 자료를 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 후처리 요약이 과제의 중심이며, 대안이나 공급업체를 비교·선정하는 판단과 다릅니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "컨택센터 통화 후처리 시간 문제로, 견적·조달 단계의 후속업무 병목을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "관리데이터를 자연어로 조회하는 업무로, 구매 관련 문서나 제안서를 읽고 검토하는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 1,
+        "reason": "데이터 조회가 의사결정을 지원할 수는 있지만, 구매 대안·원가·공급업체를 비교한다는 구체적 과제는 없습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "여러 부서의 관리데이터 접근 문제이며, 견적 작성이나 조달 후속업무의 수작업은 언급되지 않습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "고객지원 대화록을 요약하는 업무로, 구매 도면·요구사항·공급업체 제안서 검토와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "상담 이력관리 요약이 중심이며, 전문가의 비교·선정 판단을 지원하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "은행 고객상담 종료 후 기록 작성 문제로, 견적·조달 과정의 후속업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "버그 티켓을 분류하는 과제로, 도면·요구사항·제안서 등 구매 검토 문서를 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 2,
+        "reason": "담당팀을 수동으로 판단해 선택한다는 점은 결정 과제와 일부 겹치지만, 공급업체·원가 비교가 아닌 버그 라우팅입니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "엔지니어링 티켓 라우팅의 시간 부담이며, 견적 작성이나 조달 후속업무 병목은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "매장 상품 위치를 찾는 고객·직원 검색 문제로, 구매 문서 검토와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "상품 위치 검색이 과제의 중심이며, 대안 비교나 공급업체 선정 판단은 포함되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "매장 내 상품 탐색 문제로, 견적·조달 절차의 수작업 후속업무와 다릅니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 1,
+        "reason": "모기지 소득 검증 업무라는 점은 일부 자료 확인과 닿을 수 있지만, 도면·요구사항·제안서 검토 증거는 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 1,
+        "reason": "신청 검증에 판단이 수반될 수 있지만, 공급업체나 견적을 비교·선정하는 과제와는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 신청 처리 지연을 다루며, 견적 작성이나 조달 후속업무의 병목은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "전자상거래 상품 검색과 대안 발견이 과제이며, 구매 담당자의 요구사항·제안서 문서 검토와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 1,
+        "reason": "고객이 대안 상품을 발견하도록 돕는 점은 제한적으로 비교와 닿지만, 공급업체·원가 선정 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "고객 상품 검색 문제이며, 견적 산출이나 조달 후속업무의 수작업은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "직원 HR 정책 문의에 답하는 업무로, 도면·요구사항·공급업체 제안서를 검토하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "반복 HR 문의 응답과 티켓 감소가 중심이며, 전문가의 구매 비교·선정 판단과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "HR 지원 지연과 반복 문의 문제로, 견적·조달 후속업무의 수작업 병목은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "저복잡도 기술지원 티켓에 답하는 과제로, 구매 도면·요구사항·제안서 검토와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "기술문의 답변 부담을 줄이는 업무이며, 공급업체나 견적 간 비교·선정 판단은 없습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "기술지원 티켓 처리 문제로, 견적 작성이나 조달 후속업무의 수작업을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "은행 거래를 월말 대사하는 회계 업무이며, 고객 도면·요구사항·공급업체 제안서를 검토하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2N_0103",
+        "relevance": 1,
+        "reason": "거래를 맞춰 대사한다는 제한적 비교 요소는 있지만, 원가·생산가능성·공급업체 선정 판단과 다릅니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "회계팀의 정기 은행 대사 시간 문제로, 견적 작성이나 조달 후속업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 초안을 작성·수정하는 콘텐츠 업무로, 구매 관련 문서의 검토·비교와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "콘텐츠 초안 작성의 템플릿·인력 부족 문제이며, 비교·선정 판단을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 작성 업무의 처리 여력 문제로, 견적·조달 후속업무와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_REQUIREMENT_DOCUMENT_REVIEW",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 직원의 고객 상품 질문 지원이 중심이며, 도면·요구사항·공급업체 제안서 검토가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_EXPERT_COMPARATIVE_DECISION",
+        "case_id": "AXV2N_0105",
+        "relevance": 1,
+        "reason": "직원의 상품 지식 부족을 보완해 고객 질문에 답하지만, 공급업체·원가를 비교해 선택하는 과제는 확인되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 판매 지원 과제로, 견적 작성이나 조달 절차 후속업무의 수작업 병목과 다릅니다."
+      }
+    ]
+  }
+}

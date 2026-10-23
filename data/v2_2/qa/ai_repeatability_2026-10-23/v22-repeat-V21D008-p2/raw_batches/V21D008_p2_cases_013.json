@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D008",
+  "pass_id": 2,
+  "first_case": 13,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0d1ce4f8a334b04e006adacd28efe087d2b4ddd0a5fb699749",
+  "input_problem_only": {
+    "query_id": "V21D008",
+    "business_problem_query": "수요나 생산량이 기상·시장·운영조건에 따라 크게 달라져 단순 규칙이나 담당자 경험만으로 미래 값을 예측하고 계획을 세우기 어렵다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_FORECAST_UNCERTAINTY",
+        "problem_view": "미래 상태 예측 불확실성"
+      },
+      {
+        "id": "P2_PLANNING_OPTIMIZATION",
+        "problem_view": "계획·자원배분 최적화"
+      },
+      {
+        "id": "P3_EXPERT_RULE_LIMITATION",
+        "problem_view": "경험·단순 룰 기반 판단 한계"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0080_01",
+        "business_problem": "High-volume invoices and shipping forms require slow manual entry and are vulnerable to human errors.",
+        "ax_target_task": "Extract fields from trade finance documents",
+        "business_context": "Hong Leong Bank trade operations, multilingual financial documents."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "business_problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+        "ax_target_task": "Flag document details for sanctions screening",
+        "business_context": "Hong Leong Bank Credit Underwriting team's sanctions screening."
+      },
+      {
+        "case_id": "AXV2C_0092_01",
+        "business_problem": "Customers need nuanced financial answers without being sent elsewhere to research existing content.",
+        "ax_target_task": "Answer customers' banking questions in chat",
+        "business_context": "NatWest website, mobile app and social media customer support."
+      },
+      {
+        "case_id": "AXV2C_0093_01",
+        "business_problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "ax_target_task": "Analyze production quality defects and root causes",
+        "business_context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      {
+        "case_id": "AXV2C_0093_02",
+        "business_problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "ax_target_task": "Adjust production schedules with validation",
+        "business_context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      {
+        "case_id": "AXV2C_0094_01",
+        "business_problem": "Manual quoting became a capacity bottleneck as customer demand grew.",
+        "ax_target_task": "Draft customer manufacturing quotes",
+        "business_context": "Savage Precision Fabrication aerospace and defense manufacturing quotes."
+      },
+      {
+        "case_id": "AXV2C_0094_02",
+        "business_problem": "Manual planning and data input constrain capacity during growth.",
+        "ax_target_task": "Prepare manufacturing production plans",
+        "business_context": "Savage Precision Fabrication production planning and work orders."
+      },
+      {
+        "case_id": "AXV2H_0001_01",
+        "business_problem": "하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움",
+        "ax_target_task": "고객 문의 자율응답",
+        "business_context": "전자청구 SaaS 서비스의 대량 서면 문의와 야간 문의"
+      },
+      {
+        "case_id": "AXV2H_0002_01",
+        "business_problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "ax_target_task": "고객 이메일 요약",
+        "business_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "business_problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+        "ax_target_task": "직원 신원조회 보고서 검증",
+        "business_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스"
+      },
+      {
+        "case_id": "AXV2H_0008_01",
+        "business_problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+        "ax_target_task": "세무 문서 데이터 추출",
+        "business_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함"
+      },
+      {
+        "case_id": "AXV2H_0021_01",
+        "business_problem": "산업용 로봇 고장 발생 전에 예측하기 어려워 생산공정 중단 리스크가 큼",
+        "ax_target_task": "제조 로봇 예지보전",
+        "business_context": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+      },
+      {
+        "case_id": "AXV2H_0070_01",
+        "business_problem": "대량 콜센터 문의와 운전 중 배달원의 전화지원 선호로 빠른 음성 응답이 요구됨",
+        "ax_target_task": "배달원 음성 상담 자동응답",
+        "business_context": "Dasher telephone support in the operational contact center, after an early-2024 test and completed rollout."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "무역금융 문서에서 항목을 추출하는 업무로, 수요나 생산량 또는 미래 상태를 예측하는 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "제재 관련 문서 위험을 식별하는 심사 업무이며, 변동하는 미래 수요·생산량을 예측하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "기존 콘텐츠를 활용해 고객 금융 질문에 답하는 업무로, 미래 값이나 운영 상태 예측과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "제조 데이터를 분석하지만 과거 품질 결함과 원인을 파악하는 업무여서 미래 생산량·수요 예측과는 다릅니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 2,
+        "reason": "생산 일정을 조정하는 미래 계획 업무이긴 하지만, 수요나 운영조건 변화를 예측하기보다 기존 일정 변경에 초점이 있습니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 0,
+        "reason": "고객 제조 견적 작성의 수작업 병목을 다루며, 미래 수요나 생산량을 추정하는 문제는 명시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 2,
+        "reason": "제조 생산계획을 준비하는 업무는 미래 생산과 관련되지만, 불확실한 수요·생산량 예측보다 수작업과 입력 부담이 중심입니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "전자청구 문의에 응답하는 고객지원 문제로, 미래 수요나 생산량 예측을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "장문 이메일의 요약과 후속조치 파악이 과제이며, 미래 상태를 예측하는 업무와는 무관합니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "직원 신원조회 문서의 준수 여부를 검증하는 업무로, 미래 수요나 생산 상태 예측과 다릅니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서에서 정보를 추출하는 처리 효율 문제이며, 미래 값을 예측하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 3,
+        "reason": "로봇 고장이 발생하기 전에 상태를 예측한다는 점에서 미래 상태 예측과 직접 맞지만, 수요·생산량이 아닌 설비 고장 예측입니다."
+      },
+      {
+        "perspective_id": "P1_FORECAST_UNCERTAINTY",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 문의에 음성으로 응답하는 고객지원 자동화로, 미래 수요나 운영 상태 예측은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "무역 서류의 데이터 추출 업무로, 생산계획이나 자원 배분 최적화와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "문서 내 제재 위험 식별이 중심이며, 운영 계획이나 자원 배분을 세우는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객 금융 질문에 답하는 상담 업무로, 생산·수요 계획이나 자원 배분 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "제조 현장의 품질 데이터를 분석하지만, 결함 원인 파악이 중심이고 생산계획이나 자원 배분 최적화는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 3,
+        "reason": "제조 생산 일정을 조정하고 APS 계획을 다루는 업무라 생산계획과 직접 맞지만, 변동 수요에 따른 최적화는 명시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 1,
+        "reason": "수요 증가가 견적 업무의 병목을 만들지만, 과제는 고객 견적 작성이며 생산 자원이나 일정을 배분하는 계획은 아닙니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 3,
+        "reason": "제조 생산계획과 작업지시 준비가 핵심이어서 계획 업무와 강하게 맞지만, 자원배분 최적화 자체는 구체적으로 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "고객 문의 응답 부담을 다루는 사례이며, 생산이나 운영 자원을 계획·배분하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "고객 이메일의 요약과 후속조치 확인이 업무여서, 수요·생산 계획이나 자원 최적화와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "신원조회 보고서 검증의 지연과 준수 부담이 문제이며, 계획이나 자원 배분 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서 정보 추출의 시간·오류 문제로, 생산계획 또는 자원배분 최적화와 연결되지 않습니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 1,
+        "reason": "로봇 고장 예방은 생산 중단 위험과 관련되지만, 과제 설명에는 생산계획이나 유지보수 자원 배분이 없습니다."
+      },
+      {
+        "perspective_id": "P2_PLANNING_OPTIMIZATION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "배달원 전화 문의에 빠르게 답하는 업무로, 생산·수요 계획이나 자원 배분 최적화와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2C_0080_01",
+        "relevance": 0,
+        "reason": "수작업 입력의 속도와 오류가 문제지만, 경험이나 단순 규칙에 의존한 판단의 한계가 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2C_0080_02",
+        "relevance": 0,
+        "reason": "제재 위험을 문서에서 선별하는 업무이며, 담당자 경험이나 단순 규칙으로 미래 값을 판단하는 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2C_0092_01",
+        "relevance": 0,
+        "reason": "고객에게 기존 금융 콘텐츠를 제공하는 상담 문제로, 경험·규칙 기반 예측 판단의 한계와 다릅니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2C_0093_01",
+        "relevance": 1,
+        "reason": "수작업 분석 지연은 있지만, 명시된 문제는 품질 데이터 분산과 원인 파악이며 경험·단순 규칙의 한계는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2C_0093_02",
+        "relevance": 2,
+        "reason": "생산 일정 변경이 느리고 오류가 잦다는 점은 수작업 판단의 어려움과 일부 겹치지만, 경험이나 단순 규칙 의존은 언급되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2C_0094_01",
+        "relevance": 1,
+        "reason": "수작업 견적의 처리량 병목이 문제지만, 담당자의 경험이나 단순 룰로 판단하기 어렵다는 내용은 없습니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2C_0094_02",
+        "relevance": 2,
+        "reason": "수작업 생산계획과 데이터 입력이 제약이라는 점은 일부 겹치지만, 경험·단순 규칙에 따른 예측 한계가 핵심은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2H_0001_01",
+        "relevance": 0,
+        "reason": "문의량에 대응할 지원 인력이 부족한 문제이며, 경험이나 규칙 기반의 미래 판단 한계와는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2H_0002_01",
+        "relevance": 0,
+        "reason": "이메일 내용을 요약하고 후속조치를 확인하는 부담으로, 예측 판단에서 경험·단순 규칙이 한계인 사례가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2H_0003_01",
+        "relevance": 0,
+        "reason": "다수 파일과 기준을 수작업 대조하는 검증 부담이며, 수요·생산 예측에 대한 경험 기반 판단 한계와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2H_0008_01",
+        "relevance": 0,
+        "reason": "세무 문서 정보를 수기 추출하는 오류·시간 문제로, 경험이나 단순 룰 기반 예측 판단을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2H_0021_01",
+        "relevance": 2,
+        "reason": "고장 발생 전 예측이 어렵다는 문제는 판단 한계와 일부 겹치지만, 담당자 경험이나 단순 규칙 의존은 명시되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+        "case_id": "AXV2H_0070_01",
+        "relevance": 0,
+        "reason": "빠른 음성 고객지원이 요구되는 사례이며, 경험이나 단순 규칙으로 수요·생산을 판단하는 문제와 무관합니다."
+      }
+    ]
+  }
+}

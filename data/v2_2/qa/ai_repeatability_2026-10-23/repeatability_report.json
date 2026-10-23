@@ -1,0 +1,98 @@
+{
+  "corpus_version": "v2.2.0",
+  "run_date": "2026-10-23",
+  "status": "THREE_AI_DRAFT_PASSES_COMPLETE_NO_HUMAN_GOLD",
+  "method": "3 fresh stateless API grading passes with same model, rubric and 13-case batch boundaries; no previous labels provided to API",
+  "source_corpus_git_blob": "4761cbf5e9d41f4c75faa26a01023eb0efcada08",
+  "model_requested": "gpt-6-luna",
+  "prompt_sha256": "aa3deef86b5ed7e90a412cccefeed17b40c7a5d2098704637f33379fa2b757d0",
+  "counts": {
+    "judgments_per_pass": 2790,
+    "total_api_grades": 8370,
+    "exact_agreement_count": 1979,
+    "different_score_count": 811,
+    "threshold_flip_count": 90,
+    "threshold_agreement_count": 2700,
+    "exact_agreement_rate": 0.7093,
+    "threshold_agreement_rate": 0.9677,
+    "max_gap_ge_2": 42
+  },
+  "by_query": {
+    "V21D001": {
+      "total": 279,
+      "same_score": 202,
+      "different_score": 77,
+      "threshold_flips": 12
+    },
+    "V21D002": {
+      "total": 279,
+      "same_score": 179,
+      "different_score": 100,
+      "threshold_flips": 11
+    },
+    "V21D003": {
+      "total": 279,
+      "same_score": 171,
+      "different_score": 108,
+      "threshold_flips": 24
+    },
+    "V21D004": {
+      "total": 279,
+      "same_score": 196,
+      "different_score": 83,
+      "threshold_flips": 14
+    },
+    "V21D005": {
+      "total": 279,
+      "same_score": 184,
+      "different_score": 95,
+      "threshold_flips": 6
+    },
+    "V21D006": {
+      "total": 279,
+      "same_score": 225,
+      "different_score": 54,
+      "threshold_flips": 3
+    },
+    "V21D007": {
+      "total": 279,
+      "same_score": 192,
+      "different_score": 87,
+      "threshold_flips": 9
+    },
+    "V21D008": {
+      "total": 279,
+      "same_score": 206,
+      "different_score": 73,
+      "threshold_flips": 3
+    },
+    "V21D009": {
+      "total": 279,
+      "same_score": 183,
+      "different_score": 96,
+      "threshold_flips": 7
+    },
+    "V21D010": {
+      "total": 279,
+      "same_score": 241,
+      "different_score": 38,
+      "threshold_flips": 1
+    }
+  },
+  "human_sample_size": 50,
+  "selection_rule": "2 new-case anchors, up to 33 grade≥3 threshold flip cases, 10 same-threshold grade disagreements, 5 stable controls, balanced by query, fill to 50, fixed SHA-based ties",
+  "source_screened_new_cases_in_sample": 2,
+  "human_gold_count": 0,
+  "limitations": [
+    "AI repeated ratings are not proof of factual correctness.",
+    "Only 50 pilot human review candidates; not an adjudicated 2790-label Ground Truth.",
+    "Dev cases selected after coverage gap assessment: do not claim model performance improvement.",
+    "Large sample of correlated judgments: do not treat 2790 judgment slots as independent experimental units.",
+    "No retrieval Recall@K, Strategy Coverage, human accuracy or held-out claims until independent GT."
+  ],
+  "artifacts": {
+    "comparison": "three_pass_comparison.csv",
+    "blind_review": "human_blind_review_50.csv",
+    "full_repeats": "v22-repeat-V21D00x-p1..p3/ratings.csv + raw_batches"
+  }
+}

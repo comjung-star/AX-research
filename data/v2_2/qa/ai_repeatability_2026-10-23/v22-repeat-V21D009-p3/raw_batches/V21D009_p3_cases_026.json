@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D009",
+  "pass_id": 3,
+  "first_case": 26,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_044b7de159db6fa2006adacdd37bd087d085c638c9f8664c70",
+  "input_problem_only": {
+    "query_id": "V21D009",
+    "business_problem_query": "직원들이 생성형 AI를 업무에 활용하려 하지만 외부 도구에 민감한 내부 데이터를 보낼 수 없고, 내부 문서와 업무시스템을 안전하게 연결하기 어려우며, 부서마다 개별 도구를 만들면 보안과 운영 기준을 일관되게 유지하면서 전사로 확산하기 어렵다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "problem_view": "민감정보·규제에 따른 외부 AI 사용 제약"
+      },
+      {
+        "id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "problem_view": "내부 문서·시스템의 안전한 AI 연결 부족"
+      },
+      {
+        "id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "problem_view": "부서별 AI를 일관된 기준으로 확산하기 어려움"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "결제 고객과 내부 지원팀의 기술질문에 내부정보로 정확하게 답해야 하며 대형 프롬프트 비용이 높음",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      },
+      {
+        "case_id": "AXV2H_0075_01",
+        "business_problem": "고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함",
+        "ax_target_task": "상담 통화 내역 요약",
+        "business_context": "반복 통화의 이전 고객 맥락 조회가 필요한 핀테크 컨택센터"
+      },
+      {
+        "case_id": "AXV2H_0078_01",
+        "business_problem": "Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.",
+        "ax_target_task": "사내 관리데이터 자연어 조회",
+        "business_context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근"
+      },
+      {
+        "case_id": "AXV2H_0081_01",
+        "business_problem": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함",
+        "ax_target_task": "고객상담 대화록 요약",
+        "business_context": "영국 디지털은행의 고객지원팀 상담 이력관리"
+      },
+      {
+        "case_id": "AXV2H_0083_01",
+        "business_problem": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준",
+        "ax_target_task": "신규 버그 티켓 팀 라우팅",
+        "business_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage"
+      },
+      {
+        "case_id": "AXV2H_0084_01",
+        "business_problem": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움",
+        "ax_target_task": "고객 상품 위치 검색",
+        "business_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경"
+      },
+      {
+        "case_id": "AXV2H_0085_01",
+        "business_problem": "모기지 신청의 소득확인 검증에 여러 날이 소요되어 신청 처리시간이 지연됨",
+        "ax_target_task": "모기지 고객 소득 검증",
+        "business_context": "Lloyds Banking Group의 기존 모기지 심사단계와 데이터 플랫폼 현대화"
+      },
+      {
+        "case_id": "AXV2H_0086_01",
+        "business_problem": "Customers searching for an unstocked brand receive no results and struggle to discover relevant alternatives for their intended occasion.",
+        "ax_target_task": "고객 상품 검색·발견",
+        "business_context": "THE ICONIC 전자상거래 검색 및 분석 데이터 플랫폼"
+      },
+      {
+        "case_id": "AXV2H_0090_01",
+        "business_problem": "다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가",
+        "ax_target_task": "Answer routine employee HR policy questions",
+        "business_context": "IBM 내부 HR 지원 센터와 Workday/SAP/Concur 연계"
+      },
+      {
+        "case_id": "AXV2H_0091_01",
+        "business_problem": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움",
+        "ax_target_task": "저복잡도 지원 티켓 자동 답변",
+        "business_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색"
+      },
+      {
+        "case_id": "AXV2N_0103",
+        "business_problem": "Recurring account reconciliations consume accounting staff time.",
+        "ax_target_task": "Reconcile bank transactions at month end",
+        "business_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months."
+      },
+      {
+        "case_id": "AXV2N_0104",
+        "business_problem": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement.",
+        "ax_target_task": "Prepare review-ready client-story drafts",
+        "business_context": "Client stories workstream using Creative Assistant after its 2025 launch."
+      },
+      {
+        "case_id": "AXV2N_0105",
+        "business_problem": "Associates must answer complex questions across thousands of products outside their expertise.",
+        "ax_target_task": "Assist store associates with customer project questions",
+        "business_context": "Mylow Companion on associate sales-floor devices across over 1700 stores."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "내부정보 기반 기술답변은 다루지만, 민감정보나 규제로 외부 AI 사용이 제약된다는 문제는 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 후 노트 작성시간이 핵심 문제이며, 외부 AI 사용 제약이나 민감정보 보안 문제는 언급되지 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "관리데이터 조회와 의사결정 지원이 중심이며, 민감정보에 따른 외부 AI 사용 제약은 다루지 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "상담 대화록 수작업 요약이 중심으로, 민감정보나 규제에 따른 AI 사용 제한과는 과업이 다르다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "버그 티켓을 담당 엔지니어링 팀에 분류하는 문제로, 외부 AI 사용 보안 제약과 관련되지 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "매장 상품 위치 검색이 중심이며, 민감한 내부 데이터의 외부 AI 전송 제약은 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 1,
+        "reason": "모기지 소득 검증은 금융정보를 다루지만, 외부 AI 사용 제한이나 정보보안 문제가 명시되지는 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "전자상거래에서 대체 상품을 찾기 어려운 문제로, 민감정보·규제에 따른 AI 사용 제약과 무관하다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 1,
+        "reason": "직원 HR 정책과 업무시스템을 다루지만, 민감정보 때문에 외부 AI를 제한한다는 문제는 언급되지 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 1,
+        "reason": "내부 제품 지식 활용은 있으나, 민감정보 보호나 규제에 따른 외부 AI 사용 제약이 핵심은 아니다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "월말 은행거래 조정에 회계 인력이 시간을 쓰는 문제로, 생성형 AI 보안 제약과는 다른 과업이다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 초안 작성의 템플릿과 인력 부족이 중심이며, 민감정보 또는 외부 AI 제한은 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+        "case_id": "AXV2N_0105",
+        "relevance": 1,
+        "reason": "매장 직원의 상품 관련 질문을 지원하지만, 외부 AI에 민감정보를 보내지 못하는 제약은 나타나지 않는다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 3,
+        "reason": "결제 기술문의에 내부정보를 찾아 정확히 답해야 하므로, 내부 지식에 AI가 접근하는 과업과 강하게 맞닿는다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 1,
+        "reason": "상담 내용 요약은 내부 데이터 활용과 접점이 있지만, 문서·업무시스템의 안전한 AI 연결 부족이 중심은 아니다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 3,
+        "reason": "직원이 거버넌스된 사내 관리데이터를 자연어로 조회하는 과업이 내부 업무데이터 접근 문제와 직접 연결된다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 1,
+        "reason": "상담 이력 요약과 관리가 중심이며, 내부 문서나 업무시스템에 AI를 연결하기 어려운 문제는 드러나지 않는다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "버그 티켓의 담당팀 분류가 핵심이고, 내부 문서·시스템 데이터 접근 문제와는 과업이 다르다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 2,
+        "reason": "매장 상품 위치와 재고 정보를 조회하는 점은 데이터 접근과 일부 겹치지만, AI의 안전한 내부 연결 부족이 중심은 아니다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 1,
+        "reason": "모기지 소득 검증과 데이터 플랫폼 현대화가 언급되지만, 내부 지식에 AI가 접근하지 못하는 문제는 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 1,
+        "reason": "상품 검색·발견 과업은 데이터 기반이지만, 내부 문서나 업무시스템에 AI를 안전하게 연결하는 문제와는 거리가 있다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 3,
+        "reason": "분산된 HR 정책과 Workday·SAP·Concur 연계 정보에 직원이 답을 얻는 과업으로, 내부 지식과 시스템 접근이 직접 맞닿는다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 3,
+        "reason": "반복 기술문의에 내부 제품 지식을 검색해 답하는 과업으로, 사내 지식에 AI가 접근하는 문제와 강하게 겹친다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2N_0103",
+        "relevance": 1,
+        "reason": "은행거래 데이터를 대사하는 업무이지만, 핵심은 회계 수작업이며 내부 문서·시스템의 AI 연결 문제는 아니다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 문안의 작성·검토 부담이 중심이며, 내부 데이터 접근이나 시스템 연결 부족과는 관련이 없다."
+      },
+      {
+        "perspective_id": "P2_INTERNAL_DATA_ACCESS_GAP",
+        "case_id": "AXV2N_0105",
+        "relevance": 2,
+        "reason": "수천 개 상품에 관한 직원 질문을 지원하는 점은 상품 지식 접근과 겹치지만, 내부 시스템 연결의 어려움은 명시되지 않는다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "결제 기술지원이라는 개별 과업이며, 부서별 AI의 공통 기준이나 전사 확산 어려움은 설명되지 않는다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 후처리 자동화가 중심으로, 여러 부서의 AI 운영 기준이나 확산 문제와는 다르다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 2,
+        "reason": "여러 매장·부서가 거버넌스된 데이터에 접근하는 점은 공통 기준과 일부 겹치지만, AI 도구의 전사 확산 문제는 아니다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "디지털은행 상담 이력의 요약이 중심이며, 부서별 AI를 통일된 기준으로 확산하는 문제는 다루지 않는다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 1,
+        "reason": "15개 엔지니어링 팀을 대상으로 하지만 과업은 버그 분류이며, AI 거버넌스나 부서별 확산 문제는 제시되지 않는다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 1,
+        "reason": "여러 매장 상품 위치 검색이지만, 공통된 AI 운영 기준을 마련하거나 부서 도구를 전사 확산하는 문제는 없다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 1,
+        "reason": "기존 심사단계와 데이터 플랫폼 현대화가 언급되지만, 여러 부서의 AI 운영·거버넌스 문제와 직접 연결되지는 않는다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "온라인 상품 검색에서 대체 상품을 찾기 어려운 문제로, 전사 AI 확산이나 공통 운영 기준과 무관하다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 2,
+        "reason": "다국적 조직의 HR 정책과 여러 업무시스템을 다루지만, 과업은 HR 지원이며 전사 AI 거버넌스 확산 자체는 아니다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 1,
+        "reason": "반복 기술지원 티켓 자동응답이 중심이며, 부서별 도구의 공통 운영 기준이나 전사 확산 난점은 나타나지 않는다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "한 회계팀의 은행거래 대사 업무 부담으로, 부서 간 AI 확산이나 거버넌스와 관련이 없다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "콘텐츠팀의 반복 문안 작성과 템플릿 부족에 관한 사례로, 전사 AI 운영 기준 문제는 없다."
+      },
+      {
+        "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+        "case_id": "AXV2N_0105",
+        "relevance": 2,
+        "reason": "1700개가 넘는 매장에서 직원용 도구를 활용하는 맥락은 대규모 확산과 일부 맞지만, 공통 거버넌스 문제는 명시되지 않는다."
+      }
+    ]
+  }
+}

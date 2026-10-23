@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D005",
+  "pass_id": 3,
+  "first_case": 26,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_0cd186c80e14024f006adacc4b7bf887d19b43ca54386eb904",
+  "input_problem_only": {
+    "query_id": "V21D005",
+    "business_problem_query": "여러 국가와 조직의 시스템에 데이터가 따로 쌓여 전체 현황을 한눈에 보기 어렵고 부서마다 다른 기준으로 분석해 의사결정이 늦어지고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_DATA_SILO",
+        "problem_view": "데이터 사일로·통합 부족"
+      },
+      {
+        "id": "P2_VISIBILITY_GAP",
+        "problem_view": "전사 현황 가시성 부족"
+      },
+      {
+        "id": "P3_DECISION_DELAY",
+        "problem_view": "분석·의사결정 지연"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "결제 고객과 내부 지원팀의 기술질문에 내부정보로 정확하게 답해야 하며 대형 프롬프트 비용이 높음",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      },
+      {
+        "case_id": "AXV2H_0075_01",
+        "business_problem": "고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함",
+        "ax_target_task": "상담 통화 내역 요약",
+        "business_context": "반복 통화의 이전 고객 맥락 조회가 필요한 핀테크 컨택센터"
+      },
+      {
+        "case_id": "AXV2H_0078_01",
+        "business_problem": "Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.",
+        "ax_target_task": "사내 관리데이터 자연어 조회",
+        "business_context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근"
+      },
+      {
+        "case_id": "AXV2H_0081_01",
+        "business_problem": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함",
+        "ax_target_task": "고객상담 대화록 요약",
+        "business_context": "영국 디지털은행의 고객지원팀 상담 이력관리"
+      },
+      {
+        "case_id": "AXV2H_0083_01",
+        "business_problem": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준",
+        "ax_target_task": "신규 버그 티켓 팀 라우팅",
+        "business_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage"
+      },
+      {
+        "case_id": "AXV2H_0084_01",
+        "business_problem": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움",
+        "ax_target_task": "고객 상품 위치 검색",
+        "business_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경"
+      },
+      {
+        "case_id": "AXV2H_0085_01",
+        "business_problem": "모기지 신청의 소득확인 검증에 여러 날이 소요되어 신청 처리시간이 지연됨",
+        "ax_target_task": "모기지 고객 소득 검증",
+        "business_context": "Lloyds Banking Group의 기존 모기지 심사단계와 데이터 플랫폼 현대화"
+      },
+      {
+        "case_id": "AXV2H_0086_01",
+        "business_problem": "Customers searching for an unstocked brand receive no results and struggle to discover relevant alternatives for their intended occasion.",
+        "ax_target_task": "고객 상품 검색·발견",
+        "business_context": "THE ICONIC 전자상거래 검색 및 분석 데이터 플랫폼"
+      },
+      {
+        "case_id": "AXV2H_0090_01",
+        "business_problem": "다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가",
+        "ax_target_task": "Answer routine employee HR policy questions",
+        "business_context": "IBM 내부 HR 지원 센터와 Workday/SAP/Concur 연계"
+      },
+      {
+        "case_id": "AXV2H_0091_01",
+        "business_problem": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움",
+        "ax_target_task": "저복잡도 지원 티켓 자동 답변",
+        "business_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색"
+      },
+      {
+        "case_id": "AXV2N_0103",
+        "business_problem": "Recurring account reconciliations consume accounting staff time.",
+        "ax_target_task": "Reconcile bank transactions at month end",
+        "business_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months."
+      },
+      {
+        "case_id": "AXV2N_0104",
+        "business_problem": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement.",
+        "ax_target_task": "Prepare review-ready client-story drafts",
+        "business_context": "Client stories workstream using Creative Assistant after its 2025 launch."
+      },
+      {
+        "case_id": "AXV2N_0105",
+        "business_problem": "Associates must answer complex questions across thousands of products outside their expertise.",
+        "ax_target_task": "Assist store associates with customer project questions",
+        "business_context": "Mylow Companion on associate sales-floor devices across over 1700 stores."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "내부 기술정보를 찾아 답하는 지원 과제일 뿐, 여러 시스템의 데이터를 통합하거나 사일로를 해소한다는 내용은 없다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "고객 기술문의에 답하는 업무로, 여러 국가나 조직의 현황을 한눈에 파악하는 가시성 문제와는 무관하다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "기술 문의에 정확히 답하는 과제이며, 분석이나 조직 의사결정이 늦어지는 문제를 다루지 않는다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "통화 내용을 상담노트로 요약하는 업무로, 분산된 데이터 저장소의 통합이나 부서 간 데이터 사일로와 관련 없다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 후 기록 작성 시간을 줄이는 과제이며, 전사 운영 현황을 통합해 보여주는 문제는 제시되지 않았다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 후처리 시간 문제이지 분석 결과나 경영 의사결정이 지연되는 상황은 아니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 2,
+        "reason": "거버넌스된 기업 데이터에 자연어로 접근하는 과제는 데이터 접근성에 일부 맞지만, 분산 시스템 통합이나 사일로 해소는 명시되지 않았다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 3,
+        "reason": "여러 매장과 부서가 기업 데이터를 조회해 표준 보고서의 빈틈을 보완하므로, 조직 차원의 정보 가시성 문제와 강하게 맞닿는다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 3,
+        "reason": "직원들이 표준 보고서로 답을 얻지 못해 정보를 찾아본 뒤 결정해야 하는 지연이 명시되어, 분석·의사결정 문제와 강하게 겹친다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "은행 상담 대화록 요약과 이력관리 과제로, 국가·조직별 데이터 시스템의 분리나 통합 부족을 다루지 않는다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "개별 고객 상담 이력을 정리하는 업무이며, 전사 현황을 통합적으로 파악하는 가시성 과제와 다르다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "통화 기록 작성에 드는 수작업 시간은 다루지만, 분석이나 조직 의사결정의 지연은 문제로 제시되지 않았다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "버그 티켓을 엔지니어링 팀에 배정하는 업무로, 분리된 데이터 저장소를 통합하는 과제와는 다르다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 1,
+        "reason": "여러 팀 중 담당팀을 판단하는 맥락은 있지만, 전사 업무 현황을 한눈에 보여주는 문제는 아니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 2,
+        "reason": "담당 팀 판단에 많은 수작업이 들고 정확도가 낮아 티켓 처리에 영향을 주지만, 기업 분석·의사결정 지연과는 중심 업무가 다르다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 1,
+        "reason": "매장 상품 위치와 재고 정보를 조회하지만, 여러 국가·조직 시스템의 데이터 통합 부족은 문제로 설명되지 않았다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 1,
+        "reason": "직원과 고객이 상품 위치를 찾기 어려운 문제여서, 전사 운영 현황이 보이지 않는 문제와는 제한적으로만 닮았다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "상품 위치를 즉시 검색하는 고객·매장 업무로, 분석에 따른 조직 의사결정 지연과 관련 없다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 신청자의 소득 검증 단계가 길어지는 문제이며, 시스템 간 데이터 사일로나 통합 부족은 언급되지 않았다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "개별 모기지 신청의 검증 처리시간을 다루며, 여러 조직의 전체 현황을 파악하는 과제와 다르다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 2,
+        "reason": "소득 검증에 여러 날이 걸려 모기지 신청 처리가 늦어지는 점은 지연과 일부 겹치지만, 분석·전사 의사결정 문제가 중심은 아니다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "재고가 없는 브랜드를 검색할 때 대안을 찾기 어려운 전자상거래 과제로, 기업 데이터 사일로와 무관하다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "고객의 상품 검색과 대안 발견 문제이며, 조직 현황이나 운영 데이터를 전사적으로 보여주는 과제는 아니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "전자상거래 상품 검색 결과를 개선하는 업무로, 분석 또는 조직 의사결정이 늦어지는 문제는 제시되지 않았다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 1,
+        "reason": "다국적 조직에서 HR 정책과 업무처리가 분산되어 있지만, 여러 데이터 시스템을 통합하는 문제로 명시되지는 않았다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 1,
+        "reason": "다국적 HR 지원의 분산 맥락은 있으나, 조직 전체 현황을 통합해 파악하는 가시성 문제와는 거리가 있다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 1,
+        "reason": "반복 문의로 HR 지원이 늦어지는 문제는 있으나, 분석이나 의사결정 지연이 아닌 직원 문의 응대가 중심이다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "반복되는 저복잡도 기술지원 티켓에 답하는 업무이며, 부서나 국가별 데이터의 분리·통합 문제는 없다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "지원 엔지니어의 업무 부담과 티켓 응답을 다루며, 전사 현황을 파악하기 어려운 문제와 무관하다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 1,
+        "reason": "엔지니어의 수작업이 고난도 업무 집중을 방해하지만, 기업 분석이나 의사결정의 지연을 직접 다루지는 않는다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2N_0103",
+        "relevance": 2,
+        "reason": "은행 거래를 회계 기록과 대사하는 과정에서 데이터 비교가 필요하지만, 문제의 중심은 반복 회계업무이며 전사 데이터 사일로 해소는 아니다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "월말 은행 거래 대사에 회계 직원의 시간이 드는 문제로, 조직 전체 현황의 가시성 부족과는 다르다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "반복적인 회계 대사 업무의 시간 소모를 다루며, 분석 기준 차이나 의사결정 지연은 언급되지 않았다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 초안 작성에 필요한 템플릿과 인력이 부족한 문제로, 데이터 통합이나 사일로와 관련 없다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "콘텐츠 작성 역량과 일관성의 문제이며, 전사 운영 현황을 볼 수 없는 상황과는 무관하다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "반복적인 스토리 초안 작성과 수정이 과제이며, 분석이나 의사결정 지연에 대한 증거가 없다."
+      },
+      {
+        "perspective_id": "P1_DATA_SILO",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 직원이 다양한 상품 관련 질문에 답하도록 돕는 과제이며, 분산된 기업 데이터의 통합 부족을 다루지 않는다."
+      },
+      {
+        "perspective_id": "P2_VISIBILITY_GAP",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "상품 지식과 고객 프로젝트 질문 대응이 중심으로, 매장·조직의 전체 운영 현황을 파악하는 과제는 아니다."
+      },
+      {
+        "perspective_id": "P3_DECISION_DELAY",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 판매 현장에서 상품 질문에 답하는 업무이며, 분석이나 조직 의사결정이 늦어지는 문제와 관련 없다."
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D002",
+  "pass_id": 3,
+  "first_case": 26,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_05776ca18361428b006adacab3c00087d1ae62f967e8eefd22",
+  "input_problem_only": {
+    "query_id": "V21D002",
+    "business_problem_query": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "problem_view": "긴 비정형 커뮤니케이션 이해 부담"
+      },
+      {
+        "id": "P2_ACTION_ITEM_EXTRACTION",
+        "problem_view": "후속조치 식별 부담"
+      },
+      {
+        "id": "P3_REPETITIVE_SUMMARIZATION",
+        "problem_view": "반복 요약·정리 업무"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "결제 고객과 내부 지원팀의 기술질문에 내부정보로 정확하게 답해야 하며 대형 프롬프트 비용이 높음",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      },
+      {
+        "case_id": "AXV2H_0075_01",
+        "business_problem": "고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함",
+        "ax_target_task": "상담 통화 내역 요약",
+        "business_context": "반복 통화의 이전 고객 맥락 조회가 필요한 핀테크 컨택센터"
+      },
+      {
+        "case_id": "AXV2H_0078_01",
+        "business_problem": "Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.",
+        "ax_target_task": "사내 관리데이터 자연어 조회",
+        "business_context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근"
+      },
+      {
+        "case_id": "AXV2H_0081_01",
+        "business_problem": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함",
+        "ax_target_task": "고객상담 대화록 요약",
+        "business_context": "영국 디지털은행의 고객지원팀 상담 이력관리"
+      },
+      {
+        "case_id": "AXV2H_0083_01",
+        "business_problem": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준",
+        "ax_target_task": "신규 버그 티켓 팀 라우팅",
+        "business_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage"
+      },
+      {
+        "case_id": "AXV2H_0084_01",
+        "business_problem": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움",
+        "ax_target_task": "고객 상품 위치 검색",
+        "business_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경"
+      },
+      {
+        "case_id": "AXV2H_0085_01",
+        "business_problem": "모기지 신청의 소득확인 검증에 여러 날이 소요되어 신청 처리시간이 지연됨",
+        "ax_target_task": "모기지 고객 소득 검증",
+        "business_context": "Lloyds Banking Group의 기존 모기지 심사단계와 데이터 플랫폼 현대화"
+      },
+      {
+        "case_id": "AXV2H_0086_01",
+        "business_problem": "Customers searching for an unstocked brand receive no results and struggle to discover relevant alternatives for their intended occasion.",
+        "ax_target_task": "고객 상품 검색·발견",
+        "business_context": "THE ICONIC 전자상거래 검색 및 분석 데이터 플랫폼"
+      },
+      {
+        "case_id": "AXV2H_0090_01",
+        "business_problem": "다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가",
+        "ax_target_task": "Answer routine employee HR policy questions",
+        "business_context": "IBM 내부 HR 지원 센터와 Workday/SAP/Concur 연계"
+      },
+      {
+        "case_id": "AXV2H_0091_01",
+        "business_problem": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움",
+        "ax_target_task": "저복잡도 지원 티켓 자동 답변",
+        "business_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색"
+      },
+      {
+        "case_id": "AXV2N_0103",
+        "business_problem": "Recurring account reconciliations consume accounting staff time.",
+        "ax_target_task": "Reconcile bank transactions at month end",
+        "business_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months."
+      },
+      {
+        "case_id": "AXV2N_0104",
+        "business_problem": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement.",
+        "ax_target_task": "Prepare review-ready client-story drafts",
+        "business_context": "Client stories workstream using Creative Assistant after its 2025 launch."
+      },
+      {
+        "case_id": "AXV2N_0105",
+        "business_problem": "Associates must answer complex questions across thousands of products outside their expertise.",
+        "ax_target_task": "Assist store associates with customer project questions",
+        "business_context": "Mylow Companion on associate sales-floor devices across over 1700 stores."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "기술문의에 내부정보를 활용해 답하는 업무로, 긴 이메일 스레드나 첨부 문서를 이해하는 부담은 명시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "기술문의 검색과 답변이 중심이며, 커뮤니케이션에서 후속조치를 식별하는 업무와는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "고객 기술질문에 답하는 업무이며, 반복적으로 내용을 요약하거나 정리하는 문제는 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 3,
+        "reason": "상담원이 고객 통화 내용을 직접 검토해 노트를 작성하므로, 비정형 고객 커뮤니케이션 이해와 정리 부담이 겹칩니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 2,
+        "reason": "통화 후 상담노트 작성은 연결되지만, 노트에서 구체적인 후속조치를 식별한다는 문제는 명시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 4,
+        "reason": "상담원이 반복되는 고객 통화를 수작업으로 요약해 노트를 작성하는 후처리 문제가 직접 일치합니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "관리데이터를 자연어로 조회해 답을 얻는 업무이며, 비정형 커뮤니케이션을 읽고 이해하는 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "보고서의 추가 질문에 답할 정보를 찾는 사례로, 이메일이나 문서에서 후속조치를 뽑는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "관리데이터 질의응답이 중심이며, 반복적인 문서나 대화 요약·정리 업무는 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 3,
+        "reason": "상담 대화록을 사람이 정리하는 문제여서 비정형 고객 커뮤니케이션을 이해하는 부담이 있지만, 이메일·첨부문서는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 2,
+        "reason": "상담 대화록 요약은 관련되지만, 대화에서 별도의 후속조치 항목을 찾아내는 과업은 언급되지 않았습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 4,
+        "reason": "고객지원팀이 상담 대화록을 수작업 요약해 이력을 관리하므로, 반복 요약 업무와 직접 맞닿습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 1,
+        "reason": "버그 티켓을 담당팀에 배정하는 사례로, 티켓 내용을 읽을 수는 있어도 긴 커뮤니케이션 이해 부담이 중심은 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 1,
+        "reason": "신규 버그 티켓의 담당팀을 분류하는 업무이며, 커뮤니케이션에서 후속조치를 추출하는 과업과 다릅니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "버그 티켓 triage와 팀 라우팅이 중심이며, 내용을 반복해서 요약·정리하는 문제는 없습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "매장 상품 위치를 검색하는 문제로, 비정형 이메일·문서의 내용을 읽고 이해하는 업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "상품 위치와 재고 정보를 찾는 사례이며, 대화나 문서에서 후속조치를 식별하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "고객과 직원의 상품 위치 검색이 중심으로, 반복 요약이나 내용 정리 문제는 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 신청자의 소득을 검증하는 업무로, 긴 커뮤니케이션이나 첨부 문서 이해 부담은 명시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "신청자의 소득 검증과 심사 지연이 중심이며, 대화에서 후속조치를 추출하는 과업과 다릅니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "소득 검증 절차를 단축하는 사례이며, 반복되는 커뮤니케이션 요약·정리 업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "재고가 없는 상품을 검색하고 대안을 발견하도록 돕는 문제로, 비정형 커뮤니케이션 이해와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "전자상거래 상품 검색·발견 업무이며, 커뮤니케이션에서 후속조치 항목을 찾아내는 과업은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "상품 검색 결과와 대안 발견이 중심이며, 반복 요약·정리 업무가 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 1,
+        "reason": "직원 HR 문의에 답하는 사례지만, 긴 이메일이나 문서 스레드를 읽고 이해하는 부담은 기술되어 있지 않습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "반복적인 HR 정책 질문에 답하는 업무이며, 커뮤니케이션에서 후속조치를 식별하는 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "반복 문의 응답과 HR 지원 지연이 중심이며, 대화나 문서의 반복 요약 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 1,
+        "reason": "기술지원 티켓을 다루지만 저복잡도 문의에 답하는 업무로, 긴 스레드나 첨부 문서 이해 부담과는 거리가 있습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "지원 티켓에 답변하는 일이 중심이며, 이메일이나 대화에서 후속조치를 추출하는 과업은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "저복잡도 기술문의의 자동 답변이 중심이며, 반복적인 대화 요약·정리는 문제로 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "은행 거래를 월말 대사하는 회계 업무로, 비정형 커뮤니케이션을 읽거나 이해하는 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "은행 거래 대사가 중심이며, 이메일이나 문서에서 후속조치 항목을 식별하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "반복되는 회계 대사로 인한 시간 소모 사례이며, 반복 요약·정리와는 다른 업무입니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 초안을 작성하고 다듬는 콘텐츠 업무로, 긴 커뮤니케이션을 읽어 이해하는 문제가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "검토용 사례 초안 작성이 중심이며, 대화나 문서에서 후속조치를 추출하는 과업과 다릅니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2N_0104",
+        "relevance": 1,
+        "reason": "반복적인 초안 작성과 수정은 있지만, 기존 커뮤니케이션을 요약·정리하는 업무가 아니어서 연결은 제한적입니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 직원이 상품 관련 복합 질문에 답하도록 돕는 사례이며, 긴 이메일 스레드나 첨부 문서의 이해와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "상품 관련 고객 질문에 답하는 업무로, 커뮤니케이션에서 후속조치를 식별하는 문제는 포함되지 않습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "상품 질문 응대 지원이 중심이며, 반복적인 대화·문서 요약이나 정리 업무와는 다릅니다."
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D010",
+  "pass_id": 2,
+  "first_case": 0,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_078a70fedda2df45006adacdcbbfb087d0b62f1f049c05cbd4",
+  "input_problem_only": {
+    "query_id": "V21D010",
+    "business_problem_query": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "problem_view": "생산·품질·설비 데이터 분산"
+      },
+      {
+        "id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "problem_view": "품질 이상 원인분석 지연"
+      },
+      {
+        "id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "problem_view": "동적 생산계획 조정 부담"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0006_01",
+        "business_problem": "Manual forms and manager-HR coordination caused errors and poor experience when promotions or assignments changed.",
+        "ax_target_task": "HR organizational-change request validation",
+        "business_context": "Danone managers requesting organizational changes."
+      },
+      {
+        "case_id": "AXV2C_0006_02",
+        "business_problem": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.",
+        "ax_target_task": "Validate customer order prices before invoicing",
+        "business_context": "Danone receives thousands of orders daily through email, PDF and EDI."
+      },
+      {
+        "case_id": "AXV2C_0016_01",
+        "business_problem": "Customers need digital or voice support that can diagnose routine device issues without unnecessary transfers.",
+        "ax_target_task": "Caller self-service computer troubleshooting",
+        "business_context": "Best Buy customers calling for computer assistance."
+      },
+      {
+        "case_id": "AXV2C_0016_02",
+        "business_problem": "Human support staff need relevant troubleshooting information while handling complex customer issues.",
+        "ax_target_task": "Surface troubleshooting knowledge during assisted calls",
+        "business_context": "Best Buy service representatives during live customer conversations."
+      },
+      {
+        "case_id": "AXV2C_0017_01",
+        "business_problem": "Rules-based routing cannot handle nuanced issues and customers repeat their history across channels.",
+        "ax_target_task": "Resolve telecom customer inquiries with remembered context",
+        "business_context": "AT&T customer support across phone, online and retail contacts."
+      },
+      {
+        "case_id": "AXV2C_0042_01",
+        "business_problem": "Lawyers spend substantial time researching legal information and need reliable, source-backed answers.",
+        "ax_target_task": "Research legal information with cited answers",
+        "business_context": "Law&Company's subscribed SuperLawyer service launched in July 2024."
+      },
+      {
+        "case_id": "AXV2C_0050_01",
+        "business_problem": "Uncertain sales volumes make it difficult to supply enough food while avoiding waste.",
+        "ax_target_task": "Forecast daily store-item demand",
+        "business_context": "Albert Heijn forecasts over 15 million store-item combinations more than five weeks ahead."
+      },
+      {
+        "case_id": "AXV2C_0050_02",
+        "business_problem": "Food already on shelves can expire unsold and become waste.",
+        "ax_target_task": "Discount near-expiry food on shelves",
+        "business_context": "Albert Heijn stores with electronic shelf labels."
+      },
+      {
+        "case_id": "AXV2C_0068_01",
+        "business_problem": "Missing or incomplete payment instructions trigger time-consuming human reviews.",
+        "ax_target_task": "Repair incomplete payment instructions",
+        "business_context": "BNY cross-border payment processing."
+      },
+      {
+        "case_id": "AXV2C_0068_02",
+        "business_problem": "A transaction question previously required a human employee and potentially multiple stakeholders.",
+        "ax_target_task": "Resolve client transaction inquiries",
+        "business_context": "BNY clients asking about transactions and settlements."
+      },
+      {
+        "case_id": "AXV2C_0068_03",
+        "business_problem": "Identity and risk verification requires document research and weeks of back-and-forth.",
+        "ax_target_task": "Review documents and risk during client onboarding",
+        "business_context": "New BNY financial-services clients subject to mandatory onboarding review."
+      },
+      {
+        "case_id": "AXV2C_0074_01",
+        "business_problem": "Customer emails could take a working day to answer and self-hosted generation had cost and response quality problems as volume rose.",
+        "ax_target_task": "Generate personalized support emails",
+        "business_context": "Cashfree Payments merchant support communications in India."
+      },
+      {
+        "case_id": "AXV2C_0074_02",
+        "business_problem": "Compliance, verification and risk checks slowed merchant onboarding; some merchant categories had p99 turnaround of at least 24 hours.",
+        "ax_target_task": "Review merchant websites during onboarding",
+        "business_context": "Cashfree Payments onboarding Indian merchants; payment data stays in India."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "인사 조직변경 요청의 서류 검증과 조율 사례로, 제조 데이터 분산이나 생산·품질·설비 정보 통합 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 1,
+        "reason": "다양한 형식의 주문 데이터 처리 문제는 일부 접점이 있지만, 제조 현장 데이터 분산이 아니라 고객 주문 가격 검증입니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "고객의 컴퓨터 문제를 자가 진단하는 지원 과제로, 제조 생산·품질·설비 데이터 관리와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 0,
+        "reason": "상담 중 고객지원 정보를 제공하는 업무이며, 제조 데이터 분산이나 현장 운영 데이터 통합 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 0,
+        "reason": "통신 고객 문의와 채널별 상담 이력 처리 사례로, 제조 시스템의 생산·품질·설비 데이터 분산과 다릅니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 0,
+        "reason": "법률 정보 조사와 근거 있는 답변 제공이 중심이며, 제조 운영 데이터의 분산 문제와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 1,
+        "reason": "매장 상품 수요 예측에 운영 데이터가 쓰이지만, 데이터 분산 문제를 다루지 않고 제조 품질·설비 데이터도 아닙니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "유통 매장의 임박 식품 할인 업무로, 제조 데이터가 여러 시스템에 나뉜 문제와는 다른 과제입니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "국경 간 결제 지시의 누락 정보를 보완하는 금융 업무로, 제조 현장 데이터 분산과 무관합니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 0,
+        "reason": "금융 거래 문의를 해결하는 고객지원 과제로, 생산·품질·설비 데이터 통합 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 0,
+        "reason": "금융 고객 온보딩의 신원 및 위험 심사가 중심이며, 제조 운영 데이터 분산과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "결제 서비스 고객 이메일 응대 업무로, 제조 현장 데이터의 분산이나 정보 통합 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 0,
+        "reason": "가맹점 웹사이트를 검토하는 온보딩·컴플라이언스 업무이며, 제조 생산·품질·설비 데이터와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "조직 변경 요청의 오류와 처리 경험을 다루며, 제조 품질 이상을 진단하거나 원인을 분석하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 1,
+        "reason": "주문 가격 입력 오류를 줄이는 과제이지만, 제품 품질 이상이나 제조 원인 분석이 아니라 주문·청구 검증입니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 2,
+        "reason": "컴퓨터 문제의 원인을 진단해 해결하는 업무는 공통되지만, 고객 기기 지원이며 제조 품질 이상 분석은 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 2,
+        "reason": "복잡한 고객 문제의 원인 파악에 필요한 정보를 제공하지만, 제조 공정의 품질 이상 원인을 찾는 맥락과 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 1,
+        "reason": "통신 문의를 처리하는 업무이나 품질 이상 원인 진단이 명시되지 않았고, 제조 현장과도 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 0,
+        "reason": "법률 정보 조사와 인용 답변이 핵심으로, 제조 품질 문제의 원인을 분석하는 과제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "매장 상품 수요량을 예측하는 업무이며, 품질 이상 발생 원인을 진단하는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 1,
+        "reason": "유통 식품의 임박 여부에 대응하지만 할인 적용이 과제이며, 제조 품질 이상 원인 분석과는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "결제 지시의 누락 항목을 보완하는 금융 처리 업무로, 제조 품질 문제의 원인 분석과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 0,
+        "reason": "고객의 거래·결제 문의를 해결하는 과제이며, 제조 품질 이상 진단이나 원인 규명 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 0,
+        "reason": "금융 고객의 신원과 위험을 검토하는 온보딩 심사로, 제조 품질 이상 원인 분석과 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "고객지원 이메일을 작성하는 업무이며, 제조 품질 이상을 조사하거나 지연된 원인 분석을 해결하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 0,
+        "reason": "가맹점 웹사이트와 위험 요소를 심사하는 온보딩 업무로, 제조 제품이나 공정의 품질 원인 분석과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 0,
+        "reason": "인사 조직 변경 요청을 검증하는 과제로, 주문·설비 상태 변화에 따른 생산계획 조정과 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 1,
+        "reason": "고객 주문을 처리하지만 가격 검증과 청구가 핵심이며, 주문 변화에 맞춘 생산 일정 재조정은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "고객 컴퓨터 문제 해결을 돕는 지원 과제로, 생산량이나 생산계획을 조정하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 0,
+        "reason": "상담원에게 고객 문제 해결 정보를 제공하며, 제조 주문이나 설비 상태에 따른 계획 조정과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 0,
+        "reason": "통신 고객 문의를 채널 간 처리하는 과제로, 수요나 설비 변동에 맞춘 생산계획 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 0,
+        "reason": "법률 조사와 답변 작성이 중심이며, 제조 주문 변화에 따른 생산계획 재조정과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 2,
+        "reason": "불확실한 판매량을 예측해 매장 상품 공급을 계획한다는 점은 맞닿지만, 제조 생산 일정의 동적 조정과는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 1,
+        "reason": "재고 상태에 따라 임박 식품을 할인하지만, 유통 매장의 가격 조정이며 생산계획을 바꾸는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "결제 지시의 누락 정보를 보완하는 금융 처리 업무로, 생산계획의 변경이나 일정 조정과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 0,
+        "reason": "금융 거래 문의 응대가 과제이며, 주문 또는 설비 상태 변화에 따른 생산계획 조정이 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 0,
+        "reason": "금융 고객의 신원·위험 심사를 수행하는 온보딩 업무로, 생산계획을 동적으로 조정하는 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 0,
+        "reason": "결제 서비스 고객 이메일 응대가 중심이며, 수요·주문·설비 변화에 대응하는 생산계획 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 0,
+        "reason": "가맹점 온보딩 웹사이트 검토 업무로, 제조 생산 일정이나 주문 변동에 따른 계획 조정과 무관합니다."
+      }
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D010",
+  "pass_id": 1,
+  "first_case": 26,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_017b3ae8197d5afe006adacdf439c087d19cb8aa5a09a4574a",
+  "input_problem_only": {
+    "query_id": "V21D010",
+    "business_problem_query": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "problem_view": "생산·품질·설비 데이터 분산"
+      },
+      {
+        "id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "problem_view": "품질 이상 원인분석 지연"
+      },
+      {
+        "id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "problem_view": "동적 생산계획 조정 부담"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2H_0071_01",
+        "business_problem": "결제 고객과 내부 지원팀의 기술질문에 내부정보로 정확하게 답해야 하며 대형 프롬프트 비용이 높음",
+        "ax_target_task": "결제 기술문의 검색·답변",
+        "business_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공"
+      },
+      {
+        "case_id": "AXV2H_0075_01",
+        "business_problem": "고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함",
+        "ax_target_task": "상담 통화 내역 요약",
+        "business_context": "반복 통화의 이전 고객 맥락 조회가 필요한 핀테크 컨택센터"
+      },
+      {
+        "case_id": "AXV2H_0078_01",
+        "business_problem": "Standard reports leave follow-up questions unanswered, requiring staff to seek trusted information elsewhere before making decisions.",
+        "ax_target_task": "사내 관리데이터 자연어 조회",
+        "business_context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근"
+      },
+      {
+        "case_id": "AXV2H_0081_01",
+        "business_problem": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함",
+        "ax_target_task": "고객상담 대화록 요약",
+        "business_context": "영국 디지털은행의 고객지원팀 상담 이력관리"
+      },
+      {
+        "case_id": "AXV2H_0083_01",
+        "business_problem": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준",
+        "ax_target_task": "신규 버그 티켓 팀 라우팅",
+        "business_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage"
+      },
+      {
+        "case_id": "AXV2H_0084_01",
+        "business_problem": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움",
+        "ax_target_task": "고객 상품 위치 검색",
+        "business_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경"
+      },
+      {
+        "case_id": "AXV2H_0085_01",
+        "business_problem": "모기지 신청의 소득확인 검증에 여러 날이 소요되어 신청 처리시간이 지연됨",
+        "ax_target_task": "모기지 고객 소득 검증",
+        "business_context": "Lloyds Banking Group의 기존 모기지 심사단계와 데이터 플랫폼 현대화"
+      },
+      {
+        "case_id": "AXV2H_0086_01",
+        "business_problem": "Customers searching for an unstocked brand receive no results and struggle to discover relevant alternatives for their intended occasion.",
+        "ax_target_task": "고객 상품 검색·발견",
+        "business_context": "THE ICONIC 전자상거래 검색 및 분석 데이터 플랫폼"
+      },
+      {
+        "case_id": "AXV2H_0090_01",
+        "business_problem": "다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가",
+        "ax_target_task": "Answer routine employee HR policy questions",
+        "business_context": "IBM 내부 HR 지원 센터와 Workday/SAP/Concur 연계"
+      },
+      {
+        "case_id": "AXV2H_0091_01",
+        "business_problem": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움",
+        "ax_target_task": "저복잡도 지원 티켓 자동 답변",
+        "business_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색"
+      },
+      {
+        "case_id": "AXV2N_0103",
+        "business_problem": "Recurring account reconciliations consume accounting staff time.",
+        "ax_target_task": "Reconcile bank transactions at month end",
+        "business_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months."
+      },
+      {
+        "case_id": "AXV2N_0104",
+        "business_problem": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement.",
+        "ax_target_task": "Prepare review-ready client-story drafts",
+        "business_context": "Client stories workstream using Creative Assistant after its 2025 launch."
+      },
+      {
+        "case_id": "AXV2N_0105",
+        "business_problem": "Associates must answer complex questions across thousands of products outside their expertise.",
+        "ax_target_task": "Assist store associates with customer project questions",
+        "business_context": "Mylow Companion on associate sales-floor devices across over 1700 stores."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "결제 기술문의 검색·답변 사례로, 제조 생산·품질·설비 데이터를 연결하거나 분산 문제를 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "핀테크 상담 통화 요약이 중심 과제이며, 제조 현장 운영 데이터의 분산이나 통합과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 1,
+        "reason": "관리데이터에 접근하는 과제라는 주변 유사성은 있지만, 제조 생산·품질·설비 데이터의 시스템 간 분산은 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "디지털은행 고객상담 이력 요약 사례로, 제조 공정 데이터의 분산이나 현장 시스템 간 연계 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "엔지니어링 버그 티켓을 담당팀에 배정하는 과제로, 생산·품질·설비 데이터가 여러 시스템에 나뉜 문제는 없습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "매장 상품 위치를 검색하는 사례이며, 제조 생산·품질·설비 데이터를 통합하거나 분산 문제를 해결하는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 신청자의 소득 검증이 중심 과제로, 제조 운영 데이터를 여러 시스템에서 찾는 문제와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "전자상거래 상품 검색·대체품 발견 사례로, 제조 현장의 생산·품질·설비 데이터 분산을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 1,
+        "reason": "HR 정책과 처리 정보가 분산된다는 점은 주변적으로 비슷하지만, 제조 공정 운영 데이터의 분산이 핵심인 사례는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "소프트웨어 지원 티켓 답변이 과제이며, 제조 생산·품질·설비 데이터의 저장 위치나 접근 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "은행 거래의 월말 계정 대사가 중심 업무로, 제조 현장 운영 데이터의 분산·통합과는 무관합니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 콘텐츠 초안 작성 과제이며, 생산·품질·설비 데이터의 분산이나 현장 정보 접근을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P1_MANUFACTURING_DATA_FRAGMENTATION",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 직원의 고객 상품·프로젝트 질문 지원이 과제로, 제조 운영 데이터가 여러 시스템에 분산된 문제와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 1,
+        "reason": "기술 질문에 답하는 지원 과제라는 약한 유사성만 있으며, 제조 품질 이상 원인을 조사하거나 분석하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "상담 통화 후 기록을 요약하는 업무로, 제조 품질 이상을 추적하거나 원인을 찾는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "관리데이터에 대한 후속 질문과 정보 조회가 과제이며, 품질 이상 조사나 원인분석 지연을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "고객상담 대화록 요약과 이력관리가 중심이며, 제조 품질 문제의 원인을 찾는 업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 1,
+        "reason": "버그 티켓의 담당팀을 판단하는 triage 과제라는 약한 접점은 있지만, 제조 품질 이상 원인을 분석하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "매장 상품의 위치를 찾는 과제로, 품질 이상 발생 원인을 조사하거나 제조 공정 결함을 분석하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 신청 소득자료 검증 지연이 문제이며, 제조 품질 이상 원인분석과는 업무 및 운영 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "재고 없는 브랜드의 대체 상품 검색이 과제이며, 생산 품질 이상이나 그 원인을 분석하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "HR 정책 문의와 지원 지연을 다루는 사례로, 제조 제품의 품질 이상 원인을 찾는 문제와 무관합니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 1,
+        "reason": "지원 티켓의 기술문제를 처리한다는 약한 공통점은 있지만, 제조 현장의 품질 이상 원인분석이 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "은행 거래를 대사하는 회계 업무이며, 제조 품질 이상을 조사하거나 원인을 파악하는 과제와 다릅니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 문안을 작성·수정하는 업무로, 제조 품질 문제의 원인이나 분석 지연을 다루지 않습니다."
+      },
+      {
+        "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 직원이 고객 프로젝트 질문에 답하도록 돕는 사례로, 제조 품질 이상을 진단하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0071_01",
+        "relevance": 0,
+        "reason": "결제 기술문의에 답하는 지원 과제로, 주문·설비 상태 변화에 따른 생산계획 조정과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0075_01",
+        "relevance": 0,
+        "reason": "핀테크 상담 후 통화 기록 작성 시간을 줄이는 업무이며, 제조 생산계획을 변경하거나 재조정하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0078_01",
+        "relevance": 0,
+        "reason": "관리데이터 조회와 의사결정 정보 확보가 과제로, 주문이나 설비 변화에 맞춘 생산 일정 조정은 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0081_01",
+        "relevance": 0,
+        "reason": "은행 상담 내역을 요약·관리하는 사례로, 제조 주문 또는 설비 상태에 따른 계획 변경과 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0083_01",
+        "relevance": 0,
+        "reason": "엔지니어링 버그 티켓을 팀에 라우팅하는 과제이며, 생산 일정이나 자원 배치를 조정하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0084_01",
+        "relevance": 0,
+        "reason": "매장 상품 위치를 찾아주는 사례로, 주문 변동이나 설비 상태에 대응해 제조 생산계획을 조정하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0085_01",
+        "relevance": 0,
+        "reason": "모기지 소득 검증의 처리시간 단축이 중심이며, 제조 현장의 생산계획 수립이나 동적 조정과 다릅니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0086_01",
+        "relevance": 0,
+        "reason": "전자상거래 상품 발견과 대체품 검색을 다루며, 제조 주문·설비 변화에 따른 생산계획 조정이 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0090_01",
+        "relevance": 0,
+        "reason": "HR 정책 문의 처리와 지원 지연이 문제이며, 제조 생산계획이나 현장 운영 자원 배치를 조정하지 않습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2H_0091_01",
+        "relevance": 0,
+        "reason": "소프트웨어 지원 티켓에 자동 답변하는 과제로, 주문·설비 변화에 따라 생산계획을 다시 세우는 업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2N_0103",
+        "relevance": 0,
+        "reason": "월말 은행 계정 대사를 수행하는 회계 업무로, 생산 일정이나 설비 가동계획을 조정하는 과제가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2N_0104",
+        "relevance": 0,
+        "reason": "고객 사례 초안을 반복 작성·수정하는 콘텐츠 업무이며, 생산계획의 수작업 조정 부담과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_DYNAMIC_PRODUCTION_PLANNING",
+        "case_id": "AXV2N_0105",
+        "relevance": 0,
+        "reason": "매장 직원의 고객 질문 응답을 지원하는 사례이며, 제조 주문이나 설비 상태 변화에 따른 계획 조정은 없습니다."
+      }
+    ]
+  }
+}

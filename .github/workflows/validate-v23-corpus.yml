@@ -1,0 +1,20 @@
+name: AX v2.3 corpus integrity
+on:
+  push:
+    paths:
+      - 'data/v2_3/**'
+      - 'scripts/v23_validate_dataset.py'
+      - '.github/workflows/validate-v23-corpus.yml'
+  pull_request:
+    paths:
+      - 'data/v2_3/**'
+      - 'scripts/v23_validate_dataset.py'
+      - '.github/workflows/validate-v23-corpus.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate case, taxonomy, qrels grids and Git blob checksums
+        run: python3 scripts/v23_validate_dataset.py

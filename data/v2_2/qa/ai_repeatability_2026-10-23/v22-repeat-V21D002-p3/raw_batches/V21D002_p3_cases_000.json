@@ -1,0 +1,343 @@
+{
+  "query_id": "V21D002",
+  "pass_id": 3,
+  "first_case": 0,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_09476415eb7cbc99006adaca7bf0b087d1b38a4da74dea2584",
+  "input_problem_only": {
+    "query_id": "V21D002",
+    "business_problem_query": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "problem_view": "긴 비정형 커뮤니케이션 이해 부담"
+      },
+      {
+        "id": "P2_ACTION_ITEM_EXTRACTION",
+        "problem_view": "후속조치 식별 부담"
+      },
+      {
+        "id": "P3_REPETITIVE_SUMMARIZATION",
+        "problem_view": "반복 요약·정리 업무"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2C_0006_01",
+        "business_problem": "Manual forms and manager-HR coordination caused errors and poor experience when promotions or assignments changed.",
+        "ax_target_task": "HR organizational-change request validation",
+        "business_context": "Danone managers requesting organizational changes."
+      },
+      {
+        "case_id": "AXV2C_0006_02",
+        "business_problem": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.",
+        "ax_target_task": "Validate customer order prices before invoicing",
+        "business_context": "Danone receives thousands of orders daily through email, PDF and EDI."
+      },
+      {
+        "case_id": "AXV2C_0016_01",
+        "business_problem": "Customers need digital or voice support that can diagnose routine device issues without unnecessary transfers.",
+        "ax_target_task": "Caller self-service computer troubleshooting",
+        "business_context": "Best Buy customers calling for computer assistance."
+      },
+      {
+        "case_id": "AXV2C_0016_02",
+        "business_problem": "Human support staff need relevant troubleshooting information while handling complex customer issues.",
+        "ax_target_task": "Surface troubleshooting knowledge during assisted calls",
+        "business_context": "Best Buy service representatives during live customer conversations."
+      },
+      {
+        "case_id": "AXV2C_0017_01",
+        "business_problem": "Rules-based routing cannot handle nuanced issues and customers repeat their history across channels.",
+        "ax_target_task": "Resolve telecom customer inquiries with remembered context",
+        "business_context": "AT&T customer support across phone, online and retail contacts."
+      },
+      {
+        "case_id": "AXV2C_0042_01",
+        "business_problem": "Lawyers spend substantial time researching legal information and need reliable, source-backed answers.",
+        "ax_target_task": "Research legal information with cited answers",
+        "business_context": "Law&Company's subscribed SuperLawyer service launched in July 2024."
+      },
+      {
+        "case_id": "AXV2C_0050_01",
+        "business_problem": "Uncertain sales volumes make it difficult to supply enough food while avoiding waste.",
+        "ax_target_task": "Forecast daily store-item demand",
+        "business_context": "Albert Heijn forecasts over 15 million store-item combinations more than five weeks ahead."
+      },
+      {
+        "case_id": "AXV2C_0050_02",
+        "business_problem": "Food already on shelves can expire unsold and become waste.",
+        "ax_target_task": "Discount near-expiry food on shelves",
+        "business_context": "Albert Heijn stores with electronic shelf labels."
+      },
+      {
+        "case_id": "AXV2C_0068_01",
+        "business_problem": "Missing or incomplete payment instructions trigger time-consuming human reviews.",
+        "ax_target_task": "Repair incomplete payment instructions",
+        "business_context": "BNY cross-border payment processing."
+      },
+      {
+        "case_id": "AXV2C_0068_02",
+        "business_problem": "A transaction question previously required a human employee and potentially multiple stakeholders.",
+        "ax_target_task": "Resolve client transaction inquiries",
+        "business_context": "BNY clients asking about transactions and settlements."
+      },
+      {
+        "case_id": "AXV2C_0068_03",
+        "business_problem": "Identity and risk verification requires document research and weeks of back-and-forth.",
+        "ax_target_task": "Review documents and risk during client onboarding",
+        "business_context": "New BNY financial-services clients subject to mandatory onboarding review."
+      },
+      {
+        "case_id": "AXV2C_0074_01",
+        "business_problem": "Customer emails could take a working day to answer and self-hosted generation had cost and response quality problems as volume rose.",
+        "ax_target_task": "Generate personalized support emails",
+        "business_context": "Cashfree Payments merchant support communications in India."
+      },
+      {
+        "case_id": "AXV2C_0074_02",
+        "business_problem": "Compliance, verification and risk checks slowed merchant onboarding; some merchant categories had p99 turnaround of at least 24 hours.",
+        "ax_target_task": "Review merchant websites during onboarding",
+        "business_context": "Cashfree Payments onboarding Indian merchants; payment data stays in India."
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 1,
+        "reason": "조직변경 신청서와 관리자-HR 조율 문제이며, 긴 이메일 스레드나 첨부 내용을 이해하는 과제와는 다릅니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 2,
+        "reason": "이메일·PDF 주문서의 다양한 형식을 다루지만, 핵심 문제는 가격 검증과 입력 오류이지 긴 커뮤니케이션 이해가 아닙니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 1,
+        "reason": "고객의 컴퓨터 문제를 진단하는 셀프서비스 과제로, 비정형 커뮤니케이션을 읽고 이해하는 업무가 중심이 아닙니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 1,
+        "reason": "상담 중 문제 해결 지식을 제시하지만, 긴 대화나 첨부 문서를 이해하는 부담을 해결하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 2,
+        "reason": "여러 채널의 고객 문의와 반복되는 이력 설명을 다루지만, 긴 이메일 스레드나 첨부 문서 이해가 명시된 핵심 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 1,
+        "reason": "법률정보 조사와 출처 기반 답변이 중심이며, 커뮤니케이션 스레드나 첨부 문서를 이해하는 업무와는 다릅니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "매장별 상품 수요 예측 과제로, 이메일이나 문서 커뮤니케이션을 읽고 이해하는 문제와 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "유통기한 임박 식품의 할인 결정 과제로, 비정형 커뮤니케이션의 이해 부담과 무관합니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 1,
+        "reason": "불완전한 결제 지시를 보완하는 업무로 일부 지시 내용 처리는 있으나, 긴 스레드 이해가 핵심 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 1,
+        "reason": "거래 문의 해결이라는 대화 업무는 있으나, 긴 이메일 스레드나 첨부 문서를 읽는 부담은 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 2,
+        "reason": "온보딩에서 문서 조사와 장기간의 왕복 확인이 발생하지만, 핵심 과제는 고객 신원·위험 검토입니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 2,
+        "reason": "고객 이메일을 다루고 응답 지연 문제를 해결하지만, 긴 스레드와 첨부 문서의 이해·정리가 중심 과제인 것은 아닙니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 1,
+        "reason": "가맹점 웹사이트를 검토하는 온보딩 과제로, 긴 이메일 대화나 첨부 문서의 이해 부담과는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 1,
+        "reason": "조직변경 요청의 검증과 조율이 있지만, 커뮤니케이션에서 후속 조치를 추출하는 업무는 명시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 0,
+        "reason": "주문 가격 검증과 입력 오류 방지가 중심이며, 후속 조치 식별 업무와는 무관합니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "컴퓨터 문제의 셀프 진단 과제로, 대화에서 후속 조치를 찾아 정리하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 0,
+        "reason": "실시간 상담에 문제 해결 지식을 제공하는 과제로, 후속 업무 항목 추출이 핵심이 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 1,
+        "reason": "고객 문의를 해결하고 맥락을 기억하지만, 문의에서 후속 조치 목록을 식별하는 과제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 0,
+        "reason": "법률정보 조사와 인용 답변이 과제이며, 이메일이나 대화의 후속 조치 추출과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "식품 수요량 예측 업무로, 커뮤니케이션에서 실행할 후속 조치를 식별하지 않습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "임박 식품의 할인 업무로, 후속 조치 추출과는 무관한 매장 재고 관리 문제입니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "불완전한 결제 지시를 수정하는 처리 과제로, 대화에서 후속 조치를 추출하는 문제는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 1,
+        "reason": "거래 관련 고객 문의를 처리하지만, 문의 내용을 요약하거나 후속 조치 항목으로 정리한다는 설명은 없습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 0,
+        "reason": "신규 고객의 신원과 위험을 문서로 검토하는 과제로, 커뮤니케이션 후속 조치 추출과 다릅니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 1,
+        "reason": "지원 이메일에 답변을 생성하지만, 기존 스레드에서 후속 조치를 찾아 정리하는 업무는 아닙니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 0,
+        "reason": "가맹점 웹사이트 검증과 온보딩 심사가 중심이며, 후속 조치 식별과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0006_01",
+        "relevance": 1,
+        "reason": "조직변경 요청을 처리하지만, 반복적으로 이메일이나 문서 내용을 요약·정리하는 문제는 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0006_02",
+        "relevance": 1,
+        "reason": "이메일·PDF 주문서를 처리하지만 목적은 가격 검증과 오류 방지이며, 반복 요약 업무와는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0016_01",
+        "relevance": 0,
+        "reason": "컴퓨터 문제를 진단하는 셀프서비스로, 반복적인 내용 요약이나 정리와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0016_02",
+        "relevance": 1,
+        "reason": "상담 중 지식을 제공하는 업무지만, 반복 요약·정리가 아니라 문제 해결 지원이 중심입니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0017_01",
+        "relevance": 1,
+        "reason": "고객 이력을 여러 채널에서 기억하지만, 반복적으로 대화 내용을 요약하는 업무가 명시되지는 않았습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0042_01",
+        "relevance": 1,
+        "reason": "법률 정보를 조사해 답변하지만, 반복적인 이메일·문서 요약이 아니라 법률 리서치가 중심입니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0050_01",
+        "relevance": 0,
+        "reason": "매장 상품 수요를 예측하는 분석 과제로, 커뮤니케이션 요약·정리 업무와 무관합니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0050_02",
+        "relevance": 0,
+        "reason": "식품 할인 시점을 정하는 업무로, 반복적인 문서나 대화 요약과 관련이 없습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0068_01",
+        "relevance": 0,
+        "reason": "결제 지시를 보완하는 거래 처리 과제로, 커뮤니케이션 내용을 반복 요약하는 업무가 아닙니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0068_02",
+        "relevance": 1,
+        "reason": "거래 문의를 해결하지만, 상담 내용을 반복적으로 요약·정리하는 것이 과제라고 제시되지 않았습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0068_03",
+        "relevance": 1,
+        "reason": "온보딩 문서를 검토하지만, 목적은 신원·위험 확인이며 반복 요약·정리 업무와는 다릅니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0074_01",
+        "relevance": 2,
+        "reason": "고객 이메일을 다루는 점은 겹치지만, 반복 요약 대신 개인화된 답변을 생성하는 것이 핵심 과제입니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV2C_0074_02",
+        "relevance": 0,
+        "reason": "가맹점 웹사이트 검토와 온보딩 심사가 중심이며, 이메일·문서의 반복 요약 업무와 무관합니다."
+      }
+    ]
+  }
+}

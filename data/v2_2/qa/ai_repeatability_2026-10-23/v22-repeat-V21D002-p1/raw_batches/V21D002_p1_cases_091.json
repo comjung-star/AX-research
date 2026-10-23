@@ -1,0 +1,79 @@
+{
+  "query_id": "V21D002",
+  "pass_id": 1,
+  "first_case": 91,
+  "model_id": "gpt-6-luna",
+  "response_id": "resp_05fa800dc7b14b3f006adacb3c585487d29712e7ef27c9e851",
+  "input_problem_only": {
+    "query_id": "V21D002",
+    "business_problem_query": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+    "reference_perspectives": [
+      {
+        "id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "problem_view": "긴 비정형 커뮤니케이션 이해 부담"
+      },
+      {
+        "id": "P2_ACTION_ITEM_EXTRACTION",
+        "problem_view": "후속조치 식별 부담"
+      },
+      {
+        "id": "P3_REPETITIVE_SUMMARIZATION",
+        "problem_view": "반복 요약·정리 업무"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV22_0092_01",
+        "business_problem": "신규 상품의 색상·스타일 등 속성을 사람이 분류·태깅하면서 카탈로그 상품 등록과 갱신에 많은 작업시간이 듦.",
+        "ax_target_task": "신규 및 변경 상품의 색상·스타일 속성을 자동 분류해 상품 카탈로그 정보를 보강",
+        "business_context": "Wayfair의 3,000만 개 이상 상품을 취급하는 전자상거래 카탈로그 운영"
+      },
+      {
+        "case_id": "AXV22_0093_01",
+        "business_problem": "금융권 보안·망분리 및 규제 요건으로 외부 생성형 AI를 내부 업무에 그대로 도입하기 어려움.",
+        "ax_target_task": "망분리 내부 지식 기반 업무 질의응답 및 문서 업무 지원 에이전트를 운영",
+        "business_context": "제주은행의 자체 망분리 온프레미스 환경에서 전행 내부 업무 지식과 문서를 활용"
+      }
+    ]
+  },
+  "parsed_provisional_labels": {
+    "rows": [
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품 속성 분류와 카탈로그 운영이 핵심이며, 긴 이메일 스레드나 비정형 커뮤니케이션 이해 부담과는 업무 맥락이 다릅니다."
+      },
+      {
+        "perspective_id": "P1_UNSTRUCTURED_COMMUNICATION_COMPLEXITY",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "내부 문서 활용은 언급되지만, 긴 이메일 스레드나 첨부 문서의 복잡한 내용 이해가 중심 업무로 제시되지는 않습니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV22_0092_01",
+        "relevance": 0,
+        "reason": "상품의 색상·스타일 속성 분류가 과제이며, 이메일이나 문서에서 후속 조치를 식별하는 업무와는 다릅니다."
+      },
+      {
+        "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+        "case_id": "AXV22_0093_01",
+        "relevance": 0,
+        "reason": "지식 질의응답과 문서 업무 지원이 과제이며, 후속 조치나 담당 업무를 추출한다는 내용은 없습니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV22_0092_01",
+        "relevance": 1,
+        "reason": "반복적인 상품 속성 태깅은 수작업 부담이라는 점만 일부 겹치며, 핵심 업무는 요약이 아닌 분류입니다."
+      },
+      {
+        "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+        "case_id": "AXV22_0093_01",
+        "relevance": 1,
+        "reason": "문서 업무 지원이라는 접점은 있으나, 반복적으로 이메일과 첨부 내용을 요약·정리하는 과제인지는 명시되지 않았습니다."
+      }
+    ]
+  }
+}

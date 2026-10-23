@@ -1,0 +1,69 @@
+name: AX v2.2 Three-pass AI Repeatability Audit
+on:
+  push:
+    branches: [experiment/v22-repeatability-audit]
+    paths:
+      - '.github/workflows/v22-repeatability.yml'
+      - 'scripts/v22_repeatability_grade.py'
+      - 'scripts/v22_repeatability_analyze.py'
+permissions:
+  contents: write
+jobs:
+  repeat-grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        query: [V21D001, V21D002, V21D003, V21D004, V21D005, V21D006, V21D007, V21D008, V21D009, V21D010]
+        pass: [1, 2, 3]
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'openai>=3.26.0' 'pydantic>=2.7'
+      - name: Independently rate 93 cases in 3 reference views
+        run: |
+          python scripts/v22_repeatability_grade.py \
+            --query-id ${{ matrix.query }} \
+            --pass-id ${{ matrix.pass }} \
+            --model gpt-6-luna \
+            --output-dir data/v2_2/qa/ai_repeatability_2026-10-23/v22-repeat-${{ matrix.query }}-p${{ matrix.pass }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v22-repeat-${{ matrix.query }}-p${{ matrix.pass }}
+          path: data/v2_2/qa/ai_repeatability_2026-10-23/v22-repeat-${{ matrix.query }}-p${{ matrix.pass }}
+          retention-days: 90
+          if-no-files-found: error
+  compare-and-sample:
+    needs: repeat-grade
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: 'v22-repeat-*'
+          path: data/v2_2/qa/ai_repeatability_2026-10-23
+      - name: Check every pass and produce human-blind 50-case review
+        run: python scripts/v22_repeatability_analyze.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ax-v22-repeatability-results-and-blind-review
+          path: data/v2_2/qa/ai_repeatability_2026-10-23
+          retention-days: 90
+      - name: Persist full AI audit and report (not Gold) to experiment branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/v2_2/qa/ai_repeatability_2026-10-23
+          git commit -m 'experiment(v2.2): archive 3-pass AI-only scores and blind human review list'
+          git push
