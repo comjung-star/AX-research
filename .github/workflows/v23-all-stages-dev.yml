@@ -1,0 +1,90 @@
+name: AX v2.3 Stage 1-4 empirical Dev experiments
+on:
+  push:
+    branches: [experiment/v23-stage1-to4-dev-20261023]
+    paths:
+      - '.github/workflows/v23-all-stages-dev.yml'
+      - 'scripts/v23_stage1.py'
+      - 'scripts/v23_stage2.py'
+      - 'scripts/v23_stage3.py'
+      - 'scripts/v23_stage4.py'
+      - 'scripts/v23_stage_report.py'
+permissions:
+  contents: write
+jobs:
+  all-stages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Free runner disk
+        run: |
+          sudo rm -rf /usr/local/lib/android /opt/ghc /usr/share/dotnet || true
+          df -h
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: v23-bge-m3-cpu-${{ runner.os }}
+      - name: Install reproducible search dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e .
+          python -m pip install -r requirements-rq1.txt
+      - name: Preflight frozen data and silver qrels
+        run: |
+          python scripts/v23_validate_dataset.py
+          python scripts/v23_gt_validate.py
+      - name: Stage 1 - BM25, BGE-M3, GPT-only, MP
+        run: |
+          python scripts/v23_stage1.py
+          python scripts/v23_stage_report.py 1
+      - name: Save Stage 1 results to GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/v23_dev/stage1
+          git commit -m 'results(v2.3): complete Stage 1 controlled Dev comparison'
+          git push
+      - name: Stage 2 - Multiview, gate, hybrid, MLP
+        run: |
+          python scripts/v23_stage2.py
+          python scripts/v23_stage_report.py 2
+      - name: Save Stage 2 results to GitHub
+        run: |
+          git add experiments/v23_dev/stage2
+          git commit -m 'results(v2.3): complete Stage 2 four controlled ablations'
+          git push
+      - name: Stage 3 - Evidence/Wald/provenance
+        run: |
+          python scripts/v23_stage3.py
+          python scripts/v23_stage_report.py 3
+      - name: Save Stage 3 results to GitHub
+        run: |
+          git add experiments/v23_dev/stage3
+          git commit -m 'results(v2.3): Stage 3 factor-strategy statistics and trace'
+          git push
+      - name: Stage 4 - Evidence fusion and LLM recommendations
+        run: |
+          python scripts/v23_stage4.py
+          python scripts/v23_stage_report.py 4
+      - name: Save Stage 4 and complete report
+        run: |
+          git add experiments/v23_dev/stage4 experiments/v23_dev/STAGE1_TO_4_EXECUTION_REPORT.md
+          git commit -m 'results(v2.3): Stage 4 grounded strategy recommendations and Stage 1-4 report'
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ax-v23-stage1-4-dev-results
+          path: experiments/v23_dev
+          if-no-files-found: warn
+          retention-days: 90
