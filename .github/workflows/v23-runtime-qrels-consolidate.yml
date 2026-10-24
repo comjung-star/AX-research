@@ -1,0 +1,53 @@
+name: AX v2.3 runtime-view labels consolidated audit
+on:
+  push:
+    branches:
+      - experiment/v23-runtime-perspective-qrels-20261024
+    paths:
+      - .github/workflows/v23-runtime-qrels-consolidate.yml
+permissions:
+  actions: read
+  contents: write
+jobs:
+  consolidate-existing-blind-ratings:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_GRADE_RUN: '40081537471'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect completed existing API grading artifacts only
+        run: |
+          for i in $(seq 1 210); do
+            count=$(gh api "repos/${{ github.repository }}/actions/runs/$SOURCE_GRADE_RUN/artifacts?per_page=100" --jq '[.artifacts[] | select(.name | startswith("v23-dynamic-"))] | length')
+            echo "actual blind score artifacts ready: $count/60"
+            if [ "$count" -eq 60 ]; then exit 0; fi
+            sleep 30
+          done
+          echo 'Not all 60 independent AI grading artifacts were produced; refuse to consolidate partial labels.'
+          exit 1
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40081537471
+          github-token: ${{ github.token }}
+          pattern: v23-dynamic-*
+          path: experiments/v23_runtime_perspective_qrels/raw_passes/
+      - name: Verify all 16296 real AI ratings and build 8148 keyed qrels
+        run: python scripts/v23_runtime_view_build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ax-v23-runtime-perspective-8148-qrels-validated
+          path: experiments/v23_runtime_perspective_qrels/
+          retention-days: 90
+      - name: Commit only validated SILVER labels
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experiments/v23_runtime_perspective_qrels/
+          git diff --cached --quiet && exit 0
+          git commit -m 'data: 8148 dynamic perspective-case silver labels with 2 blind AI passes'
+          git push
