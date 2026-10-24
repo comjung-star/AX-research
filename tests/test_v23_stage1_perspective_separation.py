@@ -8,13 +8,14 @@ def test_global_budget_can_hide_branch_top10_relevant():
     # Three views retrieve a useful case at rank 4 in the last branch. Global Top5
     # can omit it even though it is relevant and retained by separate branch Top5.
     views=OrderedDict([
-      ("P1",["A","B","C","D","E","F"]),
-      ("P2",["A","C","B","E","F","D"]),
-      ("P3",["A","Z","B","C","D","E"]),
+      ("P1",["A","D","G","H","I","J"]),
+      ("P2",["B","E","K","L","M","N"]),
+      ("P3",["C","F","M","Z","N","I"]),
     ])
     global5={cid for _,cid in branch_balanced_unique(views,5)}
     separate5=set().union(*(set(v[:5]) for v in views.values()))
     assert "Z" in separate5
+    assert "Z" not in global5
     assert len(global5)==5
     assert global5 <= separate5
     assert len(separate5)>len(global5)
