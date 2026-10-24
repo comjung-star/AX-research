@@ -13,6 +13,8 @@ def test_learned_gate_shapes_and_normalized_three_views():
     assert weights.shape==(2,4,3)
     assert torch.isfinite(logits).all()
     assert torch.allclose(weights.sum(-1),torch.ones(2,4),atol=1e-5)
+    # Regression: additive q+c gate cancels query in softmax.
+    assert float(torch.max(torch.abs(weights[0]-weights[1])))>1e-5
     logits.sum().backward()
     assert model.projection.weight.grad is not None
     assert model.view_gate.weight.grad is not None
