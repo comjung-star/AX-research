@@ -1,0 +1,39 @@
+{
+  "status": "REAL_STAGE1_DIAGNOSTIC_SUCCESS",
+  "protocol": "PREDEFINED_INPUT_AND_MERGE_FACTORIAL_3x2",
+  "corpus": "v2.3 frozen 84",
+  "dev_query_count": 10,
+  "reference": "LLM 3-pass median 2520",
+  "stage1_original_same_case_vectors": true,
+  "stage1_original_perspectives_replayed_exactly": true,
+  "original_title_branch_rankings_exact": true,
+  "original_title_round_robin_top20_rankings_exact": true,
+  "model_revision_match_min_cos": 0.9999997019767761,
+  "input_modes": [
+    "title_only",
+    "title_description",
+    "query_title_description"
+  ],
+  "merge_modes": [
+    "round_robin",
+    "rrf60"
+  ],
+  "ks": [
+    5,
+    10,
+    20
+  ],
+  "repeats_per_query": 3,
+  "branches": 97,
+  "primary": "Recall@10",
+  "secondary": [
+    "Perspective Coverage@10",
+    "Derived Strategy Coverage@10"
+  ],
+  "CI": "paired bootstrap over 10 distinct Dev queries, seed 20261024; exploratory only",
+  "no_gt_exposure_at_runtime": true,
+  "no_test_data": true,
+  "qa": "no optimization or tuning based on observed values",
+  "python": "3.11.17",
+  "sentence_transformers": "runtime BAAI/bge-m3"
+}
