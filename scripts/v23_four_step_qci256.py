@@ -44,7 +44,7 @@ class GatedFusionQCI(nn.Module):
     def __init__(self,in_dim=1024,out_dim=256):
         super().__init__()
         self.projection=nn.Linear(in_dim,out_dim,bias=False)
-        self.view_gate=nn.Linear(2*out_dim,1)
+        self.view_gate=nn.Sequential(nn.Linear(3*out_dim,64),nn.Tanh(),nn.Linear(64,1))
         self.reranker=nn.Sequential(nn.Linear(4*out_dim,64),nn.ReLU(),
                                     nn.Linear(64,1))
     def forward(self, query,view_emb):
@@ -53,7 +53,7 @@ class GatedFusionQCI(nn.Module):
         v=F.normalize(self.projection(view_emb),dim=-1)
         qq=q[:,None,None,:].expand(-1,v.shape[0],v.shape[1],-1)
         cc=v[None].expand(q.shape[0],-1,-1,-1)
-        gate=torch.softmax(self.view_gate(torch.cat((qq,cc),dim=-1)).squeeze(-1),dim=-1)
+        gate=torch.softmax(self.view_gate(torch.cat((qq,cc,qq*cc),dim=-1)).squeeze(-1),dim=-1)
         fused=F.normalize((gate[...,None]*cc).sum(dim=2),dim=-1)
         qb=q[:,None,:].expand_as(fused)
         interaction=torch.cat((qb,fused,qb*fused,torch.abs(qb-fused)),dim=-1)
