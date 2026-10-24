@@ -1,0 +1,397 @@
+{
+  "query_id": "V21D004",
+  "run_id": 2,
+  "pass_id": 2,
+  "input": {
+    "query_id": "V21D004",
+    "original_business_problem_context_only": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "generated_perspectives": [
+      {
+        "perspective_id": "P1",
+        "title": "처리시간 지연",
+        "description": "여러 형식의 문서를 사람이 직접 읽고 확인해야 하므로 심사와 검증 업무의 처리시간이 길어지는 관점이다."
+      },
+      {
+        "perspective_id": "P2",
+        "title": "필수 항목 누락 위험",
+        "description": "문서에서 확인해야 할 필수 항목을 일일이 점검하는 과정에서 항목을 놓칠 수 있는 관점이다."
+      },
+      {
+        "perspective_id": "P3",
+        "title": "검토 결과의 오류 위험",
+        "description": "수작업 확인 과정에서 문서 내용이나 항목을 잘못 판단해 심사·검증 결과에 오류가 생길 수 있는 관점이다."
+      },
+      {
+        "perspective_id": "P4",
+        "title": "규정 준수 판단의 신뢰성",
+        "description": "문서별로 규정 준수 여부를 확인하는 과정에서 판단이 누락되거나 부정확해질 위험이 있는 관점이다."
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2N_0136",
+        "business_problem": "Production images may contain people or protected information that must not remain identifiable.",
+        "target_task": "Anonymize people in production images",
+        "business_context": "BMW production-system image processing described in April 2021."
+      },
+      {
+        "case_id": "AXV2N_0137",
+        "business_problem": "Members must navigate scattered benefits information and insurance records.",
+        "target_task": "Answer member benefits questions",
+        "business_context": "Member-facing service separate from internal clinical notes and claim investigation."
+      },
+      {
+        "case_id": "AXV2N_0138",
+        "business_problem": "A small legal team must repeatedly research answers for many branch managers.",
+        "target_task": "Draft answers to branch legal inquiries",
+        "business_context": "Nine-person retail legal team handling roughly 40000 annual inquiries."
+      },
+      {
+        "case_id": "AXV2N_0139",
+        "business_problem": "Staff need understandable contract content without repeatedly interpreting legal text.",
+        "target_task": "Summarize contracts for internal teams",
+        "business_context": "Contract Companion GPT used within Moderna functions."
+      },
+      {
+        "case_id": "AXV2P2_0010_01",
+        "business_problem": "Complex manufacturing product knowledge is difficult to access as expertise and skills become scarce.",
+        "target_task": "Retrieve CAD/CAM product support knowledge",
+        "business_context": "Sandvik manufacturing software support teams and customers"
+      },
+      {
+        "case_id": "AXV2P2_0011_01",
+        "business_problem": "Freight invoices may not match negotiated rates and manual checking burdens logistics staff.",
+        "target_task": "Audit freight invoices for overcharges",
+        "business_context": "Dow logistics spending and emailed PDF invoices"
+      },
+      {
+        "case_id": "AXV2P2_0012_01",
+        "business_problem": "Varied insurance documents require lengthy manual classification and extraction.",
+        "target_task": "Extract and classify insurance documentation",
+        "business_context": "Shift Technology's operational insurer document-processing platform"
+      },
+      {
+        "case_id": "AXV2P2_0013_01",
+        "business_problem": "High-volume confidential discovery review is time-intensive and reviewer fatigue risks inconsistent decisions.",
+        "target_task": "Review discovery documents for legal relevance",
+        "business_context": "Relativity aiR for Review legal clients handling confidential evidence"
+      },
+      {
+        "case_id": "AXV2P2_0015_01",
+        "business_problem": "Important oncology data are buried in large volumes of unstructured clinical documents.",
+        "target_task": "Extract oncology entities from clinical documents",
+        "business_context": "Ontada ON.Genuity clinical research data pipeline"
+      },
+      {
+        "case_id": "AXV2P2_0019_01",
+        "business_problem": "Manual journal entries require multi-system collection and extensive validation during financial close.",
+        "target_task": "Prepare and submit journal entries under approval",
+        "business_context": "IBM Finance Jobotx deployment in early 2025"
+      },
+      {
+        "case_id": "AXV2P2_0020_01",
+        "business_problem": "Manual property claim handling and inconsistent policy interpretation delay claims during disaster surges.",
+        "target_task": "Coordinate property insurance claim resolution",
+        "business_context": "Claims Connection Group policyholders, claim handlers and assigned vendors"
+      },
+      {
+        "case_id": "AXV2P2_0035_01",
+        "business_problem": "Double-reader breast screening burdens radiologist capacity while detection quality must be maintained.",
+        "target_task": "Use AI as one reader in breast screening",
+        "business_context": "Capio S:t Göran Hospital, Sweden, full integration since mid-2023 after ScreenTrustCAD trial"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0136",
+      "relevance": 0,
+      "reason": "생산 이미지에서 사람을 익명화하는 과제로 문서 심사·검토 처리시간과 무관하다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0137",
+      "relevance": 1,
+      "reason": "회원 혜택 질문에 답하는 업무로, 문서를 읽어 심사하는 처리 지연 문제와는 다르다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0138",
+      "relevance": 2,
+      "reason": "법무 문의를 반복 조사해 답변 초안을 작성하지만, 문서 심사·검증 처리시간을 다루지는 않는다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0139",
+      "relevance": 3,
+      "reason": "내부 팀을 위해 계약서를 요약하는 업무여서 문서를 읽고 내용을 검토하는 작업과 강하게 겹친다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0010_01",
+      "relevance": 0,
+      "reason": "CAD/CAM 제품 지원 지식을 검색하는 과제로 문서 심사·검토 지연과 무관하다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0011_01",
+      "relevance": 3,
+      "reason": "운송 송장을 약정 요율과 대조하는 수작업이 물류 직원에게 부담을 주므로 검증 처리 부담과 관련된다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0012_01",
+      "relevance": 4,
+      "reason": "다양한 보험 문서를 수작업으로 분류·추출하는 데 시간이 오래 걸린다는 문제로, 문서 검토 처리 지연과 직접 맞닿아 있다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0013_01",
+      "relevance": 4,
+      "reason": "대량의 디스커버리 문서 검토가 시간 집약적이라고 명시되어 문서 검토의 처리 지연을 직접 다룬다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0015_01",
+      "relevance": 2,
+      "reason": "임상 문서에서 종양학 정보를 추출하는 업무지만, 수작업 검토로 인한 처리시간 지연은 문제로 제시되지 않았다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0019_01",
+      "relevance": 3,
+      "reason": "분개 입력을 위해 여러 시스템에서 자료를 모으고 광범위하게 검증하는 업무로, 처리 부담과 지연 관점에서 겹친다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0020_01",
+      "relevance": 2,
+      "reason": "재난 시 재산보험 청구 처리가 지연되지만, 여러 형식의 문서를 사람이 검토하는 문제가 핵심은 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2P2_0035_01",
+      "relevance": 0,
+      "reason": "유방암 검진에서 판독자 역할을 수행하는 과제로 문서 심사·검토 처리시간과 무관하다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0136",
+      "relevance": 0,
+      "reason": "이미지 속 인물 익명화가 과제이며 문서의 필수 항목 점검과 관련이 없다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0137",
+      "relevance": 1,
+      "reason": "혜택 정보와 보험 기록에 관한 질문 응답이 과제일 뿐, 문서 필수 항목의 누락 점검은 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0138",
+      "relevance": 0,
+      "reason": "지점 관리자의 법률 문의에 답변 초안을 작성하는 업무로 문서 필수 항목 점검과 다르다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0139",
+      "relevance": 2,
+      "reason": "계약서를 요약하지만, 확인 대상인 필수 항목을 빠뜨릴 위험을 다루는 과제는 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0010_01",
+      "relevance": 0,
+      "reason": "제조 제품의 CAD/CAM 지원 지식 검색으로 문서 필수 항목 확인과 무관하다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0011_01",
+      "relevance": 3,
+      "reason": "송장과 협상 요율을 대조해 초과 청구를 감사하므로, 확인 항목을 놓치지 않는 점검 업무와 강하게 겹친다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0012_01",
+      "relevance": 3,
+      "reason": "보험 문서에서 정보를 추출·분류하는 과제가 문서 항목을 식별하는 작업과 직접 겹치지만, 누락 위험 자체가 명시되진 않았다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0013_01",
+      "relevance": 2,
+      "reason": "디스커버리 문서의 법적 관련성을 검토하지만, 필수 항목의 누락을 점검하는 업무와는 다르다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0015_01",
+      "relevance": 3,
+      "reason": "임상 문서에서 종양학 개체를 추출하는 과제로 문서 내 필요한 정보를 찾아내는 작업과 강하게 겹친다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0019_01",
+      "relevance": 3,
+      "reason": "분개 자료를 수집하고 광범위하게 검증하는 업무여서 필요한 자료나 항목을 확인하는 흐름과 맞닿아 있다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0020_01",
+      "relevance": 1,
+      "reason": "보험 청구 처리는 다루지만 문서에서 필수 항목 누락을 확인하는 과제는 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2P2_0035_01",
+      "relevance": 0,
+      "reason": "유방 영상 판독 업무로 문서 필수 항목 점검과 무관하다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0136",
+      "relevance": 0,
+      "reason": "생산 이미지의 익명화가 과제이며 문서 검토 판단의 오류 위험과 무관하다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0137",
+      "relevance": 1,
+      "reason": "회원 혜택 질문에 답하는 업무로 문서 심사 결과의 판단 오류 문제는 제시되지 않았다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0138",
+      "relevance": 1,
+      "reason": "법률 문의 답변 초안을 작성하지만 문서 내용을 심사·검증해 발생하는 오류를 다루지는 않는다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0139",
+      "relevance": 3,
+      "reason": "계약 내용을 내부 팀이 이해하도록 요약하는 과제로, 계약 문언을 해석하는 과정의 판단 오류와 관련된다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0010_01",
+      "relevance": 0,
+      "reason": "제조 제품 지원 지식을 검색하는 업무로 문서 심사 결과의 오류 위험과 무관하다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0011_01",
+      "relevance": 3,
+      "reason": "송장 청구액과 약정 요율의 불일치를 감사하는 과제여서 송장 검증 판단의 정확성이 핵심이다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0012_01",
+      "relevance": 3,
+      "reason": "다양한 보험 문서를 분류하고 정보를 추출하므로 문서 내용의 잘못된 분류·추출 위험과 강하게 관련된다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0013_01",
+      "relevance": 4,
+      "reason": "대량 문서 검토에서 검토자 피로가 일관되지 않은 판단을 초래할 수 있다고 명시해 오류 위험과 직접 맞닿아 있다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0015_01",
+      "relevance": 2,
+      "reason": "임상 문서에서 종양학 정보를 추출하지만, 잘못된 판단이나 추출 오류 위험은 문제로 명시되지 않았다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0019_01",
+      "relevance": 2,
+      "reason": "분개 입력에 광범위한 검증이 필요하지만, 수작업 판단 오류가 발생한다는 내용은 제시되지 않았다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0020_01",
+      "relevance": 3,
+      "reason": "보험 약관 해석의 불일치가 청구 처리를 지연시킨다고 명시해 판단 결과의 일관성 문제와 맞닿아 있다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2P2_0035_01",
+      "relevance": 1,
+      "reason": "유방 검진에서 탐지 품질을 유지하는 과제지만, 문서 심사 판단 오류와는 업무 유형이 다르다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0136",
+      "relevance": 0,
+      "reason": "이미지 속 인물을 익명화하는 과제로 문서 규정 준수 판단과 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0137",
+      "relevance": 0,
+      "reason": "회원 혜택 질문에 답하는 업무로 문서의 규정 준수 여부를 판단하지 않는다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0138",
+      "relevance": 1,
+      "reason": "법률 문의에 답변하지만 문서별 규정 준수 여부를 확인하는 과제는 아니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0139",
+      "relevance": 2,
+      "reason": "계약 내용을 요약하지만, 계약의 규정 준수 여부를 판정하는 업무라고 제시되지는 않았다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0010_01",
+      "relevance": 0,
+      "reason": "CAD/CAM 제품 지원 지식 검색으로 문서 규정 준수 판단과 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0011_01",
+      "relevance": 2,
+      "reason": "송장 금액을 협상 요율과 대조하지만, 규정 준수보다 요율 초과 청구 감사가 핵심이다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0012_01",
+      "relevance": 2,
+      "reason": "보험 문서를 분류·추출하는 업무로, 문서별 규정 준수 판단은 과제에 포함되지 않는다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0013_01",
+      "relevance": 2,
+      "reason": "법률 증거의 관련성을 검토하지만, 규정 준수 여부를 판정하는 심사와는 목적이 다르다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0015_01",
+      "relevance": 0,
+      "reason": "임상 문서에서 종양학 정보를 추출하는 과제로 규정 준수 판단과 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0019_01",
+      "relevance": 2,
+      "reason": "분개 자료를 검증하고 승인 절차를 거치지만, 문서별 규정 준수 판단이 핵심이라고 제시되지는 않았다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0020_01",
+      "relevance": 2,
+      "reason": "재산보험 청구에서 약관 해석의 불일치를 다루지만, 규정 준수 여부를 판단하는 문제와는 구별된다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2P2_0035_01",
+      "relevance": 0,
+      "reason": "유방 검진의 판독 품질을 다루는 과제로 문서 규정 준수 판단과 무관하다."
+    }
+  ],
+  "response_id": "resp_0b9f58bf985b5c74006adc7b19055c87d1b25f7fde7839322b",
+  "model": "gpt-6-luna"
+}

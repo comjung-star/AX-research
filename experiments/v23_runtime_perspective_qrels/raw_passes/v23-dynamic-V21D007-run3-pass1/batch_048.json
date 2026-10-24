@@ -1,0 +1,320 @@
+{
+  "query_id": "V21D007",
+  "run_id": 3,
+  "pass_id": 1,
+  "input": {
+    "query_id": "V21D007",
+    "original_business_problem_context_only": "구매와 견적 업무에서 고객 도면·요구사항과 공급업체 제안서처럼 형식이 다른 자료를 사람이 읽고 비교해야 하고, 생산가능성·원가·공급업체 선택 판단이 담당자 경험에 의존하며, 견적 작성과 조달 후속업무까지 수작업으로 이어져 처리시간이 길다.",
+    "generated_perspectives": [
+      {
+        "perspective_id": "P1",
+        "title": "이종 자료의 해석·비교 부담",
+        "description": "고객 도면·요구사항과 공급업체 제안서의 형식이 달라 담당자가 자료를 직접 읽고 내용을 대조해야 하는 문제."
+      },
+      {
+        "perspective_id": "P2",
+        "title": "담당자 경험에 의존하는 판단",
+        "description": "생산가능성, 원가, 공급업체 선택 판단이 담당자 경험에 의존해 일관성과 판단 근거가 달라질 수 있는 문제."
+      },
+      {
+        "perspective_id": "P3",
+        "title": "견적·조달 업무의 긴 처리시간",
+        "description": "견적 작성부터 조달 후속업무까지 수작업으로 이어져 업무 처리가 오래 걸리는 문제."
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2N_0121",
+        "business_problem": "고객이 기존 은행 도움말의 키워드 검색만으로는 복잡한 질문에 필요한 정확한 답을 쉽게 찾기 어려워 고객센터로 재문의하는 일이 발생했다.",
+        "target_task": "Answer customer help-centre questions",
+        "business_context": "Customer-facing help centre, distinct from call summarization."
+      },
+      {
+        "case_id": "AXV2N_0122",
+        "business_problem": "Customers need to understand spending without manually navigating filters and charts.",
+        "target_task": "Answer customers' personal spending-analysis questions",
+        "business_context": "Spending Intelligence within Starling's banking service."
+      },
+      {
+        "case_id": "AXV2N_0123",
+        "business_problem": "기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다.",
+        "target_task": "Handle banking customer questions and account inquiries",
+        "business_context": "Marina 24/7 multilingual customer banking chatbot."
+      },
+      {
+        "case_id": "AXV2N_0124",
+        "business_problem": "Routine benefit, leave and payroll questions take HR time away from work requiring people.",
+        "target_task": "Answer employee HR policy questions",
+        "business_context": "Penny HR chatbot for over 8000 employees in Malaysia and Asia."
+      },
+      {
+        "case_id": "AXV2N_0125",
+        "business_problem": "Sellers split attention between customers, notes and CRM updates.",
+        "target_task": "Create sales-meeting recaps and next steps",
+        "business_context": "Teams meetings with sales customers, distinct from email-signature contact creation."
+      },
+      {
+        "case_id": "AXV2N_0126",
+        "business_problem": "Departments need to understand current customer issues in accumulated feedback.",
+        "target_task": "Summarize customer feedback trends",
+        "business_context": "Feedback stored in BigQuery for business departments."
+      },
+      {
+        "case_id": "AXV2N_0128",
+        "business_problem": "Workers perform monotonous checks that mandatory equipment is correctly placed.",
+        "target_task": "Check warning-triangle placement in the trunk",
+        "business_context": "BMW series-production image inspection described in December 2019."
+      },
+      {
+        "case_id": "AXV2N_0130",
+        "business_problem": "Follow-ups, status updates, closures and handoffs require repetitive engineer effort.",
+        "target_task": "Automate routine support-case administration",
+        "business_context": "Automate SW Support deployed to 2800 engineers worldwide."
+      },
+      {
+        "case_id": "AXV2N_0132",
+        "business_problem": "Manual documentation of one patient-care conversation can take over twenty minutes.",
+        "target_task": "Document medical-care conversations",
+        "business_context": "Oscar clinical staff documenting care interactions."
+      },
+      {
+        "case_id": "AXV2N_0133",
+        "business_problem": "Support teams must navigate complex claim decision logs and contractual variables.",
+        "target_task": "Investigate escalated claim-processing questions",
+        "business_context": "Oscar claims team answering questions about a claim's processing history."
+      },
+      {
+        "case_id": "AXV2N_0134",
+        "business_problem": "Sparse or unclear merchant websites require lengthy human investigation to understand a business.",
+        "target_task": "Summarize merchant websites for business understanding",
+        "business_context": "Stripe internal business-understanding workflow, not all proposed GPT prototypes."
+      },
+      {
+        "case_id": "AXV2N_0135",
+        "business_problem": "A label must have correct content and language and be placed on the correct component.",
+        "target_task": "Validate technical labels on assembled vehicles",
+        "business_context": "IRIS camera inspection at Ingolstadt and Neckarsulm assembly plants."
+      }
+    ]
+  },
+  "rows": [
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "고객 도움말 질문에 답하는 업무로, 도면·요구사항과 공급업체 제안서를 대조하는 문제와 다릅니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "개인 지출 분석 질문에 답하는 업무이며, 이종 구매 자료의 해석·비교가 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0123",
+      "relevance": 1,
+      "reason": "챗봇 지식 정보를 갱신하는 내용은 있지만, 고객 자료와 공급업체 제안서의 대조 업무는 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 HR 정책 질문에 답하는 업무로, 구매 관련 자료 비교와 무관합니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0125",
+      "relevance": 1,
+      "reason": "영업 회의 내용을 정리하지만, 서로 다른 도면·요구사항과 제안서를 읽고 비교하는 과제는 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0126",
+      "relevance": 1,
+      "reason": "누적 고객 피드백의 경향을 요약하는 업무로, 구매 문서 간 내용을 대조하는 문제와 다릅니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0128",
+      "relevance": 0,
+      "reason": "트렁크 내 경고 삼각대의 위치를 검사하는 과제로, 문서 해석·비교가 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0130",
+      "relevance": 1,
+      "reason": "지원 케이스의 상태 업데이트와 인계 자동화가 중심이며, 이종 구매 자료 비교와는 다릅니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0132",
+      "relevance": 1,
+      "reason": "진료 대화를 문서화하는 과제지만, 도면과 공급업체 제안서의 대조는 포함하지 않습니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0133",
+      "relevance": 2,
+      "reason": "청구 처리 기록과 계약 변수를 살펴보는 점은 정보 검토와 일부 겹치지만, 구매 자료 비교가 아니라 청구 문의 조사입니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0134",
+      "relevance": 1,
+      "reason": "판매자 웹사이트를 요약해 사업을 이해하는 업무로, 고객 요구사항과 공급업체 제안서를 비교하는 업무는 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0135",
+      "relevance": 1,
+      "reason": "기술 라벨의 내용과 부착 위치를 검증하지만, 서로 다른 구매 문서의 내용을 비교하지 않습니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "고객 도움말 질문에 답하는 과제로, 생산가능성·원가·공급업체 선택 판단이 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "고객의 개인 지출 분석 질문에 답하며, 구매·공급업체 관련 판단과 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0123",
+      "relevance": 0,
+      "reason": "은행 고객 문의에 답하는 챗봇 업무로, 생산가능성이나 공급업체 선택 판단이 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 HR 정책 질문에 답하는 업무로, 원가·생산·공급업체 판단과 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0125",
+      "relevance": 1,
+      "reason": "영업 회의 요약과 후속 조치를 작성하지만, 담당자 경험에 의존하는 구매 판단이 핵심은 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0126",
+      "relevance": 1,
+      "reason": "고객 피드백 경향을 파악하는 과제이며, 생산가능성·원가·공급업체 선택 판단과는 다릅니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0128",
+      "relevance": 0,
+      "reason": "차량 트렁크의 경고 삼각대 위치를 검사하는 과제로, 구매 판단이 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0130",
+      "relevance": 0,
+      "reason": "지원 케이스의 행정 업무 자동화가 중심이며, 공급업체나 원가를 판단하는 과제가 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0132",
+      "relevance": 0,
+      "reason": "진료 대화를 기록하는 업무로, 생산가능성·원가·공급업체 선택 판단과 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0133",
+      "relevance": 2,
+      "reason": "청구 처리 기록과 계약 변수를 조사하는 점은 계약 조건을 고려하는 활동과 일부 겹치지만, 공급업체 선정이나 구매 원가 판단은 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0134",
+      "relevance": 1,
+      "reason": "웹사이트를 요약해 사업을 이해하는 업무지만, 생산가능성·원가·공급업체 선택 판단을 다루지 않습니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0135",
+      "relevance": 0,
+      "reason": "조립 차량의 기술 라벨을 검증하는 과제로, 담당자 경험에 의존하는 구매 판단이 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "고객센터 질문에 답하는 업무이며, 견적 작성이나 조달 후속 업무의 처리시간 문제와 다릅니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "개인 지출 분석 질문에 답하는 과제로, 견적·조달 업무가 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0123",
+      "relevance": 1,
+      "reason": "고객지원 지식베이스의 수동 갱신 부담은 있지만, 견적 작성이나 조달 후속업무를 다루지 않습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 HR 정책 질문에 답하는 업무로, 구매 견적·조달 처리와 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0125",
+      "relevance": 1,
+      "reason": "영업 회의 요약과 후속 조치 작성은 다루지만, 견적 작성이나 조달 후속업무가 중심은 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0126",
+      "relevance": 0,
+      "reason": "고객 피드백 경향을 요약하는 업무로, 견적·조달 처리와 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0128",
+      "relevance": 0,
+      "reason": "차량 내 장비 위치를 검사하는 과제로, 견적이나 조달 업무를 다루지 않습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0130",
+      "relevance": 2,
+      "reason": "지원 케이스의 상태 업데이트·종결·인계를 반복 처리한다는 점은 후속 행정업무와 일부 겹치지만, 견적·조달 워크플로는 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0132",
+      "relevance": 1,
+      "reason": "진료 대화 기록에 시간이 든다는 점은 수작업 부담과 일부 관련되지만, 견적·조달 후속업무는 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0133",
+      "relevance": 0,
+      "reason": "에스컬레이션된 보험 청구 질문을 조사하는 과제로, 견적 작성이나 조달 처리가 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0134",
+      "relevance": 0,
+      "reason": "판매자 웹사이트를 요약해 사업을 이해하는 업무로, 견적·조달 후속업무와 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0135",
+      "relevance": 0,
+      "reason": "차량 기술 라벨을 검증하는 과제로, 견적 작성이나 조달 처리시간 문제와 다릅니다."
+    }
+  ],
+  "response_id": "resp_0abcba8b5d50011c006adc7d84f59487d1b07688809347e1fd",
+  "model": "gpt-6-luna"
+}

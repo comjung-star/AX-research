@@ -1,0 +1,397 @@
+{
+  "query_id": "V21D004",
+  "run_id": 2,
+  "pass_id": 2,
+  "input": {
+    "query_id": "V21D004",
+    "original_business_problem_context_only": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "generated_perspectives": [
+      {
+        "perspective_id": "P1",
+        "title": "처리시간 지연",
+        "description": "여러 형식의 문서를 사람이 직접 읽고 확인해야 하므로 심사와 검증 업무의 처리시간이 길어지는 관점이다."
+      },
+      {
+        "perspective_id": "P2",
+        "title": "필수 항목 누락 위험",
+        "description": "문서에서 확인해야 할 필수 항목을 일일이 점검하는 과정에서 항목을 놓칠 수 있는 관점이다."
+      },
+      {
+        "perspective_id": "P3",
+        "title": "검토 결과의 오류 위험",
+        "description": "수작업 확인 과정에서 문서 내용이나 항목을 잘못 판단해 심사·검증 결과에 오류가 생길 수 있는 관점이다."
+      },
+      {
+        "perspective_id": "P4",
+        "title": "규정 준수 판단의 신뢰성",
+        "description": "문서별로 규정 준수 여부를 확인하는 과정에서 판단이 누락되거나 부정확해질 위험이 있는 관점이다."
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2N_0121",
+        "business_problem": "고객이 기존 은행 도움말의 키워드 검색만으로는 복잡한 질문에 필요한 정확한 답을 쉽게 찾기 어려워 고객센터로 재문의하는 일이 발생했다.",
+        "target_task": "Answer customer help-centre questions",
+        "business_context": "Customer-facing help centre, distinct from call summarization."
+      },
+      {
+        "case_id": "AXV2N_0122",
+        "business_problem": "Customers need to understand spending without manually navigating filters and charts.",
+        "target_task": "Answer customers' personal spending-analysis questions",
+        "business_context": "Spending Intelligence within Starling's banking service."
+      },
+      {
+        "case_id": "AXV2N_0123",
+        "business_problem": "기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다.",
+        "target_task": "Handle banking customer questions and account inquiries",
+        "business_context": "Marina 24/7 multilingual customer banking chatbot."
+      },
+      {
+        "case_id": "AXV2N_0124",
+        "business_problem": "Routine benefit, leave and payroll questions take HR time away from work requiring people.",
+        "target_task": "Answer employee HR policy questions",
+        "business_context": "Penny HR chatbot for over 8000 employees in Malaysia and Asia."
+      },
+      {
+        "case_id": "AXV2N_0125",
+        "business_problem": "Sellers split attention between customers, notes and CRM updates.",
+        "target_task": "Create sales-meeting recaps and next steps",
+        "business_context": "Teams meetings with sales customers, distinct from email-signature contact creation."
+      },
+      {
+        "case_id": "AXV2N_0126",
+        "business_problem": "Departments need to understand current customer issues in accumulated feedback.",
+        "target_task": "Summarize customer feedback trends",
+        "business_context": "Feedback stored in BigQuery for business departments."
+      },
+      {
+        "case_id": "AXV2N_0128",
+        "business_problem": "Workers perform monotonous checks that mandatory equipment is correctly placed.",
+        "target_task": "Check warning-triangle placement in the trunk",
+        "business_context": "BMW series-production image inspection described in December 2019."
+      },
+      {
+        "case_id": "AXV2N_0130",
+        "business_problem": "Follow-ups, status updates, closures and handoffs require repetitive engineer effort.",
+        "target_task": "Automate routine support-case administration",
+        "business_context": "Automate SW Support deployed to 2800 engineers worldwide."
+      },
+      {
+        "case_id": "AXV2N_0132",
+        "business_problem": "Manual documentation of one patient-care conversation can take over twenty minutes.",
+        "target_task": "Document medical-care conversations",
+        "business_context": "Oscar clinical staff documenting care interactions."
+      },
+      {
+        "case_id": "AXV2N_0133",
+        "business_problem": "Support teams must navigate complex claim decision logs and contractual variables.",
+        "target_task": "Investigate escalated claim-processing questions",
+        "business_context": "Oscar claims team answering questions about a claim's processing history."
+      },
+      {
+        "case_id": "AXV2N_0134",
+        "business_problem": "Sparse or unclear merchant websites require lengthy human investigation to understand a business.",
+        "target_task": "Summarize merchant websites for business understanding",
+        "business_context": "Stripe internal business-understanding workflow, not all proposed GPT prototypes."
+      },
+      {
+        "case_id": "AXV2N_0135",
+        "business_problem": "A label must have correct content and language and be placed on the correct component.",
+        "target_task": "Validate technical labels on assembled vehicles",
+        "business_context": "IRIS camera inspection at Ingolstadt and Neckarsulm assembly plants."
+      }
+    ]
+  },
+  "rows": [
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "고객센터 질문에 답하는 과제이며 문서 심사·검증 처리시간 문제는 다루지 않습니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "고객의 지출 분석 질문에 답하는 과제로 문서 검토 업무와 다릅니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0123",
+      "relevance": 1,
+      "reason": "정보를 수동으로 색인·갱신하는 부담은 있지만 문서를 심사·검증하는 처리 지연은 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 HR 정책 질문에 답하는 업무로 문서 심사·검증과 무관합니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0125",
+      "relevance": 1,
+      "reason": "회의 요약 작성 과제지만 여러 문서를 읽고 심사하는 처리시간 문제는 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0126",
+      "relevance": 1,
+      "reason": "고객 피드백 추세를 요약하는 업무로 문서 검증 처리 지연과는 다릅니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0128",
+      "relevance": 1,
+      "reason": "삼각대 배치 확인 업무지만 문서 심사·검증의 처리시간 문제는 제시되지 않았습니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0130",
+      "relevance": 1,
+      "reason": "지원 사례의 후속조치와 상태 업데이트 반복 부담이며 문서 검토 지연과 다릅니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0132",
+      "relevance": 2,
+      "reason": "환자 진료 대화를 문서화하는 데 20분 넘게 걸린다는 점은 처리시간과 문서 업무가 겹치지만, 기존 문서를 심사하는 과제는 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0133",
+      "relevance": 2,
+      "reason": "클레임 처리 이력과 계약 변수를 조사하는 데 사람의 검토가 필요하지만, 문서 심사·검증 처리시간이 핵심으로 제시되지는 않습니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0134",
+      "relevance": 2,
+      "reason": "웹사이트를 이해하기 위한 사람의 조사가 길어지는 문제는 있지만, 심사·검증 문서 처리 과제와는 다릅니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0135",
+      "relevance": 2,
+      "reason": "차량 라벨을 검사하는 업무는 확인 작업이라는 점은 겹치지만, 여러 형식의 문서를 심사하는 처리 지연은 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "고객 질문에 정확한 답을 찾는 문제이며 문서 필수 항목 점검과 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "개인 지출 분석 질문에 답하는 과제로 필수 문서 항목 누락을 다루지 않습니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0123",
+      "relevance": 1,
+      "reason": "챗봇 지식 정보를 수동 갱신하는 업무지만 문서의 필수 항목을 확인하는 문제는 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 정책 문의 응답 업무이며 문서 항목 점검과 관련이 없습니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0125",
+      "relevance": 1,
+      "reason": "회의 요약과 후속 업무 작성은 다루지만 필수 문서 항목의 누락 점검은 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0126",
+      "relevance": 1,
+      "reason": "피드백 추세 요약 과제이며 필수 항목을 빠뜨리는 검토 문제와 다릅니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0128",
+      "relevance": 2,
+      "reason": "트렁크의 경고 삼각대가 올바르게 놓였는지 확인하지만, 문서에서 필수 항목을 점검하는 업무는 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0130",
+      "relevance": 0,
+      "reason": "지원 사례의 후속조치·인계 자동화로 문서 필수 항목 누락과 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0132",
+      "relevance": 1,
+      "reason": "진료 대화 기록 작성 과제이며 기존 문서에서 필수 항목을 찾아 누락 여부를 확인하지 않습니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0133",
+      "relevance": 1,
+      "reason": "클레임 이력과 계약 변수를 조사하지만 문서 필수 항목의 누락 여부를 점검하는 과제는 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0134",
+      "relevance": 1,
+      "reason": "웹사이트 내용을 사업 이해를 위해 요약하지만 심사 문서의 필수 항목 확인은 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0135",
+      "relevance": 3,
+      "reason": "라벨의 올바른 내용과 언어를 확인하는 과제여서 필수 정보가 갖춰졌는지 검증하는 업무와 강하게 맞닿습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "고객센터 답변 검색 문제이며 문서 검토 판단 오류를 다루지 않습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "지출 분석 질문 응답 과제로 문서 내용의 오판 위험과 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0123",
+      "relevance": 1,
+      "reason": "챗봇 답변의 제약은 있지만 문서를 수작업 검토하며 생기는 판단 오류가 핵심은 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "HR 정책 질문 응답 업무이며 문서 검토 결과의 오류 위험과 다릅니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0125",
+      "relevance": 1,
+      "reason": "회의 요약 작성 과제지만 문서 확인·심사 결과의 오판 위험은 제시되지 않았습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0126",
+      "relevance": 1,
+      "reason": "고객 피드백을 요약하는 업무이며 심사·검증 판단 오류와 직접 관련이 없습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0128",
+      "relevance": 2,
+      "reason": "삼각대 배치의 올바름을 판별하는 검사 업무라 확인 오류와 일부 겹치지만 문서 내용 판단은 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0130",
+      "relevance": 0,
+      "reason": "지원 사례 행정 업무를 자동화하는 과제로 문서 심사 결과의 오류와 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0132",
+      "relevance": 1,
+      "reason": "진료 대화 기록 작성은 다루지만 기존 문서 내용을 잘못 검토하는 문제는 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0133",
+      "relevance": 2,
+      "reason": "클레임 이력과 계약 변수를 조사하는 판단 업무는 있으나 문서 검토 오류가 명시된 핵심 문제는 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0134",
+      "relevance": 1,
+      "reason": "웹사이트를 요약해 사업을 이해하는 업무지만 심사·검증 결과의 오류 위험을 다루지는 않습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0135",
+      "relevance": 3,
+      "reason": "차량 라벨의 내용·언어·부착 위치가 올바른지 검증하므로 검사 판단의 정확성이 핵심 과제와 강하게 맞습니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "도움말 질문에 답하는 과제로 규정 준수 여부를 판단하지 않습니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "고객 지출 분석 업무이며 규정 준수 문서 판단과 무관합니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0123",
+      "relevance": 0,
+      "reason": "은행 고객 문의에 답하는 챗봇 운영 문제로 문서의 규정 준수 판단은 아닙니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0124",
+      "relevance": 1,
+      "reason": "HR 정책 질문에 답하지만 문서별 규정 준수 여부를 검토하는 과제는 아닙니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0125",
+      "relevance": 0,
+      "reason": "영업 회의 요약 및 후속 업무 작성으로 규정 준수 판단과 관련이 없습니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0126",
+      "relevance": 0,
+      "reason": "고객 피드백 추세 요약 과제이며 문서 규정 준수 확인은 아닙니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0128",
+      "relevance": 1,
+      "reason": "차량 내 경고 삼각대 배치를 확인하지만 문서 규정 준수 판단과는 다릅니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0130",
+      "relevance": 0,
+      "reason": "지원 사례 행정 처리 자동화로 문서별 규정 준수 여부를 판단하지 않습니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0132",
+      "relevance": 1,
+      "reason": "진료 대화를 기록하는 업무지만 그 기록의 규정 준수 여부를 확인한다는 내용은 없습니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0133",
+      "relevance": 2,
+      "reason": "클레임 처리 이력과 계약 변수를 조사하지만 규정 준수 문서 검증보다는 처리 질문 조사에 초점이 있습니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0134",
+      "relevance": 0,
+      "reason": "웹사이트를 사업 이해용으로 요약하는 과제이며 규정 준수 판단과 무관합니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0135",
+      "relevance": 2,
+      "reason": "기술 라벨이 올바른지 검증하지만, 규정 준수 여부를 판단한다는 맥락은 명시되지 않았습니다."
+    }
+  ],
+  "response_id": "resp_01c2eed87c50f8ae006adc7aff13ac87d19ed5507eb6c2e307",
+  "model": "gpt-6-luna"
+}

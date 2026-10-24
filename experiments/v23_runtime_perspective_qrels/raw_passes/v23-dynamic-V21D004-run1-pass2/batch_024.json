@@ -1,0 +1,397 @@
+{
+  "query_id": "V21D004",
+  "run_id": 1,
+  "pass_id": 2,
+  "input": {
+    "query_id": "V21D004",
+    "original_business_problem_context_only": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+    "generated_perspectives": [
+      {
+        "perspective_id": "P1",
+        "title": "문서 형식의 다양성",
+        "description": "심사·검증에 필요한 문서가 여러 형식으로 제공되어 사람이 내용을 읽고 항목을 확인하는 데 부담이 발생한다."
+      },
+      {
+        "perspective_id": "P2",
+        "title": "처리시간 지연",
+        "description": "필수 항목과 규정 준수 여부를 문서별로 일일이 확인해야 해 심사·검증 업무의 처리시간이 길어진다."
+      },
+      {
+        "perspective_id": "P3",
+        "title": "필수 항목 누락 위험",
+        "description": "문서에서 확인해야 할 필수 항목을 사람이 직접 점검하는 과정에서 항목을 놓칠 위험이 있다."
+      },
+      {
+        "perspective_id": "P4",
+        "title": "규정 준수 판단의 오류 위험",
+        "description": "규정 준수 여부를 수작업으로 확인하는 과정에서 판단 오류가 발생할 위험이 있다."
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2H_0075_01",
+        "business_problem": "고객 통화 후 상담원이 상담노트를 수작업 작성하여 후처리시간이 증가함",
+        "target_task": "상담 통화 내역 요약",
+        "business_context": "반복 통화의 이전 고객 맥락 조회가 필요한 핀테크 컨택센터"
+      },
+      {
+        "case_id": "AXV2H_0078_01",
+        "business_problem": "표준 보고서를 본 직원이 후속 질문을 해결하기 위해 다른 화면이나 방법으로 이동해야 하므로 기업 관리데이터에 맥락적으로 연속 질문하기 어려웠다.",
+        "target_task": "사내 관리데이터 자연어 조회",
+        "business_context": "Kohl's의 여러 매장·업무 부서가 거버넌스된 엔터프라이즈 데이터에 접근"
+      },
+      {
+        "case_id": "AXV2H_0081_01",
+        "business_problem": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함",
+        "target_task": "고객상담 대화록 요약",
+        "business_context": "영국 디지털은행의 고객지원팀 상담 이력관리"
+      },
+      {
+        "case_id": "AXV2H_0083_01",
+        "business_problem": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준",
+        "target_task": "신규 버그 티켓 팀 라우팅",
+        "business_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage"
+      },
+      {
+        "case_id": "AXV2H_0084_01",
+        "business_problem": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움",
+        "target_task": "고객 상품 위치 검색",
+        "business_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경"
+      },
+      {
+        "case_id": "AXV2H_0086_01",
+        "business_problem": "Customers searching for an unstocked brand receive no results and struggle to discover relevant alternatives for their intended occasion.",
+        "target_task": "고객 상품 검색·발견",
+        "business_context": "THE ICONIC 전자상거래 검색 및 분석 데이터 플랫폼"
+      },
+      {
+        "case_id": "AXV2H_0090_01",
+        "business_problem": "다국적 조직의 HR 정책과 업무처리가 분산되고 직원 반복 문의가 잦아 HR 지원 지연·티켓 증가",
+        "target_task": "Answer routine employee HR policy questions",
+        "business_context": "IBM 내부 HR 지원 센터와 Workday/SAP/Concur 연계"
+      },
+      {
+        "case_id": "AXV2H_0091_01",
+        "business_problem": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움",
+        "target_task": "저복잡도 지원 티켓 자동 답변",
+        "business_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색"
+      },
+      {
+        "case_id": "AXV2N_0103",
+        "business_problem": "Recurring account reconciliations consume accounting staff time.",
+        "target_task": "Reconcile bank transactions at month end",
+        "business_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months."
+      },
+      {
+        "case_id": "AXV2N_0104",
+        "business_problem": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement.",
+        "target_task": "Prepare review-ready client-story drafts",
+        "business_context": "Client stories workstream using Creative Assistant after its 2025 launch."
+      },
+      {
+        "case_id": "AXV2N_0105",
+        "business_problem": "Associates must answer complex questions across thousands of products outside their expertise.",
+        "target_task": "Assist store associates with customer project questions",
+        "business_context": "Mylow Companion on associate sales-floor devices across over 1700 stores."
+      },
+      {
+        "case_id": "AXV2N_0106",
+        "business_problem": "주택개선 작업은 과정과 상품 선택이 복잡하여 고객이 자신의 프로젝트 맥락에 맞는 단계별 안내와 상품 추천을 한 번에 얻기 어려웠다.",
+        "target_task": "Advise online customers on home-improvement projects",
+        "business_context": "Customer-facing Mylow virtual advisor, distinct from the associate application."
+      }
+    ]
+  },
+  "rows": [
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0075_01",
+      "relevance": 2,
+      "reason": "상담 통화 후 상담노트를 작성하는 텍스트 업무라는 점은 겹치지만, 다양한 문서를 읽고 항목을 확인하는 과제는 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0078_01",
+      "relevance": 1,
+      "reason": "표준 보고서가 언급되지만 핵심 과제는 관리데이터에 후속 질문을 하는 것이지 문서 형식별 검토가 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0081_01",
+      "relevance": 2,
+      "reason": "상담 대화록을 요약하는 텍스트 처리와는 겹치지만, 여러 형식의 문서에서 항목을 확인하는 업무는 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0083_01",
+      "relevance": 1,
+      "reason": "버그 티켓을 다루지만 과제는 담당팀 라우팅이며 문서 형식의 다양성이나 문서 검토가 중심이 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0084_01",
+      "relevance": 0,
+      "reason": "매장 상품 위치 검색 과제로 문서 검토와 관련이 없다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0086_01",
+      "relevance": 0,
+      "reason": "재고가 없는 브랜드의 대체 상품 검색·발견 과제로 문서 처리와 무관하다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0090_01",
+      "relevance": 1,
+      "reason": "HR 정책 문의에 답하는 업무지만, 정책 문서를 여러 형식으로 검토하는 과제는 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2H_0091_01",
+      "relevance": 1,
+      "reason": "지원 티켓과 제품 지식을 다루지만, 다양한 문서 형식의 심사·검증이 핵심은 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0103",
+      "relevance": 1,
+      "reason": "은행 거래 대사에 기록이 쓰일 수는 있지만, 문제와 과제는 거래 대사이지 다양한 문서 검토가 아니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0104",
+      "relevance": 2,
+      "reason": "고객 사례 초안의 템플릿 일관성이 언급되어 문서 업무와 일부 겹치지만, 여러 문서의 검토가 아니라 초안 작성·다듬기다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0105",
+      "relevance": 0,
+      "reason": "매장 직원의 상품 관련 고객 질문 지원 과제로 문서 형식 검토와 무관하다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0106",
+      "relevance": 0,
+      "reason": "주택개선 프로젝트 안내와 상품 추천 과제로 문서 검토가 중심이 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0075_01",
+      "relevance": 2,
+      "reason": "상담노트 수작업으로 후처리시간이 늘어나는 점은 처리시간 문제와 겹치지만, 문서의 필수 항목·규정 확인은 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0078_01",
+      "relevance": 1,
+      "reason": "후속 질문을 위해 다른 화면으로 이동하는 불편은 있으나, 문서별 항목 확인으로 심사가 지연되는 문제와는 다르다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0081_01",
+      "relevance": 2,
+      "reason": "통화내역을 사람이 정리하는 데 시간이 든다는 점은 겹치지만, 규정 준수 문서 검토 업무는 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0083_01",
+      "relevance": 2,
+      "reason": "버그 티켓 팀 배정에 주당 100시간 이상 드는 수작업이라는 처리 부담은 겹치지만, 문서 심사·검증과는 다른 업무다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0084_01",
+      "relevance": 0,
+      "reason": "상품 위치를 찾기 어려운 문제로, 문서 확인에 따른 심사 처리 지연과 관련이 없다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0086_01",
+      "relevance": 0,
+      "reason": "대체 상품을 찾기 어려운 검색 문제로 문서 검토 처리시간과 무관하다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0090_01",
+      "relevance": 2,
+      "reason": "반복 HR 문의로 지원이 지연되는 점은 업무 처리 지연과 일부 겹치지만, 문서 필수 항목이나 규정 확인이 원인은 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2H_0091_01",
+      "relevance": 2,
+      "reason": "저복잡도 티켓도 엔지니어가 직접 처리해야 하는 부담은 있으나, 문서별 심사·규정 확인과는 다른 업무다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0103",
+      "relevance": 3,
+      "reason": "월말 은행 거래 대사가 회계 직원의 시간을 소모한다는 점에서 반복적인 검증 업무의 처리시간 부담과 강하게 겹친다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0104",
+      "relevance": 1,
+      "reason": "반복적인 초안 작성·수정 부담은 있지만 문서 항목이나 규정 준수 확인 때문에 심사가 지연되는 문제는 아니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0105",
+      "relevance": 0,
+      "reason": "상품 관련 고객 질문에 답하는 과제로 문서 검증 업무의 처리 지연과 무관하다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0106",
+      "relevance": 0,
+      "reason": "주택개선 안내와 상품 추천 과제로 심사·검증 문서 처리시간과 관련이 없다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0075_01",
+      "relevance": 1,
+      "reason": "상담노트 작성은 문서화 업무지만, 필수 항목을 놓치는 위험이 문제로 제시되지는 않았다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0078_01",
+      "relevance": 0,
+      "reason": "관리데이터에 후속 질문을 하는 과제로 문서 필수 항목 누락과 무관하다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0081_01",
+      "relevance": 1,
+      "reason": "대화록 요약 과정에서 내용이 빠질 가능성을 연상할 수는 있지만, 필수 항목 점검이나 누락 위험은 제시되지 않았다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0083_01",
+      "relevance": 0,
+      "reason": "버그 티켓의 담당팀 배정 문제로 문서 필수 항목 누락과 관련이 없다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0084_01",
+      "relevance": 0,
+      "reason": "매장 상품 위치 검색 문제로 문서 항목 점검과 무관하다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0086_01",
+      "relevance": 0,
+      "reason": "상품 검색 결과와 대체품 발견 문제로 필수 문서 항목 누락과 무관하다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0090_01",
+      "relevance": 1,
+      "reason": "HR 정책 관련 문의를 처리하지만 문서의 필수 항목을 점검하거나 누락을 찾는 업무는 아니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2H_0091_01",
+      "relevance": 1,
+      "reason": "지원 티켓에 답하는 과제로, 티켓이나 문서에서 필수 항목을 놓치는 문제가 언급되지는 않았다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0103",
+      "relevance": 2,
+      "reason": "은행 거래 대사는 기록을 맞춰 확인하는 검증 활동이라 일부 겹치지만, 문서 필수 항목의 누락 위험은 제시되지 않았다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0104",
+      "relevance": 0,
+      "reason": "고객 사례 초안을 작성·수정하는 과제로 필수 항목 누락 점검이 중심이 아니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0105",
+      "relevance": 0,
+      "reason": "매장 상품 관련 질문 지원 과제로 문서 항목 누락 문제와 무관하다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0106",
+      "relevance": 0,
+      "reason": "주택개선 프로젝트 안내 과제로 필수 문서 항목 점검과 관련이 없다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0075_01",
+      "relevance": 0,
+      "reason": "통화 후 상담노트 작성 문제로 규정 준수 여부를 판단하는 업무와 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0078_01",
+      "relevance": 0,
+      "reason": "기업 관리데이터 질의 과제로 문서의 규정 준수 판단이 포함되지 않는다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0081_01",
+      "relevance": 0,
+      "reason": "상담 대화록 요약 과제로 규정 준수 여부를 확인하는 업무가 아니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0083_01",
+      "relevance": 0,
+      "reason": "버그 티켓을 담당팀에 라우팅하는 과제로 규정 준수 판단과 관련이 없다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0084_01",
+      "relevance": 0,
+      "reason": "상품 위치 검색 문제로 규정 준수 검토와 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0086_01",
+      "relevance": 0,
+      "reason": "대체 상품을 찾는 검색 문제로 규정 준수 판단과 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0090_01",
+      "relevance": 1,
+      "reason": "HR 정책 문의에 답하는 업무지만, 문서나 업무의 규정 준수 여부를 판정하는 문제는 아니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2H_0091_01",
+      "relevance": 0,
+      "reason": "저복잡도 기술지원 티켓 답변 과제로 규정 준수 판단과 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0103",
+      "relevance": 2,
+      "reason": "은행 거래 대사는 거래 기록을 검증하는 업무라 일부 겹치지만, 규정 준수 여부를 문서에서 판단하는 과제는 아니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0104",
+      "relevance": 0,
+      "reason": "고객 사례 초안 작성·수정 문제로 규정 준수 판단이 핵심이 아니다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0105",
+      "relevance": 0,
+      "reason": "매장 직원의 상품 관련 고객 질문 지원으로 규정 준수 검토와 무관하다."
+    },
+    {
+      "perspective_id": "P4",
+      "case_id": "AXV2N_0106",
+      "relevance": 0,
+      "reason": "주택개선 안내와 상품 추천 과제로 규정 준수 판단 업무와 무관하다."
+    }
+  ],
+  "response_id": "resp_0de329819a836206006adc7ab522ac87d0a65edce5d05c2dc7",
+  "model": "gpt-6-luna"
+}

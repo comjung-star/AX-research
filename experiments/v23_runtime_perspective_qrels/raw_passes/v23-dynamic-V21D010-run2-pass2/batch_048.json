@@ -1,0 +1,320 @@
+{
+  "query_id": "V21D010",
+  "run_id": 2,
+  "pass_id": 2,
+  "input": {
+    "query_id": "V21D010",
+    "original_business_problem_context_only": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+    "generated_perspectives": [
+      {
+        "perspective_id": "P1",
+        "title": "생산·품질·설비 데이터의 분산",
+        "description": "관련 데이터가 여러 시스템에 나뉘어 있어 품질 이상과 연관된 정보를 한데 파악하기 어려운 문제."
+      },
+      {
+        "perspective_id": "P2",
+        "title": "품질 이상 원인 파악의 지연",
+        "description": "품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸려 대응이 지연되는 문제."
+      },
+      {
+        "perspective_id": "P3",
+        "title": "생산계획 재조정의 수작업 의존",
+        "description": "주문이나 설비 상태가 바뀔 때 생산계획을 다시 조정하는 일이 담당자의 수작업에 크게 의존하는 문제."
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "AXV2N_0121",
+        "business_problem": "고객이 기존 은행 도움말의 키워드 검색만으로는 복잡한 질문에 필요한 정확한 답을 쉽게 찾기 어려워 고객센터로 재문의하는 일이 발생했다.",
+        "target_task": "Answer customer help-centre questions",
+        "business_context": "Customer-facing help centre, distinct from call summarization."
+      },
+      {
+        "case_id": "AXV2N_0122",
+        "business_problem": "Customers need to understand spending without manually navigating filters and charts.",
+        "target_task": "Answer customers' personal spending-analysis questions",
+        "business_context": "Spending Intelligence within Starling's banking service."
+      },
+      {
+        "case_id": "AXV2N_0123",
+        "business_problem": "기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다.",
+        "target_task": "Handle banking customer questions and account inquiries",
+        "business_context": "Marina 24/7 multilingual customer banking chatbot."
+      },
+      {
+        "case_id": "AXV2N_0124",
+        "business_problem": "Routine benefit, leave and payroll questions take HR time away from work requiring people.",
+        "target_task": "Answer employee HR policy questions",
+        "business_context": "Penny HR chatbot for over 8000 employees in Malaysia and Asia."
+      },
+      {
+        "case_id": "AXV2N_0125",
+        "business_problem": "Sellers split attention between customers, notes and CRM updates.",
+        "target_task": "Create sales-meeting recaps and next steps",
+        "business_context": "Teams meetings with sales customers, distinct from email-signature contact creation."
+      },
+      {
+        "case_id": "AXV2N_0126",
+        "business_problem": "Departments need to understand current customer issues in accumulated feedback.",
+        "target_task": "Summarize customer feedback trends",
+        "business_context": "Feedback stored in BigQuery for business departments."
+      },
+      {
+        "case_id": "AXV2N_0128",
+        "business_problem": "Workers perform monotonous checks that mandatory equipment is correctly placed.",
+        "target_task": "Check warning-triangle placement in the trunk",
+        "business_context": "BMW series-production image inspection described in December 2019."
+      },
+      {
+        "case_id": "AXV2N_0130",
+        "business_problem": "Follow-ups, status updates, closures and handoffs require repetitive engineer effort.",
+        "target_task": "Automate routine support-case administration",
+        "business_context": "Automate SW Support deployed to 2800 engineers worldwide."
+      },
+      {
+        "case_id": "AXV2N_0132",
+        "business_problem": "Manual documentation of one patient-care conversation can take over twenty minutes.",
+        "target_task": "Document medical-care conversations",
+        "business_context": "Oscar clinical staff documenting care interactions."
+      },
+      {
+        "case_id": "AXV2N_0133",
+        "business_problem": "Support teams must navigate complex claim decision logs and contractual variables.",
+        "target_task": "Investigate escalated claim-processing questions",
+        "business_context": "Oscar claims team answering questions about a claim's processing history."
+      },
+      {
+        "case_id": "AXV2N_0134",
+        "business_problem": "Sparse or unclear merchant websites require lengthy human investigation to understand a business.",
+        "target_task": "Summarize merchant websites for business understanding",
+        "business_context": "Stripe internal business-understanding workflow, not all proposed GPT prototypes."
+      },
+      {
+        "case_id": "AXV2N_0135",
+        "business_problem": "A label must have correct content and language and be placed on the correct component.",
+        "target_task": "Validate technical labels on assembled vehicles",
+        "business_context": "IRIS camera inspection at Ingolstadt and Neckarsulm assembly plants."
+      }
+    ]
+  },
+  "rows": [
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "은행 도움말 질문에 답하는 업무로, 생산·품질·설비 데이터의 분산과 무관합니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "고객의 개인 지출 분석 질문에 답하는 업무이며 제조 데이터 통합 문제가 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0123",
+      "relevance": 1,
+      "reason": "챗봇 지식베이스를 수동으로 색인·갱신하는 문제는 다루지만, 생산·품질·설비 데이터가 여러 시스템에 나뉜 상황은 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 HR 정책 질문 응대에 관한 사례로 제조 운영 데이터와 관련이 없습니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0125",
+      "relevance": 0,
+      "reason": "영업 미팅 요약과 후속 조치 작성 업무로, 제조 데이터 분산 문제가 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0126",
+      "relevance": 1,
+      "reason": "누적 고객 피드백을 분석하지만, 생산·품질·설비 데이터가 분산된 문제를 다루지는 않습니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0128",
+      "relevance": 1,
+      "reason": "BMW 생산라인의 검사 업무이기는 하나, 경고 삼각대 위치 확인이지 여러 제조 데이터의 통합 파악은 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0130",
+      "relevance": 0,
+      "reason": "지원 케이스의 후속 조치와 상태 변경을 자동화하는 업무로 제조 데이터 분산과 무관합니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0132",
+      "relevance": 0,
+      "reason": "환자 진료 대화를 문서화하는 업무로 제조 현장 데이터와 관련이 없습니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0133",
+      "relevance": 1,
+      "reason": "보험 청구 처리 이력과 계약 변수를 살펴보지만, 제조 생산·품질·설비 데이터 분산과는 다른 업무입니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0134",
+      "relevance": 1,
+      "reason": "가맹점 웹사이트 정보를 요약하는 사례로, 정보 파악이라는 점만 약하게 겹치며 제조 운영 데이터 통합은 아닙니다."
+    },
+    {
+      "perspective_id": "P1",
+      "case_id": "AXV2N_0135",
+      "relevance": 1,
+      "reason": "조립 차량의 기술 라벨을 검사하지만, 생산·품질·설비 정보를 여러 시스템에서 모아 보는 문제는 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "은행 고객의 도움말 질문에 답하는 업무로 제조 품질 이상 원인 분석과 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "고객의 지출 내역 분석 질문에 답하며 품질 이상 원인을 조사하지 않습니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0123",
+      "relevance": 1,
+      "reason": "고객 문의 답변의 속도와 지식 갱신을 다루지만, 제조 품질 이상 원인 분석은 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 복리후생·휴가·급여 질문에 답하는 업무로 품질 이상 대응과 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0125",
+      "relevance": 0,
+      "reason": "영업 미팅 내용과 후속 조치를 정리하는 업무이지 품질 문제의 원인을 찾는 업무가 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0126",
+      "relevance": 1,
+      "reason": "고객 피드백에서 현재 이슈를 파악하지만, 제조 품질 이상이나 그 원인을 조사하는 사례는 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0128",
+      "relevance": 2,
+      "reason": "생산 중 경고 삼각대 배치를 검사해 이상을 확인하는 업무는 겹치지만, 이상이 발생한 원인을 분석하지는 않습니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0130",
+      "relevance": 0,
+      "reason": "지원 케이스 상태 업데이트와 종료·인계 업무의 자동화로 품질 이상 원인 분석과 다릅니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0132",
+      "relevance": 0,
+      "reason": "진료 대화의 문서화 시간 문제로 제조 품질 이상 조사와 무관합니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0133",
+      "relevance": 2,
+      "reason": "청구 처리 이력을 조사하는 업무라는 점은 일부 겹치지만, 제조 품질 이상 원인 대신 보험 청구 질문을 다룹니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0134",
+      "relevance": 0,
+      "reason": "가맹점 웹사이트를 요약해 사업체를 이해하는 업무로 제조 품질 이상 분석이 아닙니다."
+    },
+    {
+      "perspective_id": "P2",
+      "case_id": "AXV2N_0135",
+      "relevance": 2,
+      "reason": "조립 차량의 라벨 내용과 부착 위치를 검사해 이상을 확인하지만, 이상 발생 원인을 찾는 업무는 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0121",
+      "relevance": 0,
+      "reason": "은행 도움말 질문 응대 업무로 주문·설비 변화에 따른 생산계획 조정과 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0122",
+      "relevance": 0,
+      "reason": "개인 지출 분석 질문에 답하는 사례로 생산계획 재조정이 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0123",
+      "relevance": 0,
+      "reason": "은행 챗봇의 고객 문의 응대와 지식 갱신 문제로 생산계획 조정과 관련이 없습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0124",
+      "relevance": 0,
+      "reason": "직원 HR 정책 질문에 답하는 업무이며 생산 일정이나 계획을 조정하지 않습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0125",
+      "relevance": 0,
+      "reason": "영업 미팅 요약과 후속 조치 작성으로, 주문·설비 상태에 따른 생산계획 변경 업무는 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0126",
+      "relevance": 0,
+      "reason": "고객 피드백 동향 요약 업무로 생산계획 재조정과 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0128",
+      "relevance": 1,
+      "reason": "생산라인 검사 사례이지만, 경고 삼각대 배치 확인만 다루며 생산계획을 다시 조정하지 않습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0130",
+      "relevance": 1,
+      "reason": "지원 업무의 반복적인 상태 변경과 인계를 자동화하지만, 생산계획 재조정 업무와는 다릅니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0132",
+      "relevance": 0,
+      "reason": "환자 진료 대화를 기록하는 업무로 제조 생산계획과 관련이 없습니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0133",
+      "relevance": 0,
+      "reason": "보험 청구 처리 이력 조사 업무로 주문이나 설비 변화에 따른 생산계획 조정이 아닙니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0134",
+      "relevance": 0,
+      "reason": "가맹점 웹사이트 정보를 요약하는 업무로 생산계획 변경과 무관합니다."
+    },
+    {
+      "perspective_id": "P3",
+      "case_id": "AXV2N_0135",
+      "relevance": 1,
+      "reason": "차량 조립 공정의 라벨 검사 사례이지만, 주문·설비 변화에 맞춘 생산계획 재조정은 다루지 않습니다."
+    }
+  ],
+  "response_id": "resp_0e258f4bd1a093b7006adc7fa42ae087d1af3e179b7bc456d0",
+  "model": "gpt-6-luna"
+}
