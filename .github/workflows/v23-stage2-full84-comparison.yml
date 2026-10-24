@@ -1,0 +1,49 @@
+name: AX v2.3 full84 vs candidate pruning replay
+on:
+  push:
+    branches:
+      - experiment/v23-stage2-full84-vs-retrieval-20261024
+    paths:
+      - .github/workflows/v23-stage2-full84-comparison.yml
+      - scripts/v23_stage2_full84_comparison.py
+      - tests/test_v23_stage2_full84_comparison.py
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  evaluate-full84:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU-only torch and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . numpy pytest
+      - name: Validate candidate invariants
+        run: python -m pytest -q tests/test_v23_stage2_full84_comparison.py
+      - name: Run frozen full84 query-case re-ranking and sparse+dense pruning comparisons
+        run: python scripts/v23_stage2_full84_comparison.py
+      - name: Commit saved experimental data only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experiments/v23_stage2_full84_comparison/
+          git diff --cached --quiet && exit 0
+          git commit -m 'results(v2.3): full84 per-view QCI vs Dense+Sparse candidate reduction'
+          git push
+      - name: Upload raw experiment outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-v23-stage2-full84-comparison
+          path: experiments/v23_stage2_full84_comparison/
+          if-no-files-found: warn
