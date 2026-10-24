@@ -14,10 +14,10 @@ def test_learned_gate_shapes_and_normalized_three_views():
     assert torch.isfinite(logits).all()
     assert torch.allclose(weights.sum(-1),torch.ones(2,4),atol=1e-5)
     # Regression: additive q+c gate cancels query in softmax.
-    assert float(torch.max(torch.abs(weights[0]-weights[1])))>1e-5
+    assert float(torch.max(torch.abs(weights[0]-weights[1])).detach())>1e-5
     logits.sum().backward()
     assert model.projection.weight.grad is not None
-    assert model.view_gate.weight.grad is not None
+    assert model.view_gate[0].weight.grad is not None
 
 def test_real_artifact_dimensions_and_preserved_primary_labels():
     ids,keys,queries,views,primary,supplemental=load()
