@@ -76,7 +76,9 @@ def load_pass(qids, group, case_ids, views):
     for p in (1,2):
         for qid in sorted(qids):
             for run in (1,2,3):
-                d=INROOT/f"{qid}-run{run}-pass{p}"
+                d=INROOT/f"v23-dynamic-{qid}-run{run}-pass{p}"
+                if not d.is_dir():
+                    d=INROOT/f"{qid}-run{run}-pass{p}"
                 path=d/"grades.csv"
                 mpath=d/"manifest.json"
                 if not path.exists() or not mpath.exists():
