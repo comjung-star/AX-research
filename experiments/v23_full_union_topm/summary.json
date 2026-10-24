@@ -1,0 +1,234 @@
+{
+  "status": "SUCCESS_FROZEN_V23_DEV_EXPLORATORY_REPLAY",
+  "corpus_cases": 84,
+  "source_branches": 97,
+  "query_count": 10,
+  "repetitions": 3,
+  "interpretation": "full Dense 84 and BM25 84 → union → Top-M → QCI → per-perspective Top-K",
+  "methods": [
+    "dense",
+    "rrf",
+    "interleave"
+  ],
+  "m_values": [
+    10,
+    20,
+    40,
+    60,
+    84
+  ],
+  "k_values": [
+    5,
+    10,
+    20
+  ],
+  "bm25_zero_is_not_sparse_evidence": true,
+  "query_case_model": "fixed LOQO 48d 32 epochs; same model across methods and M",
+  "source_labels": "AI_SILVER_DEV_NOT_INDEPENDENT_TEST",
+  "chart": [
+    {
+      "M": 10,
+      "dense": {
+        "mean_unique_pool": 20.966666666666665,
+        "macro_candidate_recall": 0.6331669637551992,
+        "added_relevant_vs_same_m_dense_occurrences": 0,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 0.9277777777777777,
+        "rrf_global_diagnostic_recall_at_5": 0.2637433155080214,
+        "rrf_global_diagnostic_recall_at_10": 0.4586461251167134,
+        "mlp_global_diagnostic_recall_at_5": 0.0948813767931415,
+        "mlp_global_diagnostic_recall_at_10": 0.24829110432051607
+      },
+      "rrf": {
+        "mean_unique_pool": 17.6,
+        "macro_candidate_recall": 0.36544563279857395,
+        "added_relevant_vs_same_m_dense_occurrences": 26,
+        "lost_relevant_vs_same_m_dense_occurrences": 79,
+        "macro_coverage": 0.7722222222222223,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "mlp_global_diagnostic_recall_at_5": 0.06169255581020287,
+        "mlp_global_diagnostic_recall_at_10": 0.16706858500976146
+      },
+      "interleave": {
+        "mean_unique_pool": 21.5,
+        "macro_candidate_recall": 0.5862914862914863,
+        "added_relevant_vs_same_m_dense_occurrences": 23,
+        "lost_relevant_vs_same_m_dense_occurrences": 36,
+        "macro_coverage": 0.9333333333333333,
+        "rrf_global_diagnostic_recall_at_5": 0.18311391223155926,
+        "rrf_global_diagnostic_recall_at_10": 0.3020091673032849,
+        "mlp_global_diagnostic_recall_at_5": 0.09332335964688906,
+        "mlp_global_diagnostic_recall_at_10": 0.22539788642729816
+      }
+    },
+    {
+      "M": 20,
+      "dense": {
+        "mean_unique_pool": 38.3,
+        "macro_candidate_recall": 0.799761268143621,
+        "added_relevant_vs_same_m_dense_occurrences": 0,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 0.9666666666666667,
+        "rrf_global_diagnostic_recall_at_5": 0.20170868347338933,
+        "rrf_global_diagnostic_recall_at_10": 0.36990365843307027,
+        "rrf_global_diagnostic_recall_at_20": 0.6118848145318733,
+        "mlp_global_diagnostic_recall_at_5": 0.032386469739410916,
+        "mlp_global_diagnostic_recall_at_10": 0.12013941940412527,
+        "mlp_global_diagnostic_recall_at_20": 0.36487012987012984
+      },
+      "rrf": {
+        "mean_unique_pool": 29.766666666666666,
+        "macro_candidate_recall": 0.5691906459553517,
+        "added_relevant_vs_same_m_dense_occurrences": 15,
+        "lost_relevant_vs_same_m_dense_occurrences": 81,
+        "macro_coverage": 0.9222222222222223,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.05044987692046516,
+        "mlp_global_diagnostic_recall_at_10": 0.12076436635260164,
+        "mlp_global_diagnostic_recall_at_20": 0.309960529666412
+      },
+      "interleave": {
+        "mean_unique_pool": 36.3,
+        "macro_candidate_recall": 0.746744970715559,
+        "added_relevant_vs_same_m_dense_occurrences": 13,
+        "lost_relevant_vs_same_m_dense_occurrences": 35,
+        "macro_coverage": 0.95,
+        "rrf_global_diagnostic_recall_at_5": 0.1864472455648926,
+        "rrf_global_diagnostic_recall_at_10": 0.2700572956455309,
+        "rrf_global_diagnostic_recall_at_20": 0.4825613275613275,
+        "mlp_global_diagnostic_recall_at_5": 0.02258721670486376,
+        "mlp_global_diagnostic_recall_at_10": 0.14531300398947458,
+        "mlp_global_diagnostic_recall_at_20": 0.3413869790340378
+      }
+    },
+    {
+      "M": 40,
+      "dense": {
+        "mean_unique_pool": 60.6,
+        "macro_candidate_recall": 0.9240463458110518,
+        "added_relevant_vs_same_m_dense_occurrences": 0,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 0.9888888888888888,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2819854002206943,
+        "rrf_global_diagnostic_recall_at_20": 0.5214124437653849,
+        "mlp_global_diagnostic_recall_at_5": 0.024267888973771325,
+        "mlp_global_diagnostic_recall_at_10": 0.06385323826500297,
+        "mlp_global_diagnostic_recall_at_20": 0.19429653679653677
+      },
+      "rrf": {
+        "mean_unique_pool": 58.233333333333334,
+        "macro_candidate_recall": 0.9205687123334182,
+        "added_relevant_vs_same_m_dense_occurrences": 7,
+        "lost_relevant_vs_same_m_dense_occurrences": 10,
+        "macro_coverage": 0.9888888888888888,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.0301502419149478,
+        "mlp_global_diagnostic_recall_at_10": 0.08176682794329852,
+        "mlp_global_diagnostic_recall_at_20": 0.20896507087683555
+      },
+      "interleave": {
+        "mean_unique_pool": 58.233333333333334,
+        "macro_candidate_recall": 0.9205687123334182,
+        "added_relevant_vs_same_m_dense_occurrences": 7,
+        "lost_relevant_vs_same_m_dense_occurrences": 10,
+        "macro_coverage": 0.9888888888888888,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.0301502419149478,
+        "mlp_global_diagnostic_recall_at_10": 0.08176682794329852,
+        "mlp_global_diagnostic_recall_at_20": 0.20896507087683555
+      }
+    },
+    {
+      "M": 60,
+      "dense": {
+        "mean_unique_pool": 76.6,
+        "macro_candidate_recall": 0.989126559714795,
+        "added_relevant_vs_same_m_dense_occurrences": 0,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 1.0,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.27642984466513876,
+        "rrf_global_diagnostic_recall_at_20": 0.4541995586113233,
+        "mlp_global_diagnostic_recall_at_5": 0.022442916560563624,
+        "mlp_global_diagnostic_recall_at_10": 0.06671971819030643,
+        "mlp_global_diagnostic_recall_at_20": 0.14403658433070196
+      },
+      "rrf": {
+        "mean_unique_pool": 75.73333333333333,
+        "macro_candidate_recall": 0.9921568627450981,
+        "added_relevant_vs_same_m_dense_occurrences": 1,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 1.0,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.02206943383413972,
+        "mlp_global_diagnostic_recall_at_10": 0.06489432136490961,
+        "mlp_global_diagnostic_recall_at_20": 0.1420291146761735
+      },
+      "interleave": {
+        "mean_unique_pool": 75.73333333333333,
+        "macro_candidate_recall": 0.9921568627450981,
+        "added_relevant_vs_same_m_dense_occurrences": 1,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 1.0,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.02206943383413972,
+        "mlp_global_diagnostic_recall_at_10": 0.06489432136490961,
+        "mlp_global_diagnostic_recall_at_20": 0.1420291146761735
+      }
+    },
+    {
+      "M": 84,
+      "dense": {
+        "mean_unique_pool": 84.0,
+        "macro_candidate_recall": 1.0,
+        "added_relevant_vs_same_m_dense_occurrences": 0,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 1.0,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.018894830659536545,
+        "mlp_global_diagnostic_recall_at_10": 0.04013241660300484,
+        "mlp_global_diagnostic_recall_at_20": 0.12290170613700026
+      },
+      "rrf": {
+        "mean_unique_pool": 84.0,
+        "macro_candidate_recall": 1.0,
+        "added_relevant_vs_same_m_dense_occurrences": 0,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 1.0,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.018894830659536545,
+        "mlp_global_diagnostic_recall_at_10": 0.04013241660300484,
+        "mlp_global_diagnostic_recall_at_20": 0.12290170613700026
+      },
+      "interleave": {
+        "mean_unique_pool": 84.0,
+        "macro_candidate_recall": 1.0,
+        "added_relevant_vs_same_m_dense_occurrences": 0,
+        "lost_relevant_vs_same_m_dense_occurrences": 0,
+        "macro_coverage": 1.0,
+        "rrf_global_diagnostic_recall_at_5": 0.18978057889822594,
+        "rrf_global_diagnostic_recall_at_10": 0.2680965113318054,
+        "rrf_global_diagnostic_recall_at_20": 0.37389652830829295,
+        "mlp_global_diagnostic_recall_at_5": 0.018894830659536545,
+        "mlp_global_diagnostic_recall_at_10": 0.04013241660300484,
+        "mlp_global_diagnostic_recall_at_20": 0.12290170613700026
+      }
+    }
+  ]
+}
