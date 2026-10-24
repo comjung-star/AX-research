@@ -133,7 +133,7 @@ def construct():
     model_pass2={m["model_requested"] for m in manifests[2]}
     if model_pass1!=model_pass2 or len(model_pass1)!=1:
         raise AssertionError("Different judge models across blind passes")
-    all_prompts={x["judge_prompt_sha256"] for x in manifest_rows}
+    all_prompts={x["prompt_sha256"] for x in manifest_rows}
     if len(all_prompts)!=1:
         raise AssertionError("Prompt changed between passes")
     if len({r["response_id"] for p in (1,2) for r in grade_pass[p].values()})!=420:
