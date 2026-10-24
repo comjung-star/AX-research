@@ -5,11 +5,13 @@ No label used for ranking; silver labels used for post-hoc evaluation only.
 """
 from __future__ import annotations
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.v23_professor_hybrid_preserving import ROOT, GT, load_csv, write_csv
 
 OUT=ROOT/"experiments/v23_full_union_topm"
