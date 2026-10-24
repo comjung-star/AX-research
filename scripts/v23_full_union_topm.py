@@ -8,11 +8,13 @@ from __future__ import annotations
 
 import csv
 import json
+import sys
 from collections import defaultdict, OrderedDict
 from pathlib import Path
 
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.v23_professor_hybrid_preserving import (
     ROOT, SRC, GT, SEED, CASE_COUNT, load_csv, write_csv,
     branch_balanced, interaction_features, train_model,
