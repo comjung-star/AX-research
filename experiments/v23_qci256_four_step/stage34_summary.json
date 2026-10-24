@@ -1,0 +1,38 @@
+{
+  "status": "FOUR_STEP_256QCI_REAL_CPU_LOQO_COMPLETE_DEV_AI_SILVER",
+  "created_from": "frozen_1024d_BGE_M3_stage1_embeddings_97_perspectives_84_cases",
+  "primary_evaluation": "TWO_PASS_RUNTIME_PERSPECTIVE_SILVER_NOT_INDEPENDENT_GOLD",
+  "reference_baseline_old_6332_percent_is_different_label_protocol": true,
+  "attention_gate": "LEARNED_QUERY_CONDITIONED_3VIEW_SOFTMAX",
+  "model": "SHARED_LINEAR_1024_TO_256_PLUS_GATED_FUSION_PLUS_INTERACTION_1024_TO_64_TO_1",
+  "training": "BCE_POS_WEIGHT_PLUS_PAIRWISE_RANKNET",
+  "training_epochs": 24,
+  "anchor_alpha": 0.1,
+  "train_split": "10_QUERY_GROUP_LOQO_NO_SAME_QUERY_3RUNS_LEAK",
+  "primary_macro_recall_at_10": {
+    "dense_3view": 0.47636928811928814,
+    "gated_qci_256": 0.2827411014911015,
+    "dense_anchor_gated_qci_256": 0.42386664261664264
+  },
+  "primary_macro_recall_at_5": {
+    "dense_3view": 0.3516188071188071,
+    "gated_qci_256": 0.1916053391053391,
+    "dense_anchor_gated_qci_256": 0.3360209235209235
+  },
+  "winner_primary_top10": "dense_3view",
+  "model_adoption": "RETAIN_DENSE_BASELINE",
+  "outputs": [
+    "stage34_fold_train_audit.csv",
+    "stage34_perspective_metrics.csv",
+    "stage34_query_metrics.csv",
+    "stage34_summary.csv",
+    "stage34_top10_rankings.csv"
+  ],
+  "caveats": [
+    "Only 10 independent business questions, not external Test",
+    "Gold human data unavailable; both reference/test are AI-Silver",
+    "Training used 3rd pass to resolve 17 selectively reviewed conflicts, primary evaluation uses original 2-pass agreement",
+    "Unknown qrels excluded from positive recall denominators, reported separately",
+    "Earlier Dense 63.32% used different reference union metric; do not directly compare"
+  ]
+}
