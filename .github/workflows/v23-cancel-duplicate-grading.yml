@@ -1,0 +1,21 @@
+name: Stop redundant runtime-view regrading after validated dataset
+on:
+  push:
+    branches:
+      - experiment/v23-runtime-perspective-qrels-20261024
+    paths:
+      - .github/workflows/v23-cancel-duplicate-grading.yml
+permissions:
+  actions: write
+  contents: read
+jobs:
+  stop-extra-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel duplicate paid AI grading triggered by code-only fix
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo 'Validated original 60 grading artifacts already exist; this is a redundant rerun.'
+          gh api -X POST "repos/${{ github.repository }}/actions/runs/40083821627/cancel"
+          echo 'Cancellation requested for duplicate regrading.'
