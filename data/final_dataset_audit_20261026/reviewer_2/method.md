@@ -19,3 +19,20 @@ DEV relevance was sealed before opening the newly authorized Test input. DEV CSV
 Test compact notation: each row explicitly supplies its entire score vector (two or three independently selected scores). `N` is an explicitly authored all-zero exclusion, expanded using the reviewed case-specific evidence in `test_case_evidence.txt` and the individually authored perspective comparison in `serialize_test.py`. It is allowed only when every explicit score is zero. All nonzero vectors have an explicit case/query comparison, optionally one explanation per perspective. Neither scores nor relevance decisions are inferred by this notation. This keeps unrelated pairs judged rather than unjudged while making their evidence auditable.
 
 Requested sequence: seal DEV relevance; seal Test relevance; seal Problem-only factors; only then open the additionally authorized disagreement input and write proposals for even DEV queries. Reconciliation is post-independent AI adjudication, not a third independent pass or human Gold. Originals remain sealed. Solutions and strategy material remain outside scope.
+
+## Completed stage order and seals
+
+The preceding solution exclusion applied through all relevance/factor/adjudication stages. Only after DEV 441 and Test 218 owned proposals were sealed was the subsequently authorized solution-only stage opened. No parent decisions, the other reviewer's factor/strategy annotations, source full texts, rankings, network services, paid APIs, other agents, Git commits/pushes, or branch changes were used.
+
+Independent-stage output seals (SHA256 of exact CSV bytes):
+- relevance_pass_2.csv: `99a8ed37bf7a9b23c06b4044a945894e2fda39aa2cd354d7575cee0b51e876cb`
+- test_relevance_pass_2.csv: `f05740093edf0719390da326d04d7f7dea3292b4d989569c8d09c1880655510d`
+- factor_pass_2.csv: `9f46aee7ab22455096986f463af18099cbccdaf2194be6a48be957b91c3a8beb`
+- dev_adjudication_proposals.csv: `434cdb8e571584323ca55205749c41f09e2c2a8b437be53e3f1618462771c51f`
+- test_adjudication_proposals.csv: `babe643d87c11e69d4c4ed74664845180645e080d371b9c36290e4a90e078bec`
+
+Strategy input raw-byte SHA256: `229958e97bce7d9178173d4e824acab8cbd603c737c267afe152d3dd1a456aa6`. Frozen strategy taxonomy raw SHA256: `4c933ba92db50154a95df00135b5325f5653461c7ab6710351000bbcc529b25b`. Strategy output raw SHA256: `5b9260cbdbec454f589a7e3a49d9428340abde747fbd3953076bcb1c55eb0194`.
+
+Strategies are independent AI annotations from the implementation/outcome columns only. Reviewer identity remains `independent_ai_reviewer_B`. Explicit numeric strategy IDs in `strategy_decisions.txt` expand to full frozen taxonomy IDs without inference. New creation is distinguished from summarizing existing content; conversational functions from an agent/model name or authoring prompt; execution from merely using a connector, suggesting an action, or a future trial. RAG that only supports creative authoring does not automatically produce a separate S1 label. Multi-label is used for evidenced distinct functions. Every rationale records uncertainty. Rows 067 and 103 abstain because the delivered strategy cannot be identified sufficiently specifically from their solution-only summaries. No earlier blind judgment was changed after solution exposure.
+
+Final coverage and seals are checked by `verify_all.py` and stored in `verification_report.json`. These are annotations/proposals only and confer no final experiment or researcher approval.

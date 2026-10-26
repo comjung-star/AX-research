@@ -3,7 +3,7 @@ from collections import Counter
 
 import numpy as np
 
-from scripts.audit_final_dataset import fingerprint, load_csv
+from scripts.audit_final_dataset import OUTPUT, fingerprint, load_csv
 from scripts.build_ax_expansion_release import ROOT, digest, read_json, write_json
 from scripts.build_final_research_dataset import RELEASE
 
@@ -26,11 +26,23 @@ def validate_release():
     for filename, expected in manifest["files_sha256"].items():
         if digest(RELEASE / filename) != expected:
             raise ValueError("Release artifact hash mismatch: " + filename)
+    for filename, expected in manifest["annotation_evidence_sha256"].items():
+        if digest(OUTPUT / filename) != expected:
+            raise ValueError("Annotation provenance changed: " + filename)
     cases = read_json(RELEASE / "cases.json")["cases"]
     identifiers = [case["case_id"] for case in cases]
     case_ids = set(identifiers)
     if len(case_ids) != len(cases):
         raise ValueError("Duplicate case identity")
+    source_cases = read_json(OUTPUT / "source_supported_candidates.json")["cases"]
+    if fingerprint(source_cases) != manifest["source_cohort_fingerprint"]:
+        raise ValueError("Frozen source cohort changed")
+    by_source = {case["case_id"]: case for case in source_cases}
+    if case_ids != set(by_source):
+        raise ValueError("Source/release membership mismatch")
+    fields = ["problem", "task", "context", "implementation", "outcome", "source_url", "leakage_group_id"]
+    if any(case[field] != by_source[case["case_id"]][field] for case in cases for field in fields):
+        raise ValueError("Source/release field mismatch")
     features = load_csv(RELEASE / "case_features.csv")
     if [row["case_id"] for row in features] != identifiers:
         raise ValueError("Feature/case identity order mismatch")
@@ -39,6 +51,15 @@ def validate_release():
     labels = load_csv(RELEASE / "case_labels.csv")
     if {row["case_id"] for row in labels} != case_ids or len(labels) != len(case_ids):
         raise ValueError("Case label membership mismatch")
+    for kind, taxonomy_name in (("factor", "root_cause"), ("strategy", "strategy")):
+        allowed = {row[kind + "_id"] for row in load_csv(RELEASE / f"{taxonomy_name}_taxonomy_v2_3.csv")}
+        for row in labels:
+            selected = set(filter(None, row[kind + "_labels"].split("|")))
+            if not selected <= allowed or row[kind + "_status"] not in {"LABEL", "ABSTAIN"} or bool(selected) != (row[kind + "_status"] == "LABEL"):
+                raise ValueError("Unknown, unreviewed or fabricated case label")
+    index = read_json(RELEASE / "index_provenance.json")
+    if index["candidate_fingerprint"] != manifest["source_cohort_fingerprint"] or index["index_sha256"] != digest(RELEASE / "case_bge_m3_128.npz"):
+        raise ValueError("Index provenance mismatch")
     with np.load(RELEASE / "case_bge_m3_128.npz", allow_pickle=False) as archive:
         if archive["case_ids"].tolist() != identifiers or archive["views"].shape != (3, len(cases), 1024):
             raise ValueError("Index/case identity or shape mismatch")
@@ -64,6 +85,8 @@ def validate_release():
     folds = load_csv(RELEASE / "case_group_cv_folds.csv")
     group_folds = {}
     for row in folds:
+        if row["leakage_group_id"] != by_source[row["case_id"]]["leakage_group_id"]:
+            raise ValueError("Fold group does not match source group")
         existing = group_folds.setdefault(row["leakage_group_id"], row["auxiliary_group_cv_fold"])
         if existing != row["auxiliary_group_cv_fold"]:
             raise ValueError("Organization/source group crosses CV folds")

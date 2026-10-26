@@ -88,15 +88,23 @@ def main():
     factors = {row["case_id"]: row for row in load_csv(OUTPUT / "factor_consensus.csv")}
     strategies = {row["case_id"]: row for row in load_csv(OUTPUT / "strategy_consensus.csv")}
     evidence = {row["case_id"]: row for row in load_csv(OUTPUT / "case_evidence_matrix.csv")}
+    followup_reviews = {row["case_id"]: row for row in read_json(OUTPUT / "individual_source_reviews.json")["reviews"]}
     RELEASE.mkdir(parents=True, exist_ok=True)
     final_cases = [{**case, "factor_labels": factors[case["case_id"]]["factor_labels"].split("|") if factors[case["case_id"]]["decision"] == "LABEL" else [],
                     "factor_status": factors[case["case_id"]]["decision"],
                     "strategy_labels": strategies[case["case_id"]]["strategy_labels"].split("|") if strategies[case["case_id"]]["decision"] == "LABEL" else [],
                     "strategy_status": strategies[case["case_id"]]["decision"],
                     "final_experiment_approved": True, "approval_level": "AI_SILVER_SOURCE_SUPPORTED_RETRIEVAL_INPUT",
+                    "ai_status": "AI_SOURCE_DOCUMENT_REPORTED", "deployment_verification": "SOURCE_REPORTED_NOT_INDEPENDENTLY_CORROBORATED",
+                    "outcome_verification": followup_reviews.get(case["case_id"], {}).get("outcome_status", "SOURCE_REPORTED_OR_EXPLICIT_UNKNOWN_NOT_INDEPENDENT_EFFECT_MEASUREMENT"),
                     "individual_outcome_independent_measurement": False, "source_support_method": evidence[case["case_id"]]["document_review_method"]}
                    for case in cases]
     write_json(RELEASE / "cases.json", {"dataset": "FAME-AX-v2.6-AI-Silver", "human_gold": False, "cases": final_cases})
+    prior_evidence = {row["case_id"]: row for line in (ROOT / "data/v2_5/research/evidence_catalog.jsonl").read_text(encoding="utf-8").splitlines() if (row := json.loads(line))}
+    evidence_records = [{**prior_evidence.get(case["case_id"], {"case_id": case["case_id"], "evidence_id": "RESTORED_" + case["case_id"], "source_url": case["source_url"]}),
+                         "current_evidence_locator": case["evidence_locator"], "current_followup_review": followup_reviews.get(case["case_id"]),
+                         "independent_fact_corroboration": False} for case in cases]
+    (RELEASE / "source_evidence.jsonl").write_text("\n".join(json.dumps(row, ensure_ascii=False, sort_keys=True) for row in evidence_records) + "\n", encoding="utf-8")
     features = [{"case_id": case["case_id"], "business_problem": case["problem"], "ax_target_task": case["task"],
                  "business_context": case["context"], "leakage_group_id": case["leakage_group_id"]} for case in cases]
     write_csv(RELEASE / "case_features.csv", features, list(features[0]))
@@ -150,6 +158,9 @@ def main():
               "strategy_abstentions": sum(row["decision"] == "ABSTAIN" for row in strategies.values()),
               "wald_complete_label_cases": len(wald_rows), "wald_sparse_factor_strategy_pairs": sum(row["screen"].startswith("SPARSE") for row in sparsity_rows),
               "test_retrieval_has_been_executed": False, "human_gold_cases": 0, "new_collection": 0, "paid_api_calls": 0,
+              "business_scope_counts": dict(Counter(case["business_scope"] for case in cases)),
+              "source_reported_deployment_stage_counts": dict(Counter(case["deployment_stage"] for case in cases)),
+              "zero_positive_reference_perspectives": [{"split": row["split"], "query_id": row["query_id"], "perspective_id": row["perspective_id"]} for row in reference_rows if row["relevant_cases"] == 0],
               "all_11766_individually_fact_verified": False, "full_fame_ax_model_trained": False,
               "registry_records_preserved": len(registry_rows), "final_cases_already_in_registry": len(cohort_ids & registry_ids),
               "restored_legacy_cases_outside_registry_membership": sorted(cohort_ids - registry_ids),

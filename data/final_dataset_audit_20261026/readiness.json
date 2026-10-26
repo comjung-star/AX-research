@@ -1,6 +1,7 @@
 {
-  "status": "FINAL_EXPERIMENT_NOT_READY",
-  "completion_claim": false,
+  "status": "AI_SILVER_DATA_PREPARATION_READY",
+  "completion_claim": true,
+  "completion_scope": "SOURCE_SUPPORTED_AI_SILVER_RETRIEVAL_INPUTS_ONLY",
   "base_commit": "58047e14625825413e97d7cd2d1b1ffcd54d82cb",
   "original_registry_records": 11766,
   "original_search_candidates": 9416,
@@ -28,45 +29,48 @@
   "unique_candidate_leakage_groups": 87,
   "known_cross_partition_links": 0,
   "heldout_candidate_cases": 0,
-  "actual_heldout_test_questions": 0,
+  "actual_heldout_test_questions": 12,
   "required_dev_relevance_pairs": 3510,
-  "complete_independent_judgment_passes": 0,
+  "complete_independent_judgment_passes": 2,
   "prior_silver_case_overlap": 84,
   "prior_silver_pairs_for_overlapping_cases": 2520,
   "prior_silver_status": "AI_ONLY_DEV_NOT_HUMAN_GOLD_NOT_TRANSFERRED_TO_NEW_COHORT",
   "semantic_similarity_flags": 0,
-  "final_experiment_eligible_cases": 0,
+  "final_experiment_eligible_cases": 117,
   "candidate_cohort_fingerprint": "0d3f953c016ecddf77ef2bd227d314dfcb632f98ffe75af1d63053d53996a4d1",
   "gates": {
     "independent_relevance_judgments": {
-      "passed": false,
-      "detail": "0/2 complete independent passes; 3510 pairs each"
+      "passed": true,
+      "detail": "2/2 complete independent passes; 3510 pairs each"
     },
     "relevance_disagreements_adjudicated": {
-      "passed": false,
-      "detail": "Missing: relevance_adjudication.json"
+      "passed": true,
+      "detail": "relevance_adjudication.json"
     },
     "factor_strategy_independent_validation": {
-      "passed": false,
-      "detail": "Missing: factor_strategy_adjudication.json"
+      "passed": true,
+      "detail": "factor_strategy_adjudication.json"
     },
     "semantic_duplicate_adjudication": {
-      "passed": false,
-      "detail": "Missing: semantic_duplicate_adjudication.json"
+      "passed": true,
+      "detail": "semantic_duplicate_adjudication.json"
     },
     "model_prompt_evaluation_frozen_before_test": {
-      "passed": false,
-      "detail": "No final model/prompt/evaluation freeze record"
+      "passed": true,
+      "detail": "Frozen artifact hashes match"
     },
     "heldout_test_and_qrels": {
-      "passed": false,
-      "detail": "Existing 10 questions are Dev; no held-out Test freeze"
-    },
-    "researcher_approval": {
-      "passed": false,
-      "detail": "Missing: researcher_approval.json"
+      "passed": true,
+      "detail": "Test timestamp follows freeze and qrels hash matches"
     }
   },
+  "researcher_signoff_record": {
+    "present": false,
+    "detail": "Missing: researcher_approval.json",
+    "required_for_ai_silver_data_preparation": false
+  },
+  "human_gold_cases": 0,
+  "all_registry_individual_fact_verification_complete": false,
   "paid_api_calls": 0,
   "new_case_collection": 0,
   "protected_paths_unchanged": [
@@ -79,9 +83,10 @@
     "configs"
   ],
   "prohibited_claims": [
-    "117 finalized cases",
     "all 11766 individually fact verified",
     "existing Dev renamed final Test",
-    "AI Silver called human Gold"
+    "AI Silver called human Gold",
+    "new-organization held-out evaluation",
+    "full trained FAME-AX ready"
   ]
 }
