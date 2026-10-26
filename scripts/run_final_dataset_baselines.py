@@ -7,6 +7,7 @@ from ax_research.retrieval.bm25 import BM25Retriever
 from scripts.audit_final_dataset import OUTPUT, fingerprint, load_csv
 from scripts.build_ax_expansion_release import ROOT, digest, read_json, write_json
 from scripts.prepare_v25_research import write_csv
+from scripts.validate_final_research_dataset import validate_matrix
 
 
 def summarize_query_metrics(rankings, qrels, k_values):
@@ -34,6 +35,26 @@ def summarize_query_metrics(rankings, qrels, k_values):
     return rows
 
 
+def summarize_strategy_metrics(rankings, qrels, labels, k_values):
+    by_case = {row["case_id"]: set(filter(None, row["strategy_labels"].split("|"))) if row["decision"] == "LABEL" else set() for row in labels}
+    positive_cases = {}
+    for row in qrels:
+        relevant = positive_cases.setdefault(row["query_id"], set())
+        if int(row["relevance_0_4"]) >= 3:
+            relevant.add(row["case_id"])
+    rows = []
+    for (system, query_id), ranked in rankings.items():
+        references = set().union(*(by_case[identifier] for identifier in positive_cases[query_id]))
+        for top_k in k_values:
+            retrieved = set().union(*(by_case[identifier] for identifier in ranked[:top_k]))
+            rows.append({"system": system, "query_id": query_id, "k": top_k,
+                         "strategy_coverage": len(retrieved & references) / len(references) if references else "",
+                         "reference_strategy_count": len(references),
+                         "positive_case_strategy_abstentions": sum(not by_case[identifier] for identifier in positive_cases[query_id]),
+                         "reference_type": "DEPENDENT_AI_SILVER_NOT_INDEPENDENT_STRATEGY_GOLD"})
+    return rows
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--split", choices=["dev", "test"], default="dev")
@@ -58,6 +79,10 @@ def main():
     qrels = load_csv(OUTPUT / f"{prefix}qrels_consensus.csv")
     if any(row["input_sha256"] != fingerprint(input_document) for row in qrels):
         raise ValueError("Qrels input identity mismatch")
+    validate_matrix(qrels, input_document["queries"], set(identifiers))
+    adjudication = read_json(OUTPUT / f"{prefix}relevance_adjudication.json")
+    if adjudication.get("final_qrels_sha256") != digest(OUTPUT / f"{prefix}qrels_consensus.csv"):
+        raise ValueError("Qrels changed after adjudication")
     if split == "dev":
         with np.load(ROOT / "data/v2_5/research/dev_bge_m3_128.npz", allow_pickle=False) as archive:
             query_vectors = dict(zip(archive["query_ids"].tolist(), archive["queries"], strict=True))
@@ -93,6 +118,13 @@ def main():
     destination.mkdir(parents=True, exist_ok=True)
     write_csv(destination / "rankings.csv", ranking_rows, list(ranking_rows[0]))
     write_csv(destination / "metrics.csv", metrics, list(metrics[0]))
+    strategy_path = OUTPUT / "strategy_consensus.csv"
+    strategy_rows = []
+    if strategy_path.is_file():
+        labels = load_csv(strategy_path)
+        if all(row["decision"] in {"LABEL", "ABSTAIN"} for row in labels):
+            strategy_rows = summarize_strategy_metrics(rankings, qrels, labels, k_values)
+            write_csv(destination / "strategy_metrics.csv", strategy_rows, list(strategy_rows[0]))
     summary = []
     for system in sorted({row["system"] for row in metrics}):
         for top_k in k_values:
@@ -106,6 +138,8 @@ def main():
               "qrels_sha256": digest(OUTPUT / f"{prefix}qrels_consensus.csv"), "summary": summary,
               "rankings_sha256": digest(destination / "rankings.csv"), "metrics_sha256": digest(destination / "metrics.csv"),
               "paid_api_calls": 0, "full_fame_ax_effectiveness_claim": False,
+              "strategy_coverage_executed": bool(strategy_rows),
+              "strategy_coverage_limit": "Case-label union metric inherited from evaluation.py; can cover a strategy via an irrelevant case and does not establish recommendation accuracy",
               "limitations": ["Source-curated cohort, not exhaustive factual verification of the 11766 registry records", "Korean queries and multilingual case descriptions can disadvantage lexical retrieval", "AI-Silver relevance is not independent human accuracy evidence"]}
     write_json(destination / "run_report.json", report)
     print(json.dumps(report, ensure_ascii=False, indent=2))

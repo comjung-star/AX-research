@@ -78,7 +78,25 @@ def freeze_and_test_status():
     test_qrels = OUTPUT / "heldout_test_qrels.csv"
     if not valid or not test_qrels.is_file() or digest(test_qrels) != test.get("qrels_sha256"):
         return (True, "Frozen artifact hashes match"), (False, "Test timing, approval or qrels hash failed")
+    candidate_ids = {case["case_id"] for case in read_json(OUTPUT / "source_supported_candidates.json")["cases"]}
+    expected = {(query["query_id"], perspective["id"], case_id) for query in test["queries"]
+                for perspective in query["reference_perspectives"] for case_id in candidate_ids}
+    actual = load_csv(test_qrels)
+    audit_judgment_pass([{**row, "reviewer_id": "TWO_INDEPENDENT_AI_PASSES_AND_EXPLICIT_ADJUDICATION", "rationale": row["evidence_reason"]} for row in actual], expected)
+    if any(row["judgment_status"] not in {"AI_SILVER_AGREED", "AI_SILVER_ADJUDICATED"} for row in actual):
+        return (True, "Frozen artifact hashes match"), (False, "Unresolved Test judgments")
     return (True, "Frozen artifact hashes match"), (True, "Test timestamp follows freeze and qrels hash matches")
+
+
+def bound_annotation_status(filename, input_fingerprint, hash_field):
+    status = approval_document(filename, input_fingerprint)
+    if not status[0]:
+        return status
+    document = read_json(OUTPUT / filename)
+    hashes = document.get(hash_field, {})
+    if not hashes or any(not (OUTPUT / name).is_file() or digest(OUTPUT / name) != expected for name, expected in hashes.items()):
+        return False, "Annotation artifact hashes failed: " + filename
+    return status
 
 
 def source_candidates():
@@ -219,36 +237,42 @@ def main():
               "all_final_experiment_gates_passed": False} for row in published_dispositions],
               ["case_id", "published_triage_decision", "evidence_ids", "published_review_method", "individual_fact_review_completed_this_run", "all_final_experiment_gates_passed"])
     cohort_fingerprint = fingerprint(normalized)
-    label_status = approval_document("factor_strategy_adjudication.json", cohort_fingerprint)
+    label_status = bound_annotation_status("factor_strategy_adjudication.json", cohort_fingerprint, "consensus_sha256")
     duplicate_status = approval_document("semantic_duplicate_adjudication.json", cohort_fingerprint)
     researcher_status = approval_document("researcher_approval.json", cohort_fingerprint)
     freeze_status, test_status = freeze_and_test_status()
     relevance_status = approval_document("relevance_adjudication.json", input_hash)
+    if relevance_status[0]:
+        record = read_json(OUTPUT / "relevance_adjudication.json")
+        if digest(OUTPUT / "qrels_consensus.csv") != record.get("final_qrels_sha256"):
+            relevance_status = False, "Adjudicated Dev qrels hash mismatch"
     gates = {
         "independent_relevance_judgments": {"passed": independent_complete, "detail": f"{len(completed_passes)}/2 complete independent passes; {len(pairs)} pairs each"},
         "relevance_disagreements_adjudicated": {"passed": independent_complete and (disagreement_count == 0 or relevance_status[0]), "detail": relevance_status[1]},
         "factor_strategy_independent_validation": {"passed": label_status[0], "detail": label_status[1]},
         "semantic_duplicate_adjudication": {"passed": duplicate_status[0], "detail": duplicate_status[1]},
         "model_prompt_evaluation_frozen_before_test": {"passed": freeze_status[0], "detail": freeze_status[1]},
-        "heldout_test_and_qrels": {"passed": test_status[0], "detail": test_status[1]},
-        "researcher_approval": {"passed": researcher_status[0], "detail": researcher_status[1]}
+        "heldout_test_and_qrels": {"passed": test_status[0], "detail": test_status[1]}
     }
     final_count = final_eligible_count(len(candidates), gates)
     counts = Counter(case.get("record_kind", "PRIOR") for case in original["cases"])
-    report = {"status": "FINAL_EXPERIMENT_READY" if final_count else "FINAL_EXPERIMENT_NOT_READY", "completion_claim": bool(final_count), "base_commit": BASE, "original_registry_records": len(original["cases"]),
+    report = {"status": "AI_SILVER_DATA_PREPARATION_READY" if final_count else "FINAL_EXPERIMENT_NOT_READY", "completion_claim": bool(final_count), "completion_scope": "SOURCE_SUPPORTED_AI_SILVER_RETRIEVAL_INPUTS_ONLY", "base_commit": BASE, "original_registry_records": len(original["cases"]),
               "original_search_candidates": 9416, "original_record_kind_counts": dict(counts),
               "published_dev_candidates": 112, "source_document_candidates_after_followup": len(candidates),
               "restored_previously_scope_excluded": sorted(RESTORED), "newly_rechecked_pending_sources": sorted(PENDING),
               "source_document_review_count_this_run": len(source_reviews), "new_independent_cross_publisher_fact_corroborations": 0,
               "prior_source_cache_integrity_checks": len(local_source_checks), "unique_candidate_leakage_groups": len(set(groups.values())),
-              "known_cross_partition_links": 0, "heldout_candidate_cases": 0, "actual_heldout_test_questions": 0,
+              "known_cross_partition_links": 0, "heldout_candidate_cases": 0,
+              "actual_heldout_test_questions": len(read_json(OUTPUT / "heldout_test_queries.json")["queries"]) if test_status[0] else 0,
               "required_dev_relevance_pairs": len(pairs), "complete_independent_judgment_passes": len(completed_passes),
               "prior_silver_case_overlap": len(shared_ids), "prior_silver_pairs_for_overlapping_cases": sum(row["case_id"] in shared_ids for row in prior_silver),
               "prior_silver_status": "AI_ONLY_DEV_NOT_HUMAN_GOLD_NOT_TRANSFERRED_TO_NEW_COHORT",
               "semantic_similarity_flags": len(pairwise), "final_experiment_eligible_cases": final_count,
               "candidate_cohort_fingerprint": cohort_fingerprint,
-              "gates": gates, "paid_api_calls": 0, "new_case_collection": 0, "protected_paths_unchanged": protected,
-              "prohibited_claims": ["117 finalized cases", "all 11766 individually fact verified", "existing Dev renamed final Test", "AI Silver called human Gold"]}
+              "gates": gates, "researcher_signoff_record": {"present": researcher_status[0], "detail": researcher_status[1], "required_for_ai_silver_data_preparation": False},
+              "human_gold_cases": 0, "all_registry_individual_fact_verification_complete": False,
+              "paid_api_calls": 0, "new_case_collection": 0, "protected_paths_unchanged": protected,
+              "prohibited_claims": ["all 11766 individually fact verified", "existing Dev renamed final Test", "AI Silver called human Gold", "new-organization held-out evaluation", "full trained FAME-AX ready"]}
     write_json(OUTPUT / "readiness.json", report)
     files = [path for path in OUTPUT.iterdir() if path.is_file() and path.name != "manifest.json"]
     input_files = ["data/v2_2/main_cases_v2_2.json", "data/v2_2/source_evidence_index_v2_2.csv", "data/v2_3/dev_query_candidates_v2_3.json",
@@ -258,7 +282,7 @@ def main():
     write_json(OUTPUT / "manifest.json", {"base_commit": BASE, "branch": subprocess.check_output(["git", "branch", "--show-current"], cwd=ROOT, text=True).strip(),
                "input_sha256": {filename: digest(ROOT / filename) for filename in input_files},
                "files_sha256": {path.name: digest(path) for path in sorted(files)}, "generator_sha256": digest(ROOT / "scripts/audit_final_dataset.py"),
-               "blind_relevance_input_fingerprint": input_hash, "new_paid_api_calls": 0, "completion_claim": False})
+               "blind_relevance_input_fingerprint": input_hash, "new_paid_api_calls": 0, "completion_claim": bool(final_count), "completion_scope": report["completion_scope"]})
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 

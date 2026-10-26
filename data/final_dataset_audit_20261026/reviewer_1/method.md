@@ -1,0 +1,25 @@
+# Reviewer A: blind DEV annotations
+
+Reviewer: independent_ai_reviewer_A. These are independent AI annotations, not human Gold, causal findings, final held-out Test labels, or researcher approval.
+
+Only AGENTS.md and the three explicitly allowed inputs were read. No external browsing, other reviewer results, solution material, prior labels, rankings, or paid services were used. No additional agents were spawned.
+
+Relevance uses each query, one reference perspective at a time, and each case's Problem/Task/Context. The 117 case numbers in authored matrices refer to the original JSON order. Every three-digit score vector is an explicit semantic judgment in P1/P2/P3 order, including 000. No inferred keyword, regex, embedding, or prior-label classifier is used. Expansion performs only mechanical joins and validation.
+
+Scale: 0 unrelated central workflow; 1 remote analogy; 2 meaningful partial overlap but different central workflow or missing central condition; 3 strong central problem/task match with context differences; 4 direct problem/task and context match. Positive threshold: >=3. A perspective can have no positive case. Task text may establish task relevance but must not be used to invent an undocumented failure. Shared generic words alone do not raise relevance.
+
+Authored case-specific evidence clauses in cases.tsv preserve the documented problem/task being compared. Query matrices explicitly supply the score and, for each nonzero pair, a concise perspective-specific comparison. For zero pairs the rationale combines that case-specific evidence with the individual perspective's precise target and explains that they concern different central workflows. This is compressed authoring of explicit decisions, not automatic inference of labels. No pair remains unjudged.
+
+Factor labels use only the factor CSV problem text and frozen taxonomy, independently of the case task/context. Rationale includes uncertainty (낮음/중간/높음); no factor is assigned merely because an industry commonly has it. ABSTAIN is valid. Taxonomy factors denote text-supported conditions, not independently established root causes.
+
+Additional authorized input: blind_test_relevance_input.json. The Dev relevance file was written and its 3510 pairs verified before this Test input was opened. Test has 12 queries, 30 perspectives, and the identical 117 case objects. Test matrices t01–t12 have two or three explicit score digits according to each query's perspective count. Test scores are independently authored against the new query; no Dev score is read by the Test expansion program. Original factor authoring is deferred until Test relevance is sealed. The parent freeze was not inspected; its timing is user-reported. Synthetic Test labels remain AI review, not human Gold or final experiment approval.
+
+## Post-independent adjudication
+
+Only after Dev relevance, Test relevance, and Problem-only factors were sealed, the subsequently authorized relevance_disagreements.csv was opened. Reviewer A owns V21D001/003/005/007/009: 513 disagreements, including all non-threshold differences. Each row was reviewed against its PTC and both scores/reasons; the original A rationale was already authored in this directory, and the B rationale was read from the allowed disagreement file. No original independent output is modified. SHA256 seal checks enforce byte identity for all three originals.
+
+ad01/ad03/ad05/ad07/ad09 explicitly author every owned disagreement's proposed score and semantic comparison code. adjudication_codes.json contains authored conflict explanations. Expansion joins each explicitly selected code with the specific case evidence clause, individual reference title, and both original scores. It performs no min/max/mean, heuristic classification, score averaging, or automatic tie-breaking. This is compressed evidence-based authoring, not a third independent blind pass. Substantive decisions can agree with either original score or differ from both. All proposals, especially >=3 threshold changes, require the parent's later review before adoption. This review does not constitute human Gold, causal confirmation, or final experiment/researcher approval.
+
+The subsequently authorized test_relevance_disagreements.csv was opened only after factor and owned Dev adjudication completion. Reviewer A owns AXT001/003/005/007/009/011: 262 Test grade conflicts. at01/at03/at05/at07/at09/at11 and test_adjudication_codes.json explicitly record all selected scores and conflict explanations with the same expansion approach. The independent Test CSV stays immutable; the Test proposal retains each exact Test fingerprint. This stage also is post-independent AI reconciliation, requires later parent adoption review, and does not access solutions/strategies.
+
+Relevance input fingerprint: SHA256 of UTF-8 json.dumps(doc, ensure_ascii=False, sort_keys=True, separators=(',', ':')). Factor fingerprint: SHA256 of original raw CSV bytes. The expansion script computes both again and writes the fingerprints on every output row.

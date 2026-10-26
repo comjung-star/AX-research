@@ -64,9 +64,13 @@ def test_final_audit_retains_complete_original_registry_membership():
     assert sum(row["individual_fact_review_completed_this_run"] == "True" for row in rows) == 2
 
 
-def test_current_final_experiment_gate_is_closed():
+def test_readiness_count_reflects_data_gates_without_claiming_human_gold():
     report = json.loads((OUTPUT / "readiness.json").read_text(encoding="utf-8"))
     assert report["source_document_candidates_after_followup"] == 117
     assert report["required_dev_relevance_pairs"] == 3510
-    assert report["actual_heldout_test_questions"] == 0
-    assert report["final_experiment_eligible_cases"] == 0
+    expected = 117 if all(gate["passed"] is True for gate in report["gates"].values()) else 0
+    assert report["final_experiment_eligible_cases"] == expected
+    assert report["actual_heldout_test_questions"] == (12 if report["gates"]["heldout_test_and_qrels"]["passed"] else 0)
+    if "human_gold_cases" in report:
+        assert report["human_gold_cases"] == 0
+        assert report["all_registry_individual_fact_verification_complete"] is False
