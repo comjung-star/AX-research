@@ -76,6 +76,11 @@ def main():
     if arguments.prime_public or arguments.prime_available:
         connection.close()
         return
+    model_directory = ROOT / ".local/models/bge-m3"
+    weights = next(path for path in [model_directory / "model.safetensors", model_directory / "pytorch_model.bin"] if path.is_file())
+    weight_hash = digest(weights)
+    if weight_hash != read_json(ROOT / "data/v2_4/index_manifest.json")["model_weights_sha256"]:
+        raise ValueError("Inclusive cache assumes the same local model as the inherited release")
     lookup = {text_hash: np.frombuffer(vector, dtype=np.float32).copy() for text_hash, vector in connection.execute("SELECT text_hash,vector FROM vectors")}
     vectors = np.zeros((3, len(cases), 1024), dtype=np.float32)
     for offset, case in enumerate(cases):
@@ -90,6 +95,9 @@ def main():
         "baseline_sha256": EXPECTED_FROZEN_HASH, "inherited_v24_index_sha256": digest(ROOT / "data/v2_4/expansion_bge_m3.npz"),
         "encoder": "BAAI/bge-m3", "dimensions": 1024, "new_text_max_tokens": MODEL_MAX_TOKENS,
         "new_retrievable_records": len(cases), "total_retrievable_records": len(cases) + 108,
+        "model_weights_sha256": weight_hash, "cache_key_identity": identity,
+        "cache_provenance_limit": "Historical cache key includes text/model name/tokens, not weight hash. Current weights match inherited model; cached vectors are not independently re-encoded in this step.",
+        "inherited_encoding_token_limit": "NOT_RECORDED_IN_INHERITED_MANIFEST",
         "zero_vectors_mean_unknown_view": True, "scoring": "MEAN_COSINE_OVER_NONMISSING_VIEWS", "paid_api_calls": 0})
     connection.close()
     print(json.dumps({"indexed_new_records": len(cases), "total_retrievable": len(cases) + 108}), flush=True)

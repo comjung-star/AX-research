@@ -210,13 +210,20 @@ def main():
             evidence_hashes[evidence_path] = digest(evidence_file)
         audit = audits.get(original.get("candidate_id"), {})
         row_audit = row_audits.get(original.get("candidate_id"), {})
+        review_anchors = {"problem": {"source_field": "problem_solved"}, "task": {"source_field": "use_case_name"},
+                          "context": {"source_fields": ["agency_name", "agency_bureau", "topic_area"]},
+                          "implementation": {"source_field": "system_outputs"}, "outcome": {"source_field": "benefits", "observed_outcome_verified": False}}
+        if identifier == "AXALL_US_OMB_2025_02640":
+            review_anchors["problem"]["sentence_indices"] = [0]
         evidence.append({"evidence_id": evidence_id, "case_id": identifier, "source_url": original["source_url"],
                          "source_record_id": original.get("source_record_id", ""), "source_row": original.get("source_row"),
                          "evidence_locator": audit_path, "evidence_sha256": evidence_hashes[evidence_path],
                          "source_snapshot_sha256": row_audit.get("source_snapshot_sha256", ""),
                          "page_text_sha256": audit.get("text_sha256", ""),
                          "access_status": audit.get("access", {}).get("status", "NOT_A_NEW_WEB_CHECK"),
-                         "field_anchors": original.get("evidence", {}),
+                         "field_anchors": review_anchors if review else original.get("evidence", {}),
+                         "reviewed_raw_field_sha256": {field: hashlib.sha256(source_rows[review["source_row"]][field].encode()).hexdigest()
+                                                       for field in ["problem_solved", "system_outputs", "development_stage", "classification", "benefits"]} if review else {},
                          "source_fields_for_individual_review": ["problem_solved", "system_outputs", "development_stage", "classification", "benefits"] if review else [],
                          "independent_fact_corroboration": False})
         dispositions.append({"case_id": identifier, "decision": decision, "decision_ko": DECISIONS[decision],

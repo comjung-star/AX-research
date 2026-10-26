@@ -1,0 +1,38 @@
+{
+  "status": "EXECUTED_DESCRIPTIVE_DEV_BASELINES_NO_APPROVED_QRELS",
+  "corpus_records": 112,
+  "queries": 10,
+  "top_k": 10,
+  "ranking_rows_each": 100,
+  "systems": [
+    "SINGLE_QUERY_KIWI_BM25",
+    "SINGLE_QUERY_BGE_M3_MEAN_3VIEW_COSINE"
+  ],
+  "input_manifest_sha256": "7137d2d8a9a5aa499d93b6b086339e22d9f29240c3f13a30543929e8f278382c",
+  "index_manifest_sha256": "982ff158ba141a80781b4a586bef0e444ea70dd8393218d1538f708d3c33f73b",
+  "ranking_sha256": {
+    "single_query_dense.csv": "56ae3affb171f8b1271970a43514d201d7453705bdd07e43f9373ef8332e5159",
+    "single_query_bm25.csv": "79e6ddee25ce851d25134eb2a202bcc53558d447c1ef89298e362f4c678cfac4"
+  },
+  "seed": 20261026,
+  "device": "cpu",
+  "threads": 8,
+  "paid_api_calls": 0,
+  "python": "3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "package_versions": {
+    "numpy": "2.4.5",
+    "torch": "2.12.0",
+    "sentence-transformers": "5.7.0",
+    "transformers": "5.12.0",
+    "kiwipiepy": "0.24.1",
+    "rank-bm25": "0.2.2",
+    "pytest": "9.1.1",
+    "requests": "2.34.2"
+  },
+  "metrics": null,
+  "metrics_blocker": "3360 unjudged pairs; unjudged is not a non-relevant label. No v25 Recall/Coverage claim.",
+  "language_limitation": "Korean Dev queries and mostly English source summaries. BM25 lexical mismatch is an experimental limitation; no inferred relevance from scores.",
+  "generalization_limitation": "112 source-supported Dev cases are not representative of all 9416 retrieval candidates or a held-out Test",
+  "architecture": "Baselines only. Full learned FAME-AX and GPT-only comparisons remain unevaluated on v25."
+}
