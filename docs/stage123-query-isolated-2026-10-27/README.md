@@ -153,7 +153,7 @@ $env:PYTHONIOENCODING='utf-8'
 
 `query_isolated_revalidation`의 count/pilot/stage1 실행은 중단 설정이 활성화돼 새 호출 없이 종료된다. Stage2도 `silver_release.json`의 미승인 상태로 차단된다. [요청 본문 해시](format-v8/request_manifest.json), [입력·설정·프롬프트](format-v8/plan.json), [실행 코드](../../scripts/query_isolated_revalidation.py), [검색 비교 준비 코드](../../scripts/query_isolated_retrieval.py), [당일 작업일지](../../worklog/2026-10-27-query-isolated.md)를 보존했다. 요청 본문 해시는 헤더와 키를 포함하지 않는다.
 
-기존 frozen 데이터·과거 Stage1~4·기존 파일럿·프로토타입·API 설정을 변경하지 않았다. 새 검색 알고리즘이나 Query2doc/CSQE/HyDE는 도입하지 않았다. 키는 기존 환경변수에서 읽었으며 저장 대상 파일을 실제 키값과 비밀정보 패턴으로 검사한 뒤 새 브랜치에만 게시한다.
+기존 frozen 데이터·과거 Stage1~4·기존 파일럿·프로토타입·API 설정을 변경하지 않았다. 새 검색 알고리즘이나 Query2doc/CSQE/HyDE는 도입하지 않았다. 키는 기존 환경변수에서 읽었으며 저장 대상3972개 변경 파일을 실제 키값과 비밀정보 패턴으로 검사해 노출0건을 확인한 뒤 새 브랜치에 게시했다. [보안 검사](format-v8/security_scan.json). 연구 실행·결과 산출물 커밋은 `e6d70c9aebe4f47f051551ba0ad31856b6c662a4`이며 후속 게시 확인 문서는 별도 커밋이다. 원격 SHA 일치와 GitHub 최종 상태 파일의 직접 재조회를 확인했다.
 
 ## 재개에 필요한 일
 
