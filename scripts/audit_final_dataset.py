@@ -112,7 +112,7 @@ def main():
         for filename, expected in manifest["sha256"].items():
             if digest(path.parent / filename) != expected:
                 raise ValueError("Stored release artifact changed: " + filename)
-    protected = ["data/v2_3", "data/v2_4", "data/v2_5", "experiments", "src", "configs"]
+    protected = ["data/v2_2", "data/v2_3", "data/v2_4", "data/v2_5", "experiments", "src", "configs"]
     subprocess.run(["git", "diff", "--exit-code", BASE, "--", *protected], cwd=ROOT, check=True, capture_output=True)
     original, candidates, source_reviews = source_candidates()
     groups, links = leakage_groups(candidates, {})
@@ -251,7 +251,12 @@ def main():
               "prohibited_claims": ["117 finalized cases", "all 11766 individually fact verified", "existing Dev renamed final Test", "AI Silver called human Gold"]}
     write_json(OUTPUT / "readiness.json", report)
     files = [path for path in OUTPUT.iterdir() if path.is_file() and path.name != "manifest.json"]
+    input_files = ["data/v2_2/main_cases_v2_2.json", "data/v2_2/source_evidence_index_v2_2.csv", "data/v2_3/dev_query_candidates_v2_3.json",
+                   "data/v2_3/ground_truth/silver_dev_qrels_2520.csv", "data/v2_4/source_review_audit.json", "data/v2_5/main_cases_v2_5.json",
+                   "data/v2_5/release_manifest.json", "data/v2_5/research/manifest.json", "data/v2_5/research/dev_cases.json",
+                   "data/v2_5/research/evidence_catalog.jsonl", "data/v2_5/research/dispositions.csv", "data/v2_5/research/dev_bge_m3_128.npz"]
     write_json(OUTPUT / "manifest.json", {"base_commit": BASE, "branch": subprocess.check_output(["git", "branch", "--show-current"], cwd=ROOT, text=True).strip(),
+               "input_sha256": {filename: digest(ROOT / filename) for filename in input_files},
                "files_sha256": {path.name: digest(path) for path in sorted(files)}, "generator_sha256": digest(ROOT / "scripts/audit_final_dataset.py"),
                "blind_relevance_input_fingerprint": input_hash, "new_paid_api_calls": 0, "completion_claim": False})
     print(json.dumps(report, ensure_ascii=False, indent=2))
