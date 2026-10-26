@@ -1,0 +1,527 @@
+{
+  "session_id": "10c7d24818cd4da68c92b80aa44f29ef",
+  "query": "직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다. 그리고 긴 이메일에서 후속조치를 정리하기 어렵습니다.",
+  "mode": "demo",
+  "provider": "local_dense",
+  "scorer": "dense",
+  "example_id": null,
+  "top_k": 3,
+  "notice": "키 없는 자유 입력 Dense 탐색입니다. 이 PC에서 문장을 나누고 실제 BGE-M3 임베딩으로 검색합니다. 관점은 LLM이 생성한 것이 아니라 입력 문장을 분리한 것입니다. 첫 실행은 모델 준비로 조금 더 걸립니다.",
+  "branches": [
+    {
+      "id": "P1",
+      "title": "직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다",
+      "description": "직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다",
+      "cases": [
+        {
+          "case_id": "AXV2N_0110",
+          "rank": 1,
+          "organization": "Morgan Stanley",
+          "industry": "Financial services",
+          "task": "금융 자문가의 내부 지식검색",
+          "problem": "자문가가 대규모 내부 문서에서 정보를 찾는 데 많은 시간을 사용했습니다.",
+          "solution": "GPT-4 기반 질의응답이 회사 내부 지식베이스에서 필요한 정보를 검색하도록 했습니다.",
+          "outcome": "자문팀의 98% 이상이 채택했다고 보고했습니다. 문서 접근 지표의 상세 정의는 충분히 공개되지 않았습니다.",
+          "original": {
+            "problem": "Advisors spend hours searching a large internal document corpus.",
+            "task": "Retrieve internal knowledge for financial advisors",
+            "context": "Wealth management advisor teams using AI at Morgan Stanley Assistant.",
+            "implementation": "GPT-4-powered question answering retrieves information from the firm's knowledge base.",
+            "outcome": "Over 98% advisor-team adoption reported; document-access metric definition not fully specified.",
+            "uncertainty": "Adoption is not effectiveness; do not copy it to Debrief."
+          },
+          "source_url": "https://openai.com/index/morgan-stanley/",
+          "source_anchor": "Building a foundation; hours of document searching",
+          "factors": [
+            {
+              "id": "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION",
+              "name": "정보·지식 분산"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+              "name": "지식검색·RAG"
+            }
+          ],
+          "score": 0.546457,
+          "view_scores": {
+            "문제": 0.706829,
+            "업무": 0.506081,
+            "맥락": 0.426462
+          },
+          "reason": "‘직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘자문가가 대규모 내부 문서에서 정보를 찾는 데 많은 시간을 사용했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P1",
+            "AXV2N_0110",
+            "F02_INFORMATION_KNOWLEDGE_FRAGMENTATION",
+            "S1_KNOWLEDGE_RETRIEVAL_RAG"
+          ]
+        },
+        {
+          "case_id": "AXV2P2_0089_01",
+          "rank": 2,
+          "organization": "Inspire",
+          "industry": "Enterprise / Human Resources",
+          "task": "직원 연차 신청 처리",
+          "problem": "일상적인 휴가 신청을 인사팀이 수작업 처리하면서 시간이 소모되었습니다.",
+          "solution": "A watsonx Assistant conversational interface uses HR APIs to book leave in real time; underlying language model is Meta Llama 3 trained using watsonx.ai.",
+          "outcome": "Operational booking confirmed; broader 15% HR/partnership cost and time claims withheld for this individual workflow.",
+          "original": {
+            "problem": "Routine leave requests require time-consuming manual HR handling.",
+            "task": "Book employee annual leave",
+            "context": "Inspire internal employee HR portal",
+            "implementation": "A watsonx Assistant conversational interface uses HR APIs to book leave in real time; underlying language model is Meta Llama 3 trained using watsonx.ai.",
+            "outcome": "Operational booking confirmed; broader 15% HR/partnership cost and time claims withheld for this individual workflow.",
+            "uncertainty": "Planned Arabic/speech/model changes excluded; question answering is not a separate bundled case."
+          },
+          "source_url": "https://www.ibm.com/case-studies/inspire",
+          "source_anchor": "Next-gen HR, manual time-consuming routine leave handling",
+          "factors": [
+            {
+              "id": "F01_REPETITIVE_MANUAL_WORK",
+              "name": "반복 수작업"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+              "name": "워크플로우·프로세스 자동화"
+            }
+          ],
+          "score": 0.532432,
+          "view_scores": {
+            "문제": 0.610347,
+            "업무": 0.500947,
+            "맥락": 0.486001
+          },
+          "reason": "‘직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘일상적인 휴가 신청을 인사팀이 수작업 처리하면서 시간이 소모되었습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P1",
+            "AXV2P2_0089_01",
+            "F01_REPETITIVE_MANUAL_WORK",
+            "S6_WORKFLOW_PROCESS_AUTOMATION"
+          ]
+        },
+        {
+          "case_id": "AXV2N_0126",
+          "rank": 3,
+          "organization": "Morrisons",
+          "industry": "Retail",
+          "task": "고객의견 동향 요약",
+          "problem": "누적된 의견에서 현재 고객이 겪는 문제를 파악할 필요가 있었습니다.",
+          "solution": "Gemini summarizes feedback trends so teams can identify issues and act.",
+          "outcome": "Operational trend summarization confirmed; no isolated numerical outcome.",
+          "original": {
+            "problem": "Departments need to understand current customer issues in accumulated feedback.",
+            "task": "Summarize customer feedback trends",
+            "context": "Feedback stored in BigQuery for business departments.",
+            "implementation": "Gemini summarizes feedback trends so teams can identify issues and act.",
+            "outcome": "Operational trend summarization confirmed; no isolated numerical outcome.",
+            "uncertainty": "Data-reporting lag and Product Finder metrics withheld from this workflow."
+          },
+          "source_url": "https://cloud.google.com/customers/morrisons",
+          "source_anchor": "A firm foundation; understand customers' particular issues",
+          "factors": [
+            {
+              "id": "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+              "name": "비정형 정보 복잡성"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.528897,
+          "view_scores": {
+            "문제": 0.603289,
+            "업무": 0.467982,
+            "맥락": 0.515421
+          },
+          "reason": "‘직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘누적된 의견에서 현재 고객이 겪는 문제를 파악할 필요가 있었습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P1",
+            "AXV2N_0126",
+            "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        }
+      ],
+      "strategy_support": {
+        "지식검색·RAG": [
+          "AXV2N_0110"
+        ],
+        "워크플로우·프로세스 자동화": [
+          "AXV2P2_0089_01"
+        ],
+        "문서·콘텐츠 인텔리전스": [
+          "AXV2N_0126"
+        ]
+      },
+      "empty": false,
+      "candidate_count": 84,
+      "recommendation": {
+        "perspective_id": "P1",
+        "interpretation": "직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다",
+        "strategies": [
+          {
+            "title": "흩어진 업무 지식을 근거와 함께 찾아주는 검색 지원",
+            "strategy_id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+            "explanation": "‘직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다’ 관점에서 다음 실제 사례의 접근을 우리 업무에 맞게 작게 시험해 볼 수 있습니다.",
+            "supporting_case_ids": [
+              "AXV2N_0110"
+            ],
+            "evidence_reason": "Morgan Stanley: 금융 자문가의 내부 지식검색",
+            "actions": [
+              "자주 찾는 질문과 승인된 자료를 선정합니다.",
+              "자료의 최신 버전과 접근권한을 정리합니다.",
+              "출처를 함께 보여주는 답변을 만들고 담당자가 확인합니다."
+            ],
+            "prerequisites": [
+              "신뢰할 수 있는 최신 자료와 접근권한 관리가 필요합니다."
+            ],
+            "limitations": [
+              "이 절차는 우리 업무에 적용해 볼 제안이며, 사례 기업이 동일하게 실행한 절차를 뜻하지 않습니다.",
+              "업종·자료·운영 조건이 달라 같은 성과를 보장하지 않습니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "정보·지식 분산"
+            ]
+          },
+          {
+            "title": "반복 업무를 검증·승인이 있는 처리 흐름으로 연결",
+            "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+            "explanation": "‘직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다’ 관점에서 다음 실제 사례의 접근을 우리 업무에 맞게 작게 시험해 볼 수 있습니다.",
+            "supporting_case_ids": [
+              "AXV2P2_0089_01"
+            ],
+            "evidence_reason": "Inspire: 직원 연차 신청 처리",
+            "actions": [
+              "업무의 입력·확인·승인·처리 단계를 나눕니다.",
+              "자동으로 처리할 범위와 사람이 승인할 지점을 정합니다.",
+              "예외 발생 시 중단·인계하고 처리 이력을 남기는 흐름을 시험합니다."
+            ],
+            "prerequisites": [
+              "업무시스템 연동 권한과 예외 처리·승인 기준이 필요합니다."
+            ],
+            "limitations": [
+              "이 절차는 우리 업무에 적용해 볼 제안이며, 사례 기업이 동일하게 실행한 절차를 뜻하지 않습니다.",
+              "업종·자료·운영 조건이 달라 같은 성과를 보장하지 않습니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "P2",
+      "title": "긴 이메일에서 후속조치를 정리하기 어렵습니다",
+      "description": "긴 이메일에서 후속조치를 정리하기 어렵습니다",
+      "cases": [
+        {
+          "case_id": "AXV2H_0002_01",
+          "rank": 1,
+          "organization": "Epilot",
+          "industry": "Energy / SaaS",
+          "task": "고객 이메일 요약",
+          "problem": "길고 복잡한 이메일 스레드의 핵심 내용과 후속조치를 확인하는 데 시간이 소요되었습니다.",
+          "solution": "Amazon Bedrock과 Claude를 이용해 긴 이메일 스레드를 자동 요약했습니다.",
+          "outcome": "월 5만 5천 건의 요약을 생성하고 사용자가 이메일 처리시간 약 87% 절감을 보고했습니다.",
+          "original": {
+            "problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+            "task": "고객 이메일 요약",
+            "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일",
+            "implementation": "Bedrock/Claude 기반 이메일 스레드 자동 요약",
+            "outcome": "월 55000건 이메일 요약 생성; 사용자는 이메일 처리시간 약 87% 절감 보고",
+            "uncertainty": "User-feedback percentage, not a controlled measurement of every email."
+          },
+          "source_url": "https://aws.amazon.com/solutions/case-studies/epilot-genai-case-study/",
+          "source_anchor": "Using Generative AI to Alleviate Time-Consuming Tasks, long complex email chains",
+          "factors": [
+            {
+              "id": "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+              "name": "비정형 정보 복잡성"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.639344,
+          "view_scores": {
+            "문제": 0.803138,
+            "업무": 0.604079,
+            "맥락": 0.510816
+          },
+          "reason": "‘긴 이메일에서 후속조치를 정리하기 어렵습니다’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘길고 복잡한 이메일 스레드의 핵심 내용과 후속조치를 확인하는 데 시간이 소요되었습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P2",
+            "AXV2H_0002_01",
+            "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        },
+        {
+          "case_id": "AXV2H_0008_01",
+          "rank": 2,
+          "organization": "EY",
+          "industry": "Professional Services / Tax",
+          "task": "세무 문서 데이터 추출",
+          "problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬웠습니다.",
+          "solution": "Azure AI Document Intelligence로 K-1 세무서류의 핵심 항목을 자동 추출했습니다.",
+          "outcome": "문서 입력 수작업이 최대 90% 줄고 고객 업무 착수기간이 단축됐다고 보고했습니다. ‘최대’ 수치이며 독립 검증 결과는 아닙니다.",
+          "original": {
+            "problem": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움",
+            "task": "세무 문서 데이터 추출",
+            "context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함",
+            "implementation": "Azure AI Document Intelligence로 K-1 세무서류 핵심 필드 자동 추출",
+            "outcome": "문서 데이터 입력 수작업 최대 90% 감소; 고객 업무 착수기간 단축",
+            "uncertainty": "Up to is a bound; form-annotation speed is a model-development metric, not extraction throughput."
+          },
+          "source_url": "https://www.microsoft.com/en/customers/story/25721-ey-global-services-limited-azure-document-intelligence-in-foundry-tools",
+          "source_anchor": "From tedium to timeless, manual entry from complicated tax forms spanning 50 to nearly 300 pages",
+          "factors": [
+            {
+              "id": "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+              "name": "비정형 정보 복잡성"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.547524,
+          "view_scores": {
+            "문제": 0.62094,
+            "업무": 0.4357,
+            "맥락": 0.585932
+          },
+          "reason": "‘긴 이메일에서 후속조치를 정리하기 어렵습니다’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬웠습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P2",
+            "AXV2H_0008_01",
+            "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        },
+        {
+          "case_id": "AXV2N_0111",
+          "rank": 3,
+          "organization": "Morgan Stanley",
+          "industry": "Financial services",
+          "task": "고객회의 요약·후속조치 준비",
+          "problem": "회의 기록과 후속조치 준비에 자문가의 시간이 소모되었습니다.",
+          "solution": "Whisper와 GPT-4로 회의 노트·CRM 기록·후속조치 초안을 만들고 사람이 검토했습니다.",
+          "outcome": "후속조치가 수일 대신 수시간 안에 진행된다는 현장 책임자의 설명이 있습니다.",
+          "original": {
+            "problem": "Meeting documentation and follow-up preparation consume advisor time.",
+            "task": "Summarize client meetings and prepare follow-ups",
+            "context": "Consent-based Zoom client meetings reviewed by advisors.",
+            "implementation": "Debrief uses Whisper and GPT-4 to produce notes, CRM entries and draft action-item follow-ups under human review.",
+            "outcome": "Leader reports follow-ups happening within hours instead of days.",
+            "uncertainty": "No isolated numeric time-saving estimate; Assistant adoption not inherited."
+          },
+          "source_url": "https://openai.com/index/morgan-stanley/",
+          "source_anchor": "Scaling success; documentation and follow-ups",
+          "factors": [
+            {
+              "id": "F01_REPETITIVE_MANUAL_WORK",
+              "name": "반복 수작업"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.534048,
+          "view_scores": {
+            "문제": 0.615001,
+            "업무": 0.569381,
+            "맥락": 0.417762
+          },
+          "reason": "‘긴 이메일에서 후속조치를 정리하기 어렵습니다’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘회의 기록과 후속조치 준비에 자문가의 시간이 소모되었습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P2",
+            "AXV2N_0111",
+            "F01_REPETITIVE_MANUAL_WORK",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        }
+      ],
+      "strategy_support": {
+        "문서·콘텐츠 인텔리전스": [
+          "AXV2H_0002_01",
+          "AXV2H_0008_01",
+          "AXV2N_0111"
+        ]
+      },
+      "empty": false,
+      "candidate_count": 84,
+      "recommendation": {
+        "perspective_id": "P2",
+        "interpretation": "긴 이메일에서 후속조치를 정리하기 어렵습니다",
+        "strategies": [
+          {
+            "title": "문서·기록의 핵심 정보 추출과 정리 지원",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "‘긴 이메일에서 후속조치를 정리하기 어렵습니다’ 관점에서 다음 실제 사례의 접근을 우리 업무에 맞게 작게 시험해 볼 수 있습니다.",
+            "supporting_case_ids": [
+              "AXV2H_0002_01",
+              "AXV2H_0008_01",
+              "AXV2N_0111"
+            ],
+            "evidence_reason": "Epilot: 고객 이메일 요약 / EY: 세무 문서 데이터 추출 / Morgan Stanley: 고객회의 요약·후속조치 준비",
+            "actions": [
+              "반복해서 읽는 문서와 필요한 항목을 선정합니다.",
+              "자료에서 핵심 항목을 추출하거나 요약하는 흐름을 만듭니다.",
+              "누락·오류와 처리시간을 기존 방식과 비교하고 사람이 검토합니다."
+            ],
+            "prerequisites": [
+              "대표 문서, 필요한 항목의 정의와 검토 기준이 필요합니다."
+            ],
+            "limitations": [
+              "이 절차는 우리 업무에 적용해 볼 제안이며, 사례 기업이 동일하게 실행한 절차를 뜻하지 않습니다.",
+              "업종·자료·운영 조건이 달라 같은 성과를 보장하지 않습니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "반복 수작업",
+              "비정형 정보 복잡성"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "elapsed_seconds": 0.13,
+  "corpus_version": "v2.3.0",
+  "corpus_sha256": "5a4683047e86aea67bbe6ca568d799c74b6d2aba1c4799d31cb96bf4b34987a2",
+  "created_at": "2026-10-24T16:48:20Z",
+  "llm_evidence": null,
+  "strategy_report": {
+    "provider": "evidence_template",
+    "summary": "업무의 어려움을 관점별로 나누고, 실제 사례에서 확인한 접근을 적용 전략으로 정리했습니다. 아래에서 해결 방식과 우리 업무의 실행 순서를 함께 살펴보세요.",
+    "next_step": "자주 찾는 질문과 승인된 자료를 선정합니다.",
+    "perspectives": [
+      {
+        "perspective_id": "P1",
+        "interpretation": "직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다",
+        "strategies": [
+          {
+            "title": "흩어진 업무 지식을 근거와 함께 찾아주는 검색 지원",
+            "strategy_id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+            "explanation": "‘직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다’ 관점에서 다음 실제 사례의 접근을 우리 업무에 맞게 작게 시험해 볼 수 있습니다.",
+            "supporting_case_ids": [
+              "AXV2N_0110"
+            ],
+            "evidence_reason": "Morgan Stanley: 금융 자문가의 내부 지식검색",
+            "actions": [
+              "자주 찾는 질문과 승인된 자료를 선정합니다.",
+              "자료의 최신 버전과 접근권한을 정리합니다.",
+              "출처를 함께 보여주는 답변을 만들고 담당자가 확인합니다."
+            ],
+            "prerequisites": [
+              "신뢰할 수 있는 최신 자료와 접근권한 관리가 필요합니다."
+            ],
+            "limitations": [
+              "이 절차는 우리 업무에 적용해 볼 제안이며, 사례 기업이 동일하게 실행한 절차를 뜻하지 않습니다.",
+              "업종·자료·운영 조건이 달라 같은 성과를 보장하지 않습니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "정보·지식 분산"
+            ]
+          },
+          {
+            "title": "반복 업무를 검증·승인이 있는 처리 흐름으로 연결",
+            "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+            "explanation": "‘직원들이 흩어진 사내 규정과 매뉴얼을 찾느라 시간을 쓰고 있습니다’ 관점에서 다음 실제 사례의 접근을 우리 업무에 맞게 작게 시험해 볼 수 있습니다.",
+            "supporting_case_ids": [
+              "AXV2P2_0089_01"
+            ],
+            "evidence_reason": "Inspire: 직원 연차 신청 처리",
+            "actions": [
+              "업무의 입력·확인·승인·처리 단계를 나눕니다.",
+              "자동으로 처리할 범위와 사람이 승인할 지점을 정합니다.",
+              "예외 발생 시 중단·인계하고 처리 이력을 남기는 흐름을 시험합니다."
+            ],
+            "prerequisites": [
+              "업무시스템 연동 권한과 예외 처리·승인 기준이 필요합니다."
+            ],
+            "limitations": [
+              "이 절차는 우리 업무에 적용해 볼 제안이며, 사례 기업이 동일하게 실행한 절차를 뜻하지 않습니다.",
+              "업종·자료·운영 조건이 달라 같은 성과를 보장하지 않습니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      },
+      {
+        "perspective_id": "P2",
+        "interpretation": "긴 이메일에서 후속조치를 정리하기 어렵습니다",
+        "strategies": [
+          {
+            "title": "문서·기록의 핵심 정보 추출과 정리 지원",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "‘긴 이메일에서 후속조치를 정리하기 어렵습니다’ 관점에서 다음 실제 사례의 접근을 우리 업무에 맞게 작게 시험해 볼 수 있습니다.",
+            "supporting_case_ids": [
+              "AXV2H_0002_01",
+              "AXV2H_0008_01",
+              "AXV2N_0111"
+            ],
+            "evidence_reason": "Epilot: 고객 이메일 요약 / EY: 세무 문서 데이터 추출 / Morgan Stanley: 고객회의 요약·후속조치 준비",
+            "actions": [
+              "반복해서 읽는 문서와 필요한 항목을 선정합니다.",
+              "자료에서 핵심 항목을 추출하거나 요약하는 흐름을 만듭니다.",
+              "누락·오류와 처리시간을 기존 방식과 비교하고 사람이 검토합니다."
+            ],
+            "prerequisites": [
+              "대표 문서, 필요한 항목의 정의와 검토 기준이 필요합니다."
+            ],
+            "limitations": [
+              "이 절차는 우리 업무에 적용해 볼 제안이며, 사례 기업이 동일하게 실행한 절차를 뜻하지 않습니다.",
+              "업종·자료·운영 조건이 달라 같은 성과를 보장하지 않습니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "반복 수작업",
+              "비정형 정보 복잡성"
+            ]
+          }
+        ]
+      }
+    ],
+    "case_explanations": [],
+    "api_evidence": null,
+    "notice": "사례 근거와 전략별 안내 틀로 구성한 시연 결과입니다. 이 전략 설명은 실시간 LLM이 새로 작성한 결과가 아닙니다.",
+    "strategy_count": 3,
+    "evidence_case_count": 5
+  },
+  "limitations": [
+    "유사도는 정답 확률이 아닙니다. 강한 관련성 사례가 없을 수도 있습니다.",
+    "84개 출처 검토 사례이며, 독립 인간 Ground Truth나 Held-out Test 검증을 마친 서비스가 아닙니다.",
+    "원인·전략 라벨은 사례의 분석 분류입니다. 사용자 문제의 원인 또는 도입 효과를 확정하지 않습니다.",
+    "적용 전략은 사례 근거에 기반한 제안입니다. 학습형 Evidence Fusion·Wald 통계 분석을 실행한 결과는 아닙니다."
+  ]
+}

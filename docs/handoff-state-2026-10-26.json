@@ -1,0 +1,110 @@
+{
+  "as_of_kst": "2026-10-26T11:55:57+09:00",
+  "branch": "handoff/ax-inclusive-20261026",
+  "source_base_commit": "000b7f42f594bd4b57aa55df1661d7ff3750353c",
+  "state": "ALL_INPUT_REGISTRY_PREPARED_INCLUSIVE_DENSE_INDEX_AND_ACTIVATION_PENDING",
+  "dataset_summary": {
+    "dataset_release": "2.5.0-inclusive",
+    "inherited_workflows": 108,
+    "new_input_records": 11658,
+    "total_records": 11766,
+    "retrievable_records": 9416,
+    "scope_exclusions": 0,
+    "collected_record_checks": 11658,
+    "page_access_checks": 5686,
+    "structured_rows_checked_against_raw_csv": 5961,
+    "structured_source_counts": {
+      "US_OMB_2025": 3611,
+      "EU_PSTW_202609": 2350
+    },
+    "recovered_structured_records_from_prior_parser": 9,
+    "source_origin_counts": {
+      "ENTERPRISE_SOURCE": 1800,
+      "CASE_PORTAL": 678,
+      "PUBLIC_SECTOR_INVENTORY": 5961,
+      "DISCOVERED_SOURCE": 3208,
+      "MALFORMED_SOURCE_ROW": 11
+    },
+    "business_scope_counts": {
+      "enterprise_work": 2683,
+      "mixed": 111,
+      "public_work": 6219,
+      "unspecified": 2523,
+      "education_research": 170,
+      "social_nonprofit": 60
+    },
+    "record_kind_counts": {
+      "REVIEWED_WORKFLOW": 108,
+      "SOURCE_REFERENCE": 3826,
+      "SOURCE_LINK": 1860,
+      "SOURCE_REPORTED_USE_CASE": 5961,
+      "PRIOR_PARSER_ARTIFACT": 11
+    },
+    "page_check_statuses": {
+      "PUBLIC_PAGE_FETCH_AND_TEXT_CHECK_COMPLETED": 3378,
+      "PAGE_READABLE_CONTENT_INSUFFICIENT": 448,
+      "ACCESS_ATTEMPT_COMPLETED_CONTENT_UNAVAILABLE": 1860
+    },
+    "all_collected_inputs_included": true,
+    "human_ground_truth_approved": false,
+    "review_method": "ALL_RECORDS_PROGRAMMATIC_SCHEMA_CONTENT_AND_SOURCE_ACCESS_AUDIT; NO_CLAIM_OF_MANUAL_FACT_REVIEW_FOR_ALL_RECORDS",
+    "paid_api_calls": 0
+  },
+  "source_access_summary": {
+    "all_input_records": 11658,
+    "expected_page_checks": 5686,
+    "completed_page_checks": 5686,
+    "missing_page_checks": 0,
+    "page_check_statuses": {
+      "PUBLIC_PAGE_FETCH_AND_TEXT_CHECK_COMPLETED": 3378,
+      "PAGE_READABLE_CONTENT_INSUFFICIENT": 448,
+      "ACCESS_ATTEMPT_COMPLETED_CONTENT_UNAVAILABLE": 1860
+    },
+    "access_statuses": {
+      "FETCHED": 3826,
+      "HTTP_ERROR_OR_TRUNCATED": 1859,
+      "ACCESS_FAILED": 1
+    },
+    "paid_api_calls": 0,
+    "counts_recomputed_from_saved_records_after_retries": true
+  },
+  "python_tests": {
+    "tests": 233,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "python_version": "3.13.13",
+  "package_versions": {
+    "numpy": "2.4.5",
+    "torch": "2.12.0",
+    "sentence-transformers": "5.7.0",
+    "openai": "2.32.0",
+    "pydantic": "2.13.2",
+    "requests": "2.34.2",
+    "pytest": "9.1.1"
+  },
+  "local_http_observation": {
+    "reachable": true,
+    "case_count": 108,
+    "corpus_version": "2.4.0-expansion.1"
+  },
+  "inclusive_npz_present": false,
+  "inclusive_index_manifest_present": false,
+  "frozen_sha256": "5a4683047e86aea67bbe6ca568d799c74b6d2aba1c4799d31cb96bf4b34987a2",
+  "paid_api_calls_for_collection_and_registration": 0,
+  "not_in_git": [
+    ".env",
+    ".local",
+    ".venv",
+    "dist",
+    "user feedback DB",
+    "model weights",
+    "private full-text cache"
+  ],
+  "next_commands": [
+    "python -m scripts.index_ax_inclusive_release --threads 8 --batch-size 32",
+    "python -m scripts.validate_ax_inclusive_release",
+    "python run_prototype.py --corpus inclusive --port 8766 --no-browser"
+  ]
+}

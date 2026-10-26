@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="업무문제를 여러 관점으로 나누고, 실제 기업의 해결 사례에서 우리 업무의 적용 전략과 실행 순서를 제안하는 연구 프로토타입">
+  <title>AX 나침반 · 업무에서 사례로</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/research.css">
+  <script src="/app.js" defer></script>
+  <script src="/research.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="AX 나침반 처음으로"><span class="brand-icon" aria-hidden="true">↗</span><span>AX 나침반<small>업무에서 사례로</small></span></a>
+    <div class="header-right"><span class="research-pill"><span class="dot"></span> 연구 프로토타입</span><button id="api-button" class="secondary-button">API 연결</button><button id="guide-button" class="text-button">시연 안내</button></div>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="headline">
+      <div><p class="eyebrow">AX CASE EXPLORER <span>01 / 문제 탐색</span></p><h1 id="headline">우리의 업무 고민,<br><span>다른 기업은 어떻게 풀었을까요?</span></h1><p class="intro-description">하나의 고민에도 여러 관점이 있습니다.<br>문제를 나누어 살펴보고, 실제 기업의 변화에서 실마리를 찾아보세요.</p></div>
+      <aside class="intro-sidebar" aria-label="사례 자료와 연구 소개">
+        <div class="corpus-note"><div class="corpus-number"><b id="active-case-count">—</b><span>건의 검색 자료</span></div><p id="active-corpus-notice">사용 중인 사례 자료를 확인하고 있습니다.</p><span class="version-tag" id="active-corpus-version">데이터셋 확인 중</span></div>
+        <div class="research-shortcuts" aria-label="테스터를 위한 연구 설명">
+          <button id="architecture-button" class="research-shortcut" type="button" aria-haspopup="dialog" aria-controls="architecture-dialog"><span class="shortcut-symbol" aria-hidden="true">①</span><span><strong>아키텍처 한눈에 보기</strong><small>업무문제에서 실행 전략까지</small></span><span class="shortcut-arrow" aria-hidden="true">↗</span></button>
+          <button id="paper-status-button" class="research-shortcut" type="button" aria-haspopup="dialog" aria-controls="paper-status-dialog"><span class="shortcut-symbol" aria-hidden="true">②</span><span><strong>현재 논문 상황 요약</strong><small>지금까지 한 일과 남은 검증</small></span><span class="shortcut-arrow" aria-hidden="true">↗</span></button>
+        </div>
+      </aside>
+    </section>
+    <section class="workspace" aria-labelledby="query-title">
+      <div class="input-panel">
+        <div class="panel-heading"><div><p class="section-number">STEP 01</p><h2 id="query-title">어떤 업무가 어려우신가요?</h2></div><span class="label-light">자연어로 편하게</span></div>
+        <form id="query-form">
+          <label for="query" class="sr-only">업무 문제 입력</label>
+          <textarea id="query" maxlength="4000" rows="5" placeholder="예: 고객 문의가 늘어 반복 질문에 시간을 많이 쓰고 있어요. 복잡한 문의는 처리가 늦고, 담당자마다 답변도 달라요." required minlength="6"></textarea>
+          <div class="input-hint"><span>어떤 일에서 · 무엇이 어렵고 · 어떤 영향이 있는지 적어주세요.</span><span id="char-count">0 / 4,000</span></div>
+          <div class="example-heading"><span>처음이라면, 예시로 시작해 보세요</span><button id="all-examples-button" type="button" class="text-button">예시 10개 모두 보기 ↓</button></div>
+          <div id="example-chips" class="example-chips"></div>
+          <div id="all-examples" hidden><label for="example-select">다른 예시 질문</label><select id="example-select"><option value="">예시를 선택해 주세요</option></select></div>
+          <div class="search-options">
+            <label for="mode">분석 방식<select id="mode"><option value="demo">키 없이 체험 · 데모</option><option value="live">새 문제 분석 · 실시간 AI</option></select></label>
+            <label for="top-k">관점마다 보여줄 사례<select id="top-k"><option value="1">1개</option><option value="3" selected>3개</option><option value="5">5개</option><option value="10">10개</option></select></label>
+          </div>
+          <label class="scope-selector" for="business-scope">업무·활용 구분<select id="business-scope"><option value="all">전체 · 공공·기업·개인·교육 모두</option><option value="public_work">공공기관·공공서비스</option><option value="enterprise_work">기업 업무·고객서비스</option><option value="consumer_personal">개인·소비자 활용</option><option value="education_research">교육·연구</option><option value="social_nonprofit">사회·비영리</option><option value="mixed">복합 영역</option><option value="unspecified">업무 구분 미확인</option></select></label>
+          <p id="mode-help" class="mode-help">예시는 저장된 AI 관점을 재생합니다. 준비된 로컬 모델로 자유 입력도 Dense 탐색할 수 있습니다.</p>
+          <details class="advanced"><summary>연구 비교 옵션</summary><label for="scorer">검색 순위<select id="scorer"><option value="dense">기존 Dense · 기본값</option><option value="qci_replay">256d QCI · 예시 연구결과 재생</option></select></label><p>학습형 256d QCI는 기존 실험 기록의 비교용입니다. Dev Top10 Recall은 Dense 47.64%, QCI 27.73%로 기본값에 채택하지 않았습니다. 인간 평가 성능이 아닙니다.</p></details>
+          <div class="submit-row"><p>실제 해결 사례와 우리 업무의 적용 전략을 함께 정리합니다.<br>기밀·개인정보·API키는 업무문제에 넣지 마세요.</p><button id="search-button" class="primary-button" type="submit">AX 전략과 사례 보기 <span aria-hidden="true">↗</span></button></div>
+        </form>
+      </div>
+      <aside class="journey-panel" aria-labelledby="journey-title"><p class="section-number">HOW IT WORKS</p><h2 id="journey-title">문제에서 근거까지</h2><ol class="journey"><li><span>01</span><div><h3>업무 고민을 입력해요</h3><p>지금 겪는 어려움과 상황을 설명합니다.</p></div></li><li><span>02</span><div><h3>여러 문제 관점으로 살펴봐요</h3><p>해결책을 정하기 전에 문제의 서로 다른 측면을 봅니다.</p></div></li><li><span>03</span><div><h3>관점마다 사례를 찾아요</h3><p>각 관점의 순위를 따로 유지해 여러 실마리를 보여줍니다.</p></div></li><li><span>04</span><div><h3>근거를 보고 의견을 남겨요</h3><p>우리 업무에 도움이 될지 직접 판단해 주세요.</p></div></li></ol><div class="journey-bottom"><span aria-hidden="true">✳</span><p>사례는 의사결정을 돕는 참고자료입니다.<br>도입 효과를 보장하지 않습니다.</p></div></aside>
+    </section>
+    <div id="error" class="error-banner" role="alert" hidden></div>
+    <section id="loading" class="loading-panel" role="status" hidden><span class="spinner"></span><div><strong>문제 관점 → 해결 사례 → 적용 전략을 정리하고 있습니다</strong><p>선택한 분석 방식으로 실행 순서와 근거를 정리합니다. 실시간 분석의 첫 실행은 로컬 검색 모델을 준비하느라 시간이 걸릴 수 있습니다.</p></div></section>
+    <section id="results" class="results-section" aria-labelledby="results-title" hidden>
+      <div class="result-heading"><div><p class="eyebrow">YOUR AX STRATEGY <span>02 / 사례에서 실행 방향으로</span></p><h2 id="results-title">우리 업무의 AX 적용 전략</h2><p id="result-summary"></p></div><div class="result-downloads"><button id="download-strategy" class="primary-button">전략 보고서 내려받기 ↓</button><button id="download-result" class="secondary-button">전체 결과 JSON ↓</button></div></div>
+      <div id="execution-notice" class="execution-notice"></div>
+      <section id="strategy-overview" class="strategy-overview" aria-label="우리 업무의 추천 방향" hidden></section>
+      <nav id="perspective-nav" class="perspective-nav" aria-label="분석한 문제 관점"></nav>
+      <div class="feedback-consent"><label><input id="consent" type="checkbox"> 평가·의견과 해당 입력·추천 결과를 이 PC에 저장하는 데 동의합니다.</label><p>저장 버튼을 누를 때만 기록됩니다. 외부 전송과 연구 정답 데이터 자동 반영은 하지 않습니다.</p></div>
+      <div id="branches"></div>
+      <details class="limitations"><summary>이 결과를 읽을 때 알아둘 한계</summary><ul id="limitations-list"></ul></details>
+      <section class="feedback-panel" aria-labelledby="feedback-title"><div><p class="section-number">STEP 03 · USER TEST</p><h2 id="feedback-title">사용해 보니 어떠셨나요?</h2><p>빠진 관점, 어색한 사례, 실제 업무에 쓰고 싶은 방식까지 자유롭게 알려주세요.</p></div><div class="feedback-fields"><label for="tester">참여자 별칭 <span>(선택 · 실명 불필요)</span></label><input id="tester" maxlength="80" placeholder="예: 테스터 A"><label for="overall-comment">전체 의견</label><textarea id="overall-comment" rows="4" maxlength="4000" placeholder="이해하기 쉬웠던 점, 부족한 점, 추가로 보고 싶은 정보를 적어주세요."></textarea><button id="save-overall" class="primary-button">자유의견 저장</button></div></section>
+    </section>
+    <section class="record-section" aria-label="사용자 테스트 기록"><div><h2>테스트 의견을 다음 개선으로</h2><p id="record-summary">아직 저장된 기록이 없습니다.</p></div><div class="export-buttons"><button id="export-csv" class="secondary-button">평가 CSV 내보내기 ↓</button><button id="export-json" class="secondary-button">전체 기록 JSON 내보내기 ↓</button></div></section>
+  </main>
+  <footer><span>AX 나침반 <b>·</b> 연구 검토용 프로토타입</span><div><a href="https://github.com/comjung-star/AX-research" target="_blank" rel="noopener noreferrer">연구 저장소 ↗</a><a href="https://github.com/comjung-star/AX-research/blob/000b7f4/docs/v23-qci256-four-step-final-results-2026-10-24.md" target="_blank" rel="noopener noreferrer">기존 실험 결과 ↗</a><button id="shutdown" class="text-button">프로그램 종료</button><span>시연일 2026.10.25</span></div></footer>
+  <dialog id="guide"><button id="close-guide" class="dialog-close" aria-label="안내 닫기">×</button><p class="eyebrow">DEMO GUIDE</p><h2>5분 동안 함께 살펴봐요</h2><ol><li>예시 질문을 하나 골라 <strong>AX 전략과 사례 보기</strong>를 누릅니다.</li><li>우리 업무의 추천 방향과 <strong>먼저 해볼 일</strong>을 읽습니다.</li><li>관점별 적용 전략에서 <strong>실행 순서·준비사항·한계</strong>를 확인합니다.</li><li>근거 기업을 눌러 실제 해결 방식과 출처를 봅니다. 사용자에게 제안한 절차와 실제 기업의 사실을 구별해 주세요.</li><li><strong>전략 보고서 내려받기</strong>로 결과를 받습니다. 저장 동의 후 사례 평가와 자유의견도 남길 수 있습니다.</li></ol><p>키 없는 데모는 사례 분류에 따른 안내 틀로 전략을 보여줍니다. 실시간 AI는 새 관점 → Dense 검색 → 선택된 사례를 읽고 적용 전략 작성 순서로 동작합니다. 두 방식을 화면에서 구분해 표시합니다.</p><p>브라우저를 닫아도 저장된 평가는 남습니다. 이 프로그램은 이 PC의 주소에서만 접속됩니다. 종료는 화면 맨 아래의 프로그램 종료를 이용하세요.</p><button id="guide-start" class="primary-button">시작해 볼게요 ↗</button></dialog>
+  <dialog id="api-dialog" aria-labelledby="api-dialog-title">
+    <button id="close-api" class="dialog-close" aria-label="API 연결 닫기">×</button>
+    <p class="eyebrow">LIVE AI CONNECTION</p><h2 id="api-dialog-title">실제 AI로 업무를 분석해요</h2>
+    <p>키를 연결하면 실제 AI로 문제 관점을 나누고, Dense로 사례를 찾은 뒤 우리 업무의 적용 전략과 실행 순서를 작성합니다. 연결 확인과 분석에 API 사용 요금이 발생합니다.</p>
+    <form id="api-form" class="api-form" autocomplete="off">
+      <label for="api-key">OpenAI API키</label><input id="api-key" type="password" maxlength="1024" autocomplete="off" spellcheck="false" placeholder="sk-… · 이미 등록했다면 비워두고 재확인">
+      <p class="api-key-help">키는 입력 직후 이 PC의 서버로 보내고 입력란에서 지웁니다. 브라우저 저장소·추천 결과·평가 기록에는 저장하지 않습니다.</p>
+      <label for="api-model">사용할 모델</label><input id="api-model" value="gpt-6-luna" maxlength="128" autocomplete="off" spellcheck="false">
+      <label class="remember-label"><input id="remember-key" type="checkbox"> 이 Windows 계정의 자격 증명 관리자에 안전하게 기억하기</label>
+      <p class="api-key-help">직접 입력한 키는 기억하기를 선택하지 않으면 종료할 때 사라집니다. 별도로 등록한 로컬 설정 파일의 키는 재실행 때 다시 읽습니다. 기억하기는 이 앱 전용 Windows 보안 저장소를 사용합니다.</p>
+      <div id="api-status" class="api-status" role="status">아직 API 연결을 확인하지 않았습니다.</div>
+      <div class="api-actions"><button id="disconnect-api" class="secondary-button" type="button">키 연결 해제</button><button id="connect-api" class="primary-button" type="submit">연결 확인 · 실시간 사용 ↗</button></div>
+    </form>
+    <p class="api-key-help">OpenAI API에는 입력한 업무문제와 관점별 상위 3개 이내 선택 사례의 문제·해결 방식·성과·출처 요약을 보냅니다. 전체 데이터셋과 평가 기록은 전송하지 않습니다. 회사 기밀·개인정보는 입력에서 제외해 주세요. <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">OpenAI에서 키 관리 ↗</a></p>
+  </dialog>
+  <dialog id="architecture-dialog" class="research-dialog architecture-dialog" aria-labelledby="architecture-title" aria-describedby="architecture-description">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="아키텍처 닫기" autofocus>×</button>
+    <div class="research-dialog-heading"><p class="eyebrow">HOW AX NAVIGATOR WORKS</p><h2 id="architecture-title">문제를 나누고, 사례에서 전략으로</h2><p id="architecture-description">비슷한 사례를 찾는 데서 끝내지 않고, <strong>우리 업무에서 무엇을 어떻게 바꿔볼지</strong>까지 제안합니다.</p></div>
+    <div class="diagram-legend"><span><i class="legend-live" aria-hidden="true"></i>현재 실시간 모드의 실제 흐름</span><span>아래 3개 관점은 설명용 예시 · 실제 개수와 내용은 입력에 따라 달라집니다</span></div>
+    <figure class="architecture-figure" aria-label="업무문제를 여러 관점으로 나누고 각 관점의 사례와 적용 전략을 독립적으로 만드는 구조도">
+      <div class="flow-node flow-input"><span class="flow-step">01 · 업무문제</span><h3>지금 겪는 어려움을 입력해요</h3><p>“문서 검토가 오래 걸리고, 필수 항목 누락이나 규정 확인 오류가 걱정돼요.”</p></div>
+      <div class="flow-arrow" aria-hidden="true">↓</div>
+      <div class="flow-node flow-understanding"><span class="flow-step">02 · AI 관점 분해</span><h3>하나의 고민을 서로 다른 문제 관점으로 나눠요</h3><p>아직 해결책을 정하지 않고, 입력에 드러난 어려움부터 정리합니다.</p></div>
+      <div class="flow-arrow" aria-hidden="true">↓</div>
+      <div class="case-bank"><strong id="architecture-case-count">출처가 있는 실제 기업 사례</strong><span>사례를 ‘업무문제 · 대상 업무 · 맥락’으로 나누어 비교해요</span></div>
+      <div class="architecture-branches">
+        <section class="architecture-branch" aria-labelledby="diagram-p1"><span class="branch-example">관점 1 · 예시</span><h3 id="diagram-p1">문서 형식이 제각각</h3><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-search"><strong>이 관점으로 Dense 검색</strong><div class="diagram-views"><span>문제</span><span>업무</span><span>맥락</span></div><small>3가지 유사도 점수의 평균</small></div><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-topk"><strong>이 관점의 Top-K 사례</strong><span>예: 문서 정보 추출 사례</span></div><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-strategy"><strong>이 관점의 적용 전략</strong><span>형식별 핵심 항목 추출과<br>원문 대조 절차 제안</span></div></section>
+        <section class="architecture-branch" aria-labelledby="diagram-p2"><span class="branch-example">관점 2 · 예시</span><h3 id="diagram-p2">필수 항목을 놓칠 위험</h3><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-search"><strong>이 관점으로 Dense 검색</strong><div class="diagram-views"><span>문제</span><span>업무</span><span>맥락</span></div><small>3가지 유사도 점수의 평균</small></div><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-topk"><strong>이 관점의 Top-K 사례</strong><span>예: 문서 검증 보조 사례</span></div><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-strategy"><strong>이 관점의 적용 전략</strong><span>누락 항목을 표시하고<br>담당자가 확인하도록 제안</span></div></section>
+        <section class="architecture-branch" aria-labelledby="diagram-p3"><span class="branch-example">관점 3 · 예시</span><h3 id="diagram-p3">규정 확인에 오류 위험</h3><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-search"><strong>이 관점으로 Dense 검색</strong><div class="diagram-views"><span>문제</span><span>업무</span><span>맥락</span></div><small>3가지 유사도 점수의 평균</small></div><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-topk"><strong>이 관점의 Top-K 사례</strong><span>예: 위험 검토 지원 사례</span></div><div class="branch-flow-arrow" aria-hidden="true">↓</div><div class="diagram-strategy"><strong>이 관점의 적용 전략</strong><span>기준별 근거를 정리하고<br>예외는 사람이 판단하도록 제안</span></div></section>
+      </div>
+      <figcaption class="branch-preservation"><strong>핵심은 관점을 끝까지 유지하는 것!</strong> 한 줄의 통합 순위로 합치지 않습니다. 같은 사례가 여러 관점의 근거가 될 수도 있어요.<br>Dense는 문장의 의미가 비슷한 사례를 찾는 방식이고, Top-K는 관점마다 설정한 개수(기본 3개)의 상위 사례입니다.</figcaption>
+      <div class="flow-node flow-output"><span class="flow-step">03 · 사례 근거 기반 AI 설명 → 04 · 사용자가 검토</span><h3>관점별 전략과 실행 방향을 한 화면에서 봐요</h3><div class="output-chips"><span>우리 업무의 적용 전략</span><span>실행 순서</span><span>준비사항·한계</span><span>실제 기업의 해결 방식</span><span>성과·출처</span></div><p>AI는 관점별 상위 3개 이내 선택 사례의 실제 구현·성과와 허용된 전략 분류를 참고해 설명합니다.<br>사용자는 보고서를 받고, 사례 평가와 자유의견을 남길 수 있습니다.</p></div>
+    </figure>
+    <div class="research-callout"><strong>‘사례의 사실’과 ‘우리 업무에 대한 제안’은 달라요.</strong><p>기업이 실제로 실행한 방법과 보고한 성과는 사례 카드에, 우리 업무에서 시험해 볼 절차는 전략 영역에 따로 표시합니다. 효과를 보장하거나 성공 확률을 계산한 결과는 아닙니다.</p></div>
+    <details class="research-details"><summary>키 없는 데모와 연구 비교 옵션은 어떻게 다른가요?</summary><p><strong>키 없는 데모:</strong> 예시는 저장된 AI 관점 + 실제 Dense 계산을 사용하고, 전략은 사례 분류에 따른 안내 틀로 보여줍니다. 자유 입력은 로컬 문장 분리 + 준비된 Dense 모델로 탐색하며 모델이 없으면 단어 일치로 표시합니다.</p><p><strong>256d QCI:</strong> 학습형 검색 모델의 기존 예시 실험 결과를 선택적으로 재생하는 비교 옵션입니다. 현재 기본 검색을 대체하지 않습니다.</p></details>
+    <details class="research-details"><summary>교수님 제안의 전체 연구 아키텍처와는 어떻게 연결되나요?</summary><p>아래는 전체 연구의 목표입니다. 위 그림은 현재 프로토타입에서 실제로 연결한 경로이며, 모든 학습·통계 모듈을 완성했다는 뜻은 아닙니다.</p><ol class="target-architecture"><li><strong>입력 이해와 다중관점 생성</strong><span>관점을 동적으로 만들고 문제·업무·맥락을 구분</span></li><li><strong>Multi-view → Gated Fusion → Hybrid 후보 → QCI</strong><span>학습형 검색 모듈은 별도 실험 · 현재 시연 기본값은 Dense</span></li><li><strong>관점별 Top-K → Case Evidence Pooling</strong><span>검색된 근거를 관점별로 보존하고 구성</span></li><li><strong>Factor Anchor + Wald 관계 근거 → Evidence Fusion</strong><span>기존 v1 오프라인 진단 이력 있음 · v2.3 통합 효과 검증은 남아 있음</span></li><li><strong>LLM 추천 Head → 전략·근거 경로·행동 설명</strong><span>현재는 선택 사례 기반 설명 단계를 연결 · 학습형 전체 모델의 성능 입증과 구분</span></li></ol><p>Wald 분석은 요인과 전략의 <strong>연관성</strong>을 보는 근거이지, 인과관계나 추천의 정답을 보장하는 장치가 아닙니다.</p></details>
+    <div class="research-dialog-footer"><span>이 설명은 이 PC에 포함되어 있어 API 호출·추가 요금 없이 열립니다.</span><button class="primary-button" type="button" data-close-dialog>이해했어요 · 닫기</button></div>
+  </dialog>
+  <dialog id="paper-status-dialog" class="research-dialog" aria-labelledby="paper-status-title" aria-describedby="paper-status-description">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="논문 상황 요약 닫기" autofocus>×</button>
+    <div class="research-dialog-heading"><p class="eyebrow">RESEARCH BRIEF · 2026.10.25</p><h2 id="paper-status-title">논문 연구, 지금 어디까지 왔나요?</h2><p id="paper-status-description">확인한 저장소의 연구계획·실험 보고서와 현재 프로토타입을 기준으로 정리했습니다. <strong>기능 구현과 연구 효과 검증은 따로 봅니다.</strong></p></div>
+    <div class="research-status-banner"><span class="status-badge">현재 단계</span><h3>작동하는 프로토타입을 완성하고,<br>사용자 검토와 독립적인 효과 검증으로 넘어가는 단계</h3><p>“이런 결과를 보여주려는 연구”는 실제로 체험할 수 있습니다. 다만 제안 모델이 더 우수하다는 논문 결론까지 입증된 상태는 아닙니다.</p></div>
+    <section class="research-section"><h3>01 · 무엇을 연구하나요?</h3><p><strong>기업 업무문제 기반 다중관점 AX 사례 검색·전략 추천 모델</strong></p><p>하나의 업무문제를 여러 관점으로 나누면 관련 사례를 더 잘 찾을 수 있을까요? 사례의 해결 방식과 문제 요인을 근거로, 실행 가능한 전략을 설명할 수 있을까요?</p><div class="research-questions"><span>RQ1 · 여러 관점의 검색 효과</span><span>RQ2 · 검색 모듈별 기여</span><span>RQ3 · 요인·통계 근거의 기여</span><span>RQ4 · 전략·설명·추적성</span></div></section>
+    <section class="research-section"><h3>02 · 지금까지 실제로 한 일</h3><div class="research-status-grid"><article><span class="status-badge">자료 구축</span><h4>84개 사례와 동적 관점 자료</h4><p>출처를 가진 v2.3 사례 84개를 동결했습니다. 개발용 업무 질문 10개를 3회 실행해 관점 97개를 생성했고, 관점–사례 8,148쌍을 AI가 두 차례 평가했습니다.</p><small>AI 임시 판정(Silver)이며 사람이 확정한 정답(Gold)이 아닙니다.</small></article><article><span class="status-badge">실험 수행</span><h4>관점 보존·Dense·QCI 비교</h4><p>관점별 결과 보존, 전체 84개 후보 평가, 학습형 256차원 Gate·QCI를 실제 실행·비교했습니다. QCI는 Dense보다 낮아 기본 검색으로 채택하지 않았습니다.</p><small>같은 수의 후보를 주는 비교에서 다중관점의 독립적 우수성도 아직 미확정입니다.</small></article><article><span class="status-badge">시연 가능</span><h4>사례 → 우리 업무의 실행 전략</h4><p>실제 AI 관점 분해 → 관점별 Dense → 선택 사례 기반 전략·실행 순서·준비사항·한계까지 연결했습니다. 키 없는 데모, 평가 저장, 보고서·CSV·JSON 내보내기도 됩니다.</p><small>테스터는 ‘유용함 / 부분적 / 무관’과 자유의견으로 검토할 수 있습니다.</small></article><article><span class="status-badge status-history">기존 연구 이력</span><h4>요인·전략 관계와 근거 경로</h4><p>이전 v1 코퍼스 100개로 오프라인 Wald 관계 진단과 관점별 검색 경로 복원을 Dev에서 수행했습니다.</p><small>현재 v2.3 84개와 데이터 버전이 다릅니다. v2.3 전체 추천 모델의 효과 검증을 대신하지 않습니다.</small></article></div></section>
+    <section class="research-section"><h3>03 · 현재 성능 결과는 솔직히 이렇습니다</h3><p>최신 256d 비교의 <strong>관점별 Top-10 관련 사례 회수율(Recall)</strong>입니다. 개발 질문 10개·동적 관점 97개·84개 사례의 AI-Silver 기준이며, 질문별 평균을 사용했습니다. 관련 사례가 없는 관점 18개는 이 주 평가의 Recall 분모에서 제외했습니다.</p><div class="research-table-wrap"><table class="research-table"><caption>같은 관점·사례·주 평가 기준의 Dev 비교</caption><thead><tr><th scope="col">검색 방식</th><th scope="col">Recall@10</th><th scope="col">현재 판단</th></tr></thead><tbody><tr class="preferred-result"><th scope="row">기존 3-view Dense</th><td>47.64%</td><td>프로토타입 기본값</td></tr><tr><th scope="row">학습형 256d QCI</th><td>27.73%</td><td>기본값 미채택</td></tr><tr><th scope="row">Dense + 256d QCI 보정</th><td>45.33%</td><td>Dense 개선 입증 못함</td></tr></tbody></table></div><p class="research-fine-print">사용자 만족도나 정답 정확도가 아닙니다. 97개 관점은 독립된 업무 질문 97개가 아니며, 이전의 질문별 합집합 Recall 수치와 직접 비교하면 안 됩니다. 추가 AI 감사 후 학습 보조판정은 7,996쌍으로 정리했지만 주 평가 기준과 분리해 보존했습니다.</p></section>
+    <section class="research-section"><h3>04 · 아직 입증하지 못한 것</h3><ul class="research-checklist"><li><strong>사람이 검토한 독립 정답과 새 질문의 Test</strong><span>AI 판정의 일치는 실제 정답의 정확성 증명이 아닙니다. 현재 Dev 결과만으로 일반화나 우월성을 확정할 수 없습니다.</span></li><li><strong>v2.3의 요인·Wald·Evidence Fusion 전체 효과</strong><span>사례 라벨 표시와 LLM 설명을 학습형 Factor Anchor·통계 결합 모델의 효과 입증으로 해석하지 않습니다.</span></li><li><strong>전략 추천의 실제 유용성과 실행 가능성</strong><span>프로토타입 동작 확인은 마쳤지만, 수정이·교수님·테스터의 독립적인 유용성 검토와 효과 분석은 앞으로 필요합니다.</span></li><li><strong>논문 원고의 완성·제출 여부</strong><span>저장소에서 연구계획과 실험 보고서는 확인했습니다. 완성 원고의 집필·제출 상태는 이 자료만으로 확인할 수 없어 완료율을 표시하지 않습니다.</span></li></ul></section>
+    <section class="research-section"><h3>05 · 다음에 할 일</h3><ol class="research-next"><li><strong>이 결과가 사용자의 의도에 맞는지 듣기</strong><span>관점이 자연스러운지, 사례·전략이 유용한지, 실행 순서에 무엇이 빠졌는지 의견을 모읍니다. 의견을 자동으로 연구 정답에 편입하지 않습니다.</span></li><li><strong>평가 기준을 고정하고 독립 검증 준비</strong><span>대표 표본의 사람 관련도 검토와 새로운 업무 질문 Test를 설계하고, 같은 출력 예산으로 기준 모델과 비교합니다.</span></li><li><strong>근거 결합의 기여를 분리해서 검증</strong><span>v2.3 요인·전략 연결의 신뢰도와 희소성을 확인하고, 통계 근거·Evidence Fusion을 더했을 때 실제로 나아지는지 단계별 비교합니다.</span></li><li><strong>방법·결과·한계를 논문으로 정리</strong><span>성능이 오르지 않은 실험도 보존하고, 시연 완성과 과학적 검증을 구분해 서술합니다.</span></li></ol></section>
+    <details class="research-details"><summary>정리의 근거가 된 연구 문서 보기</summary><p>연구 저장소는 접근 권한이 필요할 수 있습니다. 아래 링크는 기준 커밋의 기존 문서이며 새로 공개하거나 업로드하지 않습니다.</p><ul class="research-sources"><li><a href="https://github.com/comjung-star/AX-research/blob/000b7f42f594bd4b57aa55df1661d7ff3750353c/docs/research-plan.md" target="_blank" rel="noopener noreferrer">연구계획과 교수님 제안 아키텍처 ↗</a></li><li><a href="https://github.com/comjung-star/AX-research/blob/000b7f42f594bd4b57aa55df1661d7ff3750353c/docs/v23-qci256-four-step-final-results-2026-10-24.md" target="_blank" rel="noopener noreferrer">최신 256d QCI 실험 결과 ↗</a></li><li><a href="https://github.com/comjung-star/AX-research/blob/000b7f42f594bd4b57aa55df1661d7ff3750353c/docs/v23-stage1-perspective-separation-results-2026-10-24.md" target="_blank" rel="noopener noreferrer">관점별 결과 보존과 동일 후보 예산 비교 ↗</a></li><li><a href="https://github.com/comjung-star/AX-research/blob/000b7f42f594bd4b57aa55df1661d7ff3750353c/experiments/rq3_evidence/results/stage3_wald_v1/DEV_RESULT_ANALYSIS.md" target="_blank" rel="noopener noreferrer">기존 v1 오프라인 Wald 진단 ↗</a></li></ul></details>
+    <section class="research-section"><h3>06 · 사례 확장 적용 · 2026.10.26</h3><p>수집된 자료 8,430개 기록에 기업 실제 운영 기준을 적용했습니다. 37개 출처의 AI 원문 검토에서 24개 신규 업무사례를 포함해 기존 84개와 별도의 확장 버전 108개를 구성했습니다. 원문 상세 검토가 남은 항목과 접근·근거 부족 항목은 보류하고 검색에서 제외했습니다.</p><p>위 성능 표는 기존 84개 실험 결과입니다. 108개 확장 버전의 성능 개선을 입증한 수치가 아닙니다. 확장 사례의 관련도 평가는 새 미판정 표에서 시작하며, 원인·전략 라벨은 AI 초안으로 사람이 확정한 정답이 아닙니다.</p></section>
+    <section class="research-section" id="inclusive-update-section" hidden><h3>07 · 전체 수집 자료 통합 · 업무 범위 확장</h3><p id="inclusive-update-summary"></p><p>공공기관·기업·개인·교육·비영리 및 구분 미확인 자료를 모두 포함하고, 업무 구분·AI 여부·운영 단계·확인 수준을 컬럼으로 표시합니다. 자동 전체 점검을 사람이 전수 사실 검증한 것으로 해석하지 않습니다. 접근 실패·파싱 오류·중복 기록도 보관하며 검색에 쓸 수 있는 정보와 구별합니다. 위 24개 추가 내역과 성능표는 이전 버전의 이력입니다.</p></section>
+    <div class="research-dialog-footer"><span>확인 기준일 2026.10.26 · 기존 실험 결과와 확장 자료를 구분한 요약</span><button class="primary-button" type="button" data-close-dialog>확인했어요 · 닫기</button></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

@@ -1,0 +1,936 @@
+{
+  "session_id": "6e0287d248a84b1ca86b497a95c463f6",
+  "query": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+  "mode": "live",
+  "provider": "live_llm_dense",
+  "scorer": "dense",
+  "example_id": "V21D004",
+  "top_k": 3,
+  "notice": "실시간 LLM이 입력에서 문제 관점을 생성했습니다. 기존 BGE-M3의 Problem·Task·Context 유사도를 각각 계산해 평균한 Dense 순위입니다.",
+  "branches": [
+    {
+      "id": "P1",
+      "title": "심사·검증 처리 지연",
+      "description": "여러 형식의 문서를 사람이 직접 읽고 항목을 확인해야 해 업무 처리시간이 길다.",
+      "cases": [
+        {
+          "case_id": "AXV2C_0068_01",
+          "rank": 1,
+          "organization": "BNY",
+          "industry": "Financial Services / Operations",
+          "task": "불완전한 지급지시 보완",
+          "problem": "지급지시의 누락·불완전한 정보 때문에 시간이 많이 드는 사람의 검토가 필요했습니다.",
+          "solution": "BNY는 Eliza 에이전트형 AI 디지털 직원을 사용해 불완전하거나 누락된 지급 지시를 반자동으로 보완했습니다.",
+          "outcome": "지급 보완 문제의 10% 초과를 처리했다고 보고했습니다. 이는 전체 거래의 10%를 처리했다는 뜻은 아닙니다.",
+          "original": {
+            "problem": "Missing or incomplete payment instructions trigger time-consuming human reviews.",
+            "task": "Repair incomplete payment instructions",
+            "context": "BNY cross-border payment processing.",
+            "implementation": "An Eliza agentic-AI digital employee repairs missing or incomplete payment instructions semi-autonomously so payments can proceed without the previous manual review.",
+            "outcome": "Over 10% of payment repair issues handled; no claim about 10% of all transactions.",
+            "uncertainty": "First-pass review; not independent blind labeling or approved Ground Truth Microsoft BNY story, Delegating time-consuming tasks to digital employees, explicitly places this payment workflow within the bank's agentic AI platform."
+          },
+          "source_url": "https://www.microsoft.com/en/customers/story/27322-bny-microsoft-365-copilot",
+          "source_anchor": "Delegating time-consuming tasks to digital employees; instructions missing or incomplete",
+          "factors": [
+            {
+              "id": "F01_REPETITIVE_MANUAL_WORK",
+              "name": "반복 수작업"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+              "name": "워크플로우·프로세스 자동화"
+            }
+          ],
+          "score": 0.587897,
+          "view_scores": {
+            "문제": 0.703644,
+            "업무": 0.576993,
+            "맥락": 0.483054
+          },
+          "reason": "‘심사·검증 처리 지연’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘지급지시의 누락·불완전한 정보 때문에 시간이 많이 드는 사람의 검토가 필요했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P1",
+            "AXV2C_0068_01",
+            "F01_REPETITIVE_MANUAL_WORK",
+            "S6_WORKFLOW_PROCESS_AUTOMATION"
+          ]
+        },
+        {
+          "case_id": "AXV2H_0003_01",
+          "rank": 2,
+          "organization": "Genpact",
+          "industry": "Professional Services",
+          "task": "직원 신원조회 보고서 검증",
+          "problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생했습니다.",
+          "solution": "Genpact는 생성형 AI로 직원 신원조회 보고서의 검증 항목을 분석해 인적 검토를 보조했습니다.",
+          "outcome": "보고서 검증 주기는 5일에서 2.5일로 줄었고, 수작업은 약 90% 감소, 준수 확인 범위는 100%로 보고됐습니다. 모델 정확도는 별도로 80%로 보고됐습니다.",
+          "original": {
+            "problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+            "task": "직원 신원조회 보고서 검증",
+            "context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스",
+            "implementation": "생성형 AI로 보고서 검증 항목을 분석하고 인적 검토 업무를 보조",
+            "outcome": "Supplier reports validation cycle 5 to 2.5 days, about 90% less manual effort and 100% compliance-check coverage; model accuracy is separately reported as 80%.",
+            "uncertainty": "Playground interaction counts are a separate workflow; model validation accuracy is reported as 80%, not 100%."
+          },
+          "source_url": "https://aws.amazon.com/solutions/case-studies/genpact-case-study-generative-ai/",
+          "source_anchor": "Solution, internal-audit background checks across up to 20 client criteria and multiple files",
+          "factors": [
+            {
+              "id": "F01_REPETITIVE_MANUAL_WORK",
+              "name": "반복 수작업"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.581472,
+          "view_scores": {
+            "문제": 0.704204,
+            "업무": 0.526485,
+            "맥락": 0.513727
+          },
+          "reason": "‘심사·검증 처리 지연’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P1",
+            "AXV2H_0003_01",
+            "F01_REPETITIVE_MANUAL_WORK",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        },
+        {
+          "case_id": "AXV2N_0133",
+          "rank": 3,
+          "organization": "Oscar Health",
+          "industry": "Health insurance",
+          "task": "보험금 처리 이관문의 조사",
+          "problem": "지원팀이 복잡한 보험금 판단 기록과 계약 조건을 찾아보며 문의를 조사해야 했습니다.",
+          "solution": "Oscar Health는 OpenAI 기반 보험금 청구 지원 도구로 청구 기록의 흐름을 탐색하고 이관 해결을 위한 답변을 준비했습니다.",
+          "outcome": "출처에 따르면 이관 해결 시간이 50% 감소했습니다. 연간 48,000건 티켓 처리는 예상치로 제시됐습니다.",
+          "original": {
+            "problem": "Support teams must navigate complex claim decision logs and contractual variables.",
+            "task": "Investigate escalated claim-processing questions",
+            "context": "Oscar claims team answering questions about a claim's processing history.",
+            "implementation": "An OpenAI-powered claims assistant navigates claim traces and prepares answers for escalation resolution.",
+            "outcome": "Escalation-resolution time reduced 50% according to source; expected 48000 annual tickets remains prospective.",
+            "uncertainty": "Accuracy equivalence is a source claim without a disclosed metric; no future volumes counted."
+          },
+          "source_url": "https://openai.com/index/oscar/",
+          "source_anchor": "Building a claims assistant; detailed logs and contractual variables",
+          "factors": [
+            {
+              "id": "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+              "name": "비정형 정보 복잡성"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S1_KNOWLEDGE_RETRIEVAL_RAG",
+              "name": "지식검색·RAG"
+            }
+          ],
+          "score": 0.557728,
+          "view_scores": {
+            "문제": 0.516996,
+            "업무": 0.602926,
+            "맥락": 0.553262
+          },
+          "reason": "‘심사·검증 처리 지연’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘지원팀이 복잡한 보험금 판단 기록과 계약 조건을 찾아보며 문의를 조사해야 했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P1",
+            "AXV2N_0133",
+            "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+            "S1_KNOWLEDGE_RETRIEVAL_RAG"
+          ]
+        }
+      ],
+      "strategy_support": {
+        "워크플로우·프로세스 자동화": [
+          "AXV2C_0068_01"
+        ],
+        "문서·콘텐츠 인텔리전스": [
+          "AXV2H_0003_01"
+        ],
+        "지식검색·RAG": [
+          "AXV2N_0133"
+        ]
+      },
+      "empty": false,
+      "candidate_count": 84,
+      "recommendation": {
+        "perspective_id": "P1",
+        "interpretation": "문서 확인과 보완에 드는 시간을 줄이는 데 초점을 둡니다. 문서 검토 보조와 반복적인 보완 절차를 나누어 살펴볼 수 있습니다.",
+        "strategies": [
+          {
+            "title": "문서 검증 항목 분석을 먼저 보조",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 업무의 문서에서 검증 대상 항목을 추출·정리하고, 담당자가 결과를 확인한 뒤 심사하도록 절차를 바꿉니다. 우선 반복적으로 확인하는 문서 유형부터 적용 범위를 정합니다.",
+            "supporting_case_ids": [
+              "AXV2H_0003_01"
+            ],
+            "evidence_reason": "Genpact 사례에서는 생성형 AI로 직원 신원조회 보고서의 검증 항목을 분석해 인적 검토를 보조했습니다. 보고서 검증 주기는 5일에서 2.5일로 줄었다고 보고됐지만, 이를 우리 업무의 예상 성과로 볼 수는 없습니다.",
+            "actions": [
+              "자주 처리하는 문서 유형 하나와 그 유형의 검증 항목을 정리합니다.",
+              "문서에서 항목을 찾아 표시하는 보조 절차를 마련합니다.",
+              "담당자가 원문과 대조해 결과를 확인하고, 불일치는 별도로 기록합니다.",
+              "정리된 결과를 기존 심사 절차에 전달하는 방법을 정합니다."
+            ],
+            "prerequisites": [
+              "대상 문서의 표본과 현재 사용하는 검증 항목·기준",
+              "추출 결과를 확인하고 수정할 담당자",
+              "문서 열람 및 처리에 관한 내부 권한과 보안 조건"
+            ],
+            "limitations": [
+              "Genpact 사례의 수치는 해당 사례의 결과이며 우리 업무의 처리시간이나 정확도를 보장하지 않습니다.",
+              "사례에서 모델 정확도는 별도로 80%로 보고됐으므로, 보조 결과를 사람의 확인 없이 확정 판단으로 사용하지 않아야 합니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          },
+          {
+            "title": "반복적인 보완 요청·처리 절차를 자동화 후보로 분리",
+            "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+            "explanation": "필수 정보가 빠진 문서의 보완 절차를 확인해, 정해진 조건에서 반복되는 보완 작업은 담당자의 검토를 거쳐 진행하고 예외 건은 사람에게 넘기도록 업무 흐름을 나눕니다.",
+            "supporting_case_ids": [
+              "AXV2C_0068_01"
+            ],
+            "evidence_reason": "BNY 사례에서는 Eliza 에이전트가 불완전한 지급 지시를 반자동으로 보완해 이전의 수작업 검토 없이 지급이 진행될 수 있도록 했습니다. 지급 보완 문제의 10% 초과를 처리했다고 보고됐으며, 이는 전체 거래의 10%라는 뜻은 아닙니다.",
+            "actions": [
+              "현재 보완 요청이 자주 발생하는 누락 항목과 처리 규칙을 모읍니다.",
+              "규칙으로 처리 가능한 건과 사람의 판단이 필요한 예외 건을 구분합니다.",
+              "보완 결과를 담당자가 승인하는 절차를 정합니다.",
+              "승인 전후의 수정·반려 사례를 기록해 적용 범위를 조정합니다."
+            ],
+            "prerequisites": [
+              "누락 항목별 보완 규칙과 예외 처리 기준",
+              "보완 결과의 승인 책임자와 기록 방식",
+              "문서·심사 시스템 간 정보 전달 가능 여부 확인"
+            ],
+            "limitations": [
+              "BNY 사례는 지급 지시 보완에 관한 것으로, 심사 문서의 모든 누락을 자동으로 처리할 수 있다는 근거는 아닙니다.",
+              "사례의 처리 비율을 우리 업무의 예상 처리 비율로 해석할 수 없습니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "P2",
+      "title": "필수 항목 누락 위험",
+      "description": "필수 항목을 일일이 확인하는 과정에서 누락이 발생할 위험이 있다.",
+      "cases": [
+        {
+          "case_id": "AXV2C_0068_03",
+          "rank": 1,
+          "organization": "BNY",
+          "industry": "Financial Services / Operations",
+          "task": "고객 등록 문서·위험 검토",
+          "problem": "신원·위험 검증에 문서 조사와 수주에 걸친 반복 확인이 필요했습니다.",
+          "solution": "BNY는 Eliza 에이전트형 업무 흐름으로 신규·과거 문서를 검토하고 추가 자료를 요청해 위험 판단을 보조했습니다.",
+          "outcome": "신규 고객 등록의 25%를 AI가 보조했으며, 해당 고객 또는 일부 프로세스에서 완료 시간이 20% 빨라졌다고 보고됐습니다.",
+          "original": {
+            "problem": "Identity and risk verification requires document research and weeks of back-and-forth.",
+            "task": "Review documents and risk during client onboarding",
+            "context": "New BNY financial-services clients subject to mandatory onboarding review.",
+            "implementation": "An Eliza agentic workflow reviews new and previous documents, seeks additional data and assists risk decisions.",
+            "outcome": "AI assists 25% of new onboardings; 20% faster completion for those clients/certain processes.",
+            "uncertainty": "First-pass review; not independent blind labeling or approved Ground Truth"
+          },
+          "source_url": "https://www.microsoft.com/en/customers/story/27322-bny-microsoft-365-copilot",
+          "source_anchor": "Resolving client transaction inquiries; research element of onboarding",
+          "factors": [
+            {
+              "id": "F05_PROCESS_SYSTEM_FRAGMENTATION",
+              "name": "프로세스·시스템 분절"
+            },
+            {
+              "id": "F08_ERROR_COMPLIANCE_RISK",
+              "name": "오류·컴플라이언스 위험"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+              "name": "워크플로우·프로세스 자동화"
+            }
+          ],
+          "score": 0.526312,
+          "view_scores": {
+            "문제": 0.526814,
+            "업무": 0.561749,
+            "맥락": 0.490372
+          },
+          "reason": "‘필수 항목 누락 위험’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘신원·위험 검증에 문서 조사와 수주에 걸친 반복 확인이 필요했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P2",
+            "AXV2C_0068_03",
+            "F05_PROCESS_SYSTEM_FRAGMENTATION",
+            "F08_ERROR_COMPLIANCE_RISK",
+            "S6_WORKFLOW_PROCESS_AUTOMATION"
+          ]
+        },
+        {
+          "case_id": "AXV2H_0003_01",
+          "rank": 2,
+          "organization": "Genpact",
+          "industry": "Professional Services",
+          "task": "직원 신원조회 보고서 검증",
+          "problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생했습니다.",
+          "solution": "Genpact는 생성형 AI로 직원 신원조회 보고서의 검증 항목을 분석해 인적 검토를 보조했습니다.",
+          "outcome": "보고서 검증 주기는 5일에서 2.5일로 줄었고, 수작업은 약 90% 감소, 준수 확인 범위는 100%로 보고됐습니다. 모델 정확도는 별도로 80%로 보고됐습니다.",
+          "original": {
+            "problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+            "task": "직원 신원조회 보고서 검증",
+            "context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스",
+            "implementation": "생성형 AI로 보고서 검증 항목을 분석하고 인적 검토 업무를 보조",
+            "outcome": "Supplier reports validation cycle 5 to 2.5 days, about 90% less manual effort and 100% compliance-check coverage; model accuracy is separately reported as 80%.",
+            "uncertainty": "Playground interaction counts are a separate workflow; model validation accuracy is reported as 80%, not 100%."
+          },
+          "source_url": "https://aws.amazon.com/solutions/case-studies/genpact-case-study-generative-ai/",
+          "source_anchor": "Solution, internal-audit background checks across up to 20 client criteria and multiple files",
+          "factors": [
+            {
+              "id": "F01_REPETITIVE_MANUAL_WORK",
+              "name": "반복 수작업"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.488639,
+          "view_scores": {
+            "문제": 0.523188,
+            "업무": 0.449722,
+            "맥락": 0.493006
+          },
+          "reason": "‘필수 항목 누락 위험’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P2",
+            "AXV2H_0003_01",
+            "F01_REPETITIVE_MANUAL_WORK",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        },
+        {
+          "case_id": "AXV2P2_0012_01",
+          "rank": 3,
+          "organization": "Shift Technology",
+          "industry": "Insurance Technology",
+          "task": "보험 문서 추출·분류",
+          "problem": "다양한 보험 문서의 수작업 분류와 정보 추출에 오랜 시간이 필요했습니다.",
+          "solution": "Shift Technology는 Azure AI Vision 및 Document Intelligence의 OCR·레이아웃 추출 결과를 Azure OpenAI 프롬프트에 연결해 보험 문서의 관련 데이터를 추출했습니다.",
+          "outcome": "공급사는 문서 준비 및 추출 설정이 수주에서 수일로 줄었다고 보고했습니다. 이는 보험금 청구 전체 처리주기가 아니며, 과거 26억 건 청구 기록에 대한 생성형 AI의 성과라는 뜻도 아닙니다.",
+          "original": {
+            "problem": "Varied insurance documents require lengthy manual classification and extraction.",
+            "task": "Extract and classify insurance documentation",
+            "context": "Shift Technology's operational insurer document-processing platform",
+            "implementation": "Azure AI Vision and Document Intelligence OCR/layout extraction feed Azure OpenAI prompts to extract relevant data.",
+            "outcome": "Supplier reports document-preparation and extraction setup reduced from weeks to days; not the entire insurer claims cycle or a GenAI attribution for 2.6 billion historical claims.",
+            "uncertainty": "No named insurer is asserted; operating organization here is Shift's own document-ingestion platform."
+          },
+          "source_url": "https://www.microsoft.com/en/customers/story/23202-shift-technology-azure-ai-vision",
+          "source_anchor": "Consolidating weeks section, varied document formats/languages require labeling and model preparation",
+          "factors": [
+            {
+              "id": "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+              "name": "비정형 정보 복잡성"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.478628,
+          "view_scores": {
+            "문제": 0.500113,
+            "업무": 0.483852,
+            "맥락": 0.451919
+          },
+          "reason": "‘필수 항목 누락 위험’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘다양한 보험 문서의 수작업 분류와 정보 추출에 오랜 시간이 필요했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P2",
+            "AXV2P2_0012_01",
+            "F04_UNSTRUCTURED_INFORMATION_COMPLEXITY",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        }
+      ],
+      "strategy_support": {
+        "워크플로우·프로세스 자동화": [
+          "AXV2C_0068_03"
+        ],
+        "문서·콘텐츠 인텔리전스": [
+          "AXV2H_0003_01",
+          "AXV2P2_0012_01"
+        ]
+      },
+      "empty": false,
+      "candidate_count": 84,
+      "recommendation": {
+        "perspective_id": "P2",
+        "interpretation": "필수 항목을 문서에서 찾아 목록화하고, 누락 여부를 사람이 재확인하는 절차를 우선 검토합니다.",
+        "strategies": [
+          {
+            "title": "문서에서 필수 항목을 추출해 누락 확인을 보조",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 업무의 문서에서 필수 항목을 추출하고, 항목별로 확인 여부를 표시해 담당자가 빠진 항목을 빠르게 확인하도록 절차를 바꿉니다. 서로 다른 문서 형식별로 추출 결과를 확인하는 단계를 둡니다.",
+            "supporting_case_ids": [
+              "AXV2P2_0012_01"
+            ],
+            "evidence_reason": "Shift Technology 사례에서는 여러 보험 문서에 OCR·레이아웃 추출을 적용하고, 그 결과에 프롬프트를 사용해 관련 데이터를 추출했습니다. 공급사는 문서 준비 및 추출 설정이 수주에서 수일로 줄었다고 보고했지만, 이는 보험금 청구 전체 처리주기를 뜻하지 않습니다.",
+            "actions": [
+              "문서 종류별 필수 항목과 허용되는 표기 형태를 정리합니다.",
+              "대표 문서에서 항목 추출 결과를 만들고 원문과 대조합니다.",
+              "누락·불명확·추출 실패 항목을 담당자 확인 대상으로 표시합니다.",
+              "확인 결과를 반영해 문서 유형별 항목 목록을 보완합니다."
+            ],
+            "prerequisites": [
+              "문서 유형별 필수 항목 정의",
+              "서로 다른 형식의 문서 표본과 원문 대조를 맡을 담당자",
+              "문서 처리 및 보관에 대한 내부 보안·개인정보 조건"
+            ],
+            "limitations": [
+              "사례의 결과는 문서 준비 및 추출 설정에 관한 것이며 전체 심사 주기의 단축을 뜻하지 않습니다.",
+              "사례에서 언급된 과거 청구 건수는 이 기술 도입의 성과나 생성형 AI의 기여로 해석할 수 없습니다.",
+              "우리 문서 형식과 항목에서의 추출 가능성은 별도 확인이 필요합니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "비정형 정보 복잡성"
+            ]
+          },
+          {
+            "title": "검증 항목 분석과 사람의 재확인 절차 결합",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "필수 항목을 문서와 대조하는 현재 절차를 항목별 확인 결과가 먼저 정리되고 담당자가 미확인·불일치 항목을 점검하는 방식으로 바꿉니다.",
+            "supporting_case_ids": [
+              "AXV2H_0003_01"
+            ],
+            "evidence_reason": "Genpact 사례에서는 생성형 AI가 보고서의 검증 항목을 분석해 인적 검토 업무를 보조했습니다. 해당 사례는 준수 확인 범위 100%를 보고했지만, 모델 정확도는 별도로 80%라고 보고됐으므로 두 수치를 같은 의미로 보아서는 안 됩니다.",
+            "actions": [
+              "현재 필수 확인 항목과 해당 항목의 근거가 되는 문서 위치를 정리합니다.",
+              "문서별 항목 확인 결과를 담당자가 검토할 수 있는 형태로 만듭니다.",
+              "누락 또는 근거 불명확 항목은 자동 통과시키지 않고 사람이 확인하도록 정합니다.",
+              "사람이 수정한 결과를 기록해 항목 정의와 검토 절차를 보완합니다."
+            ],
+            "prerequisites": [
+              "업무에서 사용하는 필수 항목 목록과 확인 기준",
+              "결과를 원문과 대조할 담당자 및 검토 절차",
+              "수정 이력과 예외를 기록할 방법"
+            ],
+            "limitations": [
+              "Genpact의 준수 확인 범위와 모델 정확도는 서로 다른 지표이며, 우리 업무에 그대로 적용할 수 없습니다.",
+              "사례는 직원 신원조회 보고서 검증이므로 우리 문서의 항목 정의와 형식은 별도로 확인해야 합니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "P3",
+      "title": "규정 준수 확인의 오류 위험",
+      "description": "문서별 규정 준수 여부를 사람이 확인하는 과정에서 판단 오류가 발생할 위험이 있다.",
+      "cases": [
+        {
+          "case_id": "AXV2H_0003_01",
+          "rank": 1,
+          "organization": "Genpact",
+          "industry": "Professional Services",
+          "task": "직원 신원조회 보고서 검증",
+          "problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생했습니다.",
+          "solution": "Genpact는 생성형 AI로 직원 신원조회 보고서의 검증 항목을 분석해 인적 검토를 보조했습니다.",
+          "outcome": "보고서 검증 주기는 5일에서 2.5일로 줄었고, 수작업은 약 90% 감소, 준수 확인 범위는 100%로 보고됐습니다. 모델 정확도는 별도로 80%로 보고됐습니다.",
+          "original": {
+            "problem": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함",
+            "task": "직원 신원조회 보고서 검증",
+            "context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스",
+            "implementation": "생성형 AI로 보고서 검증 항목을 분석하고 인적 검토 업무를 보조",
+            "outcome": "Supplier reports validation cycle 5 to 2.5 days, about 90% less manual effort and 100% compliance-check coverage; model accuracy is separately reported as 80%.",
+            "uncertainty": "Playground interaction counts are a separate workflow; model validation accuracy is reported as 80%, not 100%."
+          },
+          "source_url": "https://aws.amazon.com/solutions/case-studies/genpact-case-study-generative-ai/",
+          "source_anchor": "Solution, internal-audit background checks across up to 20 client criteria and multiple files",
+          "factors": [
+            {
+              "id": "F01_REPETITIVE_MANUAL_WORK",
+              "name": "반복 수작업"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.569462,
+          "view_scores": {
+            "문제": 0.665549,
+            "업무": 0.510638,
+            "맥락": 0.532198
+          },
+          "reason": "‘규정 준수 확인의 오류 위험’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P3",
+            "AXV2H_0003_01",
+            "F01_REPETITIVE_MANUAL_WORK",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        },
+        {
+          "case_id": "AXV2C_0068_03",
+          "rank": 2,
+          "organization": "BNY",
+          "industry": "Financial Services / Operations",
+          "task": "고객 등록 문서·위험 검토",
+          "problem": "신원·위험 검증에 문서 조사와 수주에 걸친 반복 확인이 필요했습니다.",
+          "solution": "BNY는 Eliza 에이전트형 업무 흐름으로 신규·과거 문서를 검토하고 추가 자료를 요청해 위험 판단을 보조했습니다.",
+          "outcome": "신규 고객 등록의 25%를 AI가 보조했으며, 해당 고객 또는 일부 프로세스에서 완료 시간이 20% 빨라졌다고 보고됐습니다.",
+          "original": {
+            "problem": "Identity and risk verification requires document research and weeks of back-and-forth.",
+            "task": "Review documents and risk during client onboarding",
+            "context": "New BNY financial-services clients subject to mandatory onboarding review.",
+            "implementation": "An Eliza agentic workflow reviews new and previous documents, seeks additional data and assists risk decisions.",
+            "outcome": "AI assists 25% of new onboardings; 20% faster completion for those clients/certain processes.",
+            "uncertainty": "First-pass review; not independent blind labeling or approved Ground Truth"
+          },
+          "source_url": "https://www.microsoft.com/en/customers/story/27322-bny-microsoft-365-copilot",
+          "source_anchor": "Resolving client transaction inquiries; research element of onboarding",
+          "factors": [
+            {
+              "id": "F05_PROCESS_SYSTEM_FRAGMENTATION",
+              "name": "프로세스·시스템 분절"
+            },
+            {
+              "id": "F08_ERROR_COMPLIANCE_RISK",
+              "name": "오류·컴플라이언스 위험"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+              "name": "워크플로우·프로세스 자동화"
+            }
+          ],
+          "score": 0.546019,
+          "view_scores": {
+            "문제": 0.568179,
+            "업무": 0.606678,
+            "맥락": 0.463199
+          },
+          "reason": "‘규정 준수 확인의 오류 위험’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘신원·위험 검증에 문서 조사와 수주에 걸친 반복 확인이 필요했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P3",
+            "AXV2C_0068_03",
+            "F05_PROCESS_SYSTEM_FRAGMENTATION",
+            "F08_ERROR_COMPLIANCE_RISK",
+            "S6_WORKFLOW_PROCESS_AUTOMATION"
+          ]
+        },
+        {
+          "case_id": "AXV2C_0080_02",
+          "rank": 3,
+          "organization": "Hong Leong Bank",
+          "industry": "Banking / Trade Operations",
+          "task": "제재 심사용 문서 위험항목 확인",
+          "problem": "문서 검토에서 규제·재무 위험을 일으킬 수 있는 세부 정보를 찾아야 했습니다.",
+          "solution": "Hong Leong Bank는 Document AI로 제재 심사용 문서의 주요 세부 정보를 표시해 위험 선별을 보조했습니다.",
+          "outcome": "정성적인 위험 선별 지원이 보고됐으며, 별도의 수치 성과는 제시되지 않았습니다.",
+          "original": {
+            "problem": "Document review must identify details that could expose the bank to regulatory or financial risks.",
+            "task": "Flag document details for sanctions screening",
+            "context": "Hong Leong Bank Credit Underwriting team's sanctions screening.",
+            "implementation": "Document AI flags key details in documents to assist sanctions screening.",
+            "outcome": "Qualitative risk-screening assistance; no separately reported numerical outcome.",
+            "uncertainty": "First-pass review; not independent blind labeling or approved Ground Truth"
+          },
+          "source_url": "https://cloud.google.com/customers/hongleongbank",
+          "source_anchor": "AI beyond the customer; minimize regulatory and financial risks",
+          "factors": [
+            {
+              "id": "F08_ERROR_COMPLIANCE_RISK",
+              "name": "오류·컴플라이언스 위험"
+            }
+          ],
+          "strategies": [
+            {
+              "id": "S3_DOCUMENT_INTELLIGENCE",
+              "name": "문서·콘텐츠 인텔리전스"
+            }
+          ],
+          "score": 0.517439,
+          "view_scores": {
+            "문제": 0.592296,
+            "업무": 0.466441,
+            "맥락": 0.49358
+          },
+          "reason": "‘규정 준수 확인의 오류 위험’ 관점에서 업무 문제·대상·맥락을 비교한 검색 후보입니다. 사례의 실제 문제는 ‘문서 검토에서 규제·재무 위험을 일으킬 수 있는 세부 정보를 찾아야 했습니다.’입니다.",
+          "caution": "같은 업종·조건에서의 효과는 보장되지 않습니다. 아래 원문과 도입 환경을 확인해 주세요.",
+          "trace": [
+            "P3",
+            "AXV2C_0080_02",
+            "F08_ERROR_COMPLIANCE_RISK",
+            "S3_DOCUMENT_INTELLIGENCE"
+          ]
+        }
+      ],
+      "strategy_support": {
+        "문서·콘텐츠 인텔리전스": [
+          "AXV2H_0003_01",
+          "AXV2C_0080_02"
+        ],
+        "워크플로우·프로세스 자동화": [
+          "AXV2C_0068_03"
+        ]
+      },
+      "empty": false,
+      "candidate_count": 84,
+      "recommendation": {
+        "perspective_id": "P3",
+        "interpretation": "규정 준수 여부의 최종 판단을 자동화하기보다, 관련 항목을 찾아 표시하고 담당자가 근거를 확인하는 보조 절차를 검토합니다.",
+        "strategies": [
+          {
+            "title": "규정 관련 검토 항목을 문서에서 찾아 표시",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 문서에서 규정 준수 판단에 필요한 주요 정보를 찾아 표시하고, 담당자가 해당 정보와 적용 기준을 대조한 뒤 판단하도록 절차를 구성합니다. 판단 근거가 불명확하거나 정보가 빠진 건은 사람의 추가 검토 대상으로 둡니다.",
+            "supporting_case_ids": [
+              "AXV2C_0080_02"
+            ],
+            "evidence_reason": "Hong Leong Bank 사례에서는 Document AI가 제재 심사용 문서의 주요 세부 정보를 표시해 위험 선별을 보조했습니다. 보고된 결과는 정성적인 위험 선별 지원이며, 별도의 수치 성과는 제시되지 않았습니다.",
+            "actions": [
+              "검토할 규정 항목과 문서에서 확인해야 할 근거 정보를 정리합니다.",
+              "문서에서 관련 정보를 표시하는 보조 절차를 시험합니다.",
+              "담당자가 표시된 내용과 원문·기준을 대조하고 판단 근거를 기록합니다.",
+              "위험 신호가 있거나 근거가 모호한 건은 기존 상위 검토 절차로 넘깁니다."
+            ],
+            "prerequisites": [
+              "적용할 규정과 위험 항목의 최신 기준",
+              "문서상 근거를 확인하고 판단할 담당자",
+              "검토 결과와 판단 근거를 남길 기록 방식"
+            ],
+            "limitations": [
+              "사례는 제재 심사 문서의 위험 선별 보조에 관한 것으로 우리 규정 준수 판단을 대신하지 않습니다.",
+              "수치 성과가 보고되지 않아 처리시간이나 오류 감소 효과를 추정할 근거가 없습니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "오류·컴플라이언스 위험"
+            ]
+          },
+          {
+            "title": "검증 항목 분석을 활용하되 준수 판단은 담당자가 확정",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 업무의 규정 관련 확인 항목을 문서별로 정리해 담당자에게 제시하고, 담당자가 원문 및 기준을 대조해 최종 준수 판단을 내리도록 합니다. 항목 누락과 기준 해석이 필요한 상황은 별도 검토 대상으로 구분합니다.",
+            "supporting_case_ids": [
+              "AXV2H_0003_01"
+            ],
+            "evidence_reason": "Genpact 사례에서는 보고서 검증 항목 분석으로 인적 검토를 보조하고 준수 확인 범위 100%를 보고했습니다. 동시에 모델 정확도는 별도로 80%로 보고됐으므로, 이 사례는 사람의 확인을 없애는 근거가 아닙니다.",
+            "actions": [
+              "규정별 확인 항목과 문서에서 확인할 근거를 정리합니다.",
+              "항목별 문서 확인 결과를 담당자에게 제시하는 절차를 마련합니다.",
+              "담당자가 원문과 기준을 대조해 준수 여부와 판단 근거를 기록합니다.",
+              "기준 해석이 필요하거나 결과가 불명확한 건은 추가 검토로 넘깁니다."
+            ],
+            "prerequisites": [
+              "현재 적용되는 규정과 문서별 검증 기준",
+              "최종 준수 판단을 맡을 담당자와 예외 처리 절차",
+              "판단 근거 및 수정 이력을 보관할 방법"
+            ],
+            "limitations": [
+              "Genpact 사례의 수치는 해당 보고서 검증 업무에 관한 것이며 우리 업무의 성능을 보장하지 않습니다.",
+              "준수 확인 범위와 모델 정확도는 별개의 지표입니다. 우리 문서와 규정에 대한 검증이 필요합니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "elapsed_seconds": 96.41,
+  "corpus_version": "v2.3.0",
+  "corpus_sha256": "5a4683047e86aea67bbe6ca568d799c74b6d2aba1c4799d31cb96bf4b34987a2",
+  "created_at": "2026-10-24T16:46:37Z",
+  "llm_evidence": {
+    "response_id": "resp_02c0981797be4173016adce0921a9887d0903a8c96df422dd7",
+    "model": "gpt-6-luna",
+    "input_tokens": 245,
+    "output_tokens": 191,
+    "api_called": true,
+    "store": false,
+    "checked_at": "2026-10-24T16:45:08Z"
+  },
+  "strategy_report": {
+    "summary": "문서에서 필수 항목을 먼저 추출하고 기준에 따라 검토를 보조하도록 설계한 뒤, 예외·불일치 건은 사람이 확인하는 방식으로 심사 흐름을 나누는 방안을 검토합니다.",
+    "next_step": "최근 심사 문서 한 건과 해당 문서의 필수 항목·검토 기준을 골라, 사람이 확인하는 항목을 목록으로 정리합니다.",
+    "perspectives": [
+      {
+        "perspective_id": "P1",
+        "interpretation": "문서 확인과 보완에 드는 시간을 줄이는 데 초점을 둡니다. 문서 검토 보조와 반복적인 보완 절차를 나누어 살펴볼 수 있습니다.",
+        "strategies": [
+          {
+            "title": "문서 검증 항목 분석을 먼저 보조",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 업무의 문서에서 검증 대상 항목을 추출·정리하고, 담당자가 결과를 확인한 뒤 심사하도록 절차를 바꿉니다. 우선 반복적으로 확인하는 문서 유형부터 적용 범위를 정합니다.",
+            "supporting_case_ids": [
+              "AXV2H_0003_01"
+            ],
+            "evidence_reason": "Genpact 사례에서는 생성형 AI로 직원 신원조회 보고서의 검증 항목을 분석해 인적 검토를 보조했습니다. 보고서 검증 주기는 5일에서 2.5일로 줄었다고 보고됐지만, 이를 우리 업무의 예상 성과로 볼 수는 없습니다.",
+            "actions": [
+              "자주 처리하는 문서 유형 하나와 그 유형의 검증 항목을 정리합니다.",
+              "문서에서 항목을 찾아 표시하는 보조 절차를 마련합니다.",
+              "담당자가 원문과 대조해 결과를 확인하고, 불일치는 별도로 기록합니다.",
+              "정리된 결과를 기존 심사 절차에 전달하는 방법을 정합니다."
+            ],
+            "prerequisites": [
+              "대상 문서의 표본과 현재 사용하는 검증 항목·기준",
+              "추출 결과를 확인하고 수정할 담당자",
+              "문서 열람 및 처리에 관한 내부 권한과 보안 조건"
+            ],
+            "limitations": [
+              "Genpact 사례의 수치는 해당 사례의 결과이며 우리 업무의 처리시간이나 정확도를 보장하지 않습니다.",
+              "사례에서 모델 정확도는 별도로 80%로 보고됐으므로, 보조 결과를 사람의 확인 없이 확정 판단으로 사용하지 않아야 합니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          },
+          {
+            "title": "반복적인 보완 요청·처리 절차를 자동화 후보로 분리",
+            "strategy_id": "S6_WORKFLOW_PROCESS_AUTOMATION",
+            "explanation": "필수 정보가 빠진 문서의 보완 절차를 확인해, 정해진 조건에서 반복되는 보완 작업은 담당자의 검토를 거쳐 진행하고 예외 건은 사람에게 넘기도록 업무 흐름을 나눕니다.",
+            "supporting_case_ids": [
+              "AXV2C_0068_01"
+            ],
+            "evidence_reason": "BNY 사례에서는 Eliza 에이전트가 불완전한 지급 지시를 반자동으로 보완해 이전의 수작업 검토 없이 지급이 진행될 수 있도록 했습니다. 지급 보완 문제의 10% 초과를 처리했다고 보고됐으며, 이는 전체 거래의 10%라는 뜻은 아닙니다.",
+            "actions": [
+              "현재 보완 요청이 자주 발생하는 누락 항목과 처리 규칙을 모읍니다.",
+              "규칙으로 처리 가능한 건과 사람의 판단이 필요한 예외 건을 구분합니다.",
+              "보완 결과를 담당자가 승인하는 절차를 정합니다.",
+              "승인 전후의 수정·반려 사례를 기록해 적용 범위를 조정합니다."
+            ],
+            "prerequisites": [
+              "누락 항목별 보완 규칙과 예외 처리 기준",
+              "보완 결과의 승인 책임자와 기록 방식",
+              "문서·심사 시스템 간 정보 전달 가능 여부 확인"
+            ],
+            "limitations": [
+              "BNY 사례는 지급 지시 보완에 관한 것으로, 심사 문서의 모든 누락을 자동으로 처리할 수 있다는 근거는 아닙니다.",
+              "사례의 처리 비율을 우리 업무의 예상 처리 비율로 해석할 수 없습니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      },
+      {
+        "perspective_id": "P2",
+        "interpretation": "필수 항목을 문서에서 찾아 목록화하고, 누락 여부를 사람이 재확인하는 절차를 우선 검토합니다.",
+        "strategies": [
+          {
+            "title": "문서에서 필수 항목을 추출해 누락 확인을 보조",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 업무의 문서에서 필수 항목을 추출하고, 항목별로 확인 여부를 표시해 담당자가 빠진 항목을 빠르게 확인하도록 절차를 바꿉니다. 서로 다른 문서 형식별로 추출 결과를 확인하는 단계를 둡니다.",
+            "supporting_case_ids": [
+              "AXV2P2_0012_01"
+            ],
+            "evidence_reason": "Shift Technology 사례에서는 여러 보험 문서에 OCR·레이아웃 추출을 적용하고, 그 결과에 프롬프트를 사용해 관련 데이터를 추출했습니다. 공급사는 문서 준비 및 추출 설정이 수주에서 수일로 줄었다고 보고했지만, 이는 보험금 청구 전체 처리주기를 뜻하지 않습니다.",
+            "actions": [
+              "문서 종류별 필수 항목과 허용되는 표기 형태를 정리합니다.",
+              "대표 문서에서 항목 추출 결과를 만들고 원문과 대조합니다.",
+              "누락·불명확·추출 실패 항목을 담당자 확인 대상으로 표시합니다.",
+              "확인 결과를 반영해 문서 유형별 항목 목록을 보완합니다."
+            ],
+            "prerequisites": [
+              "문서 유형별 필수 항목 정의",
+              "서로 다른 형식의 문서 표본과 원문 대조를 맡을 담당자",
+              "문서 처리 및 보관에 대한 내부 보안·개인정보 조건"
+            ],
+            "limitations": [
+              "사례의 결과는 문서 준비 및 추출 설정에 관한 것이며 전체 심사 주기의 단축을 뜻하지 않습니다.",
+              "사례에서 언급된 과거 청구 건수는 이 기술 도입의 성과나 생성형 AI의 기여로 해석할 수 없습니다.",
+              "우리 문서 형식과 항목에서의 추출 가능성은 별도 확인이 필요합니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "비정형 정보 복잡성"
+            ]
+          },
+          {
+            "title": "검증 항목 분석과 사람의 재확인 절차 결합",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "필수 항목을 문서와 대조하는 현재 절차를 항목별 확인 결과가 먼저 정리되고 담당자가 미확인·불일치 항목을 점검하는 방식으로 바꿉니다.",
+            "supporting_case_ids": [
+              "AXV2H_0003_01"
+            ],
+            "evidence_reason": "Genpact 사례에서는 생성형 AI가 보고서의 검증 항목을 분석해 인적 검토 업무를 보조했습니다. 해당 사례는 준수 확인 범위 100%를 보고했지만, 모델 정확도는 별도로 80%라고 보고됐으므로 두 수치를 같은 의미로 보아서는 안 됩니다.",
+            "actions": [
+              "현재 필수 확인 항목과 해당 항목의 근거가 되는 문서 위치를 정리합니다.",
+              "문서별 항목 확인 결과를 담당자가 검토할 수 있는 형태로 만듭니다.",
+              "누락 또는 근거 불명확 항목은 자동 통과시키지 않고 사람이 확인하도록 정합니다.",
+              "사람이 수정한 결과를 기록해 항목 정의와 검토 절차를 보완합니다."
+            ],
+            "prerequisites": [
+              "업무에서 사용하는 필수 항목 목록과 확인 기준",
+              "결과를 원문과 대조할 담당자 및 검토 절차",
+              "수정 이력과 예외를 기록할 방법"
+            ],
+            "limitations": [
+              "Genpact의 준수 확인 범위와 모델 정확도는 서로 다른 지표이며, 우리 업무에 그대로 적용할 수 없습니다.",
+              "사례는 직원 신원조회 보고서 검증이므로 우리 문서의 항목 정의와 형식은 별도로 확인해야 합니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      },
+      {
+        "perspective_id": "P3",
+        "interpretation": "규정 준수 여부의 최종 판단을 자동화하기보다, 관련 항목을 찾아 표시하고 담당자가 근거를 확인하는 보조 절차를 검토합니다.",
+        "strategies": [
+          {
+            "title": "규정 관련 검토 항목을 문서에서 찾아 표시",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 문서에서 규정 준수 판단에 필요한 주요 정보를 찾아 표시하고, 담당자가 해당 정보와 적용 기준을 대조한 뒤 판단하도록 절차를 구성합니다. 판단 근거가 불명확하거나 정보가 빠진 건은 사람의 추가 검토 대상으로 둡니다.",
+            "supporting_case_ids": [
+              "AXV2C_0080_02"
+            ],
+            "evidence_reason": "Hong Leong Bank 사례에서는 Document AI가 제재 심사용 문서의 주요 세부 정보를 표시해 위험 선별을 보조했습니다. 보고된 결과는 정성적인 위험 선별 지원이며, 별도의 수치 성과는 제시되지 않았습니다.",
+            "actions": [
+              "검토할 규정 항목과 문서에서 확인해야 할 근거 정보를 정리합니다.",
+              "문서에서 관련 정보를 표시하는 보조 절차를 시험합니다.",
+              "담당자가 표시된 내용과 원문·기준을 대조하고 판단 근거를 기록합니다.",
+              "위험 신호가 있거나 근거가 모호한 건은 기존 상위 검토 절차로 넘깁니다."
+            ],
+            "prerequisites": [
+              "적용할 규정과 위험 항목의 최신 기준",
+              "문서상 근거를 확인하고 판단할 담당자",
+              "검토 결과와 판단 근거를 남길 기록 방식"
+            ],
+            "limitations": [
+              "사례는 제재 심사 문서의 위험 선별 보조에 관한 것으로 우리 규정 준수 판단을 대신하지 않습니다.",
+              "수치 성과가 보고되지 않아 처리시간이나 오류 감소 효과를 추정할 근거가 없습니다."
+            ],
+            "priority": "먼저 검토",
+            "factor_links": [
+              "오류·컴플라이언스 위험"
+            ]
+          },
+          {
+            "title": "검증 항목 분석을 활용하되 준수 판단은 담당자가 확정",
+            "strategy_id": "S3_DOCUMENT_INTELLIGENCE",
+            "explanation": "우리 업무의 규정 관련 확인 항목을 문서별로 정리해 담당자에게 제시하고, 담당자가 원문 및 기준을 대조해 최종 준수 판단을 내리도록 합니다. 항목 누락과 기준 해석이 필요한 상황은 별도 검토 대상으로 구분합니다.",
+            "supporting_case_ids": [
+              "AXV2H_0003_01"
+            ],
+            "evidence_reason": "Genpact 사례에서는 보고서 검증 항목 분석으로 인적 검토를 보조하고 준수 확인 범위 100%를 보고했습니다. 동시에 모델 정확도는 별도로 80%로 보고됐으므로, 이 사례는 사람의 확인을 없애는 근거가 아닙니다.",
+            "actions": [
+              "규정별 확인 항목과 문서에서 확인할 근거를 정리합니다.",
+              "항목별 문서 확인 결과를 담당자에게 제시하는 절차를 마련합니다.",
+              "담당자가 원문과 기준을 대조해 준수 여부와 판단 근거를 기록합니다.",
+              "기준 해석이 필요하거나 결과가 불명확한 건은 추가 검토로 넘깁니다."
+            ],
+            "prerequisites": [
+              "현재 적용되는 규정과 문서별 검증 기준",
+              "최종 준수 판단을 맡을 담당자와 예외 처리 절차",
+              "판단 근거 및 수정 이력을 보관할 방법"
+            ],
+            "limitations": [
+              "Genpact 사례의 수치는 해당 보고서 검증 업무에 관한 것이며 우리 업무의 성능을 보장하지 않습니다.",
+              "준수 확인 범위와 모델 정확도는 별개의 지표입니다. 우리 문서와 규정에 대한 검증이 필요합니다."
+            ],
+            "priority": "함께 검토",
+            "factor_links": [
+              "반복 수작업"
+            ]
+          }
+        ]
+      }
+    ],
+    "case_explanations": [
+      {
+        "case_id": "AXV2C_0068_01",
+        "solution": "BNY는 Eliza 에이전트형 AI 디지털 직원을 사용해 불완전하거나 누락된 지급 지시를 반자동으로 보완했습니다.",
+        "outcome": "지급 보완 문제의 10% 초과를 처리했다고 보고했습니다. 이는 전체 거래의 10%를 처리했다는 뜻은 아닙니다."
+      },
+      {
+        "case_id": "AXV2H_0003_01",
+        "solution": "Genpact는 생성형 AI로 직원 신원조회 보고서의 검증 항목을 분석해 인적 검토를 보조했습니다.",
+        "outcome": "보고서 검증 주기는 5일에서 2.5일로 줄었고, 수작업은 약 90% 감소, 준수 확인 범위는 100%로 보고됐습니다. 모델 정확도는 별도로 80%로 보고됐습니다."
+      },
+      {
+        "case_id": "AXV2N_0133",
+        "solution": "Oscar Health는 OpenAI 기반 보험금 청구 지원 도구로 청구 기록의 흐름을 탐색하고 이관 해결을 위한 답변을 준비했습니다.",
+        "outcome": "출처에 따르면 이관 해결 시간이 50% 감소했습니다. 연간 48,000건 티켓 처리는 예상치로 제시됐습니다."
+      },
+      {
+        "case_id": "AXV2C_0068_03",
+        "solution": "BNY는 Eliza 에이전트형 업무 흐름으로 신규·과거 문서를 검토하고 추가 자료를 요청해 위험 판단을 보조했습니다.",
+        "outcome": "신규 고객 등록의 25%를 AI가 보조했으며, 해당 고객 또는 일부 프로세스에서 완료 시간이 20% 빨라졌다고 보고됐습니다."
+      },
+      {
+        "case_id": "AXV2P2_0012_01",
+        "solution": "Shift Technology는 Azure AI Vision 및 Document Intelligence의 OCR·레이아웃 추출 결과를 Azure OpenAI 프롬프트에 연결해 보험 문서의 관련 데이터를 추출했습니다.",
+        "outcome": "공급사는 문서 준비 및 추출 설정이 수주에서 수일로 줄었다고 보고했습니다. 이는 보험금 청구 전체 처리주기가 아니며, 과거 26억 건 청구 기록에 대한 생성형 AI의 성과라는 뜻도 아닙니다."
+      },
+      {
+        "case_id": "AXV2C_0080_02",
+        "solution": "Hong Leong Bank는 Document AI로 제재 심사용 문서의 주요 세부 정보를 표시해 위험 선별을 보조했습니다.",
+        "outcome": "정성적인 위험 선별 지원이 보고됐으며, 별도의 수치 성과는 제시되지 않았습니다."
+      }
+    ],
+    "provider": "live_llm",
+    "api_evidence": {
+      "response_id": "resp_04049b59918c50b0016adce0c86ee087d0a59c19e561dc3c11",
+      "model": "gpt-6-luna",
+      "input_tokens": 2332,
+      "output_tokens": 4225,
+      "api_called": true,
+      "store": false,
+      "checked_at": "2026-10-24T16:46:37Z"
+    },
+    "notice": "실제 LLM이 관점별 상위 3개 이내의 선택 사례를 근거로 작성한 적용 전략입니다. 사례 사실과 우리 업무에 대한 제안을 구분해 읽어 주세요.",
+    "strategy_count": 6,
+    "evidence_case_count": 4
+  },
+  "limitations": [
+    "유사도는 정답 확률이 아닙니다. 강한 관련성 사례가 없을 수도 있습니다.",
+    "84개 출처 검토 사례이며, 독립 인간 Ground Truth나 Held-out Test 검증을 마친 서비스가 아닙니다.",
+    "원인·전략 라벨은 사례의 분석 분류입니다. 사용자 문제의 원인 또는 도입 효과를 확정하지 않습니다.",
+    "적용 전략은 사례 근거에 기반한 제안입니다. 학습형 Evidence Fusion·Wald 통계 분석을 실행한 결과는 아닙니다."
+  ]
+}
