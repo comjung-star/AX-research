@@ -1,0 +1,64 @@
+{
+  "base_commit": "8b40bfbefa82e0cbf710482823f7d97b58f1690b",
+  "source_records_preserved": 11766,
+  "source_retrieval_candidates": 9416,
+  "new_collection_count": 0,
+  "decision_counts": {
+    "EXPERIMENT_SUITABLE": 112,
+    "HOLD": 8259,
+    "REFERENCE_ONLY": 3354,
+    "EXCLUDE": 41
+  },
+  "decision_counts_ko": {
+    "실험 적합": 112,
+    "보류": 8259,
+    "참고 전용": 3354,
+    "제외": 41
+  },
+  "decision_method_counts": {
+    "PRIOR_PASSAGE_REVIEW_STATUS": 108,
+    "DETERMINISTIC_EVIDENCE_TRIAGE_NOT_FACT_REVIEW": 11652,
+    "INDIVIDUAL_SAVED_SOURCE_ROW_REVIEW": 6
+  },
+  "new_individual_saved_row_reviews": 6,
+  "new_independent_fact_corroborations": 0,
+  "dev_case_count": 112,
+  "dev_query_count": 10,
+  "unjudged_qrel_pairs": 3360,
+  "new_approved_qrels": 0,
+  "human_gold_labels": 0,
+  "heldout_test_queries": 0,
+  "leakage_group_count": 5298,
+  "leakage_link_count": 16372,
+  "partition_counts": {
+    "DEV_ONLY": 1349,
+    "UNASSIGNED_REVIEW_POOL": 8597,
+    "FUTURE_TEST_RESERVATION_NOT_HELDOUT": 1820
+  },
+  "cross_partition_link_count": 0,
+  "missing_problem_count": 9553,
+  "potential_problem_solution_mix_count": 208,
+  "scope_exclusions": 0,
+  "paid_api_calls": 0,
+  "protected_paths_unchanged_from_base": [
+    "data/v2_3",
+    "data/v2_4",
+    "experiments",
+    "configs",
+    "src"
+  ],
+  "ready": {
+    "descriptive_dev_inputs": true,
+    "inclusive_dense": false,
+    "v25_recall_coverage_benchmark": false,
+    "confirmatory_wald": false,
+    "heldout_test": false
+  },
+  "blockers": [
+    "Remaining source records lack individual passage review or corroboration; inspect per-record reasons",
+    "Independent relevance judgments and approved reference perspectives are missing",
+    "Held-out queries must follow model/prompt/evaluation freeze",
+    "Semantic near-duplicate adjudication and independent factor/strategy labels remain pending",
+    "Inclusive task embeddings mix source descriptions and 128-token additions with inherited longer encodings; use clean research views for controlled comparisons"
+  ]
+}

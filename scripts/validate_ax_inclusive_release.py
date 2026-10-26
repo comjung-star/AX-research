@@ -65,7 +65,9 @@ def main():
         exported = json.loads(store.export("json"))
         assert exported["sessions"][0]["corpus_version"] == engine.corpus_version
         assert engine.corpus_version in store.export("csv").decode("utf-8-sig")
-    result = {"dataset_release": engine.corpus_version, "all_input_records_verified": len(inputs),
+    result = {"dataset_release": engine.corpus_version, "input_registry_records_checked": len(inputs),
+              "verification_method": "PROGRAMMATIC_MEMBERSHIP_HASH_SCHEMA_AND_LOCAL_DENSE_SMOKE_NOT_INDIVIDUAL_FACT_REVIEW",
+              "new_independent_fact_verifications": 0,
               "all_collected_input_ids_included": True, "scope_exclusions": 0, "total_records": len(engine.cases),
               "retrievable_records": len(engine.case_ids), "frozen_preserved": True, "manifest_hashes_verified": len(manifest["sha256"]),
               "free_input_checks": reports, "feedback_version_export_verified": True, "paid_api_calls": 0,

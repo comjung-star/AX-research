@@ -1,0 +1,74 @@
+{
+  "review_date_kst": "2026-10-26",
+  "reviewer": "CODEX_SOURCE_DOCUMENT_REVIEW",
+  "method": "Individual comparison of saved federal source rows and normalized records, without model rankings or relevance labels. Descriptive retrieval suitability only; no independent corroboration of deployment or benefits.",
+  "source_snapshot_sha256": "a62721202ca4b110ce3c53ffdb688d05ad27a35971a7afda4f1179b2493e31d0",
+  "reviews": [
+    {
+      "case_id": "AXALL_US_OMB_2025_00857",
+      "source_row": 857,
+      "source_record_id": "DOI-0180",
+      "problem": "Manual grant description, eligibility and budget reviews were labor-intensive, inconsistent and error-prone across bureaus.",
+      "task": "Grant compliance and budget review",
+      "context": "Department of the Interior grant management staff reviewing financial assistance actions.",
+      "implementation": "AI tools score compliance, flag inconsistencies and produce standardized review records.",
+      "rationale": "원천 problem_solved는 수작업 검토·부서 간 불일치·오류를 설명하고 system_outputs는 점수·위험 표시·검토 기록을 명시한다. 여러 세부 업무를 하나의 기관 보고 도구 단위로 유지한다. 업무량과 절감 시간을 검증 성과로 전이하지 않는다.",
+      "outcome_status": "SOURCE_REPORTED_QUALITATIVE_NOT_CORROBORATED"
+    },
+    {
+      "case_id": "AXALL_US_OMB_2025_01377",
+      "source_row": 1377,
+      "source_record_id": "DOL-40",
+      "problem": "Survey comments that do not identify an actionable issue add to staff review burden.",
+      "task": "Prioritization of actionable survey comments",
+      "context": "Bureau of Labor Statistics staff reviewing website satisfaction feedback.",
+      "implementation": "A logistic regression model estimates whether a comment contains actionable feedback for review prioritization.",
+      "rationale": "problem_solved의 불필요한 검토 부담과 system_outputs의 로지스틱 회귀 확률 출력이 직접 대응한다. 단순 통계라는 이유로 배제하지 않고 원천의 Classical ML 분류를 표시한다. 검토 부담 감소는 독립 측정이 아니다.",
+      "outcome_status": "SOURCE_REPORTED_QUALITATIVE_NOT_CORROBORATED"
+    },
+    {
+      "case_id": "AXALL_US_OMB_2025_01589",
+      "source_row": 1589,
+      "source_record_id": "FDIC – 15",
+      "problem": "Manual transcription from loan application PDFs causes delays, errors and staff costs in examination data collection.",
+      "task": "Loan document data extraction for examination analytics",
+      "context": "FDIC consumer protection personnel preparing loan data for compliance and fair lending reviews.",
+      "implementation": "AI extracts loan document data into structured files for examination analytics.",
+      "rationale": "수작업 PDF 전사 문제와 구조화 데이터 출력은 원천의 서로 다른 필드에 명시돼 있다. Deployed 보고와 benefits의 미래형 진술을 함께 보존하며 실제 정량 개선을 주장하지 않는다.",
+      "outcome_status": "EXPECTED_BENEFIT_NOT_OBSERVED_OUTCOME"
+    },
+    {
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "source_row": 1754,
+      "source_record_id": "UNKNOWN",
+      "problem": "Required referral information arrives as free text and is tracked manually and inconsistently, leaving missing fields to be checked.",
+      "task": "Referral data structuring and completeness checks",
+      "context": "HHS Office of Refugee Resettlement intake staff reviewing referral records from CBP.",
+      "implementation": "AI parses referral text and flags required data fields; intake staff review missing information and request follow-up.",
+      "rationale": "problem_solved와 system_outputs를 대조해 누락 필드 확인과 사람의 최종 검토를 구분했다. 원천 id가 비어 있으므로 스냅샷 해시·논리 행 번호·제목으로 식별한다. 개인정보 자체는 이 파생 자료에 추가하지 않는다.",
+      "outcome_status": "SOURCE_REPORTED_BENEFIT_NOT_MEASURED"
+    },
+    {
+      "case_id": "AXALL_US_OMB_2025_02640",
+      "source_row": 2640,
+      "source_record_id": "NASA-753",
+      "problem": "Continuous human monitoring of surveillance video consumes staff resources and can miss events.",
+      "task": "Video event detection and operator alerts",
+      "context": "NASA protective services staff using surveillance video for security and operations.",
+      "implementation": "Computer vision detects objects and activities and issues anomaly alerts for operator review.",
+      "rationale": "자동 문제 추출은 기대효과 문장을 선택했지만 원천 첫 문장은 지속적인 사람 감시의 부담과 사건 누락을 설명한다. 해당 문장만 Problem View로 재작성했다. 일반적인 ROI 문구는 관측 성과에서 제외했다.",
+      "outcome_status": "EXPECTED_BENEFIT_NOT_OBSERVED_OUTCOME"
+    },
+    {
+      "case_id": "AXALL_US_OMB_2025_02663",
+      "source_row": 2663,
+      "source_record_id": "NRC-0001",
+      "problem": "Staff must search and cross-reference lengthy documents and policies, creating a time-consuming information bottleneck.",
+      "task": "Document retrieval and cross-reference support",
+      "context": "Nuclear Regulatory Commission staff supporting licensing and oversight work.",
+      "implementation": "A generative AI system returns text and tables responsive to staff document queries.",
+      "rationale": "문서 탐색·상호 참조 병목은 problem_solved에, 질의 응답형 텍스트·표 출력은 system_outputs에 있다. 원천이 보고한 운영과 기대 의사결정 개선은 독립 확인하지 않았다. 원인·전략 Gold는 부여하지 않았다.",
+      "outcome_status": "EXPECTED_BENEFIT_NOT_OBSERVED_OUTCOME"
+    }
+  ]
+}
