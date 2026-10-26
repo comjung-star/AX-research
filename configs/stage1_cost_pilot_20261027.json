@@ -1,0 +1,23 @@
+{
+  "scope": "COUNT_ALL_INPUTS_AND_EVALUATE_40_PILOT_PAIRS_ONLY",
+  "pilot_pairs": 40,
+  "batch_size": 20,
+  "seed": "20261027-cost-pilot-v1",
+  "claude_reported_credit_usd": "5.00",
+  "claude_untouchable_buffer_usd": "0.50",
+  "claude_pilot_spend_cap_usd": "0.25",
+  "full_retry_reserve_fraction": "0.25",
+  "automatic_generation_retries": 0,
+  "full_evaluation_authorized": false,
+  "models": {
+    "openai": {"model": "gpt-6-luna", "key_env": "OPENAI_API_KEY", "input": "0.10", "output": "0.50", "cache_read": "0.01", "timeout_seconds": 90},
+    "gemini": {"model": "gemini-3.5-flash-lite", "key_env": "GEMINI_API_KEY", "input": "0.30", "output": "2.50", "cache_read": "0.03", "timeout_seconds": 180},
+    "claude": {"model": "claude-haiku-4-5-20251001", "key_env": "ANTHROPIC_API_KEY", "input": "1.00", "output": "5.00", "cache_read": "0.10", "cache_write": "1.25", "timeout_seconds": 90}
+  },
+  "price_units": "USD per 1000000 tokens, standard text, 2026-10-27",
+  "pricing_sources": [
+    "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "https://ai.google.dev/gemini-api/docs/pricing",
+    "https://platform.claude.com/docs/en/models/haiku-4-5/overview"
+  ]
+}

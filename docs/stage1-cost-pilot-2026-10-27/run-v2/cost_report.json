@@ -1,0 +1,236 @@
+{
+  "scope": "COUNT_ALL_INPUTS_AND_EVALUATE_40_PILOT_PAIRS_ONLY",
+  "pilot_unique_pairs": 40,
+  "pilot_queries": 10,
+  "batch_size": 20,
+  "pilot_generation_requests": 6,
+  "full_evaluation_executed": false,
+  "human_validation_count": 0,
+  "token_count_requests": 678,
+  "token_count_successes": 678,
+  "model_reports": {
+    "openai": {
+      "model": "gpt-6-luna",
+      "pilot_requests": 2,
+      "response_models_observed": [
+        "gpt-6-luna"
+      ],
+      "pilot_valid_pairs": 40,
+      "pilot_grade_histogram": {
+        "3": 1,
+        "0": 24,
+        "2": 4,
+        "1": 11
+      },
+      "reasons_exceeding_requested_12_words": 6,
+      "pilot_known_usage_cost_usd": "0.00093220",
+      "pilot_unknown_cost_reserved_usd": "0.00000000",
+      "pilot_actual_input_tokens": 4447,
+      "pilot_actual_output_tokens": 975,
+      "input_count_deltas": [
+        0,
+        0
+      ],
+      "scenarios": {
+        "query_case": {
+          "requests": 56,
+          "pairs": 1120,
+          "counted_input_tokens": 87664,
+          "counted_input_cost_usd": "0.00876640",
+          "input_tokens_per_request_min": 1341,
+          "input_tokens_per_request_max": 1949,
+          "output_max_tokens": 78848,
+          "pilot_based_output_token_estimate": 26432,
+          "pilot_based_cost_estimate_usd": "0.02198240",
+          "conservative_cost_upper_usd": "0.04881060",
+          "upper_with_25pct_retry_reserve_usd": "0.06101325"
+        },
+        "reference_case": {
+          "requests": 168,
+          "pairs": 3360,
+          "counted_input_tokens": 307946,
+          "counted_input_cost_usd": "0.03079460",
+          "input_tokens_per_request_min": 1551,
+          "input_tokens_per_request_max": 2324,
+          "output_max_tokens": 236544,
+          "pilot_based_output_token_estimate": 84504,
+          "pilot_based_cost_estimate_usd": "0.07304660",
+          "conservative_cost_upper_usd": "0.15115200",
+          "upper_with_25pct_retry_reserve_usd": "0.18894000"
+        },
+        "combined": {
+          "requests": 224,
+          "pairs": 4480,
+          "counted_input_tokens": 395610,
+          "counted_input_cost_usd": "0.03956100",
+          "input_tokens_per_request_min": 1341,
+          "input_tokens_per_request_max": 2324,
+          "output_max_tokens": 315392,
+          "pilot_based_output_token_estimate": 110936,
+          "pilot_based_cost_estimate_usd": "0.09502900",
+          "conservative_cost_upper_usd": "0.19996260",
+          "upper_with_25pct_retry_reserve_usd": "0.24995325"
+        }
+      }
+    },
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "pilot_requests": 2,
+      "response_models_observed": [
+        "gemini-3.5-flash-lite"
+      ],
+      "pilot_valid_pairs": 40,
+      "pilot_grade_histogram": {
+        "2": 10,
+        "0": 23,
+        "4": 3,
+        "3": 4
+      },
+      "reasons_exceeding_requested_12_words": 0,
+      "pilot_known_usage_cost_usd": "0.00377200",
+      "pilot_unknown_cost_reserved_usd": "0.00000000",
+      "pilot_actual_input_tokens": 4615,
+      "pilot_actual_output_tokens": 955,
+      "input_count_deltas": [
+        0,
+        0
+      ],
+      "scenarios": {
+        "query_case": {
+          "requests": 56,
+          "pairs": 1120,
+          "counted_input_tokens": 92477,
+          "counted_input_cost_usd": "0.02774310",
+          "input_tokens_per_request_min": 1453,
+          "input_tokens_per_request_max": 1987,
+          "output_max_tokens": 78848,
+          "pilot_based_output_token_estimate": 25928,
+          "pilot_based_cost_estimate_usd": "0.09256310",
+          "conservative_cost_upper_usd": "0.22679660",
+          "upper_with_25pct_retry_reserve_usd": "0.28349575"
+        },
+        "reference_case": {
+          "requests": 168,
+          "pairs": 3360,
+          "counted_input_tokens": 323888,
+          "counted_input_cost_usd": "0.09716640",
+          "input_tokens_per_request_min": 1683,
+          "input_tokens_per_request_max": 2360,
+          "output_max_tokens": 236544,
+          "pilot_based_output_token_estimate": 82656,
+          "pilot_based_cost_estimate_usd": "0.30380640",
+          "conservative_cost_upper_usd": "0.69502020",
+          "upper_with_25pct_retry_reserve_usd": "0.86877525"
+        },
+        "combined": {
+          "requests": 224,
+          "pairs": 4480,
+          "counted_input_tokens": 416365,
+          "counted_input_cost_usd": "0.12490950",
+          "input_tokens_per_request_min": 1453,
+          "input_tokens_per_request_max": 2360,
+          "output_max_tokens": 315392,
+          "pilot_based_output_token_estimate": 108584,
+          "pilot_based_cost_estimate_usd": "0.39636950",
+          "conservative_cost_upper_usd": "0.92181680",
+          "upper_with_25pct_retry_reserve_usd": "1.15227100"
+        }
+      }
+    },
+    "claude": {
+      "model": "claude-haiku-4-5-20251001",
+      "pilot_requests": 2,
+      "response_models_observed": [
+        "claude-haiku-4-5-20251001"
+      ],
+      "pilot_valid_pairs": 40,
+      "pilot_grade_histogram": {
+        "3": 8,
+        "0": 12,
+        "4": 2,
+        "2": 7,
+        "1": 11
+      },
+      "reasons_exceeding_requested_12_words": 19,
+      "pilot_known_usage_cost_usd": "0.01554400",
+      "pilot_unknown_cost_reserved_usd": "0.00000000",
+      "pilot_actual_input_tokens": 6389,
+      "pilot_actual_output_tokens": 1831,
+      "input_count_deltas": [
+        0,
+        0
+      ],
+      "scenarios": {
+        "query_case": {
+          "requests": 56,
+          "pairs": 1120,
+          "counted_input_tokens": 117263,
+          "counted_input_cost_usd": "0.11726300",
+          "input_tokens_per_request_min": 1586,
+          "input_tokens_per_request_max": 3007,
+          "output_max_tokens": 78848,
+          "pilot_based_output_token_estimate": 51464,
+          "pilot_based_cost_estimate_usd": "0.37458300",
+          "conservative_cost_upper_usd": "0.51918000",
+          "upper_with_25pct_retry_reserve_usd": "0.64897500"
+        },
+        "reference_case": {
+          "requests": 168,
+          "pairs": 3360,
+          "counted_input_tokens": 414809,
+          "counted_input_cost_usd": "0.41480900",
+          "input_tokens_per_request_min": 1881,
+          "input_tokens_per_request_max": 3588,
+          "output_max_tokens": 236544,
+          "pilot_based_output_token_estimate": 153216,
+          "pilot_based_cost_estimate_usd": "1.18088900",
+          "conservative_cost_upper_usd": "1.62371900",
+          "upper_with_25pct_retry_reserve_usd": "2.02964875"
+        },
+        "combined": {
+          "requests": 224,
+          "pairs": 4480,
+          "counted_input_tokens": 532072,
+          "counted_input_cost_usd": "0.53207200",
+          "input_tokens_per_request_min": 1586,
+          "input_tokens_per_request_max": 3588,
+          "output_max_tokens": 315392,
+          "pilot_based_output_token_estimate": 204680,
+          "pilot_based_cost_estimate_usd": "1.55547200",
+          "conservative_cost_upper_usd": "2.14289900",
+          "upper_with_25pct_retry_reserve_usd": "2.67862375"
+        }
+      }
+    }
+  },
+  "final_test_executed": false,
+  "claude_credit_reported_by_user_usd": "5.00",
+  "balance_independently_verified": false,
+  "claude_budget": {
+    "total_with_pilot_prior_retry_and_untouchable_buffer_usd": "3.19419975",
+    "remaining_headroom_under_five_usd": "1.80580025",
+    "within_user_five_dollar_limit": true,
+    "prior_connection_usage_estimate_usd": "0.000032",
+    "untouchable_buffer_usd": "0.50"
+  },
+  "pilot_agreement": {
+    "fully_observed_pairs": 40,
+    "three_way_exact_grade_agreement": 10,
+    "three_way_binary_agreement": 28,
+    "threshold_disagreement_pairs": 12,
+    "not_accuracy_against_human_gold": true
+  },
+  "decision": {
+    "pilot_format_passed_all_models": true,
+    "pilot_all_instruction_constraints_passed": false,
+    "full_evaluation_started": false,
+    "financial_feasibility": true,
+    "remaining_methodological_gates": [
+      "Draft reference validation",
+      "Pilot disagreement adjudication and source/duplicate review",
+      "User decision before full evaluation"
+    ],
+    "future_actual_output_and_invoice_not_known": true,
+    "recommended_next_action": "HOLD_FULL_EVALUATION_REVIEW_THRESHOLD_DISAGREEMENTS_FIRST"
+  }
+}
