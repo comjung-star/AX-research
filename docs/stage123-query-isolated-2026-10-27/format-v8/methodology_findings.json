@@ -1,0 +1,187 @@
+{
+  "status": "HOLD_NO_LABEL_REPAIRS_OR_MAJORITY_APPROVAL",
+  "examples": [
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV24_bc6444cc1b61",
+      "perspective_id": "",
+      "scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 3
+      },
+      "reasons": {
+        "openai": "This extracts claim information for group-insurance quotations, not customer inquiry handling or support response quality.",
+        "gemini": "Deals with group health insurance quote extraction rather than customer inquiries.",
+        "claude": "Addresses high-volume manual document processing consuming estimator capacity, enabling faster complex case handling."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      },
+      "source_response_files": {
+        "openai": "docs/stage123-query-isolated-2026-10-27/format-v8/results/openai/stage1_0002.json",
+        "gemini": "docs/stage123-query-isolated-2026-10-27/format-v8/results/gemini/stage1_0002.json",
+        "claude": "docs/stage123-query-isolated-2026-10-27/format-v8/results/claude/stage1_0002.json"
+      },
+      "status": "BOUNDARY_DISAGREEMENT_NOT_MAJORITY_APPROVED",
+      "candidate_relevant": null,
+      "relevant": null,
+      "classification": "RULE_ADHERENCE_FAILURE_SHARED_MANUAL_CAPACITY_IS_NOT_DIRECT_INQUIRY_TASK",
+      "input_ptc": {
+        "problem": "보험 견적을 위해 다양한 청구서 PDF에서 가입자 정보를 수동 복사했으며, 인력 증가 없이 견적 물량이 늘었다.",
+        "task": "단체 의료보험 견적용 청구서 정보 추출",
+        "context": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무."
+      },
+      "agent_analysis_not_human_gold": true,
+      "corrected_grade_assigned": false
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2H_0002_01",
+      "perspective_id": "",
+      "scores": {
+        "openai": 2,
+        "gemini": 2,
+        "claude": 3
+      },
+      "reasons": {
+        "openai": "Summarizing long customer email threads is adjacent support work, but does not handle or answer repeated inquiries.",
+        "gemini": "Customer email summarization helps customer support response capacity but is not direct inquiry handling.",
+        "claude": "Email summarization reduces customer inquiry processing time, directly addressing repeated question handling burden and enabling complex issue response."
+      },
+      "ambiguities": {
+        "openai": "TASK_EQUIVALENCE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      },
+      "source_response_files": {
+        "openai": "docs/stage123-query-isolated-2026-10-27/format-v8/results/openai/stage1_0006.json",
+        "gemini": "docs/stage123-query-isolated-2026-10-27/format-v8/results/gemini/stage1_0006.json",
+        "claude": "docs/stage123-query-isolated-2026-10-27/format-v8/results/claude/stage1_0006.json"
+      },
+      "status": "BOUNDARY_DISAGREEMENT_NOT_MAJORITY_APPROVED",
+      "candidate_relevant": null,
+      "relevant": null,
+      "classification": "DIRECT_TASK_VS_SUPPORTING_SUMMARIZATION_BOUNDARY",
+      "input_ptc": {
+        "problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "task": "고객 이메일 요약",
+        "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      "agent_analysis_not_human_gold": true,
+      "corrected_grade_assigned": false
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2N_0130",
+      "perspective_id": "",
+      "scores": {
+        "openai": 2,
+        "gemini": 3,
+        "claude": 2
+      },
+      "reasons": {
+        "openai": "Routine case administration may free support staff, but it does not handle repeated customer questions or their answers.",
+        "gemini": "Automating routine support case administration addresses repetitive support tasks.",
+        "claude": "Automates support operations but administrative workflows differ from answering repeated customer questions directly."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      },
+      "source_response_files": {
+        "openai": "docs/stage123-query-isolated-2026-10-27/format-v8/results/openai/stage1_0010.json",
+        "gemini": "docs/stage123-query-isolated-2026-10-27/format-v8/results/gemini/stage1_0010.json",
+        "claude": "docs/stage123-query-isolated-2026-10-27/format-v8/results/claude/stage1_0010.json"
+      },
+      "status": "BOUNDARY_DISAGREEMENT_NOT_MAJORITY_APPROVED",
+      "candidate_relevant": null,
+      "relevant": null,
+      "classification": "DIRECT_INQUIRY_VS_SUPPORT_ADMINISTRATION_BOUNDARY",
+      "input_ptc": {
+        "problem": "Follow-ups, status updates, closures and handoffs require repetitive engineer effort.",
+        "task": "Automate routine support-case administration",
+        "context": "Automate SW Support deployed to 2800 engineers worldwide."
+      },
+      "agent_analysis_not_human_gold": true,
+      "corrected_grade_assigned": false
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2N_0138",
+      "perspective_id": "",
+      "scores": {
+        "openai": 3,
+        "gemini": 1,
+        "claude": 3
+      },
+      "reasons": {
+        "openai": "Drafting answers to branch inquiries is directly analogous to handling repeated customer inquiries, but concerns legal branch requests.",
+        "gemini": "Drafting branch legal inquiries addresses internal legal workflow rather than external customer inquiries.",
+        "claude": "Handles repeated inquiries and protects small team capacity, but internal legal inquiries differ from customer support inquiries."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      },
+      "source_response_files": {
+        "openai": "docs/stage123-query-isolated-2026-10-27/format-v8/results/openai/stage1_0011.json",
+        "gemini": "docs/stage123-query-isolated-2026-10-27/format-v8/results/gemini/stage1_0011.json",
+        "claude": "docs/stage123-query-isolated-2026-10-27/format-v8/results/claude/stage1_0011.json"
+      },
+      "status": "BOUNDARY_DISAGREEMENT_NOT_MAJORITY_APPROVED",
+      "candidate_relevant": null,
+      "relevant": null,
+      "classification": "RECIPIENT_ROLE_TASK_EQUIVALENCE_NORMAL_DISAGREEMENT",
+      "input_ptc": {
+        "problem": "A small legal team must repeatedly research answers for many branch managers.",
+        "task": "Draft answers to branch legal inquiries",
+        "context": "Nine-person retail legal team handling roughly 40000 annual inquiries."
+      },
+      "agent_analysis_not_human_gold": true,
+      "corrected_grade_assigned": false
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2P2_0048_01",
+      "perspective_id": "",
+      "scores": {
+        "openai": 1,
+        "gemini": 2,
+        "claude": 4
+      },
+      "reasons": {
+        "openai": "Shopping answers address product selection questions, not the stated customer-support workload and complex inquiry response problem.",
+        "gemini": "Shopping assistance and product recommendations are adjacent retail tasks.",
+        "claude": "Directly handles repeated customer shopping questions, reduces support workload, maintains answer quality via AI recommendations."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      },
+      "source_response_files": {
+        "openai": "docs/stage123-query-isolated-2026-10-27/format-v8/results/openai/stage1_0012.json",
+        "gemini": "docs/stage123-query-isolated-2026-10-27/format-v8/results/gemini/stage1_0012.json",
+        "claude": "docs/stage123-query-isolated-2026-10-27/format-v8/results/claude/stage1_0012.json"
+      },
+      "status": "BOUNDARY_DISAGREEMENT_NOT_MAJORITY_APPROVED",
+      "candidate_relevant": null,
+      "relevant": null,
+      "classification": "UNSTATED_SUPPORT_BENEFIT_AND_TECHNOLOGY_IN_REASON; SCORE4_NOT_SUPPORTED_BY_INPUT",
+      "input_ptc": {
+        "problem": "고객이 수많은 상품 정보·리뷰·비교 결과를 직접 종합해야 해 특정 용도에 적합한 상품을 맥락에 맞춰 선택하기 어렵다.",
+        "task": "Answer shopping questions and recommend products",
+        "context": "Walmart app Ask Sparky button launched across categories in June 2025"
+      },
+      "agent_analysis_not_human_gold": true,
+      "corrected_grade_assigned": false
+    }
+  ],
+  "all_other_disagreements": 19,
+  "full_semantic_review_of_all_872_scores_completed": false
+}

@@ -1,0 +1,1308 @@
+{
+  "status": "PILOT_PENDING_GATE_REVIEW",
+  "human_gold": false,
+  "old_metrics_invalid_due_to_question_confusion": true,
+  "all_40": {
+    "denominator": 24,
+    "exact_grade_numerator": 11,
+    "binary_numerator": 22,
+    "exact_grade_rate": 0.4583333333333333,
+    "binary_rate": 0.9166666666666666
+  },
+  "query_case_20": {
+    "denominator": 20,
+    "exact_grade_numerator": 10,
+    "binary_numerator": 18,
+    "exact_grade_rate": 0.5,
+    "binary_rate": 0.9
+  },
+  "reference_case_20": {
+    "denominator": 4,
+    "exact_grade_numerator": 1,
+    "binary_numerator": 4,
+    "exact_grade_rate": 0.25,
+    "binary_rate": 1.0
+  },
+  "pairwise": {
+    "openai:gemini": {
+      "denominator": 24,
+      "exact_grade_numerator": 18,
+      "binary_numerator": 24
+    },
+    "openai:claude": {
+      "denominator": 28,
+      "exact_grade_numerator": 16,
+      "binary_numerator": 26
+    },
+    "gemini:claude": {
+      "denominator": 24,
+      "exact_grade_numerator": 13,
+      "binary_numerator": 22
+    }
+  },
+  "usage": {
+    "openai": {
+      "generation_attempts_dispatched": 33,
+      "actual_input_tokens": 33641,
+      "actual_output_tokens_including_thinking": 6002,
+      "usage_cost_usd": "0.00636510",
+      "actual_or_reserved_usd": "0.00636510",
+      "unconfirmed_attempts": 0,
+      "accepted_grades": 29,
+      "score_distribution": {
+        "0": 15,
+        "1": 10,
+        "2": 3,
+        "3": 1
+      }
+    },
+    "gemini": {
+      "generation_attempts_dispatched": 30,
+      "actual_input_tokens": 33476,
+      "actual_output_tokens_including_thinking": 6915,
+      "usage_cost_usd": "0.02733030",
+      "actual_or_reserved_usd": "0.02895950",
+      "unconfirmed_attempts": 1,
+      "accepted_grades": 24,
+      "score_distribution": {
+        "0": 18,
+        "1": 4,
+        "2": 1,
+        "3": 1
+      }
+    },
+    "claude": {
+      "generation_attempts_dispatched": 34,
+      "actual_input_tokens": 45904,
+      "actual_output_tokens_including_thinking": 13054,
+      "usage_cost_usd": "0.11117400",
+      "actual_or_reserved_usd": "0.11117400",
+      "unconfirmed_attempts": 0,
+      "accepted_grades": 28,
+      "score_distribution": {
+        "0": 10,
+        "1": 12,
+        "2": 3,
+        "3": 3
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2H_0070_01",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 2,
+        "openai": 3
+      },
+      "new_scores": {
+        "openai": 2,
+        "gemini": 1,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "The case addresses delivery-driver phone support, but does not state it handles repeated customer inquiries or protects complex-case capacity.",
+        "gemini": "Shares broad context of managing call center inquiries but focuses on delivery drivers instead of general customer inquiries.",
+        "claude": "Query describes repeated inquiry burden overwhelming support staff; case addresses same problem with automated voice response to reduce repeat inquiry handling load."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2N_0117",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "The case concerns detecting vehicle underbody deposits, not handling customer inquiries or supporting response capacity.",
+        "gemini": "Completely unrelated manufacturing inspection task with no connection to customer support inquiries or response capacity.",
+        "claude": "Query addresses customer inquiry handling; case addresses vehicle manufacturing inspection. Completely unrelated business domains and operational contexts."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXV2P2_0099_01",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "Automating steel marking does not address reading email threads, summarizing communication, or identifying follow-up actions.",
+        "gemini": "The query focuses on email thread summarization, whereas the case addresses steel manufacturing marking tasks.",
+        "claude": "Query addresses email and document summarization; case addresses steel production marking automation. No functional overlap in business object or output."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXV2N_0139",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 4,
+        "gemini": 4,
+        "openai": 2
+      },
+      "new_scores": {
+        "openai": 2,
+        "gemini": 2,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "Contract summarization shares a summarization operation, but its object is contracts, not email threads and attachments or follow-up actions.",
+        "gemini": "Contract summarization is adjacent but does not involve email thread communication workflows and follow-up identification.",
+        "claude": "Query explicitly addresses extracting core content and organizing follow-up from long email threads and documents. Case task summarizes contracts for teams, directly matching communication workflow summarization."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D003",
+      "case_id": "AXV24_523997b7101f",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case translates and localizes news articles; it does not address finding scattered internal regulations, manuals, or past cases.",
+        "gemini": "The query deals with fragmented internal regulations and manuals, whereas the case focuses on English news translation and localization.",
+        "claude": "Query addresses fragmented knowledge discovery across systems. Case task is news translation requiring terminology consistency, not knowledge discovery."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D003",
+      "case_id": "AXV2C_0094_02",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "Production planning uses operational information, but the case does not address discovering scattered internal knowledge or preventing duplicated materials.",
+        "gemini": "The query addresses internal knowledge discovery and manuals, while the case addresses manufacturing production planning.",
+        "claude": "Query emphasizes slow information discovery and duplicate work. Case focuses on production planning capacity, not knowledge discovery or regulation/manual fragmentation."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D004",
+      "case_id": "AXV2N_0118",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "The case concerns unloading cartons, not reviewing documents or verifying required fields and regulatory compliance.",
+        "gemini": "The query focuses on document verification and compliance checking, whereas the case is about physical box unloading.",
+        "claude": "Query concerns document review and compliance verification; case involves carton unloading. No shared business object or operational overlap."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D004",
+      "case_id": "AXV2N_0122",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "Both involve information-related work, but spending analysis does not explicitly review documents or verify required fields and compliance.",
+        "gemini": "The query concerns reviewing document requirements and compliance, while the case addresses answering personal spending-analysis questions.",
+        "claude": "Query addresses document compliance verification; case addresses customer spending analysis. Entirely distinct domains and business objectives."
+      },
+      "ambiguities": {
+        "openai": "MISSING_CONTEXT",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D005",
+      "case_id": "AXV2N_0116",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "The case creates localized advertising images, not integrated organizational data or a shared overview for decisions.",
+        "gemini": "The query addresses cross-system data fragmentation while the case focuses on creating localized lifestyle advertising images.",
+        "claude": "Query addresses fragmented cross-system data integration and decision-making delays. Case addresses image localization without data consolidation or cross-system analysis."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D005",
+      "case_id": "AXALL_US_OMB_2025_01377",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "Prioritizing survey comments supports staff review, but does not address fragmented systems or inconsistent cross-unit analysis.",
+        "gemini": "The query targets fragmented multi-system data integration whereas the case addresses prioritizing website survey comments.",
+        "claude": "Query emphasizes inconsistent departmental analysis causing decision delays. Case addresses comment filtering for staff efficiency, not cross-unit data integration or inconsistent analysis resolution."
+      },
+      "ambiguities": {
+        "openai": "TASK_EQUIVALENCE",
+        "gemini": "NONE",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      }
+    },
+    {
+      "query_id": "V21D006",
+      "case_id": "AXALL_US_OMB_2025_02640",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "The case detects surveillance video events and alerts operators, not classifies or tags product attributes or supports product discovery.",
+        "gemini": "The query focuses on product attribute classification and search linking, which is entirely unrelated to video surveillance detection.",
+        "claude": "Query concerns product attribute classification and tagging; case concerns video surveillance event detection. No shared business object or functional equivalence."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D006",
+      "case_id": "AXV24_625513e68743",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 1,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "Both involve ecommerce customers, but campaign planning and messaging do not classify product attributes, connect searches, or aid exploration.",
+        "gemini": "The query addresses product taxonomy and search matching, whereas the case focuses on CRM promotional campaign planning.",
+        "claude": "Both involve e-commerce operations requiring manual effort reduction. However, product attribute classification differs fundamentally from campaign planning workflow; no shared task or output."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      }
+    },
+    {
+      "query_id": "V21D007",
+      "case_id": "AXV2N_0111",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 2,
+        "openai": 2
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "The case summarizes client meetings and follow-ups, not drawings, supplier proposals, quotation decisions, or procurement follow-up.",
+        "gemini": "The query focuses on procurement drawings and quotations, whereas the case covers client meeting documentation summarization.",
+        "claude": "Query addresses drawing/proposal comparison for procurement decisions; case concerns meeting documentation summarization. Different business objects and tasks entirely."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D007",
+      "case_id": "AXV2N_0134",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 2,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case summarizes merchant websites for business understanding, not quotation, procurement, supplier selection, or feasibility assessment.",
+        "gemini": "The query involves procurement and supplier proposal comparisons, while the case addresses merchant website business understanding.",
+        "claude": "Both involve reading/summarizing unstructured documents, but query focuses on procurement quotation decisions while case addresses merchant website summarization for business understanding."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D008",
+      "case_id": "AXV2N_0121",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "The case answers customer help questions; it does not forecast demand or production for planning.",
+        "gemini": "The query focuses on predicting varying demand and production, completely unrelated to answering customer help centre questions.",
+        "claude": "Query addresses demand/production forecasting under varying conditions. Case concerns customer help-centre keyword search accuracy. No overlap in business object, prediction requirement, or planning context."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D008",
+      "case_id": "AXV2N_0117",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "The case detects weld splatter during inspection, not variable demand or production forecasting for planning.",
+        "gemini": "The query targets demand and production forecasting, while the case addresses detecting weld splatter on vehicle underbodies.",
+        "claude": "Query focuses on forecasting variable demand and production for planning. Case concerns visual defect detection on vehicle underbodies. Entirely distinct business domains and technical approaches."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXALL_US_OMB_2025_01589",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 2
+      },
+      "new_reasons": {
+        "openai": "Loan data extraction supports examination analytics, not secure internal AI linkage or consistent enterprise AI governance.",
+        "gemini": "The query focuses on enterprise generative AI governance and secure internal document linkage, while the case addresses loan document data extraction.",
+        "claude": "Query addresses enterprise AI governance and data security constraints; case involves document extraction but lacks explicit security or governance policy evidence required by rule."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      }
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXV24_36c7ef329920",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 4,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "Recruitment application review does not address sensitive-data restrictions, secure system linkage, or enterprise AI rollout and governance.",
+        "gemini": "The query emphasizes secure generative AI rollout and internal data linkage, whereas the case involves high-volume recruitment application review.",
+        "claude": "Query emphasizes enterprise AI governance and security constraints; case is high-volume document review lacking evidence of internal data sensitivity or governance policy requirements."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D010",
+      "case_id": "AXV2C_0093_02",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 4,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 3,
+        "gemini": 3,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "The case directly adjusts manufacturing production schedules, matching the query's explicit rescheduling task when orders or equipment change.",
+        "gemini": "The case directly matches the explicit primary task of manufacturing schedule adjustments when conditions change.",
+        "claude": "Query explicitly addresses production schedule adjustment when orders or equipment states change, matching the explicit primary rescheduling task."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D010",
+      "case_id": "AXV2P2_0010_01",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 0,
+        "claude": 0
+      },
+      "new_reasons": {
+        "openai": "Retrieving product support knowledge is adjacent manufacturing information access, but does not perform quality-cause discovery or rescheduling.",
+        "gemini": "The case focuses on CAD/CAM product support knowledge rather than manufacturing data quality causes or rescheduling.",
+        "claude": "Query concerns fragmented manufacturing data and rescheduling. Case requires CAD/CAM product knowledge retrieval, a different business object and output."
+      },
+      "ambiguities": {
+        "openai": "TASK_EQUIVALENCE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2H_0003_01",
+      "perspective_id": "P1_HIGH_VOLUME_SUPPORT_BOTTLENECK",
+      "reference_perspective": "대량 문의 처리 병목",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 0,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case concerns verifying employee background reports, not handling customer inquiries or preserving support response capacity.",
+        "gemini": "The query addresses customer support bottlenecks, whereas the reference case deals with employee background check verification.",
+        "claude": "Query addresses customer inquiry bottleneck; case is employee credential verification. Generic validation burden reduction; not customer support capacity protection."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2C_0094_01",
+      "perspective_id": "P2_REPETITIVE_SUPPORT_WORK",
+      "reference_perspective": "반복 응대 업무 부담",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 1,
+        "claude": 2
+      },
+      "new_reasons": {
+        "openai": "Both mention repetitive workload, but drafting manufacturing quotes does not handle customer inquiries or protect support response quality.",
+        "gemini": "The query concerns customer support repetitive inquiries, whereas the reference context focuses on manual manufacturing quoting bottlenecks.",
+        "claude": "Query addresses repetitive customer inquiry burden degrading response quality. Case involves repetitive quoting work capacity issue but differs in business object: customer support inquiries versus manufacturing quote drafting."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+      "reference_perspective": "후속조치 식별 부담",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 2,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 1,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case structures referral data and checks completeness, not extracts follow-up actions from email threads and attachments.",
+        "claude": "Query addresses email thread summarization and follow-up identification; case involves referral data structuring from free text. Different business objects and workflows; contextual burden reduction similarity only."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXV2H_0008_01",
+      "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+      "reference_perspective": "반복 요약·정리 업무",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 4,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 1,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "Both involve lengthy documents, but this case extracts tax data rather than summarizing sales/service communications or identifying follow-up actions.",
+        "gemini": "The query deals with email threads and follow-ups, while the reference handles tax document data extraction, showing only broad contextual similarity.",
+        "claude": "Query addresses email thread and communication summarization. Case involves tax document data extraction, different business object and workflow domain."
+      },
+      "ambiguities": {
+        "openai": "TASK_EQUIVALENCE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D003",
+      "case_id": "AXV24_bc6444cc1b61",
+      "perspective_id": "P1_KNOWLEDGE_FRAGMENTATION",
+      "reference_perspective": "정보·지식 분산",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case involves scattered insurance documents, but its task is extracting subscriber data, not discovering regulations, manuals, or past knowledge.",
+        "gemini": "The query addresses fragmented knowledge discovery, whereas the reference case focuses on extracting subscriber information from PDF invoices.",
+        "claude": "Case addresses operational data extraction, not knowledge discovery. Fragmentation theme present but task objects differ fundamentally: regulations/manuals versus insurance claim forms."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D003",
+      "case_id": "AXV24_625513e68743",
+      "perspective_id": "P2_SEARCH_DELAY",
+      "reference_perspective": "업무정보 검색 지연",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case concerns preparing CRM campaigns, not finding fragmented regulations, manuals, or past knowledge.",
+        "claude": "Case describes CRM campaign preparation delay; query addresses fragmented regulations and knowledge discovery. No direct evidence regulations or manuals caused campaign delay."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D004",
+      "case_id": "AXV24_28baf265c6cf",
+      "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+      "reference_perspective": "규정·검증 누락 위험",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 3,
+        "openai": 2
+      },
+      "new_scores": {
+        "openai": 2,
+        "claude": 2
+      },
+      "new_reasons": {
+        "openai": "The case extracts and classifies underwriting documents, but does not state that required fields or compliance are verified.",
+        "claude": "Query emphasizes compliance verification and required-field checking; case describes extraction and classification without explicit verification task confirmation."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      }
+    },
+    {
+      "query_id": "V21D004",
+      "case_id": "AXV24_523997b7101f",
+      "perspective_id": "P3_MANUAL_VERIFICATION",
+      "reference_perspective": "반복 수작업 검증",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case translates and localizes news articles; it does not review documents for required fields or rule compliance.",
+        "claude": "Query addresses document review and compliance verification; case concerns news article translation with no explicit required-field or rule-compliance verification task stated."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D005",
+      "case_id": "AXV2C_0080_01",
+      "perspective_id": "P1_DATA_SILO",
+      "reference_perspective": "데이터 사일로·통합 부족",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 0,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 1
+      },
+      "new_reasons": {
+        "openai": "The query concerns fragmented cross-system data and inconsistent analysis; invoice field extraction is an isolated document operation, not integration."
+      },
+      "ambiguities": {
+        "openai": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D005",
+      "case_id": "AXV2P2_0061_01",
+      "perspective_id": "P2_VISIBILITY_GAP",
+      "reference_perspective": "전사 현황 가시성 부족",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D006",
+      "case_id": "AXALL_US_OMB_2025_02663",
+      "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+      "reference_perspective": "상품 속성 분류·태깅 부담",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 2
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D006",
+      "case_id": "AXV2P2_0035_01",
+      "perspective_id": "P1_CATALOG_ENRICHMENT_BURDEN",
+      "reference_perspective": "상품 속성 분류·태깅 부담",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D007",
+      "case_id": "AXV2N_0123",
+      "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+      "reference_perspective": "견적·조달 후속업무 수작업 병목",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D007",
+      "case_id": "AXV2C_0094_02",
+      "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+      "reference_perspective": "견적·조달 후속업무 수작업 병목",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 3,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D008",
+      "case_id": "AXV2P2_0100_01",
+      "perspective_id": "P2_PLANNING_OPTIMIZATION",
+      "reference_perspective": "계획·자원배분 최적화",
+      "old_scores": {
+        "claude": 0,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D008",
+      "case_id": "AXV2N_0114",
+      "perspective_id": "P3_EXPERT_RULE_LIMITATION",
+      "reference_perspective": "경험·단순 룰 기반 판단 한계",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXV2N_0134",
+      "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+      "reference_perspective": "민감정보·규제에 따른 외부 AI 사용 제약",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 3,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXV2C_0080_01",
+      "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+      "reference_perspective": "부서별 AI를 일관된 기준으로 확산하기 어려움",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 3,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D010",
+      "case_id": "AXV2N_0107",
+      "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+      "reference_perspective": "품질 이상 원인분석 지연",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 0
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D010",
+      "case_id": "AXV24_6c9a4a26411c",
+      "perspective_id": "P2_QUALITY_ROOT_CAUSE_DELAY",
+      "reference_perspective": "품질 이상 원인분석 지연",
+      "old_scores": {
+        "claude": 1,
+        "gemini": 0,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    }
+  ],
+  "original_12_boundary_disagreements": [
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2H_0070_01",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 2,
+        "openai": 3
+      },
+      "new_scores": {
+        "openai": 2,
+        "gemini": 1,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "The case addresses delivery-driver phone support, but does not state it handles repeated customer inquiries or protects complex-case capacity.",
+        "gemini": "Shares broad context of managing call center inquiries but focuses on delivery drivers instead of general customer inquiries.",
+        "claude": "Query describes repeated inquiry burden overwhelming support staff; case addresses same problem with automated voice response to reduce repeat inquiry handling load."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXV2N_0139",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 4,
+        "gemini": 4,
+        "openai": 2
+      },
+      "new_scores": {
+        "openai": 2,
+        "gemini": 2,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "Contract summarization shares a summarization operation, but its object is contracts, not email threads and attachments or follow-up actions.",
+        "gemini": "Contract summarization is adjacent but does not involve email thread communication workflows and follow-up identification.",
+        "claude": "Query explicitly addresses extracting core content and organizing follow-up from long email threads and documents. Case task summarizes contracts for teams, directly matching communication workflow summarization."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXALL_US_OMB_2025_01589",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 2
+      },
+      "new_reasons": {
+        "openai": "Loan data extraction supports examination analytics, not secure internal AI linkage or consistent enterprise AI governance.",
+        "gemini": "The query focuses on enterprise generative AI governance and secure internal document linkage, while the case addresses loan document data extraction.",
+        "claude": "Query addresses enterprise AI governance and data security constraints; case involves document extraction but lacks explicit security or governance policy evidence required by rule."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      }
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXV24_36c7ef329920",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 4,
+        "gemini": 2,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "Recruitment application review does not address sensitive-data restrictions, secure system linkage, or enterprise AI rollout and governance.",
+        "gemini": "The query emphasizes secure generative AI rollout and internal data linkage, whereas the case involves high-volume recruitment application review.",
+        "claude": "Query emphasizes enterprise AI governance and security constraints; case is high-volume document review lacking evidence of internal data sensitivity or governance policy requirements."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D010",
+      "case_id": "AXV2C_0093_02",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 4,
+        "openai": 0
+      },
+      "new_scores": {
+        "openai": 3,
+        "gemini": 3,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "The case directly adjusts manufacturing production schedules, matching the query's explicit rescheduling task when orders or equipment change.",
+        "gemini": "The case directly matches the explicit primary task of manufacturing schedule adjustments when conditions change.",
+        "claude": "Query explicitly addresses production schedule adjustment when orders or equipment states change, matching the explicit primary rescheduling task."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2H_0003_01",
+      "perspective_id": "P1_HIGH_VOLUME_SUPPORT_BOTTLENECK",
+      "reference_perspective": "대량 문의 처리 병목",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 0,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 0,
+        "gemini": 0,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case concerns verifying employee background reports, not handling customer inquiries or preserving support response capacity.",
+        "gemini": "The query addresses customer support bottlenecks, whereas the reference case deals with employee background check verification.",
+        "claude": "Query addresses customer inquiry bottleneck; case is employee credential verification. Generic validation burden reduction; not customer support capacity protection."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "perspective_id": "P2_ACTION_ITEM_EXTRACTION",
+      "reference_perspective": "후속조치 식별 부담",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 2,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 1,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "The case structures referral data and checks completeness, not extracts follow-up actions from email threads and attachments.",
+        "claude": "Query addresses email thread summarization and follow-up identification; case involves referral data structuring from free text. Different business objects and workflows; contextual burden reduction similarity only."
+      },
+      "ambiguities": {
+        "openai": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXV2H_0008_01",
+      "perspective_id": "P3_REPETITIVE_SUMMARIZATION",
+      "reference_perspective": "반복 요약·정리 업무",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 4,
+        "openai": 1
+      },
+      "new_scores": {
+        "openai": 1,
+        "gemini": 1,
+        "claude": 1
+      },
+      "new_reasons": {
+        "openai": "Both involve lengthy documents, but this case extracts tax data rather than summarizing sales/service communications or identifying follow-up actions.",
+        "gemini": "The query deals with email threads and follow-ups, while the reference handles tax document data extraction, showing only broad contextual similarity.",
+        "claude": "Query addresses email thread and communication summarization. Case involves tax document data extraction, different business object and workflow domain."
+      },
+      "ambiguities": {
+        "openai": "TASK_EQUIVALENCE",
+        "gemini": "NONE",
+        "claude": "MISSING_CONTEXT"
+      }
+    },
+    {
+      "query_id": "V21D004",
+      "case_id": "AXV24_28baf265c6cf",
+      "perspective_id": "P2_COMPLIANCE_CHECK_RISK",
+      "reference_perspective": "규정·검증 누락 위험",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 3,
+        "openai": 2
+      },
+      "new_scores": {
+        "openai": 2,
+        "claude": 2
+      },
+      "new_reasons": {
+        "openai": "The case extracts and classifies underwriting documents, but does not state that required fields or compliance are verified.",
+        "claude": "Query emphasizes compliance verification and required-field checking; case describes extraction and classification without explicit verification task confirmation."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "claude": "PARTIAL_CORE_BOUNDARY"
+      }
+    },
+    {
+      "query_id": "V21D007",
+      "case_id": "AXV2C_0094_02",
+      "perspective_id": "P3_QUOTE_PROCUREMENT_WORKFLOW",
+      "reference_perspective": "견적·조달 후속업무 수작업 병목",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 3,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXV2N_0134",
+      "perspective_id": "P1_AI_SECURITY_COMPLIANCE_CONSTRAINT",
+      "reference_perspective": "민감정보·규제에 따른 외부 AI 사용 제약",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 3,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    },
+    {
+      "query_id": "V21D009",
+      "case_id": "AXV2C_0080_01",
+      "perspective_id": "P3_ENTERPRISE_AI_SCALE_GOVERNANCE",
+      "reference_perspective": "부서별 AI를 일관된 기준으로 확산하기 어려움",
+      "old_scores": {
+        "claude": 2,
+        "gemini": 3,
+        "openai": 1
+      },
+      "new_scores": {},
+      "new_reasons": {},
+      "ambiguities": {}
+    }
+  ],
+  "current_binary_disagreements": [
+    {
+      "query_id": "V21D001",
+      "case_id": "AXV2H_0070_01",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 3,
+        "gemini": 2,
+        "openai": 3
+      },
+      "new_scores": {
+        "openai": 2,
+        "gemini": 1,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "The case addresses delivery-driver phone support, but does not state it handles repeated customer inquiries or protects complex-case capacity.",
+        "gemini": "Shares broad context of managing call center inquiries but focuses on delivery drivers instead of general customer inquiries.",
+        "claude": "Query describes repeated inquiry burden overwhelming support staff; case addresses same problem with automated voice response to reduce repeat inquiry handling load."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    },
+    {
+      "query_id": "V21D002",
+      "case_id": "AXV2N_0139",
+      "perspective_id": "",
+      "reference_perspective": "",
+      "old_scores": {
+        "claude": 4,
+        "gemini": 4,
+        "openai": 2
+      },
+      "new_scores": {
+        "openai": 2,
+        "gemini": 2,
+        "claude": 3
+      },
+      "new_reasons": {
+        "openai": "Contract summarization shares a summarization operation, but its object is contracts, not email threads and attachments or follow-up actions.",
+        "gemini": "Contract summarization is adjacent but does not involve email thread communication workflows and follow-up identification.",
+        "claude": "Query explicitly addresses extracting core content and organizing follow-up from long email threads and documents. Case task summarizes contracts for teams, directly matching communication workflow summarization."
+      },
+      "ambiguities": {
+        "openai": "PARTIAL_CORE_BOUNDARY",
+        "gemini": "NONE",
+        "claude": "NONE"
+      }
+    }
+  ]
+}

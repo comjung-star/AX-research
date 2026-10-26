@@ -1,0 +1,42 @@
+{
+  "state": "RECEIVED",
+  "provider": "claude",
+  "model_requested": "claude-haiku-4-5-20251001",
+  "job_id": "pilot_0000",
+  "query_id": "V21D001",
+  "perspective_id": "",
+  "scope": "query_case",
+  "attempt": 1,
+  "prompt_sha256": "57f094918a1b8061f5e4fc7b82853aad294f33d9e0b3b06428f0e631a16dec7f",
+  "reserved_usd": "0.00549800",
+  "counted_input_tokens": 1449,
+  "correction": false,
+  "human_approved": false,
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 4.222,
+  "usage": {
+    "actual_input_tokens": 1449,
+    "actual_output_tokens_including_thinking": 387,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00338400"
+  },
+  "response_text": "```json\n{\n  \"ratings\": [\n    {\n      \"query_id\": \"V21D001\",\n      \"perspective_id\": \"\",\n      \"case_id\": \"AXV2H_0070_01\",\n      \"score\": 3,\n      \"task_match\": \"DIRECT\",\n      \"ambiguity\": \"NONE\",\n      \"query_quote\": \"상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고\",\n      \"reference_quote\": \"\",\n      \"case_quote\": \"배달원 음성 상담 자동응답\",\n      \"reason\": \"Query addresses repeated customer inquiry burden reducing support capacity for complex issues, directly matching automated response task.\"\n    },\n    {\n      \"query_id\": \"V21D001\",\n      \"perspective_id\": \"\",\n      \"case_id\": \"AXV2N_0117\",\n      \"score\": 0,\n      \"task_match\": \"NONE\",\n      \"ambiguity\": \"MISSING_CONTEXT\",\n      \"query_quote\": \"고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에\",\n      \"reference_quote\": \"\",\n      \"case_quote\": \"Manual underbody inspection must locate metal deposits that can damage cables.\",\n      \"reason\": \"Query concerns customer support inquiry handling; case concerns vehicle manufacturing inspection. No operational or business object overlap.\"\n    }\n  ]\n}\n```",
+  "response_model": "claude-haiku-4-5-20251001",
+  "response_id": "msg_011CgRByMTiei7RLuurqYqtW",
+  "validation": {
+    "valid": false,
+    "format_errors": [],
+    "hard_errors": [
+      {
+        "kind": "UNANCHORED_FOREIGN_TASK",
+        "case_id": "AXV2N_0117",
+        "task_flags": [
+          "MANUFACTURING"
+        ]
+      }
+    ],
+    "ratings": []
+  }
+}
