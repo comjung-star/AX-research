@@ -235,3 +235,14 @@ node --test tests/prototype_research_ui.test.cjs
 - 답변품질관점이제조품질원인분석(Silver0)을2위로두어RR7위선택,RRF28/혼합33으로제외함. 유용한HR과무관제조사례를순위집계만으로충분히구분하지못하는것이정밀QueryCase매핑후속우선근거. 의미손실·필드별영향은가설로구분.
 - 결론:결합은부분원인,관점순위품질등다른문제도남음. Dev Silver관찰,사람Gold/독립Test개선주장없음. 후속우선은정밀매핑→관점품질→PTC가중→하이브리드→필요시BGE학습. 이번에추가구현/평가/모델호출안함.
 - 신규8개자동검사통과,60자리Decimal독립검산200순위/600지표/6720후보계산·기존RR재현·원본보존통과. 모든결과·계산항·사례추적·그림보존. 재현은 `python -m scripts.candidate_fusion_ablation run`, `candidate_fusion_analysis`, `candidate_fusion_verify`이며API키없어도실행가능하다.
+
+
+## Dense+BM25 후보 확보 비교 완료 (2026-10-27)
+
+- 기준 2140dc27006e0d8d0132b2be20af20f1eb64e5b1, 새 브랜치 research/dense-bm25-candidates-20261027. 보고서 docs/dense-bm25-candidates-2026-10-27/README.md, 상세 일지 worklog/2026-10-27-dense-bm25.md 참조.
+- 사전 설정 커밋 23584ad09d8f2052ab107b7ce1178232ba0b2c77: RRF60, Dense/BM25 각50%, 관점 기여 평균, 전 경로112개 후보. D/E는 이전 mean-RRF와 정확히 같고 Round-robin이 아니다. Single 하이브리드 주 비교와 3View 보조 비교를 분리했다.
+- 원질문10+관점108 재사용, BM25 로컬 계산만 실행. 전체112개 후보 유지, 236개 Dense/하이브리드 경로, 200개 최종 순위·600개 지표, 26432개 특징행·80개 매핑 전달 풀 보존. 새 매핑 알고리즘은 구현하지 않았다.
+- Top20 F1: 원질문 Single 19.92→17.36%, 다중관점 Single18.81→15.40%, 원질문3View18.81→17.36%, 다중관점3View17.95→15.27%. 모든 맞춘 K에서 하락했다. 도움말센터 개선과 HR 규정 하락 등 개별 결과도 보존했다.
+- P는10질문, R/F1은양성6질문 평균. 기존 동일 모델3회 중앙값 Silver 양성18쌍; 사람 Gold 아님. 4개 무양성 질문은 R/F1 결측 유지.
+- 신규 테스트8개, scalar BM25 13216점·Decimal 200순위/600지표 독립 검산, 핵심6결과 재실행 해시 일치. 원본13개 fingerprint 보존. bm25.py만 기존 CRLF/LF를 Git동일blob으로 확인한 소스 검사 보정이며 코드/데이터 변경 없음.
+- API 호출·키 읽기·추가 임베딩·비용0, Stage4 열람/실행0. 기존 데이터/과거 결과/프로토타입 변경 없음. 정밀매핑 입력은 라벨 제외, 원질문과 관점의 향후 기능 평가를 분리하도록 설계했다.

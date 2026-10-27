@@ -1,0 +1,38 @@
+{
+  "status": "DATA_CONTRACT_ONLY_NO_MAPPING_ALGORITHM",
+  "query_registry": "query_registry.json: path_id -> original_query, query_text, perspective and source_quote",
+  "case_registry": "case_registry.json: case_id -> raw Problem/Task/Context, evidence_ids, leakage_group_id",
+  "feature_rows": "candidate_features.jsonl: (path_id,backbone,case_id) -> Dense/BM25 ranks and scores, matched tokens, rank-RRF terms and path contribution",
+  "candidate_pools": "mapping_candidate_pools.jsonl: condition/qid/repeat -> all112 ranked candidate IDs and path provenance; do not prefilter Top20 before mapping",
+  "join_keys": [
+    "path_id",
+    "case_id",
+    "backbone"
+  ],
+  "forbidden_input_fields": [
+    "silver_score",
+    "median",
+    "relevant",
+    "label",
+    "ratings"
+  ],
+  "labels_kept_only_in_evaluation": "existing Stage1 whole-query Silver, never copied into mapping feature inputs",
+  "future_output_contract": {
+    "assessment_status": "UNASSESSED",
+    "scope": "whole_question or named_perspective",
+    "performed_action_evidence": null,
+    "functional_object_evidence": null,
+    "produced_output_evidence": null,
+    "query_evidence": null,
+    "matching_explanation": null,
+    "unsupported_claims": null,
+    "source_offsets": null
+  },
+  "design_notes": [
+    "Read Task/explicit operational Context for actually performed work. Problem is a need/context, not proof of a capability.",
+    "Compare action, object and output; allow genuine cross-industry functional transfer and distinguish inquiry answering from quality-defect diagnosis.",
+    "Retrieval rank, token match or high cosine is not a relevance proof. No mapping score or LLM judgment produced here.",
+    "Current Silver is whole-query relevance, not independent labels for108 viewpoints. Do not copy a whole-query positive label to every perspective.",
+    "Separate future training/evaluation by query/source groups;18 positive pairs are insufficient to claim general model quality."
+  ]
+}

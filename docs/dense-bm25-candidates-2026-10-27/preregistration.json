@@ -1,0 +1,193 @@
+{
+  "config": {
+    "version": "dense-bm25-candidate-v1",
+    "base_commit": "2140dc27006e0d8d0132b2be20af20f1eb64e5b1",
+    "branch": "research/dense-bm25-candidates-20261027",
+    "source": "docs/stage123-openai-triplicate-2026-10-27",
+    "fusion_source": "docs/candidate-fusion-ablation-2026-10-27",
+    "output": "docs/dense-bm25-candidates-2026-10-27",
+    "cases": 112,
+    "queries": 10,
+    "generated_perspectives": 108,
+    "generation_repeats": 3,
+    "candidate_depth": 112,
+    "K": [
+      5,
+      10,
+      20
+    ],
+    "threshold": 3,
+    "bm25_implementation": "existing ax_research.retrieval.bm25.BM25Retriever; KiwiTokenizer; BM25Okapi unchanged defaults",
+    "document_text": "[PROBLEM] raw_problem newline [TASK] raw_task newline [CONTEXT] raw_context; exactly old Stage2",
+    "perspective_query": "exact saved branch_query = title newline description; no original-query append or query expansion",
+    "rank_origin": 1,
+    "rrf_constant": 60,
+    "dense_weight": 0.5,
+    "bm25_weight": 0.5,
+    "per_path_hybrid": "0.5/(60+dense_rank) + 0.5/(60+bm25_rank)",
+    "dynamic_outer_operator": "arithmetic mean across perspectives for every condition; Dense-only mean(1/(60+dense_rank)); hybrid mean(per_path_hybrid)",
+    "no_double_rrf": "Do not replace per_path_hybrid by reciprocal hybrid rank before outer mean; hybrid branch rank is exported for provenance only.",
+    "effective_dynamic_path_weights": "each perspective Dense1/(2M),BM251/(2M); total Dense0.5,BM250.5 independent of M",
+    "tie_break": "case_id_ascending for all ranks, including BM25 zero-score ties; record tie diagnostics, no tie-policy tuning",
+    "arithmetic": "exact Fraction RRF; export exact and decimal scores",
+    "primary": {
+      "A": "original Single Dense",
+      "B": "original 3-View Dense",
+      "C": "original Single Dense+BM25",
+      "D": "dynamic Single Dense, same mean-RRF outer as F",
+      "E": "dynamic 3-View Dense, same mean-RRF outer",
+      "F": "dynamic Single Dense+BM25"
+    },
+    "supplementary": [
+      "original 3-View+BM25 matched against B",
+      "dynamic 3-View+BM25 matched against E",
+      "original BM25 replay",
+      "dynamic BM25 only"
+    ],
+    "historical_rr_and_original_anchor": "reference only; not used as matched Dense controls for hybrid treatment",
+    "aggregation": "three generation repeats averaged within each original query then Macro; original deterministic rankings evaluated once",
+    "precision_query_denominator": 10,
+    "recall_f1_query_denominator": 6,
+    "no_positive_queries": "Q2,Q5,Q7,Q9 Recall/F1 undefined, never zero-imputed",
+    "tokenization_tie_diagnostics": true,
+    "mapping_export": "normalized query registry, case PTC registry and full112 retrieval feature rows; no Silver/median/labels in future mapping input features",
+    "api_calls": 0,
+    "key_reads": 0,
+    "new_dense_embeddings": 0,
+    "label_changes": false,
+    "weight_search": false,
+    "query_case_mapping_algorithm": false,
+    "stage4_access": false
+  },
+  "config_sha256": "d07b69e46f7d0abc30408dd8ae7eeacc53ecd5746eec6d89cd336411bb33a01c",
+  "conditions": {
+    "A": {
+      "scope": "original",
+      "backbone": "single",
+      "channel": "dense"
+    },
+    "B": {
+      "scope": "original",
+      "backbone": "three",
+      "channel": "dense"
+    },
+    "C": {
+      "scope": "original",
+      "backbone": "single",
+      "channel": "hybrid",
+      "reference": "A"
+    },
+    "D": {
+      "scope": "dynamic",
+      "backbone": "single",
+      "channel": "dense"
+    },
+    "E": {
+      "scope": "dynamic",
+      "backbone": "three",
+      "channel": "dense"
+    },
+    "F": {
+      "scope": "dynamic",
+      "backbone": "single",
+      "channel": "hybrid",
+      "reference": "D"
+    },
+    "S_C3": {
+      "scope": "original",
+      "backbone": "three",
+      "channel": "hybrid",
+      "reference": "B"
+    },
+    "S_F3": {
+      "scope": "dynamic",
+      "backbone": "three",
+      "channel": "hybrid",
+      "reference": "E"
+    },
+    "S_BM25_O": {
+      "scope": "original",
+      "backbone": "single",
+      "channel": "bm25",
+      "reference": "A"
+    },
+    "S_BM25_M": {
+      "scope": "dynamic",
+      "backbone": "single",
+      "channel": "bm25",
+      "reference": "D"
+    }
+  },
+  "config_preregistration_commit": "23584ad09d8f2052ab107b7ce1178232ba0b2c77",
+  "inputs": [
+    {
+      "path": "docs/stage123-openai-triplicate-2026-10-27/stage1_silver.json",
+      "sha256": "d9acd887b9763994ace3866eacae63f2ee4129da14956353cccbff7d90878caf",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/stage123-openai-triplicate-2026-10-27/silver_freeze.json",
+      "sha256": "7b4c8aec40face62c8b8176e6abe7129bcbb242ad863a63cde43c10c2cf9063c",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/stage123-openai-triplicate-2026-10-27/stage2_results.json",
+      "sha256": "8fc944399221655750f4994f9160c818a82797feca0a0c8581a0ecbcf181b00f",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/stage123-openai-triplicate-2026-10-27/stage3_results.json",
+      "sha256": "e04fd17f72432c98acc1333c9a922b8074decb725b58853da16bf28da1974ef8",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/stage123-openai-triplicate-2026-10-27/embeddings.npz",
+      "sha256": "728410ecb7e39bcb1b6ecc2c92f82a8b2cba7f7bb08d1e9a110e83125d723327",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/stage123-openai-triplicate-2026-10-27/environment.json",
+      "sha256": "5e166db3f7fb5867e89b25079a94c6a72042770aef33bdd0037b39feb5d96d54",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/stage123-openai-triplicate-2026-10-27/plan.json",
+      "sha256": "95fd19517525fa0b4fed7393056776bfa3cf40273ca7b08ab08fd23729653ca6",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/candidate-fusion-ablation-2026-10-27/results.json",
+      "sha256": "8a7636a3f3831df563d27b63122ea20aa77f35c4351e908a037031f493b2a204",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "docs/candidate-fusion-ablation-2026-10-27/preregistration.json",
+      "sha256": "acc7e61899a1e18d947517e0d4b0049f5f4efe12da9b3235b51efd56e5424c12",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "data/v2_5/research/dev_problem_views.csv",
+      "sha256": "f7cb2bccbddcf800bbeb2fb544e61b0ddc0368463787ae059939bbe44d8c7807",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "data/v2_5/research/dev_queries.json",
+      "sha256": "ede75ec73c81ae139d92fb9a159ad78f40345a5fed129d046adcbdecf22ae09d",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "data/v2_5/research/split_groups.csv",
+      "sha256": "e5e57794b0d60b3b82f76ea56182e61b5a3419d1f23c560f6baf8541b9b09999",
+      "comparison": "exact raw bytes"
+    },
+    {
+      "path": "src/ax_research/retrieval/bm25.py",
+      "sha256": "e3558bc9c8347c3950c68309d288314e7a0d9bc5c67ddc0765e4d66d28c7538e",
+      "comparison": "Git-canonical source LF; original Windows CRLF is not a code change"
+    }
+  ],
+  "api_calls": 0,
+  "key_reads": 0,
+  "embedding_inference": 0,
+  "stage4_access": false
+}
