@@ -1,0 +1,50 @@
+{
+  "version": "openai-single-pair-triplicate-v1",
+  "base_commit": "1ddb077729c1ada4018bb1243e7df120b300965f",
+  "model": "gpt-6-luna",
+  "providers_called": [
+    "openai"
+  ],
+  "same_model_repeats": 3,
+  "distinct_models": 1,
+  "human_gold": false,
+  "grade_threshold": 3,
+  "aggregation": "median_of_three_complete_valid_scores",
+  "batch_size": 1,
+  "stage1_pairs": 1120,
+  "stage1_scores": 3360,
+  "stage3_generations": 30,
+  "max_budget_usd": "5.00",
+  "input_hashes": {
+    "dev_problem_views.csv": "f7cb2bccbddcf800bbeb2fb544e61b0ddc0368463787ae059939bbe44d8c7807",
+    "dev_queries.json": "ede75ec73c81ae139d92fb9a159ad78f40345a5fed129d046adcbdecf22ae09d",
+    "split_groups.csv": "e5e57794b0d60b3b82f76ea56182e61b5a3419d1f23c560f6baf8541b9b09999"
+  },
+  "prompt_sha256": "4341bd25958a028dec9920c3dd20fb351f229cbd73e0929d9b8139265c4570bd",
+  "view_prompt_sha256": "1883b5c65100436f829579ebd57d3df4214e67fc835320c164109b8fe2b829d8",
+  "source_policy": "Task/Context literal evidence; suspicious reasoning isolated, not a global perfection gate. Holds are never zero.",
+  "stop_rules": {
+    "missing_score_fraction_after_collection": 0.05,
+    "held_pair_fraction": 0.1,
+    "structural_mapping_error": true
+  },
+  "retrieval": {
+    "encoder": "BAAI/bge-m3",
+    "dimensions": 1024,
+    "normalize": true,
+    "max_length": 4096,
+    "three_view_fusion": "equal_mean_cosine_1/3_each",
+    "full_candidate_universe": 112,
+    "final_unique_outputs": 20,
+    "K": [
+      5,
+      10,
+      20
+    ],
+    "dynamic_fusion": "existing_branch_balanced_unique_round_robin",
+    "dynamic_branch_text": "title newline description; keywords preserved separately",
+    "reference_coverage": "not primary; reference labels unvalidated",
+    "stage4": "sealed"
+  },
+  "interpretation": "Same-model repeat consistency is not independent-provider agreement. Unknown labels excluded or bounded, never treated as negative."
+}

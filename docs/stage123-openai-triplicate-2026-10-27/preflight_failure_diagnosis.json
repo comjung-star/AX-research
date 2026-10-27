@@ -1,0 +1,41 @@
+{
+  "failure": "10 free input-count requests HTTP400 for json_object prompts before paid generation",
+  "original_view_request_example": {
+    "model": "gpt-6-luna",
+    "instructions": "Generate complementary problem perspectives using only the original business problem. Do not propose solutions or invent conditions, technology, objectives or effects. Return2 to5 nonredundant perspectives, with id,title,description,keywords and a short exact substring of the original problem as source_quote. No predefined categories or references. JSON only.",
+    "input": "{\"original_business_problem\": \"고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.\", \"format\": \"{perspectives:[{id,title,description,keywords:[words],source_quote}]} generate2to5, concise descriptions\"}",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "max_output_tokens": 900,
+    "reasoning": {
+      "effort": "none"
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "corrected_request_example": {
+    "model": "gpt-6-luna",
+    "instructions": "Generate complementary problem perspectives using only the original business problem. Do not propose solutions or invent conditions, technology, objectives or effects. Return2 to5 nonredundant perspectives, with id,title,description,keywords and a short exact substring of the original problem as source_quote. No predefined categories or references. JSON only.",
+    "input": "{\"original_business_problem\": \"고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.\", \"format\": \"{perspectives:[{id,title,description,keywords:[words],source_quote}]} generate2to5, concise descriptions\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "max_output_tokens": 900,
+    "reasoning": {
+      "effort": "none"
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "original_input_version": "4b9189eee94f60809413530583686257890e97f1030039649f85d47b7a3f7a2a",
+  "corrected_input_version": "95403b2489a96947b450ddb56dbcff86b30ef312d39f9819334dd090d6b8d5af",
+  "change": "Explicit Return JSON marker appended to input; original business problem and perspective-generation criteria unchanged. All10 counts passed before paid generation.",
+  "generation_calls_before_fix": 0,
+  "failed_request_logs": "count_failures/",
+  "initial_failed_budget": "budget_before_view_json_marker.json"
+}

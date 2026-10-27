@@ -1,0 +1,79 @@
+"""Render a Korean results report from actual frozen experiment artifacts."""
+import csv
+import statistics
+from scripts import openai_triplicate as r
+
+NAMES={'A_single_dense':'A 원질문·Single Dense','B_three_view_dense':'B 원질문·3-View Dense','BM25_auxiliary':'BM25 보조 기준','C_dynamic_single_dense':'C 다중관점·Single Dense','D_dynamic_three_view_dense':'D 다중관점·3-View Dense'}
+TOPICS={'V21D001':'고객 문의 대응','V21D002':'이메일 요약·후속조치','V21D003':'사내 지식 검색·재사용','V21D004':'문서 심사·검증','V21D005':'전사 데이터 통합·분석','V21D006':'상품 분류·검색·탐색','V21D007':'구매·견적·조달','V21D008':'수요·생산량 예측','V21D009':'안전한 사내 AI 도입','V21D010':'품질 원인·생산계획'}
+def pct(x):return '미정' if x is None else f'{x*100:.2f}%'
+def delta(x):return '미정' if x is None else f'{x*100:+.2f}%p'
+def main():
+    a=r.read(r.OUT/'stage1_silver.json');b=r.read(r.OUT/'stage2_results.json');c=r.read(r.OUT/'stage3_results.json');usage=r.read(r.OUT/'usage.json');old=r.read(r.OUT/'v23_comparison.json');qrows=r.read(r.OUT/'question_summary.json')['records'];changes=r.read(r.OUT/'related_case_changes.json')['records'];sens=r.read(r.OUT/'label_sensitivity.json')['results']
+    agg={**b['aggregate'],**c['aggregate']};den=a['agreement_denominator'];positive=a['median_relevant_pairs'];judged=1120-a['held_pairs']
+    lines=['# 문장 임베딩 기반 기업 AX 전환 사례 추천 — OpenAI 3회 반복 Dev 실험','',f'기준 커밋 `{r.BASE}`. 새 브랜치 `research/stage123-openai-triplicate-20261027`. 결과 커밋과 최종 게시 상태는 이 브랜치의 Git 기록 및 `publication.json` 참조.','',
+    '## ① 실제 완료한 작업','',f"Stage1 **{a['received_scores']}/3360개 평가**,1120쌍 중앙값 수집. Stage2 Single Dense·3-View Dense·BM25 비교, Stage3 A/B/C/D 및 OpenAI 관점30회 생성을 완료했다. 보류쌍은{a['held_pairs']}개다. Stage4 독립Test는 실행하지 않았다.",'',
+    '사용 모델은 `gpt-6-luna` 하나다. 다른 회사 API나 별도 검사 AI는 호출하지 않았다. 같은 모델을 세 번 부른 것이므로, 서로 다른 모델 세 종류의 평가로 표현하지 않는다. 기존 112개 사례, v2.3 결과, 872개 임시 점수, 세 회사 모델의 평가, 독립 검증 개발 기록과 프로토타입은 보존했다.','',
+    '## ② Stage1 — AI-Silver 평가','',
+    '|항목|현재112사례·원질문 평가|과거v2.3 참조관점 평가|','|---|---:|---:|',
+    f"|평가쌍|1120|{old['pairs']}|",f"|3회 원점수|{a['received_scores']}|{old['scores']}|",
+    f"|3회 점수 완전 일치|{a['exact_agreement_pairs']}/{den} ({pct(a['exact_agreement_pairs']/den)})|{old['exact_agreement_pairs']}/2520 ({pct(old['exact_agreement_pairs']/2520)})|",
+    f"|관련/무관 판단 변동|{a['binary_flip_pairs']}/{den} ({pct(a['binary_flip_pairs']/den)})|{old['binary_flip_pairs']}/2520 ({pct(old['binary_flip_pairs']/2520)})|",
+    f"|중앙값≥3 관련쌍|{positive}/{judged} ({pct(positive/judged)})|187/2520 (7.42%)|",'',
+    '한 요청에는 질문과 사례를 한 쌍만 넣었다. 같은 원문과 기준으로 API 요청을 세 번 따로 실행했다. 이전 점수·이유, 다른 모델의 답, 검색 순위는 주지 않았다. 세 점수를 크기순으로 놓았을 때 가운데 값을 사용한다. 이는 사람이 확인한 정답이 아닌 **AI-Silver 정답 후보**다. 일치율은 정답률이 아니다. 과거는 84개 사례와 30개 참조 관점, 현재는 112개 사례와 10개 전체 질문을 평가했다. 서로 평가 단위가 달라 직접적인 성능 향상으로 해석할 수 없다.','',
+    '실제 Task·Context의 인용, 질문·사례 ID, 점수 범위와 중복 응답을 검사했다. 효과를 언급한 설명, 통합 기능을 추측한 설명, 점수 변동은 별도 검토 목록에 남겼다. 정상적인 차이 때문에 전체 실험을 중단하지 않았다. 명백한 근거 위반은 해당 쌍만 보류하며 0점으로 바꾸지 않는다. 정답 후보는 검색 전에 파일 해시로 고정했고 이후 수정하지 않았다. 검토 기록은 `source_review_decisions.json`, 원점수와 중앙값은 `stage1_triplicate_scores.csv`, `stage1_silver.json`에 있다.','',
+    '## ③ Stage2 — 검색 방식 비교','',
+    'P는 추천 목록 중 관련 사례 비율, R은 전체 관련 사례 중 찾은 비율, F1은 둘을 함께 본 값이다. 먼저 질문별로 계산한 뒤 정의할 수 있는 질문들을 똑같이 평균했다. K는 최종 추천 개수다. **Precision은 열 질문, Recall·F1은 관련 판정이 있는 여섯 질문이 평균 분모다.** 나머지 네 질문의 Recall·F1을 0점으로 채우지 않았다. 표의 분모는 P/R/F1 순서다.','',
+    '|방식|K|Precision|Recall|F1|평균 질문 수 P/R/F1|','|---|---:|---:|---:|---:|---:|']
+    for name in b['aggregate']:
+        for k in (5,10,20):
+            z=agg[name][str(k)];lines.append(f"|{NAMES[name]}|{k}|{pct(z['macro_precision'])}|{pct(z['macro_recall'])}|{pct(z['macro_f1'])}|{z['precision_query_denominator']}/{z['recall_query_denominator']}/{z['f1_query_denominator']}|")
+    zA=agg['A_single_dense']['20'];zB=agg['B_three_view_dense']['20']
+    lines+=['',f"Top20에서 3-View − Single 차이: P {delta(zB['macro_precision']-zA['macro_precision'])}, R {delta(zB['macro_recall']-zA['macro_recall'])}, F1 {delta(zB['macro_f1']-zA['macro_f1'])}.",'',
+    '두 Dense 방식은 같은 BGE-M3와 같은 Problem·Task·Context 원문을 사용한다. Single은 세 부분을 붙여 한 번에 문장 벡터로 바꾼다. 3-View는 각 부분을 따로 바꾸고 세 유사도 점수를 똑같은 비중으로 평균한다. 두 방식 모두 전체 112개 사례를 검색한 뒤 최종 추천 수를 20개로 맞췄다. BM25는 단어의 등장 패턴을 쓰는 기존 비교 방식이다. 결과를 본 뒤 가중치, 추천 개수나 결합 방식을 바꾸지 않았다. 각 부분의 순위와 점수도 보존했다.','',
+    '## ④ Stage3 — 동적 다중관점 효과','',
+    '|조건|K|Precision|Recall|F1|평균 질문 수 P/R/F1|','|---|---:|---:|---:|---:|---:|']
+    for name in ('A_single_dense','B_three_view_dense','C_dynamic_single_dense','D_dynamic_three_view_dense'):
+        for k in (5,10,20):
+            z=agg[name][str(k)];lines.append(f"|{NAMES[name]}|{k}|{pct(z['macro_precision'])}|{pct(z['macro_recall'])}|{pct(z['macro_f1'])}|{z['precision_query_denominator']}/{z['recall_query_denominator']}/{z['f1_query_denominator']}|")
+    lines+=['','원질문만 보고 질문당 세 번, 매번 2~5개 관점을 생성했다. 총 30회다. 기존 참조 관점, 사례, Silver 점수와 검색 정답은 생성 모델에게 주지 않았다. 각 관점으로 전체 112개 사례를 검색하고, 관점별로 돌아가며 고유 사례 20개를 골랐다. C와 D는 같은 생성 관점을 사용한다. A와 B의 고정 검색 결과를 세 번의 독립 실험처럼 세지 않았다. 동적 검색은 질문 안에서 세 번을 평균한 뒤, 원질문 열 개를 똑같이 평균했다. 내부 검색 연산량은 관점 수만큼 늘지만 검색 대상과 최종 추천 수는 같다.','',
+    '|질문|주제|관련 사례 수|B−A Recall@20|C−A Recall@20|D−B Recall@20|','|---|---|---:|---:|---:|---:|']
+    for q in qrows:
+        vals={n:q[n]['20']['recall'] for n in NAMES}
+        lines.append(f"|{q['qid']}|{TOPICS[q['qid']]}|{q['relevant']}|{delta(vals['B_three_view_dense']-vals['A_single_dense']) if vals['A_single_dense'] is not None else '미정'}|{delta(vals['C_dynamic_single_dense']-vals['A_single_dense']) if vals['A_single_dense'] is not None else '미정'}|{delta(vals['D_dynamic_three_view_dense']-vals['B_three_view_dense']) if vals['B_three_view_dense'] is not None else '미정'}|")
+    lines+=['','각질문의원문·회차별P/R/F1·변동폭은 `question_summary.json`, `query_run_metrics.csv`, `stage3_results.json`에 있다. 새로찾은관련사례·유지·누락목록과 실제Task는 `related_case_changes.json`에 있다. 서로다른사례가많다는것만으로유용하다고판정하지않았다. 출처그룹수와임베딩의미다양성은 `case_diversity.csv`의보조지표이며관련도나검증되지않은ReferenceCoverage를대신하지않는다.','',
+    '## ⑤ 연구의 핵심 결론','']
+    for dynamic,parent in (('C_dynamic_single_dense','A_single_dense'),('D_dynamic_three_view_dense','B_three_view_dense')):
+        x=agg[dynamic]['20'];y=agg[parent]['20'];direction='늘었다' if x['macro_recall']>y['macro_recall'] else '줄었다' if x['macro_recall']<y['macro_recall'] else '같았다'
+        runs=[v for v in changes if v['comparison']==('C_minus_A' if dynamic.startswith('C_') else 'D_minus_B') and v['k']==20]
+        gain=statistics.mean(len(v['new_related']) for v in runs);loss=statistics.mean(len(v['lost_related']) for v in runs)
+        lines.append(f"- {NAMES[dynamic]}는같은Dense표현의원질문검색대비Top20 MacroRecall이 {delta(x['macro_recall']-y['macro_recall'])}로 {direction}. 질문·회차당신규관련사례평균 {gain:.2f}개, 누락평균 {loss:.2f}개다. P차이는 {delta(x['macro_precision']-y['macro_precision'])}, F1차이는 {delta(x['macro_f1']-y['macro_f1'])}다.")
+    lines+=['','이 결론은 현재 개발 질문 열 개와 AI-Silver를 기준으로 한 관찰이다. 실제 기업 전체나 사람이 검증한 정답, 독립 Test에서도 같은 효과가 난다고 입증한 것은 아니다.','',
+    '### 실제로 찾거나 놓친 사례','',
+    '- 3-View는 상위 5개에서 ‘여러 사내 업무 시스템의 지식 통합 검색’과 ‘채용 지원서·증빙 자료 대조 검토’를 새로 포함했다. 앞부분 추천에는 도움이 됐지만, 상위 20개 전체에서는 Single보다 관련 조합이 하나 적었다.',
+    '- 고객 문의 질문의 첫 생성 회차에서 C는 ‘직원의 HR 규정 질문에 답하는 사례’를 원질문 순위25위에서 최종13위로 끌어왔다. 다른 업무 환경의 실제 질문응답 사례를 새로 찾은 예다.',
+    '- 같은 회차에서 원질문3위였던 고객 도움말센터 질문응답 사례는 최종20개에서 빠졌다. 네 관점에서 각각13·13·12·10위였고, 관점별로 돌아가며20개를 고르는 과정에서 선택되지 않았다. 이는 관점을 더 만드는 것과 관련 사례를 더 많이 유지하는 것이 다를 수 있음을 보여준다.',
+    '- Top20의 서로 다른 출처 그룹 수는 평균 A18.10→C18.47, B18.10→D18.60으로 늘었다. 그러나 새 관련 사례보다 누락이 더 많았다. 따라서 다양성 증가 자체를 성능 향상이라고 부를 수 없다.',
+    '위 설명은 실제 순위 기록에 따른 사례 분석이며 원인을 따로 분리해 증명한 실험은 아니다. 원문 Task, 선택한 관점, 원질문 순위와 각 관점의 순위는 `changed_case_attribution.json`에 보존했다.','',
+    '### 평가기준 민감도','', '|라벨기준|C−A F1@20|D−B F1@20|','|---|---:|---:|']
+    for name,res in sens.items():
+        x=res['C_dynamic_single_dense']['20']['macro_f1'];y=res['A_single_dense']['20']['macro_f1'];u=res['D_dynamic_three_view_dense']['20']['macro_f1'];w=res['B_three_view_dense']['20']['macro_f1']
+        lines.append(f"|{name}|{delta(x-y) if x is not None and y is not None else '미정'}|{delta(u-w) if u is not None and w is not None else '미정'}|")
+    lines+=['','중앙값의 관련 기준을 2·3·4점으로 바꾸거나 각 반복 점수를 사용해 같은 검색 결과를 다시 채점했다. 정답을 수정한 것이 아니라 기준에 따라 결론이 얼마나 흔들리는지 보는 추가 분석이다. 이번 중앙값에는 4점이 없어 기준4의 Recall·F1은 정의할 수 없다. 원점수 4점은 한 번 있었지만 세 점수의 중앙값에는 남지 않았다. 관련 판정이 0인 질문의 실제 유용한 사례도 0개라고 단정하지 않는다.','',
+    '## ⑥ 한계와 후속 연구','',
+    '- 같은 모델의 같은 편향이 세 번 모두 남을 수 있다. 중앙값은 우연한 변동을 줄여도 체계적인 오류를 고치지 못한다. 실제 수행 기능과 추정한 효과를 구분하는 데도 한계가 있다.',
+    '- 이 Silver는 보수적이다. 고객 이메일 요약과 쇼핑 질문응답 같은 실제 기능도 전체 문제의 일부만 충족한다는 이유로 2점이 됐다. 유용한 다른 업종 사례를 낮게 평가했을 가능성을 검토 목록에 남겼다. 같은 모델이 반복해서 2점을 주었다고 사람이 확인한 무관 사례가 되는 것은 아니다.',
+    '- 이메일 정리, 전사 데이터 통합, 구매·견적, 안전한 사내 AI 도입의 네 질문은 중앙값3 이상 사례가 없다. 이 질문들에 대한 전체 재현율은 평가할 수 없다. 그래서 높은 Recall 수치를 전체 열 질문을 해결했다는 뜻으로 읽으면 안 된다.',
+    '- 평가와 관점 생성에 같은 OpenAI 모델을 썼다. 다른 모델에서도 관련성 판단과 검색 결론이 유지되는지 후속 검증이 필요하다.',
+    '- 112개 사례는 83개 출처 그룹에 속한다. 일부는 비슷하거나 같은 출처를 공유한다. 필수 항목과 원본 보존을 확인했지만 원출처 웹 내용을 이번에 전부 재검증한 것은 아니다.',
+    '- 질문 열 개는 기존 개발 자료다. 기존 참조 관점 밖의 새 관점을 허용했고, 참조 관점을 생성용 카테고리로 쓰지 않았다. 독립 Test에 대한 일반화는 아직 검증하지 않았다.',
+    '- 후속 연구에서는 GPT·Gemini·Claude가 각각 평가하도록 해 모델 간 차이와 Silver의 편향을 확인한다. 가능하면 작은 표본을 사람이 원문과 대조한다. 이번에는 Gemini·Claude를 호출하지 않았다. 새 기준과 프롬프트를 개발 자료에서 고정한 다음 별도 독립 Test를 설계한다.','',
+    '## ⑦ 산출물과 비용','', '|단계|유료요청수|입력토큰|출력토큰|사용량비용USD|실패·거부비용USD|미확정예약USD|','|---|---:|---:|---:|---:|---:|---:|']
+    for name,v in usage['phases'].items():lines.append(f"|{name}|{v['requests']}|{v['input_tokens']}|{v['output_tokens']}|{v['actual_usd']}|{v['failed_or_rejected_usd']}|{v['reserved_unknown_usd']}|")
+    lines+=['',f"신규 OpenAI 사용·미확정 예약 합계는 **${usage['total_actual_plus_unknown_usd']} / $5.00**다. 과거 Claude 비용은 합치지 않았다. 자동 충전이나 다른 회사 API로의 전환은 없었다. gpt-6-luna 일반 요청의 입력 $0.10, 출력 $0.50, 캐시 입력 $0.01(백만 토큰당)로 사용량을 계산했다. [공식 모델 요금](https://developers.openai.com/api/docs/models/gpt-6-luna). 실제 청구 화면의 잔액을 조회한 것은 아니다.",'',
+    '유료 평가 요청 3개는 이유 길이 초과, JSON 밖의 잘못된 출력, Problem 문장 인용 때문에 거부했다. 같은 질문·사례와 기준으로 해당 항목만 다시 요청해 모두 복구했다. 거부된 응답과 그 비용도 보존했다. 이를 0점으로 채우거나 과거 점수로 대체하지 않았다. 현재 3360개 평가와 30개 관점 생성 결과는 모두 준비돼 있다.','',
+    '사전1130개고유입력의실제count endpoint측정과최대출력·25%재시도여유를포함한상한은약$0.781이었다. 관점생성JSON표시누락으로발생한무료계산HTTP400은수정후재계산했고이전실패파일을보존했다. 유료요청전최대금액을예약하고성공시사용량으로정산한다. 키는OPENAI_API_KEY환경변수만읽고저장·출력하지않는다.','',
+    '주요파일: `stage1_triplicate_scores.csv`, `stage1_silver.json`, `stage1_review_queue.json`, `stage2_results.json`, `stage3_results.json`, `macro_metrics.csv`, `query_run_metrics.csv`, `label_sensitivity.json`, `usage.json`, `plan.json`, `preservation.json`, `test_results.json`. 요청·입력버전·원응답·모델·토큰·비용·실패는 `attempts/`, `results/`, `counts/`에보존했다.','',
+    '재현은 `PYTHONPATH=src;.`로설정하고 `python -m scripts.openai_triplicate count`, `probe`, `stage1`, 원문검토후 `labels`, `python -m scripts.openai_triplicate_search stage2`, `python -m scripts.openai_triplicate views`, `python -m scripts.openai_triplicate_search stage3`, `python -m scripts.openai_triplicate_report`, `python -m scripts.openai_triplicate_korean`순서다. 저장된응답은재사용하므로완료항목을자동재호출하지않는다. 기존동결라벨을삭제하거나검색결과에맞춰변경하면안된다. API비용집계·보고서재생성은유료API호출이없다.']
+    (r.OUT/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+    print('Korean report rendered from actual results.')
+if __name__=='__main__':main()
