@@ -1,0 +1,178 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 2.65,
+  "state": "RECEIVED",
+  "provider": "gemini",
+  "job_id": "match_probe_0001",
+  "attempt": 1,
+  "reserved_usd": "0.00119700",
+  "counted_input_tokens": 903,
+  "input_version": "501d2e4787ebb24afb9a7263842610e0670c0d8c8d034c0c3faf492c0b89636a",
+  "request_model": "gemini-3.5-flash-lite",
+  "request_hash": "50797dd5ce552a30d0bfad9a9963d81c1b833a15368cab04c3f85ae57b540c48",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 903,
+    "actual_output_tokens_including_thinking": 95,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00050840"
+  },
+  "response_text": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"items\":[{\"id\":\"AXV2C_0093_01\",\"links\":[[1,0,\"EEE\",\"DIRECT\",\"Analyzes production quality defects to identify root causes.\"]]},{\"id\":\"AXV2C_0093_02\",\"links\":[[2,0,\"EEE\",\"DIRECT\",\"Adjusts production schedules to produce validated schedules.\"]]}]}",
+  "response_model": "gemini-3.5-flash-lite",
+  "response_id": "3SPgavGXKZHnrfcPv9C08Q0",
+  "validation": {
+    "valid": true,
+    "data": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production defects",
+              "root causes",
+              "Analyze production quality defects"
+            ]
+          ],
+          "links": [
+            [
+              "DIAGNOSE_QUALITY_CAUSE",
+              0,
+              "EEE",
+              "DIRECT",
+              "Analyzes production quality defects to identify root causes."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2C_0093_02",
+          "ops": [
+            [
+              "RESCHEDULE",
+              "adjust",
+              "production schedule",
+              "validated schedule",
+              "Adjust production schedules with validation"
+            ]
+          ],
+          "links": [
+            [
+              "ADJUST_PRODUCTION_PLAN",
+              0,
+              "EEE",
+              "DIRECT",
+              "Adjusts production schedules to produce validated schedules."
+            ]
+          ]
+        }
+      ]
+    },
+    "raw_links": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "links": [
+            [
+              1,
+              0,
+              "EEE",
+              "DIRECT",
+              "Analyzes production quality defects to identify root causes."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2C_0093_02",
+          "links": [
+            [
+              2,
+              0,
+              "EEE",
+              "DIRECT",
+              "Adjusts production schedules to produce validated schedules."
+            ]
+          ]
+        }
+      ]
+    },
+    "derived": {
+      "AXV2C_0093_01": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "DIAGNOSE_QUALITY_CAUSE",
+            "op": 0,
+            "action": "analyze",
+            "object": "production defects",
+            "output": "root causes",
+            "quote": "Analyze production quality defects",
+            "why": "Analyzes production quality defects to identify root causes."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_SCOPE_CONDITION",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_01",
+              "field": "problem",
+              "quote": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+              "condition": "Fragmented production data and delayed quality analysis"
+            }
+          }
+        ],
+        "flags": []
+      },
+      "AXV2C_0093_02": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "ADJUST_PRODUCTION_PLAN",
+            "op": 0,
+            "action": "adjust",
+            "object": "production schedule",
+            "output": "validated schedule",
+            "quote": "Adjust production schedules with validation",
+            "why": "Adjusts production schedules to produce validated schedules."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_SCOPE_CONDITION",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_02",
+              "field": "problem",
+              "quote": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+              "condition": "Slow changes and fragmented manufacturing scheduling systems"
+            }
+          }
+        ],
+        "flags": []
+      }
+    },
+    "errors": [],
+    "syntax_repair": []
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version":"evidence-rules-v11",
+  "base_commit":"2449542a6ae3b5488556c848687088fadf466fac",
+  "models":{"openai":"gpt-6-luna","gemini":"gemini-3.5-flash-lite","claude":"claude-haiku-4-5-20251001"},
+  "batch_size":4,
+  "output_tokens_per_item":260,
+  "output_tokens_overhead":96,
+  "claude_prior_actual_plus_reserved_usd":"0.78738200",
+  "claude_this_work_cap_usd":"3.71261800",
+  "safety_buffer_usd":"0.50",
+  "future_retry_fraction":"0.25",
+  "perspective_repeats":3,
+  "human_gold":false,
+  "families":["ANSWER","SUMMARIZE","ACTION_ITEMS","EXTRACT","VERIFY","RETRIEVE","REUSE","INTEGRATE","STANDARDIZE","CLASSIFY","MATCH","RECOMMEND","COMPARE","QUOTE","PROCURE","FORECAST","SECURE_AI","GOVERN_AI","DIAGNOSE","RESCHEDULE","DETECT","ADMIN","OTHER"],
+  "target_families":{
+    "ANSWER_INQUIRY":["ANSWER"],"SUMMARIZE_COMMUNICATION":["SUMMARIZE"],"IDENTIFY_FOLLOWUP":["ACTION_ITEMS"],
+    "RETRIEVE_KNOWLEDGE":["RETRIEVE","ANSWER"],"REUSE_KNOWLEDGE":["REUSE","RETRIEVE"],"VERIFY_DOCUMENT":["VERIFY"],
+    "INTEGRATE_DATA":["INTEGRATE"],"STANDARDIZE_ANALYSIS":["STANDARDIZE"],"CLASSIFY_PRODUCT":["CLASSIFY"],
+    "MATCH_PRODUCT_SEARCH":["MATCH","RETRIEVE"],"GUIDE_PRODUCT_DISCOVERY":["RECOMMEND","ANSWER"],
+    "COMPARE_REQUIREMENTS":["COMPARE"],"DRAFT_QUOTATION":["QUOTE"],"PROCUREMENT_FOLLOWUP":["PROCURE"],
+    "FORECAST_QUANTITY":["FORECAST"],"CONTROL_AI_ACCESS":["SECURE_AI"],"GOVERN_ENTERPRISE_AI":["GOVERN_AI"],
+    "INTEGRATE_PRODUCTION_DATA":["INTEGRATE"],"DIAGNOSE_QUALITY_CAUSE":["DIAGNOSE"],"ADJUST_PRODUCTION_PLAN":["RESCHEDULE"]
+  },
+  "context_witness_policy":"Agent-reviewed, pre-registered source facts; not human Gold, not exhaustive ordinal labels, not model inputs. Only named-scope witnesses can supply the extra fourth point after a grounded direct operation. Lack of a witness never lowers an operational 3 below relevance threshold. Shared witnesses introduce common annotation bias; report this limitation.",
+  "context_witnesses":[
+    {"qid":"V21D001","target":"WHOLE_QUERY","cid":"AXV2H_0001_01","field":"problem","quote":"하루 최대 600건의 문의로 소규모 지원팀이 정시와 영업시간 외 고객대응을 유지하기 어려움","condition":"Explicit high inquiry load and limited support capacity"},
+    {"qid":"V21D001","target":"WHOLE_QUERY","cid":"AXV2P2_0060_01","field":"problem","quote":"Millions of customer questions overwhelmed airline support, increasing costs and response delays.","condition":"Explicit inquiry overload and response delays"},
+    {"qid":"V21D001","target":"WHOLE_QUERY","cid":"AXV2P2_0067_01","field":"problem","quote":"Routine customer questions consume customer-contact staff capacity.","condition":"Explicit routine-question capacity burden"},
+    {"qid":"V21D002","target":"WHOLE_QUERY","cid":"AXV2H_0002_01","field":"problem","quote":"길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨","condition":"Explicit long communication comprehension burden; NOT evidence of performed action-item extraction"},
+    {"qid":"V21D004","target":"WHOLE_QUERY","cid":"AXV2C_0006_02","field":"problem","quote":"Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.","condition":"Explicit varied-document input and errors"},
+    {"qid":"V21D010","target":"WHOLE_QUERY","cid":"AXV2C_0093_01","field":"problem","quote":"Scattered production and quality data and manual analysis delay identification of quality issues.","condition":"Fragmented production data and delayed quality analysis"},
+    {"qid":"V21D010","target":"WHOLE_QUERY","cid":"AXV2C_0093_02","field":"problem","quote":"Schedule changes were slow and error-prone across fragmented manufacturing systems.","condition":"Slow changes and fragmented manufacturing scheduling systems"},
+    {"qid":"V21D010","target":"V21D010:CAUSE","cid":"AXV2P2_0065_01","field":"problem","quote":"Fragmented paint-process data hide causes of bumper defects and delay countermeasures.","condition":"Named quality-cause aspect: hidden causes and delayed response"}
+  ],
+  "grade_rules":{"0":"No operational link; generic effort/time/industry alone is insufficient","1":"Grounded broad operational resemblance","2":"Grounded partial or supporting operation; no direct complete A/O/O match","3":"Actual source-backed operation plus AI-judged functional equivalence of action/object/output and compatible operation family","4":"3 plus distinct additional target core operation with distinct source evidence, or a pre-verified scope-specific problem-condition witness"},
+  "silver_policy":"No majority approval. Keep three judge-specific scores and unanimous/disputed flags. Release search evaluation only after complete sources and disagreement review; publish per-judge results and uncertainty bounds, never treat disputed consensus as irrelevant.",
+  "stage4_test_sealed":true
+}

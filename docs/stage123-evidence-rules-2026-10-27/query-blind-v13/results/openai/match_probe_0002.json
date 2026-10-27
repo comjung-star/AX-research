@@ -1,0 +1,290 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 4.545,
+  "state": "RECEIVED",
+  "provider": "openai",
+  "job_id": "match_probe_0002",
+  "attempt": 1,
+  "reserved_usd": "0.00044150",
+  "counted_input_tokens": 1344,
+  "input_version": "2c0005b3e8f6eec619d11d64bea1371befbc40e11ce18e21e50ab9ab937787cd",
+  "request_model": "gpt-6-luna",
+  "request_hash": "407736f18faa5337dabc55dbdff03c4fe3967b4c1532b3d3fb8afb4689e86aff",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 1344,
+    "actual_output_tokens_including_thinking": 150,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00020940"
+  },
+  "response_text": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"items\":[{\"id\":\"AXV2C_0093_01\",\"links\":[[0,0,\"EEE\",\"DIRECT\",\"Analyzes production-quality defects and their root causes to provide causal diagnosis.\"]]},{\"id\":\"AXV2C_0093_02\",\"links\":[[2,0,\"EEE\",\"DIRECT\",\"Adjusts production schedules and produces adjusted schedules.\"]]},{\"id\":\"AXV2P2_0065_01\",\"links\":[[1,0,\"EEE\",\"DIRECT\",\"Investigates paint-quality defect drivers and produces root-cause findings.\"]]},{\"id\":\"AXV2N_0117\",\"links\":[]}]}",
+  "response_model": "gpt-6-luna",
+  "response_id": "resp_013c49d060e4be71016ae023e3789c87d0a1e3d294e6850986",
+  "validation": {
+    "valid": true,
+    "data": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "Analyze production quality defects"
+            ]
+          ],
+          "links": [
+            [
+              "INTEGRATE_PRODUCTION_DATA",
+              0,
+              "EEE",
+              "DIRECT",
+              "Analyzes production-quality defects and their root causes to provide causal diagnosis."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2C_0093_02",
+          "ops": [
+            [
+              "ANSWER",
+              "adjust",
+              "production schedules",
+              "adjusted production schedules",
+              "Adjust production schedules with validation"
+            ],
+            [
+              "VERIFY",
+              "validate",
+              "production schedules",
+              "validated production schedules",
+              "Adjust production schedules with validation"
+            ]
+          ],
+          "links": [
+            [
+              "ADJUST_PRODUCTION_PLAN",
+              0,
+              "EEE",
+              "DIRECT",
+              "Adjusts production schedules and produces adjusted schedules."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2P2_0065_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "investigate",
+              "paint-quality defect drivers",
+              "root-cause findings",
+              "Investigate paint-quality defect drivers"
+            ],
+            [
+              "ANSWER",
+              "support",
+              "root-cause decisions",
+              "decision support",
+              "support root-cause decisions"
+            ]
+          ],
+          "links": [
+            [
+              "DIAGNOSE_QUALITY_CAUSE",
+              0,
+              "EEE",
+              "DIRECT",
+              "Investigates paint-quality defect drivers and produces root-cause findings."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2N_0117",
+          "ops": [
+            [
+              "DETECT",
+              "detect",
+              "weld splatter on vehicle underbodies",
+              "detection",
+              "Detect weld splatter on vehicle underbodies"
+            ]
+          ],
+          "links": []
+        }
+      ]
+    },
+    "raw_links": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "links": [
+            [
+              0,
+              0,
+              "EEE",
+              "DIRECT",
+              "Analyzes production-quality defects and their root causes to provide causal diagnosis."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2C_0093_02",
+          "links": [
+            [
+              2,
+              0,
+              "EEE",
+              "DIRECT",
+              "Adjusts production schedules and produces adjusted schedules."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2P2_0065_01",
+          "links": [
+            [
+              1,
+              0,
+              "EEE",
+              "DIRECT",
+              "Investigates paint-quality defect drivers and produces root-cause findings."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2N_0117",
+          "links": []
+        }
+      ]
+    },
+    "derived": {
+      "AXV2C_0093_01": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "INTEGRATE_PRODUCTION_DATA",
+            "op": 0,
+            "action": "analyze",
+            "object": "production quality defects and root causes",
+            "output": "defects and root causes",
+            "quote": "Analyze production quality defects",
+            "why": "Analyzes production-quality defects and their root causes to provide causal diagnosis."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_SCOPE_CONDITION",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_01",
+              "field": "problem",
+              "quote": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+              "condition": "Fragmented production data and delayed quality analysis"
+            }
+          }
+        ],
+        "flags": [
+          {
+            "kind": "INVENTORY_CATEGORY_DISAGREEMENT_NOT_A_SCORE_RULE",
+            "family": "DIAGNOSE",
+            "target": "INTEGRATE_PRODUCTION_DATA",
+            "source": "Analyze production quality defects"
+          }
+        ]
+      },
+      "AXV2C_0093_02": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "ADJUST_PRODUCTION_PLAN",
+            "op": 0,
+            "action": "adjust",
+            "object": "production schedules",
+            "output": "adjusted production schedules",
+            "quote": "Adjust production schedules with validation",
+            "why": "Adjusts production schedules and produces adjusted schedules."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_SCOPE_CONDITION",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_02",
+              "field": "problem",
+              "quote": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+              "condition": "Slow changes and fragmented manufacturing scheduling systems"
+            }
+          }
+        ],
+        "flags": [
+          {
+            "kind": "INVENTORY_CATEGORY_DISAGREEMENT_NOT_A_SCORE_RULE",
+            "family": "ANSWER",
+            "target": "ADJUST_PRODUCTION_PLAN",
+            "source": "Adjust production schedules with validation"
+          }
+        ]
+      },
+      "AXV2P2_0065_01": {
+        "score": 3,
+        "relevant": true,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "SOURCE_GROUNDED_FUNCTIONAL_AOO",
+        "direct": [
+          {
+            "target": "DIAGNOSE_QUALITY_CAUSE",
+            "op": 0,
+            "action": "investigate",
+            "object": "paint-quality defect drivers",
+            "output": "root-cause findings",
+            "quote": "Investigate paint-quality defect drivers",
+            "why": "Investigates paint-quality defect drivers and produces root-cause findings."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [],
+        "flags": []
+      },
+      "AXV2N_0117": {
+        "score": 0,
+        "relevant": false,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "NO_OPERATIONAL_LINK",
+        "direct": [],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [],
+        "flags": []
+      }
+    },
+    "errors": [],
+    "syntax_repair": []
+  }
+}

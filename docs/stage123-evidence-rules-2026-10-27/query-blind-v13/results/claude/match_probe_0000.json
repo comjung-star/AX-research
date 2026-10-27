@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 1.679,
+  "state": "RECEIVED",
+  "provider": "claude",
+  "job_id": "match_probe_0000",
+  "attempt": 1,
+  "reserved_usd": "0.00234000",
+  "counted_input_tokens": 958,
+  "input_version": "6e28ada56196f2e729130ba3408295bbf46fad6312d4dad3760c9842a4f20b6d",
+  "request_model": "claude-haiku-4-5-20251001",
+  "request_hash": "d388ed9bfecf81e216bd2cab2b736fefee43ab7a32e86376750838562b2d5c92",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 958,
+    "actual_output_tokens_including_thinking": 126,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00158800"
+  },
+  "response_text": "```json\n{\n  \"qid\": \"V21D010\",\n  \"target\": \"WHOLE_QUERY\",\n  \"items\": [\n    {\n      \"id\": \"AXV2C_0093_01\",\n      \"links\": [\n        [\n          0,\n          0,\n          \"EES\",\n          \"SUPPORT\",\n          \"Analyzes quality defects; root cause analysis supports but does not fully execute causal diagnosis requirement.\"\n        ]\n      ]\n    }\n  ]\n}\n```",
+  "response_model": "claude-haiku-4-5-20251001",
+  "response_id": "msg_011CgS5uLe3wqdCCFeL4dFk4",
+  "validation": {
+    "valid": true,
+    "data": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "Analyze production quality defects and root causes"
+            ]
+          ],
+          "links": [
+            [
+              "INTEGRATE_PRODUCTION_DATA",
+              0,
+              "EES",
+              "SUPPORT",
+              "Analyzes quality defects; root cause analysis supports but does not fully execute causal diagnosis requirement."
+            ]
+          ]
+        }
+      ]
+    },
+    "raw_links": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "links": [
+            [
+              0,
+              0,
+              "EES",
+              "SUPPORT",
+              "Analyzes quality defects; root cause analysis supports but does not fully execute causal diagnosis requirement."
+            ]
+          ]
+        }
+      ]
+    },
+    "derived": {
+      "AXV2C_0093_01": {
+        "score": 2,
+        "relevant": false,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "GROUNDED_SUPPORT",
+        "direct": [],
+        "support": [
+          {
+            "target": "INTEGRATE_PRODUCTION_DATA",
+            "op": 0,
+            "action": "analyze defects and root causes",
+            "object": "production quality",
+            "output": "defect analysis report",
+            "quote": "Analyze production quality defects and root causes",
+            "why": "Analyzes quality defects; root cause analysis supports but does not fully execute causal diagnosis requirement."
+          }
+        ],
+        "broad": [],
+        "fourth_point_evidence": [],
+        "flags": []
+      }
+    },
+    "errors": [],
+    "syntax_repair": []
+  }
+}

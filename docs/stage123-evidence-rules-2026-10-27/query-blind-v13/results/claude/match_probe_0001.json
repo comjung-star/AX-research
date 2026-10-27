@@ -1,0 +1,173 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 2.4,
+  "state": "RECEIVED",
+  "provider": "claude",
+  "job_id": "match_probe_0001",
+  "attempt": 1,
+  "reserved_usd": "0.00315300",
+  "counted_input_tokens": 1197,
+  "input_version": "771fa285dd796c80b12aa1b9b6ef15668c49e962bf369b4f475f7b6fe4249bf3",
+  "request_model": "claude-haiku-4-5-20251001",
+  "request_hash": "266335617fd6a792f8b3d3eb76e3a16f08b5ed810d6016fcfe3e669cab446aca",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 1197,
+    "actual_output_tokens_including_thinking": 202,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00220700"
+  },
+  "response_text": "```json\n{\n  \"qid\": \"V21D010\",\n  \"target\": \"WHOLE_QUERY\",\n  \"items\": [\n    {\n      \"id\": \"AXV2C_0093_01\",\n      \"links\": [\n        [\n          0,\n          0,\n          \"EES\",\n          \"SUPPORT\",\n          \"Defect analysis report supports root cause diagnosis; detecting defects present is prerequisite inspection.\"\n        ]\n      ]\n    },\n    {\n      \"id\": \"AXV2C_0093_02\",\n      \"links\": [\n        [\n          2,\n          0,\n          \"EEE\",\n          \"DIRECT\",\n          \"Adjust production schedules when orders/equipment change produces validated schedule adjustments.\"\n        ]\n      ]\n    }\n  ]\n}\n```",
+  "response_model": "claude-haiku-4-5-20251001",
+  "response_id": "msg_011CgS5u8RqRtrKVFS2M7Ero",
+  "validation": {
+    "valid": true,
+    "data": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "Analyze production quality defects and root causes"
+            ]
+          ],
+          "links": [
+            [
+              "INTEGRATE_PRODUCTION_DATA",
+              0,
+              "EES",
+              "SUPPORT",
+              "Defect analysis report supports root cause diagnosis; detecting defects present is prerequisite inspection."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2C_0093_02",
+          "ops": [
+            [
+              "VERIFY",
+              "Adjust production schedules",
+              "scheduling plans",
+              "validated schedules",
+              "Adjust production schedules with validation"
+            ]
+          ],
+          "links": [
+            [
+              "ADJUST_PRODUCTION_PLAN",
+              0,
+              "EEE",
+              "DIRECT",
+              "Adjust production schedules when orders/equipment change produces validated schedule adjustments."
+            ]
+          ]
+        }
+      ]
+    },
+    "raw_links": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "links": [
+            [
+              0,
+              0,
+              "EES",
+              "SUPPORT",
+              "Defect analysis report supports root cause diagnosis; detecting defects present is prerequisite inspection."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2C_0093_02",
+          "links": [
+            [
+              2,
+              0,
+              "EEE",
+              "DIRECT",
+              "Adjust production schedules when orders/equipment change produces validated schedule adjustments."
+            ]
+          ]
+        }
+      ]
+    },
+    "derived": {
+      "AXV2C_0093_01": {
+        "score": 2,
+        "relevant": false,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "GROUNDED_SUPPORT",
+        "direct": [],
+        "support": [
+          {
+            "target": "INTEGRATE_PRODUCTION_DATA",
+            "op": 0,
+            "action": "analyze defects and root causes",
+            "object": "production quality",
+            "output": "defect analysis report",
+            "quote": "Analyze production quality defects and root causes",
+            "why": "Defect analysis report supports root cause diagnosis; detecting defects present is prerequisite inspection."
+          }
+        ],
+        "broad": [],
+        "fourth_point_evidence": [],
+        "flags": []
+      },
+      "AXV2C_0093_02": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "ADJUST_PRODUCTION_PLAN",
+            "op": 0,
+            "action": "Adjust production schedules",
+            "object": "scheduling plans",
+            "output": "validated schedules",
+            "quote": "Adjust production schedules with validation",
+            "why": "Adjust production schedules when orders/equipment change produces validated schedule adjustments."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_SCOPE_CONDITION",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_02",
+              "field": "problem",
+              "quote": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+              "condition": "Slow changes and fragmented manufacturing scheduling systems"
+            }
+          }
+        ],
+        "flags": [
+          {
+            "kind": "INVENTORY_CATEGORY_DISAGREEMENT_NOT_A_SCORE_RULE",
+            "family": "VERIFY",
+            "target": "ADJUST_PRODUCTION_PLAN",
+            "source": "Adjust production schedules with validation"
+          }
+        ]
+      }
+    },
+    "errors": [],
+    "syntax_repair": []
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 6.925,
+  "state": "RECEIVED",
+  "provider": "openai",
+  "job_id": "match_probe_0000",
+  "attempt": 1,
+  "reserved_usd": "0.00021320",
+  "counted_input_tokens": 769,
+  "input_version": "ca8715040a05a4305f6f00d157c71af828f7e0707198862eee8f267d5f129817",
+  "request_model": "gpt-6-luna",
+  "request_hash": "f686c907253480ae5489d57564a13ed46df76036a385a27719a750473e5241d1",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 769,
+    "actual_output_tokens_including_thinking": 68,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00011090"
+  },
+  "response_text": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"items\":[{\"id\":\"AXV2C_0093_01\",\"links\":[[0,0,\"EES\",\"SUPPORT\",\"Analyzes production quality defects, supporting diagnosis of their causes without establishing causal drivers.\"]]}]}",
+  "response_model": "gpt-6-luna",
+  "response_id": "resp_0f758a0f8c490dd6016ae023ddb4b887d09190de334bdc677f",
+  "validation": {
+    "valid": true,
+    "data": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "Analyze production quality defects"
+            ]
+          ],
+          "links": [
+            [
+              "INTEGRATE_PRODUCTION_DATA",
+              0,
+              "EES",
+              "SUPPORT",
+              "Analyzes production quality defects, supporting diagnosis of their causes without establishing causal drivers."
+            ]
+          ]
+        }
+      ]
+    },
+    "raw_links": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "links": [
+            [
+              0,
+              0,
+              "EES",
+              "SUPPORT",
+              "Analyzes production quality defects, supporting diagnosis of their causes without establishing causal drivers."
+            ]
+          ]
+        }
+      ]
+    },
+    "derived": {
+      "AXV2C_0093_01": {
+        "score": 2,
+        "relevant": false,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "GROUNDED_SUPPORT",
+        "direct": [],
+        "support": [
+          {
+            "target": "INTEGRATE_PRODUCTION_DATA",
+            "op": 0,
+            "action": "analyze",
+            "object": "production quality defects and root causes",
+            "output": "defects and root causes",
+            "quote": "Analyze production quality defects",
+            "why": "Analyzes production quality defects, supporting diagnosis of their causes without establishing causal drivers."
+          }
+        ],
+        "broad": [],
+        "fourth_point_evidence": [],
+        "flags": []
+      }
+    },
+    "errors": [],
+    "syntax_repair": []
+  }
+}

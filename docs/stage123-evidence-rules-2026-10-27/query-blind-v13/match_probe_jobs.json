@@ -1,0 +1,948 @@
+{
+  "openai": [
+    {
+      "job_id": "match_probe_0000",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "T1"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze\",\"production quality defects and root causes\",\"defects and root causes\",\"T1\"]]}}}\nReturn JSON.",
+      "output_cap": 238,
+      "input_version": "ca8715040a05a4305f6f00d157c71af828f7e0707198862eee8f267d5f129817",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "T1"
+            ]
+          ],
+          "provider": "openai",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        }
+      }
+    },
+    {
+      "job_id": "match_probe_0001",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "T1"
+            ]
+          ]
+        },
+        "AXV2C_0093_02": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          },
+          "inventory": [
+            [
+              "adjust",
+              "production schedules",
+              "adjusted production schedules",
+              "T0"
+            ],
+            [
+              "validate",
+              "production schedules",
+              "validated production schedules",
+              "T0"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze\",\"production quality defects and root causes\",\"defects and root causes\",\"T1\"]]},\"AXV2C_0093_02\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Schedule changes were slow and error-prone across fragmented manufacturing systems.\",\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"},\"inventory\":[[\"adjust\",\"production schedules\",\"adjusted production schedules\",\"T0\"],[\"validate\",\"production schedules\",\"validated production schedules\",\"T0\"]]}}}\nReturn JSON.",
+      "output_cap": 348,
+      "input_version": "d5ac0f3992e1f352b9869d290021d4d07bfa0758deec4f33c448790297c5b256",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "T1"
+            ]
+          ],
+          "provider": "openai",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        },
+        "AXV2C_0093_02": {
+          "ops": [
+            [
+              "ANSWER",
+              "adjust",
+              "production schedules",
+              "adjusted production schedules",
+              "T0"
+            ],
+            [
+              "VERIFY",
+              "validate",
+              "production schedules",
+              "validated production schedules",
+              "T0"
+            ]
+          ],
+          "provider": "openai",
+          "source_job": "inventory_pilot_0001",
+          "source_input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714",
+          "task_context_sha256": "1e81c6d133e8c0db419fea81cab2552f0a2902078aed38004efe0c7b6d1103cc"
+        }
+      }
+    },
+    {
+      "job_id": "match_probe_0002",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "T1"
+            ]
+          ]
+        },
+        "AXV2C_0093_02": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          },
+          "inventory": [
+            [
+              "adjust",
+              "production schedules",
+              "adjusted production schedules",
+              "T0"
+            ],
+            [
+              "validate",
+              "production schedules",
+              "validated production schedules",
+              "T0"
+            ]
+          ]
+        },
+        "AXV2P2_0065_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Fragmented paint-process data hide causes of bumper defects and delay countermeasures.",
+          "task": "Investigate paint-quality defect drivers and support root-cause decisions",
+          "context": "Toyota Industries Nagakusa Plant bumper production",
+          "sources": {
+            "T0": "Investigate paint-quality defect drivers and support root-cause decisions",
+            "C0": "Toyota Industries Nagakusa Plant bumper production",
+            "T1": "Investigate paint-quality defect drivers",
+            "T2": "support root-cause decisions"
+          },
+          "inventory": [
+            [
+              "investigate",
+              "paint-quality defect drivers",
+              "root-cause findings",
+              "T1"
+            ],
+            [
+              "support",
+              "root-cause decisions",
+              "decision support",
+              "T2"
+            ]
+          ]
+        },
+        "AXV2N_0117": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Manual underbody inspection must locate metal deposits that can damage cables.",
+          "task": "Detect weld splatter on vehicle underbodies",
+          "context": "Neckarsulm body shop series production as described in May 2025.",
+          "sources": {
+            "T0": "Detect weld splatter on vehicle underbodies",
+            "C0": "Neckarsulm body shop series production as described in May 2025."
+          },
+          "inventory": [
+            [
+              "detect",
+              "weld splatter on vehicle underbodies",
+              "detection",
+              "T0"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze\",\"production quality defects and root causes\",\"defects and root causes\",\"T1\"]]},\"AXV2C_0093_02\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Schedule changes were slow and error-prone across fragmented manufacturing systems.\",\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"},\"inventory\":[[\"adjust\",\"production schedules\",\"adjusted production schedules\",\"T0\"],[\"validate\",\"production schedules\",\"validated production schedules\",\"T0\"]]},\"AXV2P2_0065_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Fragmented paint-process data hide causes of bumper defects and delay countermeasures.\",\"task\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"context\":\"Toyota Industries Nagakusa Plant bumper production\",\"sources\":{\"T0\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"C0\":\"Toyota Industries Nagakusa Plant bumper production\",\"T1\":\"Investigate paint-quality defect drivers\",\"T2\":\"support root-cause decisions\"},\"inventory\":[[\"investigate\",\"paint-quality defect drivers\",\"root-cause findings\",\"T1\"],[\"support\",\"root-cause decisions\",\"decision support\",\"T2\"]]},\"AXV2N_0117\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Manual underbody inspection must locate metal deposits that can damage cables.\",\"task\":\"Detect weld splatter on vehicle underbodies\",\"context\":\"Neckarsulm body shop series production as described in May 2025.\",\"sources\":{\"T0\":\"Detect weld splatter on vehicle underbodies\",\"C0\":\"Neckarsulm body shop series production as described in May 2025.\"},\"inventory\":[[\"detect\",\"weld splatter on vehicle underbodies\",\"detection\",\"T0\"]]}}}\nReturn JSON.",
+      "output_cap": 568,
+      "input_version": "2c0005b3e8f6eec619d11d64bea1371befbc40e11ce18e21e50ab9ab937787cd",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production quality defects and root causes",
+              "defects and root causes",
+              "T1"
+            ]
+          ],
+          "provider": "openai",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        },
+        "AXV2C_0093_02": {
+          "ops": [
+            [
+              "ANSWER",
+              "adjust",
+              "production schedules",
+              "adjusted production schedules",
+              "T0"
+            ],
+            [
+              "VERIFY",
+              "validate",
+              "production schedules",
+              "validated production schedules",
+              "T0"
+            ]
+          ],
+          "provider": "openai",
+          "source_job": "inventory_pilot_0001",
+          "source_input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714",
+          "task_context_sha256": "1e81c6d133e8c0db419fea81cab2552f0a2902078aed38004efe0c7b6d1103cc"
+        },
+        "AXV2P2_0065_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "investigate",
+              "paint-quality defect drivers",
+              "root-cause findings",
+              "T1"
+            ],
+            [
+              "ANSWER",
+              "support",
+              "root-cause decisions",
+              "decision support",
+              "T2"
+            ]
+          ],
+          "provider": "openai",
+          "source_job": "inventory_pilot_0004",
+          "source_input_version": "51c1fa6b149bcec53ac8a754dbc1ce1c97d46dd6def7dad7ca5826c1f775fb89",
+          "task_context_sha256": "a18d29672a1bb83c753b02146b00c03efa7e4d0316a61947e2fd1a66047eca65"
+        },
+        "AXV2N_0117": {
+          "ops": [
+            [
+              "DETECT",
+              "detect",
+              "weld splatter on vehicle underbodies",
+              "detection",
+              "T0"
+            ]
+          ],
+          "provider": "openai",
+          "source_job": "inventory_pilot_0002",
+          "source_input_version": "51d0b1de2127e73d2c955d152cc4cbddd2a218276cc82d2bb0154c3d30045f0b",
+          "task_context_sha256": "6edef5693c8db74c50f4f7c3b12387e05aba77361c0b3eaac6fee5dc87e05d36"
+        }
+      }
+    }
+  ],
+  "gemini": [
+    {
+      "job_id": "match_probe_0000",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze",
+              "production defects",
+              "root causes",
+              "T1"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze\",\"production defects\",\"root causes\",\"T1\"]]}}}\nReturn JSON.",
+      "output_cap": 238,
+      "input_version": "6d22fb9a2d971d6b27741cbb52a70ce93952bb2a15a20a608828f2bac177dd40",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production defects",
+              "root causes",
+              "T1"
+            ]
+          ],
+          "provider": "gemini",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        }
+      }
+    },
+    {
+      "job_id": "match_probe_0001",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze",
+              "production defects",
+              "root causes",
+              "T1"
+            ]
+          ]
+        },
+        "AXV2C_0093_02": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          },
+          "inventory": [
+            [
+              "adjust",
+              "production schedule",
+              "validated schedule",
+              "T0"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze\",\"production defects\",\"root causes\",\"T1\"]]},\"AXV2C_0093_02\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Schedule changes were slow and error-prone across fragmented manufacturing systems.\",\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"},\"inventory\":[[\"adjust\",\"production schedule\",\"validated schedule\",\"T0\"]]}}}\nReturn JSON.",
+      "output_cap": 348,
+      "input_version": "501d2e4787ebb24afb9a7263842610e0670c0d8c8d034c0c3faf492c0b89636a",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production defects",
+              "root causes",
+              "T1"
+            ]
+          ],
+          "provider": "gemini",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        },
+        "AXV2C_0093_02": {
+          "ops": [
+            [
+              "RESCHEDULE",
+              "adjust",
+              "production schedule",
+              "validated schedule",
+              "T0"
+            ]
+          ],
+          "provider": "gemini",
+          "source_job": "inventory_pilot_0001",
+          "source_input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714",
+          "task_context_sha256": "1e81c6d133e8c0db419fea81cab2552f0a2902078aed38004efe0c7b6d1103cc"
+        }
+      }
+    },
+    {
+      "job_id": "match_probe_0002",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze",
+              "production defects",
+              "root causes",
+              "T1"
+            ]
+          ]
+        },
+        "AXV2C_0093_02": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          },
+          "inventory": [
+            [
+              "adjust",
+              "production schedule",
+              "validated schedule",
+              "T0"
+            ]
+          ]
+        },
+        "AXV2P2_0065_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Fragmented paint-process data hide causes of bumper defects and delay countermeasures.",
+          "task": "Investigate paint-quality defect drivers and support root-cause decisions",
+          "context": "Toyota Industries Nagakusa Plant bumper production",
+          "sources": {
+            "T0": "Investigate paint-quality defect drivers and support root-cause decisions",
+            "C0": "Toyota Industries Nagakusa Plant bumper production",
+            "T1": "Investigate paint-quality defect drivers",
+            "T2": "support root-cause decisions"
+          },
+          "inventory": [
+            [
+              "investigate",
+              "paint-quality defect drivers",
+              "paint-quality defect drivers",
+              "T1"
+            ]
+          ]
+        },
+        "AXV2N_0117": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Manual underbody inspection must locate metal deposits that can damage cables.",
+          "task": "Detect weld splatter on vehicle underbodies",
+          "context": "Neckarsulm body shop series production as described in May 2025.",
+          "sources": {
+            "T0": "Detect weld splatter on vehicle underbodies",
+            "C0": "Neckarsulm body shop series production as described in May 2025."
+          },
+          "inventory": [
+            [
+              "detect",
+              "weld splatter on vehicle underbodies",
+              "weld splatter",
+              "T0"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze\",\"production defects\",\"root causes\",\"T1\"]]},\"AXV2C_0093_02\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Schedule changes were slow and error-prone across fragmented manufacturing systems.\",\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"},\"inventory\":[[\"adjust\",\"production schedule\",\"validated schedule\",\"T0\"]]},\"AXV2P2_0065_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Fragmented paint-process data hide causes of bumper defects and delay countermeasures.\",\"task\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"context\":\"Toyota Industries Nagakusa Plant bumper production\",\"sources\":{\"T0\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"C0\":\"Toyota Industries Nagakusa Plant bumper production\",\"T1\":\"Investigate paint-quality defect drivers\",\"T2\":\"support root-cause decisions\"},\"inventory\":[[\"investigate\",\"paint-quality defect drivers\",\"paint-quality defect drivers\",\"T1\"]]},\"AXV2N_0117\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Manual underbody inspection must locate metal deposits that can damage cables.\",\"task\":\"Detect weld splatter on vehicle underbodies\",\"context\":\"Neckarsulm body shop series production as described in May 2025.\",\"sources\":{\"T0\":\"Detect weld splatter on vehicle underbodies\",\"C0\":\"Neckarsulm body shop series production as described in May 2025.\"},\"inventory\":[[\"detect\",\"weld splatter on vehicle underbodies\",\"weld splatter\",\"T0\"]]}}}\nReturn JSON.",
+      "output_cap": 568,
+      "input_version": "8941a00c97e3c86ac9b0ed60f42cab740daa5164b0a2b3967d6b07a3f8e0e7cf",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production defects",
+              "root causes",
+              "T1"
+            ]
+          ],
+          "provider": "gemini",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        },
+        "AXV2C_0093_02": {
+          "ops": [
+            [
+              "RESCHEDULE",
+              "adjust",
+              "production schedule",
+              "validated schedule",
+              "T0"
+            ]
+          ],
+          "provider": "gemini",
+          "source_job": "inventory_pilot_0001",
+          "source_input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714",
+          "task_context_sha256": "1e81c6d133e8c0db419fea81cab2552f0a2902078aed38004efe0c7b6d1103cc"
+        },
+        "AXV2P2_0065_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "investigate",
+              "paint-quality defect drivers",
+              "paint-quality defect drivers",
+              "T1"
+            ]
+          ],
+          "provider": "gemini",
+          "source_job": "inventory_pilot_0004",
+          "source_input_version": "51c1fa6b149bcec53ac8a754dbc1ce1c97d46dd6def7dad7ca5826c1f775fb89",
+          "task_context_sha256": "a18d29672a1bb83c753b02146b00c03efa7e4d0316a61947e2fd1a66047eca65"
+        },
+        "AXV2N_0117": {
+          "ops": [
+            [
+              "DETECT",
+              "detect",
+              "weld splatter on vehicle underbodies",
+              "weld splatter",
+              "T0"
+            ]
+          ],
+          "provider": "gemini",
+          "source_job": "inventory_pilot_0002",
+          "source_input_version": "51d0b1de2127e73d2c955d152cc4cbddd2a218276cc82d2bb0154c3d30045f0b",
+          "task_context_sha256": "6edef5693c8db74c50f4f7c3b12387e05aba77361c0b3eaac6fee5dc87e05d36"
+        }
+      }
+    }
+  ],
+  "claude": [
+    {
+      "job_id": "match_probe_0000",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "T0"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze defects and root causes\",\"production quality\",\"defect analysis report\",\"T0\"]]}}}\nReturn JSON.",
+      "output_cap": 238,
+      "input_version": "6e28ada56196f2e729130ba3408295bbf46fad6312d4dad3760c9842a4f20b6d",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "T0"
+            ]
+          ],
+          "provider": "claude",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        }
+      }
+    },
+    {
+      "job_id": "match_probe_0001",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "T0"
+            ]
+          ]
+        },
+        "AXV2C_0093_02": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          },
+          "inventory": [
+            [
+              "Adjust production schedules",
+              "scheduling plans",
+              "validated schedules",
+              "T0"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze defects and root causes\",\"production quality\",\"defect analysis report\",\"T0\"]]},\"AXV2C_0093_02\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Schedule changes were slow and error-prone across fragmented manufacturing systems.\",\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"},\"inventory\":[[\"Adjust production schedules\",\"scheduling plans\",\"validated schedules\",\"T0\"]]}}}\nReturn JSON.",
+      "output_cap": 348,
+      "input_version": "771fa285dd796c80b12aa1b9b6ef15668c49e962bf369b4f475f7b6fe4249bf3",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "T0"
+            ]
+          ],
+          "provider": "claude",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        },
+        "AXV2C_0093_02": {
+          "ops": [
+            [
+              "VERIFY",
+              "Adjust production schedules",
+              "scheduling plans",
+              "validated schedules",
+              "T0"
+            ]
+          ],
+          "provider": "claude",
+          "source_job": "inventory_pilot_0001",
+          "source_input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714",
+          "task_context_sha256": "1e81c6d133e8c0db419fea81cab2552f0a2902078aed38004efe0c7b6d1103cc"
+        }
+      }
+    },
+    {
+      "job_id": "match_probe_0002",
+      "phase": "match_probe",
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "tasks": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "items": {
+        "AXV2C_0093_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          },
+          "inventory": [
+            [
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "T0"
+            ]
+          ]
+        },
+        "AXV2C_0093_02": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          },
+          "inventory": [
+            [
+              "Adjust production schedules",
+              "scheduling plans",
+              "validated schedules",
+              "T0"
+            ]
+          ]
+        },
+        "AXV2P2_0065_01": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Fragmented paint-process data hide causes of bumper defects and delay countermeasures.",
+          "task": "Investigate paint-quality defect drivers and support root-cause decisions",
+          "context": "Toyota Industries Nagakusa Plant bumper production",
+          "sources": {
+            "T0": "Investigate paint-quality defect drivers and support root-cause decisions",
+            "C0": "Toyota Industries Nagakusa Plant bumper production",
+            "T1": "Investigate paint-quality defect drivers",
+            "T2": "support root-cause decisions"
+          },
+          "inventory": [
+            [
+              "investigate paint-quality defect drivers",
+              "paint-quality defects",
+              "defect drivers",
+              "T1"
+            ],
+            [
+              "support root-cause decisions",
+              "root-cause analysis",
+              "root-cause decisions",
+              "T2"
+            ]
+          ]
+        },
+        "AXV2N_0117": {
+          "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+          "problem": "Manual underbody inspection must locate metal deposits that can damage cables.",
+          "task": "Detect weld splatter on vehicle underbodies",
+          "context": "Neckarsulm body shop series production as described in May 2025.",
+          "sources": {
+            "T0": "Detect weld splatter on vehicle underbodies",
+            "C0": "Neckarsulm body shop series production as described in May 2025."
+          },
+          "inventory": [
+            [
+              "Detect weld splatter on vehicle underbodies",
+              "vehicle underbodies",
+              "weld splatter presence",
+              "T0"
+            ]
+          ]
+        }
+      },
+      "system": "Compare a single query/target to the fixed performed-operation inventory for each case. NEVER create or change an operation. The inventory was extracted without seeing this query. Problem describes needs/background, not additional capabilities. WHOLE_QUERY allows any listed core task; ASPECT permits only its selected task. Different sectors, recipient roles and channels are allowed if functional ACTION, OBJECT and OUTPUT correspond. Do not equate summarizing with identifying next actions, detecting a defect with cause diagnosis, or generic effort savings with task relevance.\nReturn JSON exactly {\"qid\":\"copy\",\"target\":\"copy\",\"items\":[{\"id\":\"case id\",\"links\":[[target_index,operation_index,\"EEE\",\"DIRECT\",\"short functional comparison\"]]}]}. Target and operation indices are the numeric positions in their supplied lists, never case IDs. Mask has ACTION/OBJECT/OUTPUT letters E=equivalent, S=concrete supporting, D=different/unstated. relation DIRECT requires EEE. SUPPORT is a real partial/upstream/downstream operation; BROAD is broader operational resemblance. Omit unrelated links; busy people/industry alone is not a link. Explain functional correspondence in <=18 English words per link, never benefits, technologies or outcomes. Do not output scores or operations. Preserve qid,target and each case ID exactly. No Markdown. Inventory entries shown here are [actual action,functional object,produced output,source ID]. Normalized atoms can be imprecise: verify the actual operation against Task and the referenced source clause. The raw Task/Context is authoritative. Linguistically entailed outputs are allowed, new capabilities/benefits are not. No category label is a substitute for functional meaning.",
+      "user": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"query\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"requirements\":[{\"id\":\"INTEGRATE_PRODUCTION_DATA\",\"function\":\"Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.\"},{\"id\":\"DIAGNOSE_QUALITY_CAUSE\",\"function\":\"Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.\"},{\"id\":\"ADJUST_PRODUCTION_PLAN\",\"function\":\"Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting.\"}],\"cases\":{\"AXV2C_0093_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Scattered production and quality data and manual analysis delay identification of quality issues.\",\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"},\"inventory\":[[\"analyze defects and root causes\",\"production quality\",\"defect analysis report\",\"T0\"]]},\"AXV2C_0093_02\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Schedule changes were slow and error-prone across fragmented manufacturing systems.\",\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"},\"inventory\":[[\"Adjust production schedules\",\"scheduling plans\",\"validated schedules\",\"T0\"]]},\"AXV2P2_0065_01\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Fragmented paint-process data hide causes of bumper defects and delay countermeasures.\",\"task\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"context\":\"Toyota Industries Nagakusa Plant bumper production\",\"sources\":{\"T0\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"C0\":\"Toyota Industries Nagakusa Plant bumper production\",\"T1\":\"Investigate paint-quality defect drivers\",\"T2\":\"support root-cause decisions\"},\"inventory\":[[\"investigate paint-quality defect drivers\",\"paint-quality defects\",\"defect drivers\",\"T1\"],[\"support root-cause decisions\",\"root-cause analysis\",\"root-cause decisions\",\"T2\"]]},\"AXV2N_0117\":{\"question\":\"제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.\",\"problem\":\"Manual underbody inspection must locate metal deposits that can damage cables.\",\"task\":\"Detect weld splatter on vehicle underbodies\",\"context\":\"Neckarsulm body shop series production as described in May 2025.\",\"sources\":{\"T0\":\"Detect weld splatter on vehicle underbodies\",\"C0\":\"Neckarsulm body shop series production as described in May 2025.\"},\"inventory\":[[\"Detect weld splatter on vehicle underbodies\",\"vehicle underbodies\",\"weld splatter presence\",\"T0\"]]}}}\nReturn JSON.",
+      "output_cap": 568,
+      "input_version": "9a12907bb974288b2261fc4c15e26848027ff6e68afc1871710ed600cde4dd1a",
+      "inventory": {
+        "AXV2C_0093_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze defects and root causes",
+              "production quality",
+              "defect analysis report",
+              "T0"
+            ]
+          ],
+          "provider": "claude",
+          "source_job": "inventory_pilot_0000",
+          "source_input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694",
+          "task_context_sha256": "db4895a82b0f85c9e99af69d744ffbba4ca3f8a3d33f22fbad1d2544504eb010"
+        },
+        "AXV2C_0093_02": {
+          "ops": [
+            [
+              "VERIFY",
+              "Adjust production schedules",
+              "scheduling plans",
+              "validated schedules",
+              "T0"
+            ]
+          ],
+          "provider": "claude",
+          "source_job": "inventory_pilot_0001",
+          "source_input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714",
+          "task_context_sha256": "1e81c6d133e8c0db419fea81cab2552f0a2902078aed38004efe0c7b6d1103cc"
+        },
+        "AXV2P2_0065_01": {
+          "ops": [
+            [
+              "DIAGNOSE",
+              "investigate paint-quality defect drivers",
+              "paint-quality defects",
+              "defect drivers",
+              "T1"
+            ],
+            [
+              "ANSWER",
+              "support root-cause decisions",
+              "root-cause analysis",
+              "root-cause decisions",
+              "T2"
+            ]
+          ],
+          "provider": "claude",
+          "source_job": "inventory_pilot_0004",
+          "source_input_version": "51c1fa6b149bcec53ac8a754dbc1ce1c97d46dd6def7dad7ca5826c1f775fb89",
+          "task_context_sha256": "a18d29672a1bb83c753b02146b00c03efa7e4d0316a61947e2fd1a66047eca65"
+        },
+        "AXV2N_0117": {
+          "ops": [
+            [
+              "DETECT",
+              "Detect weld splatter on vehicle underbodies",
+              "vehicle underbodies",
+              "weld splatter presence",
+              "T0"
+            ]
+          ],
+          "provider": "claude",
+          "source_job": "inventory_pilot_0002",
+          "source_input_version": "51d0b1de2127e73d2c955d152cc4cbddd2a218276cc82d2bb0154c3d30045f0b",
+          "task_context_sha256": "6edef5693c8db74c50f4f7c3b12387e05aba77361c0b3eaac6fee5dc87e05d36"
+        }
+      }
+    }
+  ]
+}

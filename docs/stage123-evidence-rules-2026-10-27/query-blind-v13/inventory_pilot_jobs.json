@@ -1,0 +1,644 @@
+{
+  "openai": [
+    {
+      "job_id": "inventory_pilot_0000",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV24_bc6444cc1b61": {
+          "task": "단체 의료보험 견적용 청구서 정보 추출",
+          "context": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.",
+          "sources": {
+            "T0": "단체 의료보험 견적용 청구서 정보 추출",
+            "C0": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무."
+          }
+        },
+        "AXV2C_0006_02": {
+          "task": "Validate customer order prices before invoicing",
+          "context": "Danone receives thousands of orders daily through email, PDF and EDI.",
+          "sources": {
+            "T0": "Validate customer order prices before invoicing",
+            "C0": "Danone receives thousands of orders daily through email, PDF and EDI."
+          }
+        },
+        "AXV2C_0016_01": {
+          "task": "Caller self-service computer troubleshooting",
+          "context": "Best Buy customers calling for computer assistance.",
+          "sources": {
+            "T0": "Caller self-service computer troubleshooting",
+            "C0": "Best Buy customers calling for computer assistance."
+          }
+        },
+        "AXV2C_0093_01": {
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV24_bc6444cc1b61\":{\"task\":\"단체 의료보험 견적용 청구서 정보 추출\",\"context\":\"18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.\",\"sources\":{\"T0\":\"단체 의료보험 견적용 청구서 정보 추출\",\"C0\":\"18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.\"}},\"AXV2C_0006_02\":{\"task\":\"Validate customer order prices before invoicing\",\"context\":\"Danone receives thousands of orders daily through email, PDF and EDI.\",\"sources\":{\"T0\":\"Validate customer order prices before invoicing\",\"C0\":\"Danone receives thousands of orders daily through email, PDF and EDI.\"}},\"AXV2C_0016_01\":{\"task\":\"Caller self-service computer troubleshooting\",\"context\":\"Best Buy customers calling for computer assistance.\",\"sources\":{\"T0\":\"Caller self-service computer troubleshooting\",\"C0\":\"Best Buy customers calling for computer assistance.\"}},\"AXV2C_0093_01\":{\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694"
+    },
+    {
+      "job_id": "inventory_pilot_0001",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2C_0093_02": {
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          }
+        },
+        "AXV2C_0094_02": {
+          "task": "Prepare manufacturing production plans",
+          "context": "Savage Precision Fabrication production planning and work orders.",
+          "sources": {
+            "T0": "Prepare manufacturing production plans",
+            "C0": "Savage Precision Fabrication production planning and work orders."
+          }
+        },
+        "AXV2H_0002_01": {
+          "task": "고객 이메일 요약",
+          "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일",
+          "sources": {
+            "T0": "고객 이메일 요약",
+            "C0": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+          }
+        },
+        "AXV2H_0021_01": {
+          "task": "제조 로봇 예지보전",
+          "context": "현대차 자동차 공장 다수 로봇팔의 공정 진단",
+          "sources": {
+            "T0": "제조 로봇 예지보전",
+            "C0": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2C_0093_02\":{\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"}},\"AXV2C_0094_02\":{\"task\":\"Prepare manufacturing production plans\",\"context\":\"Savage Precision Fabrication production planning and work orders.\",\"sources\":{\"T0\":\"Prepare manufacturing production plans\",\"C0\":\"Savage Precision Fabrication production planning and work orders.\"}},\"AXV2H_0002_01\":{\"task\":\"고객 이메일 요약\",\"context\":\"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\",\"sources\":{\"T0\":\"고객 이메일 요약\",\"C0\":\"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\"}},\"AXV2H_0021_01\":{\"task\":\"제조 로봇 예지보전\",\"context\":\"현대차 자동차 공장 다수 로봇팔의 공정 진단\",\"sources\":{\"T0\":\"제조 로봇 예지보전\",\"C0\":\"현대차 자동차 공장 다수 로봇팔의 공정 진단\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714"
+    },
+    {
+      "job_id": "inventory_pilot_0002",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2N_0107": {
+          "task": "Give online home-improvement project advice",
+          "context": "Magic Apron on Home Depot digital platforms.",
+          "sources": {
+            "T0": "Give online home-improvement project advice",
+            "C0": "Magic Apron on Home Depot digital platforms."
+          }
+        },
+        "AXV2N_0114": {
+          "task": "Generate branded lifestyle advertising images",
+          "context": "Operational UK/European advertising campaigns for pet products.",
+          "sources": {
+            "T0": "Generate branded lifestyle advertising images",
+            "C0": "Operational UK/European advertising campaigns for pet products."
+          }
+        },
+        "AXV2N_0117": {
+          "task": "Detect weld splatter on vehicle underbodies",
+          "context": "Neckarsulm body shop series production as described in May 2025.",
+          "sources": {
+            "T0": "Detect weld splatter on vehicle underbodies",
+            "C0": "Neckarsulm body shop series production as described in May 2025."
+          }
+        },
+        "AXV2N_0118": {
+          "task": "Unload cartons from trailers onto conveyors",
+          "context": "First commercial Stretch deployment in January 2023.",
+          "sources": {
+            "T0": "Unload cartons from trailers onto conveyors",
+            "C0": "First commercial Stretch deployment in January 2023."
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2N_0107\":{\"task\":\"Give online home-improvement project advice\",\"context\":\"Magic Apron on Home Depot digital platforms.\",\"sources\":{\"T0\":\"Give online home-improvement project advice\",\"C0\":\"Magic Apron on Home Depot digital platforms.\"}},\"AXV2N_0114\":{\"task\":\"Generate branded lifestyle advertising images\",\"context\":\"Operational UK/European advertising campaigns for pet products.\",\"sources\":{\"T0\":\"Generate branded lifestyle advertising images\",\"C0\":\"Operational UK/European advertising campaigns for pet products.\"}},\"AXV2N_0117\":{\"task\":\"Detect weld splatter on vehicle underbodies\",\"context\":\"Neckarsulm body shop series production as described in May 2025.\",\"sources\":{\"T0\":\"Detect weld splatter on vehicle underbodies\",\"C0\":\"Neckarsulm body shop series production as described in May 2025.\"}},\"AXV2N_0118\":{\"task\":\"Unload cartons from trailers onto conveyors\",\"context\":\"First commercial Stretch deployment in January 2023.\",\"sources\":{\"T0\":\"Unload cartons from trailers onto conveyors\",\"C0\":\"First commercial Stretch deployment in January 2023.\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "51d0b1de2127e73d2c955d152cc4cbddd2a218276cc82d2bb0154c3d30045f0b"
+    },
+    {
+      "job_id": "inventory_pilot_0003",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2N_0125": {
+          "task": "Create sales-meeting recaps and next steps",
+          "context": "Teams meetings with sales customers, distinct from email-signature contact creation.",
+          "sources": {
+            "T0": "Create sales-meeting recaps and next steps",
+            "C0": "Teams meetings with sales customers, distinct from email-signature contact creation.",
+            "T1": "Create sales-meeting recaps",
+            "T2": "next steps"
+          }
+        },
+        "AXV2N_0130": {
+          "task": "Automate routine support-case administration",
+          "context": "Automate SW Support deployed to 2800 engineers worldwide.",
+          "sources": {
+            "T0": "Automate routine support-case administration",
+            "C0": "Automate SW Support deployed to 2800 engineers worldwide."
+          }
+        },
+        "AXV2N_0139": {
+          "task": "Summarize contracts for internal teams",
+          "context": "Contract Companion GPT used within Moderna functions.",
+          "sources": {
+            "T0": "Summarize contracts for internal teams",
+            "C0": "Contract Companion GPT used within Moderna functions."
+          }
+        },
+        "AXV2P2_0012_01": {
+          "task": "Extract and classify insurance documentation",
+          "context": "Shift Technology's operational insurer document-processing platform",
+          "sources": {
+            "T0": "Extract and classify insurance documentation",
+            "C0": "Shift Technology's operational insurer document-processing platform",
+            "T1": "Extract",
+            "T2": "classify insurance documentation"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2N_0125\":{\"task\":\"Create sales-meeting recaps and next steps\",\"context\":\"Teams meetings with sales customers, distinct from email-signature contact creation.\",\"sources\":{\"T0\":\"Create sales-meeting recaps and next steps\",\"C0\":\"Teams meetings with sales customers, distinct from email-signature contact creation.\",\"T1\":\"Create sales-meeting recaps\",\"T2\":\"next steps\"}},\"AXV2N_0130\":{\"task\":\"Automate routine support-case administration\",\"context\":\"Automate SW Support deployed to 2800 engineers worldwide.\",\"sources\":{\"T0\":\"Automate routine support-case administration\",\"C0\":\"Automate SW Support deployed to 2800 engineers worldwide.\"}},\"AXV2N_0139\":{\"task\":\"Summarize contracts for internal teams\",\"context\":\"Contract Companion GPT used within Moderna functions.\",\"sources\":{\"T0\":\"Summarize contracts for internal teams\",\"C0\":\"Contract Companion GPT used within Moderna functions.\"}},\"AXV2P2_0012_01\":{\"task\":\"Extract and classify insurance documentation\",\"context\":\"Shift Technology's operational insurer document-processing platform\",\"sources\":{\"T0\":\"Extract and classify insurance documentation\",\"C0\":\"Shift Technology's operational insurer document-processing platform\",\"T1\":\"Extract\",\"T2\":\"classify insurance documentation\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "0bb98d082d6a0f048661b99a56b5eee9b160b8b79db2304737ef3520833f9b29"
+    },
+    {
+      "job_id": "inventory_pilot_0004",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2P2_0048_01": {
+          "task": "Answer shopping questions and recommend products",
+          "context": "Walmart app Ask Sparky button launched across categories in June 2025",
+          "sources": {
+            "T0": "Answer shopping questions and recommend products",
+            "C0": "Walmart app Ask Sparky button launched across categories in June 2025",
+            "T1": "Answer shopping questions",
+            "T2": "recommend products"
+          }
+        },
+        "AXV2P2_0065_01": {
+          "task": "Investigate paint-quality defect drivers and support root-cause decisions",
+          "context": "Toyota Industries Nagakusa Plant bumper production",
+          "sources": {
+            "T0": "Investigate paint-quality defect drivers and support root-cause decisions",
+            "C0": "Toyota Industries Nagakusa Plant bumper production",
+            "T1": "Investigate paint-quality defect drivers",
+            "T2": "support root-cause decisions"
+          }
+        },
+        "AXV2P2_0069_01": {
+          "task": "Create CRM contacts from customer emails",
+          "context": "Schneider Electric salespeople using Salesforce, Outlook and Teams",
+          "sources": {
+            "T0": "Create CRM contacts from customer emails",
+            "C0": "Schneider Electric salespeople using Salesforce, Outlook and Teams"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2P2_0048_01\":{\"task\":\"Answer shopping questions and recommend products\",\"context\":\"Walmart app Ask Sparky button launched across categories in June 2025\",\"sources\":{\"T0\":\"Answer shopping questions and recommend products\",\"C0\":\"Walmart app Ask Sparky button launched across categories in June 2025\",\"T1\":\"Answer shopping questions\",\"T2\":\"recommend products\"}},\"AXV2P2_0065_01\":{\"task\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"context\":\"Toyota Industries Nagakusa Plant bumper production\",\"sources\":{\"T0\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"C0\":\"Toyota Industries Nagakusa Plant bumper production\",\"T1\":\"Investigate paint-quality defect drivers\",\"T2\":\"support root-cause decisions\"}},\"AXV2P2_0069_01\":{\"task\":\"Create CRM contacts from customer emails\",\"context\":\"Schneider Electric salespeople using Salesforce, Outlook and Teams\",\"sources\":{\"T0\":\"Create CRM contacts from customer emails\",\"C0\":\"Schneider Electric salespeople using Salesforce, Outlook and Teams\"}}}}\nReturn JSON.",
+      "output_cap": 788,
+      "input_version": "51c1fa6b149bcec53ac8a754dbc1ce1c97d46dd6def7dad7ca5826c1f775fb89"
+    }
+  ],
+  "gemini": [
+    {
+      "job_id": "inventory_pilot_0000",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV24_bc6444cc1b61": {
+          "task": "단체 의료보험 견적용 청구서 정보 추출",
+          "context": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.",
+          "sources": {
+            "T0": "단체 의료보험 견적용 청구서 정보 추출",
+            "C0": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무."
+          }
+        },
+        "AXV2C_0006_02": {
+          "task": "Validate customer order prices before invoicing",
+          "context": "Danone receives thousands of orders daily through email, PDF and EDI.",
+          "sources": {
+            "T0": "Validate customer order prices before invoicing",
+            "C0": "Danone receives thousands of orders daily through email, PDF and EDI."
+          }
+        },
+        "AXV2C_0016_01": {
+          "task": "Caller self-service computer troubleshooting",
+          "context": "Best Buy customers calling for computer assistance.",
+          "sources": {
+            "T0": "Caller self-service computer troubleshooting",
+            "C0": "Best Buy customers calling for computer assistance."
+          }
+        },
+        "AXV2C_0093_01": {
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV24_bc6444cc1b61\":{\"task\":\"단체 의료보험 견적용 청구서 정보 추출\",\"context\":\"18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.\",\"sources\":{\"T0\":\"단체 의료보험 견적용 청구서 정보 추출\",\"C0\":\"18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.\"}},\"AXV2C_0006_02\":{\"task\":\"Validate customer order prices before invoicing\",\"context\":\"Danone receives thousands of orders daily through email, PDF and EDI.\",\"sources\":{\"T0\":\"Validate customer order prices before invoicing\",\"C0\":\"Danone receives thousands of orders daily through email, PDF and EDI.\"}},\"AXV2C_0016_01\":{\"task\":\"Caller self-service computer troubleshooting\",\"context\":\"Best Buy customers calling for computer assistance.\",\"sources\":{\"T0\":\"Caller self-service computer troubleshooting\",\"C0\":\"Best Buy customers calling for computer assistance.\"}},\"AXV2C_0093_01\":{\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694"
+    },
+    {
+      "job_id": "inventory_pilot_0001",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2C_0093_02": {
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          }
+        },
+        "AXV2C_0094_02": {
+          "task": "Prepare manufacturing production plans",
+          "context": "Savage Precision Fabrication production planning and work orders.",
+          "sources": {
+            "T0": "Prepare manufacturing production plans",
+            "C0": "Savage Precision Fabrication production planning and work orders."
+          }
+        },
+        "AXV2H_0002_01": {
+          "task": "고객 이메일 요약",
+          "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일",
+          "sources": {
+            "T0": "고객 이메일 요약",
+            "C0": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+          }
+        },
+        "AXV2H_0021_01": {
+          "task": "제조 로봇 예지보전",
+          "context": "현대차 자동차 공장 다수 로봇팔의 공정 진단",
+          "sources": {
+            "T0": "제조 로봇 예지보전",
+            "C0": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2C_0093_02\":{\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"}},\"AXV2C_0094_02\":{\"task\":\"Prepare manufacturing production plans\",\"context\":\"Savage Precision Fabrication production planning and work orders.\",\"sources\":{\"T0\":\"Prepare manufacturing production plans\",\"C0\":\"Savage Precision Fabrication production planning and work orders.\"}},\"AXV2H_0002_01\":{\"task\":\"고객 이메일 요약\",\"context\":\"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\",\"sources\":{\"T0\":\"고객 이메일 요약\",\"C0\":\"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\"}},\"AXV2H_0021_01\":{\"task\":\"제조 로봇 예지보전\",\"context\":\"현대차 자동차 공장 다수 로봇팔의 공정 진단\",\"sources\":{\"T0\":\"제조 로봇 예지보전\",\"C0\":\"현대차 자동차 공장 다수 로봇팔의 공정 진단\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714"
+    },
+    {
+      "job_id": "inventory_pilot_0002",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2N_0107": {
+          "task": "Give online home-improvement project advice",
+          "context": "Magic Apron on Home Depot digital platforms.",
+          "sources": {
+            "T0": "Give online home-improvement project advice",
+            "C0": "Magic Apron on Home Depot digital platforms."
+          }
+        },
+        "AXV2N_0114": {
+          "task": "Generate branded lifestyle advertising images",
+          "context": "Operational UK/European advertising campaigns for pet products.",
+          "sources": {
+            "T0": "Generate branded lifestyle advertising images",
+            "C0": "Operational UK/European advertising campaigns for pet products."
+          }
+        },
+        "AXV2N_0117": {
+          "task": "Detect weld splatter on vehicle underbodies",
+          "context": "Neckarsulm body shop series production as described in May 2025.",
+          "sources": {
+            "T0": "Detect weld splatter on vehicle underbodies",
+            "C0": "Neckarsulm body shop series production as described in May 2025."
+          }
+        },
+        "AXV2N_0118": {
+          "task": "Unload cartons from trailers onto conveyors",
+          "context": "First commercial Stretch deployment in January 2023.",
+          "sources": {
+            "T0": "Unload cartons from trailers onto conveyors",
+            "C0": "First commercial Stretch deployment in January 2023."
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2N_0107\":{\"task\":\"Give online home-improvement project advice\",\"context\":\"Magic Apron on Home Depot digital platforms.\",\"sources\":{\"T0\":\"Give online home-improvement project advice\",\"C0\":\"Magic Apron on Home Depot digital platforms.\"}},\"AXV2N_0114\":{\"task\":\"Generate branded lifestyle advertising images\",\"context\":\"Operational UK/European advertising campaigns for pet products.\",\"sources\":{\"T0\":\"Generate branded lifestyle advertising images\",\"C0\":\"Operational UK/European advertising campaigns for pet products.\"}},\"AXV2N_0117\":{\"task\":\"Detect weld splatter on vehicle underbodies\",\"context\":\"Neckarsulm body shop series production as described in May 2025.\",\"sources\":{\"T0\":\"Detect weld splatter on vehicle underbodies\",\"C0\":\"Neckarsulm body shop series production as described in May 2025.\"}},\"AXV2N_0118\":{\"task\":\"Unload cartons from trailers onto conveyors\",\"context\":\"First commercial Stretch deployment in January 2023.\",\"sources\":{\"T0\":\"Unload cartons from trailers onto conveyors\",\"C0\":\"First commercial Stretch deployment in January 2023.\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "51d0b1de2127e73d2c955d152cc4cbddd2a218276cc82d2bb0154c3d30045f0b"
+    },
+    {
+      "job_id": "inventory_pilot_0003",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2N_0125": {
+          "task": "Create sales-meeting recaps and next steps",
+          "context": "Teams meetings with sales customers, distinct from email-signature contact creation.",
+          "sources": {
+            "T0": "Create sales-meeting recaps and next steps",
+            "C0": "Teams meetings with sales customers, distinct from email-signature contact creation.",
+            "T1": "Create sales-meeting recaps",
+            "T2": "next steps"
+          }
+        },
+        "AXV2N_0130": {
+          "task": "Automate routine support-case administration",
+          "context": "Automate SW Support deployed to 2800 engineers worldwide.",
+          "sources": {
+            "T0": "Automate routine support-case administration",
+            "C0": "Automate SW Support deployed to 2800 engineers worldwide."
+          }
+        },
+        "AXV2N_0139": {
+          "task": "Summarize contracts for internal teams",
+          "context": "Contract Companion GPT used within Moderna functions.",
+          "sources": {
+            "T0": "Summarize contracts for internal teams",
+            "C0": "Contract Companion GPT used within Moderna functions."
+          }
+        },
+        "AXV2P2_0012_01": {
+          "task": "Extract and classify insurance documentation",
+          "context": "Shift Technology's operational insurer document-processing platform",
+          "sources": {
+            "T0": "Extract and classify insurance documentation",
+            "C0": "Shift Technology's operational insurer document-processing platform",
+            "T1": "Extract",
+            "T2": "classify insurance documentation"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2N_0125\":{\"task\":\"Create sales-meeting recaps and next steps\",\"context\":\"Teams meetings with sales customers, distinct from email-signature contact creation.\",\"sources\":{\"T0\":\"Create sales-meeting recaps and next steps\",\"C0\":\"Teams meetings with sales customers, distinct from email-signature contact creation.\",\"T1\":\"Create sales-meeting recaps\",\"T2\":\"next steps\"}},\"AXV2N_0130\":{\"task\":\"Automate routine support-case administration\",\"context\":\"Automate SW Support deployed to 2800 engineers worldwide.\",\"sources\":{\"T0\":\"Automate routine support-case administration\",\"C0\":\"Automate SW Support deployed to 2800 engineers worldwide.\"}},\"AXV2N_0139\":{\"task\":\"Summarize contracts for internal teams\",\"context\":\"Contract Companion GPT used within Moderna functions.\",\"sources\":{\"T0\":\"Summarize contracts for internal teams\",\"C0\":\"Contract Companion GPT used within Moderna functions.\"}},\"AXV2P2_0012_01\":{\"task\":\"Extract and classify insurance documentation\",\"context\":\"Shift Technology's operational insurer document-processing platform\",\"sources\":{\"T0\":\"Extract and classify insurance documentation\",\"C0\":\"Shift Technology's operational insurer document-processing platform\",\"T1\":\"Extract\",\"T2\":\"classify insurance documentation\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "0bb98d082d6a0f048661b99a56b5eee9b160b8b79db2304737ef3520833f9b29"
+    },
+    {
+      "job_id": "inventory_pilot_0004",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2P2_0048_01": {
+          "task": "Answer shopping questions and recommend products",
+          "context": "Walmart app Ask Sparky button launched across categories in June 2025",
+          "sources": {
+            "T0": "Answer shopping questions and recommend products",
+            "C0": "Walmart app Ask Sparky button launched across categories in June 2025",
+            "T1": "Answer shopping questions",
+            "T2": "recommend products"
+          }
+        },
+        "AXV2P2_0065_01": {
+          "task": "Investigate paint-quality defect drivers and support root-cause decisions",
+          "context": "Toyota Industries Nagakusa Plant bumper production",
+          "sources": {
+            "T0": "Investigate paint-quality defect drivers and support root-cause decisions",
+            "C0": "Toyota Industries Nagakusa Plant bumper production",
+            "T1": "Investigate paint-quality defect drivers",
+            "T2": "support root-cause decisions"
+          }
+        },
+        "AXV2P2_0069_01": {
+          "task": "Create CRM contacts from customer emails",
+          "context": "Schneider Electric salespeople using Salesforce, Outlook and Teams",
+          "sources": {
+            "T0": "Create CRM contacts from customer emails",
+            "C0": "Schneider Electric salespeople using Salesforce, Outlook and Teams"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2P2_0048_01\":{\"task\":\"Answer shopping questions and recommend products\",\"context\":\"Walmart app Ask Sparky button launched across categories in June 2025\",\"sources\":{\"T0\":\"Answer shopping questions and recommend products\",\"C0\":\"Walmart app Ask Sparky button launched across categories in June 2025\",\"T1\":\"Answer shopping questions\",\"T2\":\"recommend products\"}},\"AXV2P2_0065_01\":{\"task\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"context\":\"Toyota Industries Nagakusa Plant bumper production\",\"sources\":{\"T0\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"C0\":\"Toyota Industries Nagakusa Plant bumper production\",\"T1\":\"Investigate paint-quality defect drivers\",\"T2\":\"support root-cause decisions\"}},\"AXV2P2_0069_01\":{\"task\":\"Create CRM contacts from customer emails\",\"context\":\"Schneider Electric salespeople using Salesforce, Outlook and Teams\",\"sources\":{\"T0\":\"Create CRM contacts from customer emails\",\"C0\":\"Schneider Electric salespeople using Salesforce, Outlook and Teams\"}}}}\nReturn JSON.",
+      "output_cap": 788,
+      "input_version": "51c1fa6b149bcec53ac8a754dbc1ce1c97d46dd6def7dad7ca5826c1f775fb89"
+    }
+  ],
+  "claude": [
+    {
+      "job_id": "inventory_pilot_0000",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV24_bc6444cc1b61": {
+          "task": "단체 의료보험 견적용 청구서 정보 추출",
+          "context": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.",
+          "sources": {
+            "T0": "단체 의료보험 견적용 청구서 정보 추출",
+            "C0": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무."
+          }
+        },
+        "AXV2C_0006_02": {
+          "task": "Validate customer order prices before invoicing",
+          "context": "Danone receives thousands of orders daily through email, PDF and EDI.",
+          "sources": {
+            "T0": "Validate customer order prices before invoicing",
+            "C0": "Danone receives thousands of orders daily through email, PDF and EDI."
+          }
+        },
+        "AXV2C_0016_01": {
+          "task": "Caller self-service computer troubleshooting",
+          "context": "Best Buy customers calling for computer assistance.",
+          "sources": {
+            "T0": "Caller self-service computer troubleshooting",
+            "C0": "Best Buy customers calling for computer assistance."
+          }
+        },
+        "AXV2C_0093_01": {
+          "task": "Analyze production quality defects and root causes",
+          "context": "Suzhou Universal MES, ERP and quality systems.",
+          "sources": {
+            "T0": "Analyze production quality defects and root causes",
+            "C0": "Suzhou Universal MES, ERP and quality systems.",
+            "T1": "Analyze production quality defects",
+            "T2": "root causes"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV24_bc6444cc1b61\":{\"task\":\"단체 의료보험 견적용 청구서 정보 추출\",\"context\":\"18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.\",\"sources\":{\"T0\":\"단체 의료보험 견적용 청구서 정보 추출\",\"C0\":\"18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.\"}},\"AXV2C_0006_02\":{\"task\":\"Validate customer order prices before invoicing\",\"context\":\"Danone receives thousands of orders daily through email, PDF and EDI.\",\"sources\":{\"T0\":\"Validate customer order prices before invoicing\",\"C0\":\"Danone receives thousands of orders daily through email, PDF and EDI.\"}},\"AXV2C_0016_01\":{\"task\":\"Caller self-service computer troubleshooting\",\"context\":\"Best Buy customers calling for computer assistance.\",\"sources\":{\"T0\":\"Caller self-service computer troubleshooting\",\"C0\":\"Best Buy customers calling for computer assistance.\"}},\"AXV2C_0093_01\":{\"task\":\"Analyze production quality defects and root causes\",\"context\":\"Suzhou Universal MES, ERP and quality systems.\",\"sources\":{\"T0\":\"Analyze production quality defects and root causes\",\"C0\":\"Suzhou Universal MES, ERP and quality systems.\",\"T1\":\"Analyze production quality defects\",\"T2\":\"root causes\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "17c230cab37b178f10139e8051dc8d9cbbd748e75d6f6742b19aa5879f098694"
+    },
+    {
+      "job_id": "inventory_pilot_0001",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2C_0093_02": {
+          "task": "Adjust production schedules with validation",
+          "context": "Suzhou Universal scheduling teams and APS plans.",
+          "sources": {
+            "T0": "Adjust production schedules with validation",
+            "C0": "Suzhou Universal scheduling teams and APS plans."
+          }
+        },
+        "AXV2C_0094_02": {
+          "task": "Prepare manufacturing production plans",
+          "context": "Savage Precision Fabrication production planning and work orders.",
+          "sources": {
+            "T0": "Prepare manufacturing production plans",
+            "C0": "Savage Precision Fabrication production planning and work orders."
+          }
+        },
+        "AXV2H_0002_01": {
+          "task": "고객 이메일 요약",
+          "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일",
+          "sources": {
+            "T0": "고객 이메일 요약",
+            "C0": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+          }
+        },
+        "AXV2H_0021_01": {
+          "task": "제조 로봇 예지보전",
+          "context": "현대차 자동차 공장 다수 로봇팔의 공정 진단",
+          "sources": {
+            "T0": "제조 로봇 예지보전",
+            "C0": "현대차 자동차 공장 다수 로봇팔의 공정 진단"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2C_0093_02\":{\"task\":\"Adjust production schedules with validation\",\"context\":\"Suzhou Universal scheduling teams and APS plans.\",\"sources\":{\"T0\":\"Adjust production schedules with validation\",\"C0\":\"Suzhou Universal scheduling teams and APS plans.\"}},\"AXV2C_0094_02\":{\"task\":\"Prepare manufacturing production plans\",\"context\":\"Savage Precision Fabrication production planning and work orders.\",\"sources\":{\"T0\":\"Prepare manufacturing production plans\",\"C0\":\"Savage Precision Fabrication production planning and work orders.\"}},\"AXV2H_0002_01\":{\"task\":\"고객 이메일 요약\",\"context\":\"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\",\"sources\":{\"T0\":\"고객 이메일 요약\",\"C0\":\"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\"}},\"AXV2H_0021_01\":{\"task\":\"제조 로봇 예지보전\",\"context\":\"현대차 자동차 공장 다수 로봇팔의 공정 진단\",\"sources\":{\"T0\":\"제조 로봇 예지보전\",\"C0\":\"현대차 자동차 공장 다수 로봇팔의 공정 진단\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "cc45253677979f8784716552ce1b5f207f2eecc582567bfb793342a119903714"
+    },
+    {
+      "job_id": "inventory_pilot_0002",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2N_0107": {
+          "task": "Give online home-improvement project advice",
+          "context": "Magic Apron on Home Depot digital platforms.",
+          "sources": {
+            "T0": "Give online home-improvement project advice",
+            "C0": "Magic Apron on Home Depot digital platforms."
+          }
+        },
+        "AXV2N_0114": {
+          "task": "Generate branded lifestyle advertising images",
+          "context": "Operational UK/European advertising campaigns for pet products.",
+          "sources": {
+            "T0": "Generate branded lifestyle advertising images",
+            "C0": "Operational UK/European advertising campaigns for pet products."
+          }
+        },
+        "AXV2N_0117": {
+          "task": "Detect weld splatter on vehicle underbodies",
+          "context": "Neckarsulm body shop series production as described in May 2025.",
+          "sources": {
+            "T0": "Detect weld splatter on vehicle underbodies",
+            "C0": "Neckarsulm body shop series production as described in May 2025."
+          }
+        },
+        "AXV2N_0118": {
+          "task": "Unload cartons from trailers onto conveyors",
+          "context": "First commercial Stretch deployment in January 2023.",
+          "sources": {
+            "T0": "Unload cartons from trailers onto conveyors",
+            "C0": "First commercial Stretch deployment in January 2023."
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2N_0107\":{\"task\":\"Give online home-improvement project advice\",\"context\":\"Magic Apron on Home Depot digital platforms.\",\"sources\":{\"T0\":\"Give online home-improvement project advice\",\"C0\":\"Magic Apron on Home Depot digital platforms.\"}},\"AXV2N_0114\":{\"task\":\"Generate branded lifestyle advertising images\",\"context\":\"Operational UK/European advertising campaigns for pet products.\",\"sources\":{\"T0\":\"Generate branded lifestyle advertising images\",\"C0\":\"Operational UK/European advertising campaigns for pet products.\"}},\"AXV2N_0117\":{\"task\":\"Detect weld splatter on vehicle underbodies\",\"context\":\"Neckarsulm body shop series production as described in May 2025.\",\"sources\":{\"T0\":\"Detect weld splatter on vehicle underbodies\",\"C0\":\"Neckarsulm body shop series production as described in May 2025.\"}},\"AXV2N_0118\":{\"task\":\"Unload cartons from trailers onto conveyors\",\"context\":\"First commercial Stretch deployment in January 2023.\",\"sources\":{\"T0\":\"Unload cartons from trailers onto conveyors\",\"C0\":\"First commercial Stretch deployment in January 2023.\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "51d0b1de2127e73d2c955d152cc4cbddd2a218276cc82d2bb0154c3d30045f0b"
+    },
+    {
+      "job_id": "inventory_pilot_0003",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2N_0125": {
+          "task": "Create sales-meeting recaps and next steps",
+          "context": "Teams meetings with sales customers, distinct from email-signature contact creation.",
+          "sources": {
+            "T0": "Create sales-meeting recaps and next steps",
+            "C0": "Teams meetings with sales customers, distinct from email-signature contact creation.",
+            "T1": "Create sales-meeting recaps",
+            "T2": "next steps"
+          }
+        },
+        "AXV2N_0130": {
+          "task": "Automate routine support-case administration",
+          "context": "Automate SW Support deployed to 2800 engineers worldwide.",
+          "sources": {
+            "T0": "Automate routine support-case administration",
+            "C0": "Automate SW Support deployed to 2800 engineers worldwide."
+          }
+        },
+        "AXV2N_0139": {
+          "task": "Summarize contracts for internal teams",
+          "context": "Contract Companion GPT used within Moderna functions.",
+          "sources": {
+            "T0": "Summarize contracts for internal teams",
+            "C0": "Contract Companion GPT used within Moderna functions."
+          }
+        },
+        "AXV2P2_0012_01": {
+          "task": "Extract and classify insurance documentation",
+          "context": "Shift Technology's operational insurer document-processing platform",
+          "sources": {
+            "T0": "Extract and classify insurance documentation",
+            "C0": "Shift Technology's operational insurer document-processing platform",
+            "T1": "Extract",
+            "T2": "classify insurance documentation"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2N_0125\":{\"task\":\"Create sales-meeting recaps and next steps\",\"context\":\"Teams meetings with sales customers, distinct from email-signature contact creation.\",\"sources\":{\"T0\":\"Create sales-meeting recaps and next steps\",\"C0\":\"Teams meetings with sales customers, distinct from email-signature contact creation.\",\"T1\":\"Create sales-meeting recaps\",\"T2\":\"next steps\"}},\"AXV2N_0130\":{\"task\":\"Automate routine support-case administration\",\"context\":\"Automate SW Support deployed to 2800 engineers worldwide.\",\"sources\":{\"T0\":\"Automate routine support-case administration\",\"C0\":\"Automate SW Support deployed to 2800 engineers worldwide.\"}},\"AXV2N_0139\":{\"task\":\"Summarize contracts for internal teams\",\"context\":\"Contract Companion GPT used within Moderna functions.\",\"sources\":{\"T0\":\"Summarize contracts for internal teams\",\"C0\":\"Contract Companion GPT used within Moderna functions.\"}},\"AXV2P2_0012_01\":{\"task\":\"Extract and classify insurance documentation\",\"context\":\"Shift Technology's operational insurer document-processing platform\",\"sources\":{\"T0\":\"Extract and classify insurance documentation\",\"C0\":\"Shift Technology's operational insurer document-processing platform\",\"T1\":\"Extract\",\"T2\":\"classify insurance documentation\"}}}}\nReturn JSON.",
+      "output_cap": 1008,
+      "input_version": "0bb98d082d6a0f048661b99a56b5eee9b160b8b79db2304737ef3520833f9b29"
+    },
+    {
+      "job_id": "inventory_pilot_0004",
+      "phase": "inventory_pilot",
+      "items": {
+        "AXV2P2_0048_01": {
+          "task": "Answer shopping questions and recommend products",
+          "context": "Walmart app Ask Sparky button launched across categories in June 2025",
+          "sources": {
+            "T0": "Answer shopping questions and recommend products",
+            "C0": "Walmart app Ask Sparky button launched across categories in June 2025",
+            "T1": "Answer shopping questions",
+            "T2": "recommend products"
+          }
+        },
+        "AXV2P2_0065_01": {
+          "task": "Investigate paint-quality defect drivers and support root-cause decisions",
+          "context": "Toyota Industries Nagakusa Plant bumper production",
+          "sources": {
+            "T0": "Investigate paint-quality defect drivers and support root-cause decisions",
+            "C0": "Toyota Industries Nagakusa Plant bumper production",
+            "T1": "Investigate paint-quality defect drivers",
+            "T2": "support root-cause decisions"
+          }
+        },
+        "AXV2P2_0069_01": {
+          "task": "Create CRM contacts from customer emails",
+          "context": "Schneider Electric salespeople using Salesforce, Outlook and Teams",
+          "sources": {
+            "T0": "Create CRM contacts from customer emails",
+            "C0": "Schneider Electric salespeople using Salesforce, Outlook and Teams"
+          }
+        }
+      },
+      "system": "Extract actual performed operations from Task and Context ONLY. You are NOT given any user problem or case Problem. Do not invent missing operations, technology, goals or effects. Normalize actions, functional objects and produced outputs into concise ASCII English, <=64 characters each. Inferring summarize -> summary or answer -> answer is linguistic entailment; inventing a capability is not. Use the supplied source ID for the exact supporting Task/Context clause; never rewrite a quote. Prefer a short Task clause. Two distinct operations should use their own clauses when present. Merge repeated instances of the same action. ANSWER includes solving user requests/troubleshooting. ACTION_ITEMS means explicitly identifying or preparing next steps; summarizing alone is not that. DIAGNOSE means reasons/causes, DETECT is only presence. Return JSON exactly {\"items\":[{\"id\":\"case id\",\"ops\":[[\"FAMILY\",\"actual action\",\"functional object\",\"produced output\",\"source ID\"]]}]}. No scores, no links, no other keys. Each item once; at most3 operations. Use only the supplied families and source IDs. No Markdown.",
+      "user": "{\"families\":[\"ANSWER\",\"SUMMARIZE\",\"ACTION_ITEMS\",\"EXTRACT\",\"VERIFY\",\"RETRIEVE\",\"REUSE\",\"INTEGRATE\",\"STANDARDIZE\",\"CLASSIFY\",\"MATCH\",\"RECOMMEND\",\"COMPARE\",\"QUOTE\",\"PROCURE\",\"FORECAST\",\"SECURE_AI\",\"GOVERN_AI\",\"DIAGNOSE\",\"RESCHEDULE\",\"DETECT\",\"ADMIN\",\"OTHER\"],\"cases\":{\"AXV2P2_0048_01\":{\"task\":\"Answer shopping questions and recommend products\",\"context\":\"Walmart app Ask Sparky button launched across categories in June 2025\",\"sources\":{\"T0\":\"Answer shopping questions and recommend products\",\"C0\":\"Walmart app Ask Sparky button launched across categories in June 2025\",\"T1\":\"Answer shopping questions\",\"T2\":\"recommend products\"}},\"AXV2P2_0065_01\":{\"task\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"context\":\"Toyota Industries Nagakusa Plant bumper production\",\"sources\":{\"T0\":\"Investigate paint-quality defect drivers and support root-cause decisions\",\"C0\":\"Toyota Industries Nagakusa Plant bumper production\",\"T1\":\"Investigate paint-quality defect drivers\",\"T2\":\"support root-cause decisions\"}},\"AXV2P2_0069_01\":{\"task\":\"Create CRM contacts from customer emails\",\"context\":\"Schneider Electric salespeople using Salesforce, Outlook and Teams\",\"sources\":{\"T0\":\"Create CRM contacts from customer emails\",\"C0\":\"Schneider Electric salespeople using Salesforce, Outlook and Teams\"}}}}\nReturn JSON.",
+      "output_cap": 788,
+      "input_version": "51c1fa6b149bcec53ac8a754dbc1ce1c97d46dd6def7dad7ca5826c1f775fb89"
+    }
+  ]
+}

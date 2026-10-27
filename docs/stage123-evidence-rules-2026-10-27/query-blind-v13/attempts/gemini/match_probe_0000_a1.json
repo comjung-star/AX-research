@@ -1,0 +1,111 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 0.927,
+  "state": "RECEIVED",
+  "provider": "gemini",
+  "job_id": "match_probe_0000",
+  "attempt": 1,
+  "reserved_usd": "0.00086980",
+  "counted_input_tokens": 745,
+  "input_version": "6d22fb9a2d971d6b27741cbb52a70ce93952bb2a15a20a608828f2bac177dd40",
+  "request_model": "gemini-3.5-flash-lite",
+  "request_hash": "8dd3b89038359cbb861374b263ac57c00ab5fb57ac74a340107a36590b106a28",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 745,
+    "actual_output_tokens_including_thinking": 60,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00037350"
+  },
+  "response_text": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"items\":[{\"id\":\"AXV2C_0093_01\",\"links\":[[1,0,\"EEE\",\"DIRECT\",\"Analyzes quality defects and root causes as requested by target.\"]]}]}",
+  "response_model": "gemini-3.5-flash-lite",
+  "response_id": "2iPgaoyyJeDgrfcPlsGx-QM",
+  "validation": {
+    "valid": true,
+    "data": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "analyze",
+              "production defects",
+              "root causes",
+              "Analyze production quality defects"
+            ]
+          ],
+          "links": [
+            [
+              "DIAGNOSE_QUALITY_CAUSE",
+              0,
+              "EEE",
+              "DIRECT",
+              "Analyzes quality defects and root causes as requested by target."
+            ]
+          ]
+        }
+      ]
+    },
+    "raw_links": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "links": [
+            [
+              1,
+              0,
+              "EEE",
+              "DIRECT",
+              "Analyzes quality defects and root causes as requested by target."
+            ]
+          ]
+        }
+      ]
+    },
+    "derived": {
+      "AXV2C_0093_01": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_FUNCTION_JUDGMENT_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "score_rule_version": "functional-evidence-v14",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "DIAGNOSE_QUALITY_CAUSE",
+            "op": 0,
+            "action": "analyze",
+            "object": "production defects",
+            "output": "root causes",
+            "quote": "Analyze production quality defects",
+            "why": "Analyzes quality defects and root causes as requested by target."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_SCOPE_CONDITION",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_01",
+              "field": "problem",
+              "quote": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+              "condition": "Fragmented production data and delayed quality analysis"
+            }
+          }
+        ],
+        "flags": []
+      }
+    },
+    "errors": [],
+    "syntax_repair": []
+  }
+}

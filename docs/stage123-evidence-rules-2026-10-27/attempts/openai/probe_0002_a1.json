@@ -1,0 +1,220 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 2.976,
+  "state": "RECEIVED",
+  "provider": "openai",
+  "job_id": "probe_0002",
+  "attempt": 1,
+  "reserved_usd": "0.00073140",
+  "counted_input_tokens": 1398,
+  "input_version": "d1ea459691c51251a97cba0e39461ea4a1a4b7388bb62fbbff667b2c15a4614d",
+  "request_model": "gpt-6-luna",
+  "request_hash": "231263db1e25e21766f9ab4a89eb806a0def2a72c1d7794913b14627a4650529",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 1398,
+    "actual_output_tokens_including_thinking": 325,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00030230"
+  },
+  "response_text": "{\"qid\":\"V21D010\",\"target\":\"WHOLE_QUERY\",\"items\":[{\"id\":\"AXV2C_0093_01\",\"ops\":[[\"DIAGNOSE\",\"Analyze\",\"production quality defects and root causes\",\"root-cause analysis\",\"Analyze production quality defects and root causes\"]],\"links\":[[\"DIAGNOSE_QUALITY_CAUSE\",0,\"EEE\",\"DIRECT\",\"Analyzing defect root causes produces the causal diagnosis requested.\"]]},{\"id\":\"AXV2C_0093_02\",\"ops\":[[\"RESCHEDULE\",\"Adjust\",\"production schedules\",\"validated schedule adjustments\",\"Adjust production schedules with validation\"]],\"links\":[[\"ADJUST_PRODUCTION_PLAN\",0,\"EEE\",\"DIRECT\",\"Adjusting schedules with validation corresponds to revising plans as conditions change.\"]]},{\"id\":\"AXV2P2_0065_01\",\"ops\":[[\"DIAGNOSE\",\"Investigate\",\"paint-quality defect drivers\",\"root-cause decisions\",\"Investigate paint-quality defect drivers and support root-cause decisions\"]],\"links\":[[\"DIAGNOSE_QUALITY_CAUSE\",0,\"EEE\",\"DIRECT\",\"Investigating defect drivers supports causal decisions about quality defects.\"]]},{\"id\":\"AXV2N_0117\",\"ops\":[[\"DETECT\",\"Detect\",\"weld splatter on vehicle underbodies\",\"detected weld splatter\",\"Detect weld splatter on vehicle underbodies\"]],\"links\":[[\"DIAGNOSE_QUALITY_CAUSE\",0,\"SED\",\"SUPPORT\",\"Detecting a defect is an inspection step, not an analysis of its cause.\"]]}]}",
+  "response_model": "gpt-6-luna",
+  "response_id": "resp_0cddd11fef1e6565016ae01f5bd9e887d09c7a3d487531f1a5",
+  "validation": {
+    "valid": true,
+    "data": {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "items": [
+        {
+          "id": "AXV2C_0093_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "Analyze",
+              "production quality defects and root causes",
+              "root-cause analysis",
+              "Analyze production quality defects and root causes"
+            ]
+          ],
+          "links": [
+            [
+              "DIAGNOSE_QUALITY_CAUSE",
+              0,
+              "EEE",
+              "DIRECT",
+              "Analyzing defect root causes produces the causal diagnosis requested."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2C_0093_02",
+          "ops": [
+            [
+              "RESCHEDULE",
+              "Adjust",
+              "production schedules",
+              "validated schedule adjustments",
+              "Adjust production schedules with validation"
+            ]
+          ],
+          "links": [
+            [
+              "ADJUST_PRODUCTION_PLAN",
+              0,
+              "EEE",
+              "DIRECT",
+              "Adjusting schedules with validation corresponds to revising plans as conditions change."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2P2_0065_01",
+          "ops": [
+            [
+              "DIAGNOSE",
+              "Investigate",
+              "paint-quality defect drivers",
+              "root-cause decisions",
+              "Investigate paint-quality defect drivers and support root-cause decisions"
+            ]
+          ],
+          "links": [
+            [
+              "DIAGNOSE_QUALITY_CAUSE",
+              0,
+              "EEE",
+              "DIRECT",
+              "Investigating defect drivers supports causal decisions about quality defects."
+            ]
+          ]
+        },
+        {
+          "id": "AXV2N_0117",
+          "ops": [
+            [
+              "DETECT",
+              "Detect",
+              "weld splatter on vehicle underbodies",
+              "detected weld splatter",
+              "Detect weld splatter on vehicle underbodies"
+            ]
+          ],
+          "links": [
+            [
+              "DIAGNOSE_QUALITY_CAUSE",
+              0,
+              "SED",
+              "SUPPORT",
+              "Detecting a defect is an inspection step, not an analysis of its cause."
+            ]
+          ]
+        }
+      ]
+    },
+    "derived": {
+      "AXV2C_0093_01": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_EVIDENCE_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "DIAGNOSE_QUALITY_CAUSE",
+            "op": 0,
+            "family": "DIAGNOSE",
+            "quote": "Analyze production quality defects and root causes",
+            "why": "Analyzing defect root causes produces the causal diagnosis requested."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_PROBLEM_FACT",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_01",
+              "field": "problem",
+              "quote": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+              "condition": "Fragmented production data and delayed quality analysis"
+            }
+          }
+        ],
+        "flags": []
+      },
+      "AXV2C_0093_02": {
+        "score": 4,
+        "relevant": true,
+        "status": "AI_EVIDENCE_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "rule": "DIRECT_PLUS_GROUNDED_ADDITIONAL_EVIDENCE",
+        "direct": [
+          {
+            "target": "ADJUST_PRODUCTION_PLAN",
+            "op": 0,
+            "family": "RESCHEDULE",
+            "quote": "Adjust production schedules with validation",
+            "why": "Adjusting schedules with validation corresponds to revising plans as conditions change."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [
+          {
+            "type": "PREVERIFIED_PROBLEM_FACT",
+            "source": {
+              "qid": "V21D010",
+              "target": "WHOLE_QUERY",
+              "cid": "AXV2C_0093_02",
+              "field": "problem",
+              "quote": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+              "condition": "Slow changes and fragmented manufacturing scheduling systems"
+            }
+          }
+        ],
+        "flags": []
+      },
+      "AXV2P2_0065_01": {
+        "score": 3,
+        "relevant": true,
+        "status": "AI_EVIDENCE_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "rule": "GROUNDED_DIRECT_AOO",
+        "direct": [
+          {
+            "target": "DIAGNOSE_QUALITY_CAUSE",
+            "op": 0,
+            "family": "DIAGNOSE",
+            "quote": "Investigate paint-quality defect drivers and support root-cause decisions",
+            "why": "Investigating defect drivers supports causal decisions about quality defects."
+          }
+        ],
+        "support": [],
+        "broad": [],
+        "fourth_point_evidence": [],
+        "flags": []
+      },
+      "AXV2N_0117": {
+        "score": 2,
+        "relevant": false,
+        "status": "AI_EVIDENCE_PROGRAM_SCORE_NOT_HUMAN_GOLD",
+        "rule": "GROUNDED_SUPPORT",
+        "direct": [],
+        "support": [
+          {
+            "target": "DIAGNOSE_QUALITY_CAUSE",
+            "op": 0,
+            "mask": "SED",
+            "why": "Detecting a defect is an inspection step, not an analysis of its cause."
+          }
+        ],
+        "broad": [],
+        "fourth_point_evidence": [],
+        "flags": []
+      }
+    },
+    "errors": []
+  }
+}
