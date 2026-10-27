@@ -1,4 +1,4 @@
-# 候補 결합 방식 비교 — 결과 계산 전 고정
+# 후보 결합 방식 비교 — 결과 계산 전 고정
 
 기준 `e9b3795d3a1034eed67dcb461e9383f99b139374`, 신규 `research/candidate-fusion-ablation-20261027`.
 
