@@ -1,0 +1,19 @@
+{
+  "status":"HOLD_PILOT_NOT_PASSED",
+  "date_kst":"2026-10-27",
+  "stage1_new_grades":0,
+  "stage2_executed":false,
+  "stage3_executed":false,
+  "stage4_sealed":true,
+  "approved_silver_pairs":0,
+  "human_gold":false,
+  "new_paid_calls_allowed":false,
+  "findings":[
+    {"provider":"gemini","job_id":"pilot_0000","case_id":"AXV2P2_0048_01","scope":"WHOLE_QUERY","score":4,"issue":"Task is genuinely QA, so direct relevance 3 is plausible across sectors. But the case does not state the query's overload/limited support capacity/answer consistency conditions needed for 4. problem_context SUPPORTED is not substantiated. Do not convert this to a verified 4 or silently edit the raw grade."},
+    {"provider":"claude","job_id":"pilot_0001","case_id":"AXV2H_0002_01","score":3,"issue":"Whole-query summarization can justify 3. However matched_tasks also asserts IDENTIFY_FOLLOWUP while the Task only states email summarization; the follow-up burden is in Problem. This does not validate the separate follow-up aspect. Preserve and require source-level review rather than borrowing a problem need as a demonstrated operation."},
+    {"provider":"claude","job_id":"pilot_0000","issue":"Response retained but rejected for operational reason/length constraints. Includes statements about freeing capacity, scale and reduced staff time beyond the Task evidence. Do not count rejected rows as approved judgments."},
+    {"provider":"claude","job_id":"pilot_0003","http_status":400,"issue":"Eight-case per-case constrained output still failed at generation time. Earlier explicit diagnostic returned Schema is too complex. Token-count success does not certify generation grammar compatibility. Keep reservation and do not automatically replay."}
+  ],
+  "scope_limits":"No demonstrated query-ID or case-ID substitution in reviewed responses. Independent three-model completion and aspect comparison were not achieved. Grade differences alone are not implementation errors. No whole-pilot accuracy or agreement claim is made from the incomplete six-pair common subset.",
+  "next_steps":["Separate explicit problem-condition evidence for 4 from the direct operational match required for 3. Require Task/Context support for each claimed performed operation; expert/human review of these anchors is desirable.","Reduce constrained-output complexity or batch size and test the largest actual generation shape before a full run. Preserve the failed request reservations; remeasure changed prompt/schema cost.","Repeat the complete balanced whole/aspect pilot independently across all three providers before authorizing new 3360 grades or retrieval metrics."]
+}

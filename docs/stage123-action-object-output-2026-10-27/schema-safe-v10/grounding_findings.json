@@ -1,0 +1,242 @@
+{
+  "agent_review_not_human_gold": true,
+  "examples": [
+    {
+      "provider": "gemini",
+      "job_id": "pilot_0000",
+      "case_id": "AXV2P2_0048_01",
+      "query": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "target_id": "WHOLE_QUERY",
+      "case_ptc": {
+        "problem": "고객이 수많은 상품 정보·리뷰·비교 결과를 직접 종합해야 해 특정 용도에 적합한 상품을 맥락에 맞춰 선택하기 어렵다.",
+        "task": "Answer shopping questions and recommend products",
+        "context": "Walmart app Ask Sparky button launched across categories in June 2025"
+      },
+      "original_row": {
+        "score": 4,
+        "matched_tasks": [
+          "ANSWER_INQUIRY"
+        ],
+        "relation": "DIRECT",
+        "match_mask": "111",
+        "problem_context": "SUPPORTED",
+        "evidence": "Answer shopping questions and recommend products",
+        "reason": "answering shopping questions / product selection inquiries / recommendations"
+      },
+      "entire_response_validation": {
+        "valid": true,
+        "data": {
+          "query_id": "V21D001",
+          "target_id": "WHOLE_QUERY",
+          "ratings": {
+            "AXV2C_0016_01": {
+              "score": 3,
+              "matched_tasks": [
+                "ANSWER_INQUIRY"
+              ],
+              "relation": "DIRECT",
+              "match_mask": "111",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "Caller self-service computer troubleshooting",
+              "reason": "troubleshooting caller inquiries / computer device questions / diagnostic answers"
+            },
+            "AXV2P2_0048_01": {
+              "score": 4,
+              "matched_tasks": [
+                "ANSWER_INQUIRY"
+              ],
+              "relation": "DIRECT",
+              "match_mask": "111",
+              "problem_context": "SUPPORTED",
+              "evidence": "Answer shopping questions and recommend products",
+              "reason": "answering shopping questions / product selection inquiries / recommendations"
+            },
+            "AXV2H_0002_01": {
+              "score": 0,
+              "matched_tasks": [
+                "NONE"
+              ],
+              "relation": "NONE",
+              "match_mask": "000",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "고객 이메일 요약",
+              "reason": "summarizing email text / customer email threads / summary text output"
+            },
+            "AXV2N_0130": {
+              "score": 0,
+              "matched_tasks": [
+                "NONE"
+              ],
+              "relation": "NONE",
+              "match_mask": "000",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "Automate routine support-case administration",
+              "reason": "automating case administration / support cases / status updates"
+            },
+            "AXV24_bc6444cc1b61": {
+              "score": 0,
+              "matched_tasks": [
+                "NONE"
+              ],
+              "relation": "NONE",
+              "match_mask": "000",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "단체 의료보험 견적용 청구서 정보 추출",
+              "reason": "extracting document info / invoice data / extracted fields"
+            },
+            "AXV2N_0117": {
+              "score": 0,
+              "matched_tasks": [
+                "NONE"
+              ],
+              "relation": "NONE",
+              "match_mask": "000",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "Detect weld splatter on vehicle underbodies",
+              "reason": "detecting visual defects / vehicle underbody parts / defect status"
+            }
+          }
+        },
+        "errors": []
+      },
+      "source_file": "docs/stage123-action-object-output-2026-10-27/schema-safe-v10/attempts/gemini/pilot_0000_a1.json",
+      "not_relabelled": true
+    },
+    {
+      "provider": "claude",
+      "job_id": "pilot_0001",
+      "case_id": "AXV2H_0002_01",
+      "query": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+      "target_id": "WHOLE_QUERY",
+      "case_ptc": {
+        "problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "task": "고객 이메일 요약",
+        "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      "original_row": {
+        "score": 3,
+        "matched_tasks": [
+          "SUMMARIZE_COMMUNICATION",
+          "IDENTIFY_FOLLOWUP"
+        ],
+        "relation": "DIRECT",
+        "match_mask": "111",
+        "problem_context": "SUPPORTED",
+        "evidence": "고객 이메일 요약",
+        "reason": "Summarizes email threads into core content / Processes customer email exchanges / Produces communication summary and action items"
+      },
+      "entire_response_validation": {
+        "valid": true,
+        "data": {
+          "query_id": "V21D002",
+          "target_id": "WHOLE_QUERY",
+          "ratings": {
+            "AXV2H_0002_01": {
+              "score": 3,
+              "matched_tasks": [
+                "SUMMARIZE_COMMUNICATION",
+                "IDENTIFY_FOLLOWUP"
+              ],
+              "relation": "DIRECT",
+              "match_mask": "111",
+              "problem_context": "SUPPORTED",
+              "evidence": "고객 이메일 요약",
+              "reason": "Summarizes email threads into core content / Processes customer email exchanges / Produces communication summary and action items"
+            },
+            "AXV2N_0125": {
+              "score": 3,
+              "matched_tasks": [
+                "SUMMARIZE_COMMUNICATION",
+                "IDENTIFY_FOLLOWUP"
+              ],
+              "relation": "DIRECT",
+              "match_mask": "111",
+              "problem_context": "SUPPORTED",
+              "evidence": "Create sales-meeting recaps and next steps",
+              "reason": "Condenses business meetings into summary / Captures meeting conversation exchanges / Generates recap and explicit next steps"
+            },
+            "AXV2N_0139": {
+              "score": 2,
+              "matched_tasks": [
+                "SUMMARIZE_COMMUNICATION"
+              ],
+              "relation": "SUPPORT",
+              "match_mask": "100",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "Summarize contracts for internal teams",
+              "reason": "Extracts contract content into summary / Processes document text objects / Produces contract summary not business-exchange summary"
+            },
+            "AXV2P2_0069_01": {
+              "score": 1,
+              "matched_tasks": [
+                "NONE"
+              ],
+              "relation": "ADJACENT",
+              "match_mask": "000",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "Create CRM contacts from customer emails",
+              "reason": "Extracts contact fields from email / Administers CRM database records / Does not identify next actions or summarize exchanges"
+            },
+            "AXV2C_0093_02": {
+              "score": 0,
+              "matched_tasks": [
+                "NONE"
+              ],
+              "relation": "NONE",
+              "match_mask": "000",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "Adjust production schedules with validation",
+              "reason": "Modifies manufacturing schedules / Operates on APS production plans / Unrelated to communication interpretation"
+            },
+            "AXV2N_0118": {
+              "score": 0,
+              "matched_tasks": [
+                "NONE"
+              ],
+              "relation": "NONE",
+              "match_mask": "000",
+              "problem_context": "NOT_FULLY_SUPPORTED",
+              "evidence": "Unload cartons from trailers onto conveyors",
+              "reason": "Performs manual warehouse labor / Handles physical carton objects / No operational link to communication analysis"
+            }
+          }
+        },
+        "errors": []
+      },
+      "source_file": "docs/stage123-action-object-output-2026-10-27/schema-safe-v10/attempts/claude/pilot_0001_a1.json",
+      "not_relabelled": true
+    },
+    {
+      "provider": "claude",
+      "job_id": "pilot_0000",
+      "case_id": "AXV2P2_0048_01",
+      "query": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "target_id": "WHOLE_QUERY",
+      "case_ptc": {
+        "problem": "고객이 수많은 상품 정보·리뷰·비교 결과를 직접 종합해야 해 특정 용도에 적합한 상품을 맥락에 맞춰 선택하기 어렵다.",
+        "task": "Answer shopping questions and recommend products",
+        "context": "Walmart app Ask Sparky button launched across categories in June 2025"
+      },
+      "original_row": {
+        "score": 3,
+        "matched_tasks": [
+          "ANSWER_INQUIRY"
+        ],
+        "relation": "DIRECT",
+        "match_mask": "111",
+        "problem_context": "SUPPORTED",
+        "evidence": "Answer shopping questions and recommend products",
+        "reason": "Repetitive inquiry overload matches answering shopping product questions at scale / Task delivers contextual product recommendation answers; query demands consistent quality responses / Shopping inquiry automation reduces staff time on repeated questions, addressing capacity constraint"
+      },
+      "entire_response_validation": {
+        "valid": false,
+        "data": null,
+        "errors": [
+          "SCHEMA_TARGET_EVIDENCE_OR_OPERATIONAL_REASON_CONSTRAINT"
+        ]
+      },
+      "source_file": "docs/stage123-action-object-output-2026-10-27/schema-safe-v10/attempts/claude/pilot_0000_a1.json",
+      "not_relabelled": true
+    }
+  ]
+}
