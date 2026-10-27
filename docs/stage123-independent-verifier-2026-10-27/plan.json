@@ -1,0 +1,626 @@
+{
+  "version": "blind-cross-provider-v1",
+  "base_commit": "3e0e7517d09c49af1cd375639cfb9ea5549db3a4",
+  "models": {
+    "openai": "gpt-6-luna",
+    "gemini": "gemini-3.5-flash-lite",
+    "claude": "claude-haiku-4-5-20251001"
+  },
+  "reviewer_cycle": {
+    "openai": "gemini",
+    "gemini": "claude",
+    "claude": "openai"
+  },
+  "panel": [
+    {
+      "qid": "V21D001",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2C_0016_01",
+      "diagnostic_type": "DIRECT",
+      "expected_review_only": "3-4",
+      "reason": "상담 기능은 컴퓨터 문제 해결에도 응용 가능",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "Customers need digital or voice support that can diagnose routine device issues without unnecessary transfers.",
+        "task": "Caller self-service computer troubleshooting",
+        "context": "Best Buy customers calling for computer assistance."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D001",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2P2_0048_01",
+      "diagnostic_type": "DIRECT",
+      "expected_review_only": "3",
+      "reason": "다른 업종 질문응답은 직접 관련; 추가 성과 추정 금지",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "고객이 수많은 상품 정보·리뷰·비교 결과를 직접 종합해야 해 특정 용도에 적합한 상품을 맥락에 맞춰 선택하기 어렵다.",
+        "task": "Answer shopping questions and recommend products",
+        "context": "Walmart app Ask Sparky button launched across categories in June 2025"
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D002",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0125",
+      "diagnostic_type": "DIRECT",
+      "expected_review_only": "3-4",
+      "reason": "요약과 다음 단계가 수행문에 명시",
+      "question": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+      "requirements": {
+        "SUMMARIZE_COMMUNICATION": "Summarize business exchanges: email threads/attachments or functionally equivalent meeting/call conversations -> communication summary. Static contract, review or website summaries have a different functional object and are partial, not direct.",
+        "IDENTIFY_FOLLOWUP": "Identify next actions from business exchanges -> explicit action items, next steps or follow-up list. Merely summarizing, extracting contact fields or administering an existing case is not identification of next actions."
+      },
+      "case": {
+        "problem": "Sellers split attention between customers, notes and CRM updates.",
+        "task": "Create sales-meeting recaps and next steps",
+        "context": "Teams meetings with sales customers, distinct from email-signature contact creation."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D004",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2C_0006_02",
+      "diagnostic_type": "DIRECT",
+      "expected_review_only": "3-4",
+      "reason": "문서 검증 기능의 대응을 확인",
+      "question": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+      "requirements": {
+        "VERIFY_DOCUMENT": "Check documents or equivalent business records against required fields, reference evidence or rules -> validation findings, discrepancies or compliance judgment. Data extraction/classification alone is only a supporting operation. Physical defect detection has a different functional object; generic checking is insufficient."
+      },
+      "case": {
+        "problem": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.",
+        "task": "Validate customer order prices before invoicing",
+        "context": "Danone receives thousands of orders daily through email, PDF and EDI."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D010",
+      "target": "V21D010:CAUSE",
+      "case_id": "AXV2P2_0065_01",
+      "diagnostic_type": "DIRECT",
+      "expected_review_only": "3-4",
+      "reason": "도장 품질 원인 분석은 원인 관점에 해당",
+      "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+      "requirements": {
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis."
+      },
+      "case": {
+        "problem": "Fragmented paint-process data hide causes of bumper defects and delay countermeasures.",
+        "task": "Investigate paint-quality defect drivers and support root-cause decisions",
+        "context": "Toyota Industries Nagakusa Plant bumper production"
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D001",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2H_0002_01",
+      "diagnostic_type": "PARTIAL",
+      "expected_review_only": "1-2",
+      "reason": "고객 이메일 요약은 응답 자체와 구분",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "task": "고객 이메일 요약",
+        "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D001",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0130",
+      "diagnostic_type": "PARTIAL",
+      "expected_review_only": "1-2",
+      "reason": "상담 행정은 직접 답변과 구분",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "Follow-ups, status updates, closures and handoffs require repetitive engineer effort.",
+        "task": "Automate routine support-case administration",
+        "context": "Automate SW Support deployed to 2800 engineers worldwide."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D002",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0139",
+      "diagnostic_type": "PARTIAL",
+      "expected_review_only": "2-3",
+      "reason": "문서 요약의 전이 범위는 사람 검토 필요",
+      "question": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+      "requirements": {
+        "SUMMARIZE_COMMUNICATION": "Summarize business exchanges: email threads/attachments or functionally equivalent meeting/call conversations -> communication summary. Static contract, review or website summaries have a different functional object and are partial, not direct.",
+        "IDENTIFY_FOLLOWUP": "Identify next actions from business exchanges -> explicit action items, next steps or follow-up list. Merely summarizing, extracting contact fields or administering an existing case is not identification of next actions."
+      },
+      "case": {
+        "problem": "Staff need understandable contract content without repeatedly interpreting legal text.",
+        "task": "Summarize contracts for internal teams",
+        "context": "Contract Companion GPT used within Moderna functions."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D004",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2P2_0012_01",
+      "diagnostic_type": "PARTIAL",
+      "expected_review_only": "1-2",
+      "reason": "보험 정보 추출은 검증의 보조 단계",
+      "question": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+      "requirements": {
+        "VERIFY_DOCUMENT": "Check documents or equivalent business records against required fields, reference evidence or rules -> validation findings, discrepancies or compliance judgment. Data extraction/classification alone is only a supporting operation. Physical defect detection has a different functional object; generic checking is insufficient."
+      },
+      "case": {
+        "problem": "Varied insurance documents require lengthy manual classification and extraction.",
+        "task": "Extract and classify insurance documentation",
+        "context": "Shift Technology's operational insurer document-processing platform"
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0117",
+      "diagnostic_type": "PARTIAL",
+      "expected_review_only": "1-2",
+      "reason": "불량 탐지는 원인 분석의 보조 단계",
+      "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+      "requirements": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "case": {
+        "problem": "Manual underbody inspection must locate metal deposits that can damage cables.",
+        "task": "Detect weld splatter on vehicle underbodies",
+        "context": "Neckarsulm body shop series production as described in May 2025."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D001",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0117",
+      "diagnostic_type": "UNRELATED",
+      "expected_review_only": "0",
+      "reason": "용접 결함 탐지는 상담과 다름",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "Manual underbody inspection must locate metal deposits that can damage cables.",
+        "task": "Detect weld splatter on vehicle underbodies",
+        "context": "Neckarsulm body shop series production as described in May 2025."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D002",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0118",
+      "diagnostic_type": "UNRELATED",
+      "expected_review_only": "0",
+      "reason": "상자 하역은 이메일 요약과 다름",
+      "question": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+      "requirements": {
+        "SUMMARIZE_COMMUNICATION": "Summarize business exchanges: email threads/attachments or functionally equivalent meeting/call conversations -> communication summary. Static contract, review or website summaries have a different functional object and are partial, not direct.",
+        "IDENTIFY_FOLLOWUP": "Identify next actions from business exchanges -> explicit action items, next steps or follow-up list. Merely summarizing, extracting contact fields or administering an existing case is not identification of next actions."
+      },
+      "case": {
+        "problem": "Manual box unloading is strenuous and constrained by labor availability.",
+        "task": "Unload cartons from trailers onto conveyors",
+        "context": "First commercial Stretch deployment in January 2023."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D004",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0114",
+      "diagnostic_type": "UNRELATED",
+      "expected_review_only": "0",
+      "reason": "광고 이미지 생성은 문서 검증과 다름",
+      "question": "심사와 검증 업무에서 여러 형식의 문서를 사람이 읽고 필수 항목과 규정 준수 여부를 일일이 확인해야 해서 처리시간이 길고 누락이나 오류 위험도 높다.",
+      "requirements": {
+        "VERIFY_DOCUMENT": "Check documents or equivalent business records against required fields, reference evidence or rules -> validation findings, discrepancies or compliance judgment. Data extraction/classification alone is only a supporting operation. Physical defect detection has a different functional object; generic checking is insufficient."
+      },
+      "case": {
+        "problem": "Photography and design costs delay localized creative production and limit testing variants.",
+        "task": "Generate branded lifestyle advertising images",
+        "context": "Operational UK/European advertising campaigns for pet products."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D010",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV2N_0107",
+      "diagnostic_type": "UNRELATED",
+      "expected_review_only": "0",
+      "reason": "주거 개선 조언은 생산 원인·일정과 다름",
+      "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+      "requirements": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning.",
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis.",
+        "ADJUST_PRODUCTION_PLAN": "Adjust operational production schedules when orders/equipment/constraints change -> revised schedule or validated schedule adjustments. Other sectors can transfer the same constrained scheduling operation. Generic initial planning without adjustment evidence is supporting."
+      },
+      "case": {
+        "problem": "Customers need advice and product recommendations expressed in terms of their project rather than a search keyword.",
+        "task": "Give online home-improvement project advice",
+        "context": "Magic Apron on Home Depot digital platforms."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D001",
+      "target": "V21D001:ANSWER",
+      "case_id": "AXV2C_0093_01",
+      "diagnostic_type": "UNRELATED",
+      "expected_review_only": "0",
+      "reason": "생산 분석은 고객 응답과 다름",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "task": "Analyze production quality defects and root causes",
+        "context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D010",
+      "target": "V21D010:INTEGRATION",
+      "case_id": "AXV2C_0093_01",
+      "diagnostic_type": "CONFUSABLE",
+      "expected_review_only": "0-2",
+      "reason": "원인 분석을 데이터 통합으로 승인하지 않음",
+      "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+      "requirements": {
+        "INTEGRATE_PRODUCTION_DATA": "Integrate fragmented production/quality/equipment or functionally equivalent operational process data -> unified operational data for diagnosis/planning."
+      },
+      "case": {
+        "problem": "Scattered production and quality data and manual analysis delay identification of quality issues.",
+        "task": "Analyze production quality defects and root causes",
+        "context": "Suzhou Universal MES, ERP and quality systems."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D001",
+      "target": "WHOLE_QUERY",
+      "case_id": "AXV24_bc6444cc1b61",
+      "diagnostic_type": "CONFUSABLE",
+      "expected_review_only": "0-2",
+      "reason": "보험 견적 추출을 고객 응답으로 승인하지 않음",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "보험 견적을 위해 다양한 청구서 PDF에서 가입자 정보를 수동 복사했으며, 인력 증가 없이 견적 물량이 늘었다.",
+        "task": "단체 의료보험 견적용 청구서 정보 추출",
+        "context": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D002",
+      "target": "V21D002:FOLLOWUP",
+      "case_id": "AXV2H_0002_01",
+      "diagnostic_type": "CONFUSABLE",
+      "expected_review_only": "1-2",
+      "reason": "요약을 후속조치 식별로 승인하지 않음",
+      "question": "영업과 서비스 담당자가 긴 이메일 스레드와 첨부 문서를 일일이 읽고 핵심 내용과 후속 조치를 정리하는 데 많은 시간을 쓰고 있다.",
+      "requirements": {
+        "IDENTIFY_FOLLOWUP": "Identify next actions from business exchanges -> explicit action items, next steps or follow-up list. Merely summarizing, extracting contact fields or administering an existing case is not identification of next actions."
+      },
+      "case": {
+        "problem": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨",
+        "task": "고객 이메일 요약",
+        "context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일"
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D010",
+      "target": "V21D010:CAUSE",
+      "case_id": "AXV2C_0093_02",
+      "diagnostic_type": "CONFUSABLE",
+      "expected_review_only": "0-2",
+      "reason": "일정 조정은 불량 원인 분석과 다름",
+      "question": "제조현장에서 생산·품질·설비 데이터가 여러 시스템에 나뉘어 있어 품질 이상이 발생했을 때 원인을 찾는 데 시간이 오래 걸리고, 주문이나 설비상태가 바뀔 때 생산계획을 다시 조정하는 일도 담당자의 수작업에 크게 의존하고 있다.",
+      "requirements": {
+        "DIAGNOSE_QUALITY_CAUSE": "Analyze reasons/drivers/root causes of quality defects -> causal diagnosis. Detecting that a defect is present is supporting inspection, NOT cause diagnosis. Survey theme summarization is not causal diagnosis."
+      },
+      "case": {
+        "problem": "Schedule changes were slow and error-prone across fragmented manufacturing systems.",
+        "task": "Adjust production schedules with validation",
+        "context": "Suzhou Universal scheduling teams and APS plans."
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    },
+    {
+      "qid": "V21D001",
+      "target": "V21D001:ANSWER",
+      "case_id": "AXV2P2_0048_01",
+      "diagnostic_type": "CONFUSABLE",
+      "expected_review_only": "3",
+      "reason": "질문응답 관련성 인정; 근거 없는 추가 성과로4점 금지",
+      "question": "고객 문의가 빠르게 늘면서 상담 인력이 반복 질문 처리에 대부분의 시간을 쓰고 있어 복잡한 문제 대응이 늦어지고 답변 품질도 일정하게 유지하기 어렵다.",
+      "requirements": {
+        "ANSWER_INQUIRY": "Answer or resolve inquiries: questions from a service user -> usable answer or resolution. Internal employees, partners, consumers and specialist question domains are functionally transferable; sector, recipient role and voice/text channel alone do not make this partial. Shopping questions are questions too. A single specific inquiry type can match one core task; no requirement to cover every FAQ. Pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries are NOT this operation."
+      },
+      "case": {
+        "problem": "고객이 수많은 상품 정보·리뷰·비교 결과를 직접 종합해야 해 특정 용도에 적합한 상품을 맥락에 맞춰 선택하기 어렵다.",
+        "task": "Answer shopping questions and recommend products",
+        "context": "Walmart app Ask Sparky button launched across categories in June 2025"
+      },
+      "human_gold": false,
+      "human_review_needed": true
+    }
+  ],
+  "pilot": [
+    {
+      "query_id": "V21D001",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2C_0016_01",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2P2_0048_01",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2H_0002_01",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0130",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV24_bc6444cc1b61",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0117",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2H_0002_01",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0125",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0139",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2P2_0069_01",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2C_0093_02",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0118",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D004",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2C_0006_02",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D004",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2P2_0012_01",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D004",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0117",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D004",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0114",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2C_0093_01",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2C_0093_02",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2P2_0065_01",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0117",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2H_0021_01",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2C_0094_02",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0139",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "WHOLE_QUERY",
+      "case_id": "AXV2N_0107",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "V21D001:ANSWER",
+      "case_id": "AXV2P2_0048_01",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "V21D001:ANSWER",
+      "case_id": "AXV2H_0002_01",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D001",
+      "target_id": "V21D001:ANSWER",
+      "case_id": "AXV2C_0093_01",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "V21D002:FOLLOWUP",
+      "case_id": "AXV2N_0125",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "V21D002:FOLLOWUP",
+      "case_id": "AXV2H_0002_01",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D002",
+      "target_id": "V21D002:FOLLOWUP",
+      "case_id": "AXV2C_0093_02",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D004",
+      "target_id": "V21D004:VERIFY",
+      "case_id": "AXV2C_0006_02",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D004",
+      "target_id": "V21D004:VERIFY",
+      "case_id": "AXV2P2_0012_01",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D004",
+      "target_id": "V21D004:VERIFY",
+      "case_id": "AXV2N_0118",
+      "diagnostic_band": "UNRELATED"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "V21D010:CAUSE",
+      "case_id": "AXV2P2_0065_01",
+      "diagnostic_band": "DIRECT"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "V21D010:CAUSE",
+      "case_id": "AXV2N_0117",
+      "diagnostic_band": "PARTIAL"
+    },
+    {
+      "query_id": "V21D010",
+      "target_id": "V21D010:CAUSE",
+      "case_id": "AXV2C_0093_02",
+      "diagnostic_band": "UNRELATED"
+    }
+  ],
+  "stage3_generation_requests": 90,
+  "stage3_repeats": 3,
+  "stage4_sealed": true,
+  "human_gold": false,
+  "policy": "No retrieval filtering. Failed or unreviewed links are HOLD, not negative labels. Matching AI answers still require source-semantic audit. Normal disagreements alone are not a global halt. Freeze before calls; tune on panel only, new unused DEV pairs required after any tuning."
+}

@@ -201,3 +201,12 @@ node --test tests/prototype_research_ui.test.cjs
 
 ## 근거 추출 재시험 2026-10-27
 새 브랜치 research/stage123-evidence-rules-20261027. docs/stage123-evidence-rules-2026-10-27/README.md 참조. 단순 JSON Claude 시험 성공, 그러나 GPT의 분석→데이터통합 기능 연결 오류로 의미 검증 중단. 활성 halt 유지. 36쌍 본시험 및 Stage1~3 미실행, Stage4 봉인. 이번 Claude 비용 0.036달러. 기존 결과 보존.
+
+## 독립 검증 AI 재시험 2026-10-27
+
+- 신규 `research/stage123-independent-verifier-20261027`, 기준3e0e7517d09c49af1cd375639cfb9ea5549db3a4. `docs/stage123-independent-verifier-2026-10-27/README.md` 및 `final_status.json`이 최신 상태다.
+- 20쌍 기준표×3평가×별도검증2단계=120응답행/60조합 확보. 독립검증은 다른회사모델이며 원문만 보고 다른모델 답·추출목록을 보지 않는다. 원인분석→통합의 잘못된 직접 연결을 한 검증모델 응답을 불일치보류했다. 8개 정상 불일치만으로 중단한 것이 아니다.
+- 이어진 배치반복 첫 요청에서 Claude blind검증이 MES·ERP 통합을 수행했다고 반복 추측하고 Problem을 수행근거로 인용해 중단. 배치 비교 미완료(유효모델행3/완료평가검증쌍0). 기존36쌍108평가·Stage1~3 미실행. 승인Silver0, 사람Gold0, Stage4봉인.
+- 활성 중단은 새 보고서 루트 및 `json-normalization-v6/halt.json`, 실패게이트는 `gate.json`. 삭제·우회하지 않는다. 과거 버전 및 미확정 Gemini429 예약0.00155780달러 유지. explicit429 복구1회는 완료했고, 타임아웃 등 수신불명 요청 재호출 금지.
+- 이번 사용량비용 GPT0.00530860/Gemini0.02040790/Claude0.100199달러. Claude 과거0.823382 포함 누적0.923581, 최초5달러 잔여추정4.076419. 안전여유0.50유지, 청구잔액미조회·충전없음. 전수 비용도 미승인; 참고추정 신규작업Claude3.879299(이번지출포함)로허용3.676618초과, 정확한미래비용아님.
+- 원문근거·잘못된주장·공동추정·부분관련누락우려는 semantic_audit.json. 형식복구·응답재사용 출처·실패비용 보존. 자동검사13개통과는 AI정확도 보장이 아니다. 다음은 실패검증단계만 고친 뒤 미사용Dev표본으로 검증하고 전수비용을 새로 측정한다.

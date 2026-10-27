@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "http_status": 200,
+  "elapsed_seconds": 3.686,
+  "state": "RECEIVED",
+  "provider": "claude",
+  "job_id": "panel_0010_claude_evaluation",
+  "attempt": 1,
+  "reserved_usd": "0.00345500",
+  "counted_input_tokens": 726,
+  "input_version": "18d6fce4ded584dc6987d5c083fdd9d778c379ce6cc0bb5c40bcd3a6b1f942d5",
+  "request_model": "claude-haiku-4-5-20251001",
+  "request_hash": "d6f76edd0271ab6c8c443d99ac3b25060fb418311bf29c12a61d7d58347ac258",
+  "human_gold": false,
+  "usage": {
+    "actual_input_tokens": 726,
+    "actual_output_tokens_including_thinking": 306,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "usage_cost_usd": "0.00225600"
+  },
+  "response_text": "```json\n{\n  \"qid\": \"V21D001\",\n  \"target\": \"WHOLE_QUERY\",\n  \"reviewed\": [\n    \"ANSWER_INQUIRY\"\n  ],\n  \"links\": [],\n  \"extra\": []\n}\n```\n\n**Rationale:**\n\nThe case AXV2N_0117 describes a manufacturing defect detection task: identifying weld splatter on vehicle underbodies in a body shop production environment. The functional action is **detect/locate physical defects** on a production object.\n\nThe requirement ANSWER_INQUIRY specifies: \"questions from a service user → usable answer or resolution.\" It explicitly excludes \"pure document extraction, summarization, case administration, transaction execution and manual processing without answering inquiries.\"\n\n**Functional mismatch:**\n- Case task: Detect and locate defects (inspection/quality control)\n- Requirement: Answer or resolve inquiries from service users (customer/staff question handling)\n\nDefect detection is diagnostic inspection, not inquiry resolution. The case produces a defect location report, not an answer to a user question. No cross-industry transfer applies here because the functional object (weld splatter on vehicle underbody) and produced output (defect presence/location data) do not constitute answering a service inquiry. The requirement explicitly rejects \"manual processing without answering inquiries.\"",
+  "response_model": "claude-haiku-4-5-20251001",
+  "response_id": "msg_011CgSZgR2NaTMScSGUDwi4k",
+  "validation": {
+    "valid": false,
+    "data": null,
+    "derived": null,
+    "errors": [
+      "ROOT_CASE_BINDING_OR_JSON_FORMAT"
+    ]
+  }
+}

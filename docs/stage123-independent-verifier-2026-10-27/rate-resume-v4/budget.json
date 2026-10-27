@@ -1,0 +1,89 @@
+{
+  "costs": {
+    "openai": {
+      "phases": {
+        "panel": "0.01752160",
+        "stability": "0.00806320",
+        "pilot": "0.01838740",
+        "stage1_upper": "0.73192000",
+        "remaining_inventory_upper": "0.02712000",
+        "stage3_views_upper": "0.02550000"
+      },
+      "full_roles": {
+        "evaluation": {
+          "requests": 280,
+          "measured_representative_input_tokens": 915,
+          "conservative_input_tokens_per_request": 7517,
+          "upper_with_25pct_retry_usd": "0.42717500"
+        },
+        "review": {
+          "requests": 280,
+          "measured_representative_input_tokens": 928,
+          "conservative_input_tokens_per_request": 4337,
+          "upper_with_25pct_retry_usd": "0.30474500"
+        }
+      },
+      "total_upper_usd": "0.82851220"
+    },
+    "gemini": {
+      "phases": {
+        "panel": "0.07582080",
+        "stability": "0.03549260",
+        "pilot": "0.08404900",
+        "stage1_upper": "2.73136500",
+        "remaining_inventory_upper": "0.11160000",
+        "stage3_views_upper": "0.11400000"
+      },
+      "full_roles": {
+        "evaluation": {
+          "requests": 280,
+          "measured_representative_input_tokens": 936,
+          "conservative_input_tokens_per_request": 7500,
+          "upper_with_25pct_retry_usd": "1.54833000"
+        },
+        "review": {
+          "requests": 280,
+          "measured_representative_input_tokens": 941,
+          "conservative_input_tokens_per_request": 4337,
+          "upper_with_25pct_retry_usd": "1.18303500"
+        }
+      },
+      "total_upper_usd": "3.15232740"
+    },
+    "claude": {
+      "phases": {
+        "panel": "0.18551400",
+        "stability": "0.08493400",
+        "pilot": "0.19147400",
+        "stage1_upper": "7.32130000",
+        "remaining_inventory_upper": "0.27120000",
+        "stage3_views_upper": "0.25500000"
+      },
+      "full_roles": {
+        "evaluation": {
+          "requests": 280,
+          "measured_representative_input_tokens": 1236,
+          "conservative_input_tokens_per_request": 7522,
+          "upper_with_25pct_retry_usd": "4.27385000"
+        },
+        "review": {
+          "requests": 280,
+          "measured_representative_input_tokens": 1253,
+          "conservative_input_tokens_per_request": 4337,
+          "upper_with_25pct_retry_usd": "3.04745000"
+        }
+      },
+      "total_upper_usd": "8.30942200"
+    }
+  },
+  "failed_counts": [],
+  "claude_cap_usd": "3.67661800",
+  "claude_prior_usd": "0.82338200",
+  "safety_buffer_usd": "0.50",
+  "small_validation_fits": true,
+  "full_plan_fits": false,
+  "method": "Exact counted small prompts; conservative UTF8-byte ceiling for full unseen profiles and all 280 requests/role. This is a cap, not an expected bill. Recompute actual after small validation; no full execution on this estimate.",
+  "account_balance_checked": false,
+  "small_validation_hard_cap_usd": "0.50",
+  "format_revision": "v3 exact request count and reservation before dispatch; cumulative cap0.50 includes all v1/v2 failures. Output allowance raised to avoid truncation. Original full forecast is not an exact v3 forecast."
+}
