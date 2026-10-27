@@ -1,0 +1,26 @@
+name: AX Dataset v2 Independent QA Integrity
+
+on:
+  push:
+    paths:
+      - 'data/v2/qa/**'
+      - 'data/v2/main_cases_v2.json'
+      - 'scripts/validate_v2_independent_qa.py'
+      - '.github/workflows/validate-v2-qa.yml'
+  pull_request:
+    paths:
+      - 'data/v2/qa/**'
+      - 'data/v2/main_cases_v2.json'
+      - 'scripts/validate_v2_independent_qa.py'
+      - '.github/workflows/validate-v2-qa.yml'
+
+jobs:
+  qa-sidecar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check Q01-Q09 sidecar integrity (not human GT)
+        run: python scripts/validate_v2_independent_qa.py

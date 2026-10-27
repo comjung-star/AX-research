@@ -1,0 +1,78 @@
+name: AX v2.1 Blind AI Draft - All 2730
+
+on:
+  push:
+    branches: [audit/main-dataset-v1-case-unit-review]
+    paths:
+      - '.github/workflows/v21-gt-full.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  annotate-by-query:
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        query: [V21D001, V21D002, V21D003, V21D004, V21D005, V21D006, V21D007, V21D008, V21D009, V21D010]
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install OpenAI structured grading dependencies
+        run: python -m pip install 'openai>=3.26.0' 'pydantic>=2.7'
+      - name: Rate all 91 cases x 3 reference perspectives blindly
+        run: |
+          python scripts/v21_provisional_ai_ground_truth.py \
+            --model gpt-6-luna \
+            --query-id ${{ matrix.query }} \
+            --chunk-size 13 \
+            --max-requests 7 \
+            --max-attempts 3 \
+            --write-raw \
+            --output-dir data/v2_1/qa/ai_provisional_2026-10-23/${{ matrix.query }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v21-ai-${{ matrix.query }}
+          path: data/v2_1/qa/ai_provisional_2026-10-23/${{ matrix.query }}
+          retention-days: 90
+          if-no-files-found: warn
+
+  consolidate:
+    needs: annotate-by-query
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: 'v21-ai-*'
+          path: data/v2_1/qa/ai_provisional_2026-10-23
+      - name: Validate all ratings, Blind-view inputs and generate researcher approval report
+        run: python scripts/v21_consolidate_ai_draft.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ax-v21-ai-draft-approval-packet
+          path: data/v2_1/qa/ai_provisional_2026-10-23
+          retention-days: 90
+      - name: Preserve outputs/approval report/AI raw audit on this research branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/v2_1/qa/ai_provisional_2026-10-23
+          if git diff --cached --quiet; then
+            echo 'No new output files'
+          else
+            git commit -m 'gt(v2.1): archive 2730 AI-only blind draft labels and approval report'
+            git push
+          fi

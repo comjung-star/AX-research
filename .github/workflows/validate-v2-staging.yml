@@ -1,0 +1,58 @@
+name: AX Dataset v2 Staging Integrity
+
+on:
+  pull_request:
+    paths:
+      - "data/v2/**"
+      - "scripts/validate_v2_dataset.py"
+      - "scripts/validate_v2_evidence.py"
+      - "tests/test_v2_evidence.py"
+      - "scripts/build_v2_replacement_release.py"
+      - "scripts/validate_v2_replacements.py"
+      - "tests/test_v2_replacements.py"
+      - "scripts/build_v2_final_release.py"
+      - "scripts/validate_v2_release.py"
+      - "tests/test_v2_release.py"
+      - ".github/workflows/validate-v2-staging.yml"
+  push:
+    paths:
+      - "data/v2/**"
+      - "scripts/validate_v2_dataset.py"
+      - "scripts/validate_v2_evidence.py"
+      - "tests/test_v2_evidence.py"
+      - "scripts/build_v2_replacement_release.py"
+      - "scripts/validate_v2_replacements.py"
+      - "tests/test_v2_replacements.py"
+      - "scripts/build_v2_final_release.py"
+      - "scripts/validate_v2_release.py"
+      - "tests/test_v2_release.py"
+      - ".github/workflows/validate-v2-staging.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-v2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate staging parent-child lineage and unapproved state
+        run: python scripts/validate_v2_dataset.py
+      - name: Validate workflow evidence and preserve historical research artifacts
+        run: python scripts/validate_v2_evidence.py --check-immutable
+      - name: Reject invalid promotions and broken evidence lineage
+        run: python -m unittest discover -s tests -p test_v2_evidence.py -v
+      - name: Check production replacements and deterministic candidate release
+        run: python scripts/validate_v2_replacements.py
+      - name: Reject replacement drift and premature approval
+        run: python -m unittest discover -s tests -p test_v2_replacements.py -v
+      - name: Validate final production-only snapshot and isolated AI reviews
+        run: python scripts/validate_v2_release.py --freeze
+      - name: Test final freeze guards and explicit abstentions
+        run: python -m unittest discover -s tests -p test_v2_release.py -v

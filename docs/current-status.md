@@ -1,14 +1,27 @@
 # Current Research Status
 
+> **최신 코퍼스/모델 준비 상태 (2026-10-22, v2.1):** 사용자 결정에 따라 원천 근거 기반 **운영 AX 사례 91건을 연구 코퍼스로 동결**함. 운영근거·버전 해시·그룹 추적성·64개 비인과 원인-전략 관계를 별도 보존. 7건 보류, 인간 Ground Truth 0건, v2.1 관련도 2,730칸은 UNJUDGED. 신규 v2.1 모델 효과 실험은 수행된 것으로 주장하지 않음. [신규 보고서](v21-freeze-and-experiment-report-2026-10-22.md) · [v2.1 데이터셋](../data/v2_1/README.md). **아래 v2.0과 v1 기록은 이전 단계의 역사적 기록임.**\n\n
 기준일: **2026-10-22**
+
+**최신: 운영 업무 데이터셋 v2.0.0 98개 확정.** 기존 41개 전부 원문 대조 후 3개 제외, 사용자 승인하에 실제 문제-only 별도 AI 요인 검토·구현-only 전략 검토·직접 관계 검토를 수행했다. 요인 보류 25개, 전략 보류 2개는 검토 완료 후의 명시적 보류이며 억지 라벨을 채우지 않았다. 68개 직접 적용 관계, 67개 표본 군집을 기록했다. 최종 동결 검사 및 v2 테스트 72개 통과, v1·기존 실험 97개 파일 보존 확인. **인간 Ground Truth는 아님**. [최종 결과](v2-final-release-2026-10-22.md), [최종 데이터 진입점](../data/v2/README.md). PR #3 Draft 유지, 새 v2 모델/GT/Wald 실험은 별도 단계다.
+
+### 교체 직후 상태 (아래는 역사적 기록)
+
+최신 교체 결정 반영: 근거 미해결 부모 29개(기존 28개 + AX0098)와 분할 보류 11개를 제외하고 **공식 출처 기반 운영 업무 40개**로 교체했다. 활성 **후보 검토본 101개**를 취합했으며, 요인 라벨 3개는 명시적 보류다. 이전 41개 부모/이력 후보의 문장별 정렬·재승인 및 독립 Blind RCA가 남아 **최종 동결·승인 0건**이다. [교체 결과와 현재 동결 조건](v2-production-replacements-2026-10-22.md)이 아래 이전 감사 단계의 미해결 목록을 대체한다. PR #3은 Draft, v1·과거 실험은 보존한다.
+
+### 이전 감사 단계 기록 (교체 전)
+
+최신 v2 재검토: **운영 도입만 포함**. 94개 부모의 99개 인용 URL 접근 감사, 19개 부모의 분할 가설 38개 개별 판정, 분할 업무 20개 및 추가 부모 23개 재구성(총 43개 새 재구성 기록; 승인 아님). 나머지 단일업무 부모 51개는 전부 선별 기록을 남겼으나, 이 중 28개는 상세 재구성 근거가 미해결이다. 파일럿·불명확한 운영단계·복합 KPI·taxonomy 공백을 승인으로 승격하지 않았다. [원천 검토 보고서](v2-evidence-review-2026-10-22.md), [운영 포함 기준](v2-production-scope.md), [taxonomy 점검](v2-taxonomy-audit.md). **최종 동결·독립 승인 0건**이며 신규 v2 실험은 실행하지 않았다.
 
 이 문서는 현재 저장소의 실험 진행상황을 한눈에 확인하기 위한 상태 문서다.
 세부 명세와 원시 결과는 각 실험 문서를 기준으로 한다.
 
+> **2026-10-22 DATA QUALITY HOLD (v2 재구축 우선):** 100건 v1의 사례 단위가 연구 목적의 '하나의 독립 업무문제와 실제 AX 해결'을 반드시 보장하지 않는 것으로 확인. 기존 v1/Dev/Stage 1~3 결과는 이력용으로 보존하지만 **Stage 3-2B와 신규 추천 실험을 잠정 중단**함. 별도 [v2 staging 현황](data-v2-staging-2026-10-22.md): 보류 6건 분리, 94건 부모 후보, 19건에서 38개 분할 초안(미확정), 원천 1차 재검토 24건, 승인 완료 0건. 자세한 사례별 검토는 [data audit](data-audit-main-v1-2026-10-22.md) 참조. 본 상태는 **PR #3 Draft 브랜치에만 존재**하며 main의 v1 연구기록은 보존된다.
+
 ## 1. 현재 위치
 
 ~~~text
-Stage 0   Dataset / Ground Truth                    ✅
+Stage 0   Dataset / Ground Truth                    ✅ v1 historical / v2 reconstructing
 Stage 1   Multi-Perspective value validation        ✅
 Stage 2-1 Multi-view Equal                         ✅
 Stage 2-2 Query-Conditioned Gated Fusion v1        ✅  → 미채택
@@ -16,7 +29,7 @@ Stage 2-3 Hybrid Retrieval Candidate Union v1      ✅  → 보완성 확인, 50
 Stage 2-4 Query-Case Interaction MLP v1            ✅  → 미채택
 Stage 3-1 Factor ↔ Strategy Wald offline Dev        ✅  → 통계 진단 완료
 Stage 3-2A Multi-Perspective provenance Dev           ✅  → 300 Cases / 641 branch links
-Stage 3-2B Factor / Wald evidence trace             ← NEXT
+Stage 3-2B Factor / Wald evidence trace             ⏸ data quality gate
 Stage 4   Evidence Fusion / LLM Recommendation
 Final     Held-out Test
 ~~~
