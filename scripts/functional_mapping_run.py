@@ -18,10 +18,10 @@ INPUTS=[IN/n for n in ('query_registry.json','case_registry.json','candidate_fea
 def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def save(name,obj):
-    p=OUT/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    p=OUT/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes((json.dumps(obj,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
 def jsonl(name,rows):
     p=OUT/name;p.parent.mkdir(parents=True,exist_ok=True)
-    with p.open('w',encoding='utf-8') as f:
+    with p.open('w',encoding='utf-8',newline='\n') as f:
         for row in rows:f.write(json.dumps(row,ensure_ascii=False,separators=(',',':'))+'\n')
 def lines(name):
     with (OUT/name).open(encoding='utf-8') as f:return [json.loads(l) for l in f]
@@ -119,8 +119,6 @@ def stage3():
     table=[{'condition':r['condition'],'qid':r['qid'],'repeat':r['repeat'],'rank':r['rank'],'case_id':r['case_id'],'actual_task':r['actual_task'],'whole_grade':r['whole_mapping']['mapping_grade'],'best_perspective_grade':r['winning_perspective_grades'],'related_paths':','.join(r['winning_perspective_mapping_ids']),'old_hybrid_rank':r['existing_hybrid_rank'],'reason':r['reason'],'caution':r['caution']} for r in recommendations if r['rank']<=20]
     with (OUT/'stage3/top20_explanations.csv').open('w',encoding='utf-8-sig',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=list(table[0]));writer.writeheader();writer.writerows(table)
-    doc=['# Stage3: 機能根拠に基づく候補順位','',
-        '原質問と各観点を別々に採点し、全体・観点の最高根拠を併用した実験です。']
     doc=['# Stage3: 기능 근거 기반 최종 후보','',
         '주 조건 M_D_SINGLE은 원질문과 각 관점의 기능 매핑을 함께 사용한다. 관점점수를 합산하지 않고 최고 근거를 사용한다. 원질문 근거도 정렬에 남긴다. 같은 매핑 근거끼리는 기존 하이브리드 검색점수로 정렬한다. 원질문만 사용하는 조건과 3View 조건도 별도 보존했다.','',
         '전체80개 질문/회차 순위와112후보 설명을 먼저 저장했다. Silver는 아직 읽지 않았다. Top5/10/20을 동일 순위에서 자르고 ID중복을 제거했다. 기능 근거가 낮은 항목으로 채운 경우 low_support_padding=true이며 적합한 추천이라고 보증하지 않는다.','',
