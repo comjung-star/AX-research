@@ -80,4 +80,4 @@ python -m scripts.semantic_mapping_evaluate
 
 원격 `git ls-remote`와 실제 시연 로컬 HEAD를 확인해 `dd281118c222e59c892e29c93051d7e1323d1346`을 선택했다. 독립 실행기 `ba5308d1`, functional `be64f9c1`, semantic `715c4050`, Dense/BM25 `cf30b73c`의 자료는 이미 이 커밋의 이력에 포함된다. Work B `e322ed65`는 병합하지 않고 공개 README의 집계·한계만 요약했다. 기존 main과 연구 브랜치·데이터·GT·설정·결과를 바꾸지 않았다.
 
-저장소는 private이며 교수님의 GitHub 계정에 저장소 접근 권한과 초대 수락이 필요하다. 브랜치 URL을 전달해야 한다. 모델 가중치·개인정보·실제 환경파일·API 키·봉인 질문/정답을 새로 게시하지 않는다. 기존 README는 루트의 `README-history.md`로 보존해 원래 상대 링크를 유지한다.
+저장소는 2026-10-29 public으로 전환했다. 교수님은 로그인·초대 없이 브랜치 URL로 검토할 수 있다. 공개 범위는 모든 브랜치와 커밋 이력이다. 모델 가중치·개인정보·실제 환경파일·API 키·봉인 질문/정답을 새로 게시하지 않는다. 기존 README는 루트의 `README-history.md`로 보존해 원래 상대 링크를 유지한다.
