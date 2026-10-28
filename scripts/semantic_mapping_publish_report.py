@@ -1,0 +1,305 @@
+"""Publish tables from completed frozen artifacts; never performs model inference."""
+
+import csv
+import json
+import statistics
+import subprocess
+from collections import Counter
+from pathlib import Path
+
+from scripts import semantic_mapping_run as source
+
+ROOT = source.ROOT
+OUT = ROOT / "docs/query-case-semantic-mapping-report-2026-10-28"
+METHODS = {"A": "M", "B": "SEM", "C": "COMB"}
+NAMES = {"A": "18개 규칙", "B": "BGE-M3 의미", "C": "규칙+임베딩"}
+SCOPES = {"O": "원질문", "D": "원질문+다중관점"}
+SOURCE_LINK = "../query-case-semantic-mapping-2026-10-28/"
+
+
+def save(name, value):
+    path = OUT / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def csvsave(name, rows):
+    with (OUT / name).open("w", encoding="utf-8-sig", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def mean_metric(rows, qid, count, field):
+    values = [row["metrics"][str(count)][field] for row in rows if row["qid"] == qid]
+    available = [value for value in values if value is not None]
+    return statistics.mean(available) if available else None
+
+
+def format_value(value):
+    return "NA" if value is None else f"{value * 100:.3f}"
+
+
+def table(headers, rows):
+    return "\n".join(["|" + "|".join(headers) + "|", "|" + "|".join("---" for header in headers) + "|",
+                       *["|" + "|".join(str(value).replace("|", "/").replace("\n", "; ") for value in row) + "|" for row in rows]])
+
+
+def main():
+    OUT.mkdir(parents=True, exist_ok=True)
+    source.verify_freeze()
+    receipt = source.read(source.OUT / "prediction_receipt.json")
+    for name, expected in receipt["artifact_sha256"].items():
+        assert source.digest(source.OUT / name) == expected
+    result = source.read(source.OUT / "evaluation/results.json")
+    systems = result["systems"]
+    macro = result["macro"]
+    cases = source.read(source.INPUT / "case_registry.json")["cases"]
+    queries = source.read(source.INPUT / "query_registry.json")["paths"]
+    case_profiles = source.read(source.OUT / "mapping/case_profiles.json")
+    query_profiles = source.read(source.OUT / "mapping/query_profiles.json")
+    old_profiles = source.read(source.HIST / "stage2/case_profiles.json")
+    rule_rankings = source.read(source.HIST / "stage3/rankings.json")["systems"]
+    qids = sorted({row["qid"] for row in systems["M_D_SINGLE"]})
+    grades = {row["qid"]: {} for row in systems["M_D_SINGLE"]}
+    label_file = ROOT / "docs/stage123-openai-triplicate-2026-10-27/stage1_silver.json"
+    assert source.digest(label_file) == result["silver_sha256"]
+    for row in source.read(label_file)["records"]:
+        grades[row["qid"]][row["cid"]] = row["silver_score"]
+    comparison = []
+    question_rows = []
+    question_runs = []
+    perspective_rows = []
+    for scope in SCOPES:
+        for method, prefix in METHODS.items():
+            system = f"{prefix}_{scope}_SINGLE"
+            reference = f"M_{scope}_SINGLE"
+            for count in (5, 10, 20):
+                cell = macro[system][str(count)]
+                baseline = macro[reference][str(count)]
+                comparison.append({"method": method, "system": system, "scope": scope, "k": count,
+                    **{field: cell[field] for field in ("precision", "recall", "f1")},
+                    **{field + "_delta_vs_A_pp": 100 * (cell[field] - baseline[field]) for field in ("precision", "recall", "f1")},
+                    "precision_question_denominator": 10, "recall_f1_question_denominator": 6})
+                for qid in qids:
+                    row = {"method": method, "system": system, "scope": scope, "qid": qid, "k": count,
+                           "positive_cases": sum(grade >= 3 for grade in grades[qid].values()),
+                           "repeats": sum(run["qid"] == qid for run in systems[system])}
+                    for field in ("precision", "recall", "f1"):
+                        value = mean_metric(systems[system], qid, count, field)
+                        before = mean_metric(systems[reference], qid, count, field)
+                        row[field] = value
+                        row[field + "_delta_vs_A_pp"] = 100 * (value - before) if value is not None else None
+                    question_rows.append(row)
+            for row in systems[system]:
+                for count, metrics in row["metrics"].items():
+                    question_runs.append({"method": method, "scope": scope, "qid": row["qid"], "repeat": row["repeat"],
+                                          "k": int(count), **{field: metrics[field] for field in ("precision", "recall", "f1", "true_positives")},
+                                          "related_ids": ";".join(metrics["related_ids"])})
+    for method, prefix in METHODS.items():
+        for count in (5, 10, 20):
+            original = macro[f"{prefix}_O_SINGLE"][str(count)]
+            dynamic = macro[f"{prefix}_D_SINGLE"][str(count)]
+            perspective_rows.append({"method": method, "k": count,
+                **{field + "_original": original[field] for field in ("precision", "recall", "f1")},
+                **{field + "_dynamic": dynamic[field] for field in ("precision", "recall", "f1")},
+                **{field + "_dynamic_minus_original_pp": 100 * (dynamic[field] - original[field]) for field in ("precision", "recall", "f1")}})
+    csvsave("performance_comparison.csv", comparison)
+    csvsave("question_details.csv", question_rows)
+    csvsave("question_runs.csv", question_runs)
+    csvsave("perspective_effect.csv", perspective_rows)
+    save("performance_comparison.json", {"unit": "metrics in [0,1]; deltas in percentage points", "rows": comparison,
+         "macro_order": "repetitions within each question, then questions", "question_details": question_rows,
+         "perspective_effect": perspective_rows, "zero_positive_query_policy": "P=0; R/F1=null"})
+    unknown_ids = source.read(source.OUT / "mapping/unknown33.json")["case_ids"]
+    unknown_pair_rows = []
+    unknown_rows = []
+    for case_id in unknown_ids:
+        ranks = []
+        for qid in qids:
+            for repeat in (1, 2, 3):
+                row = {"case_id": case_id, "qid": qid, "repeat": repeat, "silver_grade": grades[qid][case_id]}
+                for method, prefix in METHODS.items():
+                    ranking = next(run["ranking"] for run in systems[prefix + "_D_SINGLE"] if run["qid"] == qid and run["repeat"] == repeat)
+                    row[method + "_rank"] = ranking.index(case_id) + 1
+                for method in ("B", "C"):
+                    for count in (5, 10, 20):
+                        row[f"{method}_new_vs_A_at_{count}"] = row[method + "_rank"] <= count < row["A_rank"]
+                        row[f"{method}_removed_vs_A_at_{count}"] = row["A_rank"] <= count < row[method + "_rank"]
+                ranks.append(row)
+                unknown_pair_rows.append(row)
+        fields = case_profiles[case_id]["fields"]
+        summary = {"case_id": case_id, "actual_task": cases[case_id]["task"],
+                   "rule_recognized_functions": ";".join(old_profiles[case_id]["task"]["function_ids"]),
+                   "semantic_task_available": bool(fields["task"]), "action_available": bool(fields["action"]),
+                   "object_status": case_profiles[case_id]["object_status"],
+                   "output_available": bool(fields["output"]), "unknown_fields": ";".join(case_profiles[case_id]["unknown_fields"]),
+                   "silver_positive_queries": sum(grade >= 3 for grade in (grades[qid][case_id] for qid in qids)),
+                   "semantic_accuracy": "NOT_ESTABLISHED_NO_INDEPENDENT_ROLE_LABELS"}
+        for method in METHODS:
+            summary[method + "_best_rank"] = min(row[method + "_rank"] for row in ranks)
+            for count in (5, 10, 20):
+                summary[f"{method}_top{count}_events"] = sum(row[method + "_rank"] <= count for row in ranks)
+        for method in ("B", "C"):
+            for count in (5, 10, 20):
+                summary[f"{method}_new_vs_A_at_{count}_events"] = sum(row[f"{method}_new_vs_A_at_{count}"] for row in ranks)
+                summary[f"{method}_removed_vs_A_at_{count}_events"] = sum(row[f"{method}_removed_vs_A_at_{count}"] for row in ranks)
+        unknown_rows.append(summary)
+    csvsave("unknown33_cases.csv", unknown_rows)
+    csvsave("unknown33_query_ranks.csv", unknown_pair_rows)
+    unknown_totals = {f"{method}_{direction}_at_{count}": sum(row[f"{method}_{direction}_vs_A_at_{count}_events"] for row in unknown_rows)
+                      for method in ("B", "C") for direction in ("new", "removed") for count in (5, 10, 20)}
+    save("unknown33_analysis.json", {"case_count": 33, "task_available": sum(row["semantic_task_available"] for row in unknown_rows),
+         "action_available": sum(row["action_available"] for row in unknown_rows), "positive_silver_pairs": 0,
+         "topk_exposure_changes": unknown_totals, "cases": unknown_rows,
+         "interpretation": "New exposure is Silver-negative under existing labels; no new semantic or relevance Gold was created."})
+    mandatory = source.read(source.OUT / "evaluation/mandatory_cases.json")
+    representative = []
+    old_mappings = {(row["path_id"], row["case_id"]): row for row in source.lines(source.HIST / "stage2/mappings.jsonl")}
+    explanations = source.lines(source.OUT / "ranking/explanations.jsonl")
+    for record in mandatory["records"]:
+        case_id = record["case_id"]
+        for repeat in (1, 2, 3):
+            rule = next(row for row in rule_rankings["M_D_SINGLE"] if row["qid"] == "V21D001" and row["repeat"] == repeat)
+            explanation = next(row for row in explanations if row["condition"] == "D_SINGLE" and row["qid"] == "V21D001" and row["repeat"] == repeat and row["case_id"] == case_id)
+            row = {"case_id": case_id, "actual_task": cases[case_id]["task"], "repeat": repeat,
+                   "silver_grade": grades["V21D001"][case_id],
+                   "A_whole_grade": rule["whole_grades"][case_id], "A_best_branch_grade": rule["best_perspective_grades"][case_id],
+                   "A_status": old_mappings["o_V21D001", case_id]["status"],
+                   "B_whole_cosine": record["whole"]["score"], "B_aggregated_score": explanation["scores"]["SEM"],
+                   "C_combined_score": explanation["scores"]["COMB"]}
+            for method, prefix in METHODS.items():
+                ranked = next(run["ranking"] for run in systems[prefix + "_D_SINGLE"] if run["qid"] == "V21D001" and run["repeat"] == repeat)
+                row[method + "_rank"] = ranked.index(case_id) + 1
+            representative.append(row)
+    csvsave("representative_cases.csv", representative)
+    save("representative_cases.json", {"rows": representative, "profiles_and_components": mandatory["records"],
+         "notice": "Rule evidence grade, cosine, and combined score have different scales. None is a calibrated probability or semantic Gold."})
+    source_paths = [path for path in source.OUT.rglob("*") if path.is_file()]
+    source_paths += [ROOT / name for name in ("configs/semantic_mapping_20261028.json", "src/ax_research/semantic_mapping.py",
+                     "scripts/semantic_mapping_run.py", "scripts/semantic_mapping_evaluate.py", "tests/test_semantic_mapping.py")]
+    save("source_manifest.json", {"base_commit": source.CFG["base_commit"],
+         "branch_at_publication_start": subprocess.check_output(["git", "branch", "--show-current"], cwd=ROOT, text=True).strip(),
+         "head_at_publication_start": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+         "experiment_previously_uncommitted": True,
+         "source_sha256": {path.relative_to(ROOT).as_posix(): source.digest(path) for path in sorted(source_paths)},
+         "new_experiment_run": False, "new_embeddings": False, "new_labels": False})
+    write_report(comparison, question_rows, perspective_rows, unknown_rows, unknown_totals, representative,
+                 old_mappings, mandatory, cases, queries, case_profiles, query_profiles)
+    print(json.dumps({"comparison_rows": len(comparison), "question_rows": len(question_rows),
+                      "unknown33_rank_rows": len(unknown_pair_rows), "unknown_exposure_changes": unknown_totals}, ensure_ascii=False))
+
+
+def write_report(comparison, question_rows, perspective_rows, unknown_rows, unknown_totals, representative,
+                 old_mappings, mandatory, cases, queries, case_profiles, query_profiles):
+    doc = ["# AX 연구 — 문장 임베딩 기반 Query–Case 정밀 매핑 최종 결과보고서", "",
+        "작성일: 2026-10-28 KST. 완료된 실험의 결과 검증·정리·게시 보고서이며, 이번 게시 작업에서 새로운 모델 추론·설정 탐색·라벨 생성은 수행하지 않았다.", "",
+        "## 1. 무엇을 구현했고 무엇이 달라졌나", "",
+        "기존18개 규칙으로 질문과 사례의 실제 수행 기능을 비교하는 A를 보존하고, 기존 사전학습 BGE-M3로 Task/Action/Object/Output/Context 원문을 별도 임베딩하는 B, 규칙 강도와 임베딩 점수를 사전 고정 비율로 결합하는 C를 구현했다. **BGE-M3는 이미 학습된 모델을 그대로 추론에 사용했다. 이번 연구에서 새 모델 학습이나 파인튜닝은 하지 않았다.**", "",
+        "결과는 B 단독의 전반적 개선을 지지하지 않는다. 원질문+관점 Single 조건에서 B는 A보다 F1@5/10/20이 모두 낮았다. C는 F1@5 +1.481%p, F1@10 +1.667%p, F1@20 변화0이었다. 이 개선은 고객문의 Q1에서만 나타났고, 나머지 양성5질문에서는 A와 같았다. 기존 규칙을 의미 단독으로 교체할 근거는 얻지 못했다.", "",
+        "33개 규칙 미인식 사례 모두를 문장 비교 대상으로 처리했지만, 기존 Silver 양성은0쌍이다. 따라서 의미 판단 정확도나 관련 사례 회복률 개선을 입증한 것은 아니다. 명시 Output을 양쪽에서 비교한 쌍도0개여서 다섯 의미역 전체의 효과를 검증했다고 주장하지 않는다.", "",
+        "## 2. 브랜치·커밋·보존 범위", "",
+        "- 저장소: [comjung-star/AX-research](https://github.com/comjung-star/AX-research). 비공개 저장소이므로 다른 ChatGPT 대화에서도 연결된 GitHub 계정에 저장소 접근 권한이 필요하다. URL을 전달하는 것만으로 공개 접근이 생기지는 않는다.",
+        "- 기준 브랜치: `research/query-case-functional-mapping-20261028`, 기준 SHA: `be64f9c1f742ecaa6410eeaab97da11ebc6e7f13`.",
+        "- 실제 실험 브랜치: `research/query-case-semantic-mapping-20261028`. 게시 작업 시작 시 HEAD도 기준 SHA였으며, 실험 파일은 로컬 미커밋 상태였다. 이번 요청에서 처음 Git 커밋과 원격 push를 수행한다.",
+        "- 기존 [실험 원본](../query-case-semantic-mapping-2026-10-28/)과 [18규칙 결과](../query-case-functional-mapping-2026-10-28/)를 덮어쓰지 않고 이 폴더에 최종 보고서를 추가했다. main 및 기준 연구 브랜치는 갱신하지 않는다.",
+        "- 최종 커밋 SHA와 원격 확인 결과는 게시 완료 메시지 및 [게시 검증 기록](publication_verification.json)에서 확인한다. 검증 기록의 SHA는 해당 기록을 추가하기 전 검증된 보고서 커밋이며, 최종 브랜치의 SHA는 GitHub 커밋 이력이 기준이다.", "",
+        "## 3. 데이터·구현·사전 고정 설정", "",
+        "112사례, 원질문10개, 기존 동적108관점(3회 생성), 118경로, 전체13,216쌍을 비교했다. 후보는 매 조건112개이며 기존 검색점수와 순위를 바꾸지 않았다. 새8조건 합계160개 질문/회차별 전체순위를 저장했고 기존18조건과 합계26조건을 평가했다. 독립 Stage4 Test는 열람·실행하지 않았다.", "",
+        table(["방식", "입력·점수", "정렬/한계"], [
+            ["A", "기존 Task 행동-대상 생산규칙18종, 근거강도0~4", "기존 전체/원질문/관점 근거→기존 검색점수→ID. 저장순위 그대로 사용"],
+            ["B", "같은 필드끼리 정규화 CLS cosine을 가중평균", "의미점수→기존 검색점수→ID. 실제 관련도 확률 아님"],
+            ["C", "0.5×(max 원질문/관점 규칙강도÷4)+0.5×((B점수+1)÷2)", "결합점수→기존 검색점수→ID. 혼합비 탐색 없음"]]), "",
+        "B의 필드 가중치는 Task .4, Action .2, Object .2, Output .1, Context .1이다. 양쪽에 있는 필드만 분모에 넣는다. 사례 Task의 긍정 실행 구절만 기능 근거로 쓰고, Problem·Context가 없는 Task 실행을 대신 증명하지 않는다. Action은 넓은 이중언어 표면 패턴, Object는 Action 제거 후 잔여 원문 구절이다. 정확한 의미역 파서로 검증된 방식은 아니다. Output은 명시 산출물 표현만 허용하고 없으면 UNKNOWN이다.", "",
+        "B의 원질문 O 점수는 whole score, 원질문+관점 D 점수는 `(whole score+max(branch score))/2`다. 관점에 원질문을 몰래 덧붙이거나 관점점수를 합산하지 않는다. 기존18규칙 인식에 실패해도 Task 전체를 임베딩한다.", "",
+        "BAAI/bge-m3 기존 로컬 가중치, CLS1024차원, L2정규화, CPU float32, batch8, threads4, seed20261028, 최대4096토큰을 사전 고정했다.632개 고유 필드 문장의 실제 최대길이는75토큰으로 잘림은0이다. 모델 다운로드·유료 API·새 관련도 라벨·파인튜닝0. 모델 파일과 정확한 패키지 버전은 [사전등록](" + SOURCE_LINK + "preregistration.json)에 있다.", "",
+        "[설정 JSON](../../configs/semantic_mapping_20261028.json) · [알고리즘](../../src/ax_research/semantic_mapping.py) · [추론 실행기](../../scripts/semantic_mapping_run.py) · [Dev 평가기](../../scripts/semantic_mapping_evaluate.py) · [사전 계획](" + SOURCE_LINK + "protocol.md)", "",
+        "## 4. 성능 비교 및 기존 대비 증감", "",
+        "Silver는 기존 동일모델3회 중앙값>=3을 양성으로 사용했다. 전체1,120쌍 중18양성, 양성질문6개다. P는10질문, R/F1은 양성6질문 Macro이며 무양성4질문은 R/F1=NA이다. 동적 결과는3회→질문별 평균→Macro로 계산했다. Macro P/R의 조화평균으로 Macro F1을 다시 만들지 않았다. 표는 %, 증감은 %p이며 CSV/JSON의 원지표는0~1이다.", ""]
+    for scope in SCOPES:
+        doc.extend(["### " + SCOPES[scope] + " Single", "", table(
+            ["방법", "K", "P", "R", "F1", "ΔP vs A", "ΔR vs A", "ΔF1 vs A"],
+            [[NAMES[row["method"]], row["k"], *[format_value(row[field]) for field in ("precision", "recall", "f1")],
+              *[f"{row[field + '_delta_vs_A_pp']:+.3f}" for field in ("precision", "recall", "f1")]]
+             for row in comparison if row["scope"] == scope]), ""])
+    doc.extend(["[전체 비교CSV](performance_comparison.csv) · [JSON](performance_comparison.json) · [기존 포함26조건 표](" + SOURCE_LINK + "evaluation/macro_metrics.csv)", "",
+        "## 5. 질문별 성능 변화", ""])
+    for count in (5, 10, 20):
+        rows = []
+        for qid in sorted({row["qid"] for row in question_rows}):
+            cells = {row["method"]: row for row in question_rows if row["qid"] == qid and row["scope"] == "D" and row["k"] == count}
+            rows.append([qid, cells["A"]["positive_cases"], *[format_value(cells[method]["f1"]) for method in METHODS],
+                         *["NA" if cells[method]["f1_delta_vs_A_pp"] is None else f"{cells[method]['f1_delta_vs_A_pp']:+.3f}" for method in ("B", "C")]])
+        doc.extend([f"### 질문별 F1@{count} (원질문+관점 Single)", "", table(["질문", "양성수", "A", "B", "C", "B−A %p", "C−A %p"], rows), ""])
+    doc.extend(["각 질문의 원질문 텍스트는 [기존 질문 레지스트리](../dense-bm25-candidates-2026-10-27/query_registry.json)에 보존되어 있다. 질문별 P/R/F1·양성수·회차수·A 대비 증감은 [question_details.csv](question_details.csv), 회차별 지표와 관련사례 ID는 [question_runs.csv](question_runs.csv)에 있다. NA를0점으로 바꾸지 않았다.", "",
+        "C의 개선은 Q1의 F1@5 +8.889%p, F1@10 +10%p에 한정된다. 나머지 양성5질문은 A와 같다. B는 Q3의 내부지식 검색과 Q8 수요예측에서 손실이 나타났다. 질문 수가 작으므로 전반적 개선이나 통계적 유의성을 주장하지 않는다.", "",
+        "## 6. 원질문 대비 다중관점 추가 효과", "",
+        table(["방법", "K", "원질문 F1", "+관점 F1", "관점 추가 ΔF1 %p", "ΔP %p", "ΔR %p"],
+            [[NAMES[row["method"]], row["k"], format_value(row["f1_original"]), format_value(row["f1_dynamic"]),
+              *[f"{row[field + '_dynamic_minus_original_pp']:+.3f}" for field in ("f1", "precision", "recall")]] for row in perspective_rows]), "",
+        "A→B/C의 차이는 같은 관점조건 안의 매핑방식 차이이며, O→D의 차이는 같은 매핑방식 안에서 관점을 추가한 차이다. 위 두 축을 분리했다. D는 최고 관점과 원질문을1:1로 평균하는 설계까지 포함하므로, 관점 수 자체의 순수 인과효과는 아니다. O는1회, D는 기존3회 결과 평균이다. 새 관점을 생성하지 않았다.", "",
+        "Single/3View 새 순위가 같은 것은 같은 필드 점수식을 쓰고 기존 검색점수를 동점 처리에만 쓰기 때문이다. 새 다중뷰 인코더의 학습효과를 뜻하지 않는다. 이번 전체 질문 Silver 평가는 관점별 추가발견·중복·Reference Coverage를 독립적으로 검증한 결과도 아니다. [관점 효과CSV](perspective_effect.csv)", "",
+        "## 7. 기존 미인식33사례의 실제 결과", "",
+        "33/33사례에 Task 임베딩을 만들었고, Action은17/33사례에서 추출했다. 다음 표는 원질문+관점30회 질문/회차 사건을 합산한 Top20 노출이다. 신규/제거는 A 대비 B 또는 C의 Top20 진입/이탈 사건이며, 정확도 개선으로 부르지 않는다. 모든33사례가10개 질문에서 Silver>=3인 쌍은0이다.", "",
+        table(["사례", "실제 Task", "Action", "Top20 사건 A/B/C", "B 신규/제거", "C 신규/제거"],
+            [[row["case_id"], row["actual_task"], "추출" if row["action_available"] else "UNKNOWN",
+              "/".join(str(row[f"{method}_top20_events"]) for method in METHODS),
+              f"{row['B_new_vs_A_at_20_events']}/{row['B_removed_vs_A_at_20_events']}",
+              f"{row['C_new_vs_A_at_20_events']}/{row['C_removed_vs_A_at_20_events']}"] for row in unknown_rows]), "",
+        "33사례의 모든 질문×회차 순위990행은 [unknown33_query_ranks.csv](unknown33_query_ranks.csv), 필드 가용성·최고순위·Top5/10/20 신규/제거는 [unknown33_cases.csv](unknown33_cases.csv), 요약은 [unknown33_analysis.json](unknown33_analysis.json)에 있다.", "",
+        "- 새롭게 처리: 기존 규칙의 기능 생산규칙 인식이 없어도33사례 전체의 Task를 비교했다. 이는 문법 밖 표현에 점수를 줄 수 있다는 구현 범위 확장이다.",
+        "- 여전히 어려움:16사례의 Action은UNKNOWN이다. Object는 잔여 구절이라33개 모두 의미역이 정확하다고 검증되지 않았다. 명시 Output 부재·짧은 Task·적용맥락 차이도 남는다.",
+        "- 기존보다 잘못 판단: Silver 기준의 새 음성 노출 증가는 아래와 같다. 독립 사람 정답이 없으므로 이를 실제 의미 오판의 확정 라벨로 삼지는 않는다. 관련도 회복률은 양성0쌍이라 평가 불가다.", "",
+        table(["방식", "K", "A 대비 새 Silver 음성 진입", "A 대비 Silver 음성 제거"],
+              [[method, count, unknown_totals[f"{method}_new_at_{count}"], unknown_totals[f"{method}_removed_at_{count}"]]
+               for method in ("B", "C") for count in (5, 10, 20)]), "",
+        "## 8. 대표3사례의 판단과 순위", "",
+        "A의0~4점은 규칙 근거강도, B는 cosine 평균, C는 고정 혼합점수여서 숫자 크기를 같은 척도로 직접 비교하지 않는다. 세 방식 모두 별도 이진 관련도 임계값을 학습하거나 확정판정을 내린 것이 아니라 순위와 근거를 제공한다. Silver는 평가 참조다.", "",
+        table(["사례", "실제 Task", "A 원질문 규칙점수/상태", "B 원질문 의미점수", "Silver Q1"],
+            [[record["case_id"], cases[record["case_id"]]["task"],
+              f"{old_mappings['o_V21D001', record['case_id']]['mapping_grade']} / {old_mappings['o_V21D001', record['case_id']]['status']}",
+              f"{record['whole']['score']:.4f}", next(row["silver_grade"] for row in representative if row["case_id"] == record["case_id"])] for record in mandatory["records"]]), "",
+        table(["사례", "회차", "A 순위", "B 순위", "C 순위", "B 집계점수", "C 결합점수"],
+              [[row["case_id"], row["repeat"], row["A_rank"], row["B_rank"], row["C_rank"], f"{row['B_aggregated_score']:.4f}", f"{row['C_combined_score']:.4f}"] for row in representative]), "",
+        "고객 도움말센터와 직원 HR 규정 답변은 Answer라는 행동을 공유하므로 기능 전이는 가능하지만 대상과 배포맥락은 다르다. 제조 불량 분석은 Analyze이고 대상은 생산결함·원인으로 고객 질문응답과 다르다. B는 고객 도움말 사례를1위, HR을6~8위로 높였지만 제조 불량 사례도25~29위로 올렸다. C는 제조 사례를42~43위로 낮췄고 A는56~65위로 가장 낮게 두었다. 이 세 사례의 잘못된 기능 겹침을 억제하는 데는 A가 더 보수적이지만, 소수 사전 지정 사례로 의미 판단 정확도 전체의 우열을 확정할 수 없다.", "",
+        "'답변 품질' 관점의 제조 불량 의미점수0.5068/0.5335/0.5231은 원질문점수0.4473보다 높다. 문장 의미가 가까워도 실제 수행 기능이 같다고 할 수 없음을 보여준다. 세 방식 모두 Q1 Top20에는 제조 사례를 넣지 않았으므로 Top20 지표만으로는 이 순위 상승 문제를 놓칠 수 있다.", "",
+        "[대표사례CSV](representative_cases.csv) · [필드별 cosine·원문 프로필 JSON](representative_cases.json) · [전체 Q1 관점 비교](" + SOURCE_LINK + "evaluation/mandatory_cases.json)", "",
+        "## 9. 개선·악화 사례와 원인 해석", "",
+        "C Top5의 신규 관련 고유쌍은 Q1의 고객 문의 자율응답 AXV2H_0001_01, 항공 고객 질문응답 AXV2P2_0060_01이다. 규칙 순위7/6/7→결합5/5/5, 10/10/10→4/4/4로 바뀌었다. Action이 유사한 기존 관련 사례들 사이에서 Task·Object·Context 의미점수가 순서를 바꾼 결과와 일치한다. 각 필드의 인과적 기여는 필드 제거 실험을 하지 않아 분리하지 못한다.", "",
+        "C Top10은 Q1 은행 채팅 질문응답 AXV2C_0092_01, HR QA AXV2N_0124, 웹 FAQ AXV2P2_0067_01을 일부 회차에서 새로 포함했다. 반대로 지원 티켓 자동답변 AXV2H_0091_01과 은행 문의 AXV2N_0123을 일부 회차에서 잃었다. 관련 사례 간 교환이 포함되므로 모든 사례의 개선으로 표현하지 않는다.", "",
+        "B의 Q3 내부지식 검색 AXV2N_0110은 A3/3/2위→B22/26/24위로 모든 K에서 누락됐고 C는3/3/3위였다. Q8 수요예측 AXV2C_0050_01은 A5/5/5위→B6/6/4위로 두 회차 Top5에서 빠졌고 C는5/5/5위였다. 짧은 다국어 Task, 의미역 잔여 구절, 맥락의 비대칭, 관점최고점 연산과 유사도 점수의 한계가 가능한 설명이지만, 어떤 단어가 실패를 일으켰는지 인과적으로 검증한 것은 아니다.", "",
+        "B 대 A의 신규/손실 사건은 K5 7/12, K10 8/11, K20 0/6이다. C 대 A는 K5 6/4, K10 8/5, K20 0/0이다. 사건은 질문×회차×사례이며 회차 중복을 포함한다. 고유쌍과 전 ID·새 음성진입은 [관련사례 변경 JSON](" + SOURCE_LINK + "evaluation/related_changes.json), 전체112후보의 변화는 [순위변화CSV](" + SOURCE_LINK + "evaluation/rank_changes.csv)에 있다.", "",
+        "## 10. 한계·누수 가능성·독립 Test", "",
+        "1. 기존 AI-Silver는 동일모델3회 중앙값이다. 사람 Gold나 독립 모델 합의가 아니고, 10 Dev 질문·18양성쌍의 결과라 일반화·유의성을 주장하지 않는다. 33사례의 양성0은 Silver 누락과 실제 무관을 구별하지 못한다.",
+        "2. 설계자는 이전 Dev 결과와 사용자가 제시한 사례를 알고 있다. 라벨이 추론 입력에 없다는 것은 설계자 수준의 정보누수 가능성이0이라는 뜻이 아니다. 반복 Dev 실험의 선택 편향과 소수 예시 맞춤 위험을 인정한다.",
+        "3. 사전등록→라벨 없는 예측→예측 hash 봉인→Dev 평가 순서를 코드와 영수증으로 남겼다. 로컬 해시 기록은 외부 공증이 아니다. 이번 게시 과정에서 과거 시각을 수정하거나 재등록하지 않았다.",
+        "4. Action 사례88/112·질문경로83/118, Context 질문경로13/118이다. Task/Object는 전 경로 존재하지만 Object는 얕은 잔여 구절이다. 분모가 가용 필드에 따라 달라져 점수 의미가 항목마다 다를 수 있다.",
+        "5. Output은 사례1개·질문경로0개여서 실제 Output 비교는0쌍이다. 구현 지원과 실제 검증을 구분한다. 원 출판물을 새로 재검증한 것도 아니며 구조화 Task의 사실성·충분성 한계가 남는다.",
+        "6. 독립 Stage4 Test 열람·실행0. 새 라벨·유료 API·파인튜닝0. 이번 게시에서 새 임베딩/랭킹 생성0. 저장 벡터와 순위 재생·수치 검산은 기존 결과 검증이다.",
+        "7. 교수 제안의 [q,c,q⊙c,abs(q−c)]→MLP 학습형 Interaction, Gated Fusion, Root Cause/Wald, 전략추천 효과를 이번 비학습 매핑 비교가 검증한 것으로 확대하지 않는다. 가중치와 점수식은 교수 확정 공식이 아니라 사전 지정 실험 선택이다.", "",
+        "## 11. 교수 피드백·논문 주제에 따른 다음 연구 우선순위", "",
+        "근거: [교수 피드백 메모](../professor-feedback-2026-10-20.md), [연구계획](../research-plan.md), [AGENTS 원칙](../../AGENTS.md). 아래는 그 문서를 바탕으로 한 후속 연구 제안이며 이번에 실행한 실험 결과가 아니다.", "",
+        "1. **평가 독립성과 기능 의미 검증을 먼저 확보.** 검색결과를 정답으로 삼지 않는 독립 사람 검토·판정 기준을 사전 고정한다. 33사례, 실제 관련 사례 손실, 유사도 높은 기능 불일치, 부정/미래·산출물 결측을 균형 있게 포함한다. Task 사실성·Action/Object 연결·적용맥락과 관련도 라벨을 분리 검증한다. 기존 Silver를 소급 덮어쓰지 않는다.",
+        "2. **동일 비교 예산에서 다중관점의 독립 가치를 검증.** 원질문 대비 관점 추가를 같은 후보/K/비용으로 비교하고, 질문 근거성·중복·Reference 밖 새 관점의 타당성·추가 관련사례 회복을 구분한다. Reference를 고정 런타임 카테고리로 쓰지 않는다. 현재 최고관점 효과를 순수 관점효과로 단정하지 않는다.",
+        "3. **기능별 점수와 교수 Interaction을 단계적으로 검증.** 별도 사전등록 Dev에서 Task/Action/Object/Context 제거·결측정책·분야간 전이와 기능 불일치 대조를 검증한다. 신뢰할 독립 라벨과 학습/검증/출처그룹 분리가 확보된 뒤에만 교수 제안 Interaction의 학습형 비교를 검토한다.18양성쌍으로 새 신경망 우월성을 주장하지 않는다.",
+        "4. **설정·프롬프트·평가를 동결한 후 독립 Test를 개봉.** 교수 피드백의 과적합 우려와 Dev/Test 구분에 맞춰, 동일 Test를 보고 재조정하지 않는 절차를 먼저 고정한다. Test 확인은 별도 승인된 후속 작업이다.",
+        "5. **검색 근거가 검증된 다음 전략추천으로 연결.** 논문의 핵심인 관점 보존 검색과 추적 가능한 근거를 유지하고, 이후 Factor Anchor/Wald/Strategy Coverage를 단계별 ablation으로 검증한다. Wald는 연관 근거이며 인과나 단독 추천기로 과장하지 않는다. 별도 Dike 블록이나 새 RRF 제안 구조를 추가하지 않는다.", "",
+        "## 12. 검증·산출물 안내", "",
+        "기존34개 테스트와 게시 검증6개를 합쳐40개 테스트가 통과했다. 사전봉인 코드·원본 입력·예측 해시, 전13,216쌍 cosine, 새160순위, 모든 평가 지표, 신규/유지/손실 집합을 저장 결과에서 검산한다. 원본 실험 및 기준 연구의 기존 tracked 파일은 변경하지 않는다. 게시용 표와 출처 해시는 이 폴더에 별도 저장한다. 정확한 결과는 test_results.xml에 있다.", "",
+        "|요구 산출물|파일|", "|---|---|",
+        "|한국어 최종 보고서|[README.md](README.md)|",
+        "|세 방식 성능·증감|[CSV](performance_comparison.csv), [JSON](performance_comparison.json)|",
+        "|질문별·회차별 상세|[question_details.csv](question_details.csv), [question_runs.csv](question_runs.csv)|",
+        "|원질문/관점 효과|[perspective_effect.csv](perspective_effect.csv)|",
+        "|33사례 전체 분석|[cases](unknown33_cases.csv), [990순위](unknown33_query_ranks.csv), [요약](unknown33_analysis.json)|",
+        "|대표사례 판단·순위|[CSV](representative_cases.csv), [JSON](representative_cases.json)|",
+        "|출처·검증·게시|[source_manifest.json](source_manifest.json), [검증](validation.json), [원격 확인](publication_verification.json)|",
+        "|실험 코드·테스트|[전체 코드](../../src/ax_research/semantic_mapping.py), [단위테스트](../../tests/test_semantic_mapping.py), [산출물테스트](../../tests/test_semantic_mapping_artifacts.py)|",
+        "|연구 작업일지|[게시 작업일지](../../worklog/2026-10-28-semantic-mapping-publication.md), [실험 당시 일지](../../worklog/2026-10-28-semantic-mapping.md)|", "",
+        "실험 당시 verification.json과 일지는 당시 '미커밋·미푸시' 상태의 역사적 기록으로 보존한다. 현재 게시 상태는 새 게시 검증 기록과 GitHub 이력을 기준으로 한다. 로컬 모델 가중치는GitHub에 올리지 않고 원본·모델 해시와 저장 벡터를 제공한다. 벡터 재생 검증에는 모델 다운로드가 필요 없다.", "",
+        "이 문서와 CSV는 [게시 보고서 생성기](../../scripts/semantic_mapping_publish_report.py)가 기존 산출물에서만 만든다. 원본 실험을 다시 수행하는 명령은 이번 게시에서 실행하지 않았다.", ""])
+    (OUT / "README.md").write_text("\n".join(doc), encoding="utf-8", newline="\n")
+
+
+if __name__ == "__main__":
+    main()
