@@ -29,3 +29,7 @@
 - 신규15개+이전하이브리드회귀8개=23테스트통과. 핵심7파일2회실행해시일치. 실행중Python네트워크차단.
 - API/키읽기/학습/신규임베딩/추가비용0. 원본/과거실험/프로토타입/독립Test 보존. 이번Stage4는Dev비교.
 - 보고서: docs/query-case-functional-mapping-2026-10-28/README.md. 각stage하위에별도보고서와원자료,공통verification/reproducibility/test/security/publication기록을저장한다.
+
+## 단위5: 게시 확인
+
+- Stage4 결과 커밋 721c1d6bacb57659cc745c61e1a0e40f08d11df0이 GitHub 새 브랜치와 일치함을 확인했다. 단계별 전체 SHA·보고서 경로·검증 상태를 publication.json에 별도 저장한다.
