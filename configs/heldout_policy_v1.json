@@ -1,0 +1,18 @@
+{
+  "schema_version": "ax-heldout-v1",
+  "scope": "original_only_O_SINGLE",
+  "systems": ["Single Dense", "A", "B", "C"],
+  "grade_scale": [0, 1, 2, 3],
+  "relevant_threshold": 2,
+  "k": [5, 10, 20],
+  "ndcg_k": [5, 10],
+  "gain": "2**grade-1",
+  "precision": "undefined if any topK item is not JUDGED; fixed K denominator",
+  "recall_f1": "only FULL_CORPUS and all112 JUDGED; zero positives undefined",
+  "ndcg": "only FULL_CORPUS and all112 JUDGED; zero IDCG undefined",
+  "macro": "defined questions only; always publish defined/total and excluded query IDs",
+  "long_input": "reject above frozen4096 tokens; no truncation",
+  "label_sources": ["AI-Silver", "Human-Gold"],
+  "network": "disabled",
+  "preregistered": "2026-10-28 before independent Test payload access"
+}
