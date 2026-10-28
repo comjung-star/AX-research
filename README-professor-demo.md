@@ -34,7 +34,9 @@ powershell -ExecutionPolicy Bypass -File .\run_professor_demo.ps1
 
 설명할 핵심 세 가지: ① 한국어 자유 입력과 로컬 BGE-M3 실추론 ② 동일 112개 후보에서 기존 규칙 A / 필드 임베딩 B / 결합 C 및 Dense / BM25 비교 ③ 원문 Task의 행동·대상 인용과 출처를 추적하는 근거 표시.
 
-## 구현 범위와 한계
+## 최초 오프라인 버전의 구현 범위와 한계 (이력)
+
+아래의 ‘단일 입력’, ‘동적 LLM 범위 밖’, ‘외부 API 없음’은 최초 오프라인 `/api/search`에만 해당한다. 현재 기본 화면은 위 실시간 업데이트의 `/api/live-search`를 사용하며 LLM API 비용이 발생한다. [통합 검토 안내](README.md)를 먼저 확인한다.
 
 기준 스냅샷 ba5308d1619e53ee8b1b6c223480a439f5adcf8b에서 독립 브랜치로 구현했다. 기존 functional_mapping / semantic_mapping / BM25Retriever를 그대로 호출한다. B의 가용 필드 가중치와 C의 결합 공식은 동결 설정 그대로다. 전체 112개에 점수를 매긴다. 단일 입력만 사용하고 동점은 Dense 점수, 사례 ID 순으로 정렬한다. 이는 시연용 동점 규칙이며 과거 hybrid/RRF 실험의 재현을 주장하지 않는다. RRF를 제안 모델로 사용하지 않는다.
 
