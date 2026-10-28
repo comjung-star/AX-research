@@ -1,0 +1,861 @@
+{
+  "counting": "43 atomic observations, not nine mandatory packages. Completion is scoped to the item, not whole Test readiness.",
+  "items": [
+    {
+      "id": "D01",
+      "category": "데이터",
+      "item": "미사용 독립 Test 질문",
+      "status": "미완료",
+      "finding": "질문 경로 미확정. 새 Test 본문을 읽거나 질문을 만들지 않음.",
+      "evidence": [
+        {
+          "path": "configs/independent_test_readiness_20261028.json",
+          "line": 26,
+          "source_line": "    \"test_queries_path\":null,"
+        }
+      ],
+      "mandatory_gate": "D1"
+    },
+    {
+      "id": "D02",
+      "category": "데이터",
+      "item": "독립 정답·판정 출처",
+      "status": "미완료",
+      "finding": "정답 경로 미정. 파일럿103쌍도 사람채점0이며 대체 불가.",
+      "evidence": [
+        {
+          "path": "configs/independent_test_readiness_20261028.json",
+          "line": 27,
+          "source_line": "    \"test_qrels_path\":null,"
+        },
+        {
+          "path": "docs/blind-pilot-five-queries-2026-10-28/final_status.json",
+          "line": 12,
+          "source_line": "  \"human_graded_pairs\": 0,"
+        }
+      ],
+      "mandatory_gate": "D2"
+    },
+    {
+      "id": "D03",
+      "category": "데이터",
+      "item": "Test 입력 스키마",
+      "status": "부분 완료",
+      "finding": "Dev/pilot 구조는 있으나 일반 Test manifest·입력 검증 계약 없음.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_run.py",
+          "line": 118,
+          "source_line": "    cases = read(INPUT / \"case_registry.json\")[\"cases\"]"
+        },
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 21,
+          "source_line": "def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))"
+        }
+      ],
+      "mandatory_gate": "P1"
+    },
+    {
+      "id": "D04",
+      "category": "데이터",
+      "item": "미노출·독립 작성 이력",
+      "status": "확인 불가",
+      "finding": "Test 명세가 없어 미사용·작성자·시점·중복을 실제 확인할 수 없음.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-readiness-2026-10-28/readiness_gate.json",
+          "line": 187,
+          "source_line": "  \"unused_provenance_verified\": false,"
+        }
+      ],
+      "mandatory_gate": "E2"
+    },
+    {
+      "id": "D05",
+      "category": "데이터",
+      "item": "112사례·기존벡터",
+      "status": "완료",
+      "finding": "112×1024 유한값 case행렬 및 로컬모델 해시 확인. 원본 변경 없음.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/model_check.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "M01",
+      "category": "알고리즘",
+      "item": "A 규칙 계산·정렬",
+      "status": "완료",
+      "finding": "코어 구현 및 기존 테스트 통과. 의미 정확도 증명은 아님.",
+      "evidence": [
+        {
+          "path": "src/ax_research/functional_mapping.py",
+          "line": 28,
+          "source_line": "def compare(query, case):"
+        },
+        {
+          "path": "src/ax_research/functional_mapping.py",
+          "line": 40,
+          "source_line": "def ranking_key(whole,branches,retrieval_score,cid):"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "M02",
+      "category": "알고리즘",
+      "item": "B 필드 임베딩 비교",
+      "status": "완료",
+      "finding": "필드 추출·가용가중치 cosine 구현과 단위 검사 통과.",
+      "evidence": [
+        {
+          "path": "src/ax_research/semantic_mapping.py",
+          "line": 15,
+          "source_line": "def field_profile(text, config, negation_guard, *, executed=False, context=\"\"):"
+        },
+        {
+          "path": "src/ax_research/semantic_mapping.py",
+          "line": 67,
+          "source_line": "def compare_fields(query, case, embeddings, weights):"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "M03",
+      "category": "알고리즘",
+      "item": "C50:50 결합",
+      "status": "완료",
+      "finding": "결합 함수·범위·동점 테스트 확인. 비율 변경 불필요.",
+      "evidence": [
+        {
+          "path": "src/ax_research/semantic_mapping.py",
+          "line": 87,
+          "source_line": "def combined_score(rule_strength, semantic_score):"
+        },
+        {
+          "path": "tests/test_semantic_mapping.py",
+          "line": 59,
+          "source_line": "def test_frozen_mixture_range_and_deterministic_ties():"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "M04",
+      "category": "알고리즘",
+      "item": "기존 알고리즘·모델 동결",
+      "status": "완료",
+      "finding": "기존 파일/모델 해시와 코어 패키지 버전 확인. 새 Test 전체 동결과 구분.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/source_manifest.json",
+          "line": 1,
+          "source_line": "{"
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/model_check.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "M05",
+      "category": "알고리즘",
+      "item": "Dense/BM25·후보결합 구성요소",
+      "status": "완료",
+      "finding": "case벡터·Kiwi초기화·기존560점검산기록·결합테스트 확인. Test연결실행은 안 함.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 76,
+          "source_line": "        qid=q['qid'];dv={cid:float(np.dot(matrix[cid],emb[q['text']])) for cid in ids};tokens=tokenizer.tokenize(q['text']);bv={}"
+        },
+        {
+          "path": "src/ax_research/retrieval/bm25.py",
+          "line": 44,
+          "source_line": "class BM25Retriever:"
+        },
+        {
+          "path": "docs/blind-pilot-five-queries-2026-10-28/verification.json",
+          "line": 6,
+          "source_line": "  \"bm25_independent_library_scores_checked\": 560,"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "M06",
+      "category": "알고리즘",
+      "item": "원질문·관점 집계",
+      "status": "완료",
+      "finding": "전체와 최고관점1:1 및 중복가산 없음 구현. Test관점 생성은 별도.",
+      "evidence": [
+        {
+          "path": "src/ax_research/semantic_mapping.py",
+          "line": 83,
+          "source_line": "def aggregate(whole, branches):"
+        },
+        {
+          "path": "tests/test_semantic_mapping.py",
+          "line": 53,
+          "source_line": "def test_max_branch_preserves_whole_and_has_no_duplicate_bonus():"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "M07",
+      "category": "알고리즘",
+      "item": "새 Test 다중관점 절차",
+      "status": "부분 완료",
+      "finding": "기존생성은OpenAI유료/3회반복. 승인·예산·신규관점캐시 필요. Dev관점 재사용 금지.",
+      "evidence": [
+        {
+          "path": "scripts/openai_triplicate.py",
+          "line": 57,
+          "source_line": "def view_job(qid,rep,qs):"
+        },
+        {
+          "path": "scripts/openai_triplicate.py",
+          "line": 76,
+          "source_line": "    secret=key()"
+        },
+        {
+          "path": "scripts/openai_triplicate_search.py",
+          "line": 83,
+          "source_line": "        for rep in (1,2,3):"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "R01",
+      "category": "실행기",
+      "item": "독립 Test 전용 진입점",
+      "status": "미완료",
+      "finding": "semantic CLI는freeze/run뿐이고 Dev118경로고정. readiness는보고프로그램.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_run.py",
+          "line": 120,
+          "source_line": "    assert len(cases) == 112 and len(queries) == 118"
+        },
+        {
+          "path": "scripts/semantic_mapping_run.py",
+          "line": 204,
+          "source_line": "    parser.add_argument(\"stage\", choices=(\"freeze\", \"run\"))"
+        },
+        {
+          "path": "scripts/independent_test_readiness_report.py",
+          "line": 26,
+          "source_line": "def main():"
+        }
+      ],
+      "mandatory_gate": "P1"
+    },
+    {
+      "id": "R02",
+      "category": "실행기",
+      "item": "새 질문 파일 주입",
+      "status": "부분 완료",
+      "finding": "파일럿 성공 구현은 있으나 config5질문·고정OUT 전용. 입력파일옵션 없음.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 54,
+          "source_line": "def run():"
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/blind_pilot_five_help.txt",
+          "line": 1,
+          "source_line": "usage: blind_pilot_five.py [-h] {freeze,run,bundle}"
+        }
+      ],
+      "mandatory_gate": "P1"
+    },
+    {
+      "id": "R03",
+      "category": "실행기",
+      "item": "Dense+A/B/C 동일조건 일괄 출력",
+      "status": "부분 완료",
+      "finding": "pilot은ABC만;Dense는retrieval기록에만 있어 공식4조건출력·평가가 미연결.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 74,
+          "source_line": "    corpus=read(RETR/'bm25_corpus_statistics.json');tokenizer=KiwiTokenizer();systems={s:[] for s in 'ABC'};details=[];retrieval=[]"
+        },
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 84,
+          "source_line": "        retrieval.append({'qid':qid,'tokens':tokens,'dense_scores':dv,'bm25_scores':bv,'dense_ranking':dr,'bm25_ranking':br,'hybrid_tie_score':tie})"
+        }
+      ],
+      "mandatory_gate": "P1"
+    },
+    {
+      "id": "R04",
+      "category": "실행기",
+      "item": "Top5/10/20 명시 저장",
+      "status": "부분 완료",
+      "finding": "pilot은5/10명시.112순위에서20추출가능하지만 Test출력계약 없음.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 85,
+          "source_line": "        for s,ranking in rankings.items():systems[s].append({'qid':qid,'ranking':ranking,'top5':ranking[:5],'top10':ranking[:10]})"
+        },
+        {
+          "path": "scripts/functional_mapping_run.py",
+          "line": 107,
+          "source_line": "        row={'qid':qid,'repeat':rep,'ranking':ranking,'top_k':{str(k):ranking[:k] for k in CFG['K']},'path_ids':pool['path_ids'],'whole_path_id':op,'retrieval_reference':pool['condition'],'whole_grade"
+        }
+      ],
+      "mandatory_gate": "P1"
+    },
+    {
+      "id": "R05",
+      "category": "실행기",
+      "item": "전체112순위·근거 보존",
+      "status": "완료",
+      "finding": "기존15개전체순위·560쌍근거 구현/저장물 확인. 새 Test 결과는 아님.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 85,
+          "source_line": "        for s,ranking in rankings.items():systems[s].append({'qid':qid,'ranking':ranking,'top5':ranking[:5],'top10':ranking[:10]})"
+        },
+        {
+          "path": "docs/blind-pilot-five-queries-2026-10-28/verification.json",
+          "line": 5,
+          "source_line": "  \"rankings_replayed\": 15,"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "R06",
+      "category": "실행기",
+      "item": "현재브랜치에서옛freeze명령 재사용",
+      "status": "부분 완료",
+      "finding": "semantic freeze는HEAD==옛base를 요구. 현재HEAD불일치로 해당명령 그대로는 거부됨. 의도된보호장치.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_run.py",
+          "line": 69,
+          "source_line": "def freeze():"
+        },
+        {
+          "path": "configs/semantic_mapping_20261028.json",
+          "line": 3,
+          "source_line": "  \"base_commit\": \"be64f9c1f742ecaa6410eeaab97da11ebc6e7f13\","
+        }
+      ],
+      "mandatory_gate": "E3"
+    },
+    {
+      "id": "R07",
+      "category": "실행기",
+      "item": "Test ID·중복·완전성 검증",
+      "status": "부분 완료",
+      "finding": "pilot ID검사는 있으나 일반N×112정답·미지qid·중복·부분정답 coverage 게이트 없음.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 61,
+          "source_line": "def analyze(rows,public,key,predictions):"
+        },
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 49,
+          "source_line": "        assert not row[\"held\"] and row[\"silver_score\"] is not None"
+        }
+      ],
+      "mandatory_gate": "P2"
+    },
+    {
+      "id": "R08",
+      "category": "실행기",
+      "item": "새폴더·덮어쓰기·안전재개",
+      "status": "부분 완료",
+      "finding": "분석기는기존출력거부. 예측save는고정경로쓰기이며 독립run-id·출력거부/재개계약 없음.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 105,
+          "source_line": "    if args.output.exists():raise ValueError('기존 분석 파일을 덮어쓰지 않습니다. 새 출력 이름을 지정하세요.')"
+        },
+        {
+          "path": "scripts/semantic_mapping_run.py",
+          "line": 38,
+          "source_line": "def save(name, value):"
+        },
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 27,
+          "source_line": "def save(name,obj):"
+        }
+      ],
+      "mandatory_gate": "P3"
+    },
+    {
+      "id": "R09",
+      "category": "실행기",
+      "item": "실제 Test 명령·결과경로",
+      "status": "미완료",
+      "finding": "검증된Test용CLI/전용경로계약 없음. 가상의 명령을 실행 가능하다고 안내할 수 없음.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/semantic_mapping_run_help.txt",
+          "line": 1,
+          "source_line": "usage: semantic_mapping_run.py [-h] {freeze,run}"
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/blind_pilot_five_help.txt",
+          "line": 1,
+          "source_line": "usage: blind_pilot_five.py [-h] {freeze,run,bundle}"
+        }
+      ],
+      "mandatory_gate": "E3"
+    },
+    {
+      "id": "V01",
+      "category": "평가",
+      "item": "P/R/F1@5/10/20",
+      "status": "부분 완료",
+      "finding": "수식은 있으나Dev10문항/1120쌍/18양성과분모10·6고정.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 22,
+          "source_line": "def metric(ranking, positive, count):"
+        },
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 53,
+          "source_line": "    assert len(grades) == 10 and len(silver[\"records\"]) == 1120 and sum(map(len, positive.values())) == 18"
+        }
+      ],
+      "mandatory_gate": "P2"
+    },
+    {
+      "id": "V02",
+      "category": "평가",
+      "item": "nDCG@5/10",
+      "status": "부분 완료",
+      "finding": "pilot 평가풀 IDCG함수는 있음. Test전체112/부분풀선택 및 정답입력 연결 없음.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 54,
+          "source_line": "def ndcg(ranking,labels,pool,k):"
+        },
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 78,
+          "source_line": "            for k in (5,10):"
+        }
+      ],
+      "mandatory_gate": "P2"
+    },
+    {
+      "id": "V03",
+      "category": "평가",
+      "item": "질문수·Macro분모 일반화",
+      "status": "미완료",
+      "finding": "Dev10/6,파일럿5 고정. 실제N·지표정의가능문항수로 계산하는Test평가기 없음.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 77,
+          "source_line": "            for field, denominator in ((\"precision\", 10), (\"recall\", 6), (\"f1\", 6)):"
+        },
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 86,
+          "source_line": "            item={'model':model,'k':k,'question_count':5}"
+        }
+      ],
+      "mandatory_gate": "P2"
+    },
+    {
+      "id": "V04",
+      "category": "평가",
+      "item": "미평가·보류 처리",
+      "status": "부분 완료",
+      "finding": "pilot은미정처리. Dev는held를거부하고부분정답coverage정보를받지않음.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 45,
+          "source_line": "def grade(value):"
+        },
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 49,
+          "source_line": "        assert not row[\"held\"] and row[\"silver_score\"] is not None"
+        }
+      ],
+      "mandatory_gate": "E1"
+    },
+    {
+      "id": "V05",
+      "category": "평가",
+      "item": "양성0 정책 통일",
+      "status": "부분 완료",
+      "finding": "최근Dev는None. 구공통Recall은빈Gold에서0.0을반환함을경계호출로확인.",
+      "evidence": [
+        {
+          "path": "src/ax_research/evaluation.py",
+          "line": 55,
+          "source_line": "def recall_at_k("
+        },
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 25,
+          "source_line": "    return {\"precision\": hits / count, \"recall\": hits / len(positive) if positive else None,"
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/policy_probe.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": "P2"
+    },
+    {
+      "id": "V06",
+      "category": "평가",
+      "item": "질문별·알고리즘별 비교",
+      "status": "부분 완료",
+      "finding": "Dev/pilot비교 구현은 있으나 Test4조건·실제N으로 연결되지 않음.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 65,
+          "source_line": "        for row in rows:"
+        },
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 74,
+          "source_line": "    metrics=[];details=[];ranked_relevant=[]"
+        }
+      ],
+      "mandatory_gate": "P2"
+    },
+    {
+      "id": "V07",
+      "category": "평가",
+      "item": "Dev vs 실제 Test 비교",
+      "status": "부분 완료",
+      "finding": "현상태보고는Test칸null인표. 실제Test지표·정답기준차이 연결 기능은 없음.",
+      "evidence": [
+        {
+          "path": "scripts/independent_test_readiness_report.py",
+          "line": 72,
+          "source_line": "        rows.append({'method':r['method'],'scope':r['scope'],'k':r['k'],'dev_precision':r['precision'],'dev_recall':r['recall'],'dev_f1':r['f1'],'dev_precision_questions':10,'dev_recall_f1_questions':"
+        }
+      ],
+      "mandatory_gate": "P2"
+    },
+    {
+      "id": "V08",
+      "category": "평가",
+      "item": "Test 척도·임계값·평가범위",
+      "status": "미완료",
+      "finding": "Dev>=3,pilot>=2 서로다름. Test척도/임계값/GT범위·O/D선택 미정.",
+      "evidence": [
+        {
+          "path": "configs/independent_test_readiness_20261028.json",
+          "line": 29,
+          "source_line": "    \"positive_threshold\":null,"
+        },
+        {
+          "path": "scripts/blind_pilot_analyze.py",
+          "line": 108,
+          "source_line": "    result['provenance']={'review_file':args.review.name,'review_sha256':p.sha(args.review),'prediction_sha256':p.sha(p.OUT/'analyst/predictions.json'),'evaluation_key_sha256':p.sha(p.OUT/'analyst/eva"
+        }
+      ],
+      "mandatory_gate": "E1"
+    },
+    {
+      "id": "X01",
+      "category": "환경",
+      "item": "Python·설치 의존성",
+      "status": "완료",
+      "finding": "Python3.13.13과모든v25고정패키지일치. 실제import/기존검사 정상.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/environment.json",
+          "line": 1,
+          "source_line": "{"
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/dependency_profiles.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "X02",
+      "category": "환경",
+      "item": "BGE-M3 파일·로딩",
+      "status": "완료",
+      "finding": "10파일해시일치,CPU float32로드성공,CLS1024/max4096. encode/forward0회.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/model_check.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "X03",
+      "category": "환경",
+      "item": "CPU/GPU 요건",
+      "status": "완료",
+      "finding": "현재CPU로로드 가능하며 GPU필수 아님. 현재cuda_available=false.",
+      "evidence": [
+        {
+          "path": "configs/semantic_mapping_20261028.json",
+          "line": 17,
+          "source_line": "  \"device\": \"cpu\","
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/model_check.json",
+          "line": 20,
+          "source_line": "  \"cuda_available\": false,"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "X04",
+      "category": "환경",
+      "item": "실제Test시간·최대RAM·GPU성능",
+      "status": "확인 불가",
+      "finding": "Test추론/부하시험 금지로 미측정. 모델파일약2.29GB가 총RAM최소요건은 아님.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/model_check.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "X05",
+      "category": "환경",
+      "item": "비용 없는 범위",
+      "status": "완료",
+      "finding": "원질문Dense/BM25/ABC는로컬실행가능. 새관점은별도유료경로. 이번키/유료호출0.",
+      "evidence": [
+        {
+          "path": "scripts/blind_pilot_five.py",
+          "line": 67,
+          "source_line": "    model=SentenceTransformer(str((ROOT/config['model_path']).resolve()),device=config['device'],local_files_only=True);model.max_seq_length=config['max_tokens']"
+        },
+        {
+          "path": "scripts/openai_triplicate.py",
+          "line": 76,
+          "source_line": "    secret=key()"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "X06",
+      "category": "환경",
+      "item": "프로필 선택·다른PC재현",
+      "status": "부분 완료",
+      "finding": "v25는정확pin이며현환경일치. rq1 SDK하한과v25고정버전은충돌. 현재오프라인ABC오류는 아님. pip install -e .만으로는연구의존성전체가설치되지않음.",
+      "evidence": [
+        {
+          "path": "requirements-rq1.txt",
+          "line": 11,
+          "source_line": "openai>=3.26.0"
+        },
+        {
+          "path": "requirements-v25-dev.txt",
+          "line": 9,
+          "source_line": "openai==2.32.0"
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/dependency_profiles.json",
+          "line": 66,
+          "source_line": "  \"simultaneous_openai_constraints_compatible\": false,"
+        },
+        {
+          "path": "pyproject.toml",
+          "line": 10,
+          "source_line": "dependencies = []"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "X07",
+      "category": "환경",
+      "item": "긴 입력·결측 사전 처리",
+      "status": "부분 완료",
+      "finding": "4096초과는assert중단. UNKNOWN은지원하나Test입력검사·중단/제외정책을미리정해야함.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_run.py",
+          "line": 137,
+          "source_line": "    assert max(lengths) <= CFG[\"max_tokens\"], \"No silent truncation permitted\""
+        },
+        {
+          "path": "src/ax_research/semantic_mapping.py",
+          "line": 69,
+          "source_line": "    if not query[\"fields\"][\"task\"] or not case[\"fields\"][\"task\"]:"
+        }
+      ],
+      "mandatory_gate": "E1"
+    },
+    {
+      "id": "G01",
+      "category": "검증",
+      "item": "안전한 기존검사",
+      "status": "완료",
+      "finding": "기존7개테스트파일72개통과. CLI도움말3종확인. 독립정확도/새통합검사와는 다름.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/existing_tests.json",
+          "line": 1,
+          "source_line": "{"
+        },
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/semantic_mapping_run_help.txt",
+          "line": 1,
+          "source_line": "usage: semantic_mapping_run.py [-h] {freeze,run}"
+        }
+      ],
+      "mandatory_gate": ""
+    },
+    {
+      "id": "G02",
+      "category": "검증",
+      "item": "독립Test 접근·누수게이트",
+      "status": "부분 완료",
+      "finding": "원칙/Dev그룹감사는있으나 새Test의질문/출처/노출이력·중복검증 게이트없음.",
+      "evidence": [
+        {
+          "path": "configs/independent_test_readiness_20261028.json",
+          "line": 39,
+          "source_line": "  \"forbidden_substitutions\":[\"Old10 Dev questions or Silver\",\"Q11~Q15 exposed pilot\",\"Old v23_dev Stage4\",\"Training holdout audit renamed as independent Test\",\"Generated questions or invented labels\"]"
+        },
+        {
+          "path": "docs/query-case-functional-mapping-2026-10-28/stage4_dev/leakage_audit.json",
+          "line": 2,
+          "source_line": "  \"training_performed\": false,"
+        }
+      ],
+      "mandatory_gate": "E2"
+    },
+    {
+      "id": "G03",
+      "category": "검증",
+      "item": "Test 전체 실행·평가 동결",
+      "status": "부분 완료",
+      "finding": "코어는고정됐지만 Test연결부/입력계약/실제명령/출력run/평가기준의 최종manifest없음.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-readiness-2026-10-28/freeze_snapshot.json",
+          "line": 3,
+          "source_line": "  \"executable_test_evaluation_protocol_complete\": false,"
+        }
+      ],
+      "mandatory_gate": "E3"
+    },
+    {
+      "id": "G04",
+      "category": "검증",
+      "item": "예측 봉인 후 정답 개봉",
+      "status": "부분 완료",
+      "finding": "영수증선검사 패턴은 있음. 구CLI/Dev검색은정답부터읽어 Test분리연결 필요.",
+      "evidence": [
+        {
+          "path": "scripts/semantic_mapping_evaluate.py",
+          "line": 38,
+          "source_line": "    receipt = run.read(run.OUT / \"prediction_receipt.json\")"
+        },
+        {
+          "path": "scripts/openai_triplicate_search.py",
+          "line": 60,
+          "source_line": "    labels=frozen_labels();cs,qs=run.inputs();ids=sorted(cs);qids=sorted(qs)"
+        },
+        {
+          "path": "src/ax_research/cli.py",
+          "line": 75,
+          "source_line": "    labels = load_relevance_labels("
+        }
+      ],
+      "mandatory_gate": "E3"
+    },
+    {
+      "id": "G05",
+      "category": "검증",
+      "item": "전용연결부의 전체 흐름 사전검사",
+      "status": "미완료",
+      "finding": "전용연결부가 없어 검사불가. 기존Dev/기존fixture로네조건·지표·새폴더 흐름 검증 필요.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-full-audit-2026-10-28/existing_tests.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": "E4"
+    },
+    {
+      "id": "G06",
+      "category": "검증",
+      "item": "교수님 추적근거·보고형식",
+      "status": "부분 완료",
+      "finding": "Dev보고/해시/전체순위근거는있음. 실제Test산출물과새run경로/공정비교계약은없음.",
+      "evidence": [
+        {
+          "path": "docs/independent-test-readiness-2026-10-28/test_execution_record.json",
+          "line": 1,
+          "source_line": "{"
+        }
+      ],
+      "mandatory_gate": "P3"
+    },
+    {
+      "id": "G07",
+      "category": "검증",
+      "item": "독립 일반화·의미 정확도",
+      "status": "확인 불가",
+      "finding": "독립Test/새사람평가없음.72검사와모델로드로정확도를확정하지않음.",
+      "evidence": [
+        {
+          "path": "docs/blind-pilot-five-queries-2026-10-28/final_status.json",
+          "line": 13,
+          "source_line": "  \"precision_ndcg\": \"UNDEFINED_PENDING_HUMAN_LABELS\","
+        }
+      ],
+      "mandatory_gate": ""
+    }
+  ],
+  "status_counts": {
+    "미완료": 7,
+    "부분 완료": 20,
+    "확인 불가": 3,
+    "완료": 13
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "unit": "Nine independent acceptance/work packages, not nine bugs or nine unchecked checklist rows. Optional B/C excluded. No implementation performed.",
+  "mandatory": [
+    {
+      "id": "D1",
+      "category": "데이터",
+      "priority": "P0",
+      "item": "미사용 질문·manifest 확보",
+      "missing": "독립 Test 질문 파일과 미사용/작성 이력 명세",
+      "why": "무엇을 검증하는지 식별하고 기존Dev·파일럿 재사용을 막아야 함",
+      "fix": "질문ID/본문·test_id·생성/노출이력·버전/해시를 별도 준비하고 봉인",
+      "program_change": "이 항목 자체는 없음",
+      "data_only": "이 항목은 데이터로 충족 가능. 전체 Test 실행은 여전히 불가",
+      "acceptance": "질문묶음 식별·미사용 근거 확인"
+    },
+    {
+      "id": "D2",
+      "category": "데이터",
+      "priority": "P0",
+      "item": "독립 qrels·판정출처·범위 확보",
+      "missing": "질문×사례 정답, 판정상태, 출처와 평가범위",
+      "why": "관련 사례와 미평가를 구분하고 지원 지표를 결정해야 함",
+      "fix": "query_id/case_id/grade/status와label_source·척도·판정자/합의·coverage 기록. 전체Recall/F1이면112후보 완전판정 필요",
+      "program_change": "이 항목 자체는 없음",
+      "data_only": "이 항목은 정답자료로 충족 가능. 평가기 연결은P2",
+      "acceptance": "ID중복/누락과판정범위가검증된독립정답"
+    },
+    {
+      "id": "P1",
+      "category": "프로그램 및 환경",
+      "priority": "P0",
+      "item": "Test 전용 추론 입력·출력 연결부",
+      "missing": "새질문파일을받아Baseline/A/B/C를같이실행하는진입점",
+      "why": "현재Dev118경로/pilot5질문고정이며공식Baseline출력도없음",
+      "fix": "기존코어함수만호출하는별도어댑터. 같은112후보·질문·조건으로4개전체순위와Top5/10/20·점수·근거저장",
+      "program_change": "필요: 실행연결부 추가/보완. 기존A/B/C 알고리즘 변경 불필요",
+      "data_only": "아니오",
+      "acceptance": "임의N 입력과4조건112순위출력이기존fixture에서확인"
+    },
+    {
+      "id": "P2",
+      "category": "프로그램 및 환경",
+      "priority": "P0",
+      "item": "Test 전용 평가 입력·집계 연결부",
+      "missing": "독립qrels·실제N·전체지표를받는일반평가기",
+      "why": "Dev10/6/18/1120과pilot5고정. pooled nDCG만연결됨",
+      "fix": "기존수식재사용,일반ID/coverage검증·임계값·결측·동적Macro·4모델비교·Dev/Test출처차이를지원",
+      "program_change": "필요: 평가연결부 추가/보완. 기존Dev평가기의보호assert삭제로대체하지않음",
+      "data_only": "아니오",
+      "acceptance": "P/R/F1@5/10/20·nDCG@5/10을확정정책에맞게일반N으로산출"
+    },
+    {
+      "id": "P3",
+      "category": "프로그램 및 환경",
+      "priority": "P0",
+      "item": "전용run 경로·기존출력보호·실패보존",
+      "missing": "새run-id·출력존재거부·영수증/중단/재개계약",
+      "why": "현재예측save는고정Dev/pilot경로를덮어쓸수있음",
+      "fix": "독립출력폴더에입력·설정·모델·예측해시와로그저장. 기존결과보존·중단시부분파일표시/같은조건재개정책",
+      "program_change": "필요: 실행관리 부분 보완. 순위계산은 불변",
+      "data_only": "아니오",
+      "acceptance": "기존결과덮어쓰기거부와실패상태보존확인"
+    },
+    {
+      "id": "E1",
+      "category": "평가·검증",
+      "priority": "P0",
+      "item": "Test 평가 프로토콜 확정",
+      "missing": "척도/관련임계값·GT범위·분모·원질문/관점·입력길이정책",
+      "why": "Dev>=3와pilot>=2중임의선택·미평가0점화·불완전Recall을방지",
+      "fix": "질문/정답본문을보기전에메타데이터로정책결정. 원질문4조건최소안; nDCG gain/IDCG범위·0양성·보류·4096초과처리명시",
+      "program_change": "모델 변경 없음. 정책 설정은 새 연결부에 반영",
+      "data_only": "아니오: 판정/설계 결정이 필요",
+      "acceptance": "임계값등null이없는서명된평가명세"
+    },
+    {
+      "id": "E2",
+      "category": "평가·검증",
+      "priority": "P0",
+      "item": "독립성·누수·접근 분리 점검",
+      "missing": "Test미사용/노출이력,질문중복과예측-정답접근게이트",
+      "why": "파일럿이나이미본질문을독립Test로쓰지않고예측에정답이섞이지않게해야함",
+      "fix": "Dev10·pilot5와질문ID/정규화문장·작성출처/노출이력을확인. 실제본문검사는동결후허용단계에서만. 예측봉인후정답개봉",
+      "program_change": "검증절차/연결부 게이트 필요. 코어 변경 없음",
+      "data_only": "아니오: 독립성 검증 기록이 필요",
+      "acceptance": "미사용근거와접근분리·중복점검기록"
+    },
+    {
+      "id": "E3",
+      "category": "평가·검증",
+      "priority": "P0",
+      "item": "실행 가능한 최종 동결 묶음 기록",
+      "missing": "새연결부·실제명령·환경·출력·입력계약을묶은최종manifest",
+      "why": "옛freeze의HEAD/해시를우회하면동결증거가사라짐",
+      "fix": "기존코어해시는유지하고새연결부/정책/환경프로필/모델·벡터·입력해시/명령/결과경로를Git동결",
+      "program_change": "코어 수정 없음. 완성된 연결부의 설정·해시 기록",
+      "data_only": "아니오: 실행명세/검증승인이 필요",
+      "acceptance": "복사실행가능한명령과해시로정의된동결버전"
+    },
+    {
+      "id": "E4",
+      "category": "평가·검증",
+      "priority": "P0",
+      "item": "기존 자료로 전체 연결 사전검사",
+      "missing": "Test전용4조건→저장→평가의종단간검사",
+      "why": "72개기존테스트통과만으로새어댑터호환/분모/파일보호를보장못함",
+      "fix": "기존Dev 또는기존테스트fixture로정답비공개예측·ID오류·부분정답·0양성·분모·출력보호를확인. 실제미사용Test는사용안함",
+      "program_change": "기존 코어 변경 없음. 연결부 검사/테스트 추가 가능",
+      "data_only": "아니오",
+      "acceptance": "종단간통과기록과기존결과불변확인"
+    }
+  ],
+  "recommended": [
+    {
+      "id": "B1",
+      "item": "파일럿103쌍 사람 채점·기능근거 감사",
+      "reason": "정밀매핑의의미한계를미리파악하되파일럿을Test로승격하지않음",
+      "program_change": "없음",
+      "data_only": "사람평가 입력 필요",
+      "priority": "권장 높음; 독립Test데이터가준비돼있다면기계적실행의필수조건은아님"
+    },
+    {
+      "id": "B2",
+      "item": "환경 프로필 명시·다른PC 재현 확인",
+      "reason": "현v25설치정상이나rq1/v25 SDK프로필은혼합불가.로컬모델경로도별도준비필요",
+      "program_change": "환경/실행안내 정리. 코어 수정 없음",
+      "data_only": "아니오",
+      "priority": "권장 높음"
+    },
+    {
+      "id": "B3",
+      "item": "기존 자료 기준 RAM/시간·긴 입력 점검",
+      "reason": "Test를돌리지않아대량/긴입력부하와GPU성능미확인",
+      "program_change": "검사만, 알고리즘 변경 없음",
+      "data_only": "아니오",
+      "priority": "권장 중간"
+    },
+    {
+      "id": "B4",
+      "item": "반복/질문별 변동·불확실성·실패유형 보고양식",
+      "reason": "평균만보지않도록질문별득실과라벨차이를명확히설명",
+      "program_change": "분석/보고 보조기능만 선택",
+      "data_only": "아니오",
+      "priority": "권장 중간"
+    },
+    {
+      "id": "B5",
+      "item": "다중관점 Test를 할 경우 별도 승인·예산·프롬프트 동결",
+      "reason": "원질문4조건만으로는유료호출불필요.관점효과까지주장하려면동일Test에서새관점이필요",
+      "program_change": "생성/캐시 연결부만, 코어 불변",
+      "data_only": "아니오",
+      "priority": "관점조건을선택하면해당조건의선행필수.원질문최소안에서는선택"
+    }
+  ],
+  "after_test": [
+    {
+      "id": "C1",
+      "item": "규칙·가중치·필드추출·추천수 개선",
+      "program_change": "예",
+      "data_only": "아니오",
+      "reason": "성능개선 과제이며현재모델검증의필수조건아님.같은Test를보고수정하면다음평가는새Test사용"
+    },
+    {
+      "id": "C2",
+      "item": "임베딩파인튜닝/학습형Interaction",
+      "program_change": "예",
+      "data_only": "라벨·학습설계도 필요",
+      "reason": "새알고리즘연구.현재A/B/C고정검증에불필요"
+    },
+    {
+      "id": "C3",
+      "item": "Factor/Wald/Graph/전략추천 확장",
+      "program_change": "예",
+      "data_only": "새검증자료도 필요",
+      "reason": "별도연구범위이며현재Test실행조건아님"
+    },
+    {
+      "id": "C4",
+      "item": "프로토타입·UI·배포 개선",
+      "program_change": "예",
+      "data_only": "아니오",
+      "reason": "명령형실험의필수조건아님"
+    }
+  ],
+  "counts": {
+    "total": 9,
+    "data": 2,
+    "program_environment": 3,
+    "evaluation_verification": 4
+  }
+}
