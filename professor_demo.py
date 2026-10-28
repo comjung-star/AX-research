@@ -18,6 +18,9 @@ import numpy as np
 from ax_research import functional_mapping as functional
 from ax_research import semantic_mapping as semantic
 from ax_research.retrieval.bm25 import BM25Retriever
+from prototype.core import Engine, UserError
+from prototype.settings import load_local_env
+from prototype.credentials import WindowsCredentialStore
 
 
 def read(name):
@@ -26,7 +29,15 @@ def read(name):
 
 class Demo:
     def __init__(self):
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
+        load_local_env(ROOT.parent / 'AX-prototype/.env')
+        load_local_env(ROOT / '.env')
+        if not os.getenv('OPENAI_API_KEY'):
+            saved = WindowsCredentialStore().read()
+            if saved:
+                os.environ['OPENAI_API_KEY'] = saved['api_key']
+                os.environ.setdefault('AX_LLM_MODEL', saved['model'])
+        self.last_llm_evidence = None
         self.ready = False
         self.error = None
         self.hashes = read('demo_manifest.json')
@@ -38,9 +49,12 @@ class Demo:
 
     def warmup(self):
         try:
+            print('warmup: integrity', flush=True)
             self.verify()
+            print('warmup: importing torch', flush=True)
             import torch
             from sentence_transformers import SentenceTransformer
+            print('warmup: loading cases', flush=True)
             torch.set_num_threads(4)
             self.config = read('configs/semantic_mapping_20261028.json')
             self.rules = read('configs/functional_mapping_20261028.json')
@@ -56,18 +70,62 @@ class Demo:
                 self.ids = archive['case_ids'].tolist()
                 self.dense = archive['single'].copy()
             assert set(self.ids) == set(self.cases)
+            print('warmup: BM25', flush=True)
             self.bm25 = BM25Retriever({key: '\n'.join('[%s] %s' % (field.upper(), case[field]) for field in ('problem', 'task', 'context')) for key, case in self.cases.items()})
             model = Path(os.environ.get('AX_BGE_MODEL_PATH', str(ROOT.parent / 'AX-prototype/.local/models/bge-m3')))
+            print('warmup: BGE-M3', flush=True)
             self.model = SentenceTransformer(str(model), device='cpu', local_files_only=True)
             self.model.max_seq_length = self.config['max_tokens']
             self.model.encode(['시연 준비'], normalize_embeddings=True, show_progress_bar=False)
             self.ready = True
+            print('warmup: ready', flush=True)
         except Exception as exc:
             self.error = str(exc)
             import traceback
             traceback.print_exc()
 
-    def search(self, query, method):
+    def live_search(self, query, method):
+        if not isinstance(query, str) or not 2 <= len(query.strip()) <= 2000:
+            raise ValueError('업무문제를 2~2,000자로 입력해 주세요.')
+        if method not in ('C', 'B', 'A', 'dense', 'bm25'):
+            raise ValueError('검색 방식을 확인해 주세요.')
+        if not self.ready:
+            raise ValueError(self.error or '로컬 모델 준비 중입니다.')
+        if not os.getenv('OPENAI_API_KEY'):
+            raise ValueError('기존 OpenAI 연결 키를 찾지 못했습니다. AX-prototype 연결 설정을 확인해 주세요.')
+        with self.lock:
+            started = time.perf_counter()
+            try:
+                branches = Engine._generate_perspectives(self, query.strip())
+            except UserError as exc:
+                raise ValueError(str(exc)) from None
+            original = self.search(query, method, all_results=True)
+            outputs = []
+            for branch in branches:
+                result = self.search(branch['title'] + '\n' + branch['description'], method, all_results=True)
+                outputs.append({**branch, 'results': result['results'], 'candidate_count': 112})
+            lookups = [{row['case_id']: row for row in branch['results']} for branch in outputs]
+            combined = []
+            for row in original['results']:
+                local = [lookup[row['case_id']] for lookup in lookups]
+                meaning = semantic.aggregate(row['semantic']['score'], [item['semantic']['score'] for item in local])
+                strength = max([row['rule']] + [item['rule'] for item in local])
+                best = max([row] + local, key=lambda item: (item['rule'], item['semantic']['score']))
+                score = {'C': semantic.combined_score(strength, meaning), 'B': meaning, 'A': strength / 4,
+                         'dense': semantic.aggregate(row['dense'], [item['dense'] for item in local]),
+                         'bm25': semantic.aggregate(row['bm25'], [item['bm25'] for item in local])}[method]
+                combined.append({**row, 'score': score, 'rule': strength, 'semantic': {**row['semantic'], 'score': meaning},
+                                 'evidence': best['evidence'], 'query_functions': best['query_functions'],
+                                 'branch_support': [{'id': branch['id'], 'title': branch['title'], 'score': item['score'], 'rule': item['rule'], 'semantic': item['semantic']['score']} for branch, item in zip(outputs, local)],
+                                 'original_score': row['score']})
+            combined.sort(key=lambda row: (-row['score'], -row['dense'], row['case_id']))
+            for branch in outputs:
+                branch['results'] = branch['results'][:5]
+            self.verify()
+            return {**original, 'results': combined[:5], 'branches': outputs, 'llm_evidence': self.last_llm_evidence,
+                    'live': True, 'elapsed_seconds': round(time.perf_counter() - started, 2)}
+
+    def search(self, query, method, all_results=False):
         if not isinstance(query, str) or not 2 <= len(query.strip()) <= 2000:
             raise ValueError('업무문제를 2~2,000자로 입력해 주세요.')
         if method not in ('C', 'B', 'A', 'dense', 'bm25'):
@@ -98,7 +156,7 @@ class Demo:
                 rows.append({'case_id': key, 'score': score, 'dense': dense[key], 'bm25': sparse[key], 'rule': grade, 'semantic': meaning, 'evidence': rule, 'fields': self.profiles[key]['fields'], 'case': case, 'title': local.get('task') or case['task'], 'problem_ko': local.get('problem'), 'organization': meta.get('organization', ''), 'source_url': meta.get('source_url', ''), 'query_functions': functions['functions'], 'case_functions': self.functions[key]['task']['functions']})
             rows.sort(key=lambda row: (-row['score'], -row['dense'], row['case_id']))
             self.verify()
-            return {'query': query, 'method': method, 'candidate_count': len(rows), 'elapsed_seconds': round(time.perf_counter() - started, 2), 'query_fields': profile['fields'], 'results': rows[:5], 'notice': '상대 추천 점수이며 정답 확률·학술 성능이 아닙니다. 미인식 기능은 부적합의 증거가 아닙니다.'}
+            return {'query': query, 'method': method, 'candidate_count': len(rows), 'elapsed_seconds': round(time.perf_counter() - started, 2), 'query_fields': profile['fields'], 'results': rows if all_results else rows[:5], 'notice': '상대 추천 점수이며 정답 확률·학술 성능이 아닙니다. 미인식 기능은 부적합의 증거가 아닙니다.'}
 
 
 def main():
@@ -118,7 +176,7 @@ def main():
 
         def do_GET(self):
             if self.path == '/api/status':
-                return self.send_json({'ready': demo.ready, 'error': demo.error, 'case_count': 112})
+                return self.send_json({'ready': demo.ready, 'error': demo.error, 'case_count': 112, 'live_llm_configured': bool(os.getenv('OPENAI_API_KEY')), 'llm_model': os.getenv('AX_LLM_MODEL', 'gpt-6-luna')})
             if self.path != '/':
                 return self.send_json({'error': '찾을 수 없습니다.'}, 404)
             payload = (ROOT / 'professor_demo.html').read_bytes()
@@ -129,7 +187,7 @@ def main():
             self.wfile.write(payload)
 
         def do_POST(self):
-            if self.path != '/api/search':
+            if self.path not in ('/api/search', '/api/live-search'):
                 return self.send_json({'error': '찾을 수 없습니다.'}, 404)
             if self.headers.get('Origin') not in (None, f'http://127.0.0.1:{args.port}', f'http://localhost:{args.port}'):
                 return self.send_json({'error': '허용되지 않은 요청'}, 403)
@@ -138,7 +196,8 @@ def main():
                 if not 0 < length <= 16000:
                     raise ValueError('입력 크기를 확인해 주세요.')
                 data = json.loads(self.rfile.read(length))
-                self.send_json(demo.search(data.get('query'), data.get('method', 'C')))
+                operation = demo.live_search if self.path == '/api/live-search' else demo.search
+                self.send_json(operation(data.get('query'), data.get('method', 'C')))
             except ValueError as exc:
                 self.send_json({'error': str(exc)}, 400)
             except Exception:
