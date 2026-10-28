@@ -1,0 +1,29 @@
+{
+  "base_commit": "715c40500825595effa06b52777a69f9f3794c2b",
+  "branch": "research/blind-pilot-five-queries-20261028",
+  "output": "docs/blind-pilot-five-queries-2026-10-28",
+  "seed": 20261028,
+  "questions": [
+    {"qid":"Q11","topic":"인사 업무 자동화","text":"직원들이 휴가를 신청하면 AI가 신청 내용을 확인하고, 필요한 정보를 사내 인사 시스템에 등록하는 업무를 자동화하고 싶습니다. 반복적인 수작업을 줄이고 싶습니다."},
+    {"qid":"Q12","topic":"반품 업무 자동화","text":"고객이 반품을 신청하면서 제출한 상품 사진과 요청 내용을 AI가 확인하도록 하고 싶습니다. 반품 가능 여부를 판단할 때 필요한 정보를 정리하고 담당자의 처리 업무를 줄이고 싶습니다."},
+    {"qid":"Q13","topic":"숙박 고객 요청 자동화","text":"숙박 고객이 이전에 발급받은 청구서나 영수증을 다시 요청하는 경우가 많습니다. AI가 고객 요청을 이해하고 필요한 서류를 확인해 재발급 절차를 자동으로 처리하도록 만들고 싶습니다."},
+    {"qid":"Q14","topic":"설비 고장 예측","text":"생산 설비에서 발생하는 이상 징후를 미리 발견하고 싶습니다. AI가 설비 상태와 점검 데이터를 분석해 고장 가능성을 예측하고 정비가 필요한 설비를 사전에 알려주도록 하고 싶습니다."},
+    {"qid":"Q15","topic":"지급 안내 정보 검증","text":"거래 과정에서 지급 안내 정보가 누락되거나 잘못 입력되는 경우가 있습니다. AI가 관련 정보를 확인해 오류를 찾아내고, 필요한 수정 작업을 지원하도록 만들고 싶습니다."}
+  ],
+  "primary_scope": "Original queries, O_SINGLE. Frozen A rule lexicographic ordering, B semantic weighting and C 50:50 formula; Single Dense+BM25 RRF60 original-query retrieval tie-break unchanged.",
+  "new_vectors": "Only unseen query field texts and raw five query texts; reuse frozen case vectors and field embeddings; same local BGE-M3 config and model hashes.",
+  "multiview": "NOT_RUN: equal prior dynamic generation requires paid OpenAI requests; no surrogate perspectives or calls authorized.",
+  "review_pool": "Deduplicated union A/B/C Top10 for each question, plus up to2 unknown33 cases outside union with highest frozen B semantic rank. Diagnostic selection, never a relevance label.",
+  "blind_fields": ["평가 ID","업무 질문","AX 사례 설명","실제 수행 Task","적용 Context","원문 근거","관련성 점수","평가 의견"],
+  "shuffle": "Python random.Random(seed), globally shuffled sorted(qid,case_id) pairs; independent opaque random evaluation IDs; reviewer receives only workbook/CSV and neutral guide",
+  "human_scores": {"3":"동일하거나 직접 적용 가능한 기능","2":"유사해 다른 환경에도 응용 가능","1":"일부 관련되지만 실제 적용 차이가 큼","0":"관련 없는 업무","판단 보류":"원문 부족 또는 판단 어려움"},
+  "relevant_threshold": 2,
+  "ndcg": "DCG=sum((2**human_grade-1)/log2(rank+1)), IDCG from complete HUMAN-JUDGED QUESTION POOL only, not all112; any missing/hold in pool blocks nDCG; zero IDCG undefined.",
+  "precision": "Fixed K5/10; any unjudged/hold in TopK => undefined. Macro official only all5 queries available; partial averages separately named with denominator.",
+  "recall": "NOT_COMPUTED_FULL_CORPUS_LABELS_UNAVAILABLE",
+  "human_labels_prefilled": false,
+  "api_calls": 0,
+  "key_reads": 0,
+  "sealed_test_read": false,
+  "tuning": false
+}
