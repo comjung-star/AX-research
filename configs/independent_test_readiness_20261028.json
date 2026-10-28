@@ -1,0 +1,44 @@
+{
+  "base_commit":"c0f81b7ee7712866c2fc65bb856519acc34f1443",
+  "branch":"research/independent-test-readiness-20261028",
+  "output":"docs/independent-test-readiness-2026-10-28",
+  "research_date_kst":"2026-10-28",
+  "case_registry":"docs/dense-bm25-candidates-2026-10-27/case_registry.json",
+  "semantic_config":"configs/semantic_mapping_20261028.json",
+  "rules_config":"configs/functional_mapping_20261028.json",
+  "source_refs":{
+    "research/query-case-functional-mapping-20261028":"be64f9c1f742ecaa6410eeaab97da11ebc6e7f13",
+    "research/query-case-semantic-mapping-20261028":"715c40500825595effa06b52777a69f9f3794c2b",
+    "research/blind-pilot-five-queries-20261028":"c0f81b7ee7712866c2fc65bb856519acc34f1443"
+  },
+  "scope":"Freeze current implementation and inspect metadata first. Execute no inference if independent Test identity, unused provenance or qrels are unconfirmed.",
+  "algorithm_freeze":{
+    "candidate_count":112,
+    "A":"Frozen18 rule functional_mapping; original whole or preserved dynamic branches; existing lexicographic order unchanged",
+    "B":"Frozen BGE-M3 field profiles and weighted matching; same-field available weights task.4/action.2/object.2/output.1/context.1",
+    "C":"Frozen .5*(rule_strength/4)+.5*((semantic_score+1)/2)",
+    "dense":"Frozen Single Dense BGE-M3 existing full112 case vectors; exact original query encoder configuration",
+    "retrieval_tie":"Existing Single Dense+BM25 RRF60 each.5, all112, ID tie break; historical helper only, no new model",
+    "original_vs_dynamic":"Use existing O/D aggregation without changes. Never reuse Dev perspectives for Test. No paid new perspectives without approval."
+  },
+  "evaluation_gate":{
+    "test_manifest":null,
+    "test_queries_path":null,
+    "test_qrels_path":null,
+    "test_label_scale":null,
+    "positive_threshold":null,
+    "evaluation_schema_status":"UNCONFIRMED_NO_TEST_MANIFEST; not a completed executable Test protocol",
+    "planned_K":[5,10,20],
+    "planned_ndcg_K":[5,10],
+    "require_prior_label_metadata":"Confirm scale and relevance threshold from metadata, freeze before reading Test contents; no outcome-derived threshold selection",
+    "partial_qrels":"No full Recall/F1; TopK missing/held labels undefined, not zero. nDCG denominator scope must be explicit.",
+    "zero_positive":"Recall/F1 and zero-IDCG nDCG undefined, counted separately. Precision may be zero only from actual fully judged TopK.",
+    "aggregation":"Per-query means then Macro, report valid-query denominators and excluded questions. No fabricated zero fill.",
+    "one_shot":"After all gates pass, one preregistered comparison; no model/tuning/repeat on same Test after results."
+  },
+  "forbidden_substitutions":["Old10 Dev questions or Silver","Q11~Q15 exposed pilot","Old v23_dev Stage4","Training holdout audit renamed as independent Test","Generated questions or invented labels"],
+  "no_new_algorithm_or_prototype":true,
+  "paid_api_calls":0,
+  "api_key_reads":0,
+  "test_contents_read_before_freeze":false
+}
