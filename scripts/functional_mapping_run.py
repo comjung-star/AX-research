@@ -1,5 +1,6 @@
 """Stages2/3 only: reads label-free frozen handover, never Silver."""
 import argparse
+import csv
 import hashlib
 import json
 import socket
@@ -115,6 +116,22 @@ def stage3():
     save('stage3/rankings.json',{'systems':systems,'labels_read':False,'primary_condition':'M_D_SINGLE','recommendation_is_experimental':True})
     jsonl('stage3/recommendations.jsonl',recommendations)
     jsonl('stage3/top20_explanations.jsonl',[r for r in recommendations if r['rank']<=20])
+    table=[{'condition':r['condition'],'qid':r['qid'],'repeat':r['repeat'],'rank':r['rank'],'case_id':r['case_id'],'actual_task':r['actual_task'],'whole_grade':r['whole_mapping']['mapping_grade'],'best_perspective_grade':r['winning_perspective_grades'],'related_paths':','.join(r['winning_perspective_mapping_ids']),'old_hybrid_rank':r['existing_hybrid_rank'],'reason':r['reason'],'caution':r['caution']} for r in recommendations if r['rank']<=20]
+    with (OUT/'stage3/top20_explanations.csv').open('w',encoding='utf-8-sig',newline='') as f:
+        writer=csv.DictWriter(f,fieldnames=list(table[0]));writer.writeheader();writer.writerows(table)
+    doc=['# Stage3: 機能根拠に基づく候補順位','',
+        '原質問と各観点を別々に採点し、全体・観点の最高根拠を併用した実験です。']
+    doc=['# Stage3: 기능 근거 기반 최종 후보','',
+        '주 조건 M_D_SINGLE은 원질문과 각 관점의 기능 매핑을 함께 사용한다. 관점점수를 합산하지 않고 최고 근거를 사용한다. 원질문 근거도 정렬에 남긴다. 같은 매핑 근거끼리는 기존 하이브리드 검색점수로 정렬한다. 원질문만 사용하는 조건과 3View 조건도 별도 보존했다.','',
+        '전체80개 질문/회차 순위와112후보 설명을 먼저 저장했다. Silver는 아직 읽지 않았다. Top5/10/20을 동일 순위에서 자르고 ID중복을 제거했다. 기능 근거가 낮은 항목으로 채운 경우 low_support_padding=true이며 적합한 추천이라고 보증하지 않는다.','',
+        '아래는 주 조건의 첫 생성 회차 Top5 예시다. 모든3회×질문×Top20의 실제Task·전체/관점근거·기존검색순위·주의사항은 top20_explanations.csv/jsonl에 있다. 상세원문 인용은 Stage2 프로필과 연결된다.','']
+    for qid in sorted({r['qid'] for r in recommendations}):
+        doc.extend(['## '+qid,'','|순위|사례|실제 Task|전체/관점 근거 점수|','|---:|---|---|---|'])
+        for r in recommendations:
+            if r['condition']=='M_D_SINGLE' and r['qid']==qid and r['repeat']==1 and r['rank']<=5:
+                doc.append(f"|{r['rank']}|{r['case_id']}|{r['actual_task'].replace('|','/')}|{r['whole_mapping']['mapping_grade']}/{r['winning_perspective_grades']}|")
+        doc.append('')
+    (OUT/'stage3/README.md').write_text('\n'.join(doc)+'\n',encoding='utf-8')
     save('stage3/status.json',{'complete':True,'query_runs':sum(map(len,systems.values())),'systems':4,'all_candidates_explained':len(recommendations),'top20_explanation_rows':sum(r['rank']<=20 for r in recommendations),'api_calls':0,'labels_read':False,'padding_disclosed':True,'new_embeddings':0,'independent_test_access':False})
     print(read(OUT/'stage3/status.json'))
 
