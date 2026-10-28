@@ -1,0 +1,140 @@
+{
+  "development_only": true,
+  "independent_test_executed": false,
+  "query_count": 2,
+  "systems": 4,
+  "rankings": 8,
+  "candidate_count": 112,
+  "repeat_equal": true,
+  "historical_rank_matches": [
+    {
+      "system": "Single Dense",
+      "query_id": "V21D001",
+      "all112_equal": true
+    },
+    {
+      "system": "Single Dense",
+      "query_id": "V21D002",
+      "all112_equal": true
+    },
+    {
+      "system": "A",
+      "query_id": "V21D001",
+      "all112_equal": true
+    },
+    {
+      "system": "A",
+      "query_id": "V21D002",
+      "all112_equal": true
+    },
+    {
+      "system": "B",
+      "query_id": "V21D001",
+      "all112_equal": true
+    },
+    {
+      "system": "B",
+      "query_id": "V21D002",
+      "all112_equal": true
+    },
+    {
+      "system": "C",
+      "query_id": "V21D001",
+      "all112_equal": true
+    },
+    {
+      "system": "C",
+      "query_id": "V21D002",
+      "all112_equal": true
+    }
+  ],
+  "existing_output_rejected": true,
+  "qrels_rows": 224,
+  "metrics_not_test_performance": true,
+  "api_calls": 0,
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.heldout_run",
+        "infer",
+        "--output-root",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028",
+        "--development",
+        "--run-id",
+        "infer1",
+        "--questions",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\dev_questions.jsonl",
+        "--model-path",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.local\\models\\bge-m3"
+      ],
+      "returncode": 0,
+      "stdout": "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\infer1\n",
+      "stderr": "\nLoading weights:   0%|          | 0/391 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 391/391 [00:00<00:00, 32923.25it/s]\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.heldout_run",
+        "infer",
+        "--output-root",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028",
+        "--development",
+        "--run-id",
+        "infer2",
+        "--questions",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\dev_questions.jsonl",
+        "--model-path",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.local\\models\\bge-m3"
+      ],
+      "returncode": 0,
+      "stdout": "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\infer2\n",
+      "stderr": "\nLoading weights:   0%|          | 0/391 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 391/391 [00:00<00:00, 31640.16it/s]\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.heldout_run",
+        "evaluate",
+        "--output-root",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028",
+        "--development",
+        "--run-id",
+        "eval1",
+        "--prediction-run",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\infer1",
+        "--qrels",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\dev_qrels.jsonl",
+        "--scope",
+        "FULL_CORPUS"
+      ],
+      "returncode": 0,
+      "stdout": "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\eval1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.heldout_run",
+        "infer",
+        "--output-root",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028",
+        "--development",
+        "--run-id",
+        "infer1",
+        "--questions",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-workA-dev-smoke-final-20261028\\dev_questions.jsonl",
+        "--model-path",
+        "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.local\\models\\bge-m3"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-independent-test-runner\\scripts\\heldout_run.py\", line 213, in <module>\n    if __name__=='__main__': main()\n                             ~~~~^^\n  File \"C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-independent-test-runner\\scripts\\heldout_run.py\", line 202, in main\n    root.mkdir(parents=True,exist_ok=True); out=root/args.run_id; out.mkdir(exist_ok=False)\n                                                                  ~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\iovek\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\pathlib\\_local.py\", line 722, in mkdir\n    os.mkdir(self, mode)\n    ~~~~~~~~^^^^^^^^^^^^\nFileExistsError: [WinError 183] 파일이 이미 있으므로 만들 수 없습니다: 'C:\\\\Users\\\\iovek\\\\OneDrive\\\\문서\\\\ChatGPT\\\\AI공부\\\\AX-workA-dev-smoke-final-20261028\\\\infer1'\n"
+    }
+  ],
+  "prediction_sha256": "88afba6e9a3fef8f8a7bd2c7cf5e58b82a7e671b74da672406a99b0a3936fe6d"
+}
