@@ -144,7 +144,7 @@ $py='../AX-prototype/.venv/Scripts/python.exe'
 실패시failed.json을남기고자동재호출하지않는다. 평가출력이이미있으면거부한다. 기존보호assert를삭제하거나우회하지않고별도어댑터에서과거기준일치검사/새동결을한다. 기존A/B/C·설정·112원본·정답·시연은변경없음. 기존파일의변경은새파일줄바꿈을고정하는4개.gitattributes메타데이터추가뿐이다.
 
 '''
-    (OUT/'README.md').write_text(doc,encoding='utf-8',newline='\n')
+    (OUT/'README.md').write_text(doc.rstrip()+'\n',encoding='utf-8',newline='\n')
     write(OUT/'final_status.json',{'complete':True,'stage1_cases33_analysis':True,'stage2_paths47_and_old_errors':True,'stage3_fixed_design_commit':'97e3af27','stage4_predictions_sealed_commit':'fa993183','stage5_one_dev_evaluation':True,'cases_recognized_before':79,'cases_recognized_after':84,'unknown33_newly_recognized':5,'unknown33_still':28,'paths_recognized_before_after':[71,71],'unknown33_positive_pairs':0,'test_result':False,'label_source':'AI-Silver','human_gold_created':False,'primary_D_SINGLE_F1_at5':{m:lookup[m+'_D_SINGLE',5]['f1'] for m in ('A0','A2','B0','B2','C0','C_R','C_S','C_U','C_ALL')},'overall_improvement_established':False,'new_version_promoted_to_old_runner_or_demo':False,'tests_passed':127,'api_calls':0,'cost_usd':'0.00','new_model_inference':0,'workB_data_read':False,'post_result_tuning':False})
     print('Report written; negative and positive findings preserved')
 
