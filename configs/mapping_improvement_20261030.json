@@ -1,0 +1,29 @@
+{
+  "version": "mapping-improvement-dev-v1",
+  "base": "ba5308d1619e53ee8b1b6c223480a439f5adcf8b",
+  "cases": 112,
+  "paths": 118,
+  "dynamic_paths": 108,
+  "k": [5, 10, 20],
+  "relevant_threshold": 3,
+  "repetitions": "existing original0/dynamic1,2,3; per-query repetition mean then macro",
+  "zero_positive": "Precision over10; Recall/F1 over6 positive questions; undefined remains null",
+  "treatments": ["A2", "B2", "C_R", "C_S", "C_U", "C_ALL"],
+  "A2": "same18 functions; alias augmentation and left-English-word-boundary filtering only; unknown output never presented as actual artifact",
+  "B2": "if either side v1 rule extraction UNKNOWN use existing Task cosine only; otherwise frozen B unchanged",
+  "C_R": "old C with A2 rule strengths only",
+  "C_S": "old C with B2 semantic scores only",
+  "C_U": "old C except when no usable old query-case rule pair among whole and branches, use normalized old semantic score without an unsupported zero-rule penalty",
+  "C_ALL": "A2+B2+same unknown fallback. Exploratory combination, not additional parameter search",
+  "aliases": {
+    "generate_content": {"action": "\\bproduc(?:e|es|ed|ing)\\b", "object": ""},
+    "retrieve_knowledge": {"action": "", "object": "\\b(?:data|database)\\b|데이터"},
+    "validate_record": {"action": "", "object": "\\b(?:websites?|transactions?|self-introductions?)\\b|웹사이트|거래기록|자기소개서"}
+  },
+  "no_changes": ["source112", "labels", "old algorithms/configs/results", "perspectives", "embeddings", "candidate112", "aggregation", "tie break", "professor demo", "independent Test"],
+  "paid_api_calls": 0,
+  "new_model_inference": 0,
+  "search_over_parameters": false,
+  "label_access_policy": "audit and algorithm code committed before predictions; prediction hashes sealed before one Dev evaluation; no post-result tuning",
+  "limitation": "Existing Dev results were already known. Prospective within-task freeze is not unseen-data preregistration or evidence of generalization."
+}
