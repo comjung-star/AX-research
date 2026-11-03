@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_stage45_offline.py",
+    "-q"
+  ],
+  "returncode": 1,
+  "stdout": "....F......                                                              [100%]\n================================== FAILURES ===================================\n____________ test_inference_read_only_question_payload_not_labels _____________\n\n    def test_inference_read_only_question_payload_not_labels():\n        r=read(OUT/'stage5/predictions/inference_receipt.json')\n        assert r['qrels_read'] is False and r['network_calls']==r['paid_calls']==0\n>       assert r['sealed_files_opened_during_inference'] and all(p.endswith('questions.jsonl') for p in r['sealed_files_opened_during_inference'])\nE       AssertionError: assert (['C:\\\\Users\\\\iovek\\\\.ax-heldout-work-b\\\\20261028\\\\questions.jsonl', 'C:\\\\Users\\\\iovek\\\\.ax-heldout-work-b\\\\20261028\\\\questions.jsonl', 'C:\\\\Users\\\\iovek\\\\.ax-heldout-work-b\\\\20261028\\\\manifest.json'] and False)\nE        +  where False = all(<generator object test_inference_read_only_question_payload_not_labels.<locals>.<genexpr> at 0x0000028FD262B030>)\n\ntests\\test_stage45_offline.py:43: AssertionError\n=========================== short test summary info ===========================\nFAILED tests/test_stage45_offline.py::test_inference_read_only_question_payload_not_labels\n1 failed, 10 passed in 0.99s\n",
+  "stderr": "",
+  "sealed_payload_used_only_after_prediction_seal": true
+}
