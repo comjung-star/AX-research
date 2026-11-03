@@ -64,12 +64,30 @@ def judgments():
     write(PRIVATE/'judgments.json',{'results':results});export_ledger()
 
 
+def crosscheck():
+    """Repeat unchanged rubric, blind to first grades/ranks; no primary overwrite."""
+    configure();jobs=read(PRIVATE/'jobs.json')['jobs'];qs={q['query_id']:q['text'] for q in jsonl(PRIVATE/'inputs/input/questions.jsonl')};cases={c['case_id']:c for j in jobs for c in j['payload']['cases']};data=read(PRIVATE/'judgments.json')['results'];rows=[r for j in data if j['category']=='missing' for r in j['assessments']];selected={}
+    for q in qs:
+        pos=sorted(r['case_id'] for r in rows if r['query_id']==q and r['grade'] is not None and r['grade']>=2);zero=sorted(r['case_id'] for r in rows if r['query_id']==q and r['grade']==0);selected[q]=pos+zero[:1]
+    write(OUT/'supplemental_quality_plan.json',{'before_performance_metrics':True,'same_review_prompt_sha256':A.digest(A.REVIEW_SYSTEM),'selection':'all new grade>=2 plus lexicographically first new grade0 perquestion','scores_and_ranks_not_sent':True,'original_primary_labels_not_changed':True,'same_model_fresh_requests_not_independent_humans':True,'selected_ids':selected})
+    result=[];index=20000
+    for q,ids in selected.items():
+        for start in range(0,len(ids),12):
+            index+=1;payload={'query_id':q,'business_problem':qs[q],'cases':[cases[c] for c in ids[start:start+12]]};A.request_for_review=lambda q,p=payload:p;r=call_valid('review',q,index);result.extend(r['data']['assessments'])
+    write(PRIVATE/'crosscheck.json',{'assessments':result});export_ledger()
+
+
 def export_ledger():
     configure();paths=sorted((PRIVATE/'api/attempts').glob('*.json'),key=lambda p:p.stat().st_mtime_ns);rows=[];standard=Decimal();conservative=Decimal()
     for p in paths:
-        r=read(p);standard+=Decimal(r.get('standard_usage_usd','0'));conservative+=Decimal(r.get('conservative_usage_usd',r['reserved_usd']))
-        rows.append({**r,'cumulative_standard_usage_usd':str(standard),'cumulative_conservative_or_reserved_usd':str(conservative)})
-    obj={'budget':A.budget(),'calls':rows,'usage_tokens':{k:sum(r.get('usage',{}).get(k,0) for r in rows) for k in ('input_tokens','output_tokens','total_tokens')},'response_and_request_hashes':{p.name:sha(p) for p in (PRIVATE/'api').glob('*.json')},'raw_payloads_private':True,'actual_billing_balance_not_queried':True,'user_confirmation_accepted':True}
+        r=read(p);legacy=Decimal(r.get('standard_usage_usd','0'));writes=r.get('usage',{}).get('input_tokens_details',{}).get('cache_write_tokens',0)
+        # Existing helper accounts for ordinary/cached input. Explicit cache writes
+        # cost .125/M instead of .10/M; include the .025/M premium, not twice input.
+        corrected=legacy+Decimal(writes)*Decimal('.025')/1_000_000
+        standard+=corrected;conservative+=Decimal(r.get('conservative_usage_usd',r['reserved_usd']))
+        rows.append({**r,'legacy_base_standard_usage_usd':str(legacy),'cache_write_premium_usd':str(corrected-legacy),'standard_usage_usd':str(corrected),'output_validation_passed':(PRIVATE/'api/results'/(r['id']+'.json')).exists(),'cumulative_standard_usage_usd':str(standard),'cumulative_conservative_or_reserved_usd':str(conservative)})
+    b=A.budget();b['legacy_base_standard_usage_usd']=b['standard_usage_usd'];b['standard_usage_usd']=str(standard)
+    obj={'budget':b,'calls':rows,'usage_tokens':{k:sum(r.get('usage',{}).get(k,0) for r in rows) for k in ('input_tokens','output_tokens','total_tokens')},'cache_write_tokens':sum(r.get('usage',{}).get('input_tokens_details',{}).get('cache_write_tokens',0) for r in rows),'pricing_correction':'Explicit cache-write premium included; raw legacy receipts preserved; conservative budget always used .125/M for all input','response_and_request_hashes':{p.name:sha(p) for p in (PRIVATE/'api').glob('*.json')},'raw_payloads_private':True,'actual_billing_balance_not_queried':True,'user_confirmation_accepted':True}
     p=OUT/'api_ledger.json';p.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
 
@@ -100,5 +118,5 @@ def infer():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','views','judgments','infer','ledger']);p.add_argument('--round',type=int,default=1);a=p.parse_args()
-    {'prepare':prepare,'views':lambda:views(a.round),'judgments':judgments,'infer':infer,'ledger':export_ledger}[a.stage]()
+    p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','views','judgments','crosscheck','infer','ledger']);p.add_argument('--round',type=int,default=1);a=p.parse_args()
+    {'prepare':prepare,'views':lambda:views(a.round),'judgments':judgments,'crosscheck':crosscheck,'infer':infer,'ledger':export_ledger}[a.stage]()

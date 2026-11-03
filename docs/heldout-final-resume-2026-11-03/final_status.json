@@ -1,6 +1,1712 @@
 {
-  "status": "RUNNING",
+  "status": "COMPLETE_WITH_LIMITATIONS",
+  "workflow_complete": true,
+  "paid_generation_access_verified": true,
   "user_balance_confirmation_accepted": true,
-  "no_tuning": true,
-  "human_gold": false
+  "organization403_not_a_blocker": true,
+  "model": "gpt-6-luna",
+  "label_construction": {
+    "all1635_missing_pairs_evaluated": true,
+    "original45_preserved": true,
+    "raw_API_label_version": {
+      "total": 1680,
+      "new_evaluated": 1635,
+      "original45_preserved": true,
+      "status_counts": {
+        "JUDGED": 1680
+      },
+      "grade_counts": {
+        "0": 1516,
+        "1": 155,
+        "2": 7,
+        "3": 2
+      },
+      "full_question_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB006",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "full_question_count": 15,
+      "original_sha256": "58bf4abfa74ff7042568d028718514e8223a0060bcddb6e4bbd03e598e501de2",
+      "new_full_private_sha256": "84da989bd7e77c904caf81bce2801907ba63738b566c6198fc2862bc4b5582e7",
+      "human_verified": false,
+      "grade_disagreements_45": 20,
+      "binary_disagreements_45": 4,
+      "ABSTAIN_never_zero": true
+    },
+    "final_cautious_version": {
+      "version": "source-cautious-v4",
+      "total": 1680,
+      "new1635_all_evaluated": true,
+      "counts": {
+        "JUDGED": 1678,
+        "ABSTAIN": 2
+      },
+      "grade_counts": {
+        "0": 1516,
+        "1": 155,
+        "2": 5,
+        "None": 2,
+        "3": 2
+      },
+      "holds": [
+        {
+          "query_id": "HB006",
+          "case_id": "AXALL_US_OMB_2025_02640",
+          "reason": "Unresolved blind first/recheck relevance-boundary disagreement; retain ABSTAIN, do not pick a model score"
+        },
+        {
+          "query_id": "HB006",
+          "case_id": "AXV24_918f26607568",
+          "reason": "Unresolved blind first/recheck relevance-boundary disagreement; retain ABSTAIN, do not pick a model score"
+        }
+      ],
+      "full_question_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "original45_preserved": true,
+      "no_primary_or_previous_results_overwritten": true,
+      "selection_uses_performance": false,
+      "rule": "union of source-cautious holds and predeclared blind binary-disagreement holds; not new threshold or model policy",
+      "human_verified": false,
+      "private_full_sha256": "ba43fc395a1f340c0830938f46ad9c0789d28f1580bc10c6d5b24ad82915d7cc"
+    },
+    "human_verified": false,
+    "label_source": "AI-Silver; same-model fresh requests, not Human-Gold",
+    "audit45_grade_disagreements": 20,
+    "audit45_binary_disagreements": 4,
+    "new_crosscheck_count": 17,
+    "new_crosscheck_binary_disagreements": 2
+  },
+  "predictions": {
+    "T1_T3_original_reused_exactly": true,
+    "T2_T4_executed": true,
+    "query_count": 15,
+    "case_count": 112,
+    "generation_repeats": 3,
+    "valid_generations": 45,
+    "perspective_paths": 149,
+    "all112_rankings_saved": true,
+    "seal_commit_before_new_labels": "09e64aa14844e3fa619322884647625d7c91c309",
+    "qrels_read_during_inference": false
+  },
+  "T1_T2_T3_T4_metrics_final_v4": [
+    {
+      "condition": "T1",
+      "metric": "Precision@5",
+      "value": 0.042857142857142864,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.042857142857142864
+      ],
+      "repeat_min": 0.042857142857142864,
+      "repeat_max": 0.042857142857142864
+    },
+    {
+      "condition": "T2",
+      "metric": "Precision@5",
+      "value": 0.03333333333333334,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.028571428571428574,
+        0.042857142857142864,
+        0.028571428571428574
+      ],
+      "repeat_min": 0.028571428571428574,
+      "repeat_max": 0.042857142857142864
+    },
+    {
+      "condition": "T3",
+      "metric": "Precision@5",
+      "value": 0.042857142857142864,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.042857142857142864
+      ],
+      "repeat_min": 0.042857142857142864,
+      "repeat_max": 0.042857142857142864
+    },
+    {
+      "condition": "T4",
+      "metric": "Precision@5",
+      "value": 0.03333333333333334,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.028571428571428574,
+        0.042857142857142864,
+        0.028571428571428574
+      ],
+      "repeat_min": 0.028571428571428574,
+      "repeat_max": 0.042857142857142864
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "Precision@5",
+      "value": 0.014285714285714287,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.014285714285714287
+      ],
+      "repeat_min": 0.014285714285714287,
+      "repeat_max": 0.014285714285714287
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "Precision@5",
+      "value": 0.028571428571428577,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.028571428571428574,
+        0.028571428571428574,
+        0.028571428571428574
+      ],
+      "repeat_min": 0.028571428571428574,
+      "repeat_max": 0.028571428571428574
+    },
+    {
+      "condition": "T1",
+      "metric": "Recall@5",
+      "value": 0.5,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.5
+      ],
+      "repeat_min": 0.5,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "T2",
+      "metric": "Recall@5",
+      "value": 0.4333333333333333,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.4,
+        0.5,
+        0.4
+      ],
+      "repeat_min": 0.4,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "T3",
+      "metric": "Recall@5",
+      "value": 0.5,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.5
+      ],
+      "repeat_min": 0.5,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "T4",
+      "metric": "Recall@5",
+      "value": 0.4333333333333333,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.4,
+        0.5,
+        0.4
+      ],
+      "repeat_min": 0.4,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "Recall@5",
+      "value": 0.2,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.2
+      ],
+      "repeat_min": 0.2,
+      "repeat_max": 0.2
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "Recall@5",
+      "value": 0.4,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "repeat_min": 0.4,
+      "repeat_max": 0.4
+    },
+    {
+      "condition": "T1",
+      "metric": "F1@5",
+      "value": 0.19047619047619047,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.19047619047619047
+      ],
+      "repeat_min": 0.19047619047619047,
+      "repeat_max": 0.19047619047619047
+    },
+    {
+      "condition": "T2",
+      "metric": "F1@5",
+      "value": 0.15238095238095237,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.13333333333333333,
+        0.19047619047619047,
+        0.13333333333333333
+      ],
+      "repeat_min": 0.13333333333333333,
+      "repeat_max": 0.19047619047619047
+    },
+    {
+      "condition": "T3",
+      "metric": "F1@5",
+      "value": 0.19047619047619047,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.19047619047619047
+      ],
+      "repeat_min": 0.19047619047619047,
+      "repeat_max": 0.19047619047619047
+    },
+    {
+      "condition": "T4",
+      "metric": "F1@5",
+      "value": 0.15238095238095237,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.13333333333333333,
+        0.19047619047619047,
+        0.13333333333333333
+      ],
+      "repeat_min": 0.13333333333333333,
+      "repeat_max": 0.19047619047619047
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "F1@5",
+      "value": 0.06666666666666667,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.06666666666666667
+      ],
+      "repeat_min": 0.06666666666666667,
+      "repeat_max": 0.06666666666666667
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "F1@5",
+      "value": 0.13333333333333333,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333
+      ],
+      "repeat_min": 0.13333333333333333,
+      "repeat_max": 0.13333333333333333
+    },
+    {
+      "condition": "T1",
+      "metric": "nDCG@5",
+      "value": 0.38919009003935356,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.38919009003935356
+      ],
+      "repeat_min": 0.38919009003935356,
+      "repeat_max": 0.38919009003935356
+    },
+    {
+      "condition": "T2",
+      "metric": "nDCG@5",
+      "value": 0.3362860615649033,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.3294740527344167,
+        0.35544629728051264,
+        0.3239378346797807
+      ],
+      "repeat_min": 0.3239378346797807,
+      "repeat_max": 0.35544629728051264
+    },
+    {
+      "condition": "T3",
+      "metric": "nDCG@5",
+      "value": 0.38919009003935356,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.38919009003935356
+      ],
+      "repeat_min": 0.38919009003935356,
+      "repeat_max": 0.38919009003935356
+    },
+    {
+      "condition": "T4",
+      "metric": "nDCG@5",
+      "value": 0.34963175328060386,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.34949259030796753,
+        0.3754648348540634,
+        0.3239378346797807
+      ],
+      "repeat_min": 0.3239378346797807,
+      "repeat_max": 0.3754648348540634
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "nDCG@5",
+      "value": 0.23927698612345072,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.23927698612345072
+      ],
+      "repeat_min": 0.23927698612345072,
+      "repeat_max": 0.23927698612345072
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "nDCG@5",
+      "value": 0.2562473838699363,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.2579383439700887,
+        0.247322581459398,
+        0.2634812261803221
+      ],
+      "repeat_min": 0.247322581459398,
+      "repeat_max": 0.2634812261803221
+    },
+    {
+      "condition": "T1",
+      "metric": "Precision@10",
+      "value": 0.021428571428571432,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.021428571428571432
+      ],
+      "repeat_min": 0.021428571428571432,
+      "repeat_max": 0.021428571428571432
+    },
+    {
+      "condition": "T2",
+      "metric": "Precision@10",
+      "value": 0.019047619047619053,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.014285714285714287,
+        0.021428571428571432,
+        0.021428571428571432
+      ],
+      "repeat_min": 0.014285714285714287,
+      "repeat_max": 0.021428571428571432
+    },
+    {
+      "condition": "T3",
+      "metric": "Precision@10",
+      "value": 0.021428571428571432,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.021428571428571432
+      ],
+      "repeat_min": 0.021428571428571432,
+      "repeat_max": 0.021428571428571432
+    },
+    {
+      "condition": "T4",
+      "metric": "Precision@10",
+      "value": 0.019047619047619053,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.014285714285714287,
+        0.021428571428571432,
+        0.021428571428571432
+      ],
+      "repeat_min": 0.014285714285714287,
+      "repeat_max": 0.021428571428571432
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "Precision@10",
+      "value": 0.021428571428571432,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.021428571428571432
+      ],
+      "repeat_min": 0.021428571428571432,
+      "repeat_max": 0.021428571428571432
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "Precision@10",
+      "value": 0.021428571428571432,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.021428571428571432,
+        0.021428571428571432,
+        0.021428571428571432
+      ],
+      "repeat_min": 0.021428571428571432,
+      "repeat_max": 0.021428571428571432
+    },
+    {
+      "condition": "T1",
+      "metric": "Recall@10",
+      "value": 0.5,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.5
+      ],
+      "repeat_min": 0.5,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "T2",
+      "metric": "Recall@10",
+      "value": 0.4666666666666667,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.4,
+        0.5,
+        0.5
+      ],
+      "repeat_min": 0.4,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "T3",
+      "metric": "Recall@10",
+      "value": 0.5,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.5
+      ],
+      "repeat_min": 0.5,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "T4",
+      "metric": "Recall@10",
+      "value": 0.4666666666666667,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.4,
+        0.5,
+        0.5
+      ],
+      "repeat_min": 0.4,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "Recall@10",
+      "value": 0.5,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.5
+      ],
+      "repeat_min": 0.5,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "Recall@10",
+      "value": 0.5,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "repeat_min": 0.5,
+      "repeat_max": 0.5
+    },
+    {
+      "condition": "T1",
+      "metric": "F1@10",
+      "value": 0.10606060606060605,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.10606060606060605
+      ],
+      "repeat_min": 0.10606060606060605,
+      "repeat_max": 0.10606060606060605
+    },
+    {
+      "condition": "T2",
+      "metric": "F1@10",
+      "value": 0.09494949494949494,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.07272727272727272,
+        0.10606060606060605,
+        0.10606060606060605
+      ],
+      "repeat_min": 0.07272727272727272,
+      "repeat_max": 0.10606060606060605
+    },
+    {
+      "condition": "T3",
+      "metric": "F1@10",
+      "value": 0.10606060606060605,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.10606060606060605
+      ],
+      "repeat_min": 0.10606060606060605,
+      "repeat_max": 0.10606060606060605
+    },
+    {
+      "condition": "T4",
+      "metric": "F1@10",
+      "value": 0.09494949494949494,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.07272727272727272,
+        0.10606060606060605,
+        0.10606060606060605
+      ],
+      "repeat_min": 0.07272727272727272,
+      "repeat_max": 0.10606060606060605
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "F1@10",
+      "value": 0.10606060606060605,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.10606060606060605
+      ],
+      "repeat_min": 0.10606060606060605,
+      "repeat_max": 0.10606060606060605
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "F1@10",
+      "value": 0.10606060606060605,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.10606060606060605,
+        0.10606060606060605,
+        0.10606060606060605
+      ],
+      "repeat_min": 0.10606060606060605,
+      "repeat_max": 0.10606060606060605
+    },
+    {
+      "condition": "T1",
+      "metric": "nDCG@10",
+      "value": 0.39166750418468477,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.39166750418468477
+      ],
+      "repeat_min": 0.39166750418468477,
+      "repeat_max": 0.39166750418468477
+    },
+    {
+      "condition": "T2",
+      "metric": "nDCG@10",
+      "value": 0.34675783617317135,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.3304399639308627,
+        0.3569001076495034,
+        0.352933436939148
+      ],
+      "repeat_min": 0.3304399639308627,
+      "repeat_max": 0.3569001076495034
+    },
+    {
+      "condition": "T3",
+      "metric": "nDCG@10",
+      "value": 0.39166750418468477,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.39166750418468477
+      ],
+      "repeat_min": 0.39166750418468477,
+      "repeat_max": 0.39166750418468477
+    },
+    {
+      "condition": "T4",
+      "metric": "nDCG@10",
+      "value": 0.36360134696951596,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.35594684451687625,
+        0.3819237594525236,
+        0.352933436939148
+      ],
+      "repeat_min": 0.352933436939148,
+      "repeat_max": 0.3819237594525236
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "nDCG@10",
+      "value": 0.3076802477089223,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.3076802477089223
+      ],
+      "repeat_min": 0.3076802477089223,
+      "repeat_max": 0.3076802477089223
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "nDCG@10",
+      "value": 0.29220153320922687,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.30591856298619413,
+        0.2858837557908519,
+        0.28480228085063464
+      ],
+      "repeat_min": 0.28480228085063464,
+      "repeat_max": 0.30591856298619413
+    },
+    {
+      "condition": "T1",
+      "metric": "Precision@20",
+      "value": 0.017857142857142856,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.017857142857142856
+      ],
+      "repeat_min": 0.017857142857142856,
+      "repeat_max": 0.017857142857142856
+    },
+    {
+      "condition": "T2",
+      "metric": "Precision@20",
+      "value": 0.015476190476190478,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.014285714285714287,
+        0.014285714285714287,
+        0.017857142857142856
+      ],
+      "repeat_min": 0.014285714285714287,
+      "repeat_max": 0.017857142857142856
+    },
+    {
+      "condition": "T3",
+      "metric": "Precision@20",
+      "value": 0.017857142857142856,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.017857142857142856
+      ],
+      "repeat_min": 0.017857142857142856,
+      "repeat_max": 0.017857142857142856
+    },
+    {
+      "condition": "T4",
+      "metric": "Precision@20",
+      "value": 0.01785714285714286,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.017857142857142856,
+        0.017857142857142856,
+        0.017857142857142856
+      ],
+      "repeat_min": 0.017857142857142856,
+      "repeat_max": 0.017857142857142856
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "Precision@20",
+      "value": 0.014285714285714287,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.014285714285714287
+      ],
+      "repeat_min": 0.014285714285714287,
+      "repeat_max": 0.014285714285714287
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "Precision@20",
+      "value": 0.014285714285714289,
+      "defined_questions": 14,
+      "query_ids": [
+        "HB001",
+        "HB002",
+        "HB003",
+        "HB004",
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB010",
+        "HB011",
+        "HB012",
+        "HB013",
+        "HB014",
+        "HB015"
+      ],
+      "per_repeat_macro": [
+        0.017857142857142856,
+        0.010714285714285716,
+        0.014285714285714287
+      ],
+      "repeat_min": 0.010714285714285716,
+      "repeat_max": 0.017857142857142856
+    },
+    {
+      "condition": "T1",
+      "metric": "Recall@20",
+      "value": 0.9,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.9
+      ],
+      "repeat_min": 0.9,
+      "repeat_max": 0.9
+    },
+    {
+      "condition": "T2",
+      "metric": "Recall@20",
+      "value": 0.7666666666666667,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.7,
+        0.7,
+        0.9
+      ],
+      "repeat_min": 0.7,
+      "repeat_max": 0.9
+    },
+    {
+      "condition": "T3",
+      "metric": "Recall@20",
+      "value": 0.9,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.9
+      ],
+      "repeat_min": 0.9,
+      "repeat_max": 0.9
+    },
+    {
+      "condition": "T4",
+      "metric": "Recall@20",
+      "value": 0.9,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "repeat_min": 0.9,
+      "repeat_max": 0.9
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "Recall@20",
+      "value": 0.7,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.7
+      ],
+      "repeat_min": 0.7,
+      "repeat_max": 0.7
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "Recall@20",
+      "value": 0.7,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.9,
+        0.5,
+        0.7
+      ],
+      "repeat_min": 0.5,
+      "repeat_max": 0.9
+    },
+    {
+      "condition": "T1",
+      "metric": "F1@20",
+      "value": 0.09437229437229437,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.09437229437229437
+      ],
+      "repeat_min": 0.09437229437229437,
+      "repeat_max": 0.09437229437229437
+    },
+    {
+      "condition": "T2",
+      "metric": "F1@20",
+      "value": 0.08167388167388166,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.07532467532467532,
+        0.07532467532467532,
+        0.09437229437229437
+      ],
+      "repeat_min": 0.07532467532467532,
+      "repeat_max": 0.09437229437229437
+    },
+    {
+      "condition": "T3",
+      "metric": "F1@20",
+      "value": 0.09437229437229437,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.09437229437229437
+      ],
+      "repeat_min": 0.09437229437229437,
+      "repeat_max": 0.09437229437229437
+    },
+    {
+      "condition": "T4",
+      "metric": "F1@20",
+      "value": 0.09437229437229436,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.09437229437229437,
+        0.09437229437229437,
+        0.09437229437229437
+      ],
+      "repeat_min": 0.09437229437229437,
+      "repeat_max": 0.09437229437229437
+    },
+    {
+      "condition": "E3_NEUTRAL",
+      "metric": "F1@20",
+      "value": 0.07532467532467532,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.07532467532467532
+      ],
+      "repeat_min": 0.07532467532467532,
+      "repeat_max": 0.07532467532467532
+    },
+    {
+      "condition": "E4_NEUTRAL",
+      "metric": "F1@20",
+      "value": 0.07532467532467532,
+      "defined_questions": 5,
+      "query_ids": [
+        "HB005",
+        "HB007",
+        "HB008",
+        "HB009",
+        "HB014"
+      ],
+      "per_repeat_macro": [
+        0.09437229437229437,
+        0.05627705627705628,
+        0.07532467532467532
+      ],
+      "repeat_min": 0.05627705627705628,
+      "repeat_max": 0.09437229437229437
+    }
+  ],
+  "raw_v2_metrics": "evaluation/metrics.json",
+  "final_v4_metrics": "quality_final/metrics.json",
+  "no_positive_complete_AI_Silver_questions": [
+    "HB001",
+    "HB002",
+    "HB003",
+    "HB004",
+    "HB010",
+    "HB011",
+    "HB012",
+    "HB013",
+    "HB015"
+  ],
+  "gains_losses": "final_gains_losses.json",
+  "embedding_diagnostic": "quality_final/metrics.json E3_NEUTRAL/E4_NEUTRAL",
+  "dev_test_comparison": "README.md section6; distinct questions/label versions, not causal score difference",
+  "claim": {
+    "multiview_F1_improved": false,
+    "C1_original_F1_at5": 0.19047619047619047,
+    "C1_dynamic_F1_at5": 0.15238095238095237,
+    "C1_original_ndcg_at10": 0.39166750418468477,
+    "C1_dynamic_ndcg_at10": 0.36360134696951596,
+    "F1_change_pp": -3.80952380952381,
+    "nDCG_change_pp": -2.806615721516881,
+    "F1_loss_concentrated_in": "HB014",
+    "generalization_of_Dev_gain_proven": false,
+    "paper_use": "Negative, qualified AI-Silver evidence with provenance, exposure and disagreement limits; not untouched human-Gold final test",
+    "recommendation": "Keep original-only baseline; do not deploy C1 multiview as improvement; investigate extraction/aggregation on separate Dev then independent verification"
+  },
+  "test_previously_exposed": true,
+  "tuned_on_Test": false,
+  "model_weights_or_scoring_policy_changed": false,
+  "api": {
+    "conservative_spent_or_reserved_usd": "0.094616125",
+    "standard_usage_usd": "0.093397210",
+    "unresolved_reserved_usd": "0",
+    "calls": 228,
+    "cap_usd": "2.00",
+    "legacy_base_standard_usage_usd": "0.08959896"
+  },
+  "api_tokens": {
+    "input_tokens": 192025,
+    "output_tokens": 141226,
+    "total_tokens": 333251
+  },
+  "cache_write_tokens": 151930,
+  "format_invalid_received_responses": 3,
+  "uncertain_requests_replayed": false,
+  "tests": {
+    "baseline": 187,
+    "new": 14,
+    "total_passed": 201,
+    "failed_final": 0,
+    "logs": [
+      "tests.json",
+      "tests_final.json"
+    ]
+  },
+  "git_branch": "research/heldout-final-resume-20261103",
+  "git_commit": null,
+  "git_commit_role": "Full result commit, referenced by following metadata-only commit",
+  "result_paths": {
+    "report": "docs/heldout-final-resume-2026-11-03/README.md",
+    "status": "docs/heldout-final-resume-2026-11-03/final_status.json",
+    "prediction_seal": "docs/heldout-final-resume-2026-11-03/predictions/complete.json",
+    "evaluation_seal": "docs/heldout-final-resume-2026-11-03/evaluation/complete.json",
+    "final_label_metrics_seal": "docs/heldout-final-resume-2026-11-03/quality_final/complete.json"
+  }
 }

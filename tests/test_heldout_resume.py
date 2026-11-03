@@ -45,9 +45,10 @@ def test_only_one_format_retry_for_known_received_response(monkeypatch):
 
 def test_original45_are_preserved_exactly():
     old=jsonl(PAYLOAD/'qrels.jsonl');new=read(PRIVATE/'qrels_completed_v2.json')['records'];by={(r['query_id'],r['case_id']):r for r in new}
+    cautious={(r['query_id'],r['case_id']):r for r in read(PRIVATE/'qrels_source_cautious_v3.json')['records']}
     assert len(new)==1680 and len(by)==1680
     for r in old:
-        if r['status']=='JUDGED':assert by[r['query_id'],r['case_id']]==r
+        if r['status']=='JUDGED':assert by[r['query_id'],r['case_id']]==r and cautious[r['query_id'],r['case_id']]==r
     assert sha(PAYLOAD/'qrels.jsonl')==read(OUT/'plan.json')['original_qrels_sha256']
 
 
@@ -90,6 +91,14 @@ def test_cost_bound_and_usage_receipts():
     for p in (PRIVATE/'api/attempts').glob('*.json'):
         r=read(p)
         if r['state']=='RECEIVED':assert r['usage']['input_tokens']>=0 and r['usage']['output_tokens']>=0 and r['response_model']=='gpt-6-luna'
+    ledger=read(OUT/'api_ledger.json');total=Decimal()
+    for r in ledger['calls']:
+        if r['state']!='RECEIVED':continue
+        u=r['usage'];i=u['input_tokens'];o=u['output_tokens'];d=u.get('input_tokens_details',{});c=d.get('cached_tokens',0);w=d.get('cache_write_tokens',0)
+        assert i>=c+w
+        expected=(Decimal(i-c-w)*Decimal('.10')+Decimal(c)*Decimal('.01')+Decimal(w)*Decimal('.125')+Decimal(o)*Decimal('.50'))/1_000_000
+        assert Decimal(r['standard_usage_usd'])==expected;total+=expected
+    assert total==Decimal(ledger['budget']['standard_usage_usd'])<=Decimal(ledger['budget']['conservative_spent_or_reserved_usd'])<2
 
 
 def test_metrics_reproducible_and_not_using_unresolved_as_zero():
@@ -98,3 +107,14 @@ def test_metrics_reproducible_and_not_using_unresolved_as_zero():
     assert actual==read(OUT/'evaluation/metrics.json')
     for r in actual['per_query']:
         if not r['complete112']:assert r['metrics']['Recall@5'] is None and r['metrics']['F1@5'] is None and r['metrics']['nDCG@10'] is None
+
+
+def test_final_uncertainty_holds_are_not_zero_or_overwrites():
+    from scripts.heldout_resume_evaluate import score
+    labels=read(PRIVATE/'qrels_final_cautious_v4.json')['records'];old=jsonl(PAYLOAD/'qrels.jsonl');by={(r['query_id'],r['case_id']):r for r in labels}
+    assert sum(r['status']=='ABSTAIN' and r['grade'] is None for r in labels)==2
+    for r in old:
+        if r['status']=='JUDGED':assert by[r['query_id'],r['case_id']]==r
+    assert score(read(OUT/'predictions/rankings.json'),labels)==read(OUT/'quality_final/metrics.json')
+    for r in read(OUT/'quality_final/metrics.json')['per_query']:
+        if r['query_id']=='HB006':assert r['metrics']['Recall@5'] is None and r['metrics']['F1@5'] is None and r['metrics']['nDCG@10'] is None
