@@ -65,7 +65,10 @@ def judgments():
 
 
 def export_ledger():
-    configure();rows=[read(p) for p in (PRIVATE/'api/attempts').glob('*.json')]
+    configure();paths=sorted((PRIVATE/'api/attempts').glob('*.json'),key=lambda p:p.stat().st_mtime_ns);rows=[];standard=Decimal();conservative=Decimal()
+    for p in paths:
+        r=read(p);standard+=Decimal(r.get('standard_usage_usd','0'));conservative+=Decimal(r.get('conservative_usage_usd',r['reserved_usd']))
+        rows.append({**r,'cumulative_standard_usage_usd':str(standard),'cumulative_conservative_or_reserved_usd':str(conservative)})
     obj={'budget':A.budget(),'calls':rows,'usage_tokens':{k:sum(r.get('usage',{}).get(k,0) for r in rows) for k in ('input_tokens','output_tokens','total_tokens')},'response_and_request_hashes':{p.name:sha(p) for p in (PRIVATE/'api').glob('*.json')},'raw_payloads_private':True,'actual_billing_balance_not_queried':True,'user_confirmation_accepted':True}
     p=OUT/'api_ledger.json';p.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
