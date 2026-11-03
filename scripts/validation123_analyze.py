@@ -25,10 +25,10 @@ def summarize(results,labels,exclude=()):
     return output
 
 
-def main():
-    src=OUT/'stage3/predictions';seal=read(src/'complete.json')
+def main(src=None,dest=None):
+    src=src or OUT/'stage3/predictions';seal=read(src/'complete.json')
     for n,h in seal['files'].items():assert sha(src/n)==h
-    dest=OUT/'stage3/evaluation';dest.mkdir(exist_ok=False);pred=read(src/'rankings.json');labels=read(OUT/'stage1/qrels_v2.json')['records'];qs=pred['query_ids'];labs={(r['query_id'],r['case_id']):r for r in labels};runs=[]
+    dest=dest or OUT/'stage3/evaluation';dest.mkdir(exist_ok=False);pred=read(src/'rankings.json');labels=read(OUT/'stage1/qrels_v2.json')['records'];qs=pred['query_ids'];labs={(r['query_id'],r['case_id']):r for r in labels};runs=[]
     for rep in (0,1,2,3):
         names=('E1','E3','E3_NEUTRAL') if rep==0 else ('E2','E4','E4_NEUTRAL')
         part={new:[{k:v for k,v in r.items() if k!='repeat'} for r in pred['systems'][old] if rep==0 or r['repeat']==rep] for new,old in zip(('C0','C1','C1_NO_EMBEDDING'),names)}
@@ -68,10 +68,15 @@ def main():
     costs=budget();attempts=[read(p) for p in (OUT/'api/attempts').glob('*.json')]
     costs['successful_HTTP_responses']=sum(r['state']=='RECEIVED' for r in attempts);costs['valid_reviews']=10;costs['valid_view_generations']=30;costs['invalid_received_view_generations']=1;costs['HTTP400_rejections']=2;costs['actual_billing_balance_verified']=False
     costs['usage_tokens']={k:sum(r.get('usage',{}).get(k,0) for r in attempts) for k in ('input_tokens','output_tokens','total_tokens')}
-    write(OUT/'api/final_cost.json',costs)
+    costpath=OUT/'api/final_cost.json'
+    if costpath.exists():assert read(costpath)==costs,'Existing cost evidence drift'
+    else:write(costpath,costs)
     write(dest/'complete.json',{'complete':True,'prediction_seal_sha256':sha(src/'complete.json'),'qrels_sha256':sha(OUT/'stage1/qrels_v2.json'),'files':{p.name:sha(p) for p in dest.iterdir()},'model_tuned':False})
     for r in macro:
         if r['metric'] in ('Precision@5','Recall@5','F1@5','nDCG@10'):print(r)
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import argparse
+    from pathlib import Path
+    p=argparse.ArgumentParser();p.add_argument('--predictions',type=Path);p.add_argument('--output',type=Path);a=p.parse_args();main(a.predictions,a.output)

@@ -34,8 +34,8 @@ def load_views():
     return paths,sources
 
 
-def infer(scratch,model):
-    dest=OUT/'stage3/predictions';dest.mkdir(parents=True,exist_ok=False);scratch.mkdir(exist_ok=False)
+def infer(scratch,model,dest=None):
+    dest=dest or OUT/'stage3/predictions';dest.mkdir(parents=True,exist_ok=False);scratch.mkdir(exist_ok=False)
     paths,sources=load_views();write(dest/'paths.json',{'paths':paths,'api_results_sha256':sources})
     from scripts.heldout_run import freeze,predict
     state=freeze(model);state['adapter_sha256']=sha(Path(__file__));state['views']=sources
@@ -110,4 +110,4 @@ def infer(scratch,model):
 
 
 if __name__=='__main__':
-    a=argparse.ArgumentParser();a.add_argument('--scratch',type=Path,required=True);a.add_argument('--model',type=Path,required=True);p=a.parse_args();infer(p.scratch.resolve(),p.model.resolve())
+    a=argparse.ArgumentParser();a.add_argument('--scratch',type=Path,required=True);a.add_argument('--model',type=Path,required=True);a.add_argument('--output',type=Path);p=a.parse_args();infer(p.scratch.resolve(),p.model.resolve(),p.output.resolve() if p.output else None)
