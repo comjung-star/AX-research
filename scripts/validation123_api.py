@@ -50,7 +50,7 @@ def body(kind,qid,repeat=1):
     if kind=='review':system=REVIEW_SYSTEM;payload=request_for_review(qid);limit=2200
     else:
         system=view_system();payload={'original_business_problem':qs[qid],'format':'{perspectives:[{id,title,description,keywords:[words],source_quote}]} generate1to6 concise problem perspectives; JSON only'};limit=1600
-    return {'model':MODEL,'instructions':system,'input':json.dumps(payload,ensure_ascii=False),'text':{'format':{'type':'json_object'}},'reasoning':{'effort':'none'},'max_output_tokens':limit,'service_tier':'default','store':False}
+    return {'model':MODEL,'instructions':system,'input':json.dumps(payload,ensure_ascii=False)+'\nReturn JSON.','text':{'format':{'type':'json_object'}},'reasoning':{'effort':'none'},'max_output_tokens':limit,'service_tier':'default','store':False}
 
 
 def validate(kind,qid,data):
@@ -85,9 +85,9 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self,*args,**kwargs):return None
 
 
-def call(kind,qid,rep):
+def call(kind,qid,rep,attempt_tag=''):
     api=OUT/'api';attempts=api/'attempts';results=api/'results';attempts.mkdir(parents=True,exist_ok=True);results.mkdir(exist_ok=True)
-    ident=f'{kind}_{qid}_r{rep}';receipt=attempts/(ident+'.json');target=results/(ident+'.json');b=body(kind,qid,rep)
+    ident=f'{kind}_{qid}_r{rep}'+('_'+attempt_tag if attempt_tag else '');receipt=attempts/(ident+'.json');target=results/(ident+'.json');b=body(kind,qid,rep)
     if target.exists():
         r=read(target);assert r['request_sha256']==digest(b);return r
     if receipt.exists():raise RuntimeError('Existing reserved/failed request: no blind replay')
@@ -104,7 +104,12 @@ def call(kind,qid,rep):
         with urllib.request.build_opener(NoRedirect()).open(req,timeout=45) as response:
             d=json.loads(response.read(2_000_000));rate={h:response.headers.get(h) for h in ('x-ratelimit-limit-requests','x-ratelimit-remaining-requests','x-ratelimit-limit-tokens')}
     except urllib.error.HTTPError as e:
-        error={**initial,'state':'HTTP_FAILURE','status':e.code,'raw_body_logged':False};e.close()
+        status=e.code;sanitized={}
+        try:
+            obj=json.loads(e.read(100_000)).get('error',{})
+            sanitized={k:str(obj.get(k,''))[:1000].replace(secret,'[REDACTED]') for k in ('type','code','param','message')}
+        except (ValueError,AttributeError):pass
+        error={**initial,'state':'HTTP_FAILURE','status':status,'raw_body_logged':False,'sanitized_error':sanitized};e.close()
         receipt.write_text(json.dumps(error,indent=2)+'\n',encoding='utf-8');raise RuntimeError('OPENAI_HTTP_'+str(error['status'])) from None
     except (urllib.error.URLError,TimeoutError,OSError,ValueError):
         receipt.write_text(json.dumps({**initial,'state':'UNCERTAIN_FAILURE','automatic_retry':False},indent=2)+'\n',encoding='utf-8');raise RuntimeError('UNCERTAIN_REQUEST_NO_REPLAY') from None
@@ -135,11 +140,12 @@ def prepare():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','review','views']);p.add_argument('--round',type=int,choices=[1,2,3],default=1);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','review','views']);p.add_argument('--round',type=int,choices=[1,2,3],default=1);p.add_argument('--attempt-tag',default='');p.add_argument('--only-query');a=p.parse_args()
     if a.stage=='prepare':prepare()
     else:
         try:
-            for q in jsonl(OLD/'input/questions.jsonl'):call('review' if a.stage=='review' else 'views',q['query_id'],1 if a.stage=='review' else a.round)
+            for q in jsonl(OLD/'input/questions.jsonl'):
+                if not a.only_query or a.only_query==q['query_id']:call('review' if a.stage=='review' else 'views',q['query_id'],1 if a.stage=='review' else a.round,a.attempt_tag)
         except RuntimeError as e:
             fail=OUT/'api'/f'{a.stage}_r{a.round}_blocked.json'
             if not fail.exists():safe_write(fail,{'reason':str(e),'budget':budget(),'no_automatic_retry':True})
