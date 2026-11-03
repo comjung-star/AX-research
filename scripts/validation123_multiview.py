@@ -97,7 +97,13 @@ def infer(scratch,model):
     write(dest/'rankings.json',{'systems':systems,'case_ids':raw['case_ids'],'query_ids':originals['query_ids'],'repeats':[1,2,3]})
     import shutil
     shutil.copyfile(scratch/'new_query_vectors.npz',dest/'branch_vectors.npz')
-    assert freeze(model)=={k:v for k,v in state.items() if k not in ('adapter_sha256','views','C1_policy_sha256','C1_core_sha256')}
+    after=freeze(model);before={k:v for k,v in state.items() if k not in ('adapter_sha256','views','C1_policy_sha256','C1_core_sha256')}
+    # Git metadata may advance while another local reporting unit is committed.
+    # File/model/config/package hashes must still be exactly identical.
+    assert {k:v for k,v in after.items() if k!='commit'}=={k:v for k,v in before.items() if k!='commit'}
+    assert sha(ROOT/'configs/action_aggregation_20261102.json')==state['C1_policy_sha256']
+    assert sha(ROOT/'src/ax_research/action_aggregation.py')==state['C1_core_sha256']
+    write(dest/'post_freeze.json',after)
     write(dest/'access_audit.json',{'qrels_read':False,'sealed_test_read':False,'blocked_label_substrings':['qrels','stage1_silver','human_review','work-b','work_b','heldout-data'],'files_opened':sorted(accesses),'network_disabled':True})
     write(dest/'complete.json',{'complete':True,'path_count':len(paths),'all_case_count':112,'all_rounds':3,'files':{p.name:sha(p) for p in dest.iterdir()},'labels_read':False,'scratch':str(scratch)})
     print('Multiview prediction complete',len(paths),'paths',flush=True)
