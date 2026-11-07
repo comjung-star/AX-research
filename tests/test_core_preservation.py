@@ -5,6 +5,8 @@ from scripts import core_preservation_run as run
 def test_unknown_core_fields_have_no_evidence():
     data = {'core': {field: {'text': None, 'evidence': []} for field in run.prompts.FIELDS}}
     run.validate('X', 'CPD01', data)
+    data['core']['workflow'] = None
+    run.validate('X', 'CPD01', data)
     data['core']['input']['evidence'] = ['invented']
     with pytest.raises(AssertionError):
         run.validate('X', 'CPD01', data)

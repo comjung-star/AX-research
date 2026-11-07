@@ -51,6 +51,8 @@ def validate(kind, query_id, data):
     if kind == 'X':
         assert set(data) == {'core'} and set(data['core']) == set(prompts.FIELDS)
         for field in data['core'].values():
+            if field is None:
+                continue
             assert set(field) == {'text', 'evidence'}
             assert field['text'] is None or isinstance(field['text'], str)
             assert isinstance(field['evidence'], list)
