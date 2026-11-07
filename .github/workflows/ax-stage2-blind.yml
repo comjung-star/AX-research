@@ -1,0 +1,39 @@
+name: AX stage2 2240-case two extra blind reviews
+on:
+  push:
+    branches: [research/stage1-stage2-integrity-20261108]
+    paths:
+      - .github/workflows/ax-stage2-blind.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  blind-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        qid: [VQ001, VQ002, VQ003, VQ004, VQ005, VQ006, VQ007, VQ008, VQ009, VQ010, VQ011, VQ012, VQ013, VQ014, VQ015, VQ016, VQ017, VQ018, VQ019, VQ020]
+        round: [2,3]
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Independently blind-evaluate 112 cases and preserve exact task source quotes
+        run: |
+          PYTHONPATH=src:. python scripts/stage2_blind_repeat.py "${{ matrix.qid }}" "${{ matrix.round }}" "$RUNNER_TEMP/blind-${{ matrix.qid }}-r${{ matrix.round }}"
+      - name: Archive all returned labels, failures, attempts, usage receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage2-blind-${{ matrix.qid }}-r${{ matrix.round }}
+          path: ${{ runner.temp }}/blind-${{ matrix.qid }}-r${{ matrix.round }}
+          if-no-files-found: warn
+          retention-days: 90
