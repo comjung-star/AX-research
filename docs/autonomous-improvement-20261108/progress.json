@@ -8,9 +8,10 @@
   "completed": [
     "Preserved baseline strict label and provisional transfer label datasets; previous result comparison is filed.",
     "Located authentic stored Dense/BM25/Hybrid/C0/A/C/E rankings and traced all 16 provisional transfer candidates.",
-    "Initial source-limited root-cause categorization saved; no new model trained and no efficacy claim."
+    "Initial source-limited root-cause categorization saved; no new model trained and no efficacy claim.",
+    "Computed stage-wise Recall@5/20 for all previously saved ranking systems under provisional transfer labels, with per-question VQ001/004/006/019 diagnostics; not independent verification."
   ],
-  "current_step": "VERIFY_LABELS_AND_REAL_SOURCE_EVIDENCE",
+  "current_step": "INDEPENDENT_LABEL_AND_SOURCE_VERIFICATION_BEFORE_MODEL_TRIAL",
   "next_actions": [
     "Verify 16 transfer-label hypotheses and four zero-positive queries independently from frozen ranking and against case Implementation/source statements. Do not rubber-stamp prior assistant labels.",
     "Compute stage-by-stage Recall@5/20 for independently verified relevant cases and identify correct intervention point.",
@@ -28,11 +29,12 @@
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "DIAGNOSTIC_ONLY",
+    "outcome": "STAGE_RECALL_DIAGNOSTIC_ONLY",
     "confirmed_performance_gain": false,
-    "evidence_file": "docs/autonomous-improvement-20261108/00_stage_rank_diagnostics.json",
+    "evidence_file": "docs/autonomous-improvement-20261108/01_stage_recall_provisional.json",
     "labels_pending": 16,
-    "zero_case_questions_pending": 4
+    "zero_case_questions_pending": 4,
+    "trial_count": 0
   },
   "access_notes": "GitHub reading/writing connected. External vendor LLM connectors not established in this task; must avoid pretending independent review was done.",
   "file_changes": "Only this research branch; preserve original test/main."
