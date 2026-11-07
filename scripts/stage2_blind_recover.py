@@ -113,9 +113,47 @@ def main(qid,round_no,folder):
             else:
                 upper=Decimal(api.budget()["conservative_spent_or_reserved_usd"])+grader.request_reserve(grader.body("review",qid,i+1))
                 if upper>MAX_RESERVE:raise RuntimeError("RECOVERY_QUERY_COST_CAP")
-                result=api.call("review",qid,i+1)
-                new_calls+=1
-                rows=result["data"]["assessments"]
+                try:
+                    result=api.call("review",qid,i+1)
+                    new_calls+=1
+                    rows=result["data"]["assessments"]
+                except RuntimeError as err:
+                    # A newly attempted response can itself be malformed. Preserve
+                    # its raw bytes/receipt; use valid items only and quarantine
+                    # the rest. No paid retry.
+                    flags.append({"batch":i+1,"issue":"NEW_REQUEST_UNRESOLVED","detail":str(err)[:120]})
+                    got=[]
+                    if raw.exists():
+                        data=read(raw)
+                        if data.get("status")=="completed":
+                            try:
+                                obj=json.loads("".join(c.get("text","") for x in data.get("output",[])
+                                    for c in x.get("content",[]) if c.get("type")=="output_text"))
+                                got=obj.get("assessments",[])
+                            except (ValueError,TypeError,KeyError):
+                                got=[]
+                    validids={};seen=set()
+                    for v in got if isinstance(got,list) else []:
+                        if not isinstance(v,dict) or v.get("case_id") not in part:continue
+                        cid=v["case_id"]
+                        if cid in seen:continue
+                        seen.add(cid);validids[cid]=v
+                    for cid in part:
+                        if cid in validids:
+                            try:
+                                resultrow=row_from_received(qid,round_no,
+                                    grader.ACTIVE["cases"][part.index(cid)],validids[cid])
+                                records.append(resultrow)
+                                if resultrow["recovery_note"]:
+                                    flags.append({"batch":i+1,"case_id":cid,"issue":resultrow["recovery_note"]})
+                                continue
+                            except (TypeError,ValueError,KeyError):
+                                pass
+                        records.append({"query_id":qid,"case_id":cid,"grade":None,
+                             "status":"UNJUDGED","rationale":"Invalid newly received response; original preserved",
+                             "task_quote":"","source":f"IndependentBlindReviewRound{round_no}",
+                             "recovery_note":"NEW_RECEIVED_INVALID_NO_PAID_REPLAY"})
+                    continue
             records.extend({"query_id":r["query_id"],"case_id":r["case_id"],
                 "grade":r["grade"],"status":r["status"],"rationale":r["reason"],
                 "task_quote":r["task_quote"],"source":f"IndependentBlindReviewRound{round_no}",
