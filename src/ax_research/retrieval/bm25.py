@@ -35,7 +35,9 @@ class KiwiTokenizer:
         tokens: list[str] = []
         for token in self._kiwi.tokenize(text):
             form = token.form.strip().lower()
-            if not form or token.tag.startswith("S"):
+            # Kiwi SL (Latin letters) and SN (numbers) are meaningful search tokens.
+            # Exclude punctuation/symbol tags explicitly instead of all S* tags.
+            if not form or token.tag in {"SF", "SP", "SS", "SSO", "SSC", "SE", "SO", "SW"}:
                 continue
             tokens.append(form)
         return tokens
