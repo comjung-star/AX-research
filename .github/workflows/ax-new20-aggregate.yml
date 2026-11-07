@@ -1,0 +1,87 @@
+name: AX new20 assemble measured Validation results
+on:
+  push:
+    branches:
+      - research/new20-validation-20261107
+    paths:
+      - .github/workflows/ax-new20-aggregate.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: ax-new20-aggregate
+  cancel-in-progress: false
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PRED_RUN: "42385438919"
+      BLIND_RUN: "42384841980"
+    steps:
+      - name: Checkout analysis code
+        uses: actions/checkout@v4
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Wait for genuine new20 inference and all 20 blind graders
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 135); do
+            pred=$(gh api "repos/${{ github.repository }}/actions/runs/$PRED_RUN" --jq '.conclusion // "running"')
+            grade=$(gh api "repos/${{ github.repository }}/actions/runs/$BLIND_RUN" --jq '.conclusion // "running"')
+            echo "pred=$pred blinded=$grade check=$attempt"
+            if [ "$pred" = failure ] || [ "$grade" = failure ] || [ "$pred" = cancelled ] || [ "$grade" = cancelled ]; then
+              echo "A source run failed, refuse to invent complete metrics."; exit 1
+            fi
+            if [ "$pred" = success ] && [ "$grade" = success ]; then exit 0; fi
+            sleep 20
+          done
+          echo "Timed out waiting for upstream evidence, no metrics claimed.";exit 1
+      - name: Download sealed A-C-E rankings
+        uses: actions/download-artifact@v4
+        with:
+          name: ax-new20-resumed-fresh-ace
+          run-id: 42385438919
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/rankings
+      - name: Download all blinded judgments without overwriting case IDs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ax-new20-grade-*
+          merge-multiple: true
+          run-id: 42384841980
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/blinded
+      - name: Assemble and score strict new20 Validation
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_aggregate.py "$RUNNER_TEMP/rankings/predictions_new20.json" "$RUNNER_TEMP/blinded" "$RUNNER_TEMP/new20-score"
+      - name: Preserve actual measured results in research branch
+        run: |
+          set -euo pipefail
+          mkdir -p docs/validation-new20-20261107/measured
+          cp "$RUNNER_TEMP/new20-score/assembly_status.json" docs/validation-new20-20261107/measured/assembly_status.json
+          if [ -f "$RUNNER_TEMP/new20-score/validated_metrics.json" ]; then
+            cp "$RUNNER_TEMP/new20-score/validated_metrics.json" docs/validation-new20-20261107/measured/validated_metrics.json
+            cp "$RUNNER_TEMP/new20-score/labels_new20.json" docs/validation-new20-20261107/measured/labels_new20.json
+            cp "$RUNNER_TEMP/rankings/predictions_new20.json" docs/validation-new20-20261107/measured/predictions_new20.json
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/validation-new20-20261107/measured
+          git commit -m "results: frozen 20-query Validation blind scoring and integrity status"
+          git push origin HEAD:research/new20-validation-20261107
+      - name: Upload original evaluation outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-new20-validation-measured
+          path: ${{ runner.temp }}/new20-score
+          if-no-files-found: warn
+          retention-days: 90
