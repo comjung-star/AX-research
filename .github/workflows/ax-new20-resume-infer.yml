@@ -33,6 +33,8 @@ jobs:
           run-id: 42382127226
           github-token: ${{ github.token }}
           path: docs/validation-new20-runtime
+      # Re-run checkpointed inference using registered SHA256 manifest instead
+      # of an obsolete historical git-show path. Saved API generation is reused.
       - name: Install Python 3.13
         uses: actions/setup-python@v5
         with:
