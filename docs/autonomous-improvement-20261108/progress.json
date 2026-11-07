@@ -14,13 +14,15 @@
     "Preregistered controlled BM25 tokenizer experiment 1 without executing or counting it as a completed trial.",
     "Trial 1 implementation committed on research branch: Kiwi tokenizer now retains SL/SN; two isolated regression tests added, but real corpus evaluation not executed because this run environment lacks kiwipiepy/rank_bm25 and full model/corpus checkout.",
     "Ran two isolated tokenizer regression assertions using locally reconstructed source/test logic (2/2 passed); canonical repository and corpus evaluation still pending.",
-    "Triaged all 12 remaining strategy-transfer hypotheses against stored Task/Implementation and explicit adaptation gaps, plus four zero-positive question boundaries; original sources and independent reviewer votes remain unverified; qrels unchanged."
+    "Triaged all 12 remaining strategy-transfer hypotheses against stored Task/Implementation and explicit adaptation gaps, plus four zero-positive question boundaries; original sources and independent reviewer votes remain unverified; qrels unchanged.",
+    "Prepared real Kiwi/rank_bm25 frozen 20x112 diagnostic runner with strict old baseline length/rank reproduction gate; added research-branch GitHub Actions push workflow. CI result not yet observed; no trial counted."
   ],
-  "current_step": "TRIAL1_FULL_CORPUS_EXECUTION_AND_INDEPENDENT_EVIDENCE_PENDING",
+  "current_step": "TRIAL1_CI_SUBMITTED_AWAITING_EXECUTION_ARTIFACT",
   "next_actions": [
-    "Use dependency-enabled environment or GitHub CI to run actual Kiwi tokenizer and full 20x112 frozen benchmark; preserve qrels and compare F1/nDCG with paired uncertainty before counting trial 1.",
-    "Verify remaining 12 original case URLs and seek independent provider reviewers, without treating the same model's triage as independent.",
-    "If runtime remains unavailable, retain 0/5 completed and report execution limitation, not a performance result."
+    "Check GitHub Actions run triggered by commit 22c1f061c1a56ed66d377aec311d8b86a4d9a8ec on research branch, download autonomous-trial1-bm25-diagnostic artifact, inspect baseline reproduction gate and full 20x112 metrics.",
+    "If old index length or ranks do not reproduce, inspect exact case text serialization/old tokenizer/version; do not count as a completed trial or silently substitute baseline.",
+    "If old baseline matches and development diagnostic completes, log paired per-query F1/nDCG and uncertainty, then count trial 1 only as a development trial; never call it independent Test or full multi-view success.",
+    "Continue independent original-source and model verification for 16 transfer labels and 4 zero-positive questions without using final Test."
   ],
   "trial_budget": {
     "max_trials": 5,
@@ -33,16 +35,17 @@
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "STORED_EVIDENCE_TRIAGE_12_OF_12_AND_ZERO_BOUNDARIES_4_OF_4",
+    "outcome": "CI_RUNNER_COMMITTED_EXECUTION_UNVERIFIED",
     "confirmed_performance_gain": false,
     "evidence_files": [
-      "docs/autonomous-improvement-20261108/05_remaining_transfer_evidence_triage.json"
+      "scripts/autonomous_trial1_bm25_eval.py",
+      ".github/workflows/autonomous-trial1-bm25.yml"
     ],
-    "original_sources_newly_verified": 0,
-    "independent_models_used": 0,
+    "latest_commit": "22c1f061c1a56ed66d377aec311d8b86a4d9a8ec",
     "trials_completed": 0,
+    "independent_models_used": 0,
     "paid_api_usd": 0
   },
-  "access_notes": "Local isolated pytest passes 2/2, but kiwipiepy and rank_bm25 absent and no full repository checkout/corpus. GitHub branch available. This does not count as full trial.",
+  "access_notes": "Local pip install unavailable due DNS; submitted real dependency-enabled GitHub Actions workflow on research branch, but no completed CI artifact or real 20x112 metric verified yet. Do not count trial 1 until artifact reviewed.",
   "file_changes": "Only this research branch; preserve original test/main."
 }
