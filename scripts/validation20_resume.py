@@ -70,11 +70,20 @@ def run(stage,model,out):
         import importlib.metadata, platform, subprocess
         from scripts import heldout_run as legacy_runner
         historical=read(PREREG)["environment"]
+        # The prior study ran on Windows; GitHub checkout converts CRLF text
+        # into LF. Accept only byte-identical text after verified newline
+        # normalization, never arbitrary drift.
+        def checked_path_digest(path, expected):
+            if not path.is_file():return False
+            data=path.read_bytes()
+            lf=data.replace(b"\r\n",b"\n")
+            candidates=[data,lf,lf.replace(b"\n",b"\r\n")]
+            return any(hashlib.sha256(v).hexdigest()==expected for v in candidates)
         protected={}
         for name, expected in historical["protected"].items():
             src=ROOT/name
-            if not src.is_file() or sha(src)!=expected:
-                raise RuntimeError("Original protected file differs from recorded SHA256: "+name)
+            if not checked_path_digest(src,expected):
+                raise RuntimeError("Original protected source differs from frozen content (even after CRLF normalization): "+name)
             protected[name]=expected
         for name,expected in historical["model"].items():
             if sha(model/name)!=expected:
@@ -88,7 +97,7 @@ def run(stage,model,out):
         # Recheck all inputs both before and after the actual multiview inference.
         def verified_freeze(model_path):
             for name,expected in protected.items():
-                if sha(ROOT/name)!=expected:raise RuntimeError("Protected drift during inference: "+name)
+                if not checked_path_digest(ROOT/name,expected):raise RuntimeError("Protected drift during inference: "+name)
             for name,expected in historical["model"].items():
                 if sha(Path(model_path)/name)!=expected:raise RuntimeError("BGE-M3 drift during inference: "+name)
             return {"base":"sha256_preregistration_manifest","protected":protected,
