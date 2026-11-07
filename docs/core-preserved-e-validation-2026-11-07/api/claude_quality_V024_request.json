@@ -1,0 +1,17 @@
+{
+  "body": {
+    "model": "claude-haiku-4-5-20251001",
+    "system": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"id\": \"V024\", \"original_business_problem\": \"직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.\", \"views\": [{\"id\": \"1\", \"title\": \"휴직 적용 조건 확인\", \"description\": \"직원의 질문에 맞춰 현재 게시된 사내 규정에서 휴직 신청의 적용 조건을 설명해야 하는 문제입니다.\"}, {\"id\": \"2\", \"title\": \"제출 서류 안내\", \"description\": \"휴직 신청에 필요한 제출 서류를 현재 게시된 사내 규정을 바탕으로 직원에게 설명해야 하는 문제입니다.\"}, {\"id\": \"3\", \"title\": \"규정으로 확정하기 어려운 문의 구분\", \"description\": \"게시된 규정만으로 답을 확정하기 어려운 문의를 인사 담당자에게 넘겨야 하는 문제입니다.\"}]}\nReturn JSON."
+      }
+    ],
+    "max_tokens": 1200,
+    "temperature": 0
+  },
+  "request_sha256": "ecb82781a5c27a4506cb49a92c653727ecd0ef8fb562ec1612e569f658b144b2",
+  "reserve_usd": "0.01221125",
+  "rank_or_old_scores_in_payload": false
+}

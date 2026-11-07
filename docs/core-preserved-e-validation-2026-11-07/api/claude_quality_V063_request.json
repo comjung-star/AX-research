@@ -1,0 +1,17 @@
+{
+  "body": {
+    "model": "claude-haiku-4-5-20251001",
+    "system": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"id\": \"V063\", \"original_business_problem\": \"식료품 매장의 발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인합니다. 매장과 품목의 일별 판매 기록을 바탕으로 앞으로의 수요량을 예측해 담당자가 발주 수량을 검토하도록 하고 싶습니다. 현재 재고 부족을 경보하는 작업과 구분하며 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\", \"views\": [{\"id\": \"BUSINESS\", \"title\": \"다음 주 발주 수량 검토 지원\", \"description\": \"식료품 매장의 발주 담당자가 품목별 다음 주 필요 수량을 정하도록, 수요량 예측 결과를 제공해 발주 수량을 검토하도록 돕습니다. 현재 재고 부족 경보와 구분하며, 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\"}, {\"id\": \"OPERATIONS\", \"title\": \"판매 기록 기반 예측과 담당자 검토\", \"description\": \"매장과 품목의 일별 판매 기록을 바탕으로 앞으로의 수요량을 예측하고, 담당자가 발주 수량을 검토합니다. 현재 재고 부족 경보 작업과 구분하며, 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\"}, {\"id\": \"TECHNICAL\", \"title\": \"일별 판매 기록으로 수요량 예측\", \"description\": \"입력은 매장과 품목의 일별 판매 기록이며, 이를 바탕으로 앞으로의 수요량을 예측해 예측 결과를 제공합니다. 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\"}]}\nReturn JSON."
+      }
+    ],
+    "max_tokens": 1200,
+    "temperature": 0
+  },
+  "request_sha256": "6a0b002df5e362d5ba8d19c87ad0d545d3a1e96d85b546c300b722a5e9c4698a",
+  "reserve_usd": "0.0129075",
+  "rank_or_old_scores_in_payload": false
+}

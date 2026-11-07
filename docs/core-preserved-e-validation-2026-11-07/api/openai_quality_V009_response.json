@@ -1,0 +1,98 @@
+{
+  "id": "resp_05f04dba3664d2bb016aeec1f036d087d0a15240f60baddd33",
+  "object": "response",
+  "created_at": 1794032112,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794032117,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_05f04dba3664d2bb016aeec1f10ec887d09d471b4c4d3d5dc8",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"id\": \"V009\",\n  \"checks\": [\n    {\n      \"field\": \"purpose\",\n      \"score\": 2,\n      \"reason\": \"영어 독자가 이해할 수 있는 번역문을 만들고 검토하려는 목적이 보존됩니다.\"\n    },\n    {\n      \"field\": \"action\",\n      \"score\": 2,\n      \"reason\": \"번역, 누락 여부 확인, 원문과 비교 검토가 모두 포함됩니다.\"\n    },\n    {\n      \"field\": \"object\",\n      \"score\": 2,\n      \"reason\": \"한국어 기업 소식 기사와 영어 번역문이 포함됩니다.\"\n    },\n    {\n      \"field\": \"input\",\n      \"score\": 2,\n      \"reason\": \"한국어 기사 내용이 입력으로 보존됩니다.\"\n    },\n    {\n      \"field\": \"output\",\n      \"score\": 2,\n      \"reason\": \"영어 번역문이 결과물로 보존됩니다.\"\n    },\n    {\n      \"field\": \"constraints\",\n      \"score\": 0,\n      \"reason\": \"원문에 없는 인용이나 성과를 추가하지 않는 제약이 모든 뷰에서 빠졌습니다.\"\n    },\n    {\n      \"field\": \"no_added_functions\",\n      \"score\": 2,\n      \"reason\": \"뷰에 원문에 없는 기능을 추가했다는 근거가 없습니다.\"\n    },\n    {\n      \"field\": \"roles\",\n      \"score\": 1,\n      \"reason\": \"편집자의 검토 역할은 보존되지만, 게시 결정이 편집자에게 있다는 내용은 없습니다.\"\n    }\n  ],\n  \"issues\": [\n    {\n      \"type\": \"OMISSION\",\n      \"source_quote\": \"원문에 없는 인용이나 성과를 추가하지 않으며\",\n      \"view_quote\": \"\",\n      \"reason\": \"번역에서 원문에 없는 내용을 추가하지 않는 제약이 세 뷰 모두에 없습니다.\"\n    },\n    {\n      \"type\": \"OMISSION\",\n      \"source_quote\": \"게시 결정은 편집자가 합니다.\",\n      \"view_quote\": \"\",\n      \"reason\": \"게시 결정 권한이 편집자에게 있다는 내용이 세 뷰 모두에 없습니다.\"\n    }\n  ],\n  \"permission_interpretation\": \"편집자가 번역문을 검토하고 게시를 결정한다는 원문은 AI가 게시하거나 승인한다는 뜻이 아닙니다.\"\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 642,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 526,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1168
+  },
+  "user": null,
+  "metadata": {}
+}

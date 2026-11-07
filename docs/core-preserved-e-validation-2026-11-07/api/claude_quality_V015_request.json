@@ -1,0 +1,17 @@
+{
+  "body": {
+    "model": "claude-haiku-4-5-20251001",
+    "system": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"id\": \"V015\", \"original_business_problem\": \"운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.\", \"views\": [{\"id\": \"BUSINESS\", \"title\": \"화물 청구 금액과 합의 요율 대조\", \"description\": \"운송비 검토 담당자가 화물 청구서 항목별 금액을 합의된 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록에 남기고자 합니다. 담당자가 확인한 뒤 처리하며, 청구서 자동 수정과 대금 지급은 요청 범위에서 제외됩니다.\"}, {\"id\": \"OPERATIONS\", \"title\": \"담당자 검토 후 처리\", \"description\": \"비교 결과와 근거를 검토 목록에 남긴 뒤 담당자가 확인하고 처리합니다. 청구서 자동 수정이나 대금 지급은 하지 않습니다.\"}, {\"id\": \"TECHNICAL\", \"title\": \"청구 항목 금액과 요율 비교\", \"description\": \"화물 청구서의 항목별 금액을 합의된 요율과 비교하고, 과다 청구가 의심되는 부분과 비교 근거를 검토 목록에 남깁니다. 청구서 수정 및 대금 지급은 수행하지 않습니다.\"}]}\nReturn JSON."
+      }
+    ],
+    "max_tokens": 1200,
+    "temperature": 0
+  },
+  "request_sha256": "455c0c439c1051aa4cac1b6da7a08f5b749bbcd8dee6783b0d46f98a8ab16f5a",
+  "reserve_usd": "0.012635",
+  "rank_or_old_scores_in_payload": false
+}

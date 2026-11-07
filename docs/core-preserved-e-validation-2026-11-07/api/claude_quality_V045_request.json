@@ -1,0 +1,17 @@
+{
+  "body": {
+    "model": "claude-haiku-4-5-20251001",
+    "system": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"id\": \"V045\", \"original_business_problem\": \"해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.\", \"views\": [{\"id\": \"p1\", \"title\": \"고유명사 보존 확인\", \"description\": \"한국어 기업 소식을 영어로 옮기는 과정에서 고유명사가 누락되지 않았는지 원문과 번역문을 비교해 검토하는 문제입니다.\"}, {\"id\": \"p2\", \"title\": \"수치 정보 보존 확인\", \"description\": \"기사 번역문에 원문의 수치 정보가 빠지지 않았는지 확인하고 편집자가 검토할 수 있도록 하는 문제입니다.\"}, {\"id\": \"p3\", \"title\": \"영어 독자를 위한 내용 이해\", \"description\": \"한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 전달하고, 편집자가 원문과 비교해 검토하는 문제입니다.\"}]}\nReturn JSON."
+      }
+    ],
+    "max_tokens": 1200,
+    "temperature": 0
+  },
+  "request_sha256": "2f2fbc0736967fd861c88fc760fa0f57f5e31f185c1f1febf0445796fc635bb3",
+  "reserve_usd": "0.0123375",
+  "rank_or_old_scores_in_payload": false
+}

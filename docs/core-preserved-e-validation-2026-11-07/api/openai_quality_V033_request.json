@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+    "input": "{\"id\": \"V033\", \"original_business_problem\": \"서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.\", \"views\": [{\"id\": \"1\", \"title\": \"주제별 의견 분포\", \"description\": \"이번 주 고객 의견에서 반복해서 나타나는 요구와 불편 주제가 각각 어느 정도 언급되었는지 파악하는 관점입니다.\"}, {\"id\": \"2\", \"title\": \"요구와 불편의 경향 변화\", \"description\": \"이번 주 의견에 드러난 요구와 불편의 주제별 경향을 살펴보는 관점입니다.\"}, {\"id\": \"3\", \"title\": \"경향을 뒷받침하는 의견\", \"description\": \"각 주제별 경향이 실제 고객 의견에서 어떻게 드러나는지, 이를 뒷받침하는 의견과 함께 정리하는 관점입니다.\"}]}\nReturn JSON.",
+    "max_output_tokens": 1200,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "d9742e3027dc0e3f6d9650da6138cd48ccaf9003259a0719dc5488a3459fa0c5",
+  "reserve_usd": "0.003023",
+  "rank_or_old_scores_in_payload": false
+}

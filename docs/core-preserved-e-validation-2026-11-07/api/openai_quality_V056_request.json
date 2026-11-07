@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+    "input": "{\"id\": \"V056\", \"original_business_problem\": \"주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.\", \"views\": [{\"id\": \"p1\", \"title\": \"고객 요청 내용의 견적 반영\", \"description\": \"고객이 보낸 부품 사양과 수량이 견적서 초안에 반영되는 문제입니다.\"}, {\"id\": \"p2\", \"title\": \"견적 초안 검토 부담\", \"description\": \"담당자가 작성된 초안의 가격과 납기를 검토해야 하는 문제입니다.\"}, {\"id\": \"p3\", \"title\": \"최종 견적 및 계약 권한\", \"description\": \"최종 견적 전송과 계약 승인 권한을 사람에게 두어야 하는 문제입니다.\"}]}\nReturn JSON.",
+    "max_output_tokens": 1200,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "4aaed7fe9ce8e996a11a21afdf4b9348366843766e4efca0c59f6eb42fa3ab82",
+  "reserve_usd": "0.003005625",
+  "rank_or_old_scores_in_payload": false
+}

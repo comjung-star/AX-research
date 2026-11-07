@@ -1,0 +1,98 @@
+{
+  "id": "resp_00bcb3c07aab9ded016aeec487913087d0b7c0184f2ca48068",
+  "object": "response",
+  "created_at": 1794032775,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794032779,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_00bcb3c07aab9ded016aeec4884df487d0aa444b086550420e",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"id\": \"V056\",\n  \"checks\": [\n    {\n      \"field\": \"purpose\",\n      \"score\": 2,\n      \"reason\": \"견적 작성 업무를 지원하려는 목적이 유지됩니다.\"\n    },\n    {\n      \"field\": \"action\",\n      \"score\": 1,\n      \"reason\": \"초안 반영과 검토는 언급되지만, 초안을 생성하는 행동은 명시되지 않습니다.\"\n    },\n    {\n      \"field\": \"object\",\n      \"score\": 2,\n      \"reason\": \"견적서 초안, 가격·납기, 최종 견적 및 계약이 언급됩니다.\"\n    },\n    {\n      \"field\": \"input\",\n      \"score\": 2,\n      \"reason\": \"고객이 보낸 부품 사양과 수량이 보존됩니다.\"\n    },\n    {\n      \"field\": \"output\",\n      \"score\": 1,\n      \"reason\": \"견적서 초안은 언급되나, 담당자가 가격과 납기를 검토하도록 초안을 만든다는 결과가 명시되지 않습니다.\"\n    },\n    {\n      \"field\": \"constraints\",\n      \"score\": 2,\n      \"reason\": \"최종 견적 전송과 계약 승인 권한을 사람에게 둔다는 제약이 보존됩니다.\"\n    },\n    {\n      \"field\": \"no_added_functions\",\n      \"score\": 2,\n      \"reason\": \"지원되지 않는 기능의 추가가 없습니다.\"\n    },\n    {\n      \"field\": \"roles\",\n      \"score\": 2,\n      \"reason\": \"담당자의 검토와 사람의 최종 권한이 구분되어 있습니다.\"\n    }\n  ],\n  \"issues\": [\n    {\n      \"type\": \"OMISSION\",\n      \"source_quote\": \"견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다.\",\n      \"view_quote\": \"\",\n      \"reason\": \"세 뷰 모두 초안 생성이 필요하다는 요청을 명시하지 않습니다.\"\n    }\n  ],\n  \"permission_interpretation\": \"최종 견적 전송과 계약 승인은 사람의 권한으로 남깁니다. 사람에게 항상 두 행동을 모두 수행한다는 뜻은 아닙니다.\"\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 639,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 488,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1127
+  },
+  "user": null,
+  "metadata": {}
+}

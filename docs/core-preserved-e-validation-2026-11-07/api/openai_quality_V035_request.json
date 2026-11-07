@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nEvaluate the original problem against the UNION of the three supplied views.\nScore purpose, action, object, input, output, constraints, no_added_functions,\nroles, each 0=changed/missing,1=partial,2=preserved, null=uncertain.\nFor no_added_functions,2=no unsupported functional addition,1=uncertain minor\naddition,0=clear unsupported function. This does not require copying words.\nIf one view contains a fact faithfully, it is preserved in the UNION. Never\ndeduct preservation because that fact is absent from another individual view.\nJudge BUSINESS/OPERATIONS/TECHNICAL role differentiation only in roles; dynamic\nroles may differ by design. Preserve negation, conditional scope and permissions.\nReserving sending/approval for a human does NOT assert the AI sends/approves,\nand does NOT assert the human necessarily performs both actions every time.\nDistinguish lookup/update, detection/prediction, recommendation/execution.\nDo not infer unmentioned technology, outputs, benefits or actually performed\nwork from an unmet need. Exact source quotation and semantic faithfulness are\ndifferent checks. Report issues only when you can support them by the supplied\nsource and views. An OMISSION must be absent from ALL views. A CONTRADICTION or\nADDITION must quote a real candidate phrase; do not confuse paraphrase with a\nnew function. No reference answer, condition name, rank or metric is provided.\nReturn JSON {id,checks:[{field,score,reason}],issues:[{type,source_quote,\nview_quote,reason}],permission_interpretation}. All eight fields exactly once.\ntype is OMISSION, CONTRADICTION or ADDITION. For omission view_quote is empty;\nsource_quote is an exact original substring. For addition view_quote is an exact\nview substring, source_quote may be empty. Korean concise reasons.\n",
+    "input": "{\"id\": \"V035\", \"original_business_problem\": \"식료품 매장의 발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인합니다. 매장과 품목의 일별 판매 기록을 바탕으로 앞으로의 수요량을 예측해 담당자가 발주 수량을 검토하도록 하고 싶습니다. 현재 재고 부족을 경보하는 작업과 구분하며 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\", \"views\": [{\"id\": \"p1\", \"title\": \"품목별 다음 주 수요 예측\", \"description\": \"발주 담당자가 품목별로 다음 주에 필요한 수량을 판단할 수 있도록 앞으로의 수요량을 예측하는 문제입니다.\"}, {\"id\": \"p2\", \"title\": \"매장·품목 단위 판매 기록 활용\", \"description\": \"매장과 품목별 일일 판매 기록을 바탕으로 수요를 예측하는 문제입니다.\"}, {\"id\": \"p3\", \"title\": \"예측 정보와 발주 검토의 구분\", \"description\": \"예측 결과를 담당자가 발주 수량을 검토하는 데 활용하되, 재고 부족 경보나 자동 발주 및 상품 가격 변경과는 구분하는 문제입니다.\"}]}\nReturn JSON.",
+    "max_output_tokens": 1200,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "e59fca4bbd107c6adfc1e4c360fbaad1b9cb14325c62275648c23194a42ff471",
+  "reserve_usd": "0.003034875",
+  "rank_or_old_scores_in_payload": false
+}

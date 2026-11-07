@@ -1,4 +1,3 @@
-import copy
 from decimal import Decimal
 
 import pytest
@@ -96,3 +95,30 @@ def test_stage1_missing_labels_preserve_all_prior_867_decisions():
             assert row['grade']==original['grade'] and row['rationale']==original['rationale']
         elif row['status']!='JUDGED':
             assert row['grade'] is None
+
+
+def test_uncertain_reserved_request_is_never_sent_again(tmp_path,monkeypatch):
+    monkeypatch.setattr(run,'OUT',tmp_path)
+    (tmp_path/'api').mkdir()
+    body=run.request_body('openai','instructions',{'item':'source'},900)
+    run.write(tmp_path/'api/openai_fixture_receipt.json',{
+        'state':'UNCERTAIN_OR_HTTP_FAILURE','request_sha256':run.digest(body)})
+    def no_network(*args,**kwargs):
+        raise AssertionError('A saved uncertain request must not use the network')
+    monkeypatch.setattr(run.urllib.request,'build_opener',no_network)
+    assert run.call('openai','fixture','instructions',{'item':'source'},900) is None
+
+
+def test_token_limit_recovery_does_not_retry_completed_or_uncertain_calls(tmp_path,monkeypatch):
+    monkeypatch.setattr(run,'OUT',tmp_path)
+    (tmp_path/'api').mkdir()
+    run.write(tmp_path/'technical_recovery_policy.json',{})
+    run.write(tmp_path/'api/claude_quality_V001_receipt.json',{
+        'id':'claude_quality_V001','provider':'claude','state':'RECEIVED'})
+    run.write(tmp_path/'api/claude_quality_V001_response.json',{'stop_reason':'end_turn'})
+    run.write(tmp_path/'api/claude_quality_V002_receipt.json',{
+        'id':'claude_quality_V002','provider':'claude','state':'UNCERTAIN_OR_HTTP_FAILURE'})
+    def no_repeat(*args,**kwargs):
+        raise AssertionError('Neither completed nor uncertain responses qualify')
+    monkeypatch.setattr(run,'call',no_repeat)
+    run.repair('quality')
