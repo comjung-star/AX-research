@@ -57,7 +57,7 @@ def main():
                 if x.form.strip() and (not x.tag.startswith("S") if old else x.tag not in PUNCT)]
 
     def case_text(c):
-        return "[PROBLEM] " + c["problem"] + "\\n[TASK] " + c["task"] + "\\n[CONTEXT] " + c["context"]
+        return "[PROBLEM] " + c["problem"] + "\n[TASK] " + c["task"] + "\n[CONTEXT] " + c["context"]
 
     corpus_old = [tokens(case_text(cases[cid]), True) for cid in ids]
     old_lengths = {cid: len(v) for cid, v in zip(ids, corpus_old)}
