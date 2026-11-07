@@ -1,0 +1,68 @@
+name: AX stage2 verification and quality scoring
+on:
+  push:
+    branches: [research/stage1-stage2-integrity-20261108]
+    paths:
+      - .github/workflows/ax-stage2-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  quality-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Verify all 40 recovery jobs finished successfully
+        run: |
+          set -euo pipefail
+          for n in $(seq 1 140); do
+            state=$(gh api "repos/${{ github.repository }}/actions/runs/42390309118" --jq '.status')
+            runs=$(gh api "repos/${{ github.repository }}/actions/runs?branch=research%2Fstage1-stage2-integrity-20261108&per_page=10" --jq '.workflow_runs[] | select(.name=="AX stage2 recover original blind review receipts") | .id' | head -1)
+            if [ "$state" = completed ] && [ -n "$runs" ]; then
+              recovery=$(gh api "repos/${{ github.repository }}/actions/runs/$runs" --jq '.conclusion // "running"')
+              echo "Original=$state RecoveryRun=$runs $recovery"
+              if [ "$recovery" = success ]; then echo "$runs" > "$RUNNER_TEMP/recover_run_id"; exit 0; fi
+              if [ "$recovery" = failure ] || [ "$recovery" = cancelled ]; then
+                echo "Recovery not complete; refuse to fabricate review votes"; exit 1
+              fi
+            fi
+            sleep 20
+          done
+          exit 1
+      - name: Download all source-reviewed judgments by exact recovery run ID
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/rounds"
+          id=$(cat "$RUNNER_TEMP/recover_run_id")
+          gh run download "$id" -D "$RUNNER_TEMP/rounds" --pattern 'stage2-recovered-*'
+      - name: Verify exact task quotes, original labels and all 6720 blinded votes
+        run: |
+          PYTHONPATH=src:. python scripts/stage2_quality_audit.py "$RUNNER_TEMP/rounds" "$RUNNER_TEMP/stage2"
+      - name: Commit new integrity audit without modifying the 112 cases or original labels
+        run: |
+          mkdir -p docs/stage12-integrity-20261108/stage2
+          cp "$RUNNER_TEMP/stage2/"*.json docs/stage12-integrity-20261108/stage2/
+          cp "$RUNNER_TEMP/stage2/README.md" docs/stage12-integrity-20261108/stage2/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/stage12-integrity-20261108/stage2
+          git commit -m "audit: triple independent blind relevance checks, disagreements and candidate consensus"
+          git pull --rebase origin research/stage1-stage2-integrity-20261108
+          git push origin HEAD:research/stage1-stage2-integrity-20261108
+      - name: Store full audit including provisional votes and unresolved source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage2-qrels-quality-audit
+          path: ${{ runner.temp }}/stage2
+          if-no-files-found: warn
