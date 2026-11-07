@@ -148,3 +148,52 @@ def test_benchmark_abstain_not_counted_as_a_correct_unrelated_grade():
 
 def test_provider_caps_are_disjoint_and_within_total():
     assert sum(run.CAPS.values())==2
+
+
+@pytest.mark.parametrize('originally_valid',[True,False])
+@pytest.mark.parametrize('validator_failure',[None,'SEMANTIC_PROBLEM_AS_PERFORMED'])
+def test_offline_recovery_never_rerolls_or_chooses_a_favorable_grade(tmp_path,monkeypatch,originally_valid,validator_failure):
+    from scripts import evaluator_abc_recover as recovery
+    from ax_research.heldout import write,read
+    monkeypatch.setattr(run,'OUT',tmp_path);monkeypatch.setattr(run,'ROOT',tmp_path)
+    monkeypatch.setattr(run,'configure',lambda _:None)
+    p=tmp_path/'openai';(p/'results').mkdir(parents=True);(p/'api').mkdir()
+    write(tmp_path/'benchmark.json',{'records':[{'id':'x'}]})
+    write(tmp_path/'pending_items.json',{'records':[]})
+    write(tmp_path/'method_selection.json',{'method':'B'})
+    payload={'id':'x'};name='judge_B_x'
+    old={'data':{'grade':0},'valid':originally_valid,'failure':None if originally_valid else 'INVALID_JSON',
+        'prompt_payload_sha256':run.transport.digest({'prompt':'p','payload':payload}),
+        'attempts':[{'id':'openai_'+name,'failure':'INVALID_JSON'},
+                    {'id':'openai_'+name+'_technical1','failure':'INVALID_JSON'}]}
+    write(p/'results'/(name+'.json'),old)
+    for suffix,grade in [('',0),('_technical1',3)]:
+        stem='openai_'+name+suffix
+        write(p/'api'/(stem+'_receipt.json'),{'state':'RECEIVED'})
+        write(p/'api'/(stem+'_response.json'),{'status':'completed','output':[{'content':[{'type':'output_text',
+            'text':'```json\n'+json.dumps({'grade':grade})+'\n```\n설명'}]}]})
+    def forbidden(*_):raise AssertionError('No new API calls allowed')
+    monkeypatch.setattr(run,'request',forbidden)
+    monkeypatch.setattr(run,'evaluate_item',lambda *_:run.request(name,'p',payload,100,lambda _:validator_failure))
+    recovery.recover('openai')
+    rows=read(p/'recovery-v2'/'benchmark_recovered_results.json')['records']
+    assert all(r['data']['grade']==0 for r in rows)
+    if not originally_valid and validator_failure:
+        assert all(r['failure']==validator_failure and not r['valid'] for r in rows)
+    assert read(p/'results'/(name+'.json'))==old
+
+
+def test_offline_replay_cannot_make_a_new_dependent_API_call(tmp_path,monkeypatch):
+    from scripts import evaluator_abc_recover as recovery
+    from ax_research.heldout import write,read
+    monkeypatch.setattr(run,'OUT',tmp_path);monkeypatch.setattr(run,'configure',lambda _:None)
+    write(tmp_path/'benchmark.json',{'records':[{'id':'x'}]})
+    write(tmp_path/'pending_items.json',{'records':[]})
+    write(tmp_path/'method_selection.json',{'method':'B'})
+    def forbidden(*_):raise AssertionError('New API forbidden')
+    monkeypatch.setattr(run,'request',forbidden)
+    monkeypatch.setattr(run,'evaluate_item',lambda *_:run.request('judge_B_x','p',
+        {'id':'x','case_core':{'execution':'CONFIRMED','action':'요약'}},100,lambda _:None))
+    recovery.recover('openai')
+    rows=read(tmp_path/'openai/recovery-v2/benchmark_recovered_results.json')['records']
+    assert all(r['failure']=='DEPENDENT_JUDGE_NOT_PREVIOUSLY_EXECUTED' for r in rows)

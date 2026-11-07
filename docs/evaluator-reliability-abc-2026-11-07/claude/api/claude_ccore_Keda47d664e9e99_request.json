@@ -1,0 +1,17 @@
+{
+  "body": {
+    "model": "claude-haiku-4-5-20251001",
+    "system": "\nRead ONLY the source case, without any target question. Extract actually performed\naction,object,output,operations and time_type (CURRENT,FUTURE,NONE,UNKNOWN).\nexecution is CONFIRMED,PROPOSAL_STUDY or UNSPECIFIED. Use PROPOSAL_STUDY when only\nfeasibility/plans are described. Task/Context must support operational work.\nDo not infer an output format, policy, escalation, authority, benefit or function\nfrom Problem or general world knowledge. Unknown action/object/output is null.\nOnly T/C anchor IDs can support performed work. P anchors are needs, never proof.\nUse the provided anchor IDs instead of writing quotations. Empty evidence for\nunknown fields. Return {id,execution,action,object,output,operations:[...],\ntime_type,evidence:{action:[anchor_ids],object:[anchor_ids],output:[anchor_ids],\nexecution:[anchor_ids]},unknowns:[...]}. Concise Korean JSON, no target adaptation.\n",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"id\": \"Keda47d664e9e99\", \"case\": {\"Problem\": \"기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다.\", \"Task\": \"Handle banking customer questions and account inquiries\", \"Context\": \"Marina 24/7 multilingual customer banking chatbot.\"}, \"anchors\": {\"T1\": {\"field\": \"Task\", \"start\": 0, \"end\": 55, \"quote\": \"Handle banking customer questions and account inquiries\"}, \"C1\": {\"field\": \"Context\", \"start\": 0, \"end\": 50, \"quote\": \"Marina 24/7 multilingual customer banking chatbot.\"}, \"P1\": {\"field\": \"Problem\", \"start\": 0, \"end\": 87, \"quote\": \"기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다.\"}}}\nReturn JSON."
+      }
+    ],
+    "max_tokens": 900,
+    "temperature": 0
+  },
+  "request_sha256": "51627af1fb66c9b6dd0a3926c332aa67aaed396d4e37741023822fc4376a091a",
+  "reserve_usd": "0.00938",
+  "rank_or_old_scores_in_payload": false
+}

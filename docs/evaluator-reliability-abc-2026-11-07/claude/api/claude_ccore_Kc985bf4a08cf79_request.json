@@ -1,0 +1,17 @@
+{
+  "body": {
+    "model": "claude-haiku-4-5-20251001",
+    "system": "\nRead ONLY the source case, without any target question. Extract actually performed\naction,object,output,operations and time_type (CURRENT,FUTURE,NONE,UNKNOWN).\nexecution is CONFIRMED,PROPOSAL_STUDY or UNSPECIFIED. Use PROPOSAL_STUDY when only\nfeasibility/plans are described. Task/Context must support operational work.\nDo not infer an output format, policy, escalation, authority, benefit or function\nfrom Problem or general world knowledge. Unknown action/object/output is null.\nOnly T/C anchor IDs can support performed work. P anchors are needs, never proof.\nUse the provided anchor IDs instead of writing quotations. Empty evidence for\nunknown fields. Return {id,execution,action,object,output,operations:[...],\ntime_type,evidence:{action:[anchor_ids],object:[anchor_ids],output:[anchor_ids],\nexecution:[anchor_ids]},unknowns:[...]}. Concise Korean JSON, no target adaptation.\n",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"id\": \"Kc985bf4a08cf79\", \"case\": {\"Problem\": \"Customers need advice and product recommendations expressed in terms of their project rather than a search keyword.\", \"Task\": \"Give online home-improvement project advice\", \"Context\": \"Magic Apron on Home Depot digital platforms.\"}, \"anchors\": {\"T1\": {\"field\": \"Task\", \"start\": 0, \"end\": 43, \"quote\": \"Give online home-improvement project advice\"}, \"C1\": {\"field\": \"Context\", \"start\": 0, \"end\": 44, \"quote\": \"Magic Apron on Home Depot digital platforms.\"}, \"P1\": {\"field\": \"Problem\", \"start\": 0, \"end\": 115, \"quote\": \"Customers need advice and product recommendations expressed in terms of their project rather than a search keyword.\"}}}\nReturn JSON."
+      }
+    ],
+    "max_tokens": 900,
+    "temperature": 0
+  },
+  "request_sha256": "f263e99b6e6a7b38c53b733659dc23908401f1e21f2c5b34a10047fa1eb6dfa5",
+  "reserve_usd": "0.00909875",
+  "rank_or_old_scores_in_payload": false
+}

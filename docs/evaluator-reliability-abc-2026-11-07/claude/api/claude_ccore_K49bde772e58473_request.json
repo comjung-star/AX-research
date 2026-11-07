@@ -1,0 +1,17 @@
+{
+  "body": {
+    "model": "claude-haiku-4-5-20251001",
+    "system": "\nRead ONLY the source case, without any target question. Extract actually performed\naction,object,output,operations and time_type (CURRENT,FUTURE,NONE,UNKNOWN).\nexecution is CONFIRMED,PROPOSAL_STUDY or UNSPECIFIED. Use PROPOSAL_STUDY when only\nfeasibility/plans are described. Task/Context must support operational work.\nDo not infer an output format, policy, escalation, authority, benefit or function\nfrom Problem or general world knowledge. Unknown action/object/output is null.\nOnly T/C anchor IDs can support performed work. P anchors are needs, never proof.\nUse the provided anchor IDs instead of writing quotations. Empty evidence for\nunknown fields. Return {id,execution,action,object,output,operations:[...],\ntime_type,evidence:{action:[anchor_ids],object:[anchor_ids],output:[anchor_ids],\nexecution:[anchor_ids]},unknowns:[...]}. Concise Korean JSON, no target adaptation.\n",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"id\": \"K49bde772e58473\", \"case\": {\"Problem\": \"길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨\", \"Task\": \"고객 이메일 요약\", \"Context\": \"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\"}, \"anchors\": {\"T1\": {\"field\": \"Task\", \"start\": 0, \"end\": 9, \"quote\": \"고객 이메일 요약\"}, \"C1\": {\"field\": \"Context\", \"start\": 0, \"end\": 27, \"quote\": \"에너지기업 고객 커뮤니케이션 XRM의 장문 이메일\"}, \"P1\": {\"field\": \"Problem\", \"start\": 0, \"end\": 42, \"quote\": \"길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨\"}}}\nReturn JSON."
+      }
+    ],
+    "max_tokens": 900,
+    "temperature": 0
+  },
+  "request_sha256": "d234b05bd26f805a680ad191aa7f8edcc4d4a5d1a1efc59e1381a4e3370f36a9",
+  "reserve_usd": "0.00907625",
+  "rank_or_old_scores_in_payload": false
+}

@@ -1,0 +1,30 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "id": "msg_011CgoXwEc5K7Js3TadusUs2",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "text",
+      "text": "```json\n{\n  \"id\": \"R047\",\n  \"grade\": 1,\n  \"status\": \"JUDGED\",\n  \"reason\": \"쿼리는 번역 및 편집 검토(미래 제안), 케이스는 주문 가격 검증(미래 제안 단계)입니다. 둘 다 검증 준비 작업이지만 도메인, 객체, 출력이 완전히 다릅니다. 부분적 함수만 해당.\",\n  \"evidence_ids\": [\"T1\", \"C1\", \"P1\"],\n  \"new_core_functions\": []\n}\n```\n\n**판단 근거:**\n- **Action 비교**: translate_and_review vs Validate → 검증 개념만 공통, 실제 수행 작업 상이\n- **Object 비교**: 뉴스 기사 vs 주문 가격 → 완전히 다른 도메인의 객체\n- **Output 비교**: 영문 번역본 vs null(미정) → 출력 형태 불일치\n- **Execution**: 둘 다 PROPOSAL_STUDY/FUTURE → 실제 구현 없음(ABSTAIN 고려 대상)\n- **Grade 1 사유**: 입력 수집·준비 단계의 부분적 검증 기능만 존재, 핵심 작업 전이 불충분"
+    }
+  ],
+  "container": null,
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "stop_details": null,
+  "usage": {
+    "input_tokens": 1134,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 392,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "speed": "standard"
+  },
+  "diagnostics": null
+}

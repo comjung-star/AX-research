@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+    "input": "{\"id\": \"Qd16ef8c6d9d3d1\", \"question\": \"식료품 매장의 발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인합니다. 매장과 품목의 일별 판매 기록을 바탕으로 앞으로의 수요량을 예측해 담당자가 발주 수량을 검토하도록 하고 싶습니다. 현재 재고 부족을 경보하는 작업과 구분하며 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\"}\nReturn JSON.",
+    "max_output_tokens": 700,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "ae56e5e62891f31f93151a9c29c85e0436aee5afa216829ed2a3b75c3212d13a",
+  "reserve_usd": "0.00253575",
+  "rank_or_old_scores_in_payload": false
+}

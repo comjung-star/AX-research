@@ -1,0 +1,98 @@
+{
+  "id": "resp_0c79dab123c9a685016aef1336d48087d0835e964ebfcbbd1b",
+  "object": "response",
+  "created_at": 1794052918,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794052921,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+  "max_output_tokens": 700,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0c79dab123c9a685016aef1337a82887d0b88b7d4cddb2e818",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"id\":\"Qb147d8888484c4\",\"action\":\"대조하고 검토 목록으로 남기기\",\"object\":\"화물 청구서 항목별 금액과 합의된 요율\",\"output\":\"과다 청구 의심 항목과 비교 근거가 담긴 검토 목록\",\"required_operations\":[\"청구 항목별 금액을 합의된 요율과 비교\",\"과다 청구 의심 부분 식별\",\"비교 근거 기록\"],\"time_type\":\"CURRENT\",\"constraints\":[\"청구서를 자동으로 수정하지 않음\",\"대금을 지급하지 않음\",\"담당자가 확인한 뒤 처리\"]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 222,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 142,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 364
+  },
+  "user": null,
+  "metadata": {}
+}

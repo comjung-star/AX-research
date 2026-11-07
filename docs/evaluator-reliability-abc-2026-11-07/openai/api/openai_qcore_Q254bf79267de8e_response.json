@@ -1,0 +1,98 @@
+{
+  "id": "resp_08e90c2cd49a723c016aef12845ad487d0a68b7cf07654e0a4",
+  "object": "response",
+  "created_at": 1794052740,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794052742,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+  "max_output_tokens": 700,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_08e90c2cd49a723c016aef1285359887d0bacd8a7f1a78bd55",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"id\":\"Q254bf79267de8e\",\"action\":\"설명하고 전달\",\"object\":\"휴직 신청의 적용 조건과 제출 서류에 관한 문의\",\"output\":\"현재 게시된 사내 규정에 따른 조건과 서류 안내 및 규정으로 확정하기 어려운 문의의 인사 담당자 전달\",\"required_operations\":[\"사내 규정 확인\",\"문의에 맞는 조건 및 제출 서류 설명\",\"규정으로 답을 확정하기 어려운 문의 식별\",\"인사 담당자에게 전달\"],\"time_type\":\"CURRENT\",\"constraints\":[\"휴직 신청의 승인 제외\",\"인사시스템 정보 변경 제외\"]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 217,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 140,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 357
+  },
+  "user": null,
+  "metadata": {}
+}

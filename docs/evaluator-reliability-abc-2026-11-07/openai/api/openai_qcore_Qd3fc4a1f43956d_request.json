@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+    "input": "{\"id\": \"Qd3fc4a1f43956d\", \"question\": \"해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.\"}\nReturn JSON.",
+    "max_output_tokens": 700,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "06a0c4ca45dc7bd08dab18b93ea99bfc94622f55ca13c2d2da230d9bbe12536e",
+  "reserve_usd": "0.002532125",
+  "rank_or_old_scores_in_payload": false
+}

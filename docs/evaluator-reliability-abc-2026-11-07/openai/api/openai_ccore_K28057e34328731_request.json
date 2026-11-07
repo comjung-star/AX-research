@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the source case, without any target question. Extract actually performed\naction,object,output,operations and time_type (CURRENT,FUTURE,NONE,UNKNOWN).\nexecution is CONFIRMED,PROPOSAL_STUDY or UNSPECIFIED. Use PROPOSAL_STUDY when only\nfeasibility/plans are described. Task/Context must support operational work.\nDo not infer an output format, policy, escalation, authority, benefit or function\nfrom Problem or general world knowledge. Unknown action/object/output is null.\nOnly T/C anchor IDs can support performed work. P anchors are needs, never proof.\nUse the provided anchor IDs instead of writing quotations. Empty evidence for\nunknown fields. Return {id,execution,action,object,output,operations:[...],\ntime_type,evidence:{action:[anchor_ids],object:[anchor_ids],output:[anchor_ids],\nexecution:[anchor_ids]},unknowns:[...]}. Concise Korean JSON, no target adaptation.\n",
+    "input": "{\"id\": \"K28057e34328731\", \"case\": {\"Problem\": \"상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함\", \"Task\": \"고객상담 대화록 요약\", \"Context\": \"영국 디지털은행의 고객지원팀 상담 이력관리\"}, \"anchors\": {\"T1\": {\"field\": \"Task\", \"start\": 0, \"end\": 11, \"quote\": \"고객상담 대화록 요약\"}, \"C1\": {\"field\": \"Context\", \"start\": 0, \"end\": 23, \"quote\": \"영국 디지털은행의 고객지원팀 상담 이력관리\"}, \"P1\": {\"field\": \"Problem\", \"start\": 0, \"end\": 36, \"quote\": \"상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함\"}}}\nReturn JSON.",
+    "max_output_tokens": 900,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "245afd72489283f28192538d97be34e17b6eff9d7ce8f9d0ebb129bb2a8f1f4f",
+  "reserve_usd": "0.00270425",
+  "rank_or_old_scores_in_payload": false
+}

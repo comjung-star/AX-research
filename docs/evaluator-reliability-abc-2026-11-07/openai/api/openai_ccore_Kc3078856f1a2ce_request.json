@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the source case, without any target question. Extract actually performed\naction,object,output,operations and time_type (CURRENT,FUTURE,NONE,UNKNOWN).\nexecution is CONFIRMED,PROPOSAL_STUDY or UNSPECIFIED. Use PROPOSAL_STUDY when only\nfeasibility/plans are described. Task/Context must support operational work.\nDo not infer an output format, policy, escalation, authority, benefit or function\nfrom Problem or general world knowledge. Unknown action/object/output is null.\nOnly T/C anchor IDs can support performed work. P anchors are needs, never proof.\nUse the provided anchor IDs instead of writing quotations. Empty evidence for\nunknown fields. Return {id,execution,action,object,output,operations:[...],\ntime_type,evidence:{action:[anchor_ids],object:[anchor_ids],output:[anchor_ids],\nexecution:[anchor_ids]},unknowns:[...]}. Concise Korean JSON, no target adaptation.\n",
+    "input": "{\"id\": \"Kc3078856f1a2ce\", \"case\": {\"Problem\": \"전자 탑승권 정보의 추출 오류와 관련 고객 불만이 있었다.\", \"Task\": \"전자 탑승권 데이터 추출·오류 확인\", \"Context\": \"주요 항공사의 전자 탑승권을 처리하는 여행 플랫폼 운영.\"}, \"anchors\": {\"T1\": {\"field\": \"Task\", \"start\": 0, \"end\": 19, \"quote\": \"전자 탑승권 데이터 추출·오류 확인\"}, \"C1\": {\"field\": \"Context\", \"start\": 0, \"end\": 31, \"quote\": \"주요 항공사의 전자 탑승권을 처리하는 여행 플랫폼 운영.\"}, \"P1\": {\"field\": \"Problem\", \"start\": 0, \"end\": 32, \"quote\": \"전자 탑승권 정보의 추출 오류와 관련 고객 불만이 있었다.\"}}}\nReturn JSON.",
+    "max_output_tokens": 900,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "98246df2e3673a458655ad88a86752c407f765fd8350ccef62c1e543ff27c92d",
+  "reserve_usd": "0.00271",
+  "rank_or_old_scores_in_payload": false
+}

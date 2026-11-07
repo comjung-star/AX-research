@@ -21,10 +21,14 @@ def dangerous(item, row):
             (not item['expected_abstain'] and max(item['expected']) < 2 and g is not None and g >= 2))
 
 
+FINAL=run.OUT/'final-review'
+
+
 def compare_controls(recovered=False):
+    if recovered:FINAL.mkdir(exist_ok=True)
     items = read(run.OUT/'benchmark.json')['records']
     rows = [{**r, 'provider':p} for p in run.CAPS
-            for r in read(run.OUT/p/('benchmark_recovered_results.json' if recovered else 'benchmark_results.json'))['records']]
+            for r in read((run.OUT/p/'recovery-v2'/'benchmark_recovered_results.json') if recovered else (run.OUT/p/'benchmark_results.json'))['records']]
     checks = [{**r, 'split':i['split'], 'kind':i['kind'],
                'expected':i['expected'], 'expected_abstain':i['expected_abstain'],
                'policy_pass':control_pass(i,r), 'dangerous_error':dangerous(i,r)}
@@ -46,7 +50,7 @@ def compare_controls(recovered=False):
                 'failures':dict(Counter(r.get('failure') for r in subset if r.get('failure'))),
                 'by_provider':{p:{'pass':sum(r['policy_pass'] for r in subset if r['provider']==p),
                                     'n':sum(r['provider']==p for r in subset)} for p in run.CAPS}})
-    write(run.OUT/('benchmark_recovered_analysis.json' if recovered else 'benchmark_analysis.json'),{'records':checks,'summary':summaries,
+    write((FINAL if recovered else run.OUT)/('benchmark_recovered_analysis.json' if recovered else 'benchmark_analysis.json'),{'records':checks,'summary':summaries,
         'expectations_not_human_gold':True,'agreement_denominator':'Both providers have a non-null grade; ABSTAIN agreement not counted as grade accuracy.'})
     candidates=[r for r in summaries if r['split']=='FRESH_VALIDATION']
     for r in candidates:
@@ -57,7 +61,7 @@ def compare_controls(recovered=False):
         return (r['dangerous_errors'],-r['policy_pass'],r['output_evidence_failures'],
                 -r['grade_agreements'],-r['binary_agreements'],Decimal(r['decision_cost_usd']),r['method'])
     choice=min(candidates,key=key)
-    write(run.OUT/('method_selection_recovered_audit.json' if recovered else 'method_selection.json'),{'method':choice['method'],'candidates':candidates,
+    write((FINAL if recovered else run.OUT)/('method_selection_recovered_audit.json' if recovered else 'method_selection.json'),{'method':choice['method'],'candidates':candidates,
         'choice_rule':'Frozen lexicographic safety, adherence, failures, agreement, cost, ID.',
         'selected_only_for_pending_diagnostic_review':True,
         'policy_gate_passed':choice['policy_pass']==choice['n'] and choice['output_evidence_failures']==0,
@@ -71,7 +75,7 @@ def compare_controls(recovered=False):
 def pending_labels():
     previous=read(run.VALIDATION/'v2_reviewed_strict/labels.json')['records']
     items=read(run.OUT/'pending_items.json')['records']
-    reviews={p:{r['id']:r for r in read(run.OUT/p/'pending_recovered_results.json')['records']} for p in run.CAPS}
+    reviews={p:{r['id']:r for r in read(run.OUT/p/'recovery-v2'/'pending_recovered_results.json')['records']} for p in run.CAPS}
     records=[];proposals={}
     for item in items:
         pair=[reviews[p][item['id']] for p in run.CAPS]
@@ -92,13 +96,13 @@ def pending_labels():
             'previous':old,'label_source':'AI-Silver provisional diagnostic',
             'rationale':'두 제공자의 독립 요청에서 등급이 일치했습니다. 정책 검증을 통과하지 않아 진단용이며 승인된 정답은 아닙니다.',
             'released_for_tuning':False})
-    write(run.OUT/'pending75_review.json',{'records':records,'counts':dict(Counter(r['category'] for r in records)),
+    write(FINAL/'pending75_review.json',{'records':records,'counts':dict(Counter(r['category'] for r in records)),
         'agreement_proposals':len(proposals),'human_approved':0,'approved_resolutions':0,
         'all_prior75_remain_unreleased':True})
-    write(run.OUT/'labels_provisional_diagnostic.json',{'records':candidate,'released_for_tuning':False,
+    write(FINAL/'labels_provisional_diagnostic.json',{'records':candidate,'released_for_tuning':False,
         'human_approved':False,'not_verification_complete':True})
-    write(run.OUT/'labels_primary_unchanged.json',{'records':previous,'new_approved_changes':0})
-    with (run.OUT/'expert_review_packet.jsonl').open('x',encoding='utf-8',newline='\n') as stream:
+    write(FINAL/'labels_primary_unchanged.json',{'records':previous,'new_approved_changes':0})
+    with (FINAL/'expert_review_packet.jsonl').open('x',encoding='utf-8',newline='\n') as stream:
         import json
         for r in records:
             # The review packet intentionally hides AI scores and retrieval ranks.
@@ -107,6 +111,7 @@ def pending_labels():
 
 
 def evaluate_versions():
+    FINAL.mkdir(exist_ok=True)
     previous,candidate,reviews=pending_labels()
     prediction=read(run.ROOT/'docs/core-preserved-three-views-2026-11-07/predictions.json')
     original=read(run.ROOT/'docs/core-preserved-three-views-2026-11-07/labels.json')['records']
@@ -117,18 +122,18 @@ def evaluate_versions():
         all_metrics[name]={'per_query':rows,'macro':macro,'leave_one_out':leaveout,
             'bootstrap':metrics.bootstrap(rows,macro),'counts':dict(Counter(r['status'] for r in labels)),
             'not_model_improvement':'Only label versions change. Same sealed predictions are reused.'}
-    write(run.OUT/'evaluation_versions.json',all_metrics)
-    write(run.OUT/'F1_uncertainty.json',{'primary':metrics.incomplete_f1_bounds(prediction,previous),
+    write(FINAL/'evaluation_versions.json',all_metrics)
+    write(FINAL/'F1_uncertainty.json',{'primary':metrics.incomplete_f1_bounds(prediction,previous),
         'diagnostic':metrics.incomplete_f1_bounds(prediction,candidate)})
-    write(run.OUT/'label_scenarios.json',uncertainty.label_scenarios(prediction,candidate,count=4096))
-    write(run.OUT/'nDCG_outer_bounds.json',uncertainty.ndcg_outer_bounds(prediction,candidate))
-    write(run.OUT/'ranking_diagnostics.json',metrics.diagnostics(prediction,candidate))
+    write(FINAL/'label_scenarios.json',uncertainty.label_scenarios(prediction,candidate,count=4096))
+    write(FINAL/'nDCG_outer_bounds.json',uncertainty.ndcg_outer_bounds(prediction,candidate))
+    write(FINAL/'ranking_diagnostics.json',metrics.diagnostics(prediction,candidate))
     protocol=read(run.OUT/'protocol.json')
     checks=[{'path':p,'expected':h,'actual':sha(run.ROOT/p),'unchanged':sha(run.ROOT/p)==h}
             for p,h in protocol['protected_sha256'].items()]
-    write(run.OUT/'preservation_check.json',{'files':checks,'all_unchanged':all(r['unchanged'] for r in checks),
+    write(FINAL/'preservation_check.json',{'files':checks,'all_unchanged':all(r['unchanged'] for r in checks),
         'prompt_unchanged':sha(run.ROOT/'scripts/evaluator_abc_prompts.py')==protocol['prompt_file_sha256']})
-    write(run.OUT/'cost_summary.json',run.aggregate_cost())
+    write(FINAL/'cost_summary.json',run.aggregate_cost())
     print('Pending categories',dict(Counter(r['category'] for r in reviews)))
     print('Cost',run.aggregate_cost()['estimated_usd'])
 

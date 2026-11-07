@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the source case, without any target question. Extract actually performed\naction,object,output,operations and time_type (CURRENT,FUTURE,NONE,UNKNOWN).\nexecution is CONFIRMED,PROPOSAL_STUDY or UNSPECIFIED. Use PROPOSAL_STUDY when only\nfeasibility/plans are described. Task/Context must support operational work.\nDo not infer an output format, policy, escalation, authority, benefit or function\nfrom Problem or general world knowledge. Unknown action/object/output is null.\nOnly T/C anchor IDs can support performed work. P anchors are needs, never proof.\nUse the provided anchor IDs instead of writing quotations. Empty evidence for\nunknown fields. Return {id,execution,action,object,output,operations:[...],\ntime_type,evidence:{action:[anchor_ids],object:[anchor_ids],output:[anchor_ids],\nexecution:[anchor_ids]},unknowns:[...]}. Concise Korean JSON, no target adaptation.\n",
+    "input": "{\"id\": \"Kc7400dd3d9e2f3\", \"case\": {\"Problem\": \"Manual planning and data input constrain capacity during growth.\", \"Task\": \"Prepare manufacturing production plans\", \"Context\": \"Savage Precision Fabrication production planning and work orders.\"}, \"anchors\": {\"T1\": {\"field\": \"Task\", \"start\": 0, \"end\": 38, \"quote\": \"Prepare manufacturing production plans\"}, \"C1\": {\"field\": \"Context\", \"start\": 0, \"end\": 65, \"quote\": \"Savage Precision Fabrication production planning and work orders.\"}, \"P1\": {\"field\": \"Problem\", \"start\": 0, \"end\": 64, \"quote\": \"Manual planning and data input constrain capacity during growth.\"}}}\nReturn JSON.",
+    "max_output_tokens": 900,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "4e31b3c66661a690a1cafc8210b0cbc399aed5620b8ddfa59b315fd4f150912b",
+  "reserve_usd": "0.002701",
+  "rank_or_old_scores_in_payload": false
+}

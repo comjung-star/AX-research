@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+    "input": "{\"id\": \"Qba7c7b87b2fe8d\", \"question\": \"온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.\"}\nReturn JSON.",
+    "max_output_tokens": 700,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "87cdd5c47c2c34812869048d85ec6297f1512657ef2e0951bb7674fa7b83378d",
+  "reserve_usd": "0.002530625",
+  "rank_or_old_scores_in_payload": false
+}

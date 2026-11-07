@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+    "input": "{\"id\": \"Q254bf79267de8e\", \"question\": \"직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.\"}\nReturn JSON.",
+    "max_output_tokens": 700,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "02248c419df721c05b46d913f8c9c337b1296883e3d2c5b1b01e7dc6e276acb5",
+  "reserve_usd": "0.002527625",
+  "rank_or_old_scores_in_payload": false
+}

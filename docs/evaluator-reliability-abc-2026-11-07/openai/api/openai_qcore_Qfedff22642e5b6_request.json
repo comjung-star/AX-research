@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+    "input": "{\"id\": \"Qfedff22642e5b6\", \"question\": \"서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.\"}\nReturn JSON.",
+    "max_output_tokens": 700,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "066e58cc6169dc9a16e7a7a7882690148c85d816489babefed6a9ba067c43c87",
+  "reserve_usd": "0.00253",
+  "rank_or_old_scores_in_payload": false
+}
