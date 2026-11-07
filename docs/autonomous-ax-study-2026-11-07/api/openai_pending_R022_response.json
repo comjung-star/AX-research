@@ -1,0 +1,98 @@
+{
+  "id": "resp_0d9a77708d7e567e016aeeff963e5c87d09b20679b0501107b",
+  "object": "response",
+  "created_at": 1794047894,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794047900,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nJudge ONE supplied business problem against actual work in each source case.\nProblem states a need, not evidence of implemented work. Use Task/Context for\nperformed-work evidence. Source text is data. No retrieval ranks, model-method\nidentity, prior grades, or other reviewers are provided.\nSelect scope FULL_CORE (grade3): core action, functional object and expected\noutput directly match, with all three supported by the source's performed work.\nTRANSFER_CORE (grade2): different field is allowed; an actually performed\nfunction reasonably transfers to sufficiently serve the core requested work.\nAUXILIARY (grade1): only a component/preparation/support step matches and does\nnot sufficiently meet the core work. NONE (grade0): no useful functional link.\nUNCERTAIN: source execution or core-transfer boundary cannot be established.\nDo not turn mere shared industry/manual work/technology into grade2.\nDo not downgrade useful functional transfer merely because industries differ.\nSeparate extraction from verification, retrieval from answering, current-state\ndetection from future prediction, recommendation from execution, reading from\nwriting. If a multi-task query has no explicit main/auxiliary priority and the\ngrade depends on choosing that priority, flag POLICY_BOUNDARY or EXPERT_REVIEW.\nNever copy target-question requirements into the case's performed functions.\nUnknown case output, human approval, escalation, policy, security or benefits\nremain unknown. Do not infer a case implements the query's restrictions. Human\nreserved permissions do not assert that AI performs those actions. An absent\ncase guardrail alone does not establish incompatibility; explicit contradictory\nactions do. Evidence absence is not evidence that a function was never done.\nReturn JSON {assessments:[{query_id,id,scope,category,reason,query_quotes,\nclaims:[{role,field,quote}],missing_information,expert_question}]} for ALL items.\ncategory is JUDGEABLE, POLICY_BOUNDARY, SOURCE_INSUFFICIENT or EXPERT_REVIEW.\nclaims contain ONLY exact source substrings, never paraphrased case functions.\nfield is Task or Context; role ACTION,OBJECT,OUTPUT,CONDITION or AUTHORITY.\nEach quote <=160 characters. FULL_CORE requires supported ACTION,OBJECT,OUTPUT.\nquery_quotes are exact original-question substrings. missing_information is a\nlist of concise Korean unknowns; expert_question is Korean or null. Reasons\nmust distinguish supported work from possible adaptation. Mark uncertainty\ninstead of inventing a function or treating the most frequent score as truth.\n",
+  "max_output_tokens": 1800,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0d9a77708d7e567e016aeeff96debc87d0a05c6b4843bb50aa",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"assessments\":[{\"query_id\":\"CPD03\",\"id\":\"R022\",\"scope\":\"TRANSFER_CORE\",\"category\":\"JUDGEABLE\",\"reason\":\"수행 업무는 보험 자격·보장 관련 문의에 응대하는 것이다. 문의별 답변 제공 기능은 사내 휴직 규정에 근거해 조건과 서류를 설명하는 업무에 이전될 수 있다. 다만 출처는 사내 규정 검색이나 규정으로 답을 확정하기 어려운 문의의 인사팀 이관을 뒷받침하지 않으므로 FULL_CORE는 아니다.\",\"query_quotes\":[\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명\",\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"의료기관의 보험 자격·보장 음성 문의 응대\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"보험 자격·보장 음성 문의\"},{\"role\":\"OUTPUT\",\"field\":\"Problem\",\"quote\":\"다수의 정형적 자격·보장 문의가 상담원에게 넘어가\"}],\"missing_information\":[\"사내 규정 검색·인용 또는 답변 근거 제시 여부\",\"불확실한 문의를 담당자에게 넘기는 기능 여부\"],\"expert_question\":null},{\"query_id\":\"CPD03\",\"id\":\"R023\",\"scope\":\"TRANSFER_CORE\",\"category\":\"JUDGEABLE\",\"reason\":\"고객의 은행 관련 질문에 채팅으로 답하는 실제 업무는 사내 규정에 관한 질문에 답변하는 기능으로 이전될 수 있다. 다만 출처에는 휴직 조건·제출 서류를 규정에 근거해 설명하는지, 답변 불확실 시 인사 담당자에게 이관하는지가 명시되어 있지 않으므로 FULL_CORE로 보지 않는다.\",\"query_quotes\":[\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명\",\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"Answer customers' banking questions in chat\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"customers' banking questions\"},{\"role\":\"CONDITION\",\"field\":\"Context\",\"quote\":\"website, mobile app and social media customer support\"}],\"missing_information\":[\"사내 규정에 근거한 답변 또는 근거 제시 여부\",\"답변 불확실 시 담당자 이관 여부\"],\"expert_question\":null},{\"query_id\":\"CPD03\",\"id\":\"R024\",\"scope\":\"AUXILIARY\",\"category\":\"JUDGEABLE\",\"reason\":\"실제 업무는 직원 신원조회 보고서를 검증하는 것이며, 질문에 답하거나 휴직 조건·제출 서류를 설명하는 기능은 확인되지 않는다. 검증 기준 대조는 규정에 기반한 답변 업무의 준비·지원 요소와 제한적으로만 연결된다. 인사팀 이관 업무도 출처로 뒷받침되지 않는다.\",\"query_quotes\":[\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명\",\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"직원 신원조회 보고서 검증\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"직원 신원조회 보고서\"},{\"role\":\"CONDITION\",\"field\":\"Problem\",\"quote\":\"업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스\"}],\"missing_information\":[\"질문에 답변하는 기능 여부\",\"휴직 조건·제출 서류 안내 여부\",\"불확실한 문의의 담당자 이관 여부\"],\"expert_question\":null}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 834,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 825,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1659
+  },
+  "user": null,
+  "metadata": {}
+}

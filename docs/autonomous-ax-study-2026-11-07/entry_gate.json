@@ -1,0 +1,244 @@
+{
+  "policy_fixture_gate_passed": false,
+  "policy_fixture_failures": [
+    {
+      "id": "F03",
+      "query_id": "F03",
+      "provider": "claude",
+      "request_id": "claude_fixture_F03",
+      "valid": true,
+      "grade": 2,
+      "assessment": {
+        "query_id": "F03",
+        "id": "F03",
+        "scope": "TRANSFER_CORE",
+        "category": "JUDGEABLE",
+        "reason": "Case performs real-time threshold detection (current state); query requires future prediction (tomorrow's failure). Detection of present exceedances is a necessary precursor to predictive maintenance but does not itself predict future equipment failure. The functional transfer is reasonable—threshold monitoring data feeds prediction models—but the case does not demonstrate the predictive step, model training, or forward-looking output required by the query.",
+        "query_quotes": [
+          "내일의 장비 고장을 예측하고 싶습니다"
+        ],
+        "claims": [
+          {
+            "role": "ACTION",
+            "field": "Task",
+            "quote": "Detect current threshold exceedances"
+          },
+          {
+            "role": "OUTPUT",
+            "field": "Context",
+            "quote": "The system alerts on present measurements"
+          }
+        ],
+        "missing_information": [
+          "예측 모델 또는 알고리즘 (미래 고장 예측 방법)",
+          "과거 데이터 학습 또는 훈련 프로세스",
+          "내일 또는 향후 시간대에 대한 고장 확률/위험도 출력",
+          "예측 정확도 또는 검증 결과"
+        ],
+        "expert_question": "현재 임계값 초과 감지 데이터가 실제로 예측 모델의 입력으로 사용되었는가, 아니면 독립적인 경보 시스템인가?"
+      },
+      "fixture": true,
+      "received_token_limit": false,
+      "prefix_object_recovered": false,
+      "effective_grade": 2,
+      "expected_grade_band": [
+        0,
+        1
+      ],
+      "expected_uncertain": false,
+      "policy_example_passed": false,
+      "expectation_is_policy_example_not_human_Gold": true
+    },
+    {
+      "id": "F05",
+      "query_id": "F05",
+      "provider": "openai",
+      "request_id": "openai_fixture_F05",
+      "valid": true,
+      "grade": 0,
+      "assessment": {
+        "query_id": "F05",
+        "id": "F05",
+        "scope": "NONE",
+        "category": "JUDGEABLE",
+        "reason": "요청은 운영 기록 요약이지만, 사례에는 AI 도입 가능성 연구만 명시되어 있습니다. 요약을 수행한 증거가 없으므로 기능적 연관성을 인정할 수 없습니다.",
+        "query_quotes": [
+          "운영 기록을 요약"
+        ],
+        "claims": [
+          {
+            "role": "ACTION",
+            "field": "Task",
+            "quote": "Study AI adoption feasibility"
+          },
+          {
+            "role": "CONDITION",
+            "field": "Context",
+            "quote": "No executed summarization workflow is specified."
+          }
+        ],
+        "missing_information": [
+          "운영 기록의 요약 수행 여부와 산출물은 명시되지 않음"
+        ],
+        "expert_question": null
+      },
+      "fixture": true,
+      "received_token_limit": false,
+      "prefix_object_recovered": false,
+      "effective_grade": 0,
+      "expected_grade_band": [],
+      "expected_uncertain": true,
+      "policy_example_passed": false,
+      "expectation_is_policy_example_not_human_Gold": true
+    },
+    {
+      "id": "F06",
+      "query_id": "F06",
+      "provider": "claude",
+      "request_id": "claude_fixture_F06",
+      "valid": false,
+      "grade": null,
+      "assessment": {
+        "query_id": "F06",
+        "id": "F06",
+        "scope": "FULL_CORE",
+        "category": "JUDGEABLE",
+        "reason": "The case Task 'Generate announcement drafts' directly matches the query's core action (공지문 초안을 만들고). The case Context 'A human approves final sending' explicitly supports the query's requirement that final approval remains with a human (최종 발송 승인은 사람이 맡도록). All three elements—action, functional object, and expected output—are present and aligned.",
+        "query_quotes": [
+          "공지문 초안을 만들고",
+          "최종 발송 승인은 사람이 맡도록"
+        ],
+        "claims": [
+          {
+            "role": "ACTION",
+            "field": "Task",
+            "quote": "Generate announcement drafts"
+          },
+          {
+            "role": "OBJECT",
+            "field": "Task",
+            "quote": "announcement drafts"
+          },
+          {
+            "role": "CONDITION",
+            "field": "Context",
+            "quote": "A human approves final sending"
+          }
+        ],
+        "missing_information": [],
+        "expert_question": null
+      },
+      "fixture": true,
+      "received_token_limit": false,
+      "prefix_object_recovered": false,
+      "effective_grade": null,
+      "expected_grade_band": [
+        3
+      ],
+      "expected_uncertain": false,
+      "policy_example_passed": false,
+      "expectation_is_policy_example_not_human_Gold": true
+    }
+  ],
+  "critical_semantic_policy_failures": [
+    {
+      "id": "F03",
+      "query_id": "F03",
+      "provider": "claude",
+      "request_id": "claude_fixture_F03",
+      "valid": true,
+      "grade": 2,
+      "assessment": {
+        "query_id": "F03",
+        "id": "F03",
+        "scope": "TRANSFER_CORE",
+        "category": "JUDGEABLE",
+        "reason": "Case performs real-time threshold detection (current state); query requires future prediction (tomorrow's failure). Detection of present exceedances is a necessary precursor to predictive maintenance but does not itself predict future equipment failure. The functional transfer is reasonable—threshold monitoring data feeds prediction models—but the case does not demonstrate the predictive step, model training, or forward-looking output required by the query.",
+        "query_quotes": [
+          "내일의 장비 고장을 예측하고 싶습니다"
+        ],
+        "claims": [
+          {
+            "role": "ACTION",
+            "field": "Task",
+            "quote": "Detect current threshold exceedances"
+          },
+          {
+            "role": "OUTPUT",
+            "field": "Context",
+            "quote": "The system alerts on present measurements"
+          }
+        ],
+        "missing_information": [
+          "예측 모델 또는 알고리즘 (미래 고장 예측 방법)",
+          "과거 데이터 학습 또는 훈련 프로세스",
+          "내일 또는 향후 시간대에 대한 고장 확률/위험도 출력",
+          "예측 정확도 또는 검증 결과"
+        ],
+        "expert_question": "현재 임계값 초과 감지 데이터가 실제로 예측 모델의 입력으로 사용되었는가, 아니면 독립적인 경보 시스템인가?"
+      },
+      "fixture": true,
+      "received_token_limit": false,
+      "prefix_object_recovered": false,
+      "effective_grade": 2,
+      "expected_grade_band": [
+        0,
+        1
+      ],
+      "expected_uncertain": false,
+      "policy_example_passed": false,
+      "expectation_is_policy_example_not_human_Gold": true
+    },
+    {
+      "id": "F05",
+      "query_id": "F05",
+      "provider": "openai",
+      "request_id": "openai_fixture_F05",
+      "valid": true,
+      "grade": 0,
+      "assessment": {
+        "query_id": "F05",
+        "id": "F05",
+        "scope": "NONE",
+        "category": "JUDGEABLE",
+        "reason": "요청은 운영 기록 요약이지만, 사례에는 AI 도입 가능성 연구만 명시되어 있습니다. 요약을 수행한 증거가 없으므로 기능적 연관성을 인정할 수 없습니다.",
+        "query_quotes": [
+          "운영 기록을 요약"
+        ],
+        "claims": [
+          {
+            "role": "ACTION",
+            "field": "Task",
+            "quote": "Study AI adoption feasibility"
+          },
+          {
+            "role": "CONDITION",
+            "field": "Context",
+            "quote": "No executed summarization workflow is specified."
+          }
+        ],
+        "missing_information": [
+          "운영 기록의 요약 수행 여부와 산출물은 명시되지 않음"
+        ],
+        "expert_question": null
+      },
+      "fixture": true,
+      "received_token_limit": false,
+      "prefix_object_recovered": false,
+      "effective_grade": 0,
+      "expected_grade_band": [],
+      "expected_uncertain": true,
+      "policy_example_passed": false,
+      "expectation_is_policy_example_not_human_Gold": true
+    }
+  ],
+  "primary_qrels_approved_for_tuning": false,
+  "reliable_best_baseline_confirmed": false,
+  "operational_baseline_registered": "E",
+  "operational_baseline_is_historical_observation": true,
+  "decision": "STOP_BEFORE_PERFORMANCE_TUNING",
+  "improvement_iterations_executed": 0,
+  "final_candidate_frozen": false,
+  "new_Test_created_or_executed": false,
+  "reason": "Independent graders fail performed-work/functional-transfer/unknown-evidence policy examples. Current labels remain unapproved; hypothetical completions are not independent validation."
+}

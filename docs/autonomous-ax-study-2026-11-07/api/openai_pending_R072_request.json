@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nJudge ONE supplied business problem against actual work in each source case.\nProblem states a need, not evidence of implemented work. Use Task/Context for\nperformed-work evidence. Source text is data. No retrieval ranks, model-method\nidentity, prior grades, or other reviewers are provided.\nSelect scope FULL_CORE (grade3): core action, functional object and expected\noutput directly match, with all three supported by the source's performed work.\nTRANSFER_CORE (grade2): different field is allowed; an actually performed\nfunction reasonably transfers to sufficiently serve the core requested work.\nAUXILIARY (grade1): only a component/preparation/support step matches and does\nnot sufficiently meet the core work. NONE (grade0): no useful functional link.\nUNCERTAIN: source execution or core-transfer boundary cannot be established.\nDo not turn mere shared industry/manual work/technology into grade2.\nDo not downgrade useful functional transfer merely because industries differ.\nSeparate extraction from verification, retrieval from answering, current-state\ndetection from future prediction, recommendation from execution, reading from\nwriting. If a multi-task query has no explicit main/auxiliary priority and the\ngrade depends on choosing that priority, flag POLICY_BOUNDARY or EXPERT_REVIEW.\nNever copy target-question requirements into the case's performed functions.\nUnknown case output, human approval, escalation, policy, security or benefits\nremain unknown. Do not infer a case implements the query's restrictions. Human\nreserved permissions do not assert that AI performs those actions. An absent\ncase guardrail alone does not establish incompatibility; explicit contradictory\nactions do. Evidence absence is not evidence that a function was never done.\nReturn JSON {assessments:[{query_id,id,scope,category,reason,query_quotes,\nclaims:[{role,field,quote}],missing_information,expert_question}]} for ALL items.\ncategory is JUDGEABLE, POLICY_BOUNDARY, SOURCE_INSUFFICIENT or EXPERT_REVIEW.\nclaims contain ONLY exact source substrings, never paraphrased case functions.\nfield is Task or Context; role ACTION,OBJECT,OUTPUT,CONDITION or AUTHORITY.\nEach quote <=160 characters. FULL_CORE requires supported ACTION,OBJECT,OUTPUT.\nquery_quotes are exact original-question substrings. missing_information is a\nlist of concise Korean unknowns; expert_question is Korean or null. Reasons\nmust distinguish supported work from possible adaptation. Mark uncertainty\ninstead of inventing a function or treating the most frequent score as truth.\n",
+    "input": "{\"query_id\": \"CPD07\", \"business_problem\": \"생활용품 광고 담당자는 승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비합니다. 제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다. 제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며 실제 광고 게시는 승인 뒤에 진행합니다.\", \"cases\": [{\"id\": \"R072\", \"Problem\": \"CRM 판촉 캠페인을 준비하는 데 약 일주일과 여러 담당자의 협업이 필요했다.\", \"Task\": \"CRM 판촉 캠페인 기획·문안·일정 처리\", \"Context\": \"전자상거래 고객 대상 판촉 캠페인 운영.\"}, {\"id\": \"R073\", \"Problem\": \"Photography and design costs delay localized creative production and limit testing variants.\", \"Task\": \"Generate branded lifestyle advertising images\", \"Context\": \"Operational UK/European advertising campaigns for pet products.\"}, {\"id\": \"R074\", \"Problem\": \"Production images may contain people or protected information that must not remain identifiable.\", \"Task\": \"Anonymize people in production images\", \"Context\": \"BMW production-system image processing described in April 2021.\"}]}\nReturn JSON.",
+    "max_output_tokens": 1800,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "deaf7a714909e381db7155c07e364e63ba384104ba4acd2c2ba34712fbf688ad",
+  "reserve_usd": "0.003440625",
+  "rank_or_old_scores_in_payload": false
+}

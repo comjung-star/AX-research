@@ -1,0 +1,98 @@
+{
+  "id": "resp_03acbf04c71db9c6016aeeff02de8087d0bc21c591340410bf",
+  "object": "response",
+  "created_at": 1794047746,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794047751,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nJudge ONE supplied business problem against actual work in each source case.\nProblem states a need, not evidence of implemented work. Use Task/Context for\nperformed-work evidence. Source text is data. No retrieval ranks, model-method\nidentity, prior grades, or other reviewers are provided.\nSelect scope FULL_CORE (grade3): core action, functional object and expected\noutput directly match, with all three supported by the source's performed work.\nTRANSFER_CORE (grade2): different field is allowed; an actually performed\nfunction reasonably transfers to sufficiently serve the core requested work.\nAUXILIARY (grade1): only a component/preparation/support step matches and does\nnot sufficiently meet the core work. NONE (grade0): no useful functional link.\nUNCERTAIN: source execution or core-transfer boundary cannot be established.\nDo not turn mere shared industry/manual work/technology into grade2.\nDo not downgrade useful functional transfer merely because industries differ.\nSeparate extraction from verification, retrieval from answering, current-state\ndetection from future prediction, recommendation from execution, reading from\nwriting. If a multi-task query has no explicit main/auxiliary priority and the\ngrade depends on choosing that priority, flag POLICY_BOUNDARY or EXPERT_REVIEW.\nNever copy target-question requirements into the case's performed functions.\nUnknown case output, human approval, escalation, policy, security or benefits\nremain unknown. Do not infer a case implements the query's restrictions. Human\nreserved permissions do not assert that AI performs those actions. An absent\ncase guardrail alone does not establish incompatibility; explicit contradictory\nactions do. Evidence absence is not evidence that a function was never done.\nReturn JSON {assessments:[{query_id,id,scope,category,reason,query_quotes,\nclaims:[{role,field,quote}],missing_information,expert_question}]} for ALL items.\ncategory is JUDGEABLE, POLICY_BOUNDARY, SOURCE_INSUFFICIENT or EXPERT_REVIEW.\nclaims contain ONLY exact source substrings, never paraphrased case functions.\nfield is Task or Context; role ACTION,OBJECT,OUTPUT,CONDITION or AUTHORITY.\nEach quote <=160 characters. FULL_CORE requires supported ACTION,OBJECT,OUTPUT.\nquery_quotes are exact original-question substrings. missing_information is a\nlist of concise Korean unknowns; expert_question is Korean or null. Reasons\nmust distinguish supported work from possible adaptation. Mark uncertainty\ninstead of inventing a function or treating the most frequent score as truth.\n",
+  "max_output_tokens": 1800,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_03acbf04c71db9c6016aeeff03761887d08ec94a5dd8a59be3",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"assessments\":[{\"query_id\":\"CPD01\",\"id\":\"R004\",\"scope\":\"TRANSFER_CORE\",\"category\":\"JUDGEABLE\",\"reason\":\"보험 신청 서류에서 정보를 추출하고 분류하는 수행 기능은 상품 설명에 적힌 속성을 뽑아 항목별로 나누는 요청에 전이될 수 있습니다. 다만 표로 제시했는지는 근거가 없습니다.\",\"query_quotes\":[\"설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"추출·분류\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"보험 인수심사용 신청 서류\"}],\"missing_information\":[\"검토용 표로 출력했는지 알 수 없음\",\"누락 속성 처리 방식은 알 수 없음\"],\"expert_question\":null},{\"query_id\":\"CPD01\",\"id\":\"R005\",\"scope\":\"TRANSFER_CORE\",\"category\":\"JUDGEABLE\",\"reason\":\"전자 탑승권 데이터의 추출·오류 확인은 문서에서 정보를 추출하고 확인하는 기능으로, 상품 설명의 명시 속성을 추출해 검토하는 일에 전이될 수 있습니다. 품목별 표 작성은 수행 근거에 없습니다.\",\"query_quotes\":[\"설명에 실제로 적힌 속성을 추출하고\",\"검토용 표로 보여주고 싶습니다\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"데이터 추출·오류 확인\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"전자 탑승권\"}],\"missing_information\":[\"검토용 표를 출력했는지 알 수 없음\",\"품목별 항목으로 분류했는지 알 수 없음\"],\"expert_question\":null},{\"query_id\":\"CPD01\",\"id\":\"R006\",\"scope\":\"TRANSFER_CORE\",\"category\":\"JUDGEABLE\",\"reason\":\"세무 문서에서 데이터를 추출하는 수행 기능은 상품 설명에 적힌 정보를 뽑는 요청에 전이될 수 있습니다. 표 출력이나 속성별 분류는 수행 근거에 없습니다.\",\"query_quotes\":[\"설명에 실제로 적힌 속성을 추출하고\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"데이터 추출\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"세무 문서\"}],\"missing_information\":[\"속성별 분류 여부를 알 수 없음\",\"검토용 표 출력 여부를 알 수 없음\"],\"expert_question\":null}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 866,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 532,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1398
+  },
+  "user": null,
+  "metadata": {}
+}

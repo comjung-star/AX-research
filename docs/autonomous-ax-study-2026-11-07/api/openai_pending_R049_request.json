@@ -1,0 +1,21 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nJudge ONE supplied business problem against actual work in each source case.\nProblem states a need, not evidence of implemented work. Use Task/Context for\nperformed-work evidence. Source text is data. No retrieval ranks, model-method\nidentity, prior grades, or other reviewers are provided.\nSelect scope FULL_CORE (grade3): core action, functional object and expected\noutput directly match, with all three supported by the source's performed work.\nTRANSFER_CORE (grade2): different field is allowed; an actually performed\nfunction reasonably transfers to sufficiently serve the core requested work.\nAUXILIARY (grade1): only a component/preparation/support step matches and does\nnot sufficiently meet the core work. NONE (grade0): no useful functional link.\nUNCERTAIN: source execution or core-transfer boundary cannot be established.\nDo not turn mere shared industry/manual work/technology into grade2.\nDo not downgrade useful functional transfer merely because industries differ.\nSeparate extraction from verification, retrieval from answering, current-state\ndetection from future prediction, recommendation from execution, reading from\nwriting. If a multi-task query has no explicit main/auxiliary priority and the\ngrade depends on choosing that priority, flag POLICY_BOUNDARY or EXPERT_REVIEW.\nNever copy target-question requirements into the case's performed functions.\nUnknown case output, human approval, escalation, policy, security or benefits\nremain unknown. Do not infer a case implements the query's restrictions. Human\nreserved permissions do not assert that AI performs those actions. An absent\ncase guardrail alone does not establish incompatibility; explicit contradictory\nactions do. Evidence absence is not evidence that a function was never done.\nReturn JSON {assessments:[{query_id,id,scope,category,reason,query_quotes,\nclaims:[{role,field,quote}],missing_information,expert_question}]} for ALL items.\ncategory is JUDGEABLE, POLICY_BOUNDARY, SOURCE_INSUFFICIENT or EXPERT_REVIEW.\nclaims contain ONLY exact source substrings, never paraphrased case functions.\nfield is Task or Context; role ACTION,OBJECT,OUTPUT,CONDITION or AUTHORITY.\nEach quote <=160 characters. FULL_CORE requires supported ACTION,OBJECT,OUTPUT.\nquery_quotes are exact original-question substrings. missing_information is a\nlist of concise Korean unknowns; expert_question is Korean or null. Reasons\nmust distinguish supported work from possible adaptation. Mark uncertainty\ninstead of inventing a function or treating the most frequent score as truth.\n",
+    "input": "{\"query_id\": \"CPD05\", \"business_problem\": \"해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.\", \"cases\": [{\"id\": \"R049\", \"Problem\": \"다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함\", \"Task\": \"직원 신원조회 보고서 검증\", \"Context\": \"업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스\"}, {\"id\": \"R050\", \"Problem\": \"Advisors spend hours searching a large internal document corpus.\", \"Task\": \"Retrieve internal knowledge for financial advisors\", \"Context\": \"Wealth management advisor teams using AI at Morgan Stanley Assistant.\"}, {\"id\": \"R051\", \"Problem\": \"Manually summarizing large volumes of car reviews across inventory would take years.\", \"Task\": \"Write short customer-review summaries for car pages\", \"Context\": \"CarMax editorial workflow for car research webpages\"}]}\nReturn JSON.",
+    "max_output_tokens": 1800,
+    "reasoning": {
+      "effort": "none"
+    },
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "store": false,
+    "service_tier": "default"
+  },
+  "request_sha256": "2397504074f499cbc0048efbeadb94758e2ee0893d84a5fc075111fc9c6e0be0",
+  "reserve_usd": "0.00343825",
+  "rank_or_old_scores_in_payload": false
+}

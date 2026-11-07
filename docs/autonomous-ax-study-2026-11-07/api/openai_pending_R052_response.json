@@ -1,0 +1,98 @@
+{
+  "id": "resp_0d011c5f1cc2a46d016aef007d3e1887d0b96f239469e8e091",
+  "object": "response",
+  "created_at": 1794048125,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794048130,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nJudge ONE supplied business problem against actual work in each source case.\nProblem states a need, not evidence of implemented work. Use Task/Context for\nperformed-work evidence. Source text is data. No retrieval ranks, model-method\nidentity, prior grades, or other reviewers are provided.\nSelect scope FULL_CORE (grade3): core action, functional object and expected\noutput directly match, with all three supported by the source's performed work.\nTRANSFER_CORE (grade2): different field is allowed; an actually performed\nfunction reasonably transfers to sufficiently serve the core requested work.\nAUXILIARY (grade1): only a component/preparation/support step matches and does\nnot sufficiently meet the core work. NONE (grade0): no useful functional link.\nUNCERTAIN: source execution or core-transfer boundary cannot be established.\nDo not turn mere shared industry/manual work/technology into grade2.\nDo not downgrade useful functional transfer merely because industries differ.\nSeparate extraction from verification, retrieval from answering, current-state\ndetection from future prediction, recommendation from execution, reading from\nwriting. If a multi-task query has no explicit main/auxiliary priority and the\ngrade depends on choosing that priority, flag POLICY_BOUNDARY or EXPERT_REVIEW.\nNever copy target-question requirements into the case's performed functions.\nUnknown case output, human approval, escalation, policy, security or benefits\nremain unknown. Do not infer a case implements the query's restrictions. Human\nreserved permissions do not assert that AI performs those actions. An absent\ncase guardrail alone does not establish incompatibility; explicit contradictory\nactions do. Evidence absence is not evidence that a function was never done.\nReturn JSON {assessments:[{query_id,id,scope,category,reason,query_quotes,\nclaims:[{role,field,quote}],missing_information,expert_question}]} for ALL items.\ncategory is JUDGEABLE, POLICY_BOUNDARY, SOURCE_INSUFFICIENT or EXPERT_REVIEW.\nclaims contain ONLY exact source substrings, never paraphrased case functions.\nfield is Task or Context; role ACTION,OBJECT,OUTPUT,CONDITION or AUTHORITY.\nEach quote <=160 characters. FULL_CORE requires supported ACTION,OBJECT,OUTPUT.\nquery_quotes are exact original-question substrings. missing_information is a\nlist of concise Korean unknowns; expert_question is Korean or null. Reasons\nmust distinguish supported work from possible adaptation. Mark uncertainty\ninstead of inventing a function or treating the most frequent score as truth.\n",
+  "max_output_tokens": 1800,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0d011c5f1cc2a46d016aef007dd48087d0a5bbf45c12b8abc4",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"assessments\":[{\"query_id\":\"CPD06\",\"id\":\"R052\",\"scope\":\"AUXILIARY\",\"category\":\"JUDGEABLE\",\"reason\":\"실제 수행 업무는 대출 신청서 PDF에서 데이터를 추출하는 것이므로 청구서 항목 추출과 같은 준비 단계에는 기능적으로 연결됩니다. 그러나 요율과 항목 금액을 대조하거나 의심 청구와 비교 근거를 검토 목록으로 작성한 수행 근거는 없습니다.\",\"query_quotes\":[\"청구서의 항목과 합의된 요율을 대조\",\"과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"Loan document data extraction\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"Loan document data\"},{\"role\":\"CONDITION\",\"field\":\"Context\",\"quote\":\"preparing loan data for compliance and fair lending reviews\"}],\"missing_information\":[\"청구서 항목 추출 수행 여부\",\"요율 비교 여부\",\"의심 청구 및 비교 근거를 검토 목록에 남기는 기능 여부\"],\"expert_question\":null},{\"query_id\":\"CPD06\",\"id\":\"R053\",\"scope\":\"AUXILIARY\",\"category\":\"JUDGEABLE\",\"reason\":\"자유 형식 추천 정보를 구조화하고 필수 항목의 완전성을 확인하는 수행 업무는 청구 항목을 정리하는 준비 단계와 연결됩니다. 그러나 합의된 요율과 금액을 비교하거나 과다 청구 의심 및 비교 근거를 검토 목록으로 남기는 업무는 확인되지 않습니다.\",\"query_quotes\":[\"청구서의 항목과 합의된 요율을 대조\",\"과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"Referral data structuring and completeness checks\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"Referral data\"},{\"role\":\"OUTPUT\",\"field\":\"Problem\",\"quote\":\"leaving missing fields to be checked\"}],\"missing_information\":[\"청구 금액과 합의 요율 비교 여부\",\"과다 청구 의심 판정 여부\",\"비교 근거를 검토 목록으로 기록하는지 여부\"],\"expert_question\":null},{\"query_id\":\"CPD06\",\"id\":\"R054\",\"scope\":\"AUXILIARY\",\"category\":\"JUDGEABLE\",\"reason\":\"경비 제출·분류 처리 및 경비 보고서 검토는 청구 자료를 정리하거나 검토하는 지원 단계와 기능적으로 연결됩니다. 다만 사례에 적힌 수행 업무만으로는 항목별 금액을 합의 요율과 대조하거나 과다 청구 의심과 근거를 검토 목록으로 작성한다고 볼 수 없습니다.\",\"query_quotes\":[\"청구서의 항목과 합의된 요율을 대조\",\"과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"제출·분류 처리\"},{\"role\":\"OBJECT\",\"field\":\"Problem\",\"quote\":\"경비 보고서\"},{\"role\":\"ACTION\",\"field\":\"Problem\",\"quote\":\"수동 검토해야 했다\"}],\"missing_information\":[\"경비 보고서에서 실제 수행한 검토 기능의 범위\",\"합의 요율과 금액을 비교하는지 여부\",\"의심 청구와 비교 근거를 기록하는지 여부\"],\"expert_question\":null}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 822,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 742,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1564
+  },
+  "user": null,
+  "metadata": {}
+}

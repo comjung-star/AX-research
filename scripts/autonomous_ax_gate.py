@@ -3,6 +3,7 @@ import argparse
 from collections import Counter, defaultdict
 from decimal import Decimal
 import json
+import re
 
 from ax_research.heldout import read, write, jsonl, sha
 from scripts import e_validation as client
@@ -171,16 +172,41 @@ def read_response(provider,identifier):
     path=OUT/'api'/(provider+'_'+identifier+'_response.json')
     if not path.exists():return None
     raw=read(path)
+    truncated=False
     if provider=='openai':
-        if raw.get('status')!='completed':return None
+        truncated=raw.get('status')=='incomplete' and (raw.get('incomplete_details') or {}).get('reason')=='max_output_tokens'
+        if raw.get('status')!='completed' and not truncated:return None
         text=''.join(c.get('text','') for x in raw.get('output',[]) for c in x.get('content',[]) if c.get('type')=='output_text')
     else:
-        if raw.get('stop_reason')!='end_turn':return None
+        truncated=raw.get('stop_reason')=='max_tokens'
+        if raw.get('stop_reason')!='end_turn' and not truncated:return None
         text=''.join(c.get('text','') for c in raw.get('content',[]) if c.get('type')=='text')
     text=text.strip()
-    if text.startswith('```') and text.endswith('```'):text=text.split('\n',1)[1].rsplit('```',1)[0]
-    try:return json.loads(text)
-    except ValueError:return None
+    if text.startswith('```'):
+        text=text.split('\n',1)[1]
+        if text.rstrip().endswith('```'):text=text.rsplit('```',1)[0]
+    try:
+        data=json.loads(text)
+        if truncated:data['_received_token_limit']=True
+        return data
+    except ValueError:
+        return recover_complete_objects(text) if truncated else None
+
+
+def recover_complete_objects(text):
+    """Read complete JSON objects only. Never close or fill a truncated item."""
+    prefix=re.match(r'\s*\{\s*"assessments"\s*:\s*\[',text)
+    if not prefix:return None
+    index=prefix.end();rows=[];spans=[];decoder=json.JSONDecoder()
+    while index<len(text):
+        while index<len(text) and text[index] in ' \r\n\t,':index+=1
+        start=index
+        try:row,end=decoder.raw_decode(text,index)
+        except ValueError:break
+        if not isinstance(row,dict):break
+        rows.append(row);spans.append([start,end]);index=end
+    return {'assessments':rows,'_received_token_limit':True,
+            '_complete_object_spans':spans,'_no_missing_item_synthesized':True}
 
 
 def collect():
@@ -198,7 +224,9 @@ def collect():
                     except (AssertionError,KeyError,TypeError,StopIteration):pass
                 result.append({'id':case['id'],'query_id':data['query_id'],'provider':provider,
                                'request_id':provider+'_'+identifier,'valid':valid,
-                               'grade':grade,'assessment':assessment,'fixture':identifier.startswith('fixture_')})
+                               'grade':grade,'assessment':assessment,'fixture':identifier.startswith('fixture_'),
+                               'received_token_limit':bool(response and response.get('_received_token_limit')),
+                               'prefix_object_recovered':bool(response and response.get('_complete_object_spans'))})
     return result
 
 

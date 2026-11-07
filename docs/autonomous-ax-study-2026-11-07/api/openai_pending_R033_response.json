@@ -1,0 +1,98 @@
+{
+  "id": "resp_063f6e46fec2656c016aeefff4bc0887d08929f3c281efb84b",
+  "object": "response",
+  "created_at": 1794047988,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794047993,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nJudge ONE supplied business problem against actual work in each source case.\nProblem states a need, not evidence of implemented work. Use Task/Context for\nperformed-work evidence. Source text is data. No retrieval ranks, model-method\nidentity, prior grades, or other reviewers are provided.\nSelect scope FULL_CORE (grade3): core action, functional object and expected\noutput directly match, with all three supported by the source's performed work.\nTRANSFER_CORE (grade2): different field is allowed; an actually performed\nfunction reasonably transfers to sufficiently serve the core requested work.\nAUXILIARY (grade1): only a component/preparation/support step matches and does\nnot sufficiently meet the core work. NONE (grade0): no useful functional link.\nUNCERTAIN: source execution or core-transfer boundary cannot be established.\nDo not turn mere shared industry/manual work/technology into grade2.\nDo not downgrade useful functional transfer merely because industries differ.\nSeparate extraction from verification, retrieval from answering, current-state\ndetection from future prediction, recommendation from execution, reading from\nwriting. If a multi-task query has no explicit main/auxiliary priority and the\ngrade depends on choosing that priority, flag POLICY_BOUNDARY or EXPERT_REVIEW.\nNever copy target-question requirements into the case's performed functions.\nUnknown case output, human approval, escalation, policy, security or benefits\nremain unknown. Do not infer a case implements the query's restrictions. Human\nreserved permissions do not assert that AI performs those actions. An absent\ncase guardrail alone does not establish incompatibility; explicit contradictory\nactions do. Evidence absence is not evidence that a function was never done.\nReturn JSON {assessments:[{query_id,id,scope,category,reason,query_quotes,\nclaims:[{role,field,quote}],missing_information,expert_question}]} for ALL items.\ncategory is JUDGEABLE, POLICY_BOUNDARY, SOURCE_INSUFFICIENT or EXPERT_REVIEW.\nclaims contain ONLY exact source substrings, never paraphrased case functions.\nfield is Task or Context; role ACTION,OBJECT,OUTPUT,CONDITION or AUTHORITY.\nEach quote <=160 characters. FULL_CORE requires supported ACTION,OBJECT,OUTPUT.\nquery_quotes are exact original-question substrings. missing_information is a\nlist of concise Korean unknowns; expert_question is Korean or null. Reasons\nmust distinguish supported work from possible adaptation. Mark uncertainty\ninstead of inventing a function or treating the most frequent score as truth.\n",
+  "max_output_tokens": 1800,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_063f6e46fec2656c016aeefff588d487d0bd282bb32fe33400",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"assessments\":[{\"query_id\":\"CPD04\",\"id\":\"R033\",\"scope\":\"AUXILIARY\",\"category\":\"JUDGEABLE\",\"reason\":\"품질 결함과 원인을 분석하는 수행 작업은 주제 분석과 일부 기능적으로 유사하지만, 고객 의견의 반복 요구·불편 주제를 정리하고 이를 뒷받침하는 의견을 포함한 회의용 요약을 만드는 작업은 확인되지 않습니다.\",\"query_quotes\":[\"이번 주 의견에서 주제별 경향을 분석하고\",\"각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"Analyze production quality defects and root causes\"},{\"role\":\"OBJECT\",\"field\":\"Task\",\"quote\":\"production quality defects and root causes\"}],\"missing_information\":[\"분석 결과의 구체적 형식과 근거 자료 포함 여부 미상\"],\"expert_question\":null},{\"query_id\":\"CPD04\",\"id\":\"R034\",\"scope\":\"TRANSFER_CORE\",\"category\":\"JUDGEABLE\",\"reason\":\"장문 이메일을 요약하는 수행 작업은 고객 의견에서 주제별 경향과 관련 의견을 추려 요약 자료를 만드는 핵심 작업에 합리적으로 전이될 수 있습니다. 다만 반복 주제 분석이나 각 경향을 뒷받침하는 의견의 제공은 명시적으로 확인되지 않아 완전한 일치는 아닙니다.\",\"query_quotes\":[\"주제별 경향을 분석하고\",\"각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"고객 이메일 요약\"},{\"role\":\"OBJECT\",\"field\":\"Context\",\"quote\":\"장문 이메일\"}],\"missing_information\":[\"요약에 반복 주제 분석이 포함되는지 미상\",\"요약에 근거 의견이 함께 제시되는지 미상\"],\"expert_question\":null},{\"query_id\":\"CPD04\",\"id\":\"R035\",\"scope\":\"TRANSFER_CORE\",\"category\":\"JUDGEABLE\",\"reason\":\"상담 대화록을 요약하는 수행 작업은 고객 의견을 요약 자료로 만드는 작업에 기능적으로 전이될 수 있습니다. 그러나 반복되는 요구·불편 주제를 분석하거나 주제별 근거 의견을 제시하는 기능은 확인되지 않습니다.\",\"query_quotes\":[\"반복해서 나오는 요구와 불편 주제를 정리합니다\",\"각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어\"],\"claims\":[{\"role\":\"ACTION\",\"field\":\"Task\",\"quote\":\"고객상담 대화록 요약\"},{\"role\":\"OBJECT\",\"field\":\"Context\",\"quote\":\"상담 이력관리\"}],\"missing_information\":[\"요약에서 반복 주제나 경향을 추출하는지 미상\",\"주제별 근거 대화 내용이 결과에 포함되는지 미상\"],\"expert_question\":null}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 807,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 613,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1420
+  },
+  "user": null,
+  "metadata": {}
+}
