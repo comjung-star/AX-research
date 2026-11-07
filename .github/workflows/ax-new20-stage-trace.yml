@@ -1,0 +1,67 @@
+name: AX new20 stage-by-stage failure diagnostic
+on:
+  push:
+    branches:
+      - research/new20-failure-analysis-20261108
+    paths:
+      - .github/workflows/ax-new20-stage-trace.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stage-trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      TOKENIZERS_PARALLELISM: "false"
+    steps:
+      - name: Checkout preserved input and original code
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install frozen Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install BGE-M3 and retrieval packages
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==2.4.5 transformers==5.12.0 sentence-transformers==5.7.0
+          python -m pip install kiwipiepy rank-bm25 pyyaml huggingface-hub
+          python -m pip install -e .
+      - name: Download exact recorded BGE-M3 checkpoint
+        run: |
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          import os
+          snapshot_download(repo_id="BAAI/bge-m3",
+             local_dir=os.path.join(os.environ["RUNNER_TEMP"],"bge-m3"),
+             allow_patterns=["*.json","*.bin","*.txt","*.model","*.bpe","*.md"])
+          PY
+      - name: Reproduce raw Dense BM25 Hybrid and original A with frozen model
+        run: |
+          PYTHONPATH=src:. python scripts/new20_stage_trace.py "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/new20-trace-scratch" "$RUNNER_TEMP/new20-stage-rankings.json"
+      - name: Commit diagnostic rankings only after exact A reproduction
+        run: |
+          set -euo pipefail
+          mkdir -p docs/validation-new20-20261107/diagnosis
+          cp "$RUNNER_TEMP/new20-stage-rankings.json" docs/validation-new20-20261107/diagnosis/raw_search_stage_rankings.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/validation-new20-20261107/diagnosis/raw_search_stage_rankings.json
+          git commit -m "evidence: reproduce new20 raw Dense BM25 Hybrid and A ranks"
+          git push origin HEAD:research/new20-failure-analysis-20261108
+      - name: Preserve non-API source-stage trace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-new20-raw-search-trace
+          path: ${{ runner.temp }}/new20-stage-rankings.json
+          if-no-files-found: warn
+          retention-days: 90
