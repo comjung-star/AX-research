@@ -1,0 +1,82 @@
+name: AX new20 actual C-E and blind AI evaluation
+on:
+  push:
+    branches:
+      - research/new20-validation-20261107
+    paths:
+      - .github/workflows/ax-new20-complete.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validation-new20-actual
+  cancel-in-progress: false
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+    steps:
+      - name: Checkout frozen data and scripts (including LFS)
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install pinned reproducible runtime
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==2.4.5 transformers==5.12.0 sentence-transformers==5.7.0
+          python -m pip install kiwipiepy rank-bm25 pyyaml huggingface-hub
+          python -m pip install -e .
+      - name: Fetch and checksum frozen BGE-M3
+        run: |
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          import os
+          snapshot_download(repo_id="BAAI/bge-m3",
+                            local_dir=os.path.join(os.environ["RUNNER_TEMP"],"bge-m3"),
+                            allow_patterns=["*.json","*.bin","*.txt","*.model","*.bpe","*.md"])
+          PY
+      - name: Generate real B-C-E perspectives and task extraction with USD2 estimated cap
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_full_run.py generate "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/validation20-full"
+      - name: Execute frozen genuine new20 Dense-BM25 and multi-view inference
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_full_run.py infer "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/validation20-full"
+      - name: Blindly grade 20x112 pairs with same budget ledger
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_full_run.py judge "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/validation20-full"
+      - name: Evaluate existing E and weighted RRF I2-I3 on same 20 queries
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_full_run.py evaluate "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/validation20-full"
+      - name: Archive results and all source-evidence/API receipts for audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-new20-blind-eval-and-inference
+          path: |
+            ${{ runner.temp }}/validation20-full/run_policy.json
+            ${{ runner.temp }}/validation20-full/api_ledger.json
+            ${{ runner.temp }}/validation20-full/generate_status.json
+            ${{ runner.temp }}/validation20-full/infer_status.json
+            ${{ runner.temp }}/validation20-full/judge_status.json
+            ${{ runner.temp }}/validation20-full/evaluation_status.json
+            ${{ runner.temp }}/validation20-full/validated_metrics.json
+            ${{ runner.temp }}/validation20-full/prediction_seal.json
+            ${{ runner.temp }}/validation20-full/predictions_new20.json
+            ${{ runner.temp }}/validation20-full/labels.json
+            ${{ runner.temp }}/validation20-full/api
+          if-no-files-found: warn
+          retention-days: 90
