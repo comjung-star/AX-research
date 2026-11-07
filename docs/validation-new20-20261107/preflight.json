@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-07",
+  "scope": "New 20-question Validation execution preflight",
+  "state": "INPUT_VALIDATED_RUNTIME_BLOCKED",
+  "checks": {
+    "query_count_20": true,
+    "unique_query_ids": true,
+    "unique_texts": true,
+    "full_corpus_count_112": true,
+    "no_exact_overlap_with_old8": true,
+    "no_old_query_ids_reused": true,
+    "old_frozen_predictions_query_ids": [
+      "CPD01",
+      "CPD02",
+      "CPD03",
+      "CPD04",
+      "CPD05",
+      "CPD06",
+      "CPD07",
+      "CPD08"
+    ],
+    "no_new_prediction_files_confirmed": true,
+    "required_labels": 2240,
+    "user_requested_modes": [
+      "E",
+      "I2",
+      "I3"
+    ],
+    "I2_RRF": {
+      "E": 0.75,
+      "C": 0.25
+    },
+    "I3_RRF": {
+      "E": 0.75,
+      "A": 0.25
+    }
+  },
+  "executed_actual_new_question_retrieval": false,
+  "executed_blind_AI_labeling": false,
+  "executed_model_comparison": false,
+  "API_calls": 0,
+  "existing_independent_Test_accessed": false,
+  "blockers": [
+    {
+      "stage": "new-query retrieval",
+      "requirement": "Runnable BGE-M3 model and original frozen semantic/functional retrieval pipeline; C/E prompts and their 3-repeat generation in execution environment",
+      "available": "GitHub source/code, prior fixed 8-query predictions and new20 questions; local Windows model checkpoint not accessible here",
+      "resolution": "Run in an execution environment with the registered BGE-M3 checkpoint and LLM credentials, writing fresh A/C/E new20 predictions only into this branch"
+    },
+    {
+      "stage": "blind relevance evaluation",
+      "requirement": "112 case Task/Context pairs for each of 20 questions, independent API-model judging and source-evidence checks",
+      "available": "Case registry and grading protocol; no authorized independent LLM API execution endpoint in current toolset",
+      "resolution": "Execute blinded labeling after new predictions are sealed. Abstain and disagree remain unresolved."
+    }
+  ],
+  "warning": "No validation performance figures can be reported. Prior 8-question rankings must not be re-used as 20-query predictions."
+}
