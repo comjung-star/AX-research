@@ -1,0 +1,33 @@
+name: AX trial1 BM25 development diagnostic
+
+on:
+  push:
+    branches:
+      - research/autonomous-improvement-20261108
+    paths:
+      - "scripts/autonomous_trial1_bm25_eval.py"
+      - ".github/workflows/autonomous-trial1-bm25.yml"
+  workflow_dispatch:
+
+jobs:
+  trial1-bm25:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install only tokenizer and sparse retrieval dependencies
+        run: python -m pip install "kiwipiepy>=0.20" "rank-bm25>=0.2.2" "numpy>=1.26"
+      - name: Execute frozen development-only sparse comparison
+        run: python scripts/autonomous_trial1_bm25_eval.py
+      - name: Upload diagnostic result, including baseline reproduction failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autonomous-trial1-bm25-diagnostic
+          path: trial1_bm25_result.json
+          if-no-files-found: warn
