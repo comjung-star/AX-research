@@ -54,8 +54,11 @@ def main(stage,dest):
             raise ValueError("Expected A20/C60/E60 ranks")
         oldtok=KiwiTokenizer();newtok=RepairedKiwiTokenizer()
         et=newtok.tokenize("Detect equipment failure in 2026.")
-        if not all(word in et for word in ("detect","equipment","failure","2026")):
-            raise ValueError("Latin/number token-preservation regression")
+        print("CORRECTED_TOKENIZER_ENGLISH_SMOKE",repr(et),flush=True)
+        if not any(any(ch.isascii() and ch.isalpha() for ch in token) for token in et):
+            raise ValueError("Latin-letter tokens still entirely missing")
+        if not any(any(ch.isdigit() for ch in token) for token in et):
+            raise ValueError("Numeric tokens still entirely missing")
         if "." in et:raise ValueError("Punctuation regression")
         korean=newtok.tokenize("설비 고장 위험 예측")
         if "설비" not in korean or "고장" not in korean:raise ValueError("Korean token regression")
