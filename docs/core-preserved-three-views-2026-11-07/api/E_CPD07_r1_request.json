@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n\nAlso use the supplied source-grounded core structure as intermediate evidence.\nIf any core text conflicts with the original question, the original controls.\nMaintain BUSINESS, OPERATIONS and TECHNICAL roles while keeping the same\nbusiness purpose, action, object, input, output, sequence and restrictions.\nKeep explicit operation verbs where they fit the role. Do not substitute a\ndifferent action merely to make a role sound different. Across the three\nperspectives preserve the full core meaning. Avoid copying identical sentences\ninto all slots; focus BUSINESS on purpose/outcome, OPERATIONS on stated flow\nand conditions, TECHNICAL on input/action/object/output. Do not invent content\nfor differentiation. Unknown core fields provide no license to fill in facts.\n",
+    "input": "{\"original_business_problem\": \"생활용품 광고 담당자는 승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비합니다. 제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다. 제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며 실제 광고 게시는 승인 뒤에 진행합니다.\", \"format\": \"{perspectives:[{id,title,description,keywords:[words],source_quote}]} exactly3; fixed IDs BUSINESS,OPERATIONS,TECHNICAL; include status PRESENT or MISSING\", \"core\": {\"purpose\": {\"text\": \"제품 외형과 브랜드 표현을 유지하면서 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비\", \"evidence\": [\"제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어\"]}, \"action\": {\"text\": \"이미지 후보를 만들고 담당자가 검토하게 함\", \"evidence\": [\"이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다\"]}, \"object\": {\"text\": \"승인된 제품 사진을 사용한 광고 이미지 후보\", \"evidence\": [\"승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 초안\", \"이미지 후보\"]}, \"input\": {\"text\": \"승인된 제품 사진\", \"evidence\": [\"승인된 제품 사진을 사용해\"]}, \"output\": {\"text\": \"배경 장면을 달리한 광고 이미지 후보\", \"evidence\": [\"배경 장면을 달리한 이미지 후보\"]}, \"workflow\": {\"text\": \"담당자가 초안을 검토하고, 실제 광고 게시는 승인 뒤에 진행\", \"evidence\": [\"담당자가 검토하게 하고 싶습니다\", \"실제 광고 게시는 승인 뒤에 진행합니다\"]}, \"constraints\": {\"text\": \"제품 외형과 브랜드 표현을 유지하며, 제품 성능을 바꾸거나 새 효능 문구를 추가하지 않음\", \"evidence\": [\"제품 외형과 브랜드 표현을 유지하면서\", \"제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며\"]}}}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "415ca278414f2387af1e0d02afbc75435f18cf4c04067ec6173ef178f87ddc40",
+  "input_tokens_upper_bound_utf8": 4925,
+  "reserve_usd": "0.011415625",
+  "no_labels_or_ranks": true
+}

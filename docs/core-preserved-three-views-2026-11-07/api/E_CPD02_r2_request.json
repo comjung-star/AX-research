@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n\nAlso use the supplied source-grounded core structure as intermediate evidence.\nIf any core text conflicts with the original question, the original controls.\nMaintain BUSINESS, OPERATIONS and TECHNICAL roles while keeping the same\nbusiness purpose, action, object, input, output, sequence and restrictions.\nKeep explicit operation verbs where they fit the role. Do not substitute a\ndifferent action merely to make a role sound different. Across the three\nperspectives preserve the full core meaning. Avoid copying identical sentences\ninto all slots; focus BUSINESS on purpose/outcome, OPERATIONS on stated flow\nand conditions, TECHNICAL on input/action/object/output. Do not invent content\nfor differentiation. Unknown core fields provide no license to fill in facts.\n",
+    "input": "{\"original_business_problem\": \"주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.\", \"format\": \"{perspectives:[{id,title,description,keywords:[words],source_quote}]} exactly3; fixed IDs BUSINESS,OPERATIONS,TECHNICAL; include status PRESENT or MISSING\", \"core\": {\"purpose\": {\"text\": \"견적서 초안 작성 지원\", \"evidence\": [\"견적서 초안을 만들어\"]}, \"action\": {\"text\": \"견적서 초안을 만든다\", \"evidence\": [\"견적서 초안을 만들어\"]}, \"object\": {\"text\": \"요청 사양과 수량을 반영한 견적서\", \"evidence\": [\"요청 사양과 수량을 반영한 견적서\"]}, \"input\": {\"text\": \"고객이 보낸 부품 사양과 수량\", \"evidence\": [\"고객이 보낸 부품 사양과 수량\"]}, \"output\": {\"text\": \"담당자가 가격과 납기를 검토할 견적서 초안\", \"evidence\": [\"견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록\"]}, \"workflow\": {\"text\": \"담당자가 초안의 가격과 납기를 검토한다\", \"evidence\": [\"담당자가 가격과 납기를 검토하도록\"]}, \"constraints\": {\"text\": \"고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 있다\", \"evidence\": [\"고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.\"]}}}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "f357a61e24cd42f37aca7ee718079e7e655a1c42c811f1ab3ed2de1d01898619",
+  "input_tokens_upper_bound_utf8": 4471,
+  "reserve_usd": "0.011358875",
+  "no_labels_or_ranks": true
+}

@@ -1,0 +1,98 @@
+{
+  "id": "resp_0b8467d4dd101111016aee97f6fe2487d0935d74f535a4c87a",
+  "object": "response",
+  "created_at": 1794021367,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794021370,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0b8467d4dd101111016aee97f788b087d08d15d17690026ab0",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"지역별 광고 이미지 초안 준비\",\"description\":\"생활용품 광고 담당자는 승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 후보를 준비하고 담당자가 검토하게 합니다. 제품 외형과 브랜드 표현은 유지하며, 제품 성능 변경이나 새 효능 문구 추가는 하지 않습니다. 실제 광고 게시는 승인 뒤에 진행합니다.\",\"keywords\":[\"생활용품 광고 담당자\",\"승인된 제품 사진\",\"지역별 생활 장면\",\"광고 이미지 후보\",\"담당자 검토\",\"제품 성능\",\"효능 문구\",\"광고 게시\"],\"source_quote\":\"생활용품 광고 담당자는 승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비합니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"초안 검토 후 승인에 따른 게시\",\"description\":\"광고 이미지 후보를 담당자가 검토하고, 실제 광고 게시는 승인 뒤에 진행합니다.\",\"keywords\":[\"담당자 검토\",\"승인\",\"실제 광고 게시\"],\"source_quote\":\"실제 광고 게시는 승인 뒤에 진행합니다.\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"제품 사진 기반 배경 장면별 이미지 후보 생성\",\"description\":\"승인된 제품 사진을 입력으로 사용해 제품 외형과 브랜드 표현을 유지하고 배경 장면을 달리한 광고 이미지 후보를 만듭니다. 제품 성능은 바꾸지 않고 새 효능 문구를 추가하지 않습니다.\",\"keywords\":[\"승인된 제품 사진\",\"배경 장면\",\"광고 이미지 후보\",\"제품 외형\",\"브랜드 표현\",\"제품 성능\",\"효능 문구\"],\"source_quote\":\"제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 460,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 412,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 872
+  },
+  "user": null,
+  "metadata": {}
+}

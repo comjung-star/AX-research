@@ -1,0 +1,98 @@
+{
+  "id": "resp_086ffed83d054eab016aee985bc9f487d08d48d1e41699b49b",
+  "object": "response",
+  "created_at": 1794021467,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794021472,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_086ffed83d054eab016aee985c6d2887d0820901b5f2fbb65f",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"휴직 신청 관련 반복 문의에 답변하고, 규정으로 확정하기 어려운 문의를 인사 담당자에게 넘긴다.\",\"evidence\":[\"직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다.\",\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다.\"]},\"action\":{\"text\":\"게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고, 답을 확정하기 어려운 문의는 인사 담당자에게 넘긴다.\",\"evidence\":[\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 제출할 서류를 설명하고\",\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다.\"]},\"object\":{\"text\":\"휴직 신청의 적용 조건과 제출할 서류에 관한 문의.\",\"evidence\":[\"휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다.\",\"질문에 맞는 조건과 제출할 서류\"]},\"input\":{\"text\":\"직원의 질문과 현재 게시된 사내 규정.\",\"evidence\":[\"현재 게시된 사내 규정을 바탕으로 질문에 맞는\"]},\"output\":{\"text\":\"질문에 맞는 휴직 신청 조건과 제출 서류에 대한 설명, 또는 규정으로 답을 확정하기 어려운 문의의 인사 담당자 전달.\",\"evidence\":[\"질문에 맞는 조건과 제출할 서류를 설명하고\",\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다.\"]},\"workflow\":{\"text\":\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하며, 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘긴다.\",\"evidence\":[\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 제출할 서류를 설명하고\",\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다.\"]},\"constraints\":{\"text\":\"휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않는다.\",\"evidence\":[\"휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 290,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 508,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 798
+  },
+  "user": null,
+  "metadata": {}
+}

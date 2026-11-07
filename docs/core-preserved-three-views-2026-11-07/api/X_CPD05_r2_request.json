@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+    "input": "{\"original_business_problem\": \"해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "f9d05338f3e6a1304e955608f77476b9d19abbe0a4c9857de9aff74e1828fda0",
+  "input_tokens_upper_bound_utf8": 1936,
+  "reserve_usd": "0.011042",
+  "no_labels_or_ranks": true
+}

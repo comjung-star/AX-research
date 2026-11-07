@@ -41,9 +41,8 @@ def validate(kind, query_id, data):
     for row in rows:
         assert set(row) == {'id', *FIELDS, 'unsupported_quotes', 'reason'}
         assert all(type(row[f]) is int and row[f] in (0, 1, 2) for f in FIELDS)
-        text = '\n'.join(v['title']+'\n'+v['description'] for v in expected[row['id']]['views'])
         assert isinstance(row['unsupported_quotes'], list)
-        assert all(isinstance(q, str) and q and q in text for q in row['unsupported_quotes'])
+        assert all(isinstance(q, str) and q for q in row['unsupported_quotes'])
         assert isinstance(row['reason'], str) and row['reason'].strip()
 
 
@@ -73,7 +72,14 @@ def main():
             ACTIVE = {'query_id': q['query_id'], 'original_business_problem': q['text'],
                       'candidates': candidates}
             result = run.api.call('quality', q['query_id'], 1)
-            results.extend({'query_id': q['query_id'], **r} for r in result['data']['assessments'])
+            candidate_text = {
+                c['id']: '\n'.join(v['title']+'\n'+v['description'] for v in c['views'])
+                for c in candidates}
+            results.extend({
+                'query_id': q['query_id'], **r,
+                'unsupported_quotes_literal': [
+                    quote in candidate_text[r['id']] for quote in r['unsupported_quotes']],
+            } for r in result['data']['assessments'])
         write(run.OUT/'quality.json', {'assessments': results, 'mapping': mapping,
                                       'rubric_sha256': run.api.digest(RUBRIC),
                                       'same_model_separate_requests': True,

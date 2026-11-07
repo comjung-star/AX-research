@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+    "input": "{\"original_business_problem\": \"직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "c5e6ce1d29a4f4155a6faee5dc79c7371194650825c9827fcbf638ba63410786",
+  "input_tokens_upper_bound_utf8": 1900,
+  "reserve_usd": "0.0110375",
+  "no_labels_or_ranks": true
+}

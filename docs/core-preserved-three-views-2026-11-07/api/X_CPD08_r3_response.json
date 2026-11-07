@@ -1,0 +1,98 @@
+{
+  "id": "resp_061c9d6318754f98016aee99bec4ac87d0b3af9ee1f2f088f0",
+  "object": "response",
+  "created_at": 1794021822,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794021826,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_061c9d6318754f98016aee99bf6f0887d09579f4420b027e6c",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"core\": {\n    \"purpose\": {\n      \"text\": \"발주 담당자가 발주 수량을 검토하도록 지원\",\n      \"evidence\": [\"담당자가 발주 수량을 검토하도록\"]\n    },\n    \"action\": {\n      \"text\": \"앞으로의 수요량을 예측\",\n      \"evidence\": [\"앞으로의 수요량을 예측\"]\n    },\n    \"object\": {\n      \"text\": \"매장과 품목별 수요량\",\n      \"evidence\": [\"매장과 품목의 일별 판매 기록\", \"앞으로의 수요량\"]\n    },\n    \"input\": {\n      \"text\": \"매장과 품목의 일별 판매 기록\",\n      \"evidence\": [\"매장과 품목의 일별 판매 기록\"]\n    },\n    \"output\": {\n      \"text\": \"앞으로의 수요량 예측 결과\",\n      \"evidence\": [\"앞으로의 수요량을 예측\", \"예측 결과\"]\n    },\n    \"workflow\": {\n      \"text\": \"발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인하고, 예측 결과를 발주 수량 검토에 활용\",\n      \"evidence\": [\"품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인합니다\", \"담당자가 발주 수량을 검토하도록\"]\n    },\n    \"constraints\": {\n      \"text\": \"현재 재고 부족을 경보하는 작업과 구분하며, 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않음\",\n      \"evidence\": [\"현재 재고 부족을 경보하는 작업과 구분하며\", \"예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다\"]\n    }\n  }\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 306,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 408,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 714
+  },
+  "user": null,
+  "metadata": {}
+}

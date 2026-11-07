@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+    "input": "{\"original_business_problem\": \"서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "9a9aaa6c320bb4318f707d2ce456453d8a6cb2b3eee67a30613c25ab18b9832c",
+  "input_tokens_upper_bound_utf8": 1919,
+  "reserve_usd": "0.011039875",
+  "no_labels_or_ranks": true
+}

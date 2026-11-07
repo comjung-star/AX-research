@@ -1,0 +1,98 @@
+{
+  "id": "resp_00dc143d33f32660016aee986289e087d08a5b7a56a338e280",
+  "object": "response",
+  "created_at": 1794021474,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794021478,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n\nAlso use the supplied source-grounded core structure as intermediate evidence.\nIf any core text conflicts with the original question, the original controls.\nMaintain BUSINESS, OPERATIONS and TECHNICAL roles while keeping the same\nbusiness purpose, action, object, input, output, sequence and restrictions.\nKeep explicit operation verbs where they fit the role. Do not substitute a\ndifferent action merely to make a role sound different. Across the three\nperspectives preserve the full core meaning. Avoid copying identical sentences\ninto all slots; focus BUSINESS on purpose/outcome, OPERATIONS on stated flow\nand conditions, TECHNICAL on input/action/object/output. Do not invent content\nfor differentiation. Unknown core fields provide no license to fill in facts.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_00dc143d33f32660016aee9863970487d099fdfa8e15c1fdd5",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"휴직 신청 반복 문의 응대\",\"description\":\"직원들의 반복 문의에 현재 게시된 사내 규정을 바탕으로 휴직 신청의 적용 조건과 제출할 서류를 설명하고, 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘긴다. 휴직 신청 승인과 인사시스템 정보 변경은 포함하지 않는다.\",\"keywords\":[\"직원\",\"반복 문의\",\"휴직 신청\",\"적용 조건\",\"제출 서류\",\"인사 담당자\"],\"source_quote\":\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 제출할 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"규정 안내와 담당자 전달\",\"description\":\"직원의 질문에 현재 게시된 사내 규정에 따라 조건과 서류를 설명하고, 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘긴다.\",\"keywords\":[\"질문\",\"게시된 사내 규정\",\"조건 설명\",\"서류 설명\",\"인사 담당자 전달\"],\"source_quote\":\"규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다.\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"질문에 맞는 조건과 서류 설명\",\"description\":\"입력은 직원의 질문과 현재 게시된 사내 규정이다. 이를 바탕으로 휴직 신청에 맞는 적용 조건과 제출할 서류를 설명하며, 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 전달한다. 승인이나 인사시스템 정보 변경은 포함하지 않는다.\",\"keywords\":[\"직원 질문\",\"게시된 사내 규정\",\"휴직 신청\",\"적용 조건\",\"제출 서류\",\"설명\",\"인사 담당자 전달\"],\"source_quote\":\"현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 제출할 서류를 설명하고\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1147,
+    "input_tokens_details": {
+      "cache_write_tokens": 1144,
+      "cached_tokens": 0
+    },
+    "output_tokens": 457,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1604
+  },
+  "user": null,
+  "metadata": {}
+}

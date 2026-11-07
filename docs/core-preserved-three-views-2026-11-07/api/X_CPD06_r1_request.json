@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+    "input": "{\"original_business_problem\": \"운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "57c1c02cf30ae265bfe3f40375a324628d56f0b2a407f8dfb818b2cf6b2d7267",
+  "input_tokens_upper_bound_utf8": 1892,
+  "reserve_usd": "0.0110365",
+  "no_labels_or_ranks": true
+}

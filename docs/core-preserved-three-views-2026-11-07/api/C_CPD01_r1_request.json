@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n",
+    "input": "{\"original_business_problem\": \"온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.\", \"format\": \"{perspectives:[{id,title,description,keywords:[words],source_quote}]} exactly3; fixed IDs BUSINESS,OPERATIONS,TECHNICAL; include status PRESENT or MISSING\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "d9b877726f42a5a7466d45e352bba9d0bcae4df8b37647b7d7760cbd486d2945",
+  "input_tokens_upper_bound_utf8": 2693,
+  "reserve_usd": "0.011136625",
+  "no_labels_or_ranks": true
+}

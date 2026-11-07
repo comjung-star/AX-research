@@ -77,6 +77,24 @@ def diagnostics(pred, labels):
     branches = {r['query_id']: r['ranking'] for r in read(
         run.OUT/'inference/branch_rankings.json')['systems']['C1']}
     slots = read(run.OUT/'slots.json')['records']
+    reference = read(run.OUT/'function_reference.json')['questions']
+    recognition = []
+    for condition in ('B', 'C', 'E'):
+        for q in pred['query_ids']:
+            for repeat in (1, 2, 3):
+                ids = [s['path_id'] for s in slots if
+                       (s['condition'], s['query_id'], s['repeat']) == (condition, q, repeat)
+                       and s['path_id'] in profiles]
+                found = set().union(*(set(profiles[path]['function_ids']) for path in ids))
+                expected = set(reference[q]['required'])
+                allowed = expected | set(reference[q].get('allowed_auxiliary', []))
+                recognition.append({
+                    'condition': condition, 'query_id': q, 'repeat': repeat,
+                    'any_recognized': bool(found), 'recognized_ids': sorted(found),
+                    'required_ids': sorted(expected), 'representable': bool(expected),
+                    'all_required_found': expected <= found if expected else None,
+                    'off_core_ids_for_review': sorted(found-allowed),
+                })
     paths = []
     for s in slots:
         path = s['path_id']
@@ -105,7 +123,9 @@ def diagnostics(pred, labels):
                                  'shared_functions': r['C1_rule']['shared_functions'],
                                  'rule_strength': r['C1_rule']['mapping_grade'],
                                  'semantic': r['semantic']['score']})
-    return {'changes': changes, 'path_discovery': paths, 'positive_pair_function_links': mappings,
+    return {'changes': changes, 'path_discovery': paths,
+            'source_referenced_function_recognition': recognition,
+            'positive_pair_function_links': mappings,
             'interpretation': 'A shared rule on an AI-positive pair is still a proxy, not verified semantic alignment'}
 
 

@@ -1,0 +1,98 @@
+{
+  "id": "resp_09b1b85fc35d2e3d016aee98ec9c1887d0992f93c3385714c2",
+  "object": "response",
+  "created_at": 1794021612,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794021615,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_09b1b85fc35d2e3d016aee98ed616887d0b3c5498361b52662",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"제품 외형과 브랜드 표현을 유지하며 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비\",\"evidence\":[\"제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다.\"]},\"action\":{\"text\":\"배경 장면을 달리한 이미지 후보를 만들기\",\"evidence\":[\"배경 장면을 달리한 이미지 후보를 만들어\"]},\"object\":{\"text\":\"승인된 제품 사진을 사용한 광고 이미지 후보\",\"evidence\":[\"승인된 제품 사진을 사용해\",\"이미지 후보\"]},\"input\":{\"text\":\"승인된 제품 사진\",\"evidence\":[\"승인된 제품 사진\"]},\"output\":{\"text\":\"담당자가 검토할 광고 이미지 후보\",\"evidence\":[\"이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다.\"]},\"workflow\":{\"text\":\"담당자가 이미지 후보를 검토하고, 실제 광고 게시는 승인 뒤에 진행\",\"evidence\":[\"이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다.\",\"실제 광고 게시는 승인 뒤에 진행합니다.\"]},\"constraints\":{\"text\":\"제품 외형과 브랜드 표현을 유지하고, 제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며, 실제 광고 게시는 승인 뒤에 진행\",\"evidence\":[\"제품 외형과 브랜드 표현을 유지하면서\",\"제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며\",\"실제 광고 게시는 승인 뒤에 진행합니다.\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 291,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 333,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 624
+  },
+  "user": null,
+  "metadata": {}
+}

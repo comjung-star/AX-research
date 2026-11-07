@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+    "input": "{\"original_business_problem\": \"온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "4e84e09d8a77cf2680c1b256c75352ac1bb7f34d9351d862d7dea5ef5fb10f7f",
+  "input_tokens_upper_bound_utf8": 1924,
+  "reserve_usd": "0.0110405",
+  "no_labels_or_ranks": true
+}

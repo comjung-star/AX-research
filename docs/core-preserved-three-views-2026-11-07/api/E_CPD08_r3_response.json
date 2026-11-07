@@ -1,0 +1,98 @@
+{
+  "id": "resp_0ef300e6cb50e73f016aee99c4b81c87d0829878bcd8dbfb60",
+  "object": "response",
+  "created_at": 1794021829,
+  "completed_at": 1794021832,
+  "status": "completed",
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "frequency_penalty": 0.0,
+  "presence_penalty": 0.0,
+  "moderation": null,
+  "model": "gpt-6-luna",
+  "access_programs": null,
+  "previous_response_id": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n\nAlso use the supplied source-grounded core structure as intermediate evidence.\nIf any core text conflicts with the original question, the original controls.\nMaintain BUSINESS, OPERATIONS and TECHNICAL roles while keeping the same\nbusiness purpose, action, object, input, output, sequence and restrictions.\nKeep explicit operation verbs where they fit the role. Do not substitute a\ndifferent action merely to make a role sound different. Across the three\nperspectives preserve the full core meaning. Avoid copying identical sentences\ninto all slots; focus BUSINESS on purpose/outcome, OPERATIONS on stated flow\nand conditions, TECHNICAL on input/action/object/output. Do not invent content\nfor differentiation. Unknown core fields provide no license to fill in facts.\n",
+  "output": [
+    {
+      "type": "message",
+      "id": "msg_0ef300e6cb50e73f016aee99c574bc87d0b5a5eea5507bb3c1",
+      "role": "assistant",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"발주 수량 검토 지원\",\"description\":\"식료품 매장의 발주 담당자가 품목별로 다음 주에 필요한 수량을 정하고 발주 수량을 검토할 수 있도록, 앞으로의 수요량을 예측합니다. 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\",\"keywords\":[\"식료품 매장\",\"발주 담당자\",\"다음 주\",\"발주 수량 검토\",\"수요 예측\"],\"source_quote\":\"담당자가 발주 수량을 검토하도록 하고 싶습니다\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"판매 내역 확인 후 예측 결과 검토\",\"description\":\"발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인하고, 예측 결과를 발주 수량 검토에 활용합니다. 현재 재고 부족을 경보하는 작업과는 구분합니다.\",\"keywords\":[\"과거 판매 내역 확인\",\"발주 담당자\",\"예측 결과 검토\",\"재고 부족 경보와 구분\"],\"source_quote\":\"발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인합니다\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"일별 판매 기록 기반 수요량 예측\",\"description\":\"매장과 품목의 일별 판매 기록을 입력으로 앞으로의 수요량을 예측해 결과를 제공합니다. 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\",\"keywords\":[\"매장별 판매 기록\",\"품목별 판매 기록\",\"일별 판매 기록\",\"수요량 예측\",\"예측 결과\"],\"source_quote\":\"매장과 품목의 일별 판매 기록을 바탕으로 앞으로의 수요량을 예측\"}]}",
+          "annotations": [],
+          "logprobs": []
+        }
+      ],
+      "phase": "final_answer"
+    }
+  ],
+  "error": null,
+  "incomplete_details": null,
+  "tools": [],
+  "tool_choice": "auto",
+  "parallel_tool_calls": true,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "top_p": 0.98,
+  "top_logprobs": 0,
+  "temperature": 1.0,
+  "reasoning": {
+    "effort": "none",
+    "context": "all_turns",
+    "summary": null,
+    "mode": "standard"
+  },
+  "user": null,
+  "usage": {
+    "input_tokens": 983,
+    "input_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0
+    },
+    "output_tokens": 413,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1396
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "input_tokens_details": {
+        "text_tokens": 0,
+        "image_tokens": 0
+      },
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      }
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "safety_identifier": null,
+  "store": false,
+  "metadata": {},
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "service_tier": "default",
+  "truncation": "disabled",
+  "image": {
+    "context_compression": "disabled"
+  }
+}

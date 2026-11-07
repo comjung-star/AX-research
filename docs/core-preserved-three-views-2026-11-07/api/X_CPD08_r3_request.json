@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+    "input": "{\"original_business_problem\": \"식료품 매장의 발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인합니다. 매장과 품목의 일별 판매 기록을 바탕으로 앞으로의 수요량을 예측해 담당자가 발주 수량을 검토하도록 하고 싶습니다. 현재 재고 부족을 경보하는 작업과 구분하며 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "2cfbd9f2270c1ba6b65534b219dec99ba31a45d69b0db969e3a9562a22d2bb95",
+  "input_tokens_upper_bound_utf8": 1965,
+  "reserve_usd": "0.011045625",
+  "no_labels_or_ranks": true
+}

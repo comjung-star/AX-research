@@ -1,0 +1,98 @@
+{
+  "id": "resp_0e275f574e264bd0016aee982b91f087d0ad0b340d3070be0c",
+  "object": "response",
+  "created_at": 1794021419,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794021423,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0e275f574e264bd0016aee982c3ec487d0bc42b22847501e7e",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"공급사 상품 설명에서 실제로 적힌 속성을 추출해 검토용 표로 보여줍니다.\",\"evidence\":[\"상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다.\",\"설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다.\"]},\"action\":{\"text\":\"상품 설명에서 속성을 추출하고 품목별 항목으로 나눕니다.\",\"evidence\":[\"설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어\"]},\"object\":{\"text\":\"공급사가 보낸 생활용품의 재질, 크기, 색상, 관리 방법 등 상품 설명에 실제로 적힌 속성입니다.\",\"evidence\":[\"온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다.\",\"설명에 실제로 적힌 속성을\"]},\"input\":{\"text\":\"공급사가 보낸 상품 설명입니다.\",\"evidence\":[\"공급사가 보낸 상품 설명에서\"]},\"output\":{\"text\":\"품목별 항목으로 나눈 검토용 표이며, 빠진 속성은 미상으로 표시합니다.\",\"evidence\":[\"품목별 항목에 나누어 검토용 표로 보여주고 싶습니다.\",\"빠진 속성은 미상으로 남기며\"]},\"workflow\":{\"text\":\"상품 설명을 다시 읽고 실제로 적힌 속성을 추출해 품목별 항목으로 나누어 검토용 표로 보여줍니다.\",\"evidence\":[\"상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다.\",\"설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다.\"]},\"constraints\":{\"text\":\"설명에 적히지 않은 속성은 미상으로 남기고, 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.\",\"evidence\":[\"설명에 실제로 적힌 속성을\",\"빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 304,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 517,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 821
+  },
+  "user": null,
+  "metadata": {}
+}
