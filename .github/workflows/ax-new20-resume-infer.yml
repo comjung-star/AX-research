@@ -36,6 +36,7 @@ jobs:
       # Re-run checkpointed inference using registered SHA256 manifest instead
       # of an obsolete historical git-show path. Saved API generation is reused.
       # Retried with Windows CRLF-normalized frozen source verification.
+      # Distinguish an equal pinned torch CPU wheel from a package version drift.
       - name: Install Python 3.13
         uses: actions/setup-python@v5
         with:
