@@ -1,0 +1,41 @@
+name: AX new20 independent blind grader
+on:
+  push:
+    branches:
+      - research/new20-validation-20261107
+    paths:
+      - .github/workflows/ax-new20-grade.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  blind-relevance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        qid: [VQ001, VQ002, VQ003, VQ004, VQ005, VQ006, VQ007, VQ008, VQ009, VQ010, VQ011, VQ012, VQ013, VQ014, VQ015, VQ016, VQ017, VQ018, VQ019, VQ020]
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - name: Checkout frozen question and case data
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Blind task-based AI relevance rating (8 cases/call; cap USD0.09/question)
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_grade_one.py "${{ matrix.qid }}" "$RUNNER_TEMP/grade-${{ matrix.qid }}"
+      - name: Preserve all attempts, evidence quotes and results even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-new20-grade-${{ matrix.qid }}
+          path: ${{ runner.temp }}/grade-${{ matrix.qid }}
+          if-no-files-found: warn
+          retention-days: 90
