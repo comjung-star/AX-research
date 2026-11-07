@@ -1,0 +1,61 @@
+name: AX stage2 reconciled audit of all paid review evidence
+on:
+  push:
+    branches: [research/stage1-stage2-integrity-20261108]
+    paths:
+      - .github/workflows/ax-stage2-reconciled.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Wait for all 40 recovery artifacts, including failed runs
+        run: |
+          set -euo pipefail
+          for n in $(seq 1 150); do
+            status=$(gh api "repos/${{ github.repository }}/actions/runs/42390784770" --jq '.status')
+            if [ "$status" = completed ]; then
+              echo "Recovery completed (some invalid answers may be quarantined)."
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "Missing upstream evidence";exit 1
+      - name: Download original recovery artifacts without changing response files
+        run: |
+          mkdir -p "$RUNNER_TEMP/rounds"
+          gh run download 42390784770 -D "$RUNNER_TEMP/rounds" --pattern 'stage2-recovered-*'
+      - name: Reconstruct only exact validated JSON from paid response objects
+        run: |
+          PYTHONPATH=src:. python scripts/stage2_quality_audit.py "$RUNNER_TEMP/rounds" "$RUNNER_TEMP/stage2-reviewed"
+      - name: Save auditable judgments and unresolved flags to separate report folder
+        run: |
+          mkdir -p docs/stage12-integrity-20261108/stage2_reconciled
+          cp "$RUNNER_TEMP/stage2-reviewed/"*.json docs/stage12-integrity-20261108/stage2_reconciled/
+          cp "$RUNNER_TEMP/stage2-reviewed/README.md" docs/stage12-integrity-20261108/stage2_reconciled/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/stage12-integrity-20261108/stage2_reconciled
+          git commit -m "audit: reconcile original three AI blind rating streams and quarantine disagreements"
+          git pull --rebase origin research/stage1-stage2-integrity-20261108
+          git push origin HEAD:research/stage1-stage2-integrity-20261108
+      - name: Archive reconciled review sources and metric sensitivity
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage2-blind-reviewed-reconciled
+          path: ${{ runner.temp }}/stage2-reviewed
+          if-no-files-found: warn
+          retention-days: 90
