@@ -166,6 +166,6 @@ E의 실제 생성 비용에는 X 추출 비용도 더해야 한다. 원문 A는
 
 단계별 실행은 `core_preservation_run prepare / generate / infer / judge`, `core_preservation_quality`, `core_preservation_evaluate`, `core_preservation_report` 순서다. infer에 새 scratch 경로를 지정한다. 기존 실험 결과가 있으면 다시 쓰기를 거부한다. 재현에는 보존한 API 응답과 모델 해시를 사용하며 동일 API를 다시 호출할 필요는 없다.
 
-자동 검사 188개 통과. [실행 기록](tests.json) · [실행 방법](REPRODUCE.md) · [완료 상태](final_status.json) · [원본 보존 검사](preservation_check.json) · [비밀정보 검사](secret_scan.json)
+자동 검사 188개 통과. [실행 기록](tests.json) · [실행 방법](REPRODUCE.md) · [완료 상태](final_status.json) · [원본 보존 검사](preservation_check.json) · [비밀정보 검사](secret_scan.json) · [GitHub 결과 커밋 기록](publication.json)
 
 핵심 결론은 개발 자료의 검색 개선 신호가 있다는 것이다. 핵심 업무 보존 자체의 개선은 아직 입증되지 않았고 반복 안정성은 C보다 낮았다. 최종 논문 모델로 채택할 근거를 확정하는 단계는 남아 있다.
