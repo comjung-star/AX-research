@@ -36,6 +36,59 @@ def read_records(source,qids,caseids,origin,case_data):
         result[k]=x
     return result
 
+def salvage_paid_raw_output(folder,qid,records,case_data):
+    """Re-extract fully valid JSON objects already returned and billed.
+
+    Some Responses API outputs contain TWO output_text JSON messages; joining
+    them is invalid, but one may contain a complete eight-case response.
+    Never call a model, never infer absent grades, and never choose conflicting
+    returned grades silently.
+    """
+    by={x["case_id"]:dict(x) for x in records}
+    changed=[];conflicts=[]
+    for path in sorted((folder/"api").glob(f"review_{qid}_r*_response.json")):
+        data=read(path)
+        if data.get("status")!="completed":continue
+        candidates=defaultdict(list)
+        for message in data.get("output",[]):
+            for content in message.get("content",[]):
+                if content.get("type")!="output_text" or not isinstance(content.get("text"),str):continue
+                txt=content["text"].strip()
+                # Accept a complete JSON object, or a complete first JSON
+                # object followed by non-JSON noise, with provenance flagged.
+                try:
+                    obj=json.loads(txt)
+                except (ValueError,TypeError):
+                    try:
+                        obj,_end=json.JSONDecoder().raw_decode(txt)
+                    except (ValueError,TypeError):
+                        continue
+                if not isinstance(obj,dict) or not isinstance(obj.get("assessments"),list):continue
+                for row in obj["assessments"]:
+                    if not isinstance(row,dict) or row.get("query_id")!=qid:continue
+                    cid=row.get("case_id")
+                    if cid not in by or by[cid]["status"]!="UNJUDGED":continue
+                    grade=row.get("grade");status=row.get("status")
+                    if status!="JUDGED" or type(grade)!=int or grade not in (0,1,2,3):continue
+                    quote=row.get("task_quote");reason=row.get("reason")
+                    if not isinstance(quote,str) or not quote or quote not in case_data[cid]["task"]:continue
+                    if not isinstance(reason,str) or not reason.strip():continue
+                    candidates[cid].append(row)
+        for cid,valid in candidates.items():
+            grades={r["grade"] for r in valid}
+            if len(grades)!=1:
+                conflicts.append({"case_id":cid,"source":path.name,"returned_grades":sorted(grades)})
+                continue
+            old=by[cid]
+            if old["status"]!="UNJUDGED":continue
+            selected=valid[0]
+            by[cid]={**old,"status":"JUDGED","grade":selected["grade"],
+                "rationale":selected["reason"],"task_quote":selected["task_quote"],
+                "recovery_note":"SALVAGED_VALID_JSON_FROM_ALREADY_PAID_RAW_RESPONSE",
+                "raw_response_file":path.name}
+            changed.append({"case_id":cid,"source":path.name})
+    return list(by.values()),changed,conflicts
+
 def main(restored,out):
     if out.exists():raise RuntimeError("No overwrite")
     out.mkdir(parents=True)
@@ -59,12 +112,24 @@ def main(restored,out):
                 raise RuntimeError("Blind reviewer input fingerprints differ")
             if st["prior_labels_and_ranks_not_read"] is not True or st["original_paid_responses_replayed"]!=0 or st["independent_Test_unread"] is not True:
                 raise RuntimeError("Unsafe review provenance")
-            if len(rr)!=112 or {x["case_id"] for x in rr}!=set(cases) or any(x["query_id"]!=q for x in rr):
-                issues.append({"qid":q,"round":round_no,"issue":"PARTIAL_RECOVERY"})
-                continue
+            if len({x["case_id"] for x in rr})!=len(rr) or any(x["query_id"]!=q or x["case_id"] not in cases for x in rr):
+                raise RuntimeError("Duplicate/foreign recovered grades")
+            # If an earlier recovery stopped at an incomplete paid response,
+            # represent never-attempted later chunks as UNJUDGED, not guesses.
+            missing=set(cases)-{x["case_id"] for x in rr}
+            rr.extend({"query_id":q,"case_id":cid,"grade":None,"status":"UNJUDGED",
+                "rationale":"No received label available; no paid replay",
+                "task_quote":"","source":f"IndependentBlindReviewRound{round_no}",
+                "recovery_note":"MISSING_AFTER_INTERRUPTED_RECOVERY"} for cid in sorted(missing))
+            if len(rr)!=112:
+                raise RuntimeError("Could not cover all case IDs even as explicit UNJUDGED")
+            rr,salvaged,conflicts=salvage_paid_raw_output(folder,q,rr,cases)
             usage.append({"qid":q,"round":round_no,"usd":st["API_usage"]["conservative_spent_or_reserved_usd"],
                 "new_requests_after_initial":st["additional_paid_calls_for_never_requested_batches"],
-                "normalization_flags":st["normalization_audit_flags"]})
+                "normalization_flags":st["normalization_audit_flags"],
+                "unjudged_after_salvage":sum(x["status"]=="UNJUDGED" for x in rr),
+                "salvaged_from_paid_raw_responses":salvaged,
+                "raw_response_label_conflicts":conflicts})
             rows.extend(rr)
         source=read_records({"records":rows},set(qs),set(cases),f"review{round_no}",cases)
         voters[f"round{round_no}"]=source
@@ -136,7 +201,11 @@ def main(restored,out):
     compare(PRED,sf,mf);results["consensus"]=read(mf)
     merged={
         "state":"STAGE2_THREE_BLIND_AI_PASSES_COMPLETE_WITH_UNRESOLVED_QUEUE",
-        "graded_pairs":2240,"total_votes":6720,"three_rounds_same_provider":True,
+        "graded_pairs":2240,"total_vote_slots":6720,
+        "actual_JUDGED_votes":sum(v["status"]=="JUDGED" for source in voters.values() for v in source.values()),
+        "abstained_or_missing_votes":sum(v["status"]!="JUDGED" for source in voters.values() for v in source.values()),
+        "salvaged_from_paid_responses_count":sum(len(x["salvaged_from_paid_raw_responses"]) for x in usage),
+        "three_rounds_same_provider":True,
         "no_human_or_three_distinct_model_consensus":True,"source_registry_cases":112,
         "cases_missing_proven_task":sum(not x["task"].strip() for x in cases.values()),
         "cases_missing_context":sum(not x["context"].strip() for x in cases.values()),
@@ -157,7 +226,7 @@ def main(restored,out):
     flagged=[x for x in unresolved if x["query_id"] in ("VQ015","VQ019","VQ020","VQ006")]
     lines=["# AX 정답 데이터 3회 블라인드 평가 품질 점검",
         "","## 판단","기존 1회와 새로 실시한 2회의 독립 실행 채점은 완료. 모두 동일한 OpenAI 모델이어서 3종 LLM/전문가 정답은 아님.",
-        "","- 전체 질문×사례: **2,240쌍**","- 총 AI 평가: **6,720번**",
+        "","- 전체 질문×사례: **2,240쌍**",f"- 총 평가 대상: **6,720칸** (실제 확정 판정 {merged['actual_JUDGED_votes']}건)",
         f"- 3회가 관련/비관련 판정을 모두 일치시킨 쌍: **{strict}/2240**",
         f"- 관련/비관련 판정이 불일치한 쌍: **{binary_disagreed}**",
         f"- 한 번 이상 보류 또는 미판정인 쌍: **{abstains}**",
