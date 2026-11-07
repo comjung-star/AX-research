@@ -1,0 +1,8 @@
+{
+  "calls": 8,
+  "same_model_separate_blind_requests": true,
+  "hidden_candidate_ids_seed": 20261107,
+  "rubric": "\nAssess generated perspectives against the original business problem only.\nCandidate IDs hide generation method. Do not infer quality from length or\nformat. For each candidate, inspect the union of all three views and return\npurpose, action, object, output, constraints and role_distinction, each0/1/2\n(0=changed/absent or merged roles,1=partial,2=preserved or clearly differentiated).\nFor constraints, preserve permission, condition, negation and priority strength.\nDistinguish looking up from changing records and present detection from future\nprediction. role_distinction asks whether BUSINESS purpose, OPERATIONS flow/\nconditions and TECHNICAL input/function/output are differentiated.\nAlso return unsupported_quotes, exact contiguous substrings of the candidate\ntitle/description asserting something unsupported or contradicted by source,\nand concise Korean reason. No expected answer, retrieval result or model name\nis provided. Return JSON {assessments:[{id,purpose,action,object,output,\nconstraints,role_distinction,unsupported_quotes,reason}]} for all9 IDs.\nThis audit is a source judgment, not a human Gold or a generation instruction.\n",
+  "use": "measurement only, no generation repairs, filtering or scoring changes",
+  "before_metrics": true
+}
