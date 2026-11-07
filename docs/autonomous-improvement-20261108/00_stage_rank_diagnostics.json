@@ -15,11 +15,11 @@
     "missing_final_top5": 12
   },
   "observations": [
-    "5/16 candidates were Dense Top-5 but outside E Top-5 in all three repeats; likely downstream fusion or rerank loss (do not assume cause without score traces).",
-    "1/16 was in original A/C Top-5 but disappeared from E Top-5; avoid labeling it initial retrieval failure.",
-    "6/16 were outside Top-5 at main intermediate steps; prioritize query/corpus alignment diagnosis, not arbitrary score boosts.",
-    "4/16 were present in E Top-5 in every repeat; they are not the primary search failures.",
-    "16 transfer labels are hypotheses and must be independently validated before using these case ranks to optimize."
+    "5/16 provisional candidates were in Dense Top-5 but outside E Top-5 in all repeats; downstream rank losses need score-level tracing.",
+    "2/16 were in C0/A/C Top-5 but disappeared from E Top-5; do not label as initial retrieval failures.",
+    "5/16 were outside Top-5 across main stages; inspect query-case semantic alignment and candidate generation.",
+    "4/16 were found in final E Top-5; these are not final-ranking failures.",
+    "16 strategy-transfer labels are provisional hypotheses; independently validate them before tuning."
   ],
   "records": [
     {
