@@ -1,0 +1,102 @@
+{
+  "reviewer": "coordinating assistant, not human Gold",
+  "records": [
+    {
+      "query_id": "CPD03",
+      "case_id": "AXV2H_0071_01",
+      "source": {
+        "case_id": "AXV2H_0071_01",
+        "problem": "기술지원 담당자가 고객 문의를 접수·검토해 답변을 전달하는 반복 업무의 부담을 낮추면서, 정확하고 보안에 맞는 결제 기술정보 응답이 필요했다.",
+        "task": "결제 기술문의 검색·답변",
+        "context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공",
+        "evidence_ids": "[\"EV_AXV2H_0071_01\"]",
+        "leakage_group_id": "V25G_d47d7d2a1501b3d59741"
+      },
+      "new_strict_status": "ABSTAIN",
+      "review_request_id": "claude_review_J054",
+      "review_assessment": {
+        "query_id": "CPD03",
+        "id": "J055",
+        "grade": 2,
+        "status": "JUDGED",
+        "reason": "기술문의 검색·답변으로 게시된 정보 기반 자동 응답 수행. 휴직 정책 설명과 동일한 함수적 구조(규정 검색→조건/서류 설명→복잡 문의 에스컬레이션). 결제 기술과 HR 정책 도메인은 다르나 수행 기능 전이 가능",
+        "task_quote": "결제 기술문의 검색·답변",
+        "case_action": "정책/규정 기반 검색 및 답변 제공",
+        "case_object": "기술 정책 문의",
+        "case_output": "정확한 정책 기반 응답",
+        "permission_scope": "자동 응답 범위 내 (복잡 문의는 담당자 에스컬레이션)"
+      },
+      "concern": "Source case states payment technical inquiry retrieval/answering. HR-policy document explanation and complex-inquiry escalation are not stated case functions. Transfer of QA may still be arguable; do not invent the complete target workflow.",
+      "unsupported_fields": [
+        "case_action policy/regulation wording",
+        "permission_scope complex-inquiry escalation"
+      ]
+    },
+    {
+      "query_id": "CPD06",
+      "case_id": "AXV2C_0006_02",
+      "source": {
+        "case_id": "AXV2C_0006_02",
+        "problem": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments.",
+        "task": "Validate customer order prices before invoicing",
+        "context": "Danone receives thousands of orders daily through email, PDF and EDI.",
+        "evidence_ids": "[\"EV_AXV2C_0006_02\"]",
+        "leakage_group_id": "V25G_73c5d917066f5c59c8ef"
+      },
+      "new_strict_status": "ABSTAIN",
+      "review_request_id": "claude_review_J124",
+      "review_assessment": {
+        "query_id": "CPD06",
+        "id": "J124",
+        "grade": 3,
+        "status": "JUDGED",
+        "reason": "청구 항목 금액을 합의 요율과 대조하여 과다 청구 검출하는 검증 작업이 정확히 일치. 주문 가격 검증 전 인보이싱 작업이 운송비 청구서 항목 검토와 동일 기능",
+        "task_quote": "Validate customer order prices before invoicing",
+        "case_action": "청구 항목별 금액을 합의 요율과 자동 대조",
+        "case_object": "화물 청구서 항목",
+        "case_output": "과다 청구 의심 부분과 비교 근거 검토 목록",
+        "permission_scope": "담당자 확인 후 처리 (자동 수정/지급 제외)"
+      },
+      "concern": "Source Task validates customer order prices before invoicing. Agreed freight tariffs, suspected overcharge evidence list, human confirmation and exclusion of editing/payment are target-query facts, not source-case facts.",
+      "unsupported_fields": [
+        "case_action agreed-tariff automatic comparison",
+        "case_output suspected overcharge review list",
+        "permission_scope no automatic editing/payment"
+      ]
+    },
+    {
+      "query_id": "CPD04",
+      "case_id": "AXV2N_0111",
+      "source": {
+        "case_id": "AXV2N_0111",
+        "problem": "Meeting documentation and follow-up preparation consume advisor time.",
+        "task": "Summarize client meetings and prepare follow-ups",
+        "context": "Consent-based Zoom client meetings reviewed by advisors.",
+        "evidence_ids": "[\"EV_AXV2N_0111\"]",
+        "leakage_group_id": "V25G_ba5a9dbe18b924e315fa"
+      },
+      "new_strict_status": "ABSTAIN",
+      "review_request_id": "claude_review_J081",
+      "review_assessment": {
+        "query_id": "CPD04",
+        "id": "J082",
+        "grade": 3,
+        "status": "JUDGED",
+        "reason": "회의 내용 요약 및 주제별 정리 기능이 정확히 일치. 고객 의견 수집·분석·요약 자료 작성 작업과 동일한 핵심 기능 수행.",
+        "task_quote": "Summarize client meetings and prepare follow-ups",
+        "case_action": "회의 내용 검토 및 요약",
+        "case_object": "클라이언트 회의 기록",
+        "case_output": "요약 자료 및 후속 준비 문서",
+        "permission_scope": "동의 기반 검토"
+      },
+      "concern": "Summarizing client meetings/preparing follow-ups does not itself establish weekly aggregate customer-feedback theme analysis with supporting comments. Grade1 versus3 remains a functional-transfer/core-task calibration dispute.",
+      "unsupported_fields": [
+        "reason direct equivalence to customer-feedback theme analysis"
+      ]
+    }
+  ],
+  "purpose": "Separate literal quote validity from source-grounded semantic judgment; do not treat extracted target-query functions as executed source functions.",
+  "raw_scores_or_strict_labels_changed": false,
+  "all_three_were_already_abstained": true,
+  "limits": "Targeted three-case audit; does not certify semantic correctness of all other accepted Silver labels."
+}

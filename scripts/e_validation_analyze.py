@@ -358,6 +358,35 @@ def main():
     write(run.OUT/'mapping_support_audit.json',{'records':high_rule,
           'selection':'180 targeted query-case pairs; high rule strength>=3; repeated paths are not independent observations',
           'interpretation':'Whole-query Silver relevance support for high rule scores, not semantic mapping accuracy or a corpus-wide estimate'})
+    common_sensitivity=[]
+    provider_versions=('v2_openai_sensitivity','v2_second_reviewer_sensitivity')
+    for metric in evaluations[provider_versions[0]]['per_query'][0]['metrics']:
+        cohorts=[set(next(r for r in evaluations[v]['macro'] if r['condition']=='E' and
+                         r['metric']==metric)['questions']) for v in provider_versions]
+        common=set.intersection(*cohorts)
+        for version in provider_versions:
+            for condition in 'ABCE':
+                values=[r['metrics'][metric] for r in evaluations[version]['per_query']
+                        if r['condition']==condition and r['query_id'] in common]
+                common_sensitivity.append({'version':version,'condition':condition,'metric':metric,
+                                           'questions':sorted(common),'n':len(common),
+                                           'mean':mean(values) if values else None})
+    write(run.OUT/'reviewer_common_question_sensitivity.json',{
+        'records':common_sensitivity,
+        'interpretation':'Same question cohort across both reviewer-specific label versions and all four frozen retrieval conditions. No strict consensus label is manufactured.'})
+    invalid=[]
+    cases=read(run.ROOT/'docs/dense-bm25-candidates-2026-10-27/case_registry.json')['cases']
+    for row in relevance:
+        if row['valid']:continue
+        assessment=row['raw_assessment']
+        quote=assessment.get('task_quote','') if assessment else ''
+        fields=[f for f in ('problem','task','context') if quote and quote in cases[row['case_id']][f]]
+        invalid.append({'query_id':row['query_id'],'case_id':row['case_id'],'reviewer':row['reviewer'],
+                        'request_id':row['request_id'],'quote':quote,'literal_fields':fields,
+                        'quote_length':len(quote),'score_not_accepted':True,'raw_assessment':assessment})
+    write(run.OUT/'invalid_evidence_audit.json',{'records':invalid,'count':len(invalid),
+          'classification':dict(Counter(','.join(r['literal_fields']) or 'NO_EXACT_FIELD_MATCH' for r in invalid)),
+          'interpretation':'Wrong-field/nonliteral Task quotation is not automatically a false relevance judgment. Raw scores remain separate and are not accepted as validated labels.'})
 
 
 if __name__=='__main__':

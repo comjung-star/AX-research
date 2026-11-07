@@ -42,10 +42,13 @@ def main():
     macro={v:{(r['condition'],r['metric']):r for r in data['macro']} for v,data in evaluations.items()}
     text=['# 핵심 업무 보존형 E 모델 검증', '', '2026-11-07', '',
           '## 1. 전체 작업 결과', '',
+          '이번 검증으로 E가 C보다 확실히 좋다는 주장을 입증하지 못했다. 검토자 양쪽이 평가 가능한 같은4질문에서 C와 E의 F1@5가 같았고, 보존 품질도 두 모델에서 모두 같은 점수였다. 엄격한 새 판정에는75개 보류가 남아 전체8질문의 확정 성능과 최종 모델 채택 근거는 부족하다.', '',
           '미판정 재검토, 보존 품질 재평가, 추가 사례 검토, 정답 버전별 재계산을 수행했다. 불일치와 판단 보류는 결과에 남겼다. 기존 봉인 순위만 재사용했으며 이번 점수 변화는 정답 판단의 변화에서 나온다. 새로운 검색·관점 생성·독립 Test 실행은 없었다.', '',
           f"검토 대상은 기존896쌍 중{index['selected_pairs']}쌍이다. 기존 미판정29쌍, E의 Top-5, C·E의 Top-5/10/20 진입·이탈, 질문별1점·2점 경계의 고정 ID 표본을 포함했다. 나머지716쌍은 기존 AI 판정을 출처와 함께 이어 사용했다. 선정 기준은 새 API 요청 전에 커밋했다.", '',
           f"추가 검토는 {review['independent_provider_count']}개 제공자에서 진행했다. GPT와 두 번째 검토자는 같은 원문만 받고 서로의 점수·이유, 기존 점수, 방식명과 추천 순위를 받지 않았다. 조정자는 과거 결과를 알고 있고 사례 선정도 순위 변화를 참고했다. 새 블라인드 입력이 연구 전체를 미개봉 독립 실험으로 만들지는 않는다.", '',
-          '사용 모델은 `gpt-6-luna`와 접근 점검을 통과한 `claude-haiku-4-5-20251001`이다. 같은 검토자 모델을 반복한 결과와 다른 제공자의 결과를 구분해서 기록했다.', '',
+          ('사용 모델은 `gpt-6-luna`와 접근 점검을 통과한 `claude-haiku-4-5-20251001`이다.'
+           if read(out/'provider_access.json')['claude_generation_available'] else
+           '사용 모델은 `gpt-6-luna`이며 별도 요청을 두 번 수행했다. 서로 다른 모델의 검증으로 해석할 수 없다.'), '',
           '## 2. 미판정29건 검증 결과', '',
           f"정확한 등급이 일치한 {stage1['resolved']}건을 새 버전에 기록했고 {stage1['remaining_abstain']}건은 ABSTAIN으로 남겼다. 유효한 등급이 서로 달라도 다수결로 확정하지 않았다. 기존867건은 미판정 전용 버전에서 그대로 유지했다.", '',
           '| 질문 | 기존 미판정 | 새 등급 확정 | 남은 보류 |', '|---|---:|---:|---:|']
@@ -125,9 +128,15 @@ def main():
         case_review.append(item)
         opinions=', '.join(f"{r['reviewer']} {r['assessment']['grade'] if r['valid'] else '검사 미통과'}" for r in item['reviews'])
         text.append(f"- {q} {cases[cid]['task']} ({cid}). C {item['C_rank']}위→E {item['E_rank']}위. 기존 {item['old']['grade']}점, 새 엄격 판정 {item['new']['grade']} / {item['new']['status']}. 별도 판단은 {opinions}였다.")
-    write(out/'case_review.json',{'records':case_review,'human_verified':False})
+    case_data={'records':case_review,'human_verified':False}
+    if (out/'case_review.json').exists():
+        assert read(out/'case_review.json')==case_data
+    else:
+        write(out/'case_review.json',case_data)
     text += ['', '## 6. 남은 실패와 불확실성', '',
              f"엄격한 새 판정 상태는 {evaluations['v2_reviewed_strict']['label_counts']}다. 두 모델의 정상적인 판단 차이와 응답 형식·인용 오류는 별도 저장했다. 원점수나 이유를 임의로 맞추지 않았다.", '',
+             '중요 사례를 원문과 다시 대조했을 때 새 검토자도 대상 질문의 기능·권한을 사례의 실제 수행 기능처럼 적은 문제가 확인됐다. 결제 문의 검색·답변 사례에 복잡 문의 인계를 덧붙이고, 주문 가격 검증 사례에 합의 요율 자동 대조·과다 청구 목록·자동 수정 및 지급 제외를 덧붙인 예가 있다. 실제 Task·Context에 명시된 내용과 구분해야 한다. 해당 사례들은 엄격 판정에서 이미 ABSTAIN으로 남았다. 이 점검은 같은 조정 AI의 원문 대조이며 전체 판정의 사람 검증은 아니다. [의미 근거 점검](semantic_source_audit.json)', '',
+             '추가 검토360행 중14행이 Task 인용 검사에 실패했다. 11행은 Context를 인용했고3행은 어느 단일 필드와도 정확히 일치하지 않았다. 인용 필드 오류만으로 관련도 판단 자체가 거짓이라고 단정하지 않지만, 사전 기준에 따라 확정 정답에는 사용하지 않았다. [인용 실패 상세](invalid_evidence_audit.json)', '',
              '기존 규칙이 CPD04의 요약 대상을 고객 의견 대신 ‘회의’로 잡은 기록이 남아 있다. 기능 ID 검출 수 증가가 올바른 행동·대상 연결을 입증하지 않는다. 사례 관련도 추가 검토는 기능 매핑 전체의 정확도를 전수 검증한 것이 아니다. [기존 기능 추적](../core-preserved-three-views-2026-11-07/inference/query_profiles.json)', '',
              '검색 반복 안정성은 동일한 봉인 순위이므로 기존 결과와 같다. Top-5 사례 겹침은 C91.67%, E86.81%였다. E의 반복 안정성 향상은 확인되지 않았다.', '',
              '| E 관점 | Top-5 알려진 관련 발견 | 그 관점만의 알려진 발견 | Top-5 미해결 판정 |',
@@ -166,6 +175,23 @@ def main():
             concentration.append({'version':version,'query_id':q,'delta':delta})
             text.append(f"| {NAMES[version]} | {q} | {pp(delta)} |")
     text += ['', 'E가 확실히 C·B·A보다 좋다는 판단은 새 판정의 분모, 검토자별 결과와 보류 범위를 함께 봐야 한다. 작은 개발 질문8개와 같은 코퍼스에서 나온 수치만으로 새로운 업무 전체의 우위를 주장하기 어렵다. 정답 버전 사이의 점수 변화는 모델 개선 실험의 효과와 구분한다.', '',
+             '| 두 검토자 모두 평가 가능한 동일4질문 | 방식 | F1@5 | nDCG@10 |',
+             '|---|---|---:|---:|']
+    common=read(out/'reviewer_common_question_sensitivity.json')['records']
+    for version in ('v2_openai_sensitivity','v2_second_reviewer_sensitivity'):
+        for c in 'ABCE':
+            f=next(r for r in common if (r['version'],r['condition'],r['metric'])==(version,c,'F1@5'))
+            n=next(r for r in common if (r['version'],r['condition'],r['metric'])==(version,c,'nDCG@10'))
+            text.append(f"| {NAMES[version]} (n={f['n']}) | {c} | {pct(f['mean'])} | {pct(n['mean'])} |")
+    text += ['', '공통 집합은 CPD02·CPD04·CPD07·CPD08이다. 성능으로 고른 집합이 아니라 양쪽의 인용·판정 조건이 갖춰진 질문의 교집합이다. 두 검토자 모두 여기서는 C와 E의 F1@5가 같다. 기존 개선이 컸던 CPD03의 중요한 사례는1점 대2점으로 갈려 있어, 이4질문 결과로 CPD03이나 전체8질문의 우열을 대신 확정하지 않는다.', '',
+             '이번 재검토로 E가 C보다 확실히 좋다는 주장은 뒷받침되지 않았다. 원문 A·동적 B보다 높은 조건부 평균은 일부 민감도 분석에 남지만, 엄격한 새 판정은 모든 질문에 보류가 있어 전체 F1·nDCG를 확정할 수 없다. 핵심 업무 보존 품질도 C와 E가 모두 상한2점으로 같았다. 추출 단계의 독립 효과와 기존 규칙에 잘 맞는 표현 선택의 효과를 분리한 실험은 수행하지 않았다.', '',
+             '1. C 대비 확실한 우위는 확인하지 못했다. 같은4질문에서 두 검토자 모두 F1@5가 같았고 nDCG@10 차이도 작았다.',
+             '2. B 대비 높은 F1@5는 두 검토자의 같은4질문 민감도 분석에서 남았다. 전체8질문 합의 정답에 따른 일반적 우위는 확정하지 못했다.',
+             '3. A 대비 높은 조건부 평균도 남았다. 같은 질문·판정 버전 안에서만 해석해야 한다.',
+             '4. 기존 E50.05%는 미판정 전용 버전의 기존6질문에서 유지되지만 그867개 판정을 재검토하지 않은 결과다. 추가180쌍 검토 뒤 엄격한 전체 성능은 계산 보류이므로 재검증 후 성능이 입증됐다고 할 수 없다.',
+             '5. 기존 F1@5 개선은 CPD03·CPD04에 집중됐다. 새 검토에서는 평가 가능한 GPT 질문에서 C 대비 F1@5 증가가 없었고, Claude의 증가도 CPD03에 남았다. 해당 핵심 사례의 관련성은 두 검토자가 합의하지 못했다.',
+             '6. 업무 보존 품질이 E에서 더 좋아졌다고 주장할 수 없다. 이번0~2점 척도에서 C와 E는 전 항목 상한으로 같았다.',
+             '7. E를 최종 논문 모델로 선택할 근거는 아직 부족하다. 책임님께는 재현 가능한 개발 비교, 기존 평가 오류 수정, 판정자 의존성과 남은 불확실성까지 보고할 수 있다.', '',
              '업무 보존 검토는 두 제공자의 별도 요청으로 확대했지만 여전히 AI 판단이다. 같은 입력·원문을 공유하고 문제 작성자가 코퍼스를 알고 있어 공통 오류 가능성이 남는다. 사람 Gold나 완전히 독립적인 외부 검증 수준의 근거는 확보되지 않았다.', '',
              '## 8. 다음 단계', '',
              '추천 결과가 바뀌기 전 미판정·불일치의 판정 정책과 실제 수행 기능의 근거를 먼저 확정해야 한다. 사람 또는 독립된 업무 담당자가 중요한 관련성 경계와 권한·제외 조건을 검토한 뒤 E를 최종 후보로 동결할지 결정하는 것이 적절하다. 신규 독립 Test는 이후 별도 결정 사항이다.', '',
@@ -175,12 +201,18 @@ def main():
              '- 기존 코드·가중치·프롬프트·사례·질문·정답·봉인 순위의 해시를 검증했다. 추가 충전은 하지 않았다.',
              '- [사전 기준](protocol.json) · [검토 선정](selection.json) · [검토 원문과 변경 이유](relevance_reviews.json) · [최종 상태](final_status.json) · [테스트](tests.json) · [실행 방법](REPRODUCE.md)',
              '- [OpenAI 단가](https://developers.openai.com/api/docs/models/gpt-6-luna) · [Claude 단가](https://platform.claude.com/docs/en/about-claude/pricing)', '']
+    text += ['자동 검사202개가 통과했다. 기존188개와 새 검증14개이며 저장된 자료와 인공 자료만 사용했다. [테스트 기록](tests.json) · [원본·모델 보존 검사](preservation_check.json) · [비밀정보 검사](secret_scan.json) · [호출 검증](validation_checks.json) · [제공자별 비용](cost_summary.json)', '',
+             '품질 응답1건은 수신이 확인된 출력 길이 종료로 동일 입력·프롬프트에 출력 한도만 늘려1회 복구했다. 원본과 복구 비용을 모두 합산했다. 수신 불확실 요청의 재전송이나 점수·의견 차이에 따른 재요청은 없었다. [기술 복구 정책](technical_recovery_policy.json)', '']
     (out/'README.md').write_text('\n'.join(text),encoding='utf-8',newline='\n')
-    write(out/'report_summary.json',{'differences':differences,'concentration':concentration,
+    summary={'differences':differences,'concentration':concentration,
                                     'grade_agreement':{'n':len(comparable),'agree':exact},
                                     'binary_agreement':{'n':len(comparable),'agree':binary},
                                     'case_examples':case_review,
-                                    'new_Test_executed':False,'human_verified':False})
+                                    'new_Test_executed':False,'human_verified':False}
+    if (out/'report_summary.json').exists():
+        assert read(out/'report_summary.json')==summary
+    else:
+        write(out/'report_summary.json',summary)
 
 
 if __name__=='__main__':
