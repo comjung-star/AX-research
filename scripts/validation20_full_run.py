@@ -18,6 +18,21 @@ ROOT=Path(__file__).resolve().parents[1]
 QUESTIONS=ROOT/"docs/validation-new20-20261107/questions.jsonl"
 PREREG=ROOT/"docs/core-preserved-three-views-2026-11-07/preregistration.json"
 
+def blind_new20_validator(kind,qid,data):
+    """Validate only the currently blinded 16-case Task/Context batch."""
+    payload=core.ACTIVE_JUDGE_PAYLOAD
+    assert payload["query_id"]==qid
+    cases={c["case_id"]:c for c in payload["cases"]}
+    assert set(data)=={"assessments"} and len(data["assessments"])==len(cases)
+    assert {r["case_id"] for r in data["assessments"]}==set(cases)
+    for r in data["assessments"]:
+        assert set(r)=={"query_id","case_id","grade","status","reason","task_quote"}
+        assert r["query_id"]==qid and r["status"] in ("JUDGED","ABSTAIN")
+        assert (r["status"]=="JUDGED" and type(r["grade"]) is int and 0<=r["grade"]<=3) or (r["status"]=="ABSTAIN" and r["grade"] is None)
+        assert isinstance(r["reason"],str) and r["reason"].strip()
+        assert isinstance(r["task_quote"],str) and r["task_quote"] in cases[r["case_id"]]["Task"]
+        assert len(r["task_quote"])<=140
+
 def digest(path):
     h=hashlib.sha256()
     with Path(path).open("rb") as f:
@@ -36,6 +51,7 @@ def run(stage,model,out):
         if not path.is_file() or digest(path)!=expected:raise RuntimeError("Original BGE-M3 hash mismatch: "+rel)
     core.OUT=out;core.QUESTIONS=QUESTIONS;core.MODEL=model
     core.configure()
+    core.REVIEW_VALIDATOR=blind_new20_validator
     if stage=="generate":
         if out.exists():raise RuntimeError("Experiment outputs already present. No silent replay.")
         out.mkdir(parents=True)
@@ -49,6 +65,15 @@ def run(stage,model,out):
     elif stage=="infer":
         if not (out/"generate_status.json").is_file():raise RuntimeError("Generation not confirmed")
         scratch=out.parent/"validation20-scratch"
+        if not (out/"preregistration.json").exists():
+            from ax_research.heldout import sha
+            protect=[QUESTIONS,ROOT/"docs/dense-bm25-candidates-2026-10-27/case_registry.json",
+                     ROOT/"configs/semantic_mapping_20261028.json",ROOT/"configs/functional_mapping_20261028.json",
+                     ROOT/"configs/action_aggregation_20261102.json",
+                     ROOT/"scripts/core_preservation_prompts.py",ROOT/"scripts/validation123_multiview.py"]
+            write(out/"preregistration.json",{"protected_sha256":{
+                p.relative_to(ROOT).as_posix():sha(p) for p in protect},
+                "new_validation_20":True,"original_test_accessed":False})
         core.inference(scratch)
         pred=read(out/"predictions.json")
         if len(pred["case_ids"])!=112 or len(pred["query_ids"])!=20 or any(len(pred["systems"][c])!=(20 if c=="A" else 60) for c in ("A","C","E")):
