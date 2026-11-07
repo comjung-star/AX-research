@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-07",
+  "purpose": "New-Validation 20 questions only, not Independent Test; case corpus frozen 112",
+  "source_branch": "research/dev896-rrf-five-20261107",
+  "query_count": 20,
+  "case_count": 112,
+  "required_blind_labels": 2240,
+  "new_question_id_range": "VQ001-VQ020",
+  "primary_comparison": [
+    "E",
+    "I2",
+    "I3"
+  ],
+  "rrf": {
+    "k": 60,
+    "I2": {
+      "E": 0.75,
+      "C": 0.25
+    },
+    "I3": {
+      "E": 0.75,
+      "A": 0.25
+    }
+  },
+  "label_policy": {
+    "0": "No transfer of performed core function",
+    "1": "Only partial/auxiliary function",
+    "2": "Performed core function transferable",
+    "3": "Direct performed core function match",
+    "grades": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "positive_threshold": 2,
+    "abstain_allowed": true,
+    "recommendation_order_hidden_from_judges": true,
+    "source_priority": [
+      "Task",
+      "Context"
+    ],
+    "Problem": "context only, not proof of performed action"
+  },
+  "completeness": "Full F1, Recall and nDCG only for 112/112 judged and positive_count>0; otherwise marked not evaluable. No filling unknown as zero.",
+  "stability": "Mean pairwise top-5 Jaccard across 3 frozen model repeats",
+  "statistical_comparison": "Paired question-level resampling, report bootstrap95 and question-by-question; 20 questions likely still underpowered",
+  "interpretation": "Treat as model-selection Validation; no further tuning on these questions if they will be used to claim final generalization.",
+  "protected": "Old Test15 and any prior independent Test data are not opened or changed.",
+  "status": "DATASET_FROZEN_RETRIEVAL_NOT_YET_RUN_LABELS_NOT_YET_CREATED",
+  "experimental_notes": "Assistant-authored questions are not fully externally independent; no corpus coverage guaranteed; zero-relevant questions handled transparently. E generation and BGE-M3 Dense+Sparse must be rerun; cannot reuse 8-question predictions."
+}
