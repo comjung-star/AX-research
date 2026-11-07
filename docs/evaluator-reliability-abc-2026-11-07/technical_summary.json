@@ -1,0 +1,74 @@
+{
+  "by_provider": [
+    {
+      "provider": "openai",
+      "old_counts": {
+        "ABSTAIN": 74,
+        "JUDGED": 1
+      },
+      "new_counts": {
+        "ABSTAIN": 74,
+        "JUDGED": 1
+      },
+      "recovered_decision_rows": 0,
+      "local_component_recoveries": 0,
+      "previously_unexecuted_judge_calls": 0,
+      "remaining_failures": {},
+      "independent_core_execution": {
+        "UNSPECIFIED": 74,
+        "CONFIRMED": 1
+      },
+      "input_tokens": 167739,
+      "output_tokens": 22820,
+      "cost_usd": "0.0281839"
+    },
+    {
+      "provider": "claude",
+      "old_counts": {
+        "UNJUDGED": 53,
+        "ABSTAIN": 22
+      },
+      "new_counts": {
+        "ABSTAIN": 52,
+        "UNJUDGED": 23
+      },
+      "recovered_decision_rows": 30,
+      "local_component_recoveries": 32,
+      "previously_unexecuted_judge_calls": 0,
+      "remaining_failures": {
+        "CORE_EXTRACTION_FAILED": 6,
+        "UNKNOWN_ANCHOR": 4,
+        "SEMANTIC_PROBLEM_AS_PERFORMED": 13
+      },
+      "independent_core_execution": {
+        "UNSPECIFIED": 54,
+        "PROPOSAL_STUDY": 15
+      },
+      "input_tokens": 175033,
+      "output_tokens": 56265,
+      "cost_usd": "0.456358"
+    }
+  ],
+  "prior_invalid_rows": 57,
+  "prior_valid_rows": 93,
+  "same_150_expected_pairs_but_different_evaluator_and_batching": true,
+  "old49_followup": {
+    "SEMANTIC_ABSTAIN": 32,
+    "TECHNICAL_OR_EVIDENCE_FAILURE": 17
+  },
+  "known_fixes": [
+    "Single item per question/case request",
+    "Small independent query/case extraction",
+    "Literal T/C anchor IDs with field and character span",
+    "Unchanged exact quote relocation Task/Context",
+    "Complete single fenced JSON followed by prose recovery without synthesis",
+    "One bounded technical retry; no semantic/unfavorable-grade reroll; uncertain call cost held",
+    "Original raw replies and failed interpretations retained"
+  ],
+  "still_unresolved": [
+    "LLMs interpret described Task as unconfirmed execution too often",
+    "Problem anchors still appear in some decisions and are rejected",
+    "Exact source anchor existence does not establish semantic entailment"
+  ],
+  "paid_semantic_rerolls": 0
+}

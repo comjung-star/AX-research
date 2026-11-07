@@ -1,0 +1,31 @@
+{
+  "command": [
+    "C:\\Users\\iovek\\OneDrive\\문서\\ChatGPT\\AI공부\\AX-prototype\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_new_validation.py",
+    "tests/test_action_aggregation.py",
+    "tests/test_mapping_improvement.py",
+    "tests/test_heldout.py",
+    "tests/test_functional_mapping.py",
+    "tests/test_semantic_mapping.py",
+    "tests/test_semantic_mapping_artifacts.py",
+    "tests/test_semantic_mapping_publication.py",
+    "tests/test_blind_pilot_analysis.py",
+    "tests/test_dense_bm25_candidates.py",
+    "tests/test_evaluation.py",
+    "tests/test_validation123.py",
+    "tests/test_fixed_three_views.py",
+    "tests/test_core_preservation.py",
+    "tests/test_e_validation.py",
+    "tests/test_autonomous_ax_gate.py",
+    "tests/test_evaluator_abc.py",
+    "-q"
+  ],
+  "returncode": 1,
+  "stdout": "........................................................................ [ 29%]\n........................................................................ [ 59%]\n........................................................................ [ 89%]\n........................F                                                [100%]\n================================== FAILURES ===================================\n_ test_offline_recovery_never_rerolls_or_chooses_a_favorable_grade[SEMANTIC_PROBLEM_AS_PERFORMED-False] _\n\ntmp_path = WindowsPath('C:/Users/iovek/AppData/Local/Temp/pytest-of-iovek/pytest-86/test_offline_recovery_never_re3')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001F2D8269910>\noriginally_valid = False, validator_failure = 'SEMANTIC_PROBLEM_AS_PERFORMED'\n\n    @pytest.mark.parametrize('originally_valid',[True,False])\n    @pytest.mark.parametrize('validator_failure',[None,'SEMANTIC_PROBLEM_AS_PERFORMED'])\n    def test_offline_recovery_never_rerolls_or_chooses_a_favorable_grade(tmp_path,monkeypatch,originally_valid,validator_failure):\n        from scripts import evaluator_abc_recover as recovery\n        from ax_research.heldout import write,read\n        monkeypatch.setattr(run,'OUT',tmp_path);monkeypatch.setattr(run,'ROOT',tmp_path)\n        monkeypatch.setattr(run,'configure',lambda _:None)\n        p=tmp_path/'openai';(p/'results').mkdir(parents=True);(p/'api').mkdir()\n        write(tmp_path/'benchmark.json',{'records':[{'id':'x'}]})\n        write(tmp_path/'pending_items.json',{'records':[]})\n        write(tmp_path/'method_selection.json',{'method':'B'})\n        payload={'id':'x'};name='judge_B_x'\n        old={'data':{'grade':0},'valid':originally_valid,'failure':None if originally_valid else 'INVALID_JSON',\n            'prompt_payload_sha256':run.transport.digest({'prompt':'p','payload':payload}),\n            'attempts':[{'id':'openai_'+name,'failure':'INVALID_JSON'},\n                        {'id':'openai_'+name+'_technical1','failure':'INVALID_JSON'}]}\n        write(p/'results'/(name+'.json'),old)\n        for suffix,grade in [('',0),('_technical1',3)]:\n            stem='openai_'+name+suffix\n            write(p/'api'/(stem+'_receipt.json'),{'state':'RECEIVED'})\n            write(p/'api'/(stem+'_response.json'),{'stop_reason':'end_turn','content':[{'type':'text',\n                'text':'```json\\n'+json.dumps({'grade':grade})+'\\n```\\n설명'}]})\n        def forbidden(*_):raise AssertionError('No new API calls allowed')\n        monkeypatch.setattr(run,'request',forbidden)\n        monkeypatch.setattr(run,'evaluate_item',lambda *_:run.request(name,'p',payload,100,lambda _:validator_failure))\n        recovery.recover('openai')\n        rows=read(p/'recovery-v2'/'benchmark_recovered_results.json')['records']\n        assert all(r['data']['grade']==0 for r in rows)\n        if not originally_valid and validator_failure:\n>           assert all(r['failure']==validator_failure and not r['valid'] for r in rows)\nE           assert False\nE            +  where False = all(<generator object test_offline_recovery_never_rerolls_or_chooses_a_favorable_grade.<locals>.<genexpr> at 0x000001F2D8290A00>)\n\ntests\\test_evaluator_abc.py:182: AssertionError\n---------------------------- Captured stdout call -----------------------------\nopenai local recovery records 6\n=========================== short test summary info ===========================\nFAILED tests/test_evaluator_abc.py::test_offline_recovery_never_rerolls_or_chooses_a_favorable_grade[SEMANTIC_PROBLEM_AS_PERFORMED-False]\n1 failed, 240 passed in 12.35s\n",
+  "stderr": "",
+  "scope": "Existing212 plus29 offline synthetic evaluator checks; no live API or real Test data"
+}
