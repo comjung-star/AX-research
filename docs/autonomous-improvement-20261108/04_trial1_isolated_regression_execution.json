@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-08",
+  "status": "ISOLATED_REGRESSION_PASSED_FULL_TRIAL_PENDING",
+  "tests": {
+    "passed": 2,
+    "failed": 0,
+    "command": "PYTHONPATH=src pytest -q tests/test_bm25_kiwi_tokenizer_regression.py",
+    "duration_seconds": 0.05
+  },
+  "execution_environment": "Ephemeral local Python, pytest installed, kiwipiepy and rank_bm25 absent",
+  "provenance": "Tests and KiwiTokenizer logic were manually reproduced from GitHub file content in a minimal local package; not a full repository checkout and not a CI execution. Therefore not a canonical repository pytest result.",
+  "coverage": [
+    "Latin SL retained, numeric SN retained, Korean NNG retained, punctuation excluded",
+    "Empty/whitespace tokens excluded"
+  ],
+  "not_tested": [
+    "Real kiwipiepy tokenizer runtime",
+    "rank_bm25 retrieval and 112-case corpus",
+    "Dense/Hybrid/A/C/E retrieval with frozen 20 queries",
+    "Paired F1/nDCG improvement or independent labels"
+  ],
+  "trial_count_increment": false,
+  "paid_api_usd": 0,
+  "source_files": [
+    "src/ax_research/retrieval/bm25.py",
+    "tests/test_bm25_kiwi_tokenizer_regression.py"
+  ],
+  "next": "Execute canonical tests and full frozen-corpus experiment in dependency-enabled environment; this isolated test is not efficacy evidence."
+}
