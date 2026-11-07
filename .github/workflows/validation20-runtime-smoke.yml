@@ -1,0 +1,42 @@
+name: AX New20 runtime environment smoke test
+on:
+  push:
+    branches: [research/new20-validation-20261107]
+    paths:
+      - '.github/workflows/validation20-runtime-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  environment-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate prepared data without touching sealed Test
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('docs/validation-new20-20261107/questions.jsonl')
+          q=[json.loads(x) for x in p.read_text(encoding='utf-8').splitlines() if x]
+          c=json.loads(Path('docs/dense-bm25-candidates-2026-10-27/case_registry.json').read_text(encoding='utf-8'))['cases']
+          assert len(q)==len({x['query_id'] for x in q})==20
+          assert len(c)==112
+          assert all(x['split']=='NEW_VALIDATION_20' for x in q)
+          print('NEW20_INPUTS_OK questions=20 cases=112')
+          PY
+      - name: Check API credential presence without printing its value
+        shell: bash
+        run: |
+          if [ -n "${OPENAI_API_KEY}" ]; then echo "OPENAI_API_KEY_CONFIGURED=true"; else echo "OPENAI_API_KEY_CONFIGURED=false"; fi
+      - name: Check HuggingFace model endpoint without downloading weights
+        shell: bash
+        run: |
+          code=$(curl --silent --location --output /dev/null --max-time 25 --write-out '%{http_code}' https://huggingface.co/BAAI/bge-m3/resolve/main/config.json || true)
+          if [ "$code" = "200" ]; then echo "BGE_M3_METADATA_REACHABLE=true"; else echo "BGE_M3_METADATA_REACHABLE=false status=$code"; fi
+      - name: Scope declaration
+        run: echo "SMOKE_ONLY no predictions or relevance grades generated, no paid API calls, no independent Test access"
