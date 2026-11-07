@@ -21,10 +21,10 @@ def dangerous(item, row):
             (not item['expected_abstain'] and max(item['expected']) < 2 and g is not None and g >= 2))
 
 
-def compare_controls():
+def compare_controls(recovered=False):
     items = read(run.OUT/'benchmark.json')['records']
     rows = [{**r, 'provider':p} for p in run.CAPS
-            for r in read(run.OUT/p/'benchmark_results.json')['records']]
+            for r in read(run.OUT/p/('benchmark_recovered_results.json' if recovered else 'benchmark_results.json'))['records']]
     checks = [{**r, 'split':i['split'], 'kind':i['kind'],
                'expected':i['expected'], 'expected_abstain':i['expected_abstain'],
                'policy_pass':control_pass(i,r), 'dangerous_error':dangerous(i,r)}
@@ -46,7 +46,7 @@ def compare_controls():
                 'failures':dict(Counter(r.get('failure') for r in subset if r.get('failure'))),
                 'by_provider':{p:{'pass':sum(r['policy_pass'] for r in subset if r['provider']==p),
                                     'n':sum(r['provider']==p for r in subset)} for p in run.CAPS}})
-    write(run.OUT/'benchmark_analysis.json',{'records':checks,'summary':summaries,
+    write(run.OUT/('benchmark_recovered_analysis.json' if recovered else 'benchmark_analysis.json'),{'records':checks,'summary':summaries,
         'expectations_not_human_gold':True,'agreement_denominator':'Both providers have a non-null grade; ABSTAIN agreement not counted as grade accuracy.'})
     candidates=[r for r in summaries if r['split']=='FRESH_VALIDATION']
     for r in candidates:
@@ -57,12 +57,13 @@ def compare_controls():
         return (r['dangerous_errors'],-r['policy_pass'],r['output_evidence_failures'],
                 -r['grade_agreements'],-r['binary_agreements'],Decimal(r['decision_cost_usd']),r['method'])
     choice=min(candidates,key=key)
-    write(run.OUT/'method_selection.json',{'method':choice['method'],'candidates':candidates,
+    write(run.OUT/('method_selection_recovered_audit.json' if recovered else 'method_selection.json'),{'method':choice['method'],'candidates':candidates,
         'choice_rule':'Frozen lexicographic safety, adherence, failures, agreement, cost, ID.',
         'selected_only_for_pending_diagnostic_review':True,
         'policy_gate_passed':choice['policy_pass']==choice['n'] and choice['output_evidence_failures']==0,
         'no_relevance_or_retrieval_prompt_changes_after_controls':True,
-        'not_a_verified_evaluator':True,'human_approved':False})
+        'not_a_verified_evaluator':True,'human_approved':False,
+        'does_not_retroactively_change_pending_method':recovered})
     print('Selection',choice['method'], 'fresh pass',choice['policy_pass'],'/',choice['n'])
     print([{k:r[k] for k in ('method','policy_pass','dangerous_errors','output_evidence_failures','both_judged_pairs')} for r in candidates])
 
@@ -70,7 +71,7 @@ def compare_controls():
 def pending_labels():
     previous=read(run.VALIDATION/'v2_reviewed_strict/labels.json')['records']
     items=read(run.OUT/'pending_items.json')['records']
-    reviews={p:{r['id']:r for r in read(run.OUT/p/'pending_results.json')['records']} for p in run.CAPS}
+    reviews={p:{r['id']:r for r in read(run.OUT/p/'pending_recovered_results.json')['records']} for p in run.CAPS}
     records=[];proposals={}
     for item in items:
         pair=[reviews[p][item['id']] for p in run.CAPS]
@@ -134,4 +135,7 @@ def evaluate_versions():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('stage',choices=['controls','final'])
-    args=parser.parse_args();(compare_controls if args.stage=='controls' else evaluate_versions)()
+    parser.add_argument('--recovered',action='store_true')
+    args=parser.parse_args()
+    if args.stage=='controls':compare_controls(args.recovered)
+    else:evaluate_versions()

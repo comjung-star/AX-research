@@ -45,7 +45,13 @@ def decode(raw,provider):
                   if c.get('type')=='output_text') if provider=='openai' else
           ''.join(c.get('text','') for c in raw.get('content',[]) if c.get('type')=='text'))
     text=text.strip()
-    if text.startswith('```') and text.endswith('```'):text=text.split('\n',1)[1].rsplit('```',1)[0]
+    if text.startswith('```'):
+        # A complete fenced JSON object may be followed by explanatory prose.
+        # Read the single unchanged fenced object only; never synthesize braces,
+        # merge objects, or choose between multiple alternative answers.
+        blocks=re.findall(r'```(?:json)?\s*\n(.*?)```',text,re.DOTALL)
+        if len(blocks)!=1:return None,'INVALID_JSON'
+        text=blocks[0].strip()
     try:return json.loads(text),None
     except ValueError:return None,'INVALID_JSON'
 
