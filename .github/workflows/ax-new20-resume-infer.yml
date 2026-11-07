@@ -1,0 +1,76 @@
+name: AX new20 resume preserved 240 responses and infer
+on:
+  push:
+    branches:
+      - research/new20-validation-20261107
+    paths:
+      - .github/workflows/ax-new20-resume-infer.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  resume-infer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      RUN_DIR: docs/validation-new20-runtime
+    steps:
+      - name: Checkout original frozen code and data
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Restore prior successful 240 responses without any new API calls
+        uses: actions/download-artifact@v4
+        with:
+          name: ax-new20-blind-eval-and-inference
+          run-id: 42382127226
+          github-token: ${{ github.token }}
+          path: docs/validation-new20-runtime
+      - name: Install Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install historical pinned model dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==2.4.5 transformers==5.12.0 sentence-transformers==5.7.0
+          python -m pip install kiwipiepy rank-bm25 pyyaml huggingface-hub
+          python -m pip install -e .
+      - name: Download and verify original BGE-M3
+        run: |
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          import os
+          snapshot_download(repo_id="BAAI/bge-m3",
+              local_dir=os.path.join(os.environ["RUNNER_TEMP"],"bge-m3"),
+              allow_patterns=["*.json","*.bin","*.txt","*.model","*.bpe","*.md"])
+          PY
+      - name: Verify original 240 receipts and fix missing pre-registration
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_resume.py restore "$RUNNER_TEMP/bge-m3" "$RUN_DIR"
+      - name: Perform new20 A-C-E full retrieval with original model
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_resume.py infer "$RUNNER_TEMP/bge-m3" "$RUN_DIR"
+      - name: Save fresh predictions and source audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-new20-resumed-fresh-ace
+          path: |
+            docs/validation-new20-runtime/resume_recovery.json
+            docs/validation-new20-runtime/preregistration.json
+            docs/validation-new20-runtime/infer_status.json
+            docs/validation-new20-runtime/predictions_new20.json
+            docs/validation-new20-runtime/predictions.json
+            docs/validation-new20-runtime/prediction_seal.json
+            docs/validation-new20-runtime/inference/complete.json
+          if-no-files-found: warn
+          retention-days: 90
