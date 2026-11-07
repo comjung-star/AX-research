@@ -9,7 +9,13 @@ from scripts import e_validation as run
 from scripts import core_preservation_evaluate as metrics
 
 
+def effective_identifier(provider, identifier):
+    link=run.OUT/'repairs'/(provider+'_'+identifier+'.json')
+    return read(link)['recovery_identifier'] if link.exists() else identifier
+
+
 def received(provider, identifier):
+    identifier=effective_identifier(provider,identifier)
     stem = provider+'_'+identifier
     path = run.OUT/'api'/(stem+'_response.json')
     if not path.exists():
@@ -77,7 +83,7 @@ def collect_relevance(missing_only=False):
                     except (AssertionError, KeyError, TypeError):
                         reason = 'MISSING_INVALID_OR_UNCERTAIN_RESPONSE'
                     result.append({**record, 'reviewer': reviewer, 'provider': provider,
-                                   'request_id': provider+'_'+identifier,
+                                   'request_id': provider+'_'+effective_identifier(provider,identifier),
                                    'valid': reason is None, 'invalid_reason': reason,
                                    'assessment': row, 'raw_assessment': matches[0] if len(matches)==1 else None})
     return result
@@ -190,12 +196,16 @@ def quality_results():
             data = received(provider, 'quality_'+record['id']+suffix)
             valid = False
             issues = []
+            invalid_reason='INCOMPLETE_OR_UNREADABLE_RESPONSE'
             try:
                 issues = validate_quality(data, payload)
                 valid = all(x['literal_evidence_valid'] for x in issues)
+                invalid_reason=None if valid else 'NONLITERAL_ISSUE_EVIDENCE'
             except (AssertionError, KeyError, TypeError):
-                pass
+                if data is not None:invalid_reason='SCHEMA_OR_ID_INVALID'
             rows.append({**record, 'reviewer': reviewer, 'valid': valid,
+                         'request_id':provider+'_'+effective_identifier(provider,'quality_'+record['id']+suffix),
+                         'invalid_reason':invalid_reason,
                          'data': data, 'issue_evidence_checks': issues})
     summary = []
     for reviewer, _, _ in reviewers():
@@ -235,7 +245,25 @@ def quality_results():
                            'reviewer':row['reviewer'],'old':before,
                            'new':row['data'],'new_literal_evidence_valid':row['valid'],
                            'new_input_and_no_added_functions_not_directly_comparable_to_old_fields':True})
+    agreement=[]
+    first, second = (r[0] for r in reviewers())
+    for field in run.QUALITY_FIELDS:
+        values=[]
+        for item in read(run.OUT/'selection.json')['quality_mapping']:
+            scores=[]
+            for reviewer in (first,second):
+                row=lookup[reviewer,item['condition'],item['query_id'],item['repeat']]
+                scores.append(next(c['score'] for c in row['data']['checks'] if c['field']==field)
+                              if row['valid'] else None)
+            if None not in scores:values.append(scores[0]==scores[1])
+        agreement.append({'field':field,'n':len(values),'exact_agreement':mean(values) if values else None})
+    previous_errors=[]
+    for old_error in read(run.old.OUT/'quality_validation.json')['examples']:
+        key=old_error['condition'],old_error['query_id'],old_error['repeat']
+        previous_errors.append({'old_error':old_error,'new_reviews':[
+            lookup[reviewer,*key] for reviewer,_,_ in reviewers()]})
     return {'records': rows, 'summary': summary, 'paired_C_E': pairs, 'old_new_comparison': comparison,
+            'reviewer_agreement':agreement,'previous_error_rechecks':previous_errors,
             'meaning_correctness_not_proved_by_literal_checks': True, 'human_verified':False}
 
 
@@ -282,6 +310,24 @@ def main():
                                           'invalid_relevance_rows':sum(not x['valid'] for x in relevance),
                                           'selected_pairs':len(relevance)//2,
                                           'changed_or_abstained':sum(x['changed'] for x in changes)})
+    paired=[]
+    for version in versions:
+        if version=='v0_original':continue
+        left=evaluations['v0_original'];right=evaluations[version]
+        for metric in left['per_query'][0]['metrics']:
+            old_group=next(r for r in left['macro'] if r['condition']=='E' and r['metric']==metric)
+            new_group=next(r for r in right['macro'] if r['condition']=='E' and r['metric']==metric)
+            common=set(old_group['questions']) & set(new_group['questions'])
+            for c in 'ABCE':
+                before=[r['metrics'][metric] for r in left['per_query']
+                        if r['condition']==c and r['query_id'] in common]
+                after=[r['metrics'][metric] for r in right['per_query']
+                       if r['condition']==c and r['query_id'] in common]
+                paired.append({'version':version,'condition':c,'metric':metric,'n':len(common),
+                               'query_ids':sorted(common),'old':mean(before) if before else None,
+                               'new':mean(after) if after else None,
+                               'reason':'Same saved predictions; change arises from label revision only.'})
+    write(run.OUT/'label_version_common_cohort_comparison.json',{'records':paired})
 
 
 if __name__=='__main__':

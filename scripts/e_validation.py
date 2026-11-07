@@ -266,6 +266,9 @@ def batches(missing):
 
 
 def run(stage):
+    if stage.startswith('repair_'):
+        repair(stage.removeprefix('repair_'))
+        return
     if stage == 'access':
         result = call('claude', 'access', 'Return JSON only.', {'request': 'Return {"ok":true}.'}, 32)
         save(OUT/'provider_access.json', {'claude_generation_available': result == {'ok': True},
@@ -287,8 +290,46 @@ def run(stage):
             call('openai', identifier+'_repeat2', prompt, payload, limit)
 
 
+def repair(stage):
+    """One technical recovery for an explicitly received token-limit stop."""
+    assert (OUT/'technical_recovery_policy.json').exists()
+    directory=OUT/'repairs'
+    directory.mkdir(exist_ok=True)
+    for receipt_path in sorted((OUT/'api').glob('*_receipt.json')):
+        receipt=read(receipt_path)
+        provider=receipt['provider']
+        identifier=receipt['id'].removeprefix(provider+'_')
+        if not identifier.startswith(stage+'_') or identifier.endswith('_formatfix1'):
+            continue
+        if receipt['state']!='RECEIVED':
+            continue
+        raw=read(OUT/'api'/(receipt['id']+'_response.json'))
+        capped=(raw.get('stop_reason')=='max_tokens' if provider=='claude' else
+                raw.get('status')=='incomplete' and
+                (raw.get('incomplete_details') or {}).get('reason')=='max_output_tokens')
+        if not capped:
+            continue
+        request=read(OUT/'api'/(receipt['id']+'_request.json'))['body']
+        if provider=='openai':
+            prompt,text=request['instructions'],request['input']
+        else:
+            prompt,text=request['system'],request['messages'][0]['content']
+        payload=json.loads(text.removesuffix('\nReturn JSON.'))
+        limit=2400 if stage=='quality' else 1800
+        link=directory/(receipt['id']+'.json')
+        if not link.exists():
+            save(link,{'original_id':receipt['id'],'provider':provider,
+                       'recovery_identifier':identifier+'_formatfix1',
+                       'reason':'EXPLICIT_RECEIVED_OUTPUT_TOKEN_LIMIT',
+                       'original_response_sha256':sha(OUT/'api'/(receipt['id']+'_response.json')),
+                       'same_prompt_and_payload':True,'new_output_limit':limit,
+                       'maximum_recovery_attempts':1,'old_cost_preserved':True})
+        call(provider,identifier+'_formatfix1',prompt,payload,limit)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('stage', choices=['prepare', 'access', 'missing', 'quality', 'review'])
+    parser.add_argument('stage', choices=['prepare', 'access', 'missing', 'quality', 'review',
+                                        'repair_quality','repair_review','repair_missing'])
     args = parser.parse_args()
     prepare() if args.stage == 'prepare' else run(args.stage)

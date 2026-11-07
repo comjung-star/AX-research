@@ -1,0 +1,21 @@
+{
+  "timing": "After first explicit token-limit stop, before any new retrieval metrics computed",
+  "reason": "Known received quality response claude_quality_V049 stopped at1200 output tokens",
+  "eligible": "Only raw stop_reason=max_tokens or status=incomplete with reason=max_output_tokens",
+  "not_eligible": [
+    "valid unfavorable grades",
+    "reviewer disagreement",
+    "uncertain or HTTP-failed requests",
+    "semantic/source evidence violations"
+  ],
+  "maximum_recovery_attempts": 1,
+  "same_prompt_and_payload": true,
+  "output_limits": {
+    "quality": 2400,
+    "relevance": 1800
+  },
+  "global_cap_usd": 2,
+  "prior_protocol_preserved": true,
+  "raw_responses_and_costs_all_preserved": true,
+  "no_new_predictions_or_generation_prompts": true
+}
