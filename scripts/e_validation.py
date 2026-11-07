@@ -273,11 +273,11 @@ def run(stage):
                                          'actual_balance_checked': False})
         return
     if stage == 'quality':
-        jobs = [('quality_'+r['id'], QUALITY, quality_payload(r), 1500)
+        jobs = [('quality_'+r['id'], QUALITY, quality_payload(r), 1200)
                 for r in read(OUT/'selection.json')['quality_mapping']]
     else:
         prefix = 'missing' if stage == 'missing' else 'review'
-        jobs = [(prefix+'_'+group[0]['id'], REL, rel_payload(group), 1200)
+        jobs = [(prefix+'_'+group[0]['id'], REL, rel_payload(group), 900)
                 for group in batches(stage == 'missing')]
     for identifier, prompt, payload, limit in jobs:
         call('openai', identifier, prompt, payload, limit)
