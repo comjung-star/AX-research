@@ -1,0 +1,98 @@
+{
+  "id": "resp_0e0e264a3875a47b016aef110a207c87d084dd73dbdf2cce25",
+  "object": "response",
+  "created_at": 1794052362,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794052363,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead ONLY the source case, without any target question. Extract actually performed\naction,object,output,operations and time_type (CURRENT,FUTURE,NONE,UNKNOWN).\nexecution is CONFIRMED,PROPOSAL_STUDY or UNSPECIFIED. Use PROPOSAL_STUDY when only\nfeasibility/plans are described. Task/Context must support operational work.\nDo not infer an output format, policy, escalation, authority, benefit or function\nfrom Problem or general world knowledge. Unknown action/object/output is null.\nOnly T/C anchor IDs can support performed work. P anchors are needs, never proof.\nUse the provided anchor IDs instead of writing quotations. Empty evidence for\nunknown fields. Return {id,execution,action,object,output,operations:[...],\ntime_type,evidence:{action:[anchor_ids],object:[anchor_ids],output:[anchor_ids],\nexecution:[anchor_ids]},unknowns:[...]}. Concise Korean JSON, no target adaptation.\n",
+  "max_output_tokens": 900,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0e0e264a3875a47b016aef110aa23087d0b8a28894b645a6f2",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"id\":\"K72cb60b9e62899\",\"execution\":\"UNSPECIFIED\",\"action\":\"답변하다\",\"object\":\"주민 질문\",\"output\":\"답변\",\"operations\":[\"municipal service manuals 사용\"],\"time_type\":\"UNKNOWN\",\"evidence\":{\"action\":[\"T1\"],\"object\":[\"T1\"],\"output\":[\"T1\"],\"execution\":[]},\"unknowns\":[]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 378,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 86,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 464
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -1,0 +1,92 @@
+{
+  "method": "B",
+  "candidates": [
+    {
+      "split": "FRESH_VALIDATION",
+      "method": "A",
+      "n": 32,
+      "policy_pass": 30,
+      "dangerous_errors": 1,
+      "output_evidence_failures": 1,
+      "abstain": 6,
+      "grade_agreements": 8,
+      "binary_agreements": 11,
+      "both_judged_pairs": 12,
+      "failures": {
+        "UNSUPPORTED_QUERY_CITATION": 1
+      },
+      "by_provider": {
+        "openai": {
+          "pass": 16,
+          "n": 16
+        },
+        "claude": {
+          "pass": 14,
+          "n": 16
+        }
+      },
+      "decision_cost_usd": "0.0517770"
+    },
+    {
+      "split": "FRESH_VALIDATION",
+      "method": "B",
+      "n": 32,
+      "policy_pass": 10,
+      "dangerous_errors": 0,
+      "output_evidence_failures": 4,
+      "abstain": 21,
+      "grade_agreements": 3,
+      "binary_agreements": 3,
+      "both_judged_pairs": 3,
+      "failures": {
+        "INVALID_ENUM": 1,
+        "CORE_EXTRACTION_FAILED": 2,
+        "UNKNOWN_ANCHOR": 1
+      },
+      "by_provider": {
+        "openai": {
+          "pass": 6,
+          "n": 16
+        },
+        "claude": {
+          "pass": 4,
+          "n": 16
+        }
+      },
+      "decision_cost_usd": "0.0299008"
+    },
+    {
+      "split": "FRESH_VALIDATION",
+      "method": "C",
+      "n": 32,
+      "policy_pass": 7,
+      "dangerous_errors": 0,
+      "output_evidence_failures": 12,
+      "abstain": 14,
+      "grade_agreements": 2,
+      "binary_agreements": 2,
+      "both_judged_pairs": 2,
+      "failures": {
+        "SEMANTIC_PROBLEM_AS_PERFORMED": 10,
+        "CORE_EXTRACTION_FAILED": 2
+      },
+      "by_provider": {
+        "openai": {
+          "pass": 6,
+          "n": 16
+        },
+        "claude": {
+          "pass": 1,
+          "n": 16
+        }
+      },
+      "decision_cost_usd": "0.0384353"
+    }
+  ],
+  "choice_rule": "Frozen lexicographic safety, adherence, failures, agreement, cost, ID.",
+  "selected_only_for_pending_diagnostic_review": true,
+  "policy_gate_passed": false,
+  "no_relevance_or_retrieval_prompt_changes_after_controls": true,
+  "not_a_verified_evaluator": true,
+  "human_approved": false
+}

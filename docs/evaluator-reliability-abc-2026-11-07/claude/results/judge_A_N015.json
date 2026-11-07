@@ -1,0 +1,72 @@
+{
+  "data": {
+    "assessments": [
+      {
+        "query_id": "N015",
+        "id": "N015",
+        "scope": "FULL_CORE",
+        "category": "JUDGEABLE",
+        "reason": "실제 수행된 작업이 요청된 핵심 기능과 정확히 일치합니다. 고객 상담 대화 요약과 원문 위치 제시 모두 구현 결과에 포함되어 있습니다.",
+        "query_quotes": [
+          "고객 상담 대화를 요약하고",
+          "원문 위치도 함께 제시"
+        ],
+        "claims": [
+          {
+            "role": "ACTION",
+            "field": "Task",
+            "quote": "Summarize customer support conversations"
+          },
+          {
+            "role": "OBJECT",
+            "field": "Task",
+            "quote": "customer support conversations"
+          },
+          {
+            "role": "OUTPUT",
+            "field": "Context",
+            "quote": "summaries and traceable conversation references"
+          },
+          {
+            "role": "CONDITION",
+            "field": "Context",
+            "quote": "provide source locations"
+          }
+        ],
+        "missing_information": [
+          "요약 품질 기준 또는 평가 방식",
+          "원문 위치 표시 형식(라인 번호, 타임스탬프 등)",
+          "처리된 대화 데이터의 규모 또는 샘플"
+        ],
+        "expert_question": "요약 정확도와 원문 참조의 추적 가능성이 실제 운영 환경에서 검증되었는가?",
+        "_citations": [
+          "T1",
+          "T1",
+          "C1",
+          "T1"
+        ],
+        "_field_corrections": [
+          {
+            "original": {
+              "role": "CONDITION",
+              "field": "Context",
+              "quote": "provide source locations"
+            },
+            "resolved_field": "Task",
+            "quote_unchanged": true
+          }
+        ]
+      }
+    ]
+  },
+  "valid": true,
+  "failure": null,
+  "attempts": [
+    {
+      "id": "claude_judge_A_N015",
+      "failure": null
+    }
+  ],
+  "retry_is_technical_only": true,
+  "prompt_payload_sha256": "ae1c1ffdb3aa4da2ebb84b0532e73ad2194c4a0f6b46022395cb6a021190e1cf"
+}

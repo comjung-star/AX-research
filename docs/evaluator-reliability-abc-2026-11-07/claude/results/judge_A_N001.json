@@ -1,0 +1,50 @@
+{
+  "data": {
+    "assessments": [
+      {
+        "query_id": "N001",
+        "id": "N001",
+        "scope": "TRANSFER_CORE",
+        "category": "JUDGEABLE",
+        "reason": "현재 진동 스파이크 감지 및 알림은 실제 수행된 핵심 함수이며, 이를 통해 베어링 고장 예측의 입력 신호로 충분히 전이 가능합니다. 다만 현재 상태 감지와 미래 예측은 별개 함수이므로 grade2입니다.",
+        "query_quotes": [
+          "진동이 갑자기 커지는 순간을 알리는",
+          "내일 베어링 고장을 예측"
+        ],
+        "claims": [
+          {
+            "role": "ACTION",
+            "field": "Task",
+            "quote": "Detect present vibration spikes and alert the operator"
+          },
+          {
+            "role": "CONDITION",
+            "field": "Context",
+            "quote": "Only current measurements are checked"
+          }
+        ],
+        "missing_information": [
+          "과거 진동 데이터 축적 및 추세 분석 여부",
+          "베어링 고장 임계값 설정 기준",
+          "예측 모델 학습 또는 통계 분석 수행 여부"
+        ],
+        "expert_question": "현재 스파이크 감지만으로 내일 고장을 예측하기 위해 필요한 시계열 분석, 임계값 학습, 또는 예측 모델이 구현되었는가?",
+        "_citations": [
+          "T1",
+          "C1"
+        ],
+        "_field_corrections": []
+      }
+    ]
+  },
+  "valid": true,
+  "failure": null,
+  "attempts": [
+    {
+      "id": "claude_judge_A_N001",
+      "failure": null
+    }
+  ],
+  "retry_is_technical_only": true,
+  "prompt_payload_sha256": "64ea83ef73ac698d57d5a43d172fda1a0574197182dcd8bb6f7c04c6835d0221"
+}

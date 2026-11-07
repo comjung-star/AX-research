@@ -1,0 +1,98 @@
+{
+  "id": "resp_07dfa59ae3199683016aef107dd78c87d085a6d7bbe5b79282",
+  "object": "response",
+  "created_at": 1794052221,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794052223,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+  "max_output_tokens": 700,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_07dfa59ae3199683016aef107e85e087d0b93e815f2e96f3d1",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"id\":\"Q0ce5b5dd683f4a\",\"action\":\"예측하다\",\"object\":\"베어링 고장\",\"output\":\"진동이 갑자기 커지는 순간을 알리는 사례\",\"required_operations\":[\"진동 급증 사례 활용\"],\"time_type\":\"FUTURE\",\"constraints\":[\"내일의 베어링 고장 예측\"]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 162,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 84,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 246
+  },
+  "user": null,
+  "metadata": {}
+}

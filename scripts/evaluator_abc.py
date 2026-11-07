@@ -63,14 +63,22 @@ def validate_core(kind,data,identifier,available):
     if not isinstance(data,dict) or data.get('id')!=identifier:return 'MISSING_OR_WRONG_ID'
     if not {'action','object','output','time_type'}<=set(data):return 'MISSING_FIELDS'
     if data['time_type'] not in ('CURRENT','FUTURE','NONE','UNKNOWN'):return 'INVALID_ENUM'
+    if any(data[f] is not None and not isinstance(data[f],str) for f in ('action','object','output')):return 'INVALID_SCHEMA'
+    if kind=='query':
+        if not {'required_operations','constraints'}<=set(data):return 'MISSING_FIELDS'
+        if any(not isinstance(data[f],list) or any(not isinstance(v,str) for v in data[f])
+               for f in ('required_operations','constraints')):return 'INVALID_SCHEMA'
     if kind=='case':
         if not {'execution','evidence','operations','unknowns'}<=set(data):return 'MISSING_FIELDS'
         if data['execution'] not in ('CONFIRMED','PROPOSAL_STUDY','UNSPECIFIED'):return 'INVALID_ENUM'
+        if any(not isinstance(data[f],list) or any(not isinstance(v,str) for v in data[f])
+               for f in ('operations','unknowns')):return 'INVALID_SCHEMA'
         evidence=data['evidence']
         if not isinstance(evidence,dict) or not {'action','object','output','execution'}<=set(evidence):return 'MISSING_FIELDS'
         for field,ids in evidence.items():
             if not isinstance(ids,list):return 'INVALID_SCHEMA'
             for anchor in ids:
+                if not isinstance(anchor,str):return 'INVALID_SCHEMA'
                 if anchor not in available:return 'UNKNOWN_ANCHOR'
                 if available[anchor]['field']=='Problem':return 'SEMANTIC_PROBLEM_AS_PERFORMED'
             if field in ('action','object','output') and data.get(field) is not None and not ids:
@@ -94,7 +102,9 @@ def request(identifier,prompt,payload,limit,validator):
         name=identifier if attempt==0 else identifier+'_technical1'
         transport.call(provider,name,prompt,payload,limit if attempt==0 else limit*2)
         data,failure=read_attempt(provider,name)
-        if failure is None:failure=validator(data)
+        if failure is None:
+            try:failure=validator(data)
+            except (AssertionError,KeyError,TypeError,ValueError):failure='INVALID_SCHEMA'
         attempts.append({'id':provider+'_'+name,'failure':failure})
         if failure is None or failure not in TECHNICAL:break
         if attempt==0:time.sleep(2)
@@ -201,7 +211,7 @@ def evaluate_item(item,method):
             grade=SCOPE[d['scope']] if d['category']=='JUDGEABLE' else None
             citations=d['_citations']
         elif method=='B':
-            grade=d['grade'] if d['status']=='JUDGED' and c['data']['execution']=='CONFIRMED' else None
+            grade=d['grade'] if d['status']=='JUDGED' and c['data']['execution']=='CONFIRMED' and c['data']['action'] is not None else None
             citations=d['evidence_ids']
         else:
             grade,guard=score_c(d,q['data'],c['data']);citations=d['evidence_ids']

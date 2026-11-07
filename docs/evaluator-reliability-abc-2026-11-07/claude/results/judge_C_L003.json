@@ -1,0 +1,39 @@
+{
+  "data": {
+    "id": "L003",
+    "evidence_ids": [
+      "T1",
+      "C1",
+      "P1"
+    ],
+    "checks": {
+      "actual_work_known": true,
+      "action_match": false,
+      "object_match": false,
+      "output_match": false,
+      "direct_core": false,
+      "transfer_core": false,
+      "core_sufficient": false,
+      "auxiliary_only": false,
+      "any_useful_link": true,
+      "temporal_conflict": true
+    },
+    "new_core_functions": [
+      "analyze failure patterns",
+      "apply predictive model",
+      "forecast future equipment state"
+    ],
+    "reason": "사례는 현재 임계값 초과 감지(CURRENT)를 수행하나, 질의는 내일 장비 고장 예측(FUTURE)을 요구합니다. 행동(Detect vs predict), 대상(threshold vs failure), 시간축(현재 vs 미래)이 모두 불일치하며, 예측 모델 적용이 구현되지 않았습니다.",
+    "grade": 0
+  },
+  "valid": false,
+  "failure": "SEMANTIC_PROBLEM_AS_PERFORMED",
+  "attempts": [
+    {
+      "id": "claude_judge_C_L003",
+      "failure": "SEMANTIC_PROBLEM_AS_PERFORMED"
+    }
+  ],
+  "retry_is_technical_only": true,
+  "prompt_payload_sha256": "758fe840fc4f05ef846759854bf39019e82382cbe0263ea987d922cb65744279"
+}

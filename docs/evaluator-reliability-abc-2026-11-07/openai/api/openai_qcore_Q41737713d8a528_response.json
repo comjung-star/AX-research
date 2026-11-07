@@ -1,0 +1,98 @@
+{
+  "id": "resp_041cd3efb93e7b2b016aef10ae034887d0868285c1a1d1b0fa",
+  "object": "response",
+  "created_at": 1794052270,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794052271,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead ONLY the supplied business question. Extract action,object,output,required\noperations and time_type (CURRENT,FUTURE,NONE,UNKNOWN). Operation labels are your\nown concise meaning summaries, not search-model rules. Use null for unknown.\nPreserve conditions, negation and human reserved actions in constraints.\nReturn {id,action,object,output,required_operations:[...],time_type,constraints:[...]}.\nDo not invent task priority or propose solutions. Concise Korean JSON.\n",
+  "max_output_tokens": 700,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_041cd3efb93e7b2b016aef10aec0b087d0919ec8c17a285dd1",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"id\":\"Q41737713d8a528\",\"action\":\"추출하다\",\"object\":\"계약서의 회사명과 만료일\",\"output\":\"표\",\"required_operations\":[\"계약서에서 회사명 추출\",\"계약서에서 만료일 추출\",\"추출 결과를 표로 표시\"],\"time_type\":\"NONE\",\"constraints\":[]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 151,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 81,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 232
+  },
+  "user": null,
+  "metadata": {}
+}

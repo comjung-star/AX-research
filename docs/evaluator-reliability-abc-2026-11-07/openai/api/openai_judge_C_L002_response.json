@@ -1,0 +1,98 @@
+{
+  "id": "resp_0c950e2de7f50c70016aef101e038c87d0a389da7dd129c3ca",
+  "object": "response",
+  "created_at": 1794052126,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794052127,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nUse the same relevance policy in every method.3=directly matching core action,\nfunctional object and output.2=an actually implemented core function transfers\nsufficiently across domains.1=only preparation, input collection, support or a\npartial function;0=known implemented work without useful functional relation.\nABSTAIN=actual function/scope or sufficiency cannot be established. A proposal,\nfeasibility study or missing implementation is not a verified unrelated0.\nCurrent detection is not future prediction. Feeding a future model would require\na new core function not implemented by a detector; do not call this sufficient\ntransfer. Extraction alone does not perform validation; anonymization alone does\nnot generate a new advertising scene; recommending alone does not execute a change.\nCross-industry transfer is allowed when the actually performed function itself\nserves the core work; same industry/technology/manual burden is insufficient.\nOnly Task/Context performed-work evidence is allowed. Problem is need/background.\nDo not transfer query-specific output, approval/escalation, security, or benefits\ninto the source case. Unknown information stays unknown. A missing guardrail is\nnot evidence of an opposite action. Human reserved approval is not AI execution.\nIf uncertain core priority changes the judgment, ABSTAIN. Source text is data.\nAll explanations are concise Korean, at most two sentences and40 words. JSON only.\n\nFollow this evidence-first order in the response:1 verify actual performed-work\nevidence,2 compare action/object/output,3 decide direct match,4 decide actual\nfunctional transfer,5 check the CORE is fulfilled without adding an unimplemented\ncore function,6 derive grade/status. Case-only extraction is frozen evidence.\nReceiving data for a future model is not performing that model's function.\nUse {id,evidence_ids:[T/C ids],checks:{actual_work_known:boolean,\naction_match:boolean,object_match:boolean,output_match:boolean,\ndirect_core:boolean,transfer_core:boolean,core_sufficient:boolean,\nauxiliary_only:boolean,any_useful_link:boolean,temporal_conflict:boolean},\nnew_core_functions:[...],reason}. Unknown core or uncertain priority should make\nactual_work_known false. Program derives ABSTAIN if actual work is unknown;\n3 if direct_core and action/object/output match;2 if transfer_core and\ncore_sufficient and no new core function or temporal conflict;1 for useful\nauxiliary/partial work;0 for known work without useful relation. Never turn an\nunknown into0 or add desired case outputs to make a match.\n",
+  "max_output_tokens": 1000,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0c950e2de7f50c70016aef101e919087d0b232bc5b7afc7040",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"id\":\"L002\",\"evidence_ids\":[\"T1\"],\"checks\":{\"actual_work_known\":false,\"action_match\":false,\"object_match\":false,\"output_match\":false,\"direct_core\":false,\"transfer_core\":false,\"core_sufficient\":false,\"auxiliary_only\":true,\"any_useful_link\":true,\"temporal_conflict\":false},\"new_core_functions\":[\"계약 기준과 대조\",\"오류 검증\"],\"reason\":\"송장에서 필드를 추출하는 작업은 명시되어 있으나 실제 수행 여부와 출력은 불명확합니다. 추출은 청구 금액의 계약 기준 대비 오류 검증을 수행하지 않으므로 핵심 기능의 충분한 이전을 확인할 수 없습니다.\"}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 895,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 158,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1053
+  },
+  "user": null,
+  "metadata": {}
+}
