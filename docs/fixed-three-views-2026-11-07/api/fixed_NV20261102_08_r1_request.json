@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+    "input": "{\"original_business_problem\": \"구매 담당자가 승인 완료된 협력사 계좌 변경 요청을 받은 뒤 ERP의 거래처 정보를 다시 입력하고 변경 완료 통지를 보내는 일을 반복합니다. 승인된 요청의 내용을 지정된 항목에 등록하고 처리 완료를 남기는 실제 작업을 자동화하고 싶습니다. 변경 방법을 설명하는 챗봇만 만드는 것은 목적이 아닙니다.\", \"format\": \"{perspectives:[{id,status,title,description,keywords:[words],source_quote}]} return exactly 3 fixed slots concise problem perspectives; JSON only\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "aba2c9969dee5fcedb6f179a7cbde0526153b57441e11377dbc2f2a178a19247",
+  "input_tokens_upper_bound_utf8": 2081,
+  "reserve_usd": "0.011060125",
+  "no_labels_or_ranks": true
+}

@@ -1,0 +1,98 @@
+{
+  "id": "resp_0d1726823b533599016aee7d89f19c87d2bfb82c1a6dec0394",
+  "object": "response",
+  "created_at": 1794014601,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794014605,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0d1726823b533599016aee7d8a889887d28fb025e05188069d",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"임대 계약 갱신 비교 준비\",\"description\":\"재무 담당자는 여러 지점의 임대 계약이 갱신될 때 납부 의무, 기한, 주요 예외 조건을 다시 정리하는 일을 줄이고, 계약서의 핵심 약정을 짧게 요약해 비교 준비 자료로 만들고자 합니다. 계약 위반 판정이나 법률 승인은 목적이 아닙니다.\",\"keywords\":[\"재무 담당자\",\"임대 계약 갱신\",\"비교 준비 자료\"],\"source_quote\":\"계약서에 적힌 핵심 약정을 짧게 요약해 비교 준비 자료로 만들고 싶습니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"MISSING\",\"title\":\"\",\"description\":\"\",\"keywords\":[],\"source_quote\":\"\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"계약서 핵심 약정 요약\",\"description\":\"입력은 임대 계약서이며, 납부 의무·기한·주요 예외 조건을 포함한 핵심 약정을 짧게 요약해 비교 준비 자료로 출력합니다. 계약 위반 여부 판정과 법률 승인은 제외됩니다.\",\"keywords\":[\"임대 계약서\",\"납부 의무\",\"기한\",\"주요 예외 조건\",\"요약\"],\"source_quote\":\"납부 의무, 기한, 주요 예외 조건을 다시 정리합니다.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 332,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 313,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 645
+  },
+  "user": null,
+  "metadata": {}
+}

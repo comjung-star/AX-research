@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+    "input": "{\"original_business_problem\": \"인사팀 공용 접수함에 들어오는 첨부자료를 경력 증명, 교육 수료, 주소 변경 등 서류 종류별로 나누고 담당 대기함에 배정하고 싶습니다. 자료 내용이 자격 조건을 충족하는지 판단하거나 신청을 승인하는 기능은 포함하지 않습니다.\", \"format\": \"{perspectives:[{id,status,title,description,keywords:[words],source_quote}]} return exactly 3 fixed slots concise problem perspectives; JSON only\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "48425780c2759e9572102d61f618308bc30b4e328f9987bf599381833d396870",
+  "input_tokens_upper_bound_utf8": 1986,
+  "reserve_usd": "0.01104825",
+  "no_labels_or_ranks": true
+}

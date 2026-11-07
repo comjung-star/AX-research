@@ -1,0 +1,98 @@
+{
+  "id": "resp_08cf1121c155ade3016aee7cecfc2c87d2b5fc717db858a23c",
+  "object": "response",
+  "created_at": 1794014445,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794014449,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_08cf1121c155ade3016aee7cee99c887d2a1547054ee9dd4e5",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"장애 복구 지연을 줄이기 위한 참고 정보 제공\",\"description\":\"담당자 교대 후 같은 오류의 해결 절차를 다시 찾느라 복구가 늦어지는 문제를 해결하기 위해, 운영자가 증상을 입력하면 참고 내용을 원문 위치와 함께 보여주는 작업을 요청합니다. 장애 원인 신규 진단과 서버 설정 자동 변경은 이번 범위에서 제외합니다.\",\"keywords\":[\"담당자 교대\",\"복구 지연\",\"증상 입력\",\"참고 내용\"],\"source_quote\":\"담당자가 교대되면 같은 오류를 해결했던 절차를 다시 찾느라 복구가 늦어집니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"운영자 증상 입력 후 과거 기록 참고\",\"description\":\"서비스 장애 대응 중 운영자가 증상을 입력하고 내부 운영 지침과 과거 처리 기록에서 참고할 내용을 확인합니다. 장애 원인 진단이나 서버 설정의 자동 변경은 포함하지 않습니다.\",\"keywords\":[\"서비스 장애 대응\",\"운영자\",\"내부 운영 지침\",\"과거 처리 기록\"],\"source_quote\":\"운영자가 증상을 입력하면 내부 운영 지침과 과거 처리 기록에서 참고할 내용을 찾아\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"운영 지침·처리 기록에서 원문 위치 제공\",\"description\":\"입력 데이터는 운영자가 입력한 증상이며, 내부 운영 지침과 과거 처리 기록에서 참고 내용을 찾아 원문 위치와 함께 보여줍니다. 장애 원인을 새로 진단하거나 서버 설정을 자동 변경하는 작업은 제외합니다.\",\"keywords\":[\"증상\",\"내부 운영 지침\",\"과거 처리 기록\",\"원문 위치\"],\"source_quote\":\"참고할 내용을 찾아 원문 위치와 함께 보여주고 싶습니다.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 329,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 404,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 733
+  },
+  "user": null,
+  "metadata": {}
+}

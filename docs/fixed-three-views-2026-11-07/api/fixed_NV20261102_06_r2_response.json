@@ -1,0 +1,98 @@
+{
+  "id": "resp_017cf4063553c057016aee7d94a6b087d2bf27554ae78205ca",
+  "object": "response",
+  "created_at": 1794014612,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794014617,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_017cf4063553c057016aee7d963b0487d28c39bb4b9dbfd9e6",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"은행 입출금 내역과 수납 장부 대조\",\"description\":\"매일 내려받는 은행 입출금 내역과 회사의 수납 장부를 대조해 중복 기장, 누락, 서로 맞지 않는 거래를 찾아 담당자에게 알리는 업무를 원합니다. 차이를 근거 없이 자동 수정하거나 송금하는 것은 제외합니다.\",\"keywords\":[\"은행 입출금 내역\",\"수납 장부\",\"대조\",\"중복 기장\",\"누락\",\"거래 불일치\",\"담당자\"],\"source_quote\":\"금액과 거래 식별 정보를 맞춰 중복 기장, 누락, 서로 맞지 않는 거래를 찾아 담당자에게 알리고 싶습니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"MISSING\",\"title\":\"\",\"description\":\"\",\"keywords\":[],\"source_quote\":\"\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"금액 및 거래 식별 정보 대조\",\"description\":\"입력은 매일 내려받는 은행 입출금 내역과 회사의 수납 장부이며, 금액과 거래 식별 정보를 맞춰 중복 기장, 누락, 서로 맞지 않는 거래를 찾고 담당자에게 알립니다. 자동 수정과 송금은 하지 않습니다.\",\"keywords\":[\"은행 입출금 내역\",\"수납 장부\",\"금액\",\"거래 식별 정보\",\"불일치 탐지\",\"담당자 알림\"],\"source_quote\":\"매일 내려받는 은행 입출금 내역과 회사의 수납 장부\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 322,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 346,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 668
+  },
+  "user": null,
+  "metadata": {}
+}

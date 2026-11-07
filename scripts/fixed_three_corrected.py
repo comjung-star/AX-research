@@ -85,7 +85,7 @@ def load_paths():
                 for i, view in enumerate(data['perspectives'], 1):
                     path = f'{stem}_{i}'
                     slots.append({'kind': kind, 'query_id': query, 'repeat': repeat, 'path_id': path, **view})
-                    if view.get('status') != 'MISSING':
+                    if kind == 'corrected' and view.get('status') != 'MISSING':
                         paths.append({'query_id': path, 'parent_query_id': query, 'repeat': repeat+offset,
                                       'text': view['title']+'\n'+view['description'], 'perspective': view})
     return paths, sources, slots
@@ -95,6 +95,18 @@ def infer(scratch):
     runner.OUT = CORRECTED
     runner.load_paths = load_paths
     runner.infer(scratch)
+    initial = read(OUT/'predictions.json')
+    assert sha(OUT/'predictions.json') == read(OUT/'prediction_seal.json')['predictions_sha256']
+    combined = read(CORRECTED/'predictions.json')
+    assert combined['systems']['A'] == initial['systems']['A']
+    assert not combined['systems']['B']
+    combined['systems']['B'] = initial['systems']['B']
+    write(CORRECTED/'comparison_predictions.json', combined)
+    write(CORRECTED/'comparison_seal.json', {
+        'predictions_sha256': sha(CORRECTED/'comparison_predictions.json'),
+        'B_reused_prediction_sha256': sha(OUT/'predictions.json'),
+        'corrected_inference_seal_sha256': sha(CORRECTED/'prediction_seal.json'),
+    })
 
 
 if __name__ == '__main__':

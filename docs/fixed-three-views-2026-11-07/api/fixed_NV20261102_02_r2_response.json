@@ -1,0 +1,98 @@
+{
+  "id": "resp_03c9acabd73385cb016aee7d661fbc87d29c6b178c51613862",
+  "object": "response",
+  "created_at": 1794014566,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794014573,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_03c9acabd73385cb016aee7d6a26c087d289f2c79da823efe4",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"현재 이상 접속 사건 탐지\",\"description\":\"야간 당직자가 여러 사내 서비스의 모든 접속 기록을 살펴보지 못하는 상황에서, 지금 발생한 평소와 다른 접속 사건을 놓치지 않는 것이 목적이다. 다음 주 장애 확률 예측은 요청 범위에서 제외된다.\",\"keywords\":[\"야간 당직자\",\"접속 기록\",\"이상 접속 사건\",\"현재 탐지\",\"장애 예측 제외\"],\"source_quote\":\"지금 발생한 이상을 놓치지 않는 것이 목적입니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"이상 사건 즉시 알림\",\"description\":\"현재 들어오는 접속 기록에서 평소와 다른 접속 사건을 찾아 담당자에게 즉시 알린다.\",\"keywords\":[\"현재 들어오는 기록\",\"이상 사건 탐지\",\"담당자\",\"즉시 알림\"],\"source_quote\":\"현재 들어오는 기록에서 평소와 다른 접속 사건을 찾아 담당자에게 즉시 알리고 싶습니다.\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"접속 기록에서 이상 사건 탐지\",\"description\":\"여러 사내 서비스의 현재 접속 기록을 입력으로 삼아 평소와 다른 접속 사건을 찾아 담당자에게 알린다. 다음 주 장애 확률 예측은 수행 범위가 아니다.\",\"keywords\":[\"사내 서비스\",\"접속 기록\",\"이상 접속 사건\",\"담당자 알림\"],\"source_quote\":\"현재 들어오는 기록에서 평소와 다른 접속 사건을 찾아\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 319,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 349,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 668
+  },
+  "user": null,
+  "metadata": {}
+}

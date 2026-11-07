@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+    "input": "{\"original_business_problem\": \"매일 내려받는 은행 입출금 내역과 회사의 수납 장부를 대조하는 작업이 많습니다. 금액과 거래 식별 정보를 맞춰 중복 기장, 누락, 서로 맞지 않는 거래를 찾아 담당자에게 알려주고 싶습니다. 발견한 차이를 근거 없이 자동 수정하거나 송금하지는 않아야 합니다.\", \"format\": \"{perspectives:[{id,status,title,description,keywords:[words],source_quote}]} return exactly 3 fixed slots concise problem perspectives; JSON only\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "f9b5719df97a96b970e4296d8551e250db1d5b8c0452d873edbbf83e0e44d328",
+  "input_tokens_upper_bound_utf8": 2026,
+  "reserve_usd": "0.01105325",
+  "no_labels_or_ranks": true
+}

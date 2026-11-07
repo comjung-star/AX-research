@@ -1,0 +1,98 @@
+{
+  "id": "resp_0b0b2aaf1360ee58016aee7e927e2487d2bf316c9d2fe96360",
+  "object": "response",
+  "created_at": 1794014866,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794014870,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0b0b2aaf1360ee58016aee7e93070c87d2aab00aa0b69fe5f8",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"자격 갱신 증빙 검토 지원\",\"description\":\"사내 전문업무 자격 갱신 신청의 증빙자료에서 필수 항목 누락이나 유효기간 및 제출 기준의 불일치를 확인해 담당자가 검토할 수 있도록 표시합니다. 최종 승인 권한은 사람에게 있습니다.\",\"keywords\":[\"자격 갱신\",\"증빙자료\",\"필수 항목\",\"유효기간\",\"제출 기준\",\"담당자 검토\",\"최종 승인\"],\"source_quote\":\"담당자가 검토할 수 있도록 부족하거나 맞지 않는 부분을 표시하는 것이 목적이며 최종 승인 권한은 사람에게 둡니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"담당자 검토 및 최종 승인\",\"description\":\"갱신 신청의 증빙자료를 확인하고 부족하거나 맞지 않는 부분을 표시해 담당자가 검토하도록 합니다. 최종 승인 권한은 사람에게 둡니다.\",\"keywords\":[\"증빙자료 확인\",\"부족한 부분 표시\",\"불일치 표시\",\"담당자 검토\",\"사람의 최종 승인\"],\"source_quote\":\"담당자가 검토할 수 있도록 부족하거나 맞지 않는 부분을 표시하는 것이 목적이며 최종 승인 권한은 사람에게 둡니다.\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"증빙자료 필수 항목 및 기준 확인\",\"description\":\"자격 갱신 신청의 증빙자료를 입력으로 삼아 필수 항목 누락 여부와 기재한 유효기간 및 제출 기준의 부합 여부를 확인하고, 부족하거나 맞지 않는 부분을 표시합니다.\",\"keywords\":[\"자격 갱신 신청\",\"증빙자료\",\"필수 항목 누락\",\"기재 유효기간\",\"제출 기준\",\"부족한 부분 표시\",\"불일치 표시\"],\"source_quote\":\"증빙자료의 필수 항목이 빠졌는지, 기재한 유효기간과 제출 기준이 맞는지 확인하고 싶습니다.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 444,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 450,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 894
+  },
+  "user": null,
+  "metadata": {}
+}

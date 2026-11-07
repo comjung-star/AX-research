@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n",
+    "input": "{\"original_business_problem\": \"냉장 운송 중 보관함별 온도 기록을 사람이 번갈아 확인하고 있습니다. 현재 값이 정해진 보관 범위를 벗어난 사건을 감지해 어느 보관함에서 문제가 생겼는지 즉시 알림을 받고 싶습니다. 앞으로의 수요량을 예상하거나 고장 원인을 추론하는 기능보다 현재 상태의 확인이 우선입니다.\", \"format\": \"{perspectives:[{id,status,title,description,keywords:[words],source_quote}]} return exactly 3 fixed slots concise problem perspectives; JSON only\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "9326502cb1074dd84cea8d16490b6e8dcca99d522b10e474d5fc5ac241a89c0f",
+  "input_tokens_upper_bound_utf8": 2642,
+  "reserve_usd": "0.01113025",
+  "no_labels_or_ranks": true
+}

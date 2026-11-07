@@ -1,0 +1,98 @@
+{
+  "id": "resp_05905bc7d003066b016aee7cf9317087d28f40e79938f2bfca",
+  "object": "response",
+  "created_at": 1794014457,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794014461,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_05905bc7d003066b016aee7cf9d78087d291bba8ffed0219c8",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"야간 이상 접속 사건 탐지\",\"description\":\"여러 사내 서비스의 야간 접속 기록을 모두 살펴보기 어려운 당직자를 위해, 현재 발생한 평소와 다른 접속 사건을 찾아 담당자에게 즉시 알리는 것이 목적입니다. 다음 주 장애 확률 예측은 요청 범위에서 제외됩니다.\",\"keywords\":[\"당직자\",\"야간 접속 기록\",\"이상 접속 사건\",\"담당자 알림\",\"현재 발생\",\"장애 확률 예측 제외\"],\"source_quote\":\"현재 들어오는 기록에서 평소와 다른 접속 사건을 찾아 담당자에게 즉시 알리고 싶습니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"담당자 즉시 알림\",\"description\":\"현재 들어오는 기록에서 이상 접속 사건을 찾아 담당자에게 즉시 알리는 업무 흐름이 명시되어 있습니다. 별도의 인계, 모니터링 절차, 사고 대응 또는 유지보수 정보는 없습니다.\",\"keywords\":[\"현재 기록\",\"사건 탐지\",\"담당자\",\"즉시 알림\"],\"source_quote\":\"평소와 다른 접속 사건을 찾아 담당자에게 즉시 알리고 싶습니다.\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"접속 기록에서 이상 사건 탐지\",\"description\":\"입력은 현재 들어오는 여러 사내 서비스의 접속 기록이며, 기록에서 평소와 다른 접속 사건을 찾아 담당자에게 즉시 알리는 작업입니다. 출력은 이상 접속 사건에 대한 알림입니다. 구체적인 시스템이나 기술은 제시되지 않았습니다.\",\"keywords\":[\"사내 서비스\",\"접속 기록\",\"이상 접속 사건\",\"알림\"],\"source_quote\":\"현재 들어오는 기록에서 평소와 다른 접속 사건을 찾아 담당자에게 즉시 알리고 싶습니다.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 319,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 410,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 729
+  },
+  "user": null,
+  "metadata": {}
+}

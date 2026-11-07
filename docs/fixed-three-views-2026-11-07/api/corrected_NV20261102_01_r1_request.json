@@ -1,0 +1,22 @@
+{
+  "body": {
+    "model": "gpt-6-luna",
+    "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n",
+    "input": "{\"original_business_problem\": \"서비스 장애 대응 중 담당자가 교대되면 같은 오류를 해결했던 절차를 다시 찾느라 복구가 늦어집니다. 운영자가 증상을 입력하면 내부 운영 지침과 과거 처리 기록에서 참고할 내용을 찾아 원문 위치와 함께 보여주고 싶습니다. 장애 원인을 새로 진단하거나 서버 설정을 자동 변경하는 작업은 이번 범위에 넣지 않습니다.\", \"format\": \"{perspectives:[{id,status,title,description,keywords:[words],source_quote}]} return exactly 3 fixed slots concise problem perspectives; JSON only\"}\nReturn JSON.",
+    "text": {
+      "format": {
+        "type": "json_object"
+      }
+    },
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 1600,
+    "service_tier": "default",
+    "store": false
+  },
+  "request_sha256": "fc41678662b433a9699eb7e031634aec23766bac71ed383e61d54185539ad998",
+  "input_tokens_upper_bound_utf8": 2691,
+  "reserve_usd": "0.011136375",
+  "no_labels_or_ranks": true
+}

@@ -1,0 +1,98 @@
+{
+  "id": "resp_0f83b4ec149db8a2016aee7daf3b4887d2a50d716ea3831e59",
+  "object": "response",
+  "created_at": 1794014639,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794014642,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0f83b4ec149db8a2016aee7dafd5a487d2b224d0c167f6cf3c",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"승인된 계좌 변경 처리 자동화\",\"description\":\"구매 담당자가 승인 완료된 협력사 계좌 변경 요청의 내용을 지정된 항목에 등록하고 처리 완료를 남기는 반복 작업을 자동화하려고 합니다. 변경 방법을 설명하는 챗봇을 만드는 것은 목적이 아닙니다.\",\"keywords\":[\"구매 담당자\",\"협력사 계좌 변경\",\"반복 작업 자동화\",\"챗봇 제외\"],\"source_quote\":\"승인된 요청의 내용을 지정된 항목에 등록하고 처리 완료를 남기는 실제 작업을 자동화하고 싶습니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"요청 접수부터 완료 통지까지\",\"description\":\"구매 담당자가 승인 완료된 변경 요청을 받은 뒤 ERP 거래처 정보를 다시 입력하고 변경 완료 통지를 보냅니다.\",\"keywords\":[\"승인 완료 요청\",\"정보 재입력\",\"완료 통지\"],\"source_quote\":\"승인 완료된 협력사 계좌 변경 요청을 받은 뒤 ERP의 거래처 정보를 다시 입력하고 변경 완료 통지를 보내는 일을 반복합니다.\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"ERP 거래처 정보 등록\",\"description\":\"입력 데이터는 승인된 협력사 계좌 변경 요청의 내용이며, ERP의 거래처 정보에 지정된 항목으로 등록하고 처리 완료를 남깁니다.\",\"keywords\":[\"승인된 요청 내용\",\"ERP\",\"거래처 정보\",\"지정된 항목\",\"처리 완료\"],\"source_quote\":\"ERP의 거래처 정보를 다시 입력\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 322,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 351,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 673
+  },
+  "user": null,
+  "metadata": {}
+}
