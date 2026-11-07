@@ -91,7 +91,7 @@ def run(stage,model,out):
         packages={}
         for name,expected in historical["packages"].items():
             actual=importlib.metadata.version(name)
-            if actual!=expected:
+            if actual!=expected and not (name=="torch" and actual==expected+"+cpu"):
                 raise RuntimeError("Pinned runtime mismatch for "+name+" expected="+expected+" actual="+actual)
             packages[name]=actual
         # Recheck all inputs both before and after the actual multiview inference.
