@@ -65,6 +65,7 @@ def main():
         text.append(f"| {row['reviewer']} | {fields[row['field']]} | {row['matched_triplet_pairs']} | {value} | {row['improved']} / {row['worse']} |")
     valid=Counter(r['reviewer'] for r in quality['records'] if r['valid'])
     text += ['', f"품질 요청의 형식·인용 근거 검사를 통과한 건수는 {dict(valid)}다. 일치하는 원문 인용은 의미가 맞음을 자동 보장하지 않는다. 이전 점수와 새 점수를 모두 저장했고 새로 추가된 입력·추가 기능 항목은 이전 출력 점수와 같은 척도로 직접 비교하지 않았다.", '',
+             'C와 E는 두 검토자 모두24개 관점 묶음의8개 항목에2점을 부여했다. 이번 척도에서 E의 보존 우위는 관찰되지 않았다. 점수가 모두 상한에 모여 작은 의미 차이를 구분하는 능력도 확인되지 않았다. 기존 추출168필드 중13개, E 관점 인용72개 중3개의 정확한 원문 인용 불일치는 그대로 남아 있다. 의미 평가2점이 인용 오류를 없애지는 않는다. [인용 검사](literal_grounding_audit.json)', '',
              '과거 오류5건의 원문과 새 검토를 연결해 보존했다. 이전 AI의 감점 이유가 새 기준에 맞는지 확인할 수 있다. C·E의 생성 내용은 모두 기존과 같은 내용이므로 품질 점수 변화도 검토 방식의 변화다. [원점수·이유 비교](quality_revalidation.json)', '',
              '| 과거 오류 대상 | 회차 | 기존 제약 점수/2 | 새 검토자별 제약 점수/2 |',
              '|---|---:|---:|---|']
@@ -89,6 +90,13 @@ def main():
             text.append(f"| {NAMES[version]} | {condition} | "+' | '.join(cells)+' |')
     text += ['', '각 지표의 n은 해당 버전의 A·B·C·E를 같은 질문 집합으로 비교한 질문 수다. 버전마다 질문 수가 다른 평균을 그대로 성능 개선량으로 비교하지 않는다.', '',
              '보류가1건이라도 남는 질문의 전체 Recall·F1·nDCG는 확정하지 않는다. Top-K 판정이 갖춰진 Precision은 질문별 파일에 남겼다. 단독 검토자 버전은 검토자에 따른 차이를 살펴보는 민감도 분석이다.', '',
+             '| 기존6질문 집합 안에서 비교 | 실제 포함 질문 수 | A F1@5 | B | C | E |',
+             '|---|---:|---:|---:|---:|---:|']
+    for version,data in evaluations.items():
+        cohort={(r['condition'],r['metric']):r for r in data['original_six_cohort_macro']}
+        text.append(f"| {NAMES[version]} | {cohort['E','F1@5']['n']} | "+
+                    ' | '.join(pct(cohort[c,'F1@5']['mean']) for c in 'ABCE')+' |')
+    text += ['', '이 표는 새로 판정한 CPD06·CPD07을 더해 생긴 질문 구성 효과와, 기존 질문의 판정 변경 효과를 구분하기 위한 것이다. 보류로 질문 수가 줄면 실제 포함 수를 그대로 표시했다. 버전 쌍의 공통 질문만 비교한 자료도 별도로 저장했다. [공통 질문 비교](label_version_common_cohort_comparison.json)', '',
              '| 판정 버전 | 방식 | P@5 | R@5 | P@10 | R@10 | P@20 | R@20 |',
              '|---|---|---:|---:|---:|---:|---:|---:|']
     for version in evaluations:
@@ -122,6 +130,21 @@ def main():
              f"엄격한 새 판정 상태는 {evaluations['v2_reviewed_strict']['label_counts']}다. 두 모델의 정상적인 판단 차이와 응답 형식·인용 오류는 별도 저장했다. 원점수나 이유를 임의로 맞추지 않았다.", '',
              '기존 규칙이 CPD04의 요약 대상을 고객 의견 대신 ‘회의’로 잡은 기록이 남아 있다. 기능 ID 검출 수 증가가 올바른 행동·대상 연결을 입증하지 않는다. 사례 관련도 추가 검토는 기능 매핑 전체의 정확도를 전수 검증한 것이 아니다. [기존 기능 추적](../core-preserved-three-views-2026-11-07/inference/query_profiles.json)', '',
              '검색 반복 안정성은 동일한 봉인 순위이므로 기존 결과와 같다. Top-5 사례 겹침은 C91.67%, E86.81%였다. E의 반복 안정성 향상은 확인되지 않았다.', '',
+             '| E 관점 | Top-5 알려진 관련 발견 | 그 관점만의 알려진 발견 | Top-5 미해결 판정 |',
+             '|---|---:|---:|---:|']
+    reviewed_discovery=read(out/'discovery_reviewed.json')
+    for role,name in zip(run.old.SLOTS,('현업','운영','기술')):
+        paths=[r for r in reviewed_discovery['path_discovery'] if r['condition']=='E' and r['view']==role and r['k']==5]
+        text.append(f"| {name} | {sum(len(r['related_cases']) for r in paths)} | {sum(len(r['unique_cases']) for r in paths)} | {sum(r['unresolved_in_topk'] for r in paths)} |")
+    text += ['', '발견 수는 질문·사례·회차별 합계다. 미해결 판정이 있어 알려진 관련 발견은 하한 성격이며 전체 관점 성능으로 해석할 수 없다. 원질문 관련도에 따른 발견 경로이며 관점 자체의 별도 정답이나 관점 제거 효과를 측정한 것은 아니다.', '',
+             '| 높은 규칙 점수의 선정 사례 | 판정된 질문·사례·회차 | 그중 관련 판정 | 미해결 |',
+             '|---|---:|---:|---:|']
+    mapping=read(out/'mapping_support_audit.json')['records']
+    for c in ('C','E'):
+        rows=[r for r in mapping if r['condition']==c]
+        judged=[r for r in rows if r['status']=='JUDGED']
+        text.append(f"| {c} | {len(judged)} | {sum(r['grade']>=2 for r in judged)} | {len(rows)-len(judged)} |")
+    text += ['', '이 표는 선정180쌍 중 규칙 점수3이상의 전체 문제 관련도 지지 여부다. 반복은 독립 표본이 아니며 기능 매핑 자체의 정확도나 전체 코퍼스 정확률로 발표하지 않는다.', '',
              '## 7. 연구적 판단', '',
              '| 판정 버전 | 비교 | F1@5 E의 차이 | 평가 질문 수 |', '|---|---|---:|---:|']
     differences=[]

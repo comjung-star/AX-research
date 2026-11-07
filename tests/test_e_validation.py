@@ -122,3 +122,27 @@ def test_token_limit_recovery_does_not_retry_completed_or_uncertain_calls(tmp_pa
         raise AssertionError('Neither completed nor uncertain responses qualify')
     monkeypatch.setattr(run,'call',no_repeat)
     run.repair('quality')
+
+
+def test_all_label_versions_reproduce_metrics_from_the_same_sealed_predictions():
+    from scripts import core_preservation_evaluate as metrics
+    predictions=run.read(run.old.OUT/'predictions.json')
+    for version in run.read(run.OUT/'evaluation_index.json')['versions']:
+        labels=run.read(run.OUT/version/'labels.json')['records']
+        rows,macro,_=metrics.evaluate(predictions,labels)
+        saved=run.read(run.OUT/version/'evaluation.json')
+        assert rows==saved['per_query'] and macro==saved['macro']
+        assert saved['prediction_sha256']==run.sha(run.old.OUT/'predictions.json')
+
+
+def test_strict_labels_keep_every_unselected_original_grade_and_nullable_abstention():
+    selected={(r['query_id'],r['case_id']) for r in run.read(run.OUT/'selection.json')['records']}
+    old={(r['query_id'],r['case_id']):r for r in run.read(run.old.OUT/'labels.json')['records']}
+    labels=run.read(run.OUT/'v2_reviewed_strict/labels.json')['records']
+    assert len(labels)==896 and len({(r['query_id'],r['case_id']) for r in labels})==896
+    for row in labels:
+        key=row['query_id'],row['case_id']
+        if key not in selected:
+            assert row['inherited_from_original'] is True
+            assert row['grade']==old[key]['grade'] and row['status']==old[key]['status']
+        if row['status']!='JUDGED':assert row['grade'] is None

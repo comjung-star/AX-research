@@ -27,7 +27,9 @@ python -m scripts.e_validation access
 python -m scripts.e_validation missing
 python -m scripts.e_validation_analyze missing
 python -m scripts.e_validation quality
+python -m scripts.e_validation repair_quality
 python -m scripts.e_validation review
+python -m scripts.e_validation repair_review
 python -m scripts.e_validation_analyze all
 python -m scripts.e_validation_report
 ```
@@ -37,6 +39,8 @@ python -m scripts.e_validation_report
 API 입력에는 해당 질문과 사례의 실제 업무 설명 또는 기존 관점3개만 들어간다. 방식 이름·추천 순위·점수·기존 판정은 전달하지 않는다. 결과와 대응 ID를 연결하는 표는 별도로 관리한다. 같은 질문의 사례를 최대3개까지 묶는다.
 
 API 키는 기존 환경 설정에서 읽고 인증 헤더는 저장하지 않는다. 호출 전에 전체 누적 사용·미확정 예약과 새 요청의 최대 비용을 합해 $2를 넘으면 중단한다. 수신 여부가 불명확한 요청은 자동으로 재전송하지 않는다. 실패·누락·미확정 비용을 남기며 원본 응답을 고쳐 쓰지 않는다.
+
+품질 응답 한 건이 출력 길이 상한에서 종료된 뒤, 성능 재계산 전에 기술 복구 정책을 추가 기록했다. 수신과 비용이 확인되고 출력 한도 종료가 명시된 경우만 동일한 입력·프롬프트로 한 차례 복구한다. 출력 길이만 늘린다. 유효한 낮은 점수, 의견 차이, 원문 근거 위반과 수신 불확실 요청은 복구 대상이 아니다. 원본과 복구 응답·비용을 모두 보존하며 `repairs/`에서 연결한다.
 
 Claude는 기존 Haiku4.5 키와 모델로 접근 점검했다. 기존 기록의 사용·예약액과 최소$0.50 안전 여유를 예산 설명에 함께 남겼다. 실제 계정 잔액을 조회한 값과 구분한다.
 

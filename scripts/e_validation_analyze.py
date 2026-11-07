@@ -303,8 +303,21 @@ def main():
         write(directory/'evaluation.json', result)
         evaluations[version]=result
     write(run.OUT/'quality_revalidation.json',quality_results())
+    grounding=read(run.old.OUT/'quality_summary.json')
+    write(run.OUT/'literal_grounding_audit.json',{
+        'extraction_fields':grounding['extraction_evidence_checks'],
+        'view_quotes':grounding['view_source_quote_checks'],
+        'original_quotes_modified':False,
+        'interpretation':'Literal quotation validity is separate from the new semantic quality ratings. No quote was repaired.'})
     strict=versions['v2_reviewed_strict']
-    write(run.OUT/'discovery_reviewed.json', metrics.diagnostics(pred,strict))
+    discovery=metrics.diagnostics(pred,strict)
+    branch_ranks={r['query_id']:r['ranking'] for r in
+                  read(run.old.OUT/'inference/branch_rankings.json')['systems']['C1']}
+    strict_index={(r['query_id'],r['case_id']):r for r in strict}
+    for path in discovery['path_discovery']:
+        path['unresolved_in_topk']=sum(strict_index[path['query_id'],cid]['status']!='JUDGED'
+                                       for cid in branch_ranks[path['path_id']][:path['k']])
+    write(run.OUT/'discovery_reviewed.json', discovery)
     write(run.OUT/'evaluation_index.json',{'versions':list(versions),'original_complete_questions':original_complete,
                                           'prediction_sha256':sha(run.old.OUT/'predictions.json'),
                                           'invalid_relevance_rows':sum(not x['valid'] for x in relevance),
@@ -328,6 +341,23 @@ def main():
                                'new':mean(after) if after else None,
                                'reason':'Same saved predictions; change arises from label revision only.'})
     write(run.OUT/'label_version_common_cohort_comparison.json',{'records':paired})
+    strict_by={(r['query_id'],r['case_id']):r for r in strict}
+    selected={(r['query_id'],r['case_id']) for r in read(run.OUT/'selection.json')['records']}
+    high_rule=[]
+    for row in jsonl(run.old.OUT/'inference/combined_scores.jsonl'):
+        if row['repeat'] not in range(4,10) or (row['query_id'],row['case_id']) not in selected:
+            continue
+        detail=row['conditions']['E4']
+        if detail['rule_strength']<3:
+            continue
+        label=strict_by[row['query_id'],row['case_id']]
+        high_rule.append({'condition':'C' if row['repeat']<=6 else 'E',
+                          'repeat':(row['repeat']-1)%3+1,'query_id':row['query_id'],
+                          'case_id':row['case_id'],'rule_strength':detail['rule_strength'],
+                          'grade':label['grade'],'status':label['status']})
+    write(run.OUT/'mapping_support_audit.json',{'records':high_rule,
+          'selection':'180 targeted query-case pairs; high rule strength>=3; repeated paths are not independent observations',
+          'interpretation':'Whole-query Silver relevance support for high rule scores, not semantic mapping accuracy or a corpus-wide estimate'})
 
 
 if __name__=='__main__':
