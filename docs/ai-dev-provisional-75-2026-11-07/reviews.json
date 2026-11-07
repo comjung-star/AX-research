@@ -1,0 +1,1532 @@
+{
+  "schema": "ax_dev_provisional_75_v1",
+  "date": "2026-11-07",
+  "base_ref": "research/evaluator-reliability-abc-20261107",
+  "original_status": "75 ABSTAIN in primary labels; unchanged",
+  "scope": "75 historical pending pairs, structured Task/Context/Problem only",
+  "policy": {
+    "grade3": "실제 업무의 핵심 행동·대상·결과가 직접 일치",
+    "grade2": "분야·대상이 다르더라도 실제 수행된 핵심 기능 전이 가능",
+    "grade1": "준비/보조 기능만 공유하거나 핵심 기능 추가 필요",
+    "grade0": "확인된 실제 업무 기능이 질문 핵심과 무관",
+    "abstain": "기능 자체 판별 불가; 이번 75개는 Task 정보로 개발용 잠정 판정 가능",
+    "source_hierarchy": "Task, Context 우선; Problem은 배경이지 실행 기능의 근거 아님",
+    "eligibility": "운영/도입 여부의 독립적인 데이터셋 검증과 관련성 판정 분리"
+  },
+  "count": {
+    "0": 22,
+    "1": 32,
+    "2": 19,
+    "3": 2
+  },
+  "reviewed": 75,
+  "quality_controls": {
+    "human_gold": false,
+    "model_count": 1,
+    "recommendation_rankings_not_used": true,
+    "relatedness_labels_not_verified_independently": true,
+    "low_confidence_count": 24
+  },
+  "records": [
+    {
+      "id": "R001",
+      "query_id": "CPD01",
+      "case_id": "AXALL_US_OMB_2025_01589",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "문서에서 항목 정보를 추출하는 핵심 기능이 같음. 대출 문서와 상품 속성, 검토표 형식은 달라 별도 적용 필요.",
+      "evidence": {
+        "case_task": "Loan document data extraction for examination analytics",
+        "case_context": "FDIC consumer protection personnel preparing loan data for compliance and fair lending reviews.",
+        "case_problem_for_context_only": "Manual transcription from loan application PDFs causes delays, errors and staff costs in examination data collection."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R002",
+      "query_id": "CPD01",
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "자유 서술을 구조화하고 누락 필드를 확인하는 기능은 상품 속성 표와 미상 표시 업무에 전이 가능.",
+      "evidence": {
+        "case_task": "Referral data structuring and completeness checks",
+        "case_context": "HHS Office of Refugee Resettlement intake staff reviewing referral records from CBP.",
+        "case_problem_for_context_only": "Required referral information arrives as free text and is tracked manually and inconsistently, leaving missing fields to be checked."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R003",
+      "query_id": "CPD01",
+      "case_id": "AXV24_06318a4a88a8",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "경비 제출·분류는 항목 처리와 분류에 일부 유사하지만 공급사 상품 설명의 속성 추출이 핵심이라고 확인되지 않음.",
+      "evidence": {
+        "case_task": "기업 경비 제출·분류 처리",
+        "case_context": "기업 고객의 카드·출장 경비를 관리하는 Brex 플랫폼.",
+        "case_problem_for_context_only": "직원은 경비 입력에 시간을 쓰고 재무팀은 많은 경비 보고서를 수동 검토해야 했다."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R004",
+      "query_id": "CPD01",
+      "case_id": "AXV24_28baf265c6cf",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "비정형 보험 서류에서 필요한 항목을 추출·분류하는 기능을 상품 설명 속성 추출에 전이 가능.",
+      "evidence": {
+        "case_task": "보험 인수심사용 신청 서류 추출·분류",
+        "case_context": "시니어 리빙 시설의 배상책임보험을 인수하는 심사팀.",
+        "case_problem_for_context_only": "형식과 주기가 다른 보험 신청 자료에서 담당자가 직접 정보를 추출했으며, 증가하는 접수량을 수작업으로 처리하기 어려웠다."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R005",
+      "query_id": "CPD01",
+      "case_id": "AXV24_efe56d53f5fd",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "탑승권에서 지정 정보를 추출하고 오류를 확인하는 기능을 상품 속성 추출·누락 검토에 전이 가능.",
+      "evidence": {
+        "case_task": "전자 탑승권 데이터 추출·오류 확인",
+        "case_context": "주요 항공사의 전자 탑승권을 처리하는 여행 플랫폼 운영.",
+        "case_problem_for_context_only": "전자 탑승권 정보의 추출 오류와 관련 고객 불만이 있었다."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R006",
+      "query_id": "CPD01",
+      "case_id": "AXV2H_0008_01",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "다양한 세무 서류의 데이터 추출 기능은 상품 설명 속성 추출과 같은 핵심 처리 구조.",
+      "evidence": {
+        "case_task": "세무 문서 데이터 추출",
+        "case_context": "짧은 세무 기간 동안 양식이 다양한 대용량 문서를 처리해야 함",
+        "case_problem_for_context_only": "여러 형식의 긴 세무서류에서 정보를 수기 추출하면 시간이 오래 걸리고 오류가 발생하기 쉬움"
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R007",
+      "query_id": "CPD01",
+      "case_id": "AXV2H_0083_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "버그 티켓의 담당팀 분류는 텍스트 분류이지만 속성 항목별 추출·표 생성 기능은 확인되지 않음.",
+      "evidence": {
+        "case_task": "신규 버그 티켓 팀 라우팅",
+        "case_context": "Gelato 엔지니어링 문제 해결조직의 버그티켓 triage",
+        "case_problem_for_context_only": "엔지니어링 15개 팀 가운데 담당팀을 수동 판단하는 업무가 주당 100시간 이상 필요하고 정확도는 60% 수준"
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R008",
+      "query_id": "CPD01",
+      "case_id": "AXV2H_0084_01",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "매장 상품 위치를 찾는 검색 기능으로 상품 설명 속성 추출·검토표 작성과 무관.",
+      "evidence": {
+        "case_task": "고객 상품 위치 검색",
+        "case_context": "Morrisons 매장별 상품위치·재고 정보가 BigQuery에서 조회되는 환경",
+        "case_problem_for_context_only": "시즌 행사 때 상품 위치가 바뀌어 매장 직원과 고객이 원하는 물건의 위치를 즉시 찾기 어려움"
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R009",
+      "query_id": "CPD01",
+      "case_id": "AXV2N_0111",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "회의 기록 요약은 텍스트 처리라는 일부 공통점만 있으며 지정 속성 추출·항목화는 확인되지 않음.",
+      "evidence": {
+        "case_task": "Summarize client meetings and prepare follow-ups",
+        "case_context": "Consent-based Zoom client meetings reviewed by advisors.",
+        "case_problem_for_context_only": "Meeting documentation and follow-up preparation consume advisor time."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R010",
+      "query_id": "CPD01",
+      "case_id": "AXV2N_0125",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "영업회의 요약·후속 조치 정리는 입력 문서의 요약이지 상품별 명시 속성 추출은 아님.",
+      "evidence": {
+        "case_task": "Create sales-meeting recaps and next steps",
+        "case_context": "Teams meetings with sales customers, distinct from email-signature contact creation.",
+        "case_problem_for_context_only": "Sellers split attention between customers, notes and CRM updates."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R011",
+      "query_id": "CPD01",
+      "case_id": "AXV2P2_0015_01",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "임상 문서에서 종양 관련 개체를 추출하는 기능은 지정 속성의 문서 추출과 핵심 기능이 유사함.",
+      "evidence": {
+        "case_task": "Extract oncology entities from clinical documents",
+        "case_context": "Ontada ON.Genuity clinical research data pipeline",
+        "case_problem_for_context_only": "Important oncology data are buried in large volumes of unstructured clinical documents."
+      },
+      "query": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R012",
+      "query_id": "CPD02",
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "자유 텍스트 구조화 및 누락 점검은 견적 초안의 입력 준비만 지원하며 초안 작성 기능이 없음.",
+      "evidence": {
+        "case_task": "Referral data structuring and completeness checks",
+        "case_context": "HHS Office of Refugee Resettlement intake staff reviewing referral records from CBP.",
+        "case_problem_for_context_only": "Required referral information arrives as free text and is tracked manually and inconsistently, leaving missing fields to be checked."
+      },
+      "query": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R013",
+      "query_id": "CPD02",
+      "case_id": "AXV24_14dca9ee14fc",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "접수 자료를 바탕으로 고객용 안내문 초안을 생성하고 검토하는 업무는 입력 기반 문안 작성의 핵심 기능을 전이 가능.",
+      "evidence": {
+        "case_task": "감사 자료 반려·재제출 안내문 작성",
+        "case_context": "고객에게 감사 증빙 자료를 요청하고 재제출을 안내하는 회계법인 업무.",
+        "case_problem_for_context_only": "감사인이 잘못 제출된 문서마다 반려 이유와 재제출 안내를 수동 작성했고 선임 검토도 필요했다."
+      },
+      "query": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R014",
+      "query_id": "CPD02",
+      "case_id": "AXV24_bc6444cc1b61",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "보험 견적용 청구서 정보를 추출하지만 실제 견적 문안을 작성한다는 근거는 없어 준비 단계에 해당.",
+      "evidence": {
+        "case_task": "단체 의료보험 견적용 청구서 정보 추출",
+        "case_context": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.",
+        "case_problem_for_context_only": "보험 견적을 위해 다양한 청구서 PDF에서 가입자 정보를 수동 복사했으며, 인력 증가 없이 견적 물량이 늘었다."
+      },
+      "query": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R015",
+      "query_id": "CPD02",
+      "case_id": "AXV2H_0071_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "기술문의 검색·답변은 문장 생성이지만 부품 사양·수량으로 견적 초안을 구성하는 핵심 기능과 다름.",
+      "evidence": {
+        "case_task": "결제 기술문의 검색·답변",
+        "case_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공",
+        "case_problem_for_context_only": "기술지원 담당자가 고객 문의를 접수·검토해 답변을 전달하는 반복 업무의 부담을 낮추면서, 정확하고 보안에 맞는 결제 기술정보 응답이 필요했다."
+      },
+      "query": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R016",
+      "query_id": "CPD02",
+      "case_id": "AXV2N_0104",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "고객 사례 자료를 검토 가능한 서술 초안으로 생성하는 기능은 사양 기반 견적 문안 초안 작성에 응용 가능. 가격 계산은 별도.",
+      "evidence": {
+        "case_task": "Prepare review-ready client-story drafts",
+        "case_context": "Client stories workstream using Creative Assistant after its 2025 launch.",
+        "case_problem_for_context_only": "A small content team lacks consistent templates and capacity for repeated story drafting and refinement."
+      },
+      "query": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R017",
+      "query_id": "CPD02",
+      "case_id": "AXV2N_0105",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "제품 관련 고객 질의응답은 영업 지원 기능이나 견적 문서 초안 생성은 확인되지 않음.",
+      "evidence": {
+        "case_task": "Assist store associates with customer project questions",
+        "case_context": "Mylow Companion on associate sales-floor devices across over 1700 stores.",
+        "case_problem_for_context_only": "Associates must answer complex questions across thousands of products outside their expertise."
+      },
+      "query": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R018",
+      "query_id": "CPD02",
+      "case_id": "AXV2N_0123",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "은행 고객 질문에 답하는 챗봇은 견적 초안 문서 생성과 다른 핵심 행동.",
+      "evidence": {
+        "case_task": "Handle banking customer questions and account inquiries",
+        "case_context": "Marina 24/7 multilingual customer banking chatbot.",
+        "case_problem_for_context_only": "기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다."
+      },
+      "query": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R019",
+      "query_id": "CPD03",
+      "case_id": "AXV24_14dca9ee14fc",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "감사 자료 재제출 안내문 생성은 규정 관련 안내의 일부와 유사하지만 게시 규정 검색·조건별 답변의 전체 기능은 확인되지 않음.",
+      "evidence": {
+        "case_task": "감사 자료 반려·재제출 안내문 작성",
+        "case_context": "고객에게 감사 증빙 자료를 요청하고 재제출을 안내하는 회계법인 업무.",
+        "case_problem_for_context_only": "감사인이 잘못 제출된 문서마다 반려 이유와 재제출 안내를 수동 작성했고 선임 검토도 필요했다."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R020",
+      "query_id": "CPD03",
+      "case_id": "AXV24_1e31f41769aa",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "투숙·송장 기록을 조건 확인하고 고객에게 문서를 제공하는 기능은 일부 유사하나 규정 질의응답·예외 인계는 미확인.",
+      "evidence": {
+        "case_task": "투숙객 송장 재발송 요청 처리",
+        "case_context": "최근 60일 내 투숙 여부를 확인해 PDF 송장을 보내는 고객지원 업무.",
+        "case_problem_for_context_only": "투숙객의 송장 찾기 요청이 많았지만 기존 챗봇은 이를 처리하지 못했다."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R021",
+      "query_id": "CPD03",
+      "case_id": "AXV24_36c7ef329920",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "채용 서류 대조·검토는 HR 영역이 같아도 게시된 휴직 규정에 근거한 질문 답변과 다른 행동.",
+      "evidence": {
+        "case_task": "채용 지원서·증빙 자료 대조 검토",
+        "case_context": "고객사의 대량 채용 서류 검토를 수행하는 BPO 기업의 운영 업무.",
+        "case_problem_for_context_only": "3주 안에 150만 건의 채용 지원서와 증빙을 검토해야 했으며 수작업 방식으로는 대규모 인력이 필요했다."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R022",
+      "query_id": "CPD03",
+      "case_id": "AXV24_71def85d86bd",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "보험 가입 자격·보장 조건을 문의에 맞춰 안내하는 기능은 규정의 조건·서류 질의응답으로 전이 가능. 인계 절차는 미확인.",
+      "evidence": {
+        "case_task": "의료기관의 보험 자격·보장 음성 문의 응대",
+        "case_context": "의료기관 행정직원이 가입자의 보험 정보를 확인하는 보험사 서비스 운영.",
+        "case_problem_for_context_only": "기존 IVR에서 다수의 정형적 자격·보장 문의가 상담원에게 넘어가 비용과 대기 부담이 커졌다."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R023",
+      "query_id": "CPD03",
+      "case_id": "AXV2C_0092_01",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "기존 금융 지식에 근거해 고객 질문에 채팅 답변하는 핵심 기능은 인사규정 질의응답에 전이 가능.",
+      "evidence": {
+        "case_task": "Answer customers' banking questions in chat",
+        "case_context": "NatWest website, mobile app and social media customer support.",
+        "case_problem_for_context_only": "Customers need nuanced financial answers without being sent elsewhere to research existing content."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R024",
+      "query_id": "CPD03",
+      "case_id": "AXV2H_0003_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "직원 신원조회 보고서 검증은 규정 준수 측면 일부 유사하나 규정 질의응답 기능이 없음.",
+      "evidence": {
+        "case_task": "직원 신원조회 보고서 검증",
+        "case_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스",
+        "case_problem_for_context_only": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함"
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R025",
+      "query_id": "CPD03",
+      "case_id": "AXV2H_0071_01",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "결제 기술지식 검색·답변을 규정 검색·답변에 전이 가능. 휴직 조건·서류 및 예외 인계는 도메인 적용 필요.",
+      "evidence": {
+        "case_task": "결제 기술문의 검색·답변",
+        "case_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공",
+        "case_problem_for_context_only": "기술지원 담당자가 고객 문의를 접수·검토해 답변을 전달하는 반복 업무의 부담을 낮추면서, 정확하고 보안에 맞는 결제 기술정보 응답이 필요했다."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R026",
+      "query_id": "CPD03",
+      "case_id": "AXV2H_0091_01",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "반복 지원 티켓에 제품 지식을 검색해 자동 답변하는 기능을 사내 규정 질문에 전이 가능.",
+      "evidence": {
+        "case_task": "저복잡도 지원 티켓 자동 답변",
+        "case_context": "IBM Software Support 반복 티켓 및 내부 제품 지식검색",
+        "case_problem_for_context_only": "낮은 복잡도의 기술문의까지 지원 엔지니어가 직접 분석해야 해 전문인력이 고난도 업무에 집중하기 어려움"
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R027",
+      "query_id": "CPD03",
+      "case_id": "AXV2N_0108",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "여러 채널에서 고객 문의를 해결·응답하는 기능은 질문별 답변에 전이 가능. HR 정책 출처와 인계는 별도 적용.",
+      "evidence": {
+        "case_task": "Resolve customer service inquiries across channels",
+        "case_context": "Customer support across SMS, chat and phone, separate from DIY project advice.",
+        "case_problem_for_context_only": "Rigid support menus create dead ends and prevent customers explaining issues naturally."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R028",
+      "query_id": "CPD03",
+      "case_id": "AXV2N_0121",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "도움말 지식에서 고객 질문의 답을 제공하는 기능은 게시 규정 기반 질의응답과 직접적인 기능 유사성.",
+      "evidence": {
+        "case_task": "Answer customer help-centre questions",
+        "case_context": "Customer-facing help centre, distinct from call summarization.",
+        "case_problem_for_context_only": "고객이 기존 은행 도움말의 키워드 검색만으로는 복잡한 질문에 필요한 정확한 답을 쉽게 찾기 어려워 고객센터로 재문의하는 일이 발생했다."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R029",
+      "query_id": "CPD03",
+      "case_id": "AXV2N_0122",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "개인 지출 분석 질문에 답하지만 문서 규정 검색·조건·제출서류 안내는 실제 수행 기능으로 확인되지 않음.",
+      "evidence": {
+        "case_task": "Answer customers' personal spending-analysis questions",
+        "case_context": "Spending Intelligence within Starling's banking service.",
+        "case_problem_for_context_only": "Customers need to understand spending without manually navigating filters and charts."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R030",
+      "query_id": "CPD03",
+      "case_id": "AXV2N_0138",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "법률 질의에 자료 조사 후 답변 초안을 만드는 기능은 규정 기반 직원 문의 응대에 전이 가능.",
+      "evidence": {
+        "case_task": "Draft answers to branch legal inquiries",
+        "case_context": "Nine-person retail legal team handling roughly 40000 annual inquiries.",
+        "case_problem_for_context_only": "A small legal team must repeatedly research answers for many branch managers."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R031",
+      "query_id": "CPD03",
+      "case_id": "AXV2N_0139",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "계약서 내용을 요약해 이해를 돕지만 질문별 조건 확인·규정 기반 답변의 핵심 기능은 미확인.",
+      "evidence": {
+        "case_task": "Summarize contracts for internal teams",
+        "case_context": "Contract Companion GPT used within Moderna functions.",
+        "case_problem_for_context_only": "Staff need understandable contract content without repeatedly interpreting legal text."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R032",
+      "query_id": "CPD03",
+      "case_id": "AXV2P2_0067_01",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "웹사이트 FAQ 응답 기능을 사내 규정 문서에 기반한 질문 응대에 전이 가능.",
+      "evidence": {
+        "case_task": "Answer Amstel website customer FAQs",
+        "case_context": "HEINEKEN Amstel Brewery Dutch customer website",
+        "case_problem_for_context_only": "Routine customer questions consume customer-contact staff capacity."
+      },
+      "query": "직원들이 휴직 신청의 적용 조건과 제출할 서류를 인사팀에 반복해서 문의합니다. 현재 게시된 사내 규정을 바탕으로 질문에 맞는 조건과 서류를 설명하고 규정으로 답을 확정하기 어려운 문의는 인사 담당자에게 넘기고 싶습니다. 휴직 신청의 승인이나 인사시스템 정보 변경은 포함하지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R033",
+      "query_id": "CPD04",
+      "case_id": "AXV2C_0093_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "생산품질 불량 분석은 분석 기능을 공유하지만 매주 고객 의견의 반복 주제·근거를 종합하는 처리와 다름.",
+      "evidence": {
+        "case_task": "Analyze production quality defects and root causes",
+        "case_context": "Suzhou Universal MES, ERP and quality systems.",
+        "case_problem_for_context_only": "Scattered production and quality data and manual analysis delay identification of quality issues."
+      },
+      "query": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R034",
+      "query_id": "CPD04",
+      "case_id": "AXV2H_0002_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "개별 고객 이메일 내용을 요약하나 여러 의견을 집계해 주제별 경향을 분석하는 기능은 없음.",
+      "evidence": {
+        "case_task": "고객 이메일 요약",
+        "case_context": "에너지기업 고객 커뮤니케이션 XRM의 장문 이메일",
+        "case_problem_for_context_only": "길고 복잡한 이메일 스레드의 핵심 내용 파악과 후속조치 확인에 시간이 소요됨"
+      },
+      "query": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R035",
+      "query_id": "CPD04",
+      "case_id": "AXV2H_0081_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "개별 상담 대화록 요약은 일부 텍스트 요약 기능만 같고 주간 의견 통합·경향 분석이 빠짐.",
+      "evidence": {
+        "case_task": "고객상담 대화록 요약",
+        "case_context": "영국 디지털은행의 고객지원팀 상담 이력관리",
+        "case_problem_for_context_only": "상담 종료 후 통화내역을 사람이 정리해야 해 수작업 시간이 발생함"
+      },
+      "query": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R036",
+      "query_id": "CPD04",
+      "case_id": "AXV2N_0111",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "고객 회의 요약과 후속 준비는 요약 기능만 공유. 복수 고객 의견의 주제별 빈도·경향 분석은 수행 근거 없음.",
+      "evidence": {
+        "case_task": "Summarize client meetings and prepare follow-ups",
+        "case_context": "Consent-based Zoom client meetings reviewed by advisors.",
+        "case_problem_for_context_only": "Meeting documentation and follow-up preparation consume advisor time."
+      },
+      "query": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R037",
+      "query_id": "CPD04",
+      "case_id": "AXV2N_0121",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "도움말 질문에 답하는 기능으로 고객 의견의 주제별 분석·근거 포함 요약과 무관.",
+      "evidence": {
+        "case_task": "Answer customer help-centre questions",
+        "case_context": "Customer-facing help centre, distinct from call summarization.",
+        "case_problem_for_context_only": "고객이 기존 은행 도움말의 키워드 검색만으로는 복잡한 질문에 필요한 정확한 답을 쉽게 찾기 어려워 고객센터로 재문의하는 일이 발생했다."
+      },
+      "query": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R038",
+      "query_id": "CPD04",
+      "case_id": "AXV2N_0123",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "은행 고객 문의 응답 챗봇으로 의견 추세 분석이나 회의용 경향 보고 기능을 확인할 수 없음.",
+      "evidence": {
+        "case_task": "Handle banking customer questions and account inquiries",
+        "case_context": "Marina 24/7 multilingual customer banking chatbot.",
+        "case_problem_for_context_only": "기존 Marina 챗봇의 정적인 지식베이스가 느리고 제한적인 답변을 만들었으며, 개발자들이 정보를 수동으로 색인·갱신해야 해 고객지원 운영에 부담이 있었다."
+      },
+      "query": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R039",
+      "query_id": "CPD04",
+      "case_id": "AXV2N_0138",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "법무 문의 답변 초안 작성은 고객 의견의 주제별 경향 분석과 무관.",
+      "evidence": {
+        "case_task": "Draft answers to branch legal inquiries",
+        "case_context": "Nine-person retail legal team handling roughly 40000 annual inquiries.",
+        "case_problem_for_context_only": "A small legal team must repeatedly research answers for many branch managers."
+      },
+      "query": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R040",
+      "query_id": "CPD05",
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "유입 자료의 필드 구조화·완결성 확인은 한국어 기사를 영어로 번역하는 업무가 아님.",
+      "evidence": {
+        "case_task": "Referral data structuring and completeness checks",
+        "case_context": "HHS Office of Refugee Resettlement intake staff reviewing referral records from CBP.",
+        "case_problem_for_context_only": "Required referral information arrives as free text and is tracked manually and inconsistently, leaving missing fields to be checked."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R041",
+      "query_id": "CPD05",
+      "case_id": "AXV24_14dca9ee14fc",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "감사 자료 재제출 안내문 작성은 번역과 다른 글쓰기 작업.",
+      "evidence": {
+        "case_task": "감사 자료 반려·재제출 안내문 작성",
+        "case_context": "고객에게 감사 증빙 자료를 요청하고 재제출을 안내하는 회계법인 업무.",
+        "case_problem_for_context_only": "감사인이 잘못 제출된 문서마다 반려 이유와 재제출 안내를 수동 작성했고 선임 검토도 필요했다."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R042",
+      "query_id": "CPD05",
+      "case_id": "AXV24_1e31f41769aa",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "투숙객 송장 재발송은 기사 번역과 기능적 관련성이 없음.",
+      "evidence": {
+        "case_task": "투숙객 송장 재발송 요청 처리",
+        "case_context": "최근 60일 내 투숙 여부를 확인해 PDF 송장을 보내는 고객지원 업무.",
+        "case_problem_for_context_only": "투숙객의 송장 찾기 요청이 많았지만 기존 챗봇은 이를 처리하지 못했다."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R043",
+      "query_id": "CPD05",
+      "case_id": "AXV24_36c7ef329920",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "채용 서류 비교·검증 기능은 기사 번역과 관련이 없음.",
+      "evidence": {
+        "case_task": "채용 지원서·증빙 자료 대조 검토",
+        "case_context": "고객사의 대량 채용 서류 검토를 수행하는 BPO 기업의 운영 업무.",
+        "case_problem_for_context_only": "3주 안에 150만 건의 채용 지원서와 증빙을 검토해야 했으며 수작업 방식으로는 대규모 인력이 필요했다."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R044",
+      "query_id": "CPD05",
+      "case_id": "AXV24_523997b7101f",
+      "grade": 3,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "한국어 뉴스 기사를 영어로 번역·현지화하는 업무로 질문의 핵심 행동·대상·결과가 직접 일치.",
+      "evidence": {
+        "case_task": "뉴스 기사 영문 번역·현지화",
+        "case_context": "한국어 기사와 뉴스룸 용어집을 사용하는 영문 뉴스 발행 업무.",
+        "case_problem_for_context_only": "기자와 편집자의 수작업 번역으로 영문 기사 발행량과 속도가 제한되고 용어·문체가 일관되지 않았다."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R045",
+      "query_id": "CPD05",
+      "case_id": "AXV24_8ece01418f6d",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "가맹점 점포 사진을 등록 확인하는 이미지 검증 업무로 텍스트 번역과 무관.",
+      "evidence": {
+        "case_task": "가맹점 점포 사진 기반 등록 확인",
+        "case_context": "인도 오프라인 가맹점의 디지털 결제 서비스 가입 업무.",
+        "case_problem_for_context_only": "가맹점 등록 때 점포와 사업자 확인을 수동 검토해 최대 48시간이 걸렸다."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R046",
+      "query_id": "CPD05",
+      "case_id": "AXV24_918f26607568",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "반품 상품 사진 검토 및 환불 처리로 텍스트 번역과 무관.",
+      "evidence": {
+        "case_task": "반품 상품 사진 확인 및 환불 요청 처리",
+        "case_context": "미용 상품의 손상·유효기간을 확인하는 전자상거래 반품 업무.",
+        "case_problem_for_context_only": "하루 약 2천 건의 반품 요청을 수동 검토해 환불 해결에 3~4일이 걸렸다."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R047",
+      "query_id": "CPD05",
+      "case_id": "AXV2C_0006_02",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "청구 전 주문 가격 검증으로 기사 번역과 무관.",
+      "evidence": {
+        "case_task": "Validate customer order prices before invoicing",
+        "case_context": "Danone receives thousands of orders daily through email, PDF and EDI.",
+        "case_problem_for_context_only": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R048",
+      "query_id": "CPD05",
+      "case_id": "AXV2C_0074_01",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "개인화 고객지원 이메일 생성은 원문 의미를 유지하는 한국어→영어 번역이 아님.",
+      "evidence": {
+        "case_task": "Generate personalized support emails",
+        "case_context": "Cashfree Payments merchant support communications in India.",
+        "case_problem_for_context_only": "Customer emails could take a working day to answer and self-hosted generation had cost and response quality problems as volume rose."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R049",
+      "query_id": "CPD05",
+      "case_id": "AXV2H_0003_01",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "신원조회 보고서 대조 검증은 언어 번역 기능과 무관.",
+      "evidence": {
+        "case_task": "직원 신원조회 보고서 검증",
+        "case_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스",
+        "case_problem_for_context_only": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함"
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R050",
+      "query_id": "CPD05",
+      "case_id": "AXV2N_0110",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "재무 상담사 대상 사내 지식 검색으로 기사 번역과 무관.",
+      "evidence": {
+        "case_task": "Retrieve internal knowledge for financial advisors",
+        "case_context": "Wealth management advisor teams using AI at Morgan Stanley Assistant.",
+        "case_problem_for_context_only": "Advisors spend hours searching a large internal document corpus."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R051",
+      "query_id": "CPD05",
+      "case_id": "AXV2P2_0061_01",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "고객 자동차 리뷰 요약은 내용 축약이며 한영 번역이 아님.",
+      "evidence": {
+        "case_task": "Write short customer-review summaries for car pages",
+        "case_context": "CarMax editorial workflow for car research webpages",
+        "case_problem_for_context_only": "Manually summarizing large volumes of car reviews across inventory would take years."
+      },
+      "query": "해외 배포 담당자는 국내에서 작성한 기업 소식 기사를 영어로 옮길 때 고유명사와 수치가 빠지지 않았는지 다시 확인합니다. 한국어 기사 내용을 영어 독자가 이해할 수 있는 번역문으로 만들고 편집자가 원문과 비교해 검토하도록 하고 싶습니다. 원문에 없는 인용이나 성과를 추가하지 않으며 게시 결정은 편집자가 합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R052",
+      "query_id": "CPD06",
+      "case_id": "AXALL_US_OMB_2025_01589",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "대출 서류 데이터 추출은 청구금액·요율 대조 전에 필요한 항목 추출만 일부 지원.",
+      "evidence": {
+        "case_task": "Loan document data extraction for examination analytics",
+        "case_context": "FDIC consumer protection personnel preparing loan data for compliance and fair lending reviews.",
+        "case_problem_for_context_only": "Manual transcription from loan application PDFs causes delays, errors and staff costs in examination data collection."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R053",
+      "query_id": "CPD06",
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "유입 정보 구조화·누락 점검은 데이터 검증과 일부 닮았으나 운송비 요율 대조는 미실행.",
+      "evidence": {
+        "case_task": "Referral data structuring and completeness checks",
+        "case_context": "HHS Office of Refugee Resettlement intake staff reviewing referral records from CBP.",
+        "case_problem_for_context_only": "Required referral information arrives as free text and is tracked manually and inconsistently, leaving missing fields to be checked."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R054",
+      "query_id": "CPD06",
+      "case_id": "AXV24_06318a4a88a8",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "경비 제출·분류는 비용 관련 데이터를 처리하지만 합의 요율과 청구 금액 검증은 확인되지 않음.",
+      "evidence": {
+        "case_task": "기업 경비 제출·분류 처리",
+        "case_context": "기업 고객의 카드·출장 경비를 관리하는 Brex 플랫폼.",
+        "case_problem_for_context_only": "직원은 경비 입력에 시간을 쓰고 재무팀은 많은 경비 보고서를 수동 검토해야 했다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R055",
+      "query_id": "CPD06",
+      "case_id": "AXV24_14dca9ee14fc",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "감사 서류의 반려 사유 안내는 증빙 검토와 접점이 있으나 청구 금액·요율 대조 기능은 없음.",
+      "evidence": {
+        "case_task": "감사 자료 반려·재제출 안내문 작성",
+        "case_context": "고객에게 감사 증빙 자료를 요청하고 재제출을 안내하는 회계법인 업무.",
+        "case_problem_for_context_only": "감사인이 잘못 제출된 문서마다 반려 이유와 재제출 안내를 수동 작성했고 선임 검토도 필요했다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R056",
+      "query_id": "CPD06",
+      "case_id": "AXV24_1e31f41769aa",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "송장 파일 재발송은 청구 금액의 적정성 검증을 하지 않음.",
+      "evidence": {
+        "case_task": "투숙객 송장 재발송 요청 처리",
+        "case_context": "최근 60일 내 투숙 여부를 확인해 PDF 송장을 보내는 고객지원 업무.",
+        "case_problem_for_context_only": "투숙객의 송장 찾기 요청이 많았지만 기존 챗봇은 이를 처리하지 못했다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R057",
+      "query_id": "CPD06",
+      "case_id": "AXV24_36c7ef329920",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "지원서·증빙 대조 검증은 기준과 자료를 비교하는 일부 기능이 있지만 수치 요율과 금액 검증은 미확인.",
+      "evidence": {
+        "case_task": "채용 지원서·증빙 자료 대조 검토",
+        "case_context": "고객사의 대량 채용 서류 검토를 수행하는 BPO 기업의 운영 업무.",
+        "case_problem_for_context_only": "3주 안에 150만 건의 채용 지원서와 증빙을 검토해야 했으며 수작업 방식으로는 대규모 인력이 필요했다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R058",
+      "query_id": "CPD06",
+      "case_id": "AXV24_918f26607568",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "반품 상품 손상·유효기간 검토는 조건 위반 탐지라는 일부 유사성만 있고 금액·요율 대조는 없음.",
+      "evidence": {
+        "case_task": "반품 상품 사진 확인 및 환불 요청 처리",
+        "case_context": "미용 상품의 손상·유효기간을 확인하는 전자상거래 반품 업무.",
+        "case_problem_for_context_only": "하루 약 2천 건의 반품 요청을 수동 검토해 환불 해결에 3~4일이 걸렸다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R059",
+      "query_id": "CPD06",
+      "case_id": "AXV24_bc6444cc1b61",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "보험 견적용 청구서 정보 추출은 검증 입력의 준비 단계일 뿐 요율·금액 비교가 아님.",
+      "evidence": {
+        "case_task": "단체 의료보험 견적용 청구서 정보 추출",
+        "case_context": "18명의 보험심사자가 다양한 보험사 청구서를 처리하는 단체보험 견적 업무.",
+        "case_problem_for_context_only": "보험 견적을 위해 다양한 청구서 PDF에서 가입자 정보를 수동 복사했으며, 인력 증가 없이 견적 물량이 늘었다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R060",
+      "query_id": "CPD06",
+      "case_id": "AXV24_e9e5114a33fe",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "기업 경비 정책의 위반·이상 항목을 탐지하는 기능은 청구 비용을 규칙·요율과 비교해 예외 목록을 찾는 업무에 전이 가능.",
+      "evidence": {
+        "case_task": "경비 정책 위반·이상 항목 탐지",
+        "case_context": "Brex 플랫폼에서 기업 경비를 검토하는 재무팀 업무.",
+        "case_problem_for_context_only": "재무 담당자와 감사인이 다수의 경비를 검토하면서 조치가 필요한 맥락을 파악하기 어려웠다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R061",
+      "query_id": "CPD06",
+      "case_id": "AXV2C_0006_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "인사 조직변경 신청 검증은 규칙 준수 검증을 일부 공유하나 가격·요율 검증은 확인되지 않음.",
+      "evidence": {
+        "case_task": "HR organizational-change request validation",
+        "case_context": "Danone managers requesting organizational changes.",
+        "case_problem_for_context_only": "Manual forms and manager-HR coordination caused errors and poor experience when promotions or assignments changed."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R062",
+      "query_id": "CPD06",
+      "case_id": "AXV2C_0006_02",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "청구 전 고객 주문 가격을 검증하는 기능은 운송비 청구 금액 검증에 전이 가능. 운송 요율표 대조·근거 목록은 미확인.",
+      "evidence": {
+        "case_task": "Validate customer order prices before invoicing",
+        "case_context": "Danone receives thousands of orders daily through email, PDF and EDI.",
+        "case_problem_for_context_only": "Orders in varied formats produced pricing inconsistencies and entry errors, followed by disputes and delayed payments."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R063",
+      "query_id": "CPD06",
+      "case_id": "AXV2H_0003_01",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "신원조회 보고서 검증은 기준 대조와 일부 유사하나 금액·요율 검증의 핵심 기능이 확인되지 않음.",
+      "evidence": {
+        "case_task": "직원 신원조회 보고서 검증",
+        "case_context": "업무별 검증 조건과 컴플라이언스 준수가 필수인 전문서비스",
+        "case_problem_for_context_only": "다수 파일과 검증 기준을 수작업 대조하면서 검증 지연과 준수 부담이 발생함"
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R064",
+      "query_id": "CPD06",
+      "case_id": "AXV2H_0071_01",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "결제 기술문의 검색·답변은 운송비 청구서의 금액 검증과 무관.",
+      "evidence": {
+        "case_task": "결제 기술문의 검색·답변",
+        "case_context": "BPC 결제 솔루션 운영팀과 외부 고객에게 고객기술지원 제공",
+        "case_problem_for_context_only": "기술지원 담당자가 고객 문의를 접수·검토해 답변을 전달하는 반복 업무의 부담을 낮추면서, 정확하고 보안에 맞는 결제 기술정보 응답이 필요했다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R065",
+      "query_id": "CPD06",
+      "case_id": "AXV2N_0103",
+      "grade": 2,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "은행 거래의 대사·불일치 확인은 두 금전 기록을 비교하는 기능으로 청구금액과 기준 요율 대조에 전이 가능.",
+      "evidence": {
+        "case_task": "Reconcile bank transactions at month end",
+        "case_context": "U.S. AutoForce accounting team running US Bank reconciliations for three months.",
+        "case_problem_for_context_only": "Recurring account reconciliations consume accounting staff time."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R066",
+      "query_id": "CPD06",
+      "case_id": "AXV2N_0106",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "주택개선 프로젝트 상담·상품 추천은 운송비 검증과 관련 없음.",
+      "evidence": {
+        "case_task": "Advise online customers on home-improvement projects",
+        "case_context": "Customer-facing Mylow virtual advisor, distinct from the associate application.",
+        "case_problem_for_context_only": "주택개선 작업은 과정과 상품 선택이 복잡하여 고객이 자신의 프로젝트 맥락에 맞는 단계별 안내와 상품 추천을 한 번에 얻기 어려웠다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R067",
+      "query_id": "CPD06",
+      "case_id": "AXV2N_0107",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "주택개선 안내·제품 추천은 운송비 요율 검증과 관련 없음.",
+      "evidence": {
+        "case_task": "Give online home-improvement project advice",
+        "case_context": "Magic Apron on Home Depot digital platforms.",
+        "case_problem_for_context_only": "Customers need advice and product recommendations expressed in terms of their project rather than a search keyword."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R068",
+      "query_id": "CPD06",
+      "case_id": "AXV2N_0110",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "재무 상담사 내부 지식 검색은 청구 금액 검증과 다른 핵심 기능.",
+      "evidence": {
+        "case_task": "Retrieve internal knowledge for financial advisors",
+        "case_context": "Wealth management advisor teams using AI at Morgan Stanley Assistant.",
+        "case_problem_for_context_only": "Advisors spend hours searching a large internal document corpus."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R069",
+      "query_id": "CPD06",
+      "case_id": "AXV2N_0121",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "은행 도움말 질문 응답은 운송비 청구 항목 비교 기능이 없음.",
+      "evidence": {
+        "case_task": "Answer customer help-centre questions",
+        "case_context": "Customer-facing help centre, distinct from call summarization.",
+        "case_problem_for_context_only": "고객이 기존 은행 도움말의 키워드 검색만으로는 복잡한 질문에 필요한 정확한 답을 쉽게 찾기 어려워 고객센터로 재문의하는 일이 발생했다."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R070",
+      "query_id": "CPD06",
+      "case_id": "AXV2N_0122",
+      "grade": 0,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "개인 지출 분석 질의응답은 합의 요율에 대한 청구 검증을 수행하지 않음.",
+      "evidence": {
+        "case_task": "Answer customers' personal spending-analysis questions",
+        "case_context": "Spending Intelligence within Starling's banking service.",
+        "case_problem_for_context_only": "Customers need to understand spending without manually navigating filters and charts."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R071",
+      "query_id": "CPD06",
+      "case_id": "AXV2N_0133",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "보험 청구 처리 이력과 결정 변수 조사 기능은 검증 과정의 근거 확인 일부와 관련되나 요율 대조는 미확인.",
+      "evidence": {
+        "case_task": "Investigate escalated claim-processing questions",
+        "case_context": "Oscar claims team answering questions about a claim's processing history.",
+        "case_problem_for_context_only": "Support teams must navigate complex claim decision logs and contractual variables."
+      },
+      "query": "운송비 검토 담당자가 화물 청구서의 항목과 합의된 요율을 대조하는 데 시간이 많이 듭니다. 청구 항목별 금액을 요율과 비교해 과다 청구가 의심되는 부분과 비교 근거를 검토 목록으로 남기고 싶습니다. 청구서를 자동으로 수정하거나 대금을 지급하지 않고 담당자가 확인한 뒤 처리합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R072",
+      "query_id": "CPD07",
+      "case_id": "AXV24_625513e68743",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "CRM 광고 문안·일정 기획은 광고 제작 과정 일부이나 제품 외형 보존형 생활 장면 이미지 생성은 수행 근거 없음.",
+      "evidence": {
+        "case_task": "CRM 판촉 캠페인 기획·문안·일정 처리",
+        "case_context": "전자상거래 고객 대상 판촉 캠페인 운영.",
+        "case_problem_for_context_only": "CRM 판촉 캠페인을 준비하는 데 약 일주일과 여러 담당자의 협업이 필요했다."
+      },
+      "query": "생활용품 광고 담당자는 승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비합니다. 제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다. 제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며 실제 광고 게시는 승인 뒤에 진행합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R073",
+      "query_id": "CPD07",
+      "case_id": "AXV2N_0114",
+      "grade": 3,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "MODERATE",
+      "rationale": "브랜드 제품을 생활 장면에 배치한 광고 이미지를 생성하는 실제 기능으로 질문의 행동·대상·산출물 직접 일치.",
+      "evidence": {
+        "case_task": "Generate branded lifestyle advertising images",
+        "case_context": "Operational UK/European advertising campaigns for pet products.",
+        "case_problem_for_context_only": "Photography and design costs delay localized creative production and limit testing variants."
+      },
+      "query": "생활용품 광고 담당자는 승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비합니다. 제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다. 제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며 실제 광고 게시는 승인 뒤에 진행합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R074",
+      "query_id": "CPD07",
+      "case_id": "AXV2N_0136",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "이미지 속 사람을 익명화하는 편집 처리로 이미지 변형 일부만 공유하고 브랜드 광고 장면 생성은 아님.",
+      "evidence": {
+        "case_task": "Anonymize people in production images",
+        "case_context": "BMW production-system image processing described in April 2021.",
+        "case_problem_for_context_only": "Production images may contain people or protected information that must not remain identifiable."
+      },
+      "query": "생활용품 광고 담당자는 승인된 제품 사진을 사용해 지역별 생활 장면에 어울리는 광고 이미지 초안을 준비합니다. 제품 외형과 브랜드 표현을 유지하면서 배경 장면을 달리한 이미지 후보를 만들어 담당자가 검토하게 하고 싶습니다. 제품 성능을 바꾸거나 새 효능 문구를 추가하지 않으며 실제 광고 게시는 승인 뒤에 진행합니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    },
+    {
+      "id": "R075",
+      "query_id": "CPD08",
+      "case_id": "AXV2C_0094_02",
+      "grade": 1,
+      "status": "AI_DEV_PROVISIONAL",
+      "confidence": "LOW_TO_MODERATE",
+      "rationale": "제조 생산계획 수립은 향후 수량 계획이라는 결과가 일부 유사하나 과거 매출을 이용한 수요 예측 수행은 확인되지 않음.",
+      "evidence": {
+        "case_task": "Prepare manufacturing production plans",
+        "case_context": "Savage Precision Fabrication production planning and work orders.",
+        "case_problem_for_context_only": "Manual planning and data input constrain capacity during growth."
+      },
+      "query": "식료품 매장의 발주 담당자는 품목별로 다음 주에 필요한 수량을 정하기 위해 과거 판매 내역을 다시 확인합니다. 매장과 품목의 일별 판매 기록을 바탕으로 앞으로의 수요량을 예측해 담당자가 발주 수량을 검토하도록 하고 싶습니다. 현재 재고 부족을 경보하는 작업과 구분하며 예측 결과만으로 발주를 실행하거나 상품 가격을 바꾸지 않습니다.",
+      "reviewer": "ChatGPT GPT-6 (single model, current conversation)",
+      "human_verified": false,
+      "independent_verification": false,
+      "source_external_rechecked": false,
+      "notes": "업무 수행의 관련성만 평가. 해당 사례의 실배포 확인은 기존 코퍼스 검수 상태를 따르며 본 검토가 새로 인증하지 않음."
+    }
+  ]
+}
