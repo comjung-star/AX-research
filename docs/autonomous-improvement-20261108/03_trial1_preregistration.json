@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-08",
+  "state": "PREREGISTERED_NOT_EXECUTED",
+  "trial_number": 1,
+  "problem": "68/112 cases have empty BM25 index because code removes Kiwi tags starting S including SL and SN.",
+  "hypothesis": "Filtering punctuation explicitly while preserving SL/SN yields nonempty BM25 entries and can reduce Dense relevant candidates being pushed down by fusion.",
+  "change_only": "src/ax_research/retrieval/bm25.py tokenizer tag filter; retain punctuation exclusion, preserve SL and SN",
+  "hold_constant": [
+    "112 cases",
+    "20 development questions",
+    "frozen qrels",
+    "Dense embeddings/model SHA",
+    "candidate count",
+    "fusion weights",
+    "C0/C1",
+    "multi-perspective branch selection",
+    "reranker"
+  ],
+  "test_plan": [
+    "Static unit tests for English words and numbers and punctuation exclusions",
+    "Count empty indexed cases and token distribution before/after",
+    "Run actual BM25 and hybrid retrieval on development 20 questions",
+    "Report stage Recall@5/20 and F1@5/nDCG@10, macro paired bootstrap CI",
+    "Check negative controls and regressions per question"
+  ],
+  "gates": [
+    "Do not use independent Test 15 questions",
+    "Do not change provisional relevance labels after inspecting predictions",
+    "Do not claim superiority without independent labels and paired uncertainty",
+    "If no code execution environment available, do not call it a completed trial"
+  ],
+  "trial_count_increment": "Only after real code change and executed evaluation; planning is 0/5"
+}
