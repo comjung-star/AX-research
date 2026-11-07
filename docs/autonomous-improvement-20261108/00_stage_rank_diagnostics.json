@@ -1,0 +1,472 @@
+{
+  "date": "2026-11-08",
+  "subject": "Initial autonomous iteration: 16 provisional strategy-transfer case rank trajectories",
+  "data_source": "docs/validation-new20-20261107/diagnosis/raw_search_stage_rankings.json and measured/predictions_new20.json",
+  "candidate_source": "docs/ax-transfer-relevance-20261108/02_transfer_criteria_and_relevance.json",
+  "not_new_execution": true,
+  "not_independent_test": true,
+  "not_confirmed_gold": true,
+  "counts": {
+    "total": 16,
+    "DENSE_TOP5_BUT_LOST_LATER": 5,
+    "NOT_IN_TOP5_AT_MAIN_STAGES": 5,
+    "RETRIEVED_IN_INTERMEDIATE_TOP5_BUT_LOST_FINAL": 2,
+    "FINAL_E_TOP5_FOUND": 4,
+    "missing_final_top5": 12
+  },
+  "observations": [
+    "5/16 candidates were Dense Top-5 but outside E Top-5 in all three repeats; likely downstream fusion or rerank loss (do not assume cause without score traces).",
+    "1/16 was in original A/C Top-5 but disappeared from E Top-5; avoid labeling it initial retrieval failure.",
+    "6/16 were outside Top-5 at main intermediate steps; prioritize query/corpus alignment diagnosis, not arbitrary score boosts.",
+    "4/16 were present in E Top-5 in every repeat; they are not the primary search failures.",
+    "16 transfer labels are hypotheses and must be independently validated before using these case ranks to optimize."
+  ],
+  "records": [
+    {
+      "query_id": "VQ001",
+      "case_id": "AXV2N_0135",
+      "mechanism": "카메라 영상에서 조립 상태·라벨 오류를 식별하는 영상검사",
+      "rank": {
+        "Dense": 1,
+        "BM25": 91,
+        "Hybrid": 16,
+        "Original_C0": 6,
+        "Original_A": 25,
+        "C_repeats": [
+          28,
+          25,
+          33
+        ],
+        "E_repeats": [
+          33,
+          26,
+          34
+        ]
+      },
+      "category": "DENSE_TOP5_BUT_LOST_LATER",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ001",
+      "case_id": "AXV2N_0128",
+      "mechanism": "현재 이미지를 정상 배치의 예와 비교해 위치 이상을 탐지",
+      "rank": {
+        "Dense": 2,
+        "BM25": 86,
+        "Hybrid": 17,
+        "Original_C0": 48,
+        "Original_A": 38,
+        "C_repeats": [
+          36,
+          34,
+          44
+        ],
+        "E_repeats": [
+          39,
+          33,
+          41
+        ]
+      },
+      "category": "DENSE_TOP5_BUT_LOST_LATER",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ004",
+      "case_id": "AXV24_e9e5114a33fe",
+      "mechanism": "정책 위반 가능 거래를 식별하고 근거·검토 항목을 제공",
+      "rank": {
+        "Dense": 5,
+        "BM25": 8,
+        "Hybrid": 2,
+        "Original_C0": 55,
+        "Original_A": 52,
+        "C_repeats": [
+          46,
+          54,
+          51
+        ],
+        "E_repeats": [
+          52,
+          46,
+          55
+        ]
+      },
+      "category": "DENSE_TOP5_BUT_LOST_LATER",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ006",
+      "case_id": "AXV24_2be1ea1c5140",
+      "mechanism": "시계열 장비 이력으로 미래 고장 위험을 추정·우선 감시",
+      "rank": {
+        "Dense": 61,
+        "BM25": 32,
+        "Hybrid": 49,
+        "Original_C0": 73,
+        "Original_A": 73,
+        "C_repeats": [
+          71,
+          75,
+          78
+        ],
+        "E_repeats": [
+          67,
+          64,
+          74
+        ]
+      },
+      "category": "NOT_IN_TOP5_AT_MAIN_STAGES",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ006",
+      "case_id": "AXV2N_0119",
+      "mechanism": "운영 데이터 연속 모니터링으로 미래 이상 위험 패턴을 선별",
+      "rank": {
+        "Dense": 43,
+        "BM25": 80,
+        "Hybrid": 72,
+        "Original_C0": 58,
+        "Original_A": 58,
+        "C_repeats": [
+          47,
+          54,
+          58
+        ],
+        "E_repeats": [
+          54,
+          44,
+          58
+        ]
+      },
+      "category": "NOT_IN_TOP5_AT_MAIN_STAGES",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ006",
+      "case_id": "AXV2H_0021_01",
+      "mechanism": "과거 상태·동작 데이터로 미래 고장 위험을 예측",
+      "rank": {
+        "Dense": 73,
+        "BM25": 42,
+        "Hybrid": 66,
+        "Original_C0": 89,
+        "Original_A": 89,
+        "C_repeats": [
+          82,
+          83,
+          84
+        ],
+        "E_repeats": [
+          82,
+          83,
+          82
+        ]
+      },
+      "category": "NOT_IN_TOP5_AT_MAIN_STAGES",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ007",
+      "case_id": "AXV2P2_0011_01",
+      "mechanism": "청구서 금액과 계약 기준을 대조하고 차이를 검토 큐에 배정",
+      "rank": {
+        "Dense": 4,
+        "BM25": 97,
+        "Hybrid": 31,
+        "Original_C0": 21,
+        "Original_A": 21,
+        "C_repeats": [
+          22,
+          22,
+          22
+        ],
+        "E_repeats": [
+          35,
+          25,
+          25
+        ]
+      },
+      "category": "DENSE_TOP5_BUT_LOST_LATER",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ007",
+      "case_id": "AXV2N_0103",
+      "mechanism": "은행 명세와 원장 거래를 일치시키는 대사 작업",
+      "rank": {
+        "Dense": 9,
+        "BM25": 67,
+        "Hybrid": 25,
+        "Original_C0": 3,
+        "Original_A": 3,
+        "C_repeats": [
+          2,
+          3,
+          2
+        ],
+        "E_repeats": [
+          21,
+          12,
+          10
+        ]
+      },
+      "category": "RETRIEVED_IN_INTERMEDIATE_TOP5_BUT_LOST_FINAL",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ008",
+      "case_id": "AXV2N_0128",
+      "mechanism": "영상에서 안전 목적의 필수 물체가 올바르게 있는지 검사",
+      "rank": {
+        "Dense": 2,
+        "BM25": 86,
+        "Hybrid": 18,
+        "Original_C0": 4,
+        "Original_A": 4,
+        "C_repeats": [
+          4,
+          5,
+          6
+        ],
+        "E_repeats": [
+          4,
+          3,
+          3
+        ]
+      },
+      "category": "FINAL_E_TOP5_FOUND",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ009",
+      "case_id": "AXV24_29f79de45110",
+      "mechanism": "시계열 센서값에서 비정상 운전 상태를 탐지",
+      "rank": {
+        "Dense": 5,
+        "BM25": 35,
+        "Hybrid": 10,
+        "Original_C0": 42,
+        "Original_A": 30,
+        "C_repeats": [
+          28,
+          31,
+          31
+        ],
+        "E_repeats": [
+          32,
+          28,
+          28
+        ]
+      },
+      "category": "DENSE_TOP5_BUT_LOST_LATER",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ009",
+      "case_id": "AXV2N_0119",
+      "mechanism": "다변량 설비 운영 시계열의 이상 패턴을 지속 관찰",
+      "rank": {
+        "Dense": 10,
+        "BM25": 80,
+        "Hybrid": 28,
+        "Original_C0": 35,
+        "Original_A": 21,
+        "C_repeats": [
+          21,
+          21,
+          21
+        ],
+        "E_repeats": [
+          21,
+          21,
+          21
+        ]
+      },
+      "category": "NOT_IN_TOP5_AT_MAIN_STAGES",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ009",
+      "case_id": "AXV2P2_0065_01",
+      "mechanism": "여러 제조 변수 간 상관 관계로 결함 원인 후보를 좁힘",
+      "rank": {
+        "Dense": 48,
+        "BM25": 106,
+        "Hybrid": 85,
+        "Original_C0": 7,
+        "Original_A": 2,
+        "C_repeats": [
+          2,
+          2,
+          2
+        ],
+        "E_repeats": [
+          2,
+          2,
+          2
+        ]
+      },
+      "category": "FINAL_E_TOP5_FOUND",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ011",
+      "case_id": "AXV24_df5d48fedff4",
+      "mechanism": "고객 대화의 의도를 파악하고 복잡한 문의를 사람에게 인계",
+      "rank": {
+        "Dense": 10,
+        "BM25": 3,
+        "Hybrid": 5,
+        "Original_C0": 6,
+        "Original_A": 6,
+        "C_repeats": [
+          4,
+          4,
+          5
+        ],
+        "E_repeats": [
+          5,
+          5,
+          4
+        ]
+      },
+      "category": "FINAL_E_TOP5_FOUND",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ016",
+      "case_id": "AXALL_US_OMB_2025_02663",
+      "mechanism": "긴 정책 문서에서 근거를 검색하고 교차 참조",
+      "rank": {
+        "Dense": 7,
+        "BM25": 48,
+        "Hybrid": 9,
+        "Original_C0": 6,
+        "Original_A": 4,
+        "C_repeats": [
+          4,
+          4,
+          4
+        ],
+        "E_repeats": [
+          4,
+          4,
+          4
+        ]
+      },
+      "category": "FINAL_E_TOP5_FOUND",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ019",
+      "case_id": "AXV2P2_0015_01",
+      "mechanism": "비정형 문서에서 미리 정한 유형의 개체 정보를 추출",
+      "rank": {
+        "Dense": 13,
+        "BM25": 101,
+        "Hybrid": 44,
+        "Original_C0": 42,
+        "Original_A": 33,
+        "C_repeats": [
+          37,
+          30,
+          32
+        ],
+        "E_repeats": [
+          30,
+          35,
+          30
+        ]
+      },
+      "category": "NOT_IN_TOP5_AT_MAIN_STAGES",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    },
+    {
+      "query_id": "VQ019",
+      "case_id": "AXV2C_0080_02",
+      "mechanism": "문서 내용에서 정책상 심사해야 할 특정 필드를 표시",
+      "rank": {
+        "Dense": 26,
+        "BM25": 61,
+        "Hybrid": 45,
+        "Original_C0": 4,
+        "Original_A": 25,
+        "C_repeats": [
+          33,
+          24,
+          23
+        ],
+        "E_repeats": [
+          29,
+          32,
+          27
+        ]
+      },
+      "category": "RETRIEVED_IN_INTERMEDIATE_TOP5_BUT_LOST_FINAL",
+      "source_label": "PROVISIONAL_TRANSFER_NOT_VERIFIED"
+    }
+  ],
+  "top_priority_for_next_step": [
+    {
+      "q": "VQ001",
+      "c": "AXV2N_0135",
+      "dense_rank": 1,
+      "hybrid_rank": 16,
+      "original_A_rank": 25,
+      "e_ranks": [
+        33,
+        26,
+        34
+      ]
+    },
+    {
+      "q": "VQ001",
+      "c": "AXV2N_0128",
+      "dense_rank": 2,
+      "hybrid_rank": 17,
+      "original_A_rank": 38,
+      "e_ranks": [
+        39,
+        33,
+        41
+      ]
+    },
+    {
+      "q": "VQ004",
+      "c": "AXV24_e9e5114a33fe",
+      "dense_rank": 5,
+      "hybrid_rank": 2,
+      "original_A_rank": 52,
+      "e_ranks": [
+        52,
+        46,
+        55
+      ]
+    },
+    {
+      "q": "VQ007",
+      "c": "AXV2P2_0011_01",
+      "dense_rank": 4,
+      "hybrid_rank": 31,
+      "original_A_rank": 21,
+      "e_ranks": [
+        35,
+        25,
+        25
+      ]
+    },
+    {
+      "q": "VQ009",
+      "c": "AXV24_29f79de45110",
+      "dense_rank": 5,
+      "hybrid_rank": 10,
+      "original_A_rank": 30,
+      "e_ranks": [
+        32,
+        28,
+        28
+      ]
+    }
+  ]
+}
