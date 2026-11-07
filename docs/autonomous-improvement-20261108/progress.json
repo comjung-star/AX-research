@@ -11,14 +11,15 @@
     "Initial source-limited root-cause categorization saved; no new model trained and no efficacy claim.",
     "Computed stage-wise Recall@5/20 for all previously saved ranking systems under provisional transfer labels, with per-question VQ001/004/006/019 diagnostics; not independent verification.",
     "Checked four primary case-study source pages (Audi, Brex, Aggreko, Ontada): original case tasks are supported, but transfer relevance is not independently validated.",
-    "Preregistered controlled BM25 tokenizer experiment 1 without executing or counting it as a completed trial."
+    "Preregistered controlled BM25 tokenizer experiment 1 without executing or counting it as a completed trial.",
+    "Trial 1 implementation committed on research branch: Kiwi tokenizer now retains SL/SN; two isolated regression tests added, but real corpus evaluation not executed because this run environment lacks kiwipiepy/rank_bm25 and full model/corpus checkout."
   ],
-  "current_step": "SOURCE_AUDIT_REMAINING_12_AND_TRIAL1_IMPLEMENTATION",
+  "current_step": "TRIAL1_REPRODUCIBLE_EVALUATION_PENDING",
   "next_actions": [
-    "Source-check remaining 12 hypotheses and four zero-positive question boundaries without consulting ranking for judgments.",
-    "Run BM25 tokenizer fix as isolated actual code experiment, with frozen 20-query evaluation and paired uncertainty; count only after execution.",
-    "Obtain genuinely independent judgments (separate model providers or experts) before claiming relevance labels certified.",
-    "Preserve independent 15-question Test until final frozen evaluation."
+    "Execute pytest tests/test_bm25_kiwi_tokenizer_regression.py in repository environment with project dependencies.",
+    "Run exact frozen 20-question/112-case BM25, Hybrid, A/C/E development comparison using same embeddings and labels, store raw rankings and paired CI before incrementing trial count.",
+    "Audit remaining 12 primary-source transfer hypotheses and all 4 zero-positive question boundaries without promoting provisional labels.",
+    "Seek genuinely independent reviewers or independent provider models within prechecked total $2 cap; otherwise report unverified."
   ],
   "trial_budget": {
     "max_trials": 5,
@@ -31,17 +32,22 @@
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "FOUR_SOURCE_PAGES_CHECKED_TRIAL1_PREREGISTERED",
+    "outcome": "TRIAL1_CODE_PATCHED_EVALUATION_PENDING",
     "confirmed_performance_gain": false,
     "evidence_files": [
-      "docs/autonomous-improvement-20261108/02_primary_source_spotcheck.json",
+      "src/ax_research/retrieval/bm25.py",
+      "tests/test_bm25_kiwi_tokenizer_regression.py",
       "docs/autonomous-improvement-20261108/03_trial1_preregistration.json"
     ],
     "labels_pending_independent": 16,
     "source_checked": 4,
     "trials_completed": 0,
-    "paid_api_usd": 0
+    "paid_api_usd": 0,
+    "commits": [
+      "f0c0f8fd8b7c06fe67b638dca616a59d467b0ac8",
+      "4688dccacb281dbcf63b86b1822f0881dbe55d69"
+    ]
   },
-  "access_notes": "GitHub reading/writing connected. External vendor LLM connectors not established in this task; must avoid pretending independent review was done.",
+  "access_notes": "GitHub read/write available; local Python lacks kiwipiepy and rank_bm25, and no complete repository checkout/model data. No full trial run or independent provider verification. Can continue with GitHub branch and CI or environment next run.",
   "file_changes": "Only this research branch; preserve original test/main."
 }
