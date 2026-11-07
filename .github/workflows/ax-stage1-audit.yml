@@ -18,6 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
+      # Smoke test validates retained letter/number tokens without assuming Kiwi segmentation boundaries.
       - name: Install actual frozen BM25 dependencies
         run: |
           python -m pip install kiwipiepy==0.24.1 rank-bm25==0.2.2 numpy==2.4.5
