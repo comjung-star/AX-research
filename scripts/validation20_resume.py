@@ -64,6 +64,41 @@ def run(stage,model,out):
         print(json.dumps(read(out/"resume_recovery.json"),ensure_ascii=False),flush=True)
     elif stage=="infer":
         if not (out/"resume_recovery.json").is_file():raise RuntimeError("Recovery preflight not complete")
+        # Historical heldout freeze() calls "git show BASE:path" for inputs
+        # that did not exist at that older commit; use the already sealed
+        # preregistration SHA256 manifest instead. No ranking/model code changes.
+        import importlib.metadata, platform, subprocess
+        from scripts import heldout_run as legacy_runner
+        historical=read(PREREG)["environment"]
+        protected={}
+        for name, expected in historical["protected"].items():
+            src=ROOT/name
+            if not src.is_file() or sha(src)!=expected:
+                raise RuntimeError("Original protected file differs from recorded SHA256: "+name)
+            protected[name]=expected
+        for name,expected in historical["model"].items():
+            if sha(model/name)!=expected:
+                raise RuntimeError("Original model checksum drift: "+name)
+        packages={}
+        for name,expected in historical["packages"].items():
+            actual=importlib.metadata.version(name)
+            if actual!=expected:
+                raise RuntimeError("Pinned runtime mismatch for "+name+" expected="+expected+" actual="+actual)
+            packages[name]=actual
+        # Recheck all inputs both before and after the actual multiview inference.
+        def verified_freeze(model_path):
+            for name,expected in protected.items():
+                if sha(ROOT/name)!=expected:raise RuntimeError("Protected drift during inference: "+name)
+            for name,expected in historical["model"].items():
+                if sha(Path(model_path)/name)!=expected:raise RuntimeError("BGE-M3 drift during inference: "+name)
+            return {"base":"sha256_preregistration_manifest","protected":protected,
+                "model":historical["model"],"packages":packages,
+                "adapter":historical.get("adapter",{}),
+                "commit":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),
+                "python":platform.python_version(),"platform":platform.platform(),
+                "command":sys.argv,"model_path":str(model_path),
+                "policy":historical.get("policy")}
+        legacy_runner.freeze=verified_freeze
         scratch=out.parent/"validation20-scratch"
         core.inference(scratch)
         p=read(out/"predictions.json")
