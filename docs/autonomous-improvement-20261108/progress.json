@@ -12,9 +12,10 @@
     "Computed stage-wise Recall@5/20 for all previously saved ranking systems under provisional transfer labels, with per-question VQ001/004/006/019 diagnostics; not independent verification.",
     "Checked four primary case-study source pages (Audi, Brex, Aggreko, Ontada): original case tasks are supported, but transfer relevance is not independently validated.",
     "Preregistered controlled BM25 tokenizer experiment 1 without executing or counting it as a completed trial.",
-    "Trial 1 implementation committed on research branch: Kiwi tokenizer now retains SL/SN; two isolated regression tests added, but real corpus evaluation not executed because this run environment lacks kiwipiepy/rank_bm25 and full model/corpus checkout."
+    "Trial 1 implementation committed on research branch: Kiwi tokenizer now retains SL/SN; two isolated regression tests added, but real corpus evaluation not executed because this run environment lacks kiwipiepy/rank_bm25 and full model/corpus checkout.",
+    "Ran two isolated tokenizer regression assertions using locally reconstructed source/test logic (2/2 passed); canonical repository and corpus evaluation still pending."
   ],
-  "current_step": "TRIAL1_REPRODUCIBLE_EVALUATION_PENDING",
+  "current_step": "TRIAL1_CANONICAL_REPO_DEPENDENCY_AND_FULL_CORPUS_EXECUTION_PENDING",
   "next_actions": [
     "Execute pytest tests/test_bm25_kiwi_tokenizer_regression.py in repository environment with project dependencies.",
     "Run exact frozen 20-question/112-case BM25, Hybrid, A/C/E development comparison using same embeddings and labels, store raw rankings and paired CI before incrementing trial count.",
@@ -32,22 +33,15 @@
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "TRIAL1_CODE_PATCHED_EVALUATION_PENDING",
+    "outcome": "ISOLATED_TOKENIZER_TESTS_2_OF_2_PASSED_NOT_FULL_TRIAL",
     "confirmed_performance_gain": false,
     "evidence_files": [
-      "src/ax_research/retrieval/bm25.py",
-      "tests/test_bm25_kiwi_tokenizer_regression.py",
-      "docs/autonomous-improvement-20261108/03_trial1_preregistration.json"
+      "docs/autonomous-improvement-20261108/04_trial1_isolated_regression_execution.json"
     ],
-    "labels_pending_independent": 16,
-    "source_checked": 4,
     "trials_completed": 0,
     "paid_api_usd": 0,
-    "commits": [
-      "f0c0f8fd8b7c06fe67b638dca616a59d467b0ac8",
-      "4688dccacb281dbcf63b86b1822f0881dbe55d69"
-    ]
+    "canonical_repo_test": false
   },
-  "access_notes": "GitHub read/write available; local Python lacks kiwipiepy and rank_bm25, and no complete repository checkout/model data. No full trial run or independent provider verification. Can continue with GitHub branch and CI or environment next run.",
+  "access_notes": "Local isolated pytest passes 2/2, but kiwipiepy and rank_bm25 absent and no full repository checkout/corpus. GitHub branch available. This does not count as full trial.",
   "file_changes": "Only this research branch; preserve original test/main."
 }
