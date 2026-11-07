@@ -1,0 +1,64 @@
+name: AX stage2 recover original blind review receipts
+on:
+  push:
+    branches: [research/stage1-stage2-integrity-20261108]
+    paths:
+      - .github/workflows/ax-stage2-recover.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  wait-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Wait for original 40 independent blind review jobs to finish
+        run: |
+          set -euo pipefail
+          for n in $(seq 1 100); do
+            s=$(gh api "repos/${{ github.repository }}/actions/runs/42390309118" --jq '.status')
+            echo "Original review status: $s, check $n"
+            if [ "$s" = completed ]; then exit 0; fi
+            sleep 20
+          done
+          exit 1
+  recover:
+    needs: [wait-original]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        qid: [VQ001, VQ002, VQ003, VQ004, VQ005, VQ006, VQ007, VQ008, VQ009, VQ010, VQ011, VQ012, VQ013, VQ014, VQ015, VQ016, VQ017, VQ018, VQ019, VQ020]
+        round: [2,3]
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Restore this exact existing original response artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: stage2-blind-${{ matrix.qid }}-r${{ matrix.round }}
+          run-id: 42390309118
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/restored
+      - name: Validate and recover good responses without paid replay
+        run: |
+          PYTHONPATH=src:. python scripts/stage2_blind_recover.py "${{ matrix.qid }}" "${{ matrix.round }}" "$RUNNER_TEMP/restored"
+      - name: Keep original paid receipts and explicit recovery flags
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage2-recovered-${{ matrix.qid }}-r${{ matrix.round }}
+          path: ${{ runner.temp }}/restored
+          if-no-files-found: warn
+          retention-days: 90
