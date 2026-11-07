@@ -1,0 +1,232 @@
+{
+  "date": "2026-11-08",
+  "scope": "20 fixed NEW_VALIDATION_20 questions x 112 stored cases",
+  "diagnostics": [
+    {
+      "query_id": "VQ004",
+      "query_text": "정보보안팀은 관리자 계정이 평소와 다른 시간이나 시스템에서 접근한 로그를 검토합니다. 접근 시간과 대상 시스템, 권한 변경 기록을 대조해 비정상적인 권한 사용 의심 건을 찾아 조사 자료로 제공하고 싶습니다. AI가 계정을 차단하거나 권한을 회수하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 1,
+      "classification": "PARTIAL_STRATEGY_TRANSFER",
+      "reason": "기존 직무 이름은 맞지 않았지만 정책 위반 거래 패턴을 탐지·설명하는 기능을 접근 로그 정책 위반 감지로 전이할 여지가 있음",
+      "candidates": [
+        {
+          "case_id": "AXV24_e9e5114a33fe",
+          "mechanism": "정책 위반 가능 거래를 식별하고 근거·검토 항목을 제공",
+          "required_adaptation": "거래 대신 접근 시간·시스템·권한 변경 패턴을 정책 대비 분석"
+        }
+      ],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ005",
+      "query_text": "연구개발 조직은 프로젝트 산출물의 여러 버전을 비교해 변경 내용을 정리해야 합니다. 문서 버전 간 수정된 기술 요구사항과 삭제된 항목을 찾아 출처 문단을 붙인 변경 요약표를 만들고 싶습니다. 새 기술 요구사항을 추측해서 작성하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 0,
+      "classification": "NO_EVIDENCED_CORE_MECHANISM",
+      "reason": "현재 사례의 문서 요약·검색에는 두 버전의 요구사항 차이를 비교하고 문단별 변경 근거를 내는 동작이 확인되지 않음",
+      "candidates": [],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ006",
+      "query_text": "구매 담당자는 공급업체별로 납품 지연이 반복되는지 수기로 확인합니다. 주문일, 약속 납기일, 실제 입고 이력을 바탕으로 앞으로 지연될 가능성이 높은 주문을 표시하고 근거를 보여주고 싶습니다. 발주 수량이나 계약 조건을 자동 변경하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 3,
+      "classification": "PARTIAL_STRATEGY_TRANSFER",
+      "reason": "기존 정답 기준은 기계 고장 위험과 납기 지연 예측의 대상 차이에 무게를 둠. 미래 위험 추정 방식은 조건부 전이 후보가 존재",
+      "candidates": [
+        {
+          "case_id": "AXV24_2be1ea1c5140",
+          "mechanism": "시계열 장비 이력으로 미래 고장 위험을 추정·우선 감시",
+          "required_adaptation": "설비 센서를 주문·약속 납기·실입고 이력으로 교체해 지연 확률 예측"
+        },
+        {
+          "case_id": "AXV2N_0119",
+          "mechanism": "운영 데이터 연속 모니터링으로 미래 이상 위험 패턴을 선별",
+          "required_adaptation": "설비 고장 대신 예정 납기 대비 지연 위험의 시계열 패턴 선별"
+        },
+        {
+          "case_id": "AXV2H_0021_01",
+          "mechanism": "과거 상태·동작 데이터로 미래 고장 위험을 예측",
+          "required_adaptation": "로봇 동작 특징 대신 납기 변화·공급사 이력으로 미래 지연 가능성 예측"
+        }
+      ],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ007",
+      "query_text": "재무팀은 법인카드 사용 내역에서 같은 영수증이 두 번 제출된 경우를 찾습니다. 결제 금액, 일시, 가맹점, 영수증 이미지 정보를 비교해 중복 경비 청구가 의심되는 건을 검토 목록으로 만들고 싶습니다. 지급 보류나 직원 징계는 자동 처리하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 2,
+      "classification": "PARTIAL_STRATEGY_TRANSFER",
+      "reason": "정산 및 송장 금액 대사 방식은 결제·영수증의 중복 비교로 전이할 수 있으나 중복 탐지는 별도 규칙이 필요",
+      "candidates": [
+        {
+          "case_id": "AXV2P2_0011_01",
+          "mechanism": "청구서 금액과 계약 기준을 대조하고 차이를 검토 큐에 배정",
+          "required_adaptation": "금액·시각·가맹점·영수증 식별값을 서로 대조해 중복 여부 평가"
+        },
+        {
+          "case_id": "AXV2N_0103",
+          "mechanism": "은행 명세와 원장 거래를 일치시키는 대사 작업",
+          "required_adaptation": "결제내역과 영수증을 매칭해 한 결제에 복수 증빙이 붙었는지 검토"
+        }
+      ],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ009",
+      "query_text": "건물 관리팀은 층별 전력 사용량 급증의 원인을 찾기 위해 계량기 기록을 확인합니다. 시간대별 사용량과 설비 가동 기록을 비교해 비정상 소비 구간과 연관된 설비를 정리하고 싶습니다. 설비의 전원을 AI가 직접 차단하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 3,
+      "classification": "PARTIAL_STRATEGY_TRANSFER",
+      "reason": "기계 시계열 이상 감시와 변수 기반 원인 추적 기법은 전력 소비 급등의 패턴 분석에 전이 가능",
+      "candidates": [
+        {
+          "case_id": "AXV24_29f79de45110",
+          "mechanism": "시계열 센서값에서 비정상 운전 상태를 탐지",
+          "required_adaptation": "열펌프 대신 건물 전력량과 설비 가동을 시간대별 결합해 이상 구간 탐지"
+        },
+        {
+          "case_id": "AXV2N_0119",
+          "mechanism": "다변량 설비 운영 시계열의 이상 패턴을 지속 관찰",
+          "required_adaptation": "전력 계량기와 설비 가동 패턴의 이상 시점을 상호 비교"
+        },
+        {
+          "case_id": "AXV2P2_0065_01",
+          "mechanism": "여러 제조 변수 간 상관 관계로 결함 원인 후보를 좁힘",
+          "required_adaptation": "전력 급증 시점의 시설 운전 변수 간 관계를 좁혀 설비 원인 후보 표시"
+        }
+      ],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ010",
+      "query_text": "소프트웨어 개발팀은 새 배포 버전에 어떤 회귀 테스트를 먼저 수행할지 선정합니다. 이번 버전의 코드 변경 파일과 과거 결함 이력을 연결해 관련성이 높은 테스트 케이스를 우선순위로 추천하고 싶습니다. 테스트 성공 여부를 미리 단정하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 0,
+      "classification": "NO_EVIDENCED_CORE_MECHANISM",
+      "reason": "코드 변경과 과거 결함을 연결해 어떤 테스트를 먼저 할지 고르는 실제 구현이 112개 사례 설명에서 확인되지 않음",
+      "candidates": [],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ011",
+      "query_text": "콜센터에서는 통화 중 고객이 불만을 강하게 제기해도 상담원이 즉시 알아채지 못하는 경우가 있습니다. 상담 대화의 흐름에서 긴급한 불만이나 상담 책임자 연결 요청을 탐지해 실시간으로 알리고 싶습니다. 고객에게 자동으로 보상금을 지급하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 1,
+      "classification": "PARTIAL_STRATEGY_TRANSFER",
+      "reason": "실제 상담 내용을 이해하고 상담원에게 인계하는 구현은 긴급 불만 탐지·인계로 전이 가능한 요소가 있음",
+      "candidates": [
+        {
+          "case_id": "AXV24_df5d48fedff4",
+          "mechanism": "고객 대화의 의도를 파악하고 복잡한 문의를 사람에게 인계",
+          "required_adaptation": "불만·상담 책임자 요청을 실시간 인계 신호로 정의해 탐지"
+        }
+      ],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ013",
+      "query_text": "감사 조직은 거래처 마스터에 같은 회사가 여러 이름으로 중복 등록된 문제를 해결하려고 합니다. 사업자 식별자, 상호 표기, 주소 등을 비교해 중복 가능성이 있는 업체를 묶고 근거를 보여주고 싶습니다. 실제 거래처 병합은 담당자가 승인합니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 0,
+      "classification": "NO_EVIDENCED_CORE_MECHANISM",
+      "reason": "거래처 중복 여부를 사업자 식별자·상호·주소 등 복수 속성으로 결정하는 엔터티 통합 메커니즘은 저장된 구현 설명에서 확인되지 않음",
+      "candidates": [],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ015",
+      "query_text": "물류 운영팀은 차량 위치와 도로 정체 정보를 보면서 배송 경로를 수동 조정합니다. 예정된 방문지, 도착 가능 시간, 차량 이동 정보를 고려해 운행 순서를 추천하고 싶습니다. 고객과 합의한 배송 제한 시간을 위반하거나 기사에게 자동 배차하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 0,
+      "classification": "NO_EVIDENCED_CORE_MECHANISM",
+      "reason": "배송 경로의 공간/거리/시간창 제약과 동일한 운행 순서 최적화 메커니즘이 확인되지 않음. 티켓 담당팀 배정이나 생산 일정 계획은 이를 직접 대체하지 않음",
+      "candidates": [],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ016",
+      "query_text": "법무팀은 매월 갱신되는 규제 문서를 읽고 기존 내부 절차에 어떤 조항이 영향을 주는지 확인합니다. 새 규정과 이전 규정의 변경 조항을 찾아 내부 점검 항목과 연결한 검토 목록을 만들고 싶습니다. 법적 준수 여부를 AI가 최종 확정하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 1,
+      "classification": "PARTIAL_STRATEGY_TRANSFER",
+      "reason": "규제·정책 문서의 검색과 근거 교차 참조를 변경 조항과 내부 절차 영향 검토에 전이 가능. 단 신구 문서 비교는 추가 구현 필요",
+      "candidates": [
+        {
+          "case_id": "AXALL_US_OMB_2025_02663",
+          "mechanism": "긴 정책 문서에서 근거를 검색하고 교차 참조",
+          "required_adaptation": "신·구 규제 조항을 서로 대조하고 내부 절차 문서와 연결해 검토 큐 생성"
+        }
+      ],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    },
+    {
+      "query_id": "VQ019",
+      "query_text": "기업 보안팀은 직원이 외부로 전송하려는 문서에 개인정보가 포함되어 있는지 검토해야 합니다. 문서에서 주민등록번호, 연락처, 주소 등 민감한 식별 정보를 찾아 마스킹 후보를 표시하고 싶습니다. 문서를 자동 삭제하거나 외부 전송을 임의로 차단하지 않습니다.",
+      "prior_strict_positive": 0,
+      "after_transfer_positive": 2,
+      "classification": "PARTIAL_STRATEGY_TRANSFER",
+      "reason": "임상 문서 개체 추출 및 제재 검토 필드 추출을 개인정보 식별자 탐지에 재학습해 사용할 수 있음",
+      "candidates": [
+        {
+          "case_id": "AXV2P2_0015_01",
+          "mechanism": "비정형 문서에서 미리 정한 유형의 개체 정보를 추출",
+          "required_adaptation": "종양 관련 개체 대신 주민번호·주소·연락처 개체를 추출·위치화 후 마스킹 후보 표시"
+        },
+        {
+          "case_id": "AXV2C_0080_02",
+          "mechanism": "문서 내용에서 정책상 심사해야 할 특정 필드를 표시",
+          "required_adaptation": "제재 심사 항목 대신 개인정보 식별 필드를 표시하고 검토대상 제안"
+        }
+      ],
+      "conclusion_scope": "112 STORED CASES ONLY NOT ALL AX INDUSTRY CASES"
+    }
+  ],
+  "negative_controls": [
+    {
+      "query_id": "VQ005",
+      "case_id": "AXV2N_0139",
+      "stored_grade": 1,
+      "transfer_grade": 1,
+      "negative_control_reason": "계약 요약은 문서 신구 버전 변경 탐지·문단 대조와 다름"
+    },
+    {
+      "query_id": "VQ010",
+      "case_id": "AXV2H_0083_01",
+      "stored_grade": 0,
+      "transfer_grade": 0,
+      "negative_control_reason": "버그 티켓 담당팀 라우팅은 코드 변경에 따른 회귀 테스트 선택과 다름"
+    },
+    {
+      "query_id": "VQ013",
+      "case_id": "AXV2C_0068_03",
+      "stored_grade": 1,
+      "transfer_grade": 1,
+      "negative_control_reason": "신규 고객의 증빙·리스크 검토는 동일 법인 중복 마스터 식별 여부를 입증하지 않음"
+    },
+    {
+      "query_id": "VQ015",
+      "case_id": "AXV2H_0083_01",
+      "stored_grade": 0,
+      "transfer_grade": 0,
+      "negative_control_reason": "티켓 라우팅과 차량 운행 순서 최적화의 목적함수·제약이 다름"
+    },
+    {
+      "query_id": "VQ015",
+      "case_id": "AXV2C_0093_02",
+      "stored_grade": 0,
+      "transfer_grade": 0,
+      "negative_control_reason": "생산계획 검증은 도로 정체·도착시간 고려 차량 경로의 직접 사례가 아님"
+    },
+    {
+      "query_id": "VQ019",
+      "case_id": "AXV2N_0136",
+      "stored_grade": 1,
+      "transfer_grade": 1,
+      "negative_control_reason": "이미지 속 인물 익명화는 문서 속 주민번호·연락처 인식과 입력형태가 달라 직접 전략 사례로 승격하지 않음"
+    }
+  ]
+}
