@@ -1,0 +1,85 @@
+name: AX New20 resume without regenerating paid responses
+on:
+  push:
+    branches:
+      - research/new20-validation-resume-20261107
+    paths:
+      - docs/validation-new20-20261107/trigger-resume.txt
+concurrency:
+  group: ax-new20-resume-single
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+jobs:
+  resume:
+    runs-on: ubuntu-latest
+    timeout-minutes: 140
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TOKENIZERS_PARALLELISM: "false"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Load archived API responses without replay
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/validation20-full"
+          gh run download 42382127226 --repo comjung-star/AX-research \
+            --name ax-new20-blind-eval-and-inference \
+            --dir "$RUNNER_TEMP/validation20-full"
+          test -f "$RUNNER_TEMP/validation20-full/generate_status.json"
+          test -d "$RUNNER_TEMP/validation20-full/api/results"
+      - name: Install frozen Python environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==2.4.5 transformers==5.12.0 sentence-transformers==5.7.0
+          python -m pip install kiwipiepy rank-bm25 pyyaml huggingface-hub
+          python -m pip install -e .
+      - name: Download BGE-M3 with original checkpoint
+        run: |
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          import os
+          snapshot_download(repo_id="BAAI/bge-m3",
+             local_dir=os.path.join(os.environ["RUNNER_TEMP"],"bge-m3"),
+             allow_patterns=["*.json","*.bin","*.txt","*.model","*.bpe","*.md"])
+          PY
+      - name: Run new20 true BGE-M3 C/E inference without API re-generation
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_full_run.py infer "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/validation20-full"
+      - name: Blindly judge all 2240 new20 pairs with total $2 cap
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_full_run.py judge "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/validation20-full"
+      - name: Compare E I2 I3 on 20 new questions
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_full_run.py evaluate "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/validation20-full"
+      - name: Preserve final outputs and full input provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-new20-resume-real-validation
+          path: |
+            ${{ runner.temp }}/validation20-full/run_policy.json
+            ${{ runner.temp }}/validation20-full/generate_status.json
+            ${{ runner.temp }}/validation20-full/infer_status.json
+            ${{ runner.temp }}/validation20-full/judge_status.json
+            ${{ runner.temp }}/validation20-full/evaluation_status.json
+            ${{ runner.temp }}/validation20-full/predictions_new20.json
+            ${{ runner.temp }}/validation20-full/validated_metrics.json
+            ${{ runner.temp }}/validation20-full/prediction_seal.json
+            ${{ runner.temp }}/validation20-full/api_ledger.json
+            ${{ runner.temp }}/validation20-full/labels.json
+            ${{ runner.temp }}/validation20-full/api/
+          if-no-files-found: warn
+          retention-days: 90
