@@ -1,6 +1,5 @@
 """Render source-limited new-Dev findings without selecting favorable runs."""
 import json
-from collections import Counter
 from statistics import mean
 
 from ax_research.heldout import read
@@ -39,9 +38,10 @@ def main():
                      for k in ('F1@5', 'nDCG@10'))
     text = ['# 핵심 업무 보존형 고정 3관점 개발 실험', '', '2026-11-07', '',
             '## 1. 진행 결과', '',
-            '1단계에서 추출 필드와 E 프롬프트를 먼저 고정했다. 그 뒤 새 개발 질문8개를 작성하고 질문·판정 기준·모델 해시를 동결했다. 2단계에서 추출→관점 생성 연결을 구현했고, 3단계에서 A·B·C·E를 모두 새 질문으로 실행해 봉인했다. 4단계에서는 별도 관련성·품질 판정으로 같은 출력들을 평가했다.',
+            '1~3단계의 설계·구현·추천 실행은 완료했다. 추출 필드와 E 프롬프트를 먼저 고정한 뒤 새 개발 질문8개를 작성하고 질문·판정 기준·모델 해시를 동결했다. A·B·C·E를 모두 새 질문으로 실행해 봉인했다. 4단계는 부분 완료다. 29개 미판정과 품질 검토 기준의 불일치가 남아 최종 채택 근거를 확정하지 않았다.',
             '', '신규 질문은 기존112사례 목록을 확인한 같은 AI가 작성했다. 기존 개발 성능과 이번 성능은 질문·정답이 달라 직접 비교하지 않는다. 과거 독립 Test 파일은 이번 생성·추론·평가의 입력으로 사용하지 않았다. 작성자는 이전 연구 대화의 맥락을 알고 있어 외부 독립 작성자 수준의 독립성을 주장할 수 없다.',
             '', '추출응답 한 건이 미상 필드를 객체 대신 null로 반환해 초기 파서가 멈췄다. 같은 수신 응답을 다시 읽도록 파서만 수정해 이어갔다. 모델 응답과 정보 누락을 보존했고 유료 재호출은0회였다. [수신 복구 기록](parser_recovery.json)', '',
+            '관련도 응답 중 일부 사례만 반환한 요청이 있었다. 반환된 항목의 ID·형식·원문 인용을 확인하고 빠진 항목은 UNJUDGED로 남겼다. 원문 응답과 비용을 보존했고 재호출은 하지 않았다. 해당 질문은 전체 Recall·F1·nDCG의 공통 비교에서 제외되며, 질문별 계산 가능한 Precision은 별도 파일에 남는다. 누락 기록은 `judge_*_partial_response.json`에 있다.', '',
             '## 2. A·B·C·E 추천 성능', '',
             '| 조건 | F1@5 | F1@10 | F1@20 | nDCG@5 | nDCG@10 |',
             '|---|---:|---:|---:|---:|---:|']
@@ -59,8 +59,8 @@ def main():
         text.append(f'| {c} | '+' | '.join(
             f"{pct(macro[c,m]['mean'])} (n={macro[c,m]['n']})"
             for m in ('Precision@5', 'Recall@5', 'Precision@10', 'Recall@10', 'Precision@20', 'Recall@20'))+' |')
-    text += ['', '| 질문 | 판정 /112 | 보류 | 알려진 관련 사례 | A F1@5 | B | C | E |',
-             '|---|---:|---:|---:|---:|---:|---:|---:|']
+    text += ['', '| 질문 | 판정 /112 | 보류 | 미판정 | 알려진 관련 사례 | A F1@5 | B | C | E |',
+             '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
     qmeans = {}
     for q, rs in meta.items():
         cells = []
@@ -71,6 +71,7 @@ def main():
             cells.append(pct(qmeans[c, q]))
         text.append(f"| {q} | {sum(r['status']=='JUDGED' for r in rs)} | "
                     f"{sum(r['status']=='ABSTAIN' for r in rs)} | "
+                    f"{sum(r['status']=='UNJUDGED' for r in rs)} | "
                     f"{sum(r['grade'] is not None and r['grade']>=2 for r in rs)} | "+' | '.join(cells)+' |')
     text += ['', '## 3. 기존 고정 C 대비 효과', '',
              ('두 주 지표의 평균에서 E가 C보다 높았다.' if successful
@@ -84,7 +85,14 @@ def main():
             lo, hi = row['paired_question_bootstrap95']
             text.append(f"| E−{baseline} | {metric} | {delta(row['mean_E_minus_baseline'])} | {delta(lo)} ~ {delta(hi)} |")
     text += ['', '신뢰구간은 같은 질문의 세 회차를 먼저 평균한 뒤 질문을 짝지어1만번 재표집했다. 이 작은 AI-Silver 표본에 조건부인 구간이며, 표본8개나 같은 모델 반복을 큰 독립 표본으로 바꾸지는 않는다.',
+             '', '| 미판정까지 고려한 전체8질문 비교 | F1@5 차이 하한 | 상한 |',
+             '|---|---:|---:|']
+    for r in data['incomplete_f1_difference_bounds']:
+        if r['metric'] == 'F1@5':
+            text.append(f"| E−{r['baseline']} | {delta(r['lower'])} | {delta(r['upper'])} |")
+    text += ['', '이 범위는 빠진 판정이 관련 또는 무관일 수 있는 모든 경우를 고려한 수학적 경계다. 점수를 채운 결과나 신뢰구간은 아니다. 질문별 세 회차를 먼저 평균했고 모든8개 질문을 유지한다. 완전 판정 질문의 평균만으로 전체 질문의 개선을 확정하지 않는다.',
              '', '## 5. 핵심 업무 보존과 관점 기여', '',
+             '아래는 검토 AI의 원점수다. 원문 대조에서 세 관점 전체의 보존 기준을 일부 적용하지 않은 반례와, 사람에게 권한을 둔 문장을 두 작업을 실행한다는 주장으로 오해한 반례를 확인했다. 이 평균과 근거 밖 내용 지적 횟수로 보존 개선이나 환각 해소를 입증할 수 없다. 점수는 수정하지 않았고 [검토 신뢰성 기록](quality_validation.json)에 근거를 남겼다.', '',
              '| 조건 | 목적 평균/2 | 행동 | 대상 | 결과 | 제약 | 역할 구분 | 근거 밖 내용 지적 응답 |',
              '|---|---:|---:|---:|---:|---:|---:|---:|']
     for r in quality['summary']:
@@ -148,13 +156,26 @@ def main():
             text.append(f"- {q} F1@5의 E−C 차이는 {delta(b-a)}였다.")
     if not changed_queries:
         text.append('평가 가능한 질문의 F1@5는 C와 E에서 같았다.')
+    text += ['', 'F1@5의 C 대비 평균 개선은 평가 가능한6질문 중 CPD03·CPD04의2질문에 집중됐다. [사례 점수 추적](case_traces.json)에서 다음을 확인했다.',
+             '', '- CPD03의 결제 문의 답변 사례는 C35위에서 E2위로 이동했다. C의 규칙 강도1이 E에서4가 됐고 의미 점수는0.4447→0.4609였다. E 제목의 ‘문의 응대’가 기존 답변 규칙에 잡혔다. 의미 보존 전체가 좋아졌다는 증명과 구분해야 한다.',
+             '- CPD04 관련 사례는6위→5위로 진입했다. 규칙 강도는3으로 같고 의미 점수0.5895→0.5979의 작은 차이와 다른 사례의 상대 점수 변화가 순위에 반영됐다.',
+             '- CPD06의 가격 검증 관련 사례는18위→21위로 이탈했다. 규칙 강도는 모두0이고 의미 점수는0.4857→0.4811이었다. 관점 문장이 바뀌면서 기존에 찾던 사례도 밀려날 수 있다.',
+             '', 'CPD04 기술 관점에서 기존 규칙이 요약의 대상을 ‘회의’로 잡은 기록도 있다. 핵심 기능 ID 인식률은 목적어·실제 산출물까지 정확히 연결했다는 검증이 아니다. E는 C보다 목적·행동의 검토 원점수가 낮은 항목도 있어 보존 품질 전체의 개선을 확정하지 않았다.']
+    text += ['', '| 조건 | Top-5 반복 순위 겹침 | Top-10 | Top-20 | 원문 인용 불일치 관점 |',
+             '|---|---:|---:|---:|---:|']
+    for c in 'BCE':
+        values = [mean(r['topk_jaccard'] for r in discovery['ranking_stability']
+                       if r['condition']==c and r['k']==k) for k in (5,10,20)]
+        quotes = [r for r in quality['view_source_quote_checks'] if r['condition']==c]
+        text.append(f'| {c} | '+' | '.join(pct(v) for v in values)+
+                    f" | {sum(not r['source_quote_literal'] for r in quotes)}/{len(quotes)} |")
+    text += ['', '순위 겹침은 같은 질문의 세 회차를 두 회차씩 짝지어 계산한 집합 Jaccard 평균이다. 높을수록 같은 사례를 반복해서 찾는다. 같은 잘못된 사례를 찾는 경우도 있어 정확도와 함께 해석한다. 인용 불일치는 출력에 그대로 남겼고 자동 수정이나 재생성에 사용하지 않았다.']
     text += ['', '질문을 하나씩 제외한 결과와 사례별 규칙·의미 점수는 결과 파일에 보존했다. 좋은 질문만 빼거나 나쁜 질문의 정답을 고쳐 주 결과를 만들지 않았다. 핵심 보존 지시와 추가 구조화·토큰이 함께 달라진 E 전체의 효과를 비교했으며 추출 단계만의 독립 효과는 분리하지 않았다.',
              '', '## 8. 신뢰성과 한계', '',
              f"896개 판정 상태는 {data['label_counts']}다. 질문·정답과 품질 평가는 같은 AI 계열에 의존하며 사람 Gold 검증은 수행하지 않았다. 질문은 코퍼스의 업무 목록을 참고해 작성한 개발 자료다. 실제 독립 업무 전체에 대한 일반화나 큰 표본의 유의성을 주장하기 어렵다.",
-             '', '세 회차 모두와 보류·무양성 질문을 보존했다. 지표 분모와 정의 불가 이유는 질문별 결과에 있다. 실제 업무 인계·권한·부정 표현의 오류 여부는 수치와 함께 원문을 다시 확인할 필요가 있다.',
+             '', '세 회차 모두와 미판정 질문을 보존했다. 보류·무양성 처리 규칙은 인공 자료 검사로 확인했다. 지표 분모와 정의 불가 이유는 질문별 결과에 있다. 실제 업무 인계·권한·부정 표현의 오류 여부는 수치와 함께 원문을 다시 확인할 필요가 있다.',
              '', '## 9. 다음 독립 Test 권고', '',
-             ('E를 후속 독립 검증의 후보로 검토할 수 있으나 최종 논문 모델 채택은 독립 질문과 판정 검증 뒤에 판단해야 한다.'
-              if successful else '최종 논문 모델로 E를 채택할 근거는 아직 부족하다. 별도 개발 자료에서 핵심 보존과 실제 검색 기능 연결을 먼저 확인하는 편이 적절하다.'),
+             'E는 이번 평가 가능한 개발 표본에서 검색 성능이 개선된 후보다. 최종 논문 모델 채택 근거는 부족하다. 미판정29개와 품질 검토 기준의 불일치를 먼저 해결하고, 사람 또는 다른 독립 검토자로 원문 보존과 기능 연결을 확인한 뒤 프롬프트를 동결해 신규 독립 Test 진행 여부를 결정하는 편이 적절하다.',
              '', '신규 독립 Test 실행은 이번 범위에 포함하지 않았다.',
              '', '## 10. GitHub와 비용', '',
              '- 브랜치 `research/core-preserved-three-views-20261107`',
@@ -170,6 +191,9 @@ def main():
         text.append(f"| {kind} | {len(subset)} | ${amount} |")
     text += ['', 'E의 실제 생성 비용에는 X 추출 비용도 더해야 한다. 원문 A는 추가 LLM 호출을 사용하지 않았다. 키는 환경 설정에서 읽고 결과에는 기록하지 않았다. 모든 원문 모델 응답·호출별 사용량·해시와 추론·평가 봉인을 보존했다.',
              '', '단계별 실행은 `core_preservation_run prepare / generate / infer / judge`, `core_preservation_quality`, `core_preservation_evaluate`, `core_preservation_report` 순서다. infer에 새 scratch 경로를 지정한다. 기존 실험 결과가 있으면 다시 쓰기를 거부한다. 재현에는 보존한 API 응답과 모델 해시를 사용하며 동일 API를 다시 호출할 필요는 없다.', '']
+    tests = read(out/'tests.json')
+    text += [f"자동 검사 {tests['passed']}개 통과. [실행 기록](tests.json) · [실행 방법](REPRODUCE.md) · [완료 상태](final_status.json) · [원본 보존 검사](preservation_check.json) · [비밀정보 검사](secret_scan.json)",
+             '', '핵심 결론은 개발 자료의 검색 개선 신호가 있다는 것이다. 핵심 업무 보존 자체의 개선은 아직 입증되지 않았고 반복 안정성은 C보다 낮았다. 최종 논문 모델로 채택할 근거를 확정하는 단계는 남아 있다.', '']
     (out/'README.md').write_text('\n'.join(text),encoding='utf-8',newline='\n')
     return {'conclusions':conclusion,'improves_C_on_both_means':successful,
             'changed_queries':changed_queries,'role_contributions':role_stats,

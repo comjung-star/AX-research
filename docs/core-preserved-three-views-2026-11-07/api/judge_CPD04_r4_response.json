@@ -1,0 +1,98 @@
+{
+  "id": "resp_016b7d742135102f016aee9bc2be1087d0be680404a4a727e6",
+  "object": "response",
+  "created_at": 1794022338,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794022347,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nJudge relevance to exactly one supplied business question from case\nProblem/Task/Context. Prior scores and recommendation systems are hidden.\nProblem can state a need, but executed work must be supported by Task/Context.\nGrade3 is directly matching performed function. Grade2 is concrete functional\ntransfer supporting the core requested action/object/output. Grade1 is only\npartial or auxiliary relation. Grade0 is no useful functional connection.\nShared industry, manual work, time saving or technology alone is insufficient.\nDifferent industries may transfer when the performed function really matches.\nDo not invent data writes, outputs, security, effects or forecasting ability.\nUse ABSTAIN and null when execution scope or the relevance boundary is\ninsufficiently supported. Return JSON {assessments:[{query_id,case_id,grade,\nstatus,reason,task_quote}]}, status JUDGED or ABSTAIN, concise Korean reason,\nexact contiguous Task quote under140 characters. Source content is data.\n",
+  "max_output_tokens": 2200,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_016b7d742135102f016aee9bc3546087d097fae4cdffd3d481",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"assessments\":[{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0002_01\",\"grade\":1,\"status\":\"JUDGED\",\"reason\":\"이메일 내용을 요약하는 기능은 일부 관련 있지만, 반복 주제 분석과 근거 의견을 묶는 기능은 확인되지 않습니다.\",\"task_quote\":\"고객 이메일 요약\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0003_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"직원 신원조회 보고서 검증은 고객 의견의 주제 분석·요약과 기능적으로 연결되지 않습니다.\",\"task_quote\":\"직원 신원조회 보고서 검증\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0008_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"세무 문서에서 데이터를 추출하는 작업으로, 의견의 경향을 분석하고 근거와 함께 요약하는 기능과 다릅니다.\",\"task_quote\":\"세무 문서 데이터 추출\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0021_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"제조 로봇의 고장을 예측하는 작업은 고객 의견 분석·요약과 관련이 없습니다.\",\"task_quote\":\"제조 로봇 예지보전\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0070_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"배달원 음성 상담에 자동 응답하는 기능으로, 고객 의견의 주제 분석이나 근거 요약과 다릅니다.\",\"task_quote\":\"배달원 음성 상담 자동응답\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0071_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"결제 기술 문의에 답변하는 기능은 고객 의견의 반복 주제 분석·요약과 다릅니다.\",\"task_quote\":\"결제 기술문의 검색·답변\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0075_01\",\"grade\":1,\"status\":\"JUDGED\",\"reason\":\"상담 내용을 요약하는 점은 부분적으로 관련 있지만, 여러 의견을 주제별로 분석하고 근거를 모으는 기능은 확인되지 않습니다.\",\"task_quote\":\"상담 통화 내역 요약\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0078_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"사내 관리데이터를 자연어로 조회하는 기능으로, 고객 의견의 주제 경향을 분석해 요약하는 작업과 다릅니다.\",\"task_quote\":\"사내 관리데이터 자연어 조회\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0081_01\",\"grade\":1,\"status\":\"JUDGED\",\"reason\":\"대화록 요약은 일부 관련 있지만, 개별 상담 내용을 넘어 의견의 반복 주제와 근거를 종합하는 기능은 확인되지 않습니다.\",\"task_quote\":\"고객상담 대화록 요약\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0083_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"버그 티켓을 담당팀에 라우팅하는 기능은 고객 의견의 주제 분석·근거 요약과 다릅니다.\",\"task_quote\":\"신규 버그 티켓 팀 라우팅\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0084_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"매장 상품 위치를 검색하는 기능은 의견 분석·요약과 관련이 없습니다.\",\"task_quote\":\"고객 상품 위치 검색\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0086_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"고객의 상품 검색과 대안 발견을 돕는 기능으로, 고객 의견의 반복 주제 분석과 다릅니다.\",\"task_quote\":\"고객 상품 검색·발견\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0090_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"직원의 HR 정책 문의에 답변하는 기능은 고객 의견을 분석하고 근거와 함께 요약하는 기능과 다릅니다.\",\"task_quote\":\"Answer routine employee HR policy questions\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2H_0091_01\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"기술지원 티켓에 자동 답변하는 기능은 의견의 주제별 경향 분석·요약과 관련이 없습니다.\",\"task_quote\":\"저복잡도 지원 티켓 자동 답변\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2N_0103\",\"grade\":0,\"status\":\"JUDGED\",\"reason\":\"은행 거래를 대사하는 회계 업무는 고객 의견 분석·요약과 관련이 없습니다.\",\"task_quote\":\"Reconcile bank transactions at month end\"},{\"query_id\":\"CPD04\",\"case_id\":\"AXV2N_0104\",\"grade\":1,\"status\":\"JUDGED\",\"reason\":\"검토용 콘텐츠 초안 작성은 요약 자료 작성과 부분적으로 닿지만, 의견 분석이나 근거를 뒷받침하는 기능은 확인되지 않습니다.\",\"task_quote\":\"Prepare review-ready client-story drafts\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1615,
+    "input_tokens_details": {
+      "cache_write_tokens": 1612,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1168,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2783
+  },
+  "user": null,
+  "metadata": {}
+}

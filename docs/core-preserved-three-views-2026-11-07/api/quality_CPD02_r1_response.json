@@ -1,0 +1,98 @@
+{
+  "id": "resp_05a0cd01fde0c0b0016aee9de475d487d0b0c2bfc3c9fc4d4e",
+  "object": "response",
+  "created_at": 1794022884,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794022892,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nAssess generated perspectives against the original business problem only.\nCandidate IDs hide generation method. Do not infer quality from length or\nformat. For each candidate, inspect the union of all three views and return\npurpose, action, object, output, constraints and role_distinction, each0/1/2\n(0=changed/absent or merged roles,1=partial,2=preserved or clearly differentiated).\nFor constraints, preserve permission, condition, negation and priority strength.\nDistinguish looking up from changing records and present detection from future\nprediction. role_distinction asks whether BUSINESS purpose, OPERATIONS flow/\nconditions and TECHNICAL input/function/output are differentiated.\nAlso return unsupported_quotes, exact contiguous substrings of the candidate\ntitle/description asserting something unsupported or contradicted by source,\nand concise Korean reason. No expected answer, retrieval result or model name\nis provided. Return JSON {assessments:[{id,purpose,action,object,output,\nconstraints,role_distinction,unsupported_quotes,reason}]} for all9 IDs.\nThis audit is a source judgment, not a human Gold or a generation instruction.\n",
+  "max_output_tokens": 3000,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_05a0cd01fde0c0b0016aee9de4f64887d0845085b5c390ce12",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"assessments\":[{\"id\":\"G1\",\"purpose\":2,\"action\":2,\"object\":2,\"output\":2,\"constraints\":1,\"role_distinction\":2,\"unsupported_quotes\":[\"최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 둔다.\"],\"reason\":\"목적·입력·초안·검토 흐름과 기술 기능이 잘 구분되어 있습니다. 원문은 전송 또는 승인 권한을 사람에게 둔다고 했지만, 운영 설명은 두 권한을 모두 수행한다고 단정합니다.\"},{\"id\":\"G2\",\"purpose\":2,\"action\":2,\"object\":2,\"output\":2,\"constraints\":2,\"role_distinction\":2,\"unsupported_quotes\":[],\"reason\":\"초안 작성 부담 경감이라는 목적, 사양·수량 입력, 검토 흐름, 사람의 최종 권한이 보존되고 세 관점도 구분됩니다.\"},{\"id\":\"G3\",\"purpose\":1,\"action\":2,\"object\":2,\"output\":2,\"constraints\":2,\"role_distinction\":2,\"unsupported_quotes\":[],\"reason\":\"요청 사양·수량을 반영한 초안과 검토 및 사람 권한은 보존됩니다. 다만 영업 담당자의 처음부터 문안을 작성하는 부담을 줄인다는 목적이 명시적으로 드러나지 않습니다.\"},{\"id\":\"G4\",\"purpose\":1,\"action\":1,\"object\":2,\"output\":1,\"constraints\":2,\"role_distinction\":0,\"unsupported_quotes\":[\"고객 사양의 견적 반영\",\"주문 수량의 견적 반영\"],\"reason\":\"사양·수량 반영과 사람의 검토·권한은 다루지만, 견적 초안 작성 지원이라는 목적과 역할별 관점이 세 문제 항목으로 분리되어 구별되지 않습니다. ‘견적 반영’은 견적서 초안에 반영한다는 원문보다 대상이 모호합니다.\"},{\"id\":\"G5\",\"purpose\":2,\"action\":2,\"object\":2,\"output\":2,\"constraints\":1,\"role_distinction\":2,\"unsupported_quotes\":[\"최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 있다.\"],\"reason\":\"목적, 초안 생성, 입력, 검토 및 기술 기능은 대체로 보존되고 관점도 구별됩니다. 다만 운영 설명이 전송과 승인을 모두 사람이 수행한다고 단정해 원문의 ‘또는’ 범위를 바꿉니다.\"},{\"id\":\"G6\",\"purpose\":1,\"action\":1,\"object\":2,\"output\":1,\"constraints\":2,\"role_distinction\":0,\"unsupported_quotes\":[],\"reason\":\"요청 내용 반영, 담당자 검토, 사람의 최종 권한은 보존되지만 초안 작성 지원이라는 목적과 역할별 구분 대신 문제 항목만 나열되어 있습니다.\"},{\"id\":\"G7\",\"purpose\":1,\"action\":1,\"object\":2,\"output\":1,\"constraints\":2,\"role_distinction\":0,\"unsupported_quotes\":[\"정확히 반영되어야\"],\"reason\":\"사양·수량, 담당자의 검토, 사람의 최종 권한은 담겼으나 목적과 세 역할의 구분은 없습니다. ‘정확히’라는 추가 품질 조건은 원문에 없습니다.\"},{\"id\":\"G8\",\"purpose\":2,\"action\":2,\"object\":2,\"output\":2,\"constraints\":2,\"role_distinction\":2,\"unsupported_quotes\":[],\"reason\":\"견적 초안 작성 지원 목적, 요청 정보 입력, 담당자의 가격·납기 검토, 사람의 최종 권한이 보존되며 세 관점의 역할도 구별됩니다.\"},{\"id\":\"G9\",\"purpose\":2,\"action\":2,\"object\":2,\"output\":2,\"constraints\":1,\"role_distinction\":2,\"unsupported_quotes\":[\"최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 둡니다.\"],\"reason\":\"목적·초안·입력·검토 흐름과 관점 구분은 좋습니다. 다만 운영 설명은 사람에게 두는 두 권한을 모두 수행한다고 단정해 원문의 ‘또는’ 조건을 바꿉니다.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 2452,
+    "input_tokens_details": {
+      "cache_write_tokens": 2449,
+      "cached_tokens": 0
+    },
+    "output_tokens": 911,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 3363
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -256,7 +256,43 @@ def judge():
                                'Task': cases[c]['task'], 'Context': cases[c]['context']}
                               for c in ids[start:start+16]],
                 }
-                result = api.call('judge', q['query_id'], start//16+1)
+                repeat = start//16+1
+                stem = f"judge_{q['query_id']}_r{repeat}"
+                receipt_path = OUT/'api/attempts'/(stem+'.json')
+                target = OUT/'api/results'/(stem+'.json')
+                if receipt_path.exists() and not target.exists():
+                    # Preserve a received, structurally valid strict subset. No
+                    # missing label is guessed and no extra request is made.
+                    receipt = read(receipt_path)
+                    raw = read(OUT/'api'/(stem+'_response.json'))
+                    assert receipt['state'] == 'RECEIVED' and raw['status'] == 'completed'
+                    assert receipt['request_sha256'] == api.digest(body('judge', q['query_id'], repeat))
+                    data = json.loads(''.join(c.get('text', '') for x in raw['output']
+                                             for c in x.get('content', []) if c.get('type') == 'output_text'))
+                    expected = {c['case_id']: c for c in ACTIVE_JUDGE_PAYLOAD['cases']}
+                    rows = data['assessments']
+                    found = {r['case_id'] for r in rows}
+                    assert 0 < len(rows) == len(found) < len(expected) and found < set(expected)
+                    full_payload = ACTIVE_JUDGE_PAYLOAD
+                    try:
+                        for row in rows:
+                            ACTIVE_JUDGE_PAYLOAD = {**full_payload, 'cases': [expected[row['case_id']]]}
+                            REVIEW_VALIDATOR('review', q['query_id'], {'assessments': [row]})
+                    finally:
+                        ACTIVE_JUDGE_PAYLOAD = full_payload
+                    missing = sorted(set(expected)-found)
+                    audit = OUT/(stem+'_partial_response.json')
+                    if not audit.exists():
+                        write(audit, {'response_sha256': sha(OUT/'api'/(stem+'_response.json')),
+                                      'received_count': len(rows), 'expected_count': len(expected),
+                                      'missing_ids': missing, 'paid_retry_count': 0,
+                                      'missing_status': 'UNJUDGED', 'raw_response_unchanged': True})
+                    result = {'data': {'assessments': rows+[
+                        {'query_id': q['query_id'], 'case_id': c, 'grade': None,
+                         'status': 'UNJUDGED', 'reason': 'API 응답에서 항목 누락. 재판정하지 않음.',
+                         'task_quote': ''} for c in missing]}}
+                else:
+                    result = api.call('judge', q['query_id'], repeat)
                 results.extend(result['data']['assessments'])
         write(OUT/'labels.json', {'records': [
             {'query_id': r['query_id'], 'case_id': r['case_id'], 'grade': r['grade'],

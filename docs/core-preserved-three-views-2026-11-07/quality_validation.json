@@ -1,0 +1,420 @@
+{
+  "status": "NOT_VALIDATED_FOR_PRESERVATION_EFFECT_CLAIMS",
+  "reviewer": "same assistant source inspection, not human Gold",
+  "examples": [
+    {
+      "query_id": "CPD01",
+      "condition": "E",
+      "repeat": 2,
+      "issue": "Rubric says union of all three views. Reviewer penalizes OPERATIONS/TECHNICAL omissions although BUSINESS states price/unsupported-performance exclusions.",
+      "original": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다. 설명에 실제로 적힌 속성을 추출하고 품목별 항목에 나누어 검토용 표로 보여주고 싶습니다. 빠진 속성은 미상으로 남기며 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+      "raw_assessment": {
+        "query_id": "CPD01",
+        "id": "G8",
+        "purpose": 2,
+        "action": 2,
+        "object": 2,
+        "output": 2,
+        "constraints": 1,
+        "role_distinction": 2,
+        "unsupported_quotes": [],
+        "reason": "판매팀 목적과 속성 추출·품목별 표는 보존되고 역할도 구분됩니다. 운영·기술 관점에는 미상 처리가 있으나 가격 변경 및 미확인 성능 추가 금지가 제약으로 빠졌습니다.",
+        "unsupported_quotes_literal": [],
+        "condition": "E",
+        "repeat": 2
+      },
+      "views": [
+        {
+          "condition": "E",
+          "repeat": 2,
+          "query_id": "CPD01",
+          "path_id": "E_CPD01_r2_1",
+          "id": "BUSINESS",
+          "status": "PRESENT",
+          "title": "상품 속성 검토표 마련",
+          "description": "온라인 생활용품 판매팀은 공급사가 보낸 상품 설명에 실제로 적힌 재질, 크기, 색상과 관리 방법을 품목별로 검토할 표를 원합니다. 판매 가격을 바꾸거나 공급사에 확인되지 않은 성능을 덧붙이지 않습니다.",
+          "keywords": [
+            "온라인 생활용품 판매팀",
+            "상품 속성",
+            "검토용 표",
+            "판매 가격"
+          ],
+          "source_quote": "품목별 항목에 나누어 검토용 표로 보여주고 싶습니다."
+        },
+        {
+          "condition": "E",
+          "repeat": 2,
+          "query_id": "CPD01",
+          "path_id": "E_CPD01_r2_2",
+          "id": "OPERATIONS",
+          "status": "PRESENT",
+          "title": "설명을 읽고 속성을 나누어 표시",
+          "description": "상품 설명을 다시 읽고 실제로 적힌 속성을 추출해 품목별 항목으로 나누어 검토용 표로 보여줍니다. 빠진 속성은 미상으로 남깁니다.",
+          "keywords": [
+            "다시 읽기",
+            "속성 추출",
+            "품목별 항목",
+            "미상"
+          ],
+          "source_quote": "빠진 속성은 미상으로 남기며"
+        },
+        {
+          "condition": "E",
+          "repeat": 2,
+          "query_id": "CPD01",
+          "path_id": "E_CPD01_r2_3",
+          "id": "TECHNICAL",
+          "status": "PRESENT",
+          "title": "상품 설명에서 속성 추출",
+          "description": "입력은 공급사가 보낸 상품 설명입니다. 설명에 실제로 적힌 재질, 크기, 색상과 관리 방법 등의 속성을 추출하고 품목별 항목으로 나누어 검토용 표로 보여줍니다. 빠진 속성은 미상으로 남깁니다.",
+          "keywords": [
+            "공급사 상품 설명",
+            "재질",
+            "크기",
+            "색상",
+            "관리 방법",
+            "검토용 표"
+          ],
+          "source_quote": "공급사가 보낸 상품 설명에서 재질, 크기, 색상과 관리 방법을 다시 읽어 목록을 만듭니다."
+        }
+      ]
+    },
+    {
+      "query_id": "CPD02",
+      "condition": "C",
+      "repeat": 2,
+      "issue": "Human reservation of permission is not a claim that both actions are executed. Unsupported-action allegation does not follow from the quoted sentence.",
+      "original": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "raw_assessment": {
+        "query_id": "CPD02",
+        "id": "G1",
+        "purpose": 2,
+        "action": 2,
+        "object": 2,
+        "output": 2,
+        "constraints": 1,
+        "role_distinction": 2,
+        "unsupported_quotes": [
+          "최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 둔다."
+        ],
+        "reason": "목적·입력·초안·검토 흐름과 기술 기능이 잘 구분되어 있습니다. 원문은 전송 또는 승인 권한을 사람에게 둔다고 했지만, 운영 설명은 두 권한을 모두 수행한다고 단정합니다.",
+        "unsupported_quotes_literal": [
+          true
+        ],
+        "condition": "C",
+        "repeat": 2
+      },
+      "views": [
+        {
+          "condition": "C",
+          "repeat": 2,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r2_1",
+          "id": "BUSINESS",
+          "status": "PRESENT",
+          "title": "견적서 초안 작성 지원",
+          "description": "주문형 금속 가공업체의 영업 담당자가 고객이 보낸 부품 사양과 수량을 반영한 견적서 초안을 만들어 가격과 납기를 검토할 수 있도록 한다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둔다.",
+          "keywords": [
+            "영업 담당자",
+            "부품 사양",
+            "수량",
+            "견적서 초안",
+            "가격 검토",
+            "납기 검토",
+            "최종 견적 전송",
+            "계약 승인"
+          ],
+          "source_quote": "요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 2,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r2_2",
+          "id": "OPERATIONS",
+          "status": "PRESENT",
+          "title": "담당자 검토와 승인 권한 유지",
+          "description": "고객이 보낸 부품 사양과 수량을 바탕으로 견적서 초안을 만들고, 담당자가 가격과 납기를 검토한다. 고객에게 최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 둔다.",
+          "keywords": [
+            "고객 요청",
+            "초안 작성",
+            "담당자 검토",
+            "최종 견적 전송",
+            "계약 승인",
+            "사람의 권한"
+          ],
+          "source_quote": "고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 2,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r2_3",
+          "id": "TECHNICAL",
+          "status": "PRESENT",
+          "title": "사양·수량 반영 견적서 초안 생성",
+          "description": "고객이 보낸 부품 사양과 수량을 입력으로 받아 이를 반영한 견적서 초안을 만든다. 초안은 담당자가 가격과 납기를 검토하기 위한 것이며, 최종 견적 전송과 계약 승인은 사람의 권한이다.",
+          "keywords": [
+            "부품 사양",
+            "수량",
+            "견적서 초안",
+            "가격",
+            "납기",
+            "사람의 최종 권한"
+          ],
+          "source_quote": "고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다."
+        }
+      ]
+    },
+    {
+      "query_id": "CPD02",
+      "condition": "C",
+      "repeat": 1,
+      "issue": "Human reservation of permission is not a claim that both actions are executed. Unsupported-action allegation does not follow from the quoted sentence.",
+      "original": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "raw_assessment": {
+        "query_id": "CPD02",
+        "id": "G5",
+        "purpose": 2,
+        "action": 2,
+        "object": 2,
+        "output": 2,
+        "constraints": 1,
+        "role_distinction": 2,
+        "unsupported_quotes": [
+          "최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 있다."
+        ],
+        "reason": "목적, 초안 생성, 입력, 검토 및 기술 기능은 대체로 보존되고 관점도 구별됩니다. 다만 운영 설명이 전송과 승인을 모두 사람이 수행한다고 단정해 원문의 ‘또는’ 범위를 바꿉니다.",
+        "unsupported_quotes_literal": [
+          true
+        ],
+        "condition": "C",
+        "repeat": 1
+      },
+      "views": [
+        {
+          "condition": "C",
+          "repeat": 1,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r1_1",
+          "id": "BUSINESS",
+          "status": "PRESENT",
+          "title": "견적서 초안 작성 지원",
+          "description": "주문형 금속 가공업체의 영업 담당자가 고객이 보낸 부품 사양과 수량을 반영한 견적서 초안을 만들어 가격과 납기를 검토할 수 있도록 한다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둔다.",
+          "keywords": [
+            "영업 담당자",
+            "주문형 금속 가공",
+            "견적서 초안",
+            "가격 검토",
+            "납기 검토",
+            "최종 견적 전송",
+            "계약 승인"
+          ],
+          "source_quote": "요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 1,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r1_2",
+          "id": "OPERATIONS",
+          "status": "PRESENT",
+          "title": "담당자의 검토와 승인",
+          "description": "담당자가 견적서 초안의 가격과 납기를 검토한다. 고객에게 최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 있다.",
+          "keywords": [
+            "담당자 검토",
+            "가격",
+            "납기",
+            "최종 견적 전송",
+            "계약 승인",
+            "사람"
+          ],
+          "source_quote": "고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 1,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r1_3",
+          "id": "TECHNICAL",
+          "status": "PRESENT",
+          "title": "사양·수량 기반 견적서 초안",
+          "description": "고객이 보낸 부품 사양과 수량을 읽고, 이를 반영한 견적서 초안을 만든다.",
+          "keywords": [
+            "부품 사양",
+            "수량",
+            "견적서 초안",
+            "읽기",
+            "반영"
+          ],
+          "source_quote": "고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다."
+        }
+      ]
+    },
+    {
+      "query_id": "CPD02",
+      "condition": "C",
+      "repeat": 3,
+      "issue": "Human reservation of permission is not a claim that both actions are executed. Unsupported-action allegation does not follow from the quoted sentence.",
+      "original": "주문형 금속 가공업체의 영업 담당자는 고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다. 요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다.",
+      "raw_assessment": {
+        "query_id": "CPD02",
+        "id": "G9",
+        "purpose": 2,
+        "action": 2,
+        "object": 2,
+        "output": 2,
+        "constraints": 1,
+        "role_distinction": 2,
+        "unsupported_quotes": [
+          "최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 둡니다."
+        ],
+        "reason": "목적·초안·입력·검토 흐름과 관점 구분은 좋습니다. 다만 운영 설명은 사람에게 두는 두 권한을 모두 수행한다고 단정해 원문의 ‘또는’ 조건을 바꿉니다.",
+        "unsupported_quotes_literal": [
+          true
+        ],
+        "condition": "C",
+        "repeat": 3
+      },
+      "views": [
+        {
+          "condition": "C",
+          "repeat": 3,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r3_1",
+          "id": "BUSINESS",
+          "status": "PRESENT",
+          "title": "견적서 초안 작성 지원",
+          "description": "주문형 금속 가공업체의 영업 담당자가 고객이 보낸 부품 사양과 수량을 반영한 견적서 초안을 만들어 가격과 납기를 검토하도록 지원합니다. 고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 있습니다.",
+          "keywords": [
+            "영업 담당자",
+            "부품 사양",
+            "수량",
+            "견적서 초안",
+            "가격",
+            "납기",
+            "최종 견적",
+            "계약 승인"
+          ],
+          "source_quote": "요청 사양과 수량을 반영한 견적서 초안을 만들어 담당자가 가격과 납기를 검토하도록 하고 싶습니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 3,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r3_2",
+          "id": "OPERATIONS",
+          "status": "PRESENT",
+          "title": "담당자 검토와 최종 결정",
+          "description": "담당자가 견적서 초안의 가격과 납기를 검토합니다. 고객에게 최종 견적을 전송하고 계약을 승인하는 권한은 사람에게 둡니다.",
+          "keywords": [
+            "담당자 검토",
+            "가격",
+            "납기",
+            "최종 견적 전송",
+            "계약 승인",
+            "사람"
+          ],
+          "source_quote": "고객에게 최종 견적을 전송하거나 계약을 승인하는 권한은 사람에게 둡니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 3,
+          "query_id": "CPD02",
+          "path_id": "C_CPD02_r3_3",
+          "id": "TECHNICAL",
+          "status": "PRESENT",
+          "title": "사양·수량 반영 견적서 초안",
+          "description": "고객이 보낸 부품 사양과 수량을 읽어 이를 반영한 견적서 초안을 작성합니다.",
+          "keywords": [
+            "고객 요청",
+            "부품 사양",
+            "수량",
+            "견적서 초안"
+          ],
+          "source_quote": "고객이 보낸 부품 사양과 수량을 읽고 견적 문안을 처음부터 작성합니다."
+        }
+      ]
+    },
+    {
+      "query_id": "CPD04",
+      "condition": "C",
+      "repeat": 1,
+      "issue": "Rubric says union of all three views. BUSINESS preserves both exclusions, but reason penalizes absence in other views.",
+      "original": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다. 이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다. 개별 고객에게 답장을 보내거나 제품 개선의 효과를 예측하는 작업은 제외합니다.",
+      "raw_assessment": {
+        "query_id": "CPD04",
+        "id": "G5",
+        "purpose": 2,
+        "action": 2,
+        "object": 2,
+        "output": 2,
+        "constraints": 1,
+        "role_distinction": 2,
+        "unsupported_quotes": [],
+        "reason": "목적·대상·분석과 회의용 자료는 충실하고 역할도 구분됩니다. 제외 조건은 BUSINESS에만 명시되어 다른 관점의 통합만으로 볼 때 보존 강도가 다소 약합니다.",
+        "unsupported_quotes_literal": [],
+        "condition": "C",
+        "repeat": 1
+      },
+      "views": [
+        {
+          "condition": "C",
+          "repeat": 1,
+          "query_id": "CPD04",
+          "path_id": "C_CPD04_r1_1",
+          "id": "BUSINESS",
+          "status": "PRESENT",
+          "title": "주간 고객 의견 경향 요약",
+          "description": "서비스 기획팀이 이번 주 접수된 고객 의견의 주제별 경향을 분석하고, 각 경향을 뒷받침하는 의견과 함께 회의용 요약 자료를 만든다. 개별 고객 답장과 제품 개선 효과 예측은 제외한다.",
+          "keywords": [
+            "서비스 기획팀",
+            "고객 의견",
+            "주제별 경향",
+            "회의용 요약"
+          ],
+          "source_quote": "이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 1,
+          "query_id": "CPD04",
+          "path_id": "C_CPD04_r1_2",
+          "id": "OPERATIONS",
+          "status": "PRESENT",
+          "title": "매주 의견 검토 및 요약 자료 작성",
+          "description": "서비스 기획팀이 매주 접수된 고객 의견을 모두 읽고 반복해서 나오는 요구와 불편 주제를 정리한다. 이번 주 의견의 경향과 근거 의견을 요약해 회의에 사용한다.",
+          "keywords": [
+            "매주",
+            "접수된 의견",
+            "모두 읽기",
+            "주제 정리",
+            "회의"
+          ],
+          "source_quote": "서비스 기획팀이 매주 접수한 고객 의견을 모두 읽어 반복해서 나오는 요구와 불편 주제를 정리합니다."
+        },
+        {
+          "condition": "C",
+          "repeat": 1,
+          "query_id": "CPD04",
+          "path_id": "C_CPD04_r1_3",
+          "id": "TECHNICAL",
+          "status": "PRESENT",
+          "title": "고객 의견의 주제별 경향 분석",
+          "description": "입력은 이번 주 접수된 고객 의견이다. 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견을 포함한 요약 자료를 출력한다.",
+          "keywords": [
+            "고객 의견",
+            "주제별 경향 분석",
+            "근거 의견",
+            "요약 자료"
+          ],
+          "source_quote": "이번 주 의견에서 주제별 경향을 분석하고 각 경향을 뒷받침하는 의견과 함께 요약 자료를 만들어 회의에 사용하고 싶습니다."
+        }
+      ]
+    }
+  ],
+  "raw_scores_preserved": true,
+  "corrected_scores_created": false,
+  "extra_API_calls": 0,
+  "consequence": "Raw quality averages and unsupported counts are exploratory diagnostics only. Withhold proof that E improves semantic preservation or eliminates inventions."
+}

@@ -1,5 +1,6 @@
 """Fixed-policy evaluation on the frozen new-Dev AI-Silver dataset."""
 from collections import Counter, defaultdict
+from itertools import combinations
 from statistics import mean, pstdev
 
 import numpy as np
@@ -46,7 +47,14 @@ def quality_summary():
                                 'unknown': value['text'] is None,
                                 'has_evidence': bool(value['evidence']),
                                 'all_quotes_literal': all(e in question['text'] for e in value['evidence'])})
+    questions = {q['query_id']: q['text'] for q in jsonl(run.QUESTIONS)}
+    quote_checks = [
+        {'condition': s['condition'], 'query_id': s['query_id'], 'repeat': s['repeat'],
+         'view': s['id'], 'source_quote_literal': bool(s['source_quote']) and
+         s['source_quote'] in questions[s['query_id']]}
+        for s in read(run.OUT/'slots.json')['records'] if s.get('status') != 'MISSING']
     return {'assessments': assessments, 'summary': summary, 'extraction_evidence_checks': literal,
+            'view_source_quote_checks': quote_checks,
             'same_model_not_human_gold': True,
             'literal_quotes_do_not_prove_semantic_correctness': True}
 
@@ -123,7 +131,15 @@ def diagnostics(pred, labels):
                                  'shared_functions': r['C1_rule']['shared_functions'],
                                  'rule_strength': r['C1_rule']['mapping_grade'],
                                  'semantic': r['semantic']['score']})
-    return {'changes': changes, 'path_discovery': paths,
+    stability = []
+    for condition in ('B', 'C', 'E'):
+        for q in pred['query_ids']:
+            for a, b in combinations((1, 2, 3), 2):
+                for k in (5, 10, 20):
+                    left, right = (set(rankings[condition, q, r][:k]) for r in (a, b))
+                    stability.append({'condition': condition, 'query_id': q, 'k': k,
+                                      'repeats': [a, b], 'topk_jaccard': len(left & right)/len(left | right)})
+    return {'changes': changes, 'path_discovery': paths, 'ranking_stability': stability,
             'source_referenced_function_recognition': recognition,
             'positive_pair_function_links': mappings,
             'interpretation': 'A shared rule on an AI-positive pair is still a proxy, not verified semantic alignment'}
@@ -155,6 +171,49 @@ def bootstrap(rows, macro):
     return results
 
 
+def incomplete_f1_bounds(prediction, labels):
+    """Exact binary-label difference bounds, without filling missing labels.
+
+    For a fixed unknown-positive count, the common F1 denominator is fixed.
+    Selecting the smallest/largest membership coefficients gives its extrema.
+    This also averages the three generation runs before comparing questions.
+    """
+    by_query = {q: {r['case_id']: r['grade'] for r in labels if r['query_id'] == q}
+                for q in prediction['query_ids']}
+    results = []
+    for baseline in 'ABC':
+        for k in (5, 10, 20):
+            per_query = []
+            for q, grades in by_query.items():
+                positives = {c for c, g in grades.items() if g is not None and g >= 2}
+                unknown = [c for c, g in grades.items() if g is None]
+                if not positives:
+                    per_query.append({'query_id': q, 'lower': None, 'upper': None,
+                                      'reason': 'ZERO_POSITIVE_POSSIBILITY'})
+                    continue
+                def membership(condition):
+                    ranks = [set(r['ranking'][:k]) for r in prediction['systems'][condition]
+                             if r['query_id'] == q]
+                    return {c: sum(c in rank for rank in ranks)/len(ranks)
+                            for c in grades}
+                left, right = membership('E'), membership(baseline)
+                fixed = sum(left[c]-right[c] for c in positives)
+                weights = sorted(left[c]-right[c] for c in unknown)
+                low = [2*(fixed+sum(weights[:m]))/(k+len(positives)+m)
+                       for m in range(len(weights)+1)]
+                high = [2*(fixed+sum(weights[len(weights)-m:]))/(k+len(positives)+m)
+                        for m in range(len(weights)+1)]
+                per_query.append({'query_id': q, 'lower': min(low), 'upper': max(high),
+                                  'unknown': len(unknown)})
+            complete = all(r['lower'] is not None for r in per_query)
+            results.append({'baseline': baseline, 'metric': f'F1@{k}',
+                            'n': len(per_query), 'per_query': per_query,
+                            'lower': mean(r['lower'] for r in per_query) if complete else None,
+                            'upper': mean(r['upper'] for r in per_query) if complete else None,
+                            'interpretation': 'identification bounds, not imputed metrics or confidence intervals'})
+    return results
+
+
 def main():
     seal = read(run.OUT/'prediction_seal.json')
     for name, digest in seal['files'].items():
@@ -165,6 +224,7 @@ def main():
     rows, macro, leave_one = evaluate(prediction, labels)
     write(run.OUT/'evaluation.json', {'per_query': rows, 'macro': macro, 'leave_one_out': leave_one,
                                       'bootstrap': bootstrap(rows, macro),
+                                      'incomplete_f1_difference_bounds': incomplete_f1_bounds(prediction, labels),
                                       'label_source': 'new Dev single-model AI-Silver',
                                       'label_counts': dict(Counter(r['status'] for r in labels))})
     write(run.OUT/'quality_summary.json', quality_summary())
