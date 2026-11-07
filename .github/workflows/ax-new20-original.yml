@@ -1,0 +1,61 @@
+name: AX new20 genuine original retrieval
+on:
+  push:
+    branches:
+      - research/new20-validation-20261107
+    paths:
+      - .github/workflows/ax-new20-original.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  new20-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+    steps:
+      - name: Checkout frozen data and scripts (including LFS)
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install pinned runtime for BGE-M3
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==2.4.5 transformers==5.12.0 sentence-transformers==5.7.0
+          python -m pip install kiwipiepy rank-bm25 pyyaml huggingface-hub
+          python -m pip install -e .
+      - name: Download original public BGE-M3 weights and tokenizer
+        run: |
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          import os
+          snapshot_download(
+              repo_id="BAAI/bge-m3",
+              local_dir=os.path.join(os.environ["RUNNER_TEMP"], "bge-m3"),
+              allow_patterns=["*.json","*.bin","*.txt","*.model","*.bpe","*.md"]
+          )
+          PY
+      - name: Verify historical checkpoint and produce fresh query rankings
+        run: |
+          PYTHONPATH=src:. python scripts/validation20_original_infer.py "$RUNNER_TEMP/bge-m3" "$RUNNER_TEMP/axnew20-original"
+      - name: Upload complete data including integrity report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ax-new20-original-inference
+          path: |
+            ${{ runner.temp }}/axnew20-original/fresh_original_A_20.json
+            ${{ runner.temp }}/axnew20-original/status.json
+          if-no-files-found: warn
+          retention-days: 90
