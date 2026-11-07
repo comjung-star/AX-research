@@ -1,0 +1,369 @@
+{
+  "records": [
+    {
+      "id": "L001",
+      "split": "REPRODUCTION",
+      "text": "문서의 주문번호와 금액을 추출해 표로 보여주세요.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Extract order numbers and amounts from documents and produce a review table.",
+        "Context": "Document operations."
+      },
+      "expected": [
+        3
+      ],
+      "expected_abstain": false,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "L002",
+      "split": "REPRODUCTION",
+      "text": "핵심 목적은 청구 금액을 계약 기준과 대조해 오류를 검증하는 것입니다. 필드 추출은 준비 작업입니다.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Extract fields from invoices.",
+        "Context": "Document processing."
+      },
+      "expected": [
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "L003",
+      "split": "REPRODUCTION",
+      "text": "내일의 장비 고장을 예측하고 싶습니다.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Detect current threshold exceedances.",
+        "Context": "The system alerts on present measurements."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "L004",
+      "split": "REPRODUCTION",
+      "text": "업종별 안내 문서에서 질문에 맞는 답변을 제공하고 싶습니다.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Answer customer questions using product manuals.",
+        "Context": "A different industry help desk."
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "expected_abstain": false,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "L005",
+      "split": "REPRODUCTION",
+      "text": "운영 기록을 요약해 주세요.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Study AI adoption feasibility.",
+        "Context": "No executed summarization workflow is specified."
+      },
+      "expected": [],
+      "expected_abstain": true,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "L006",
+      "split": "REPRODUCTION",
+      "text": "공지문 초안을 만들고 최종 발송 승인은 사람이 맡도록 합니다.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Generate announcement drafts.",
+        "Context": "A human approves final sending."
+      },
+      "expected": [
+        3
+      ],
+      "expected_abstain": false,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "L007",
+      "split": "REPRODUCTION",
+      "text": "기록을 조회하고 보여주기만 하며 데이터를 변경하지 않습니다.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Automatically update customer records.",
+        "Context": "The executed function changes stored values."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "L008",
+      "split": "REPRODUCTION",
+      "text": "번역문을 생성해 주세요.",
+      "case": {
+        "Problem": "Business workflow.",
+        "Task": "Translate source text into a translated document.",
+        "Context": "A publishing workflow."
+      },
+      "expected": [
+        3
+      ],
+      "expected_abstain": false,
+      "kind": "previous_failure_reproduction"
+    },
+    {
+      "id": "N001",
+      "split": "FRESH_VALIDATION",
+      "text": "진동이 갑자기 커지는 순간을 알리는 사례로 내일 베어링 고장을 예측하고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Detect present vibration spikes and alert the operator.",
+        "Context": "Only current measurements are checked."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "temporal"
+    },
+    {
+      "id": "N002",
+      "split": "FRESH_VALIDATION",
+      "text": "오늘 확인된 계좌 잔액을 조회해 그대로 보여주세요.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Forecast next quarter cash balances.",
+        "Context": "The implemented output is a future forecast, not current-balance lookup."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "temporal"
+    },
+    {
+      "id": "N003",
+      "split": "FRESH_VALIDATION",
+      "text": "핵심은 청구 금액과 계약 요율을 대조해 오류 항목을 검증하는 것입니다. 추출은 준비 단계입니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Extract invoice line items into a table.",
+        "Context": "No comparison or validation function is implemented."
+      },
+      "expected": [
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "auxiliary"
+    },
+    {
+      "id": "N004",
+      "split": "FRESH_VALIDATION",
+      "text": "계약서에서 회사명과 만료일을 추출해 표로 보여주세요.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Check entered amounts against a policy and flag violations.",
+        "Context": "No field-extraction table is produced."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "auxiliary"
+    },
+    {
+      "id": "N005",
+      "split": "FRESH_VALIDATION",
+      "text": "인사 규정에 관한 질문에 문서 근거로 답변하고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Generate product advertising images.",
+        "Context": "This is an implemented image-generation workflow."
+      },
+      "expected": [
+        0
+      ],
+      "expected_abstain": false,
+      "kind": "unrelated"
+    },
+    {
+      "id": "N006",
+      "split": "FRESH_VALIDATION",
+      "text": "운영 기록을 요약하고 싶습니다. 실제 사례의 수행 기능을 비교해 주세요.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "",
+        "Context": "No description of the implemented function is available."
+      },
+      "expected": [],
+      "expected_abstain": true,
+      "kind": "insufficient"
+    },
+    {
+      "id": "N007",
+      "split": "FRESH_VALIDATION",
+      "text": "수요량을 예측하는 기능을 찾고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Prepare a proposal for AI adoption.",
+        "Context": "Implementation has not been confirmed."
+      },
+      "expected": [],
+      "expected_abstain": true,
+      "kind": "insufficient"
+    },
+    {
+      "id": "N008",
+      "split": "FRESH_VALIDATION",
+      "text": "발주서 초안을 만들고 사람에게 최종 전송 승인을 남깁니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Generate purchase-order drafts.",
+        "Context": "A person approves final sending; AI does not send orders."
+      },
+      "expected": [
+        3
+      ],
+      "expected_abstain": false,
+      "kind": "authority"
+    },
+    {
+      "id": "N009",
+      "split": "FRESH_VALIDATION",
+      "text": "고객 기록을 읽어 보여주기만 하고 값을 바꾸지 않습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Automatically change stored customer account values.",
+        "Context": "No read-only display function is specified."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "authority"
+    },
+    {
+      "id": "N010",
+      "split": "FRESH_VALIDATION",
+      "text": "직원의 사내 안내 문서 질문에 근거를 찾아 답변하고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Answer resident questions using municipal service manuals.",
+        "Context": "The source workflow is document-based answers in another domain."
+      },
+      "expected": [
+        2
+      ],
+      "expected_abstain": false,
+      "kind": "transfer"
+    },
+    {
+      "id": "N011",
+      "split": "FRESH_VALIDATION",
+      "text": "제품 설명에서 정해진 속성을 추출해 검토용 표로 정리하고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Extract specified attributes from inspection reports into review tables.",
+        "Context": "The input domain differs, but extraction and tabulation are implemented."
+      },
+      "expected": [
+        2
+      ],
+      "expected_abstain": false,
+      "kind": "transfer"
+    },
+    {
+      "id": "N012",
+      "split": "FRESH_VALIDATION",
+      "text": "접수한 고객 의견에서 주제를 분석하고 근거 의견이 포함된 요약을 만들고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Analyze customer feedback themes and generate summaries with supporting comments.",
+        "Context": "The actual output is a theme summary with source feedback."
+      },
+      "expected": [
+        3
+      ],
+      "expected_abstain": false,
+      "kind": "direct"
+    },
+    {
+      "id": "N013",
+      "split": "FRESH_VALIDATION",
+      "text": "서버 설정을 자동으로 변경하는 실행 기능이 필요합니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Recommend server settings for an administrator.",
+        "Context": "The system only recommends; it does not execute changes."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "execution"
+    },
+    {
+      "id": "N014",
+      "split": "FRESH_VALIDATION",
+      "text": "제품 사진을 유지하면서 새로운 광고 배경 장면을 생성하고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Anonymize faces in production photographs.",
+        "Context": "It removes identifying details; no new scene generation is implemented."
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "expected_abstain": false,
+      "kind": "auxiliary"
+    },
+    {
+      "id": "N015",
+      "split": "FRESH_VALIDATION",
+      "text": "고객 상담 대화를 요약하고 원문 위치도 함께 제시해 주세요.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Summarize customer support conversations and provide source locations.",
+        "Context": "The implemented output includes summaries and traceable conversation references."
+      },
+      "expected": [
+        3
+      ],
+      "expected_abstain": false,
+      "kind": "direct"
+    },
+    {
+      "id": "N016",
+      "split": "FRESH_VALIDATION",
+      "text": "문서 분류 기능과 실제 사례를 비교하고 싶습니다.",
+      "case": {
+        "Problem": "A business workflow needs assistance.",
+        "Task": "Unknown.",
+        "Context": "Only the system name is recorded; actual work is not described."
+      },
+      "expected": [],
+      "expected_abstain": true,
+      "kind": "insufficient"
+    }
+  ],
+  "expected_values_frozen_before_model_outputs": true,
+  "expected_values_source": "policy-derived synthetic examples; no human Gold",
+  "no_recommendation_results_used": true,
+  "prompt_commit": "065eccea"
+}
