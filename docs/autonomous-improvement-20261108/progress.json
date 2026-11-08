@@ -15,19 +15,20 @@
     "Trial 1 implementation committed on research branch: Kiwi tokenizer now retains SL/SN; two isolated regression tests added, but real corpus evaluation not executed because this run environment lacks kiwipiepy/rank_bm25 and full model/corpus checkout.",
     "Ran two isolated tokenizer regression assertions using locally reconstructed source/test logic (2/2 passed); canonical repository and corpus evaluation still pending.",
     "Triaged all 12 remaining strategy-transfer hypotheses against stored Task/Implementation and explicit adaptation gaps, plus four zero-positive question boundaries; original sources and independent reviewer votes remain unverified; qrels unchanged.",
-    "Prepared real Kiwi/rank_bm25 frozen 20x112 diagnostic runner with strict old baseline length/rank reproduction gate; added research-branch GitHub Actions push workflow. CI result not yet observed; no trial counted."
+    "Prepared real Kiwi/rank_bm25 frozen 20x112 diagnostic runner with strict old baseline length/rank reproduction gate; added research-branch GitHub Actions push workflow. CI result not yet observed; no trial counted.",
+    "Inspected successful GitHub Actions run 42424741155 and its job log/artifact: old BM25 corpus and ranking reproduction gates passed, 68->0 empty BM25 docs, but provisional F1 did not improve and hybrid F1/nDCG decreased. Trial 1 completed as negative development diagnostic."
   ],
-  "current_step": "TRIAL1_CI_SUBMITTED_AWAITING_EXECUTION_ARTIFACT",
+  "current_step": "TRIAL1_NEGATIVE_RESULT_ANALYZE_AND_PREREGISTER_TRIAL2",
   "next_actions": [
-    "Check GitHub Actions run triggered by commit 22c1f061c1a56ed66d377aec311d8b86a4d9a8ec on research branch, download autonomous-trial1-bm25-diagnostic artifact, inspect baseline reproduction gate and full 20x112 metrics.",
-    "If old index length or ranks do not reproduce, inspect exact case text serialization/old tokenizer/version; do not count as a completed trial or silently substitute baseline.",
-    "If old baseline matches and development diagnostic completes, log paired per-query F1/nDCG and uncertainty, then count trial 1 only as a development trial; never call it independent Test or full multi-view success.",
-    "Continue independent original-source and model verification for 16 transfer labels and 4 zero-positive questions without using final Test."
+    "Download trial1 per-query artifact 13595032611 and calculate paired deltas, bootstrap confidence intervals and regression cases; retain trial1 negative outcome.",
+    "Inspect why Korean questions and English case tokens have low lexical overlap despite nonempty BM25 index; design separately controlled bilingual normalization/translation index trial 2 only if evidence supports it.",
+    "Continue independent label/source verification before claiming any final improvement; do not open held-out Test.",
+    "Run any trial2 only after preregistration and frozen baseline; preserve original 20/112 and 15 sealed Test."
   ],
   "trial_budget": {
     "max_trials": 5,
-    "trials_completed": 0,
-    "remaining": 5
+    "trials_completed": 1,
+    "remaining": 4
   },
   "paid_api_budget_usd": {
     "limit": 2,
@@ -35,17 +36,18 @@
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "CI_RUNNER_COMMITTED_EXECUTION_UNVERIFIED",
+    "outcome": "TRIAL1_COMPLETE_NEGATIVE",
     "confirmed_performance_gain": false,
     "evidence_files": [
-      "scripts/autonomous_trial1_bm25_eval.py",
-      ".github/workflows/autonomous-trial1-bm25.yml"
+      "docs/autonomous-improvement-20261108/06_trial1_real_ci_result.json",
+      "scripts/autonomous_trial1_bm25_eval.py"
     ],
     "latest_commit": "22c1f061c1a56ed66d377aec311d8b86a4d9a8ec",
-    "trials_completed": 0,
+    "ci_run_id": 42424741155,
+    "trial_count": 1,
     "independent_models_used": 0,
     "paid_api_usd": 0
   },
-  "access_notes": "Local pip install unavailable due DNS; submitted real dependency-enabled GitHub Actions workflow on research branch, but no completed CI artifact or real 20x112 metric verified yet. Do not count trial 1 until artifact reviewed.",
+  "access_notes": "GitHub Actions actual Kiwi 0.24.1 / rank-bm25 0.2.2 executed successfully. Full per-query artifact available from run 42424741155. No independent reviewer API yet; keep labels provisional.",
   "file_changes": "Only this research branch; preserve original test/main."
 }
