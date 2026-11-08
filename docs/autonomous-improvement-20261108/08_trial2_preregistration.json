@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-08",
+  "trial": 2,
+  "state": "PREREGISTERED_BEFORE_EXECUTION",
+  "hypothesis": "Preserving the union of Dense Top20 and BM25 Top20 candidates can prevent premature loss compared with Hybrid_RRF Top20 candidate truncation.",
+  "single_variable": "candidate pool truncation policy",
+  "baseline": "existing Hybrid_RRF Top20, with Original_C0 Top20 as context",
+  "proposed": "Dense Top20 union BM25 Top20, per-view provenance maintained",
+  "dataset": "frozen 20 questions / 112 cases / 2240 provisional labels",
+  "primary_endpoint": "macro candidate-pool recall (positive-label queries), not F1/nDCG",
+  "secondary": "16 provisional transfer cases retained, pool size, per-query gains/losses",
+  "limitations": "Candidate pool upper bound only. Precision mapping and final output unexecuted. This cannot establish final model improvement. RRF is comparator only.",
+  "success_condition": "Do not claim algorithmic success until unchanged architecture precision mapping and F1 increase/nDCG non-worsening with independent verified labels and uncertainty",
+  "api_cost_usd": 0
+}
