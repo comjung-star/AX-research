@@ -20,13 +20,14 @@
     "Reanalyzed all 16 provisional candidate rank trajectories at Top-5/10/20; traced VQ001/004/006/019 stage losses and saved 07_rank_loss_followup_diagnostic.json; no new trial or independent labels.",
     "Preregistered Trial2 candidate-retention single-variable diagnostic; added standalone Python script and GitHub Actions workflow; independently recomputed frozen 20x112 candidate-pool recall from stored ranks in JS (Hybrid Top20 0.5096 vs Dense/Sparse union 0.7887, average pool 34.2); this is an upper bound, not final F1/nDCG, and Python CI remains unverified.",
     "Verified actual Trial2 Python CI run 42436322959, job log and artifact: candidate recall 0.5096 Hybrid Top20 vs 0.7887 Dense/Sparse union mean pool 34.2; only candidate stage, not downstream F1/nDCG.",
-    "Computed deterministic paired query bootstrap for Trial2 candidate-stage recall on 16 positive development questions: union-minus-Hybrid +0.2791, percentile 95% CI [+0.1124,+0.4739], 9 wins/7 ties/0 losses; unequal candidate pool (34.2 vs 20), provisional labels and absent precision mapping prevent final efficacy claim."
+    "Computed deterministic paired query bootstrap for Trial2 candidate-stage recall on 16 positive development questions: union-minus-Hybrid +0.2791, percentile 95% CI [+0.1124,+0.4739], 9 wins/7 ties/0 losses; unequal candidate pool (34.2 vs 20), provisional labels and absent precision mapping prevent final efficacy claim.",
+    "Post-hoc equal-budget Trial2 candidate diagnostic using frozen Dense/BM25/Hybrid rankings and grade>=2 provisional labels: Hybrid Top20 recall 0.5096, Dense Top20 0.6502, alternating unique Dense/BM25 Top20 0.7170, unequal-size union 0.7887. This is a retrospective candidate-only analysis, not Trial2 completion or final model improvement."
   ],
-  "current_step": "TRIAL2_CANDIDATE_UNCERTAINTY_RECORDED_DOWNSTREAM_MAPPING_PENDING",
+  "current_step": "TRIAL2_MATCHED_BUDGET_POSTHOC_COMPLETE_PRECISION_MAPPING_PENDING",
   "next_actions": [
-    "Identify actual unchanged precision-mapping executable and compatible candidate inputs; run frozen 20x112 end-to-end comparison if feasible, otherwise record exact blocker.",
-    "Compare matched candidate budgets to separate pool-size effect from policy effect before any candidate-retention claim.",
-    "Independently verify Task/Implementation/source labels for 16 hypotheses and four zero-positive questions; no held-out Test access."
+    "Locate and validate unchanged precision mapping executable, required model artifacts and candidate input interface before any end-to-end Trial2; if not executable record exact blocker.",
+    "Evaluate candidate-stage gains with pre-registered equal-budget policy in a future controlled experiment only if justified; do not count retrospective analysis as new trial.",
+    "Independently verify Task/Implementation/source labels for 16 hypotheses and four zero-positive questions; never inspect sealed 15 Test."
   ],
   "trial_budget": {
     "max_trials": 5,
@@ -39,13 +40,12 @@
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "TRIAL2_CANDIDATE_PAIRED_BOOTSTRAP_COMPLETE_FINAL_MAPPING_PENDING",
+    "outcome": "TRIAL2_MATCHED_BUDGET_POSTHOC_DIAGNOSTIC_ONLY",
     "confirmed_performance_gain": false,
     "evidence_files": [
-      "docs/autonomous-improvement-20261108/10_trial2_python_ci_verified.json",
-      "docs/autonomous-improvement-20261108/11_trial2_candidate_paired_uncertainty.json"
+      "docs/autonomous-improvement-20261108/12_trial2_matched_budget_posthoc_diagnostic.json"
     ],
-    "latest_commit": "5296ef06057124b0c1a27ac24aa4713d68b886bb",
+    "latest_commit": "1cb085fd122ad165c7f03ad2b80fa0e5f7364b2e",
     "trial_count": 1,
     "independent_models_used": 0,
     "paid_api_usd": 0
