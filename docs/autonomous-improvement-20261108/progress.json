@@ -17,14 +17,15 @@
     "Triaged all 12 remaining strategy-transfer hypotheses against stored Task/Implementation and explicit adaptation gaps, plus four zero-positive question boundaries; original sources and independent reviewer votes remain unverified; qrels unchanged.",
     "Prepared real Kiwi/rank_bm25 frozen 20x112 diagnostic runner with strict old baseline length/rank reproduction gate; added research-branch GitHub Actions push workflow. CI result not yet observed; no trial counted.",
     "Inspected successful GitHub Actions run 42424741155 and its job log/artifact: old BM25 corpus and ranking reproduction gates passed, 68->0 empty BM25 docs, but provisional F1 did not improve and hybrid F1/nDCG decreased. Trial 1 completed as negative development diagnostic.",
-    "Reanalyzed all 16 provisional candidate rank trajectories at Top-5/10/20; traced VQ001/004/006/019 stage losses and saved 07_rank_loss_followup_diagnostic.json; no new trial or independent labels."
+    "Reanalyzed all 16 provisional candidate rank trajectories at Top-5/10/20; traced VQ001/004/006/019 stage losses and saved 07_rank_loss_followup_diagnostic.json; no new trial or independent labels.",
+    "Preregistered Trial2 candidate-retention single-variable diagnostic; added standalone Python script and GitHub Actions workflow; independently recomputed frozen 20x112 candidate-pool recall from stored ranks in JS (Hybrid Top20 0.5096 vs Dense/Sparse union 0.7887, average pool 34.2); this is an upper bound, not final F1/nDCG, and Python CI remains unverified."
   ],
-  "current_step": "TRIAL2_CANDIDATE_RETENTION_CONTROL_PENDING_REAL_EXECUTION",
+  "current_step": "TRIAL2_CANDIDATE_POOL_JS_RESULT_RECORDED_PYTHON_CI_AND_PRECISION_MAPPING_PENDING",
   "next_actions": [
-    "Implement/preregister one-variable candidate-retention experiment on fixed 20/112; keep per-view Dense/Sparse pools until precision mapping and compare to unchanged baseline; do not replace architecture with RRF.",
-    "Retrieve full Trial1 per-query artifact and calculate paired bootstrap CI and regressions; aggregate alone is insufficient.",
-    "Independently verify 16 transfer hypotheses and 4 zero-positive questions using Task/Implementation/original sources; do not edit qrels or held-out 15.",
-    "Run controlled Trial2 in GitHub CI, inspect real artifacts and update counts only after verified execution."
+    "Verify GitHub Actions trial2 run; if not automatically triggered inspect workflow permissions and execute frozen Python script via approved CI without modifying held-out Test.",
+    "Implement precision-mapping downstream evaluation only after confirming candidate-retention intervention is architecturally valid; compare same 20/112 F1 and nDCG, paired uncertainty; do not claim success from pool recall.",
+    "Continue independent Task/Implementation/source verification of 16 hypotheses and 4 zero-positive questions; labels provisional.",
+    "Retrieve Trial1 per-query artifact for paired bootstrap uncertainty; do not repeat Trial1."
   ],
   "trial_budget": {
     "max_trials": 5,
@@ -37,16 +38,19 @@
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "RANK_LOSS_DIAGNOSTIC_RECORDED_NO_NEW_TRIAL",
+    "outcome": "TRIAL2_CANDIDATE_POOL_DIAGNOSTIC_JS_COMPLETE_CI_PENDING",
     "confirmed_performance_gain": false,
     "evidence_files": [
-      "docs/autonomous-improvement-20261108/07_rank_loss_followup_diagnostic.json"
+      "docs/autonomous-improvement-20261108/08_trial2_preregistration.json",
+      "docs/autonomous-improvement-20261108/09_trial2_js_candidate_pool_diagnostic.json",
+      "scripts/autonomous_trial2_candidate_retention.py",
+      ".github/workflows/autonomous-trial2-retention.yml"
     ],
-    "latest_commit": "d76583bd2b67c1fd7578d8624b794283f538468f",
+    "latest_commit": "9d45b33841fa9d05d863d8592095341d4b409963",
     "trial_count": 1,
     "independent_models_used": 0,
     "paid_api_usd": 0
   },
-  "access_notes": "GitHub Actions actual Kiwi 0.24.1 / rank-bm25 0.2.2 executed successfully. Full per-query artifact available from run 42424741155. No independent reviewer API yet; keep labels provisional.",
+  "access_notes": "Trial2 frozen candidate-pool diagnostic independently calculated in JS, but repository Python CI run not yet observed. Candidate recall is not final retrieval/rerank F1/nDCG. No paid API.",
   "file_changes": "Only this research branch; preserve original test/main."
 }
