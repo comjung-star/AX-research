@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-08",
+  "kind": "TRIAL2_PRECISION_MAPPING_FEASIBILITY_AND_USER_PAUSE_CHECKPOINT",
+  "scope": "20 development questions, 112 frozen cases; sealed independent Test 15 untouched",
+  "conclusion": "Candidate retention stage complete, precision-mapping interface identified but no verified Trial2 final F1/nDCG run. No evidence of end-to-end improvement.",
+  "reviewed_repository_paths": [
+    "docs/autonomous-improvement-20261108/progress.json",
+    "docs/autonomous-improvement-20261108/12_trial2_matched_budget_posthoc_diagnostic.json",
+    "scripts/autonomous_trial2_candidate_retention.py",
+    ".github/workflows/autonomous-trial2-retention.yml",
+    "src/ax_research/functional_mapping.py",
+    "src/ax_research/semantic_mapping.py",
+    "scripts/heldout_run.py",
+    "scripts/new20_stage_trace.py",
+    ".github/workflows/ax-new20-stage-trace.yml"
+  ],
+  "verified_findings": [
+    "Functional mapping has local pure functions extract(text, rules), case_profile(case,rules), compare(query,case), ranking_key(whole,branches,retrieval_score,cid). These can calculate rule-based task matching without paying an API.",
+    "The historical new20 rank trace script performs genuine 20-question inference but checks frozen BGE-M3 hashes and calls the historical all-112 predict pipeline; it does not expose a controlled per-query candidate-pool injection interface.",
+    "The original heldout_run.predict needs a frozen local SentenceTransformer BGE-M3 checkpoint, existing embedding/model data and package versions; running it is not the same as executing Trial2's new candidate policy.",
+    "The Trial2 script and CI workflow read stored Dense/BM25/Hybrid ranks and compute candidate recall only. Neither calls precision mapping nor writes downstream F1/nDCG.",
+    "Any end-to-end Trial2 comparison requires an explicitly implemented, tested candidate-pool handoff into the unchanged mapping, matching candidate-count policy, and repeated-output metrics. This has NOT been implemented or executed in this checkpoint.",
+    "The existing matched-20 post-hoc candidate recall is 0.5096 for Hybrid and 0.71695 for alternating Dense/BM25. That does not prove final recommendation quality.",
+    "Existing relevant labels are provisional; no independent model ensemble adjudication completed."
+  ],
+  "outcome": "MAPPING_INTERFACE_AUDIT_COMPLETED_END_TO_END_TRIAL2_DEFERRED_BY_USER",
+  "official_trials_completed": 1,
+  "official_trials_max": 5,
+  "trial2_completed": false,
+  "final_f1_at5": null,
+  "final_ndcg_at10": null,
+  "independent_reviewers_completed": 0,
+  "additional_paid_api_usd": 0,
+  "blocker": "No validated fixed-architecture Trial2 candidate-injection adapter and no corresponding end-to-end CI metric artifacts; implementation/rerun would be new work and user requested stop after current work.",
+  "resume_only_on_user_request": true,
+  "protected_unchanged": [
+    "main",
+    "held-out independent Test 15",
+    "frozen prior data and comparison outputs"
+  ]
+}
