@@ -1,0 +1,125 @@
+{
+  "date": "2026-11-08",
+  "kind": "TRIAL2_PAIRED_UNCERTAINTY_CANDIDATE_STAGE_ONLY",
+  "source": "docs/autonomous-improvement-20261108/09_trial2_js_candidate_pool_diagnostic.json",
+  "source_blob_sha": "4dcdf994dfaf503b3b3c9b9850cca0fcccadf034",
+  "head_before_write": "9f9be529d1e9bd79c629658add20f7b85e1e0aa8",
+  "scope": "16 positive-label development queries of frozen 20; 112 cases; provisional qrels",
+  "method": "Paired query bootstrap (20,000 resamples, deterministic LCG seed 20261108); percentile 95% interval; macro recall difference union minus Hybrid Top20",
+  "n_positive_queries": 16,
+  "mean_hybrid": 0.5096117424242425,
+  "mean_union": 0.788683712121212,
+  "mean_difference": 0.27907196969696973,
+  "bootstrap_95_ci": [
+    0.11240530303030302,
+    0.4738636363636364
+  ],
+  "per_query": [
+    {
+      "query_id": "VQ001",
+      "positive_count": 5,
+      "pool_size": 38,
+      "delta": 0.19999999999999996
+    },
+    {
+      "query_id": "VQ002",
+      "positive_count": 3,
+      "pool_size": 35,
+      "delta": 0
+    },
+    {
+      "query_id": "VQ003",
+      "positive_count": 1,
+      "pool_size": 33,
+      "delta": 1
+    },
+    {
+      "query_id": "VQ004",
+      "positive_count": 1,
+      "pool_size": 32,
+      "delta": 0
+    },
+    {
+      "query_id": "VQ006",
+      "positive_count": 3,
+      "pool_size": 35,
+      "delta": 0
+    },
+    {
+      "query_id": "VQ007",
+      "positive_count": 2,
+      "pool_size": 33,
+      "delta": 1
+    },
+    {
+      "query_id": "VQ008",
+      "positive_count": 2,
+      "pool_size": 36,
+      "delta": 0
+    },
+    {
+      "query_id": "VQ009",
+      "positive_count": 3,
+      "pool_size": 33,
+      "delta": 0.3333333333333333
+    },
+    {
+      "query_id": "VQ011",
+      "positive_count": 1,
+      "pool_size": 33,
+      "delta": 0
+    },
+    {
+      "query_id": "VQ012",
+      "positive_count": 8,
+      "pool_size": 33,
+      "delta": 0.125
+    },
+    {
+      "query_id": "VQ014",
+      "positive_count": 8,
+      "pool_size": 32,
+      "delta": 0.125
+    },
+    {
+      "query_id": "VQ016",
+      "positive_count": 1,
+      "pool_size": 36,
+      "delta": 0
+    },
+    {
+      "query_id": "VQ017",
+      "positive_count": 2,
+      "pool_size": 35,
+      "delta": 0
+    },
+    {
+      "query_id": "VQ018",
+      "positive_count": 11,
+      "pool_size": 34,
+      "delta": 0.18181818181818188
+    },
+    {
+      "query_id": "VQ019",
+      "positive_count": 2,
+      "pool_size": 35,
+      "delta": 0.5
+    },
+    {
+      "query_id": "VQ020",
+      "positive_count": 1,
+      "pool_size": 35,
+      "delta": 1
+    }
+  ],
+  "wins": 9,
+  "ties": 7,
+  "losses": 0,
+  "limitations": [
+    "Union uses mean 34.2 candidates vs baseline fixed 20; higher candidate recall is partly due to larger budget and not a matched-budget effectiveness comparison.",
+    "Provisional transfer labels are not independently verified.",
+    "No unchanged precision mapping run; no final F1@5 or nDCG@10.",
+    "Bootstrap interval measures query resampling variation under provisional labels, not annotation uncertainty.",
+    "Do not count as completed end-to-end trial or claim improvement."
+  ]
+}
