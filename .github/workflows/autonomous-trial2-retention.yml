@@ -1,0 +1,29 @@
+name: AX trial2 candidate retention diagnostic
+on:
+  push:
+    branches:
+      - research/autonomous-improvement-20261108
+    paths:
+      - "scripts/autonomous_trial2_candidate_retention.py"
+      - ".github/workflows/autonomous-trial2-retention.yml"
+  workflow_dispatch:
+jobs:
+  trial2-retention:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Evaluate frozen candidate pool retention without API calls
+        run: python scripts/autonomous_trial2_candidate_retention.py
+      - name: Upload full per-query candidate recall diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autonomous-trial2-retention-diagnostic
+          path: trial2_candidate_retention_result.json
+          if-no-files-found: error
