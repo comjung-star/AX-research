@@ -22,6 +22,8 @@ class HandoffTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             handoff([1, 1], [1, 2], 2)
         with self.assertRaises(ValueError):
+            handoff([1, 2], [1, 2, 2], 2)
+        with self.assertRaises(ValueError):
             restrict([1, 2], [3])
 
     def test_zero_positive_and_known_metrics(self):

@@ -15,7 +15,7 @@ def read(path):
 
 
 def handoff(dense, sparse, count=20):
-    if len(set(dense)) != len(dense) or set(dense) != set(sparse):
+    if len(set(dense)) != len(dense) or len(set(sparse)) != len(sparse) or set(dense) != set(sparse):
         raise ValueError('Candidate source registries differ or contain duplicates')
     selected = []
     for pair in zip(dense, sparse):

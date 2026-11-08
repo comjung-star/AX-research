@@ -2,7 +2,7 @@
   "version": 1,
   "date": "2026-11-08",
   "scope": "AX 20-query Validation; 112 fixed cases; freeze independent Test 15",
-  "state": "PAUSED_BY_USER_REQUEST",
+  "state": "WORK_EVALUATION_COMPLETE_NO_CONFIRMED_GAIN_AUTOMATION_REMAINS_PAUSED",
   "source_branch": "research/ax-transfer-relevance-audit-20261108",
   "working_branch": "research/autonomous-improvement-20261108",
   "completed": [
@@ -24,49 +24,56 @@
     "Post-hoc equal-budget Trial2 candidate diagnostic using frozen Dense/BM25/Hybrid rankings and grade>=2 provisional labels: Hybrid Top20 recall 0.5096, Dense Top20 0.6502, alternating unique Dense/BM25 Top20 0.7170, unequal-size union 0.7887. This is a retrospective candidate-only analysis, not Trial2 completion or final model improvement.",
     "Reviewed fixed precision-mapping interfaces and historical end-to-end runner requirements; identified missing validated Trial2 candidate-pool handoff; closed current feasibility check, without new model execution or Trial2 completion."
   ],
-  "current_step": "WORK_CACHED_MAPPING_ORDER_REPLAY_COMPLETE_FRESH_INFERENCE_AND_INDEPENDENT_LABELS_PENDING",
+  "current_step": "TRIAL2_FRESH_MAPPING_AND_SCOPED_INDEPENDENT_REVIEW_COMPLETE_NO_CONFIRMED_GAIN",
   "work_session_20261108": {
     "authorized_by": "User requested immediate Work continuation; scheduler remains paused",
     "scheduler_pause_preserved": true,
-    "result": "14_work_mapping_order_replay.json",
-    "execution_receipt": "15_work_execution_receipt.json",
-    "cached_replay_only": true,
-    "fresh_precision_mapping_executed": false,
-    "official_trials_completed": 1,
-    "independent_reviewers_completed": 0,
-    "additional_paid_api_usd": 0,
+    "result": "17_trial2_precision_predictions.json",
+    "execution_receipt": "20_work_completion_receipt.json",
+    "cached_replay_only": false,
+    "fresh_precision_mapping_executed": true,
+    "official_trials_completed": 2,
+    "independent_reviewers_completed": 3,
+    "independent_provider_count": 2,
+    "independent_pairs_reviewed": 464,
+    "additional_paid_api_usd": 0.47824475,
+    "all_attempt_cost_upper_bound_usd": 1.5588509,
     "confirmed_performance_gain": false,
-    "next": "Recover authenticated frozen new20 branch scoring inputs and execute validated candidate scorer; independent blind verification of 16 transfer hypotheses and all112 cases for four zero-positive queries remains required."
+    "next": "Stop adaptive tuning on unstable labels. Paper-level validation requires external human adjudication and independently constructed complete labels; no confirmed efficacy claim."
   },
   "next_actions": [
-    "PAUSED: do not start new experiments, CI jobs, independent evaluation runs or paid API calls until the user explicitly resumes.",
-    "On explicit resume, implement and verify deterministic equal-budget Trial2 candidate handoff into unchanged precision mapping, then perform original-vs-Trial2 F1@5/nDCG@10 comparisons using same frozen 20/112 and preregistered protocol.",
-    "Keep independent relevance verification and sealed Test constraints."
+    "Work execution and requested scoped independent AI review complete; no running local tasks. Scheduler remains paused.",
+    "Do not consume Trials3to5 just to optimize against provisional labels. Freeze and externally adjudicate relevance criteria before any new confirmatory study.",
+    "Preserve main, sealed Test15 and all original qrels. Scoped three-model consensus is AI-Silver, not human Gold."
   ],
   "trial_budget": {
     "max_trials": 5,
-    "trials_completed": 1,
-    "remaining": 4
+    "trials_completed": 2,
+    "remaining": 3
   },
   "paid_api_budget_usd": {
     "limit": 2,
     "spent_new_this_automation": 0,
+    "spent_new_in_work_known_usd": 0.47824475,
+    "work_all_attempts_upper_usd": 1.5588509,
     "condition": "Never call unless key, pricing, and cumulative costs can be verified"
   },
   "last_iteration": {
-    "outcome": "CURRENT_STAGE_CHECKPOINTED_USER_REQUESTED_PAUSE",
+    "outcome": "TRIAL2_COMPLETE_EXPLORATORY_NO_CONFIRMED_IMPROVEMENT",
     "confirmed_performance_gain": false,
     "evidence_files": [
-      "docs/autonomous-improvement-20261108/13_pause_checkpoint_mapping_feasibility.json",
-      "docs/autonomous-improvement-20261108/12_trial2_matched_budget_posthoc_diagnostic.json"
+      "docs/autonomous-improvement-20261108/17_trial2_precision_predictions.json",
+      "docs/autonomous-improvement-20261108/18_trial2_metrics_and_independent_review.json",
+      "docs/autonomous-improvement-20261108/19_independent_adjudication_and_stop_decision.json",
+      "docs/autonomous-improvement-20261108/20_work_completion_receipt.json"
     ],
-    "trial_count": 1,
-    "independent_models_used": 0,
-    "paid_api_usd": 0,
-    "final_metrics_available": false,
+    "trial_count": 2,
+    "independent_models_used": 3,
+    "paid_api_usd": 0.47824475,
+    "final_metrics_available": true,
     "previous_step": "TRIAL2_MATCHED_BUDGET_POSTHOC_COMPLETE_PRECISION_MAPPING_PENDING"
   },
-  "access_notes": "Frozen mapping API exists, but validated adapter from Trial2 candidate set to unchanged final mapping does not; no full-model inference or API calls performed in this checkpoint.",
+  "access_notes": "Recovered240 sealed generation responses, freshly reproduced all original A/C/E ranks, executed120 candidate-scoped mapping outputs with60 exact historical E composition gates. Scoped independent review covers464/2240 pairs; no human Gold or efficacy proof. Historical RRF ties are excluded from both controlled outputs; comparator only.",
   "file_changes": "Only this research branch; preserve original test/main.",
   "pause_requested": true
 }
