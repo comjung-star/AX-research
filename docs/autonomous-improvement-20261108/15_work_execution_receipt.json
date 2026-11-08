@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-08",
+  "base_commit": "7e338f6c4711271e74d62e3ab5423e789fa40fb7",
+  "branch": "research/autonomous-improvement-20261108",
+  "mode": "Immediate local Work execution; no scheduler or workflow changes",
+  "commands": [
+    {"command": "python -m unittest tests.test_trial2_mapping_handoff -v", "exit_code": 0, "tests_passed": 4},
+    {"command": "python scripts/autonomous_trial2_mapping_replay.py", "exit_code": 0, "state": "CACHED_MAPPING_ORDER_REPLAY_ONLY"},
+    {"command": "python scripts/autonomous_trial2_mapping_replay.py", "exit_code": 0, "result": "Exact deterministic JSON equality on repeat execution"}
+  ],
+  "validation": {
+    "questions": 20,
+    "cases": 112,
+    "provisional_labels": 2240,
+    "positive_queries": 16,
+    "zero_positive_queries": 4,
+    "candidate_budget_both_policies": 20,
+    "historical_E_repeats": 3,
+    "query_bootstrap_samples": 10000,
+    "seed": 20261108,
+    "grade_positive_threshold": 2,
+    "ndcg_gain": "2**grade-1, all112 corpus ideal denominator",
+    "negative_finding": "F1 paired interval crosses zero; neither efficacy nor independent validity established"
+  },
+  "scope_limit": "New code validates deterministic candidate handoff and restriction of stored final E order only. It does not run frozen semantic mapping or reconstruct per-perspective evidence. It must never be counted as completed Trial2 end-to-end inference.",
+  "blockers": [
+    "Stored new20 predictions contain only final ranking, query_id and repeat; no per-case mapping scores or branch evidence. Other available full evidence files belong to different cohorts and cannot substitute for new20.",
+    "Local Python lacks sentence_transformers. Local BGE-M3 weight file exists, but frozen checkpoint/package hashes were not revalidated and fresh embeddings were not executed.",
+    "No independently verified reviewer/model votes obtained for the16 transfer hypotheses or four zero-positive questions. Existing labels remain provisional. No paid reviewer calls made because credentials, current prices and cumulative cost were not verified."
+  ],
+  "next_required": [
+    "Recover or reproduce authenticated new20 per-perspective inputs and mapping scores; preserve branch identity and unchanged score/tie rules, then validate exact original output reproduction before injecting candidates.",
+    "Execute candidate-scoped mapping with the same20 budget, record complete source/score provenance and compare against this replay as a regression check.",
+    "Obtain blind independent task-based labels, including all112 cases for each zero-positive query; recompute paired uncertainty before deciding any further controlled trial."
+  ],
+  "official_trials_completed": 1,
+  "official_trials_max": 5,
+  "additional_paid_api_usd": 0,
+  "sealed_test_opened": false,
+  "main_modified": false,
+  "scheduler_modified": false,
+  "independent_labels_verified": false,
+  "confirmed_performance_gain": false
+}
