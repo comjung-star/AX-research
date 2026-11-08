@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-08",
+  "trial_number": 1,
+  "kind": "CONTROLLED_DEVELOPMENT_DIAGNOSTIC",
+  "state": "COMPLETED_NO_IMPROVEMENT",
+  "github_run": "https://github.com/comjung-star/AX-research/actions/runs/42424741155",
+  "artifact": "https://github.com/comjung-star/AX-research/actions/runs/42424741155/artifacts/13595032611",
+  "source_commit": "22c1f061c1a56ed66d377aec311d8b86a4d9a8ec",
+  "baseline_reproduction": "PASSED_BY_SCRIPT_GATE",
+  "dataset": "20 development questions,112 cases,provisional transfer labels; 16 positive queries",
+  "metric_scope": "macro over positive-label queries only, not 20 including zero-positive",
+  "change": "Kiwi token filter preserves SL/SN while excluding punctuation; no dense/model/labels change",
+  "empty_bm25_documents": {
+    "before": 68,
+    "after": 0
+  },
+  "metrics": {
+    "old_BM25": {
+      "F1_at_5": 0.05431547619047619,
+      "Recall_at_5": 0.11458333333333333,
+      "nDCG_at_10": 0.13872253989597183
+    },
+    "new_BM25": {
+      "F1_at_5": 0.05431547619047619,
+      "Recall_at_5": 0.11458333333333333,
+      "nDCG_at_10": 0.1299100743048513
+    },
+    "old_hybrid": {
+      "F1_at_5": 0.13344207875457875,
+      "Recall_at_5": 0.23058712121212122,
+      "nDCG_at_10": 0.23330789011784714
+    },
+    "new_hybrid": {
+      "F1_at_5": 0.12382669413919416,
+      "Recall_at_5": 0.22277462121212122,
+      "nDCG_at_10": 0.21872251003506277
+    }
+  },
+  "delta_new_minus_old": {
+    "BM25_F1_percentage_points": 0,
+    "BM25_nDCG_percentage_points": -0.881246559112053,
+    "hybrid_F1_percentage_points": -0.961538461538459,
+    "hybrid_nDCG_percentage_points": -1.458538008080537,
+    "hybrid_recall_percentage_points": -0.78125
+  },
+  "interpretation": "The original English/numeric token omission is a real indexing defect, but simply retaining these tokens does not improve this Korean-query development set. New hybrid is worse on provisional F1 and nDCG. Do not promote to production or claim multiview benefit.",
+  "limits": [
+    "No independent model labels",
+    "No paired bootstrap CI yet; no statistical superiority claim",
+    "GitHub workflow exits 0 even if scientific outcome is negative; success is execution success only",
+    "RRF diagnostic is comparison baseline, not the proposed architecture",
+    "Full per-query data is in GitHub Actions artifact; aggregate verified from job logs"
+  ],
+  "paid_api_usd": 0
+}
