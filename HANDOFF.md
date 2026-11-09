@@ -1,5 +1,8 @@
 # AX 연구·프로토타입 인수인계 · 2026-10-26
 
+> **현재 인계 진입점 · 2026-11-10:** [최신 결과와 한계](docs/research-results-20261110/README.ko.md)를 먼저 읽으세요. 최신20질문의2,240쌍 채점을 완료했습니다. 원문 요청·실패·중단/재개 기록도 보존합니다. 아래 10월의 완료/미완료·공개 범위는 그 시점의 기록이며 현재 상태로 해석하지 않습니다.
+
+
 > **축소 논문 후속 감사:** `research/reduced-stage123-audit-20261026`의 [감사·중단 보고](docs/reduced-stage123-2026-10-26/README.md)와 [신규 프로토콜](docs/reduced-stage123-2026-10-26/protocol.md)을 먼저 확인한다. 신규 Stage1은 입력 감사 후 서로 다른 LLM3종 접근/독립라벨 미확보로 중단, Stage2/3 미실행, 최종 Test(Stage4) 봉인이다. 과거 Stage4 추천 Dev를 최종 Test로 해석하지 않는다. 아래 전체 인덱스 동작 확인은 검색 성능 검증 완료를 의미하지 않는다.
 
 > 후속 상태: `research/v25-experiment-ready-20261026`에서 전체 9,416건 Dense 인덱스와 HTTP/브라우저 검색을 검증했다. 기록별 판정, Dev 112건과 미판정 qrels, 재현 실행은 [연구 입력 안내](data/v2_5/research/README.md), [당일 작업일지](worklog/2026-10-26.md)를 확인한다. 아래 본문과 `docs/handoff-state-2026-10-26.json`은 최초 인계 시점의 역사적 상태다. 신규 전수 사실검증과 최종 Test는 여전히 미완료다.

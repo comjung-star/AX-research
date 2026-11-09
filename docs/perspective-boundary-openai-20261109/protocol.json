@@ -1,0 +1,30 @@
+{
+  "purpose": "Two boundary repairs, OpenAI-only preliminary retrieval evidence. No causal attribution to API failures.",
+  "changes": [
+    "Pass include/exclude criteria",
+    "Separate business work from meta request; out-of-card target must not be substituted"
+  ],
+  "unchanged": [
+    "112 registry",
+    "49-case53-link catalog",
+    "perview5",
+    "no globalcut",
+    "BGE Task cosine",
+    "conditions as caveats",
+    "grade rubric"
+  ],
+  "models": "gpt-5.4 medium, selector cap6144 both OLD and FIXED (previous run4096); judge12288;4 workers; no other provider calls",
+  "fresh": "8 synthetic source-blind OpenAI author questions,4 symptoms2multiwork1physicalprediction1forecast; retain all once; authored only after freeze.",
+  "comparisons": "OLD/FIXED on the same new8; all112 cases judged once/question in separate stateless OpenAI calls blinded to algorithms/ranks/selections.",
+  "primary_budget": "Perquestion common maximum allowance K=max(5,uniqueOLD,uniqueFIXED); baselineTASK/PTC emitsK; each method may emit fewer. No globalcut or padding. Report counts and empty responses explicitly.",
+  "secondary": "Same actualU baseline pervariant if U>0; U0 comparison NA, do not call abstention a retrieval win. Always report baselineTop5 opportunity cost.",
+  "metrics": "All complete positive questions macroP/R/F1/coverage, gains/losses, paired question bootstrap10000 seed20261109; all8primary, preauthored6 ordinary questions secondary only.",
+  "stop": "One8-question development pass plus2 source-rule clarification checks, then one frozen fresh run. No fresh-outcome-driven reruns or relabeling. At most one identical technical retry only before metrics; no provider substitution.",
+  "development_history": "Initial8 exposed scope-narrowing on ordinary questions; clarified case inclusion rules vs query word matching within planned boundary repair; checked affected2 once. Both prompt versions and all outputs kept. No fresh questions used during development.",
+  "budget_usd": 12,
+  "no_human_gold": true,
+  "same_model_selector_judge_bias": true,
+  "sealed_Test15_opened": false,
+  "scope_errors": "Two author-specified explicitOOS tests count as developmental boundary probes, not independent human scope Gold. Semantic relevance still judged over full112.",
+  "API_vs_logic": "Previous errorsFQ007/008 were completed valid OpenAI responses, not missing APIs. Claude/Gemini failures limited crosschecking; criterion omission objectively observed; causal contribution not isolated."
+}

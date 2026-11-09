@@ -1,0 +1,75 @@
+{
+  "question": "야간에 고객 문의가 누락됩니다. 이 시간에도 문의에 응답하고 싶습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P04"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾아 참조하려는 요청이 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 항목을 꺼내거나 구조화하려는 요청이 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "자료를 다른 자료나 기준과 대조해 누락을 확인하려는 요청이 아닙니다. 고객 문의 누락은 응대 공백의 문제입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "SELECTED",
+      "rationale": "야간 시간대에 고객 문의가 누락되어 이 시간에도 실제 문의에 응답하려는 요청입니다.",
+      "evidence": [
+        {
+          "quote": "이 시간에도 문의에 응답하고 싶습니다",
+          "start": 18,
+          "end": 38,
+          "occurrence_starts": [
+            18
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "고객 문의가 누락됩니다",
+          "start": 4,
+          "end": 16,
+          "occurrence_starts": [
+            4
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "야간에 고객 문의가 누락됩니다",
+          "start": 0,
+          "end": 16,
+          "occurrence_starts": [
+            0
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "CAPACITY"
+        }
+      ],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

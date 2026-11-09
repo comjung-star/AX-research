@@ -1,0 +1,98 @@
+{
+  "id": "resp_0113ea4c0856c788016af074c975ac87d0baab6ce21abcc34c",
+  "object": "response",
+  "created_at": 1794143433,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143437,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0113ea4c0856c788016af074ca245487d0ae4fece71f21077a",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"중복 접수되는 문제를 동일 이슈로 묶고 급증 주제를 매일 아침 보고하고 싶음\",\"evidence\":[\"같은 문제가 중복 접수됩니다\",\"동일 이슈로 묶고 급증하는 주제를 매일 아침 보고하고 싶습니다\"]},\"action\":{\"text\":\"채널별 접수 내용을 비교해 동일 이슈로 묶고, 급증하는 주제를 매일 아침 보고\",\"evidence\":[\"채널별 접수 내용을 비교해 동일 이슈로 묶고 급증하는 주제를 매일 아침 보고하고 싶습니다\"]},\"object\":{\"text\":\"고객 불만 게시글과 이메일의 접수 내용, 동일 이슈 및 급증하는 주제\",\"evidence\":[\"고객 불만 게시글과 이메일\",\"채널별 접수 내용\",\"동일 이슈\",\"급증하는 주제\"]},\"input\":{\"text\":\"여러 채널로 들어오는 고객 불만 게시글과 이메일\",\"evidence\":[\"고객 불만 게시글과 이메일이 여러 채널로 들어와\"]},\"output\":{\"text\":\"동일 이슈로 묶인 접수 내용과 급증하는 주제의 매일 아침 보고\",\"evidence\":[\"동일 이슈로 묶고 급증하는 주제를 매일 아침 보고하고 싶습니다\"]},\"workflow\":{\"text\":\"채널별 접수 내용을 비교해 동일 이슈로 묶고, 급증하는 주제를 매일 아침 보고\",\"evidence\":[\"채널별 접수 내용을 비교해 동일 이슈로 묶고 급증하는 주제를 매일 아침 보고하고 싶습니다\"]},\"constraints\":{\"text\":\"급증하는 주제는 매일 아침 보고\",\"evidence\":[\"급증하는 주제를 매일 아침 보고하고 싶습니다\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 257,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 390,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 647
+  },
+  "user": null,
+  "metadata": {}
+}

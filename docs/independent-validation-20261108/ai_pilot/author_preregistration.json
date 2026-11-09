@@ -1,0 +1,41 @@
+{
+  "state": "FROZEN_BEFORE_AUTHOR_REQUEST",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 14000,
+    "system": "You write realistic fictional Korean business problem questions. You have no access to any case corpus, previous questions, rankings or research results. Treat this as a fresh authoring task. Return only valid JSON, without Markdown.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write exactly40 distinct Korean business workflow questions,4 for each sector:\nmanufacturing, logistics, retail, customer_service, finance, healthcare, public_services,\nhuman_resources, construction, energy. Use ordinary plausible workplace problems,\nnot named real companies or unsupported factual claims. Vary the actual requested\noperations, input types, outputs, workflow and constraints; changing industry names\nalone does not make questions different. Include narrow and multi-step workflows,\ncurrent monitoring and future planning, human approval boundaries and realistic\nuncertainty. Do not assume any supporting case exists. Do not suggest algorithms,\nvendors, AI products, answers, reference cases, relevance labels or solutions.\nEach problem should stand alone and be understandable to a business practitioner.\nReturn {\"questions\":[{\"query_id\":\"IVQ001\",\"sector\":\"manufacturing\",\n\"business_problem\":\"Korean2-4sentences describing the need\",\n\"input\":\"explicit input\",\"desired_output\":\"explicit output\",\n\"constraints\":\"explicit limits or empty string\"},...]}. IDs IVQ001 through IVQ040,\nordered by the10sectors listed,4each. The full question must contain its essential\ninputs, desired outputs and constraints in business_problem, not only metadata.\nDo not provide any relevance grading or assessment of how easy a question is."
+      }
+    ],
+    "output_config": {
+      "effort": "low"
+    }
+  },
+  "limit_usd": 2,
+  "reserved_upper_usd": 0.147516,
+  "input_rate_per_million": 2,
+  "output_rate_per_million": 10,
+  "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "price_checked": "2026-11-08",
+  "user_authorized_claude_ai_author_instead_of_human": true,
+  "human_gold": false,
+  "source_corpus_or_old_results_in_request": false,
+  "retries": 0,
+  "role": "AI_GENERATED_CORPUS_BLIND_PILOT_NOT_HUMAN_AUTHORED_FINAL_TEST",
+  "frozen_model_sha256": {
+    "src/ax_research/token_interaction.py": "81f0b74e1e668f32114a2543ad968a1cb2c8be96851c83489ae350965b4e3a15",
+    "src/ax_research/action_aggregation.py": "c69b1bef386bc1ee8d1e30fb8c89828b74f746bb06cb2a0faa160fc5e62cc93a",
+    "src/ax_research/functional_mapping.py": "a95e121badbdaad894415d3788e26117a3fae190a04d5d0e09f9df77bf033c7d",
+    "src/ax_research/semantic_mapping.py": "3d8d2271e9e0ba1ef706d1bdb4eb0a0a7daee27c9556274f2d75c0966ac72180",
+    "configs/action_aggregation_20261102.json": "9eb7c44414112d794dd34f272b5f15be2a4a21a3dfeafacb92581b98a465245d",
+    "configs/functional_mapping_20261028.json": "93bab60c6bdffbe787596a85469ec7c209b4df37c64ee06bff2f85b5787554de",
+    "configs/semantic_mapping_20261028.json": "ca1c82767b595e5d8fff416aab25c9d04b7d1b751cf49108c1c2b64a6caa46d6",
+    "scripts/core_preservation_prompts.py": "48c464381a59cf1c8740d02c59444efea76c950340bfbbecede992e69cd70cfb",
+    "docs/dense-bm25-candidates-2026-10-27/case_registry.json": "059706711b87cb86c8ecaf13128bbb261eaf01feace13847fcedf05eb35e6e60",
+    "docs/improvement-cycle10-20261108-results.json": "6c40ce27fb4c2ff9d4df4f48033cb97c8fec156af65ec0fe368b2f76787af38b",
+    "docs/reusable-token-ranker-verification.json": "e4a83b65a3b6749aebcdae7731459170af41c93c5a21d9a2dd414d1125efb0e6"
+  }
+}

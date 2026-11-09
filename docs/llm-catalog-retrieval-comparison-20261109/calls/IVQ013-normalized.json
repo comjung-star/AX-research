@@ -1,0 +1,87 @@
+{
+  "question": "콜센터 상담 후 요약을 상담사가 직접 작성해 시간이 오래 걸리고 품질도 제각각입니다. 통화 녹취 텍스트에서 문의 유형, 처리 결과, 후속 조치를 정리한 초안을 만들고 싶습니다. 상담사가 확인 후 저장해야 합니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P02"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 업무 문서나 지식에서 근거를 찾으려는 요청이 아니라 통화 녹취를 정리하는 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "SELECTED",
+      "rationale": "통화 녹취 텍스트에서 문의 유형, 처리 결과, 후속 조치를 업무 항목으로 정리하려는 요청입니다.",
+      "evidence": [
+        {
+          "quote": "문의 유형, 처리 결과, 후속 조치를 정리한 초안을 만들고 싶습니다",
+          "start": 60,
+          "end": 97,
+          "occurrence_starts": [
+            60
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "통화 녹취 텍스트에서",
+          "start": 48,
+          "end": 59,
+          "occurrence_starts": [
+            48
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "다른 자료나 기준과 대조해 불일치나 누락을 확인하려는 요청이 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "상담 후 요약 작성 부담이 문제이며, 실제 고객 문의 응대나 문의량·시간대 공백 문제는 없습니다.",
+      "evidence": [
+        {
+          "quote": "콜센터 상담 후 요약을 상담사가 직접 작성해 시간이 오래 걸리고 품질도 제각각입니다",
+          "start": 0,
+          "end": 46,
+          "occurrence_starts": [
+            0
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "EXCLUSION"
+        }
+      ],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [
+    {
+      "quote": "상담사가 확인 후 저장해야 합니다",
+      "start": 99,
+      "end": 117,
+      "occurrence_starts": [
+        99
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "human_approval"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

@@ -1,0 +1,755 @@
+{
+  "BQ001": {
+    "question": "고객센터에서 비슷한 문의가 반복해서 들어오고, 처리 중에 팀 간 전달이 늦어지면서 응답 흐름이 자주 끊깁니다. 이런 상황을 줄이려는 기업 AX 참고 사례가 있다면 어떤 업무 맥락에서 적용됐는지, 우리처럼 여러 부서가 연결된 환경에서 검토해야 할 적용 조건은 무엇인지 알고 싶습니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "처리 중에 팀 간 전달이 늦어지면서 응답 흐름이 자주 끊깁니다.",
+        "bridge_reason": "부서별 답변 근거나 처리 기준이 흩어져 있어 담당자가 필요한 정보를 빨리 찾지 못하면 전달과 응답이 끊길 수 있어, 지식 통합 검색 사례가 참고될 수 있습니다.",
+        "assumptions": [
+          "팀 간 전달 지연의 일부가 부서별로 분산된 정책·이력·처리지식 탐색 부담에서 발생한다.",
+          "반복 문의 중 상당수가 기존 문서나 사내 지식으로 답변 가능한 유형이다."
+        ],
+        "missing_information": [
+          "상담원이 답변 근거를 찾을 때 여러 시스템·문서를 오가고 있는지",
+          "부서별 FAQ·정책·처리 이력이 분산돼 있는지"
+        ],
+        "question_anchor": {
+          "quote": "처리 중에 팀 간 전달이 늦어지면서 응답 흐름이 자주 끊깁니다.",
+          "start": 26,
+          "end": 61
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "고객센터에서 비슷한 문의가 반복해서 들어오고",
+        "bridge_reason": "질문에는 비정형 문의 내용에서 필드를 추출해 CRM 등에 구조화하는 수기 입력 부담이 직접 드러나지 않습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "고객센터에서 비슷한 문의가 반복해서 들어오고",
+          "start": 0,
+          "end": 24
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "처리 중에 팀 간 전달이 늦어지면서 응답 흐름이 자주 끊깁니다.",
+        "bridge_reason": "부서 간 넘길 때 필수 정보 누락이나 기준 확인 반복이 있으면 재확인으로 흐름이 끊길 수 있어, 전달 전 완전성·기준 대조 사례가 보조적으로 맞을 수 있습니다.",
+        "assumptions": [
+          "전달 지연의 일부가 티켓 정보 누락이나 부서별 기준 확인 반복에서 발생한다.",
+          "문의 처리에 다음 부서가 확인해야 하는 필수 항목이나 정책 기준이 있다."
+        ],
+        "missing_information": [
+          "부서 간 이관 전에 확인해야 할 필수 항목·정책 기준이 있는지",
+          "재이관·반송의 주된 이유가 정보 누락이나 기준 불일치인지"
+        ],
+        "question_anchor": {
+          "quote": "처리 중에 팀 간 전달이 늦어지면서 응답 흐름이 자주 끊깁니다.",
+          "start": 26,
+          "end": 61
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P04",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "고객센터에서 비슷한 문의가 반복해서 들어오고, 처리 중에 팀 간 전달이 늦어지면서 응답 흐름이 자주 끊깁니다.",
+        "bridge_reason": "반복 문의와 응답 흐름 단절은 실제 문의 응대량과 인계 부담이 핵심 증상이라, 고객 문의 상시 응대·상담원 인계·자가응답 완화 사례를 우선 찾는 것이 직접적입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "고객센터에서 비슷한 문의가 반복해서 들어오고, 처리 중에 팀 간 전달이 늦어지면서 응답 흐름이 자주 끊깁니다.",
+          "start": 0,
+          "end": 61
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "우리처럼 여러 부서가 연결된 환경",
+        "start": 109,
+        "end": 127
+      }
+    ],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "BQ002": {
+    "question": "금융 신청서 접수 과정에서 같은 내용을 다시 손보는 재작업이 많고, 입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다. 이 문제와 유사한 기업 AX 참고 사례가 있다면 어떤 업무 단계에서 효과를 봤는지, 금융 문서와 심사 흐름에 맞춰 적용할 때 필요한 조건을 설명해 주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "금융 신청서 접수 과정에서 같은 내용을 다시 손보는 재작업이 많고, 입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+        "bridge_reason": "재작업이 접수·심사 기준이나 필수서류 요건을 여러 문서에서 찾아 확인하는 어려움과 연결돼 있다면, 지식 검색 사례가 보완 경로가 될 수 있습니다. 다만 질문에는 근거 탐색 부담이 직접 드러나지 않습니다.",
+        "assumptions": [
+          "심사 기준이나 접수 요건이 여러 문서·시스템에 흩어져 있다.",
+          "재작업의 일부가 최신 기준을 찾거나 해석하는 어려움에서 발생한다."
+        ],
+        "missing_information": [
+          "접수 담당자가 기준·정책·필수서류 요건을 여러 곳에서 찾아보는지",
+          "기준 변경이나 문서 분산이 입력 오류·되돌림의 원인인지"
+        ],
+        "question_anchor": {
+          "quote": "금융 신청서 접수 과정에서 같은 내용을 다시 손보는 재작업이 많고, 입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+          "start": 0,
+          "end": 70
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "같은 내용을 다시 손보는 재작업이 많고, 입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+        "bridge_reason": "같은 내용을 반복 손보는 문제는 신청서·증빙 문서의 내용을 사람이 다시 입력하거나 정리하는 단계와 연결될 수 있습니다. 이런 경우 문서에서 필요한 필드를 추출·구조화하는 사례가 재입력과 전사 오류를 줄이는 데 직접 참고됩니다.",
+        "assumptions": [
+          "신청서나 증빙 문서의 내용을 사람이 업무 시스템에 다시 입력하는 단계가 있다.",
+          "재작업의 일부가 문서 내용을 필드로 옮기고 정리하는 과정에서 생긴다."
+        ],
+        "missing_information": [
+          "어떤 신청서·증빙 문서에서 어떤 필드를 다시 입력하는지",
+          "입력 원천이 스캔/PDF/이메일/자유서술 등 비정형 문서인지"
+        ],
+        "question_anchor": {
+          "quote": "같은 내용을 다시 손보는 재작업이 많고, 입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+          "start": 15,
+          "end": 70
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+        "bridge_reason": "뒤 단계에서 되돌아오는 문제는 접수 단계에서 필수항목 완전성, 기준 적합성, 다른 자료와의 대조를 충분히 못해 생기는 전형적인 검증 부담과 맞닿아 있습니다. 검증·대조 사례가 가장 직접적인 참고 대상입니다.",
+        "assumptions": [],
+        "missing_information": [
+          "어떤 오류 유형과 누락 항목이 가장 자주 되돌림을 만드는지",
+          "접수 단계에서 대조해야 하는 기준 문서·시스템·심사 규칙이 무엇인지"
+        ],
+        "question_anchor": {
+          "quote": "입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+          "start": 38,
+          "end": 70
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "금융 신청서 접수 과정에서 같은 내용을 다시 손보는 재작업이 많고, 입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+        "bridge_reason": "질문의 중심은 문의 폭주나 응대 대기 문제가 아니라 접수 데이터의 재작업과 오류로 인한 후속 단계 되돌림입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "금융 신청서 접수 과정에서 같은 내용을 다시 손보는 재작업이 많고, 입력 오류 때문에 뒤 단계에서 되돌아오는 일이 반복됩니다.",
+          "start": 0,
+          "end": 70
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "BQ003": {
+    "question": "사업부에서 규정을 확인하는 데 시간이 오래 걸리고, 관련 승인도 대기 상태가 길어져 업무가 자주 멈춥니다. 이런 병목을 다룬 기업 AX 참고 사례가 있다면 어떤 조직 운영 방식에서 적용됐는지, 규정 변경 빈도와 승인 책임 체계를 고려할 때 필요한 적용 조건이 무엇인지 궁금합니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "사업부에서 규정을 확인하는 데 시간이 오래 걸리고",
+        "bridge_reason": "규정·정책 근거를 찾는 시간이 길다는 문제와 직접 맞닿아 있어, 문서·정책 검색과 참조 사례가 우선적으로 도움이 될 수 있습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "규정이 여러 시스템·문서에 분산돼 있는지 여부",
+          "최신 규정 반영 주기와 접근권한 때문에 확인이 늦어지는지 여부"
+        ],
+        "question_anchor": {
+          "quote": "사업부에서 규정을 확인하는 데 시간이 오래 걸리고",
+          "start": 0,
+          "end": 27
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "사업부에서 규정을 확인하는 데 시간이 오래 걸리고",
+        "bridge_reason": "질문은 규정 탐색과 승인 대기 병목에 관한 것으로, 비정형 문서에서 정보를 추출해 구조화하거나 수기 입력을 줄이는 업무는 확인되지 않습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "사업부에서 규정을 확인하는 데 시간이 오래 걸리고",
+          "start": 0,
+          "end": 27
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "관련 승인도 대기 상태가 길어져 업무가 자주 멈춥니다.",
+        "bridge_reason": "승인 대기가 길다면 승인자가 요청 내용이나 필수항목을 규정 기준과 대조·검토하는 부담이 병목일 수 있어, 기준 대조·검증 지원 사례를 함께 볼 가치가 있습니다.",
+        "assumptions": [
+          "승인 과정에서 요청 내용이나 첨부 자료를 규정 또는 필수항목 기준과 대조하는 검토가 실제로 존재함",
+          "승인 대기의 일부 원인이 결재권자의 단순 용량 문제가 아니라 규정 적합성 확인 부담임"
+        ],
+        "missing_information": [
+          "승인 시 어떤 자료를 어떤 규정 기준과 대조하는지",
+          "대기의 주원인이 규정 확인 부담인지, 결재권한/라우팅 자체인지"
+        ],
+        "question_anchor": {
+          "quote": "관련 승인도 대기 상태가 길어져 업무가 자주 멈춥니다.",
+          "start": 29,
+          "end": 59
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "관련 승인도 대기 상태가 길어져 업무가 자주 멈춥니다.",
+        "bridge_reason": "대기 문제는 보이지만, 질문에는 문의량 급증이나 실제 문의 응대 채널의 처리용량 문제가 명시돼 있지 않아 문의 응답 사례와는 직접 연결되지 않습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "관련 승인도 대기 상태가 길어져 업무가 자주 멈춥니다.",
+          "start": 29,
+          "end": 59
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [
+      {
+        "quote": "관련 승인도 대기 상태가 길어져 업무가 자주 멈춥니다.",
+        "start": 29,
+        "end": 59,
+        "reason": "승인 책임 체계나 결재 라우팅 설계 자체의 병목은 제공된 관점들이 직접 다루는 핵심 업무가 아닙니다. 다만 그 대기 원인 중 규정 확인·기준 대조 부담은 P01/P03으로 부분 검토할 수 있습니다."
+      }
+    ],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "BQ004": {
+    "question": "수리팀에서 숙련자 노하우가 개인에게 묶여 있어 인수인계가 끊기고, 비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다. 이런 문제를 다룬 기업 AX 참고 사례가 있다면 어떤 현장 운영 환경에서 적용됐는지, 작업 기록 수준과 인력 구성 측면에서 필요한 적용 조건을 알려주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "숙련자 노하우가 개인에게 묶여 있어 인수인계가 끊기고, 비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+        "bridge_reason": "개인에게 묶인 해결 경험을 작업기록·매뉴얼·장애이력으로 찾아 참조할 수 있게 하는 사례는 인수인계 단절과 유사 장애 대응 편차를 줄이는 접근으로 연결될 수 있습니다.",
+        "assumptions": [
+          "숙련자의 대응 근거를 작업기록·매뉴얼·장애이력 등 문서/지식 형태로 남기고 있거나 남길 수 있다.",
+          "비슷한 장애 대응 시 과거 사례나 절차를 찾아 참조하는 것이 품질 편차 완화에 실제로 도움이 된다."
+        ],
+        "missing_information": [
+          "현재 수리팀에 어떤 작업 기록, 매뉴얼, 장애 이력이 존재하는지",
+          "현장에서 기록을 찾아보는 주요 시점이 인수인계인지, 진단인지, 수리 중인지",
+          "현장 인력이 사용할 수 있는 단말·접근권한 제약이 있는지"
+        ],
+        "question_anchor": {
+          "quote": "숙련자 노하우가 개인에게 묶여 있어 인수인계가 끊기고, 비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+          "start": 6,
+          "end": 64
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "숙련자 노하우가 개인에게 묶여 있어 인수인계가 끊기고, 비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+        "bridge_reason": "질문의 중심은 비정형 자료에서 정보를 수기로 추출·등록하는 부담이 아니라 노하우 공유와 재사용의 단절입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "숙련자 노하우가 개인에게 묶여 있어 인수인계가 끊기고, 비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+          "start": 6,
+          "end": 64
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+        "bridge_reason": "질문에는 기준·필수항목·다른 자료와의 대조 검증 업무가 드러나지 않아 문서 검증 사례로 연결할 근거가 부족합니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+          "start": 37,
+          "end": 64
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "숙련자 노하우가 개인에게 묶여 있어 인수인계가 끊기고, 비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+        "bridge_reason": "문제의 핵심은 문의량 급증이나 응대용량 초과가 아니라 숙련자 의존과 대응 품질 편차입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "숙련자 노하우가 개인에게 묶여 있어 인수인계가 끊기고, 비슷한 장애가 생겨도 대응 품질이 들쭉날쭉합니다.",
+          "start": 6,
+          "end": 64
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "BQ005": {
+    "question": "총무 업무에서 문서별 항목을 정리하는 일과 제출된 증빙을 대조하는 일이 함께 발생하는데, 양쪽 작업이 따로 돌아가면서 누락과 확인 지연이 생깁니다. 이 두 업무가 연결된 형태로 운영되는 기업 AX 참고 사례가 있다면 어떤 프로세스에서 적용됐는지, 문서 종류의 다양성과 증빙 기준 차이를 고려한 적용 조건을 설명해 주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "문서 종류의 다양성과 증빙 기준 차이",
+        "bridge_reason": "증빙 기준이 문서별로 다르면 관련 규정·근거를 찾아보는 부담이 함께 있을 수 있어 보조 관점으로는 검토할 수 있습니다.",
+        "assumptions": [
+          "증빙 기준이 여러 문서·정책·시스템에 분산돼 있어 담당자가 근거를 찾는 시간이 걸린다."
+        ],
+        "missing_information": [
+          "증빙 기준이 실제로 여러 곳에 흩어져 있는지",
+          "근거 검색·참조가 현재 병목인지"
+        ],
+        "question_anchor": {
+          "quote": "문서 종류의 다양성과 증빙 기준 차이",
+          "start": 138,
+          "end": 158
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "문서별 항목을 정리하는 일",
+        "bridge_reason": "문서별로 필요한 항목을 꺼내 정리하는 업무가 명시돼 있어 비정형 문서에서 정보 추출·구조화하는 사례와 직접 연결됩니다.",
+        "assumptions": [],
+        "missing_information": [
+          "정리 대상 문서 종류",
+          "문서별로 추출해야 할 항목 스키마"
+        ],
+        "question_anchor": {
+          "quote": "문서별 항목을 정리하는 일",
+          "start": 8,
+          "end": 22
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "제출된 증빙을 대조하는 일이 함께 발생하는데, 양쪽 작업이 따로 돌아가면서 누락과 확인 지연이 생깁니다.",
+        "bridge_reason": "제출 자료를 기준이나 다른 자료와 대조하는 검증 부담, 그리고 그 분리 운영으로 인한 누락·지연이 문제로 명시돼 있어 대조·완전성 점검 사례와 직접 맞닿습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "증빙 대조 기준의 구체적 규칙",
+          "대조 대상이 되는 다른 자료나 등록 데이터"
+        ],
+        "question_anchor": {
+          "quote": "제출된 증빙을 대조하는 일이 함께 발생하는데, 양쪽 작업이 따로 돌아가면서 누락과 확인 지연이 생깁니다.",
+          "start": 24,
+          "end": 82
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "양쪽 작업이 따로 돌아가면서 누락과 확인 지연이 생깁니다.",
+        "bridge_reason": "지연 원인이 문의량이나 응대 용량 부족이 아니라 문서 정리와 증빙 대조의 분리 운영으로 제시돼 있어 문의 응대 관점과는 거리가 있습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "양쪽 작업이 따로 돌아가면서 누락과 확인 지연이 생깁니다.",
+          "start": 50,
+          "end": 82
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "BQ006": {
+    "question": "온라인 상품 운영에서 상품 속성을 정리하는 일과 고객문의에 답변하는 일이 분리되어 있어, 정보 불일치 때문에 응대 품질이 흔들릴 때가 있습니다. 이 두 업무를 함께 다룬 기업 AX 참고 사례가 있다면 어떤 운영 구조에서 적용됐는지, 상품 카테고리 복잡도와 답변 정확성 요구를 고려한 적용 조건을 알고 싶습니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "상품 속성을 정리하는 일과 고객문의에 답변하는 일이 분리되어 있어, 정보 불일치 때문에 응대 품질이 흔들릴 때가 있습니다.",
+        "bridge_reason": "상품 정보와 응대 근거가 서로 다른 시스템·문서에 흩어져 있으면, 응대자가 같은 기준을 참조하기 어려워 불일치가 커질 수 있어 지식 통합 검색 운영 사례가 보완 관점이 됩니다.",
+        "assumptions": [
+          "응대자가 기존 상품 문서·지식베이스를 찾아 참고하는 업무가 실제로 있다.",
+          "불일치의 일부 원인이 상품 정보 근거의 분산 또는 참조 어려움이다."
+        ],
+        "missing_information": [
+          "응대자가 현재 어떤 문서·시스템에서 상품 정보를 찾는지",
+          "상품 속성 기준과 상담 지식이 실제로 분리 저장돼 있는지"
+        ],
+        "question_anchor": {
+          "quote": "상품 속성을 정리하는 일과 고객문의에 답변하는 일이 분리되어 있어, 정보 불일치 때문에 응대 품질이 흔들릴 때가 있습니다.",
+          "start": 12,
+          "end": 80
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P02",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "상품 속성을 정리하는 일",
+        "bridge_reason": "상품 속성 정리가 공급사 자료·상세페이지·자유서술에서 속성을 뽑아 구조화하는 업무라면 관련 사례가 직접 맞지만, 질문만으로는 비정형 추출 부담이 확인되지 않습니다.",
+        "assumptions": [
+          "상품 속성 정리가 비정형 자료에서 속성을 추출·분류하는 작업일 수 있다.",
+          "수기 구조화 부담이 운영 품질 문제와 연결돼 있을 수 있다."
+        ],
+        "missing_information": [
+          "상품 속성의 원천이 문서·이미지·자유서술 같은 비정형 자료인지",
+          "속성 정리 과정에 수기 추출·분류가 실제 병목인지"
+        ],
+        "question_anchor": {
+          "quote": "상품 속성을 정리하는 일",
+          "start": 12,
+          "end": 25
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "상품 속성을 정리하는 일과 고객문의에 답변하는 일이 분리되어 있어, 정보 불일치 때문에 응대 품질이 흔들릴 때가 있습니다.",
+        "bridge_reason": "핵심 증상이 두 업무 사이의 정보 불일치이므로, 상품 속성 기준과 응대 내용·필수항목을 대조해 품질을 맞추는 검증 운영 사례가 가장 직접적으로 연결됩니다.",
+        "assumptions": [
+          "응대 내용이 상품 속성의 기준 데이터나 관리 기준과 대조될 수 있다.",
+          "문제의 일부가 답변 작성·검수 단계의 검증 누락 또는 대조 부담에서 발생한다."
+        ],
+        "missing_information": [
+          "상품 속성의 공식 기준 데이터가 무엇인지",
+          "답변 정확성을 확인하는 규칙·검수 단계가 있는지"
+        ],
+        "question_anchor": {
+          "quote": "상품 속성을 정리하는 일과 고객문의에 답변하는 일이 분리되어 있어, 정보 불일치 때문에 응대 품질이 흔들릴 때가 있습니다.",
+          "start": 12,
+          "end": 80
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "고객문의에 답변하는 일",
+        "bridge_reason": "문의 응대 자체는 명시됐지만, 질문의 중심은 대기·누락을 만드는 문의량 초과가 아니라 정보 일치와 답변 품질입니다.",
+        "assumptions": [],
+        "missing_information": [
+          "문의량 급증, 대기, 야간 공백 같은 용량 문제의 존재 여부"
+        ],
+        "question_anchor": {
+          "quote": "고객문의에 답변하는 일",
+          "start": 27,
+          "end": 39
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "이 두 업무를 함께 다룬",
+        "start": 81,
+        "end": 94
+      },
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "상품 카테고리 복잡도와 답변 정확성 요구를 고려한 적용 조건",
+        "start": 130,
+        "end": 163
+      }
+    ],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "BQ007": {
+    "question": "문서검색이나 고객챗봇이 아니라, 센서 데이터를 바탕으로 물리 설비 이상을 미리 감지하고 정비 시점을 판단한 예지보전 사례만 보고 싶습니다. 기업 AX 참고 사례가 있다면 어떤 설비와 운영 환경에서 적용됐는지, 센서 품질·설비 특성·현장 정비 프로세스 측면의 적용 조건을 중심으로 정리해 주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "NOT_SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "문서검색이나 고객챗봇이 아니라",
+        "bridge_reason": "문서·지식 검색 관점은 질문에서 명시적으로 제외됐고, 요청의 중심도 센서 기반 설비 이상감지/예지보전 사례입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "문서검색이나 고객챗봇이 아니라",
+          "start": 0,
+          "end": 16
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "센서 데이터를 바탕으로 물리 설비 이상을 미리 감지하고 정비 시점을 판단한 예지보전 사례만",
+        "bridge_reason": "비정형 문서에서 정보를 추출·구조화하는 업무 부담은 질문에 나오지 않았고, 요청된 사례 범위도 센서 데이터 기반 설비 예지보전입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "센서 데이터를 바탕으로 물리 설비 이상을 미리 감지하고 정비 시점을 판단한 예지보전 사례만",
+          "start": 18,
+          "end": 68
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "센서 데이터를 바탕으로 물리 설비 이상을 미리 감지하고 정비 시점을 판단한 예지보전 사례만",
+        "bridge_reason": "문서·등록데이터를 기준과 대조하는 검증 업무가 아니라, 물리 설비의 이상 징후를 센서로 감지해 정비 시점을 판단한 사례를 찾고 있습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "센서 데이터를 바탕으로 물리 설비 이상을 미리 감지하고 정비 시점을 판단한 예지보전 사례만",
+          "start": 18,
+          "end": 68
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "문서검색이나 고객챗봇이 아니라",
+        "bridge_reason": "문의 응대량·챗봇 관점은 질문에서 명시적으로 제외됐습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "문서검색이나 고객챗봇이 아니라",
+          "start": 0,
+          "end": 16
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "exclude_view",
+        "perspective_id": "P01",
+        "quote": "문서검색이나 고객챗봇이 아니라",
+        "start": 0,
+        "end": 16
+      },
+      {
+        "kind": "exclude_view",
+        "perspective_id": "P04",
+        "quote": "문서검색이나 고객챗봇이 아니라",
+        "start": 0,
+        "end": 16
+      },
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "센서 데이터를 바탕으로 물리 설비 이상을 미리 감지하고 정비 시점을 판단한 예지보전 사례만",
+        "start": 18,
+        "end": 68
+      }
+    ],
+    "unsupported_work": [
+      {
+        "quote": "센서 데이터를 바탕으로 물리 설비 이상을 미리 감지하고 정비 시점을 판단한 예지보전 사례만",
+        "start": 18,
+        "end": 68,
+        "reason": "제공된 4개 관점은 문서/지식 검색, 비정형 정보 추출, 문서·기준 대조, 문의 응대에 한정되어 있어 센서 기반 물리 설비 예지보전 자체를 다루지 않습니다."
+      }
+    ],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "BQ008": {
+    "question": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다. 기업 AX 참고 사례가 있다면 어떤 유통 환경에서 적용됐는지, 시즌성·매장 차이·보충 주기 같은 조건을 고려할 때 현업에 적용하기 위한 전제와 운영 조건을 알려주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+        "bridge_reason": "질문의 명시 업무는 수요예측·재고배분 사례 탐색이며, 사내 문서·지식 검색 부담은 근거로 제시되지 않았습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+          "start": 0,
+          "end": 43
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+        "bridge_reason": "비정형 자료에서 정보를 추출·구조화하거나 수기 입력 부담이 있다는 단서는 없고, 요청 범위도 예측·배분 운영사례에 한정돼 있습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+          "start": 0,
+          "end": 43
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+        "bridge_reason": "기준·다른 자료와의 대조, 필수항목 검증, 감사 같은 검토 업무는 질문에 드러나지 않습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+          "start": 0,
+          "end": 43
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+        "bridge_reason": "문의량 급증이나 응대 용량 초과 문제는 언급되지 않았고, 실제 찾는 업무도 고객/내부 문의 응대가 아닙니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+          "start": 0,
+          "end": 43
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+        "start": 0,
+        "end": 43
+      },
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "시즌성·매장 차이·보충 주기 같은 조건",
+        "start": 79,
+        "end": 100
+      }
+    ],
+    "unsupported_work": [
+      {
+        "quote": "매장별·품목별 수요예측과 재고배분을 실제 운영에 반영한 사례만 찾고 있습니다.",
+        "start": 0,
+        "end": 43,
+        "reason": "수요예측과 재고배분은 제공된 4개 관점(지식검색, 정보추출·구조화, 문서·기준 대조, 문의응대) 바깥의 업무입니다."
+      },
+      {
+        "quote": "시즌성·매장 차이·보충 주기 같은 조건",
+        "start": 79,
+        "end": 100,
+        "reason": "예측·배분 모델의 운영 전제와 적용 조건 검토는 제공된 관점들의 사례 분류 범위를 벗어납니다."
+      }
+    ],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  }
+}

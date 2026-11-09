@@ -1,0 +1,98 @@
+{
+  "id": "resp_07c1cab2318a3ccd016af07491acd087d08aed11c358773860",
+  "object": "response",
+  "created_at": 1794143377,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143381,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_07c1cab2318a3ccd016af07492725087d0a7a0aaf9031d529e",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"core\": {\n    \"purpose\": {\n      \"text\": \"배송 기사들의 일일 경로 계획을 만들고자 함\",\n      \"evidence\": [\n        \"배송 기사들의 일일 경로 계획\",\n        \"하루 경로 초안을 만들고 싶습니다\"\n      ]\n    },\n    \"action\": {\n      \"text\": \"경로 초안을 생성함\",\n      \"evidence\": [\n        \"하루 경로 초안을 만들고 싶습니다\"\n      ]\n    },\n    \"object\": {\n      \"text\": \"배송 기사의 하루 경로\",\n      \"evidence\": [\n        \"배송 기사들의 일일 경로 계획\",\n        \"하루 경로 초안\"\n      ]\n    },\n    \"input\": {\n      \"text\": \"주소 목록, 시간 지정 요청, 차량 적재 한도\",\n      \"evidence\": [\n        \"주소 목록, 시간 지정 요청, 차량 적재 한도\"\n      ]\n    },\n    \"output\": {\n      \"text\": \"하루 경로 초안\",\n      \"evidence\": [\n        \"하루 경로 초안\"\n      ]\n    },\n    \"workflow\": {\n      \"text\": \"초안을 만든 뒤 기사가 현장 사정으로 수정할 수 있어야 함\",\n      \"evidence\": [\n        \"하루 경로 초안을 만들고 싶습니다\",\n        \"기사가 현장 사정으로 수정할 수 있어야 합니다\"\n      ]\n    },\n    \"constraints\": {\n      \"text\": \"기사가 현장 사정으로 경로를 수정할 수 있어야 함\",\n      \"evidence\": [\n        \"기사가 현장 사정으로 수정할 수 있어야 합니다\"\n      ]\n    }\n  }\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 260,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 365,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 625
+  },
+  "user": null,
+  "metadata": {}
+}

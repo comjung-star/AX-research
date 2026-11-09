@@ -1,0 +1,98 @@
+{
+  "id": "resp_0ec28a0c87d42227016af07539461c87d08a9c034fa067d44e",
+  "object": "response",
+  "created_at": 1794143545,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143549,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0ec28a0c87d42227016af0753a1a0087d095e8a9f5142e0953",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"core\": {\n    \"purpose\": {\n      \"text\": \"주 52시간 초과 가능성을 미리 파악\",\n      \"evidence\": [\n        \"주 52시간 초과 가능성을 미리 알고 싶습니다\"\n      ]\n    },\n    \"action\": {\n      \"text\": \"초과 우려 직원을 알려주는 점검\",\n      \"evidence\": [\n        \"초과 우려 직원을 알려주는 점검이 필요합니다\"\n      ]\n    },\n    \"object\": {\n      \"text\": \"주 52시간 초과 우려 직원\",\n      \"evidence\": [\n        \"주 52시간 초과\",\n        \"초과 우려 직원\"\n      ]\n    },\n    \"input\": {\n      \"text\": \"현재까지 근무시간과 다음 주 배정 계획\",\n      \"evidence\": [\n        \"현재까지 근무시간과 다음 주 배정 계획\"\n      ]\n    },\n    \"output\": {\n      \"text\": \"초과 우려 직원\",\n      \"evidence\": [\n        \"초과 우려 직원을 알려주는\"\n      ]\n    },\n    \"workflow\": {\n      \"text\": \"현재까지 근무시간과 다음 주 배정 계획을 합쳐 점검\",\n      \"evidence\": [\n        \"현재까지 근무시간과 다음 주 배정 계획을 합쳐\",\n        \"점검이 필요합니다\"\n      ]\n    },\n    \"constraints\": {\n      \"text\": \"교대근무 사업장에서 주 52시간 초과 가능성을 미리 파악\",\n      \"evidence\": [\n        \"교대근무 사업장에서\",\n        \"주 52시간 초과 가능성을 미리\"\n      ]\n    }\n  }\n}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 253,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 365,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 618
+  },
+  "user": null,
+  "metadata": {}
+}

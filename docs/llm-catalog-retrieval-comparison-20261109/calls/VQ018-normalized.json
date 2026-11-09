@@ -1,0 +1,86 @@
+{
+  "question": "건설 현장의 작업일지는 여러 협력업체가 서로 다른 양식으로 제출합니다. 일지에 기재된 작업 위치, 장비, 공정 정보를 동일한 분류 기준으로 정리해 공정별 현황표를 만들고 싶습니다. 작성되지 않은 실제 작업량을 추정해서 넣지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P02"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서에서 근거나 절차를 찾으려는 요청이 아니라, 제출된 일지를 정리하려는 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "SELECTED",
+      "rationale": "서로 다른 양식의 작업일지에서 위치·장비·공정 정보를 꺼내 동일한 분류 기준의 현황표로 구조화하려는 요청입니다.",
+      "evidence": [
+        {
+          "quote": "작업 위치, 장비, 공정 정보를 동일한 분류 기준으로 정리해 공정별 현황표를 만들고 싶습니다",
+          "start": 48,
+          "end": 99,
+          "occurrence_starts": [
+            48
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "건설 현장의 작업일지는 여러 협력업체가 서로 다른 양식으로 제출합니다",
+          "start": 0,
+          "end": 38,
+          "occurrence_starts": [
+            0
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "작성되지 않은 실제 작업량을 추정해서 넣지 않습니다",
+          "start": 101,
+          "end": 129,
+          "occurrence_starts": [
+            101
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "EXCLUSION"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "일지를 다른 자료나 명시 기준과 대조해 불일치·누락을 확인하라는 요청은 없습니다. 분류 기준은 정리용이며 검사 기준이 아닙니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 용량·시간대 문제가 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [
+    {
+      "quote": "작성되지 않은 실제 작업량을 추정해서 넣지 않습니다",
+      "start": 101,
+      "end": 129,
+      "occurrence_starts": [
+        101
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

@@ -1,0 +1,5 @@
+# Cycle8: agreement-filtered training, unchanged evaluation labels
+
+Before scoring, freeze the two cycle7 neural models and training setup unchanged. Change only training pair eligibility: a positive is eligible when all3 stored label versions give grade>=2; a negative is eligible when all3 give grade<2. Disagreements are excluded from training, never overwritten or scored as negative. Same5 query folds, train-only scaler and100epochs. Eligibility is determined only for training queries, not heldout queries. There are44 agreement-positive pairs across14development queries; this agreement is not independent gold because the versions share underlying AI labels.
+
+Evaluate exactly the same held-out predictions on the3 original label versions. No labels edited. Store per-fold train query IDs, eligible pair counts, feature transforms and weights. Compare with the unfiltered cycle7 neural arms, E and Dense. No hyperparameter search, no new paid calls, no Test15. This diagnoses whether uncertain transfer labels distort neural learning, not whether the resulting system generalizes to a fresh dataset.

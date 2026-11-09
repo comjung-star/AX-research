@@ -1,0 +1,26 @@
+{
+  "version": "problem-perspective-panels-pilot-v1-20261109",
+  "catalog": "docs/perspective-catalog-pilot-20261109/catalog-reviewed.json",
+  "registry": "docs/dense-bm25-candidates-2026-10-27/case_registry.json",
+  "profiles": "configs/pilot_case_profiles_20261109.json",
+  "per_perspective_limit": 5,
+  "global_final_cut": false,
+  "retrieval_scope": "SUPPORTED_FOR_PILOT links of the existing four cards only",
+  "ranking": "Frozen local BGE cosine: original question plus source perspective definition against case Task; auxiliary ordering only",
+  "uncertain_application_conditions": "Explain explicitly; do not discard a reference solely because a detail is not stated",
+  "hypotheses_are_confirmed_causes": false,
+  "evaluation": {
+    "target": "Useful real reference cases for the user's problem, including grounded alternative perspectives",
+    "reference_grades": {
+      "3": "Directly relevant performed core work",
+      "2": "A concrete problem-to-perspective-to-case bridge can help; state assumptions and differences",
+      "1": "Only industry/technology/topic overlap or a bridge that requires unsupported core capabilities",
+      "0": "No useful problem connection or explicit contradiction"
+    },
+    "same_count_baseline": "Top U single-query cases, U = distinct cases displayed across panels; duplicated memberships count once",
+    "perspective_coverage": "Apply the same independently reviewed perspective criteria to baseline cases too; labels on new results alone do not prove coverage",
+    "current_functional_checks_are_accuracy": false,
+    "performance_comparison_now": false
+  },
+  "execution": {"new_paid_calls": 0, "fine_tuning": false, "expand_to112": false}
+}

@@ -1,0 +1,98 @@
+{
+  "id": "resp_07b4a28343265a25016af074804e2887d08208479784b2709b",
+  "object": "response",
+  "created_at": 1794143360,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143363,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_07b4a28343265a25016af07480f19c87d09c75c3ccf6d8447d",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"프레스 공정의 생산능력 계획을 세우기 위해\",\"evidence\":[\"프레스 공정의 생산능력 계획을 세워야 합니다\"]},\"action\":{\"text\":\"두 가지 기준으로 시나리오를 작성하고 병목 주차를 보여주는 계획안을 마련\",\"evidence\":[\"확정 주문 기준과 예상 포함 기준 두 가지 시나리오로 병목 주차를 보여주는 계획안이 필요합니다\"]},\"object\":{\"text\":\"프레스 공정의 생산능력과 병목 주차\",\"evidence\":[\"프레스 공정의 생산능력 계획\",\"병목 주차\"]},\"input\":{\"text\":\"주문 확정분, 영업 예상분, 설비 정비 일정\",\"evidence\":[\"주문 확정분과 영업 예상분이 섞여 있고 설비 정비 일정도 있습니다\"]},\"output\":{\"text\":\"확정 주문 기준과 예상 포함 기준의 두 가지 시나리오에서 병목 주차를 보여주는 계획안\",\"evidence\":[\"확정 주문 기준과 예상 포함 기준 두 가지 시나리오로 병목 주차를 보여주는 계획안이 필요합니다\"]},\"workflow\":null,\"constraints\":{\"text\":\"확정 주문 기준과 영업 예상분을 포함한 기준, 두 가지 시나리오로 제시\",\"evidence\":[\"확정 주문 기준과 예상 포함 기준 두 가지 시나리오\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 280,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 305,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 585
+  },
+  "user": null,
+  "metadata": {}
+}

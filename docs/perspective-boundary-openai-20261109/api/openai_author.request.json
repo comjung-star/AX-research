@@ -1,0 +1,99 @@
+{
+  "system": "독립적인 한국어 기업 업무문제 질문 작성자입니다. 검색 자료, 관점 목록, 기존 질문, 답/성능/방법을 보지 않습니다. 지정된8개 합성 질문을 각각2~3문장으로 자연스럽게 작성하세요. 질문에 해결책을 미리 넣지 말고 기업 AX 참고 사례와 적용 조건을 요청하세요. 정답·관점·사례ID는 쓰지 마세요.",
+  "payload": {
+    "ids": [
+      "BQ001",
+      "BQ002",
+      "BQ003",
+      "BQ004",
+      "BQ005",
+      "BQ006",
+      "BQ007",
+      "BQ008"
+    ],
+    "settings": [
+      "고객센터 반복문의와 팀간 전달 지연 증상",
+      "금융 신청서의 재작업·입력오류 증상",
+      "사업부 규정 확인·승인 대기 증상",
+      "수리팀 노하우 인계 단절 증상",
+      "총무 문서 항목 정리와 증빙 대조를 함께 명시",
+      "온라인상품속성 정리와 고객문의 답변을 함께 명시",
+      "문서검색/고객챗봇을 명시제외하고 센서 기반 물리설비 예지보전 사례만 요청",
+      "매장 품목별 수요예측/재고배분 실제사례만 요청"
+    ],
+    "avoid": "실제 기업의 미확인 수치·성과를 만들지 마세요. 앞6개는 업무문제4/복합업무2, 뒤2개는명시한목표업무입니다."
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "questions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "question"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "additionalProperties": false
+  },
+  "body": {
+    "model": "gpt-5.4",
+    "instructions": "독립적인 한국어 기업 업무문제 질문 작성자입니다. 검색 자료, 관점 목록, 기존 질문, 답/성능/방법을 보지 않습니다. 지정된8개 합성 질문을 각각2~3문장으로 자연스럽게 작성하세요. 질문에 해결책을 미리 넣지 말고 기업 AX 참고 사례와 적용 조건을 요청하세요. 정답·관점·사례ID는 쓰지 마세요.",
+    "input": "{\"ids\": [\"BQ001\", \"BQ002\", \"BQ003\", \"BQ004\", \"BQ005\", \"BQ006\", \"BQ007\", \"BQ008\"], \"settings\": [\"고객센터 반복문의와 팀간 전달 지연 증상\", \"금융 신청서의 재작업·입력오류 증상\", \"사업부 규정 확인·승인 대기 증상\", \"수리팀 노하우 인계 단절 증상\", \"총무 문서 항목 정리와 증빙 대조를 함께 명시\", \"온라인상품속성 정리와 고객문의 답변을 함께 명시\", \"문서검색/고객챗봇을 명시제외하고 센서 기반 물리설비 예지보전 사례만 요청\", \"매장 품목별 수요예측/재고배분 실제사례만 요청\"], \"avoid\": \"실제 기업의 미확인 수치·성과를 만들지 마세요. 앞6개는 업무문제4/복합업무2, 뒤2개는명시한목표업무입니다.\"}",
+    "store": false,
+    "reasoning": {
+      "effort": "medium"
+    },
+    "max_output_tokens": 4096,
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "research_output",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "question": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "question"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "questions"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

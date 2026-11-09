@@ -1,0 +1,98 @@
+{
+  "id": "resp_03d201f293afc107016af0754660f887d081277f1be1a91f66",
+  "object": "response",
+  "created_at": 1794143558,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143560,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n\nAlso use the supplied source-grounded core structure as intermediate evidence.\nIf any core text conflicts with the original question, the original controls.\nMaintain BUSINESS, OPERATIONS and TECHNICAL roles while keeping the same\nbusiness purpose, action, object, input, output, sequence and restrictions.\nKeep explicit operation verbs where they fit the role. Do not substitute a\ndifferent action merely to make a role sound different. Across the three\nperspectives preserve the full core meaning. Avoid copying identical sentences\ninto all slots; focus BUSINESS on purpose/outcome, OPERATIONS on stated flow\nand conditions, TECHNICAL on input/action/object/output. Do not invent content\nfor differentiation. Unknown core fields provide no license to fill in facts.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_03d201f293afc107016af07546ef5087d0b798139a74687298",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"공사 회의용 지연 원인 정리\",\"description\":\"아파트 신축 현장에서 지연 공종과 원인 후보를 정리해 공사 회의 자료로 활용합니다.\",\"keywords\":[\"아파트 신축 현장\",\"공정 지연\",\"지연 공종\",\"원인 후보\",\"공사 회의 자료\"],\"source_quote\":\"공사 회의 자료로 쓰고 싶습니다\"},{\"id\":\"OPERATIONS\",\"status\":\"MISSING\",\"title\":\"\",\"description\":\"\",\"keywords\":[],\"source_quote\":\"\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"공정 지연 자료 검토 및 정리\",\"description\":\"주간 공정 보고서, 자재 입고 기록, 인력 투입 현황을 보고 지연 공종과 원인 후보를 정리합니다.\",\"keywords\":[\"주간 공정 보고서\",\"자재 입고 기록\",\"인력 투입 현황\",\"지연 공종\",\"원인 후보\"],\"source_quote\":\"주간 공정 보고서, 자재 입고 기록, 인력 투입 현황을 보고 지연 공종과 원인 후보를 정리\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 846,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 260,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1106
+  },
+  "user": null,
+  "metadata": {}
+}

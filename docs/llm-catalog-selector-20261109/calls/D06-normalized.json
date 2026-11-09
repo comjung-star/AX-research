@@ -1,0 +1,75 @@
+{
+  "question": "접수한 지원서의 경력 기재를 직무별 필수 요건과 견주어 충족하지 못한 항목을 표시해주세요.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾아 참조하려는 요청이 아니라 지원서를 기준과 견주는 요청이다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "경력 기재와 요건의 대조만 요청했고 항목 추출·구조화는 요청하지 않았다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "접수한 지원서의 경력 기재를 직무별 필수 요건이라는 명시 기준과 대조해 미충족 항목을 표시하려는 요청이다.",
+      "evidence": [
+        {
+          "quote": "직무별 필수 요건과 견주어 충족하지 못한 항목을 표시",
+          "start": 16,
+          "end": 45,
+          "occurrence_starts": [
+            16
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "접수한 지원서의 경력 기재",
+          "start": 0,
+          "end": 14,
+          "occurrence_starts": [
+            0
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "직무별 필수 요건",
+          "start": 16,
+          "end": 25,
+          "occurrence_starts": [
+            16
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 용량·시간대 문제의 근거가 없다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

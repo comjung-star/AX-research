@@ -1,0 +1,107 @@
+{
+  "id": "author_01",
+  "system": "한국어 기업 운영문제 질문 작성자입니다. 실제 자료·관점목록·기존질문·답·실험방법·점수는 받지 않습니다. 각 주제에 대해2~3문장의 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 증상형 주제는 AI해결책·수단을 미리 정하지 않고 실제 업무 어려움을 설명하세요. 명시 업무형은 주어진 업무만 분명히 요청하세요. 사례의 실제성과·기업명·수치를 만들지 말고 정답·관점ID를 쓰지 마세요. 지정된5개ID순서대로 질문5개만 반환하세요.",
+  "payload": {
+    "ids": [
+      "VQ006",
+      "VQ007",
+      "VQ008",
+      "VQ009",
+      "VQ010"
+    ],
+    "settings": [
+      "대출 신청자료의 항목 오류와 누락이 뒤 단계에서 발견돼 접수가 되돌아오는 증상",
+      "지원사업 예산과 제출증빙의 기준 적용이 담당자마다 달라 재검토하는 증상",
+      "상품 공급업체별 표기 차이로 채널마다 제품정보가 달라 반복 수정하는 증상",
+      "채용 지원자료와 증빙 확인이 오래 걸리고 처리상태 문의도 반복되는 증상",
+      "운송비 청구 내역이 계약조건과 달라 분쟁 근거를 매번 찾는 증상"
+    ]
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "questions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "VQ006",
+                "VQ007",
+                "VQ008",
+                "VQ009",
+                "VQ010"
+              ]
+            },
+            "question": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "question"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "additionalProperties": false
+  },
+  "body": {
+    "model": "gpt-5.4",
+    "instructions": "한국어 기업 운영문제 질문 작성자입니다. 실제 자료·관점목록·기존질문·답·실험방법·점수는 받지 않습니다. 각 주제에 대해2~3문장의 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 증상형 주제는 AI해결책·수단을 미리 정하지 않고 실제 업무 어려움을 설명하세요. 명시 업무형은 주어진 업무만 분명히 요청하세요. 사례의 실제성과·기업명·수치를 만들지 말고 정답·관점ID를 쓰지 마세요. 지정된5개ID순서대로 질문5개만 반환하세요.",
+    "input": "{\"ids\": [\"VQ006\", \"VQ007\", \"VQ008\", \"VQ009\", \"VQ010\"], \"settings\": [\"대출 신청자료의 항목 오류와 누락이 뒤 단계에서 발견돼 접수가 되돌아오는 증상\", \"지원사업 예산과 제출증빙의 기준 적용이 담당자마다 달라 재검토하는 증상\", \"상품 공급업체별 표기 차이로 채널마다 제품정보가 달라 반복 수정하는 증상\", \"채용 지원자료와 증빙 확인이 오래 걸리고 처리상태 문의도 반복되는 증상\", \"운송비 청구 내역이 계약조건과 달라 분쟁 근거를 매번 찾는 증상\"]}",
+    "store": false,
+    "reasoning": {
+      "effort": "medium"
+    },
+    "max_output_tokens": 4096,
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "research_output",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "enum": [
+                      "VQ006",
+                      "VQ007",
+                      "VQ008",
+                      "VQ009",
+                      "VQ010"
+                    ]
+                  },
+                  "question": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "question"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "questions"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

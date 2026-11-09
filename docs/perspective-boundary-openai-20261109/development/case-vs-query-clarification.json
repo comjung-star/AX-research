@@ -1,0 +1,166 @@
+{
+  "FQ002": {
+    "question": "보험 보상 업무를 맡고 있는데, 접수 서류의 누락이나 기재 오류가 뒤늦게 발견돼 고객에게 다시 연락하고 심사를 되돌리는 일이 반복됩니다. 비슷한 상황에서 업무 품질을 개선한 기업 AX 사례가 있을까요? 실제 적용 전후의 업무 흐름과 운영상 어려움을 참고하고 싶습니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "접수 서류의 누락이나 기재 오류가 뒤늦게 발견돼",
+        "bridge_reason": "질문의 중심은 필요한 지식 탐색보다 서류의 완전성·오류 검토입니다. 문서·정책·이력 검색이 병목이라는 근거는 보이지 않습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "접수 서류의 누락이나 기재 오류가 뒤늦게 발견돼",
+          "start": 18,
+          "end": 44
+        },
+        "confirmed_problem_cause": false
+      },
+      {
+        "id": "P02",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "접수 서류의 누락이나 기재 오류가 뒤늦게 발견돼",
+        "bridge_reason": "접수 단계에서 비정형 서류 내용을 수기로 옮기거나 분류하는 부담이 크다면, 추출·구조화 자동화가 누락·오입력의 선행 원인을 줄이는 데 도움이 될 수 있습니다.",
+        "assumptions": [
+          "접수 서류의 내용이 현재 사람이 읽어 여러 시스템 필드로 옮겨 적거나 분류되고 있다.",
+          "늦은 오류 발견의 일부가 서류 자체 검토뿐 아니라 입력·구조화 과정의 누락/오입력과 연결돼 있다."
+        ],
+        "missing_information": [
+          "접수 서류가 PDF·이미지·이메일 등 비정형 형태인지",
+          "사람이 서류에서 항목을 추출해 심사 시스템에 수기 등록하는 단계가 있는지",
+          "자동 등록보다 추출·분류 정확도 개선이 실제 병목인지"
+        ],
+        "question_anchor": {
+          "quote": "접수 서류의 누락이나 기재 오류가 뒤늦게 발견돼",
+          "start": 18,
+          "end": 44
+        },
+        "confirmed_problem_cause": false
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "접수 서류의 누락이나 기재 오류가 뒤늦게 발견돼 고객에게 다시 연락하고 심사를 되돌리는 일이 반복됩니다.",
+        "bridge_reason": "필수항목 누락과 기재 오류를 늦게 발견해 재접촉·재심사가 반복된다는 점이, 접수 자료를 기준과 대조해 완전성·오류를 점검하는 사례와 직접 맞닿아 있습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "접수 서류의 누락이나 기재 오류가 뒤늦게 발견돼 고객에게 다시 연락하고 심사를 되돌리는 일이 반복됩니다.",
+          "start": 18,
+          "end": 76
+        },
+        "confirmed_problem_cause": false
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "고객에게 다시 연락하고 심사를 되돌리는 일이 반복됩니다.",
+        "bridge_reason": "고객 재연락은 결과로 나타나지만, 질문에는 문의 폭주나 응대 용량 초과로 인한 대기·누락 문제가 중심이라고 보기는 어렵습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "고객에게 다시 연락하고 심사를 되돌리는 일이 반복됩니다.",
+          "start": 45,
+          "end": 76
+        },
+        "confirmed_problem_cause": false
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_OPENAI_FIXED_BOUNDARY_EXPERIMENT",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "FQ006": {
+    "question": "온라인 커머스 운영팀에서 상품 정보 등록과 수정, 주문 상태 확인, 반품 사유 분류, 고객 답변 작성까지 함께 수행하고 있습니다. 이런 복수 업무를 다룬 기업 AX 사례 중 실제 운영 흐름과 적용 범위를 확인할 수 있는 자료가 있을까요? 판매 운영과 고객지원 담당자가 함께 일하는 상황에 참고하고 싶습니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "주문 상태 확인, 반품 사유 분류, 고객 답변 작성",
+        "bridge_reason": "여러 운영·지원 업무를 함께 맡는 경우 주문 이력, 상품 정책, 반품 기준 등을 여러 곳에서 찾아야 할 수 있어 지식 검색 사례가 도움이 될 수 있습니다. 다만 질문에는 검색·참조의 병목이 직접 드러나지 않습니다.",
+        "assumptions": [
+          "고객 답변 작성이나 주문/반품 처리 시 상품·배송·반품 정책과 주문 이력을 여러 시스템·문서에서 찾아야 할 수 있음"
+        ],
+        "missing_information": [
+          "답변 작성이나 처리 과정에서 실제로 여러 문서·사내 시스템을 검색하는지",
+          "찾아야 하는 근거가 길거나 분산돼 시간이 많이 드는지"
+        ],
+        "question_anchor": {
+          "quote": "주문 상태 확인, 반품 사유 분류, 고객 답변 작성",
+          "start": 28,
+          "end": 56
+        },
+        "confirmed_problem_cause": false
+      },
+      {
+        "id": "P02",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "상품 정보 등록과 수정, 주문 상태 확인, 반품 사유 분류",
+        "bridge_reason": "질문에 운영 데이터 등록과 분류 업무가 직접 포함돼 있어, 비정형 입력이나 사유 텍스트를 업무 정보로 정리·분류하는 사례가 참고될 수 있습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "상품 정보 등록과 수정, 주문 상태 확인, 반품 사유 분류",
+          "start": 14,
+          "end": 46
+        },
+        "confirmed_problem_cause": false
+      },
+      {
+        "id": "P03",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "상품 정보 등록과 수정, 주문 상태 확인",
+        "bridge_reason": "상품 정보 변경이나 주문 처리에서 필수항목 누락, 상태 불일치, 기준 대조가 있으면 검증 사례가 유용할 수 있습니다. 하지만 질문에는 대조·완전성 점검 업무가 명시되지는 않았습니다.",
+        "assumptions": [
+          "상품 정보 등록/수정이나 주문 처리 전에 기준·필수항목·기존 데이터와 대조하는 검토 절차가 있을 수 있음"
+        ],
+        "missing_information": [
+          "상품 정보 등록 시 필수항목 완전성이나 기준 검토가 있는지",
+          "주문 상태 확인이 단순 조회인지, 다른 기준·기록과의 대조까지 포함하는지"
+        ],
+        "question_anchor": {
+          "quote": "상품 정보 등록과 수정, 주문 상태 확인",
+          "start": 14,
+          "end": 36
+        },
+        "confirmed_problem_cause": false
+      },
+      {
+        "id": "P04",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "고객 답변 작성까지 함께 수행하고 있습니다",
+        "bridge_reason": "고객 답변 작성이 실제 업무로 명시돼 있어, 운영팀과 고객지원이 함께 일하는 응대 사례를 참고하기에 적합합니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "고객 답변 작성까지 함께 수행하고 있습니다",
+          "start": 48,
+          "end": 71
+        },
+        "confirmed_problem_cause": false
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [
+      {
+        "quote": "주문 상태 확인",
+        "start": 28,
+        "end": 36,
+        "reason": "주문 시스템의 상태 조회 자체는 네 관점의 핵심 사례 유형과 직접 일치하지 않아, 다른 업무와 결합된 사례로만 부분 참고가 가능합니다."
+      }
+    ],
+    "provenance": "ACTUAL_OPENAI_FIXED_BOUNDARY_EXPERIMENT",
+    "semantic_mapping_accuracy_verified": false
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "question": "온라인 쇼핑몰의 상품 상세 설명이 협력사마다 형식이 달라 검색과 비교가 어렵습니다. 협력사가 보낸 상품 정보 파일을 표준 항목으로 정리하고 누락 항목을 알려주는 작업 흐름이 필요합니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P02",
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾아 참조하려는 요청이 아닙니다. 검색과 비교가 어렵다는 것은 문제 배경일 뿐입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "SELECTED",
+      "rationale": "협력사의 형식이 다른 상품 정보 파일을 표준 항목으로 정리하려는 요청이며 P02 포함 사례와 일치합니다.",
+      "evidence": [
+        {
+          "quote": "상품 정보 파일을 표준 항목으로 정리",
+          "start": 55,
+          "end": 75,
+          "occurrence_starts": [
+            55
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "협력사가 보낸 상품 정보 파일",
+          "start": 47,
+          "end": 63,
+          "occurrence_starts": [
+            47
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "정리된 표준 항목을 기준으로 빠진 항목을 알려 달라는 누락 검사 요청입니다.",
+      "evidence": [
+        {
+          "quote": "누락 항목을 알려주는 작업 흐름",
+          "start": 78,
+          "end": 95,
+          "occurrence_starts": [
+            78
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "협력사가 보낸 상품 정보 파일",
+          "start": 47,
+          "end": 63,
+          "occurrence_starts": [
+            47
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "표준 항목으로 정리하고 누락 항목을 알려주는",
+          "start": 65,
+          "end": 89,
+          "occurrence_starts": [
+            65
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": [
+        "표준 항목의 구체적인 필수 목록"
+      ]
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 용량·시간대 문제가 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-5-5",
+  "max_tokens": 6144,
+  "system": "Write exactly12 NEW fictional Korean workplace problem questions for an AI case-reference retrieval pilot.\nYou have no case corpus, old questions, model results or labels. Do not invent real companies or claim human provenance.\nPlan: NQ001-002 existing document/knowledge lookup;003-004 extract/structure fields from source material;\n005-006 compare work records with other records or explicit criteria;007-008 inquiry response capacity/time gaps;\n009 lookup plus extraction,010 extraction plus checking;011 demand forecasting,012 physical-image defect detection.\nVary sectors and natural phrasing. Include actual input and desired work, realistic constraints, 2-3 sentences each.\nDo not merely copy category names as a question. Do not include example case names or grade possible cases.\nReturn JSON {\"questions\":[{\"id\":\"NQ001\",\"question\":\"...\"},...]} in exact ID order.\nEach question must be <=1200 UTF8 bytes. All12 must be distinct. Do not return answers, expected perspectives or relevance labels.",
+  "messages": [
+    {
+      "role": "user",
+      "content": "{\"task\": \"Generate twelve questions now, without access to cases or prior questions.\"}"
+    }
+  ],
+  "output_config": {
+    "effort": "high"
+  }
+}

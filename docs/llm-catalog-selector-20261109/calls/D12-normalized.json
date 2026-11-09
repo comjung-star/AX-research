@@ -1,0 +1,97 @@
+{
+  "question": "보험 청구서 PDF에서 가입자 정보를 뽑아주세요. 별도로 야간에 누락되는 고객 문의에 응답하고 싶습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P02",
+    "P04"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서에서 내용·출처·절차를 찾아 참조하려는 요청이 아닙니다. PDF는 추출 대상으로만 등장합니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "SELECTED",
+      "rationale": "PDF 청구서 원자료에서 가입자 정보를 꺼내 달라는 추출 요청입니다.",
+      "evidence": [
+        {
+          "quote": "가입자 정보를 뽑아주세요",
+          "start": 13,
+          "end": 26,
+          "occurrence_starts": [
+            13
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "보험 청구서 PDF에서 가입자 정보",
+          "start": 0,
+          "end": 19,
+          "occurrence_starts": [
+            0
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "다른 자료나 기준과 대조하거나 누락을 검사하라는 요청이 없습니다. 문의 누락은 응대 공백 문제입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "SELECTED",
+      "rationale": "야간에 누락되는 고객 문의에 응답하려는 필요와 시간대 공백이 함께 나타납니다.",
+      "evidence": [
+        {
+          "quote": "고객 문의에 응답하고 싶습니다",
+          "start": 41,
+          "end": 57,
+          "occurrence_starts": [
+            41
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "고객 문의에 응답하고 싶습니다",
+          "start": 41,
+          "end": 57,
+          "occurrence_starts": [
+            41
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "야간에 누락되는",
+          "start": 32,
+          "end": 40,
+          "occurrence_starts": [
+            32
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "CAPACITY"
+        }
+      ],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

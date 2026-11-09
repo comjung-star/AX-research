@@ -1,0 +1,98 @@
+{
+  "id": "resp_055cf17d5e3f695a016af07489985487d0a9494c3a16fb1777",
+  "object": "response",
+  "created_at": 1794143369,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143373,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_055cf17d5e3f695a016af0748a40ac87d090ef7f99a4bfb954",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"공급사별 입고검사 결과를 비교해 관리 대상 업체를 선정\",\"evidence\":[\"협력사에서 납품되는 부품의 입고검사 결과를 공급사별로 비교해 관리 대상 업체를 선정\"]},\"action\":{\"text\":\"공급사별 결과를 비교해 면담 대상을 고를 수 있는 비교표를 제공\",\"evidence\":[\"공급사별로 비교\",\"구매팀이 업체 면담 대상을 고를 수 있는 비교표를 원합니다\"]},\"object\":{\"text\":\"협력사 납품 부품의 입고검사 결과 및 공급사\",\"evidence\":[\"협력사에서 납품되는 부품의 입고검사 결과\",\"공급사별\"]},\"input\":{\"text\":\"협력사 납품 부품의 입고검사 결과\",\"evidence\":[\"협력사에서 납품되는 부품의 입고검사 결과\"]},\"output\":{\"text\":\"구매팀이 업체 면담 대상을 고를 수 있는 공급사별 비교표\",\"evidence\":[\"구매팀이 업체 면담 대상을 고를 수 있는 비교표\"]},\"workflow\":{\"text\":\"검사 결과를 공급사별로 비교하고, 구매팀이 비교표를 이용해 업체 면담 대상을 선택\",\"evidence\":[\"입고검사 결과를 공급사별로 비교해 관리 대상 업체를 선정\",\"구매팀이 업체 면담 대상을 고를 수 있는 비교표\"]},\"constraints\":{\"text\":\"업체별 검사 수량 차이가 커서 단순 불합격 건수 비교는 곤란\",\"evidence\":[\"검사 수량이 업체마다 크게 달라 단순 불합격 건수 비교는 곤란합니다\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 277,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 375,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 652
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -1,0 +1,75 @@
+{
+  "question": "고객 문의가 많아 대기가 깁니다. 지금 요청하는 작업은 상담 대화록 요약뿐이고 고객 응대는 하지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "UNSUPPORTED_BY_PILOT",
+  "selected_ids": [],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서·지식에서 내용을 찾아 참조하려는 요청이 아니다. 상담 대화록 요약만 요청했다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "요청은 요약이며 항목 추출·구조화 요청이 아니다. 요약만 요청한 경우는 제외 대상이다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "비교할 자료나 기준이 없고 대조·누락 검사 요청도 없다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "대기 문제는 배경일 뿐이고 실제 고객 응대는 하지 않는다고 명시했다. 상담 요약만 요청해 제외 대상이다.",
+      "evidence": [
+        {
+          "quote": "고객 응대는 하지 않습니다",
+          "start": 44,
+          "end": 58,
+          "occurrence_starts": [
+            44
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "EXCLUSION"
+        }
+      ],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [
+    {
+      "quote": "상담 대화록 요약",
+      "start": 31,
+      "end": 40,
+      "occurrence_starts": [
+        31
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "reason": "4개 관점에 단순 요약 작업이 없고 요약만 요청하는 경우는 제외 대상이다."
+    }
+  ],
+  "constraints": [
+    {
+      "quote": "고객 응대는 하지 않습니다",
+      "start": 44,
+      "end": 58,
+      "occurrence_starts": [
+        44
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

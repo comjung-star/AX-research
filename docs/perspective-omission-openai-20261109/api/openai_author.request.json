@@ -1,0 +1,98 @@
+{
+  "system": "독립 한국어 기업문제 질문 작성자입니다. 자료·관점·기존 질문·실험 방법·점수를 받지 않습니다. 주어진8개 주제에서 각각2~3문장, 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 앞6개는 현재 업무 증상과 복합업무를 설명하고 AI해결책을 미리 지정하지 마세요. 뒤2개는 명시한 목표업무 사례만 요청하세요. 기업 성과나 수치를 만들지 말고 관점/정답/사례ID를 쓰지 마세요.",
+  "payload": {
+    "ids": [
+      "OQ001",
+      "OQ002",
+      "OQ003",
+      "OQ004",
+      "OQ005",
+      "OQ006",
+      "OQ007",
+      "OQ008"
+    ],
+    "settings": [
+      "public-service regulation handoff problem",
+      "trade document discrepancies",
+      "supplier product attribute consistency",
+      "supplier onboarding repeated evidence review",
+      "clinic referral information plus patient inquiries",
+      "expense settlement checks plus staff inquiries",
+      "physical image defect inspection only, explicitly exclude document search/chatbots",
+      "logistics route optimization only, not document search or inquiry automation"
+    ]
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "questions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "question"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "additionalProperties": false
+  },
+  "body": {
+    "model": "gpt-5.4",
+    "instructions": "독립 한국어 기업문제 질문 작성자입니다. 자료·관점·기존 질문·실험 방법·점수를 받지 않습니다. 주어진8개 주제에서 각각2~3문장, 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 앞6개는 현재 업무 증상과 복합업무를 설명하고 AI해결책을 미리 지정하지 마세요. 뒤2개는 명시한 목표업무 사례만 요청하세요. 기업 성과나 수치를 만들지 말고 관점/정답/사례ID를 쓰지 마세요.",
+    "input": "{\"ids\": [\"OQ001\", \"OQ002\", \"OQ003\", \"OQ004\", \"OQ005\", \"OQ006\", \"OQ007\", \"OQ008\"], \"settings\": [\"public-service regulation handoff problem\", \"trade document discrepancies\", \"supplier product attribute consistency\", \"supplier onboarding repeated evidence review\", \"clinic referral information plus patient inquiries\", \"expense settlement checks plus staff inquiries\", \"physical image defect inspection only, explicitly exclude document search/chatbots\", \"logistics route optimization only, not document search or inquiry automation\"]}",
+    "store": false,
+    "reasoning": {
+      "effort": "medium"
+    },
+    "max_output_tokens": 4096,
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "research_output",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "question": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "question"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "questions"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

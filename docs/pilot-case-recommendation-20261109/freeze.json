@@ -1,0 +1,89 @@
+{
+  "version": "pilot-case-recommender-v1-20261109",
+  "source_sha256": {
+    "docs/perspective-catalog-pilot-20261109/catalog-reviewed.json": "8a664adfa23d7df220fed54946391f46cae73ac8a0889314bede701eec280342",
+    "configs/pilot_perspective_selector_20261109.json": "b6c9fe1228e8759c1c612d0f833543f5df526ccc95b2df50bdf5869fe407e65d",
+    "configs/pilot_case_profiles_20261109.json": "a63d52aa5e26b86d788427f4bfb934f308f0f72f727e47ab069a58c13091f706",
+    "docs/dense-bm25-candidates-2026-10-27/case_registry.json": "059706711b87cb86c8ecaf13128bbb261eaf01feace13847fcedf05eb35e6e60",
+    "src/ax_research/pilot_perspective_selector.py": "074fcd91377fa519b470bfeb4b85f4b5e37e3aec8bd10e030aad04e51a27d2ef",
+    "src/ax_research/pilot_case_recommender.py": "b7042e5f8aea44ae0aea0ee1c88ac7b9215c0ac72216818ecf660291f3b45980",
+    "scripts/pilot_case_recommendation.py": "fbd5f7f0b1f631c544b8e7468f4dac6475a920c47984078139506e31af87252a",
+    "scripts/export_pilot_case_recommendation_20261109.py": "df712a8d26f64b2f2e1a809563c6f3c04f36b688afdebda93e523a3fcc24dd4c",
+    "tests/test_pilot_case_recommender.py": "ed6b08b52df63de878ed0a2dc872e6b46d0fa21087e04921054ac71e1034fbfd",
+    "docs/pilot-case-recommendation-20261109-protocol.md": "b3d04a373e3e15b912453035966fb15b23cff6381ee3cadd448aa687c5bb2c25"
+  },
+  "bank_sha256": {
+    "docs/query-case-semantic-mapping-2026-10-28/mapping/embeddings.npz": "e1b0e62c65f7fbbe8806868ef9be028712824e1f882fbc856535d6130dd2a65b",
+    "docs/query-understanding-v2-20261109/vectors.npz": "448175840baa83ddff55bbf4b0c90f43e4b41a74dee9ea42471ddc8df565d719"
+  },
+  "model_sha256": {
+    "1_Pooling/config.json": "e54c164a07274f2eb45bb724f54a79d1efcc90c41573887cd9a29aeee0597352",
+    "config.json": "26159e7ad065073448460117eb24b7a4572f6f4e78eadff65dc0a11c052449fa",
+    "config_sentence_transformers.json": "1eef72430e7194a1e59680e635aed81ffa083f05668dbc5bb1c56c04c0999c38",
+    "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "pytorch_model.bin": "b5e0ce3470abf5ef3831aa1bd5553b486803e83251590ab7ff35a117cf6aad38",
+    "sentence_bert_config.json": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1",
+    "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+    "special_tokens_map.json": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835",
+    "tokenizer.json": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "tokenizer_config.json": "a62b2b6784f990259fddef5f16388693a8043be4f69179e6a5257eeb3f9abac4"
+  },
+  "questions": [
+    {
+      "id": "policy_search",
+      "text": "사내 규정에서 필요한 근거와 조치 절차를 검색해주세요."
+    },
+    {
+      "id": "insurance_pdf",
+      "text": "보험 청구서 PDF에서 가입자 정보를 추출해주세요."
+    },
+    {
+      "id": "freight_check",
+      "text": "운송 청구서 금액을 계약 요율과 대조해주세요."
+    },
+    {
+      "id": "completeness",
+      "text": "의뢰 자료의 필수 항목이 누락됐는지 기준과 대조해주세요."
+    },
+    {
+      "id": "two_perspectives",
+      "text": "청구서에서 금액을 뽑고 계약 금액과 비교해주세요."
+    },
+    {
+      "id": "shared_case",
+      "text": "의뢰 자료의 자유서술 항목을 구조화하고 필수 항목의 누락을 확인해주세요."
+    },
+    {
+      "id": "night",
+      "text": "야간 문의가 누락돼 고객 문의에 응대하고 싶습니다."
+    },
+    {
+      "id": "night_voice",
+      "text": "야간 음성 문의가 누락돼 고객 문의에 응대하고 싶습니다."
+    },
+    {
+      "id": "voice",
+      "text": "고객 음성 문의가 몰려 대기가 깁니다. 문의에 응답하고 싶습니다."
+    },
+    {
+      "id": "outside",
+      "text": "다음 달 상품 수요를 예측해주세요."
+    },
+    {
+      "id": "ambiguous",
+      "text": "문서 처리를 잘하고 싶습니다."
+    },
+    {
+      "id": "auto_modify",
+      "text": "청구서 금액을 계약과 대조하고 자동 수정해주세요."
+    },
+    {
+      "id": "readonly",
+      "text": "읽기 전용으로 청구서 금액을 계약과 대조해주세요."
+    }
+  ],
+  "method": "source-condition gate, direct/transfer candidate tier, local Task cosine, coverage-first budget",
+  "new_training": false,
+  "paid_calls": 0,
+  "accuracy_evaluation": false
+}

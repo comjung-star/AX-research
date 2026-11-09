@@ -1,0 +1,98 @@
+{
+  "id": "resp_0d5d9d08e808ba33016af0752230e487d0b9a9978bfb0c375d",
+  "object": "response",
+  "created_at": 1794143522,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143525,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0d5d9d08e808ba33016af07522e9e887d0a03e3558009ac016",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"여름철 폭염에 대비해 취약계층 방문 점검 계획을 수립\",\"evidence\":[\"여름철 폭염 대비 취약계층 방문 점검 계획을 세워야 합니다.\"]},\"action\":{\"text\":\"2주 방문 우선순위 계획을 수립\",\"evidence\":[\"2주 방문 우선순위 계획이 필요합니다.\"]},\"object\":{\"text\":\"취약계층 방문 점검\",\"evidence\":[\"취약계층 방문 점검 계획\"]},\"input\":{\"text\":\"독거 가구 명단, 이전 방문 이력, 건강 위험 표시, 방문 인력 수\",\"evidence\":[\"독거 가구 명단, 이전 방문 이력, 건강 위험 표시, 방문 인력 수를 고려해\"]},\"output\":{\"text\":\"2주 방문 우선순위 계획\",\"evidence\":[\"2주 방문 우선순위 계획\"]},\"workflow\":{\"text\":\"제시된 자료를 고려해 방문 우선순위를 계획\",\"evidence\":[\"독거 가구 명단, 이전 방문 이력, 건강 위험 표시, 방문 인력 수를 고려해 2주 방문 우선순위 계획\"]},\"constraints\":{\"text\":null,\"evidence\":[]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 261,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 262,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 523
+  },
+  "user": null,
+  "metadata": {}
+}

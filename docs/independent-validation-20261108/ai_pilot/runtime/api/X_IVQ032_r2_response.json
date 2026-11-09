@@ -1,0 +1,98 @@
+{
+  "id": "resp_020908fa62048ead016af0753f5d8c87d08e3dfebaa49e3337",
+  "object": "response",
+  "created_at": 1794143551,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143554,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_020908fa62048ead016af0754039d487d08c731d6b2958600a",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"내년 교육 예산을 정하기 위함\",\"evidence\":[\"내년 교육 예산을 정하기 위해\"]},\"action\":{\"text\":\"교육 수요 우선순위 초안을 만들기\",\"evidence\":[\"교육 수요 우선순위 초안을 만들고 싶습니다\"]},\"object\":{\"text\":\"직무별 역량 부족 영역과 교육 수요 우선순위\",\"evidence\":[\"직무별 역량 부족 영역\",\"교육 수요 우선순위 초안\"]},\"input\":{\"text\":\"평가 결과, 교육 이수 기록, 부서장 요청 사항\",\"evidence\":[\"평가 결과, 교육 이수 기록, 부서장 요청 사항\"]},\"output\":{\"text\":\"교육 수요 우선순위 초안\",\"evidence\":[\"교육 수요 우선순위 초안\"]},\"workflow\":{\"text\":\"평가 결과, 교육 이수 기록, 부서장 요청 사항을 비교해 직무별 역량 부족 영역을 파악\",\"evidence\":[\"직무별 역량 부족 영역을 파악하려 합니다\",\"평가 결과, 교육 이수 기록, 부서장 요청 사항을 비교해\"]},\"constraints\":null}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 257,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 252,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 509
+  },
+  "user": null,
+  "metadata": {}
+}

@@ -1,0 +1,75 @@
+{
+  "question": "주말에는 상담원이 없어 고객이 오래 기다립니다. 들어오는 질문에 답해주고 싶습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P04"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾아 참조하겠다는 요청이 없다. 질문에 답하겠다는 의도만 있다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 항목을 추출하거나 구조화하려는 요청이 없다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "자료나 기준을 대조하거나 누락을 검사하려는 요청이 없다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "SELECTED",
+      "rationale": "주말 상담원 부재로 대기가 길어져 고객의 들어오는 질문에 답하려는 요청이다. 응대 필요와 시간대·대기 공백이 모두 확인된다.",
+      "evidence": [
+        {
+          "quote": "들어오는 질문에 답해주고 싶습니다",
+          "start": 27,
+          "end": 45,
+          "occurrence_starts": [
+            27
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "들어오는 질문",
+          "start": 27,
+          "end": 34,
+          "occurrence_starts": [
+            27
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "주말에는 상담원이 없어 고객이 오래 기다립니다",
+          "start": 0,
+          "end": 25,
+          "occurrence_starts": [
+            0
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "CAPACITY"
+        }
+      ],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

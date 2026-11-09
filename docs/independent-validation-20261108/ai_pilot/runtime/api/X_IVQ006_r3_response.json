@@ -1,0 +1,98 @@
+{
+  "id": "resp_0e6ce3d469e002d1016af07498527087d0bcea130eb43bb39c",
+  "object": "response",
+  "created_at": 1794143384,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143387,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0e6ce3d469e002d1016af07499192087d0adab0d7eee527733",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"담당자의 경험에 의존하는 일일 경로 계획을 위해 하루 경로 초안을 만들고자 함\",\"evidence\":[\"배송 기사들의 일일 경로 계획이 담당자의 경험에 의존하고 있습니다.\",\"하루 경로 초안을 만들고 싶습니다.\"]},\"action\":{\"text\":\"하루 경로 초안 생성\",\"evidence\":[\"하루 경로 초안을 만들고 싶습니다.\"]},\"object\":{\"text\":\"배송 기사들의 하루 경로\",\"evidence\":[\"배송 기사들의 일일 경로 계획\",\"하루 경로 초안\"]},\"input\":{\"text\":\"주소 목록, 시간 지정 요청, 차량 적재 한도\",\"evidence\":[\"주소 목록, 시간 지정 요청, 차량 적재 한도\"]},\"output\":{\"text\":\"하루 경로 초안\",\"evidence\":[\"하루 경로 초안을 만들고 싶습니다.\"]},\"workflow\":{\"text\":\"초안을 만들고, 기사가 현장 사정으로 수정할 수 있음\",\"evidence\":[\"하루 경로 초안을 만들고 싶습니다.\",\"기사가 현장 사정으로 수정할 수 있어야 합니다.\"]},\"constraints\":{\"text\":\"기사가 현장 사정으로 경로를 수정할 수 있어야 함\",\"evidence\":[\"기사가 현장 사정으로 수정할 수 있어야 합니다.\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 260,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 285,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 545
+  },
+  "user": null,
+  "metadata": {}
+}

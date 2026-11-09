@@ -1,0 +1,9 @@
+# Cycle9: actual frozen-vector query-case interaction
+
+Local model inventory confirmed only existing BGE-M3 CLS weights/vectors; no pretrained reranker or ColBERT/sparse heads. Do not claim a pretrained token reranker is available, and do not download new models. Cycle8 confidence-filtered similarity MLP still failed the robust-development gate.
+
+Test the professor-style interaction [q,c,q*c,abs(q-c)] directly on frozen1024-vectors, rather than16cosine summary features. Keep case Problem/Task/Context vectors separate through a shared4096->8->1 MLP with tanh and dropout0.1; mean the3 view scores late. Single uses the original query vector. Multi retains original and3Ebranch vectors separately, scores each case-view/branch, then pools0.5original+0.5maxbranch. Average the3 generated vectors within each fixed branch slot and normalize before fitting, treating generation repeats as one query, not extra training examples. This is a compact interaction experiment with late pooling, not full Factor/Wald/strategy validation.
+
+Use the same5 query folds, same agreement-filtered positives/negatives as cycle8, query-average full pairwise softplus loss, Adam lr0.001 weight_decay0.01,24epochs, seed20261108,2CPU threads. No scaling/PCA trained on heldout queries, no early stopping or architecture grid. Original and multi controls both run. All112 cases remain in inference. Save train/eval query IDs, training pair counts, final model states and predicted ranks; include label/data hashes. Cases are shared, making this query-held-out development rather than case-held-out or independent Test.
+
+Compare identical heldout predictions under3 unchanged label versions with E, Dense, and cycle8 neural results. Retain failures. No paid calls, new embeddings, downloads or Test15 access. A primary-only gain or failure to outperform Dense on F1 and nDCG is not robust superiority.

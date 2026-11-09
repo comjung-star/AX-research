@@ -1,0 +1,75 @@
+{
+  "question": "콜센터에서는 통화 중 고객이 불만을 강하게 제기해도 상담원이 즉시 알아채지 못하는 경우가 있습니다. 상담 대화의 흐름에서 긴급한 불만이나 상담 책임자 연결 요청을 탐지해 실시간으로 알리고 싶습니다. 고객에게 자동으로 보상금을 지급하지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "UNSUPPORTED_BY_PILOT",
+  "selected_ids": [],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾아 참조하려는 요청이 아니라 상담 대화의 실시간 탐지 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 업무 항목을 꺼내 구조화하려는 요청이 아니라 대화 흐름에서 긴급 불만을 탐지해 알리려는 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "자료를 다른 자료나 명시 기준과 대조해 불일치·누락을 확인하는 요청이 아닙니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의에 직접 응대하려는 요청이 아니라 감정 탐지와 알림 요청이며, 문의량·대기·시간대 공백의 근거도 없습니다.",
+      "evidence": [
+        {
+          "quote": "긴급한 불만이나 상담 책임자 연결 요청을 탐지해 실시간으로 알리고 싶습니다",
+          "start": 68,
+          "end": 109,
+          "occurrence_starts": [
+            68
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "EXCLUSION"
+        }
+      ],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [
+    {
+      "quote": "상담 대화의 흐름에서 긴급한 불만이나 상담 책임자 연결 요청을 탐지해 실시간으로 알리고 싶습니다",
+      "start": 56,
+      "end": 109,
+      "occurrence_starts": [
+        56
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "reason": "통화 중 불만·책임자 연결 요청의 실시간 탐지와 알림은 제공된 4개 관점에 해당하지 않으며, 감정 탐지는 P04에서 제외됩니다."
+    }
+  ],
+  "constraints": [
+    {
+      "quote": "고객에게 자동으로 보상금을 지급하지 않습니다.",
+      "start": 111,
+      "end": 136,
+      "occurrence_starts": [
+        111
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

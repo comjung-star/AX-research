@@ -1,0 +1,108 @@
+{
+  "question": "환불 정책이 자주 바뀌어 상담사마다 안내 내용이 다릅니다. 최신 정책 문서와 최근 한 달 문의 사례를 바탕으로 상담사가 자주 틀리는 안내 지점을 찾아 교육 자료 개선안을 만들고 싶습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "PARTIAL_MATCH",
+  "selected_ids": [
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "정책 문서에서 내용을 찾으려는 요청이 아니라 상담사의 안내 오류 지점을 찾는 작업이라 검색으로 보지 않습니다.",
+      "evidence": [
+        {
+          "quote": "상담사가 자주 틀리는 안내 지점을 찾아",
+          "start": 62,
+          "end": 83,
+          "occurrence_starts": [
+            62
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "EXCLUSION"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 항목을 꺼내 구조화해 달라는 요청이 없고, 추출을 전제로 추정하지 않습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "최신 정책 문서를 기준으로 최근 문의 사례의 상담사 안내를 대조해 오류 지점을 확인하려는 요청입니다.",
+      "evidence": [
+        {
+          "quote": "상담사가 자주 틀리는 안내 지점을 찾아",
+          "start": 62,
+          "end": 83,
+          "occurrence_starts": [
+            62
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "최근 한 달 문의 사례",
+          "start": 43,
+          "end": 55,
+          "occurrence_starts": [
+            43
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "최신 정책 문서",
+          "start": 33,
+          "end": 41,
+          "occurrence_starts": [
+            33
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "실제 고객 문의에 응대하려는 요청이 아니고 문의량·대기·시간대 문제 근거도 없습니다. 교육 자료 개선만 요청했습니다.",
+      "evidence": [
+        {
+          "quote": "교육 자료 개선안을 만들고 싶습니다",
+          "start": 84,
+          "end": 103,
+          "occurrence_starts": [
+            84
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "EXCLUSION"
+        }
+      ],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [
+    {
+      "quote": "교육 자료 개선안을 만들고 싶습니다",
+      "start": 84,
+      "end": 103,
+      "occurrence_starts": [
+        84
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "reason": "교육 자료 개선안 작성은 제공된 4개 관점에 포함되지 않는 별도 작업입니다."
+    }
+  ],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

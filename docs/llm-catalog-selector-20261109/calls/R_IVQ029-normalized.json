@@ -1,0 +1,75 @@
+{
+  "question": "연 2회 채용 시즌마다 지원서 검토에 많은 시간이 듭니다. 직무 기준과 지원서의 경력 기재를 대조해 필수 요건 충족 여부를 정리하고, 판단이 애매한 지원서를 따로 표시하고 싶습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾는 요청이 아니라 지원서를 기준과 대조하려는 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "경력 기재를 항목으로 꺼내 구조화해 달라는 요청은 없고, 대조만 요청했으므로 추출을 추정하지 않습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "지원서의 경력 기재를 직무 기준과 대조해 필수 요건 충족 여부를 정리하고 애매한 건을 표시하려는 요청입니다.",
+      "evidence": [
+        {
+          "quote": "직무 기준과 지원서의 경력 기재를 대조해 필수 요건 충족 여부를 정리하고",
+          "start": 33,
+          "end": 73,
+          "occurrence_starts": [
+            33
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "지원서의 경력 기재",
+          "start": 40,
+          "end": 50,
+          "occurrence_starts": [
+            40
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "직무 기준",
+          "start": 33,
+          "end": 38,
+          "occurrence_starts": [
+            33
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 응대 용량 문제가 아니라 채용 지원서 검토 업무입니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

@@ -1,0 +1,98 @@
+{
+  "id": "resp_0c0516b92275f807016af074a1b40487d0bce7d558e0692a78",
+  "object": "response",
+  "created_at": 1794143393,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143397,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0c0516b92275f807016af074a26d8c87d0bfedf7db67eb7d03",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"관제 담당자가 중요한 온도 이탈 건을 놓치지 않도록 한다.\",\"evidence\":[\"관제 담당자가 중요한 건을 놓칩니다\"]},\"action\":{\"text\":\"즉시 확인할 건과 나중에 확인할 건을 구분한다.\",\"evidence\":[\"즉시 확인할 건과 나중에 확인할 건을 구분\"]},\"object\":{\"text\":\"냉장 화물 운송 중 발생한 온도 이탈 알림 건\",\"evidence\":[\"냉장 화물 운송 중 온도 이탈 알림\"]},\"input\":{\"text\":\"온도 센서 기록, 이탈 지속 시간, 화물 종류\",\"evidence\":[\"온도 센서 기록, 이탈 지속 시간, 화물 종류를 기준으로\"]},\"output\":{\"text\":\"즉시 확인할 건과 나중에 확인할 건의 구분\",\"evidence\":[\"즉시 확인할 건과 나중에 확인할 건을 구분\"]},\"workflow\":{\"text\":\"온도 센서 기록, 이탈 지속 시간, 화물 종류를 기준으로 확인 시점별로 구분한다.\",\"evidence\":[\"온도 센서 기록, 이탈 지속 시간, 화물 종류를 기준으로 즉시 확인할 건과 나중에 확인할 건을 구분\"]},\"constraints\":{\"text\":\"온도 이탈 알림이 하루에도 수십 건 발생한다.\",\"evidence\":[\"온도 이탈 알림이 하루에도 수십 건 발생\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 278,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 319,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 597
+  },
+  "user": null,
+  "metadata": {}
+}

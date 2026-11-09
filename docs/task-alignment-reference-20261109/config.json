@@ -1,0 +1,330 @@
+{
+  "reference_id": "work-aligned-dev-v1-20261109",
+  "state": "FROZEN_DEVELOPMENT_REFERENCE_NOT_DEPLOYED",
+  "primary_system": "WorkAligned_PerspectivePool",
+  "comparison_systems": [
+    "Dense",
+    "WorkAligned_DensePool",
+    "WorkAligned_TokenPool"
+  ],
+  "candidate_budget": 20,
+  "output_budget": 5,
+  "input_feature_names": [
+    "dense",
+    "original_token",
+    "bm25",
+    "action",
+    "object",
+    "core_min",
+    "core_product",
+    "action_present",
+    "object_present",
+    "task_cosine",
+    "excluded_task_similarity",
+    "output_task_proxy",
+    "explicit_output_similarity",
+    "output_pair_present"
+  ],
+  "model_sha256": {
+    "1_Pooling/config.json": "e54c164a07274f2eb45bb724f54a79d1efcc90c41573887cd9a29aeee0597352",
+    "config.json": "26159e7ad065073448460117eb24b7a4572f6f4e78eadff65dc0a11c052449fa",
+    "config_sentence_transformers.json": "1eef72430e7194a1e59680e635aed81ffa083f05668dbc5bb1c56c04c0999c38",
+    "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "pytorch_model.bin": "b5e0ce3470abf5ef3831aa1bd5553b486803e83251590ab7ff35a117cf6aad38",
+    "sentence_bert_config.json": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1",
+    "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+    "special_tokens_map.json": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835",
+    "tokenizer.json": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "tokenizer_config.json": "a62b2b6784f990259fddef5f16388693a8043be4f69179e6a5257eeb3f9abac4"
+  },
+  "outer_folds": {
+    "VQ001": 0,
+    "VQ002": 1,
+    "VQ003": 2,
+    "VQ004": 3,
+    "VQ005": 4,
+    "VQ006": 0,
+    "VQ007": 1,
+    "VQ008": 2,
+    "VQ009": 3,
+    "VQ010": 4,
+    "VQ011": 0,
+    "VQ012": 1,
+    "VQ013": 2,
+    "VQ014": 3,
+    "VQ015": 4,
+    "VQ016": 0,
+    "VQ017": 1,
+    "VQ018": 2,
+    "VQ019": 3,
+    "VQ020": 4
+  },
+  "fold_models": [
+    {
+      "outer_fold": 0,
+      "training_queries": [
+        "VQ002",
+        "VQ003",
+        "VQ004",
+        "VQ005",
+        "VQ007",
+        "VQ008",
+        "VQ009",
+        "VQ010",
+        "VQ012",
+        "VQ013",
+        "VQ014",
+        "VQ015",
+        "VQ017",
+        "VQ018",
+        "VQ019",
+        "VQ020"
+      ],
+      "heldout_queries": [
+        "VQ001",
+        "VQ006",
+        "VQ011",
+        "VQ016"
+      ],
+      "lambda": 10.0,
+      "learned_share": 0.5,
+      "weights": [
+        0.02407022956721152,
+        0.022736652230488593,
+        0.01579636841939367,
+        0.0034007606594872518,
+        0.016412250774824024,
+        0.012547898491748357,
+        0.012660205021674262,
+        0.0,
+        0.0,
+        0.025139516408364326,
+        0.00501222428105217,
+        0.004400222406008843,
+        -0.0004393192091383052,
+        -0.00043931920913830517
+      ]
+    },
+    {
+      "outer_fold": 1,
+      "training_queries": [
+        "VQ001",
+        "VQ003",
+        "VQ004",
+        "VQ005",
+        "VQ006",
+        "VQ008",
+        "VQ009",
+        "VQ010",
+        "VQ011",
+        "VQ013",
+        "VQ014",
+        "VQ015",
+        "VQ016",
+        "VQ018",
+        "VQ019",
+        "VQ020"
+      ],
+      "heldout_queries": [
+        "VQ002",
+        "VQ007",
+        "VQ012",
+        "VQ017"
+      ],
+      "lambda": 1.0,
+      "learned_share": 0.5,
+      "weights": [
+        0.14192661884483748,
+        0.14389444211557303,
+        0.09267429017623788,
+        0.047648917062153635,
+        0.06879507877414502,
+        0.07987330359797871,
+        0.09350438295058858,
+        0.0,
+        0.0,
+        0.13595588103036468,
+        0.0330624996079073,
+        0.015634558356132727,
+        -0.003732392493325333,
+        -0.003732392493325333
+      ]
+    },
+    {
+      "outer_fold": 2,
+      "training_queries": [
+        "VQ001",
+        "VQ002",
+        "VQ004",
+        "VQ005",
+        "VQ006",
+        "VQ007",
+        "VQ009",
+        "VQ010",
+        "VQ011",
+        "VQ012",
+        "VQ014",
+        "VQ015",
+        "VQ016",
+        "VQ017",
+        "VQ019",
+        "VQ020"
+      ],
+      "heldout_queries": [
+        "VQ003",
+        "VQ008",
+        "VQ013",
+        "VQ018"
+      ],
+      "lambda": 10.0,
+      "learned_share": 0.5,
+      "weights": [
+        0.02344804606064026,
+        0.021850736987063524,
+        0.014559103922574295,
+        0.0016654521864357115,
+        0.01441911315711565,
+        0.011106970898498748,
+        0.009986622447226368,
+        0.0,
+        0.0,
+        0.022201167936912694,
+        0.0039777020498394655,
+        -0.0013345423025538593,
+        -0.0004112245329879348,
+        -0.0004112245329879348
+      ]
+    },
+    {
+      "outer_fold": 3,
+      "training_queries": [
+        "VQ001",
+        "VQ002",
+        "VQ003",
+        "VQ005",
+        "VQ006",
+        "VQ007",
+        "VQ008",
+        "VQ010",
+        "VQ011",
+        "VQ012",
+        "VQ013",
+        "VQ015",
+        "VQ016",
+        "VQ017",
+        "VQ018",
+        "VQ020"
+      ],
+      "heldout_queries": [
+        "VQ004",
+        "VQ009",
+        "VQ014",
+        "VQ019"
+      ],
+      "lambda": 10.0,
+      "learned_share": 0.5,
+      "weights": [
+        0.024033129841242517,
+        0.022399618125086,
+        0.01649001913835151,
+        0.0029963169617778012,
+        0.015978878506873455,
+        0.015041313730901265,
+        0.01365921392271468,
+        0.0,
+        0.0,
+        0.022235168269575317,
+        0.005514310447323307,
+        0.002660594843634183,
+        -0.0005866704074471863,
+        -0.0005866704074471864
+      ]
+    },
+    {
+      "outer_fold": 4,
+      "training_queries": [
+        "VQ001",
+        "VQ002",
+        "VQ003",
+        "VQ004",
+        "VQ006",
+        "VQ007",
+        "VQ008",
+        "VQ009",
+        "VQ011",
+        "VQ012",
+        "VQ013",
+        "VQ014",
+        "VQ016",
+        "VQ017",
+        "VQ018",
+        "VQ019"
+      ],
+      "heldout_queries": [
+        "VQ005",
+        "VQ010",
+        "VQ015",
+        "VQ020"
+      ],
+      "lambda": 1.0,
+      "learned_share": 0.5,
+      "weights": [
+        0.1772035164556264,
+        0.18246508773988412,
+        0.07156054401467687,
+        0.026712546787578104,
+        0.10930659025109055,
+        0.10602652602177667,
+        0.09081179924024649,
+        0.0,
+        0.0,
+        0.181999334846021,
+        0.040787528377321976,
+        0.005927944754913544,
+        -0.003413713065894408,
+        -0.003413713065894408
+      ]
+    }
+  ],
+  "training_recipe": {
+    "lambdas": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "learned_shares": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "method": "query-balanced pairwise ridge",
+    "selection": "inner DensePool F1, then nDCG, then less learning, then larger lambda"
+  },
+  "decision": {
+    "decision": "DO_NOT_ADOPT",
+    "checks": {
+      "working_transfer": {
+        "f1_improves": true,
+        "ndcg_non_decreasing": true
+      },
+      "original": {
+        "f1_improves": true,
+        "ndcg_non_decreasing": true
+      },
+      "scoped_consensus_464_only": {
+        "f1_improves": true,
+        "ndcg_non_decreasing": true
+      }
+    },
+    "working_f1_ci_lower": -0.00641025641025641
+  },
+  "no_new_all20_fit": true,
+  "next_evaluation_requires_separately_documented_fit_or_ensemble_policy": true,
+  "limits": [
+    "Five out-of-fold models preserved, not a newly trained deployment model",
+    "Shared case database and previously observed development queries",
+    "Fixed old candidate pools cannot be assumed available for new questions",
+    "Local encoder weights are fingerprinted, not duplicated in this archive",
+    "No retraining or new-question evaluation performed during this freeze"
+  ]
+}

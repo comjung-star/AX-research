@@ -1,0 +1,107 @@
+{
+  "id": "author_03",
+  "system": "한국어 기업 운영문제 질문 작성자입니다. 실제 자료·관점목록·기존질문·답·실험방법·점수는 받지 않습니다. 각 주제에 대해2~3문장의 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 증상형 주제는 AI해결책·수단을 미리 정하지 않고 실제 업무 어려움을 설명하세요. 명시 업무형은 주어진 업무만 분명히 요청하세요. 사례의 실제성과·기업명·수치를 만들지 말고 정답·관점ID를 쓰지 마세요. 지정된5개ID순서대로 질문5개만 반환하세요.",
+  "payload": {
+    "ids": [
+      "VQ016",
+      "VQ017",
+      "VQ018",
+      "VQ019",
+      "VQ020"
+    ],
+    "settings": [
+      "기술지원 문의내용 분류와 제품지식 조회, 답변근거 공유의 복합업무를 명시",
+      "문서검색/고객챗봇을 제외하고 물리 제품 영상에서 결함을 찾는 검사사례만 명시 요청",
+      "문서검색/문의자동화를 제외하고 재고 수요예측과 발주량 결정의 실제사례만 명시 요청",
+      "문서처리를 제외하고 실제 운송 경로 최적화/배차 계획 사례만 명시 요청",
+      "문서검색/고객챗봇을 제외하고 보안 로그의 침입징후 탐지 사례만 명시 요청"
+    ]
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "questions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "VQ016",
+                "VQ017",
+                "VQ018",
+                "VQ019",
+                "VQ020"
+              ]
+            },
+            "question": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "question"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "additionalProperties": false
+  },
+  "body": {
+    "model": "gpt-5.4",
+    "instructions": "한국어 기업 운영문제 질문 작성자입니다. 실제 자료·관점목록·기존질문·답·실험방법·점수는 받지 않습니다. 각 주제에 대해2~3문장의 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 증상형 주제는 AI해결책·수단을 미리 정하지 않고 실제 업무 어려움을 설명하세요. 명시 업무형은 주어진 업무만 분명히 요청하세요. 사례의 실제성과·기업명·수치를 만들지 말고 정답·관점ID를 쓰지 마세요. 지정된5개ID순서대로 질문5개만 반환하세요.",
+    "input": "{\"ids\": [\"VQ016\", \"VQ017\", \"VQ018\", \"VQ019\", \"VQ020\"], \"settings\": [\"기술지원 문의내용 분류와 제품지식 조회, 답변근거 공유의 복합업무를 명시\", \"문서검색/고객챗봇을 제외하고 물리 제품 영상에서 결함을 찾는 검사사례만 명시 요청\", \"문서검색/문의자동화를 제외하고 재고 수요예측과 발주량 결정의 실제사례만 명시 요청\", \"문서처리를 제외하고 실제 운송 경로 최적화/배차 계획 사례만 명시 요청\", \"문서검색/고객챗봇을 제외하고 보안 로그의 침입징후 탐지 사례만 명시 요청\"]}",
+    "store": false,
+    "reasoning": {
+      "effort": "medium"
+    },
+    "max_output_tokens": 4096,
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "research_output",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "enum": [
+                      "VQ016",
+                      "VQ017",
+                      "VQ018",
+                      "VQ019",
+                      "VQ020"
+                    ]
+                  },
+                  "question": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "question"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "questions"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

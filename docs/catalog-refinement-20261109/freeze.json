@@ -1,0 +1,91 @@
+{
+  "state": "METHOD_FIXED_BEFORE_NEW_QUESTION_GENERATION_AND_RESULTS",
+  "created_utc": "2026-11-09T10:08:27.278342+00:00",
+  "source_sha256": {
+    "src/ax_research/catalog_refinement.py": "463b1d1109657f389128bd52bef3d1154798504ed0acdd33320b3ba7ce3f261e",
+    "tests/test_catalog_refinement.py": "f24778da7363d2f2bbeda7e12295307d6702c399f6174069be38c1e91279c395",
+    "scripts/catalog_refinement_20261109.py": "6052427c53fab7589f84053d286e698095192d31a614ffe13181c3e90b8e4de6",
+    "docs/catalog-refinement-20261109-protocol.md": "b017d4ac9d03683ba65e75e9b2cfa0ba84c9d6a285355074b18f770ef4b7a07b",
+    "configs/llm_catalog_selector_20261109.json": "555648a9bbe2e11acf9bf4bd4a57cd34e3ae7716c2677f7982e55464e2d73c05",
+    "src/ax_research/llm_catalog_selector.py": "a5b4e43d0f06ba24fc314b743be8cdfadbaccd5564127a04d14a53922492dfb6",
+    "src/ax_research/llm_catalog_retrieval.py": "3f33e959217c1770851942489f99a2d927844a472b31772e78a71e73584a30b2",
+    "src/ax_research/pilot_case_recommender.py": "49cfbe1cb4f02e9d658789c52f50c92d458dd07ce023f257b7f0b50b2313ec2a",
+    "src/ax_research/pilot_perspective_selector.py": "074fcd91377fa519b470bfeb4b85f4b5e37e3aec8bd10e030aad04e51a27d2ef",
+    "src/ax_research/pilot_catalog_evaluation.py": "575a1d63b098d0c1eca09cc425ce36b507f90651ea82bf792a5083ec89f2a3fd",
+    "scripts/pilot_case_recommendation.py": "e5d718fc7b85a1f791cf6385d718d346e349400c8fcdb758d526770cd2c2599b",
+    "scripts/pilot_catalog_comparison_20261109.py": "e4ab2fca8b83fad5c798ca2014b16671c318fd8228d19f7288ecc92e8c1db519",
+    "configs/pilot_case_profiles_20261109.json": "a63d52aa5e26b86d788427f4bfb934f308f0f72f727e47ab069a58c13091f706",
+    "configs/pilot_perspective_selector_20261109.json": "b6c9fe1228e8759c1c612d0f833543f5df526ccc95b2df50bdf5869fe407e65d",
+    "docs/perspective-catalog-pilot-20261109/catalog-reviewed.json": "8a664adfa23d7df220fed54946391f46cae73ac8a0889314bede701eec280342",
+    "docs/dense-bm25-candidates-2026-10-27/case_registry.json": "059706711b87cb86c8ecaf13128bbb261eaf01feace13847fcedf05eb35e6e60",
+    "docs/llm-catalog-retrieval-comparison-20261109/freeze.json": "2d9380ec777fda342ffb9fdad9e7cfb85142d378a72492abde18111b6c719bdd",
+    "docs/llm-catalog-retrieval-comparison-20261109/selections.json": "fd30ec51a3e00845f8b4b61fc3290e64a3015e2530c3a893ae9ad65aef936f80",
+    "docs/llm-catalog-retrieval-comparison-20261109/predictions.json": "d3d5c3af37e962359ff62cb563cd31afca8e82689a07856779ba51a16de6ea03",
+    "docs/llm-catalog-retrieval-comparison-20261109/questions.json": "ce773d61c70fd2869fb29b9cb3469db474c34275e54ed24f407587900a26f7d1",
+    "docs/task-alignment-reference-20261109/config.json": "a3e889140781bfca12e7894c935249d7f1d96c217f52fca566fe2e313da87909"
+  },
+  "bank_sha256": {
+    "docs/query-case-semantic-mapping-2026-10-28/mapping/embeddings.npz": "e1b0e62c65f7fbbe8806868ef9be028712824e1f882fbc856535d6130dd2a65b",
+    "docs/query-understanding-v2-20261109/vectors.npz": "448175840baa83ddff55bbf4b0c90f43e4b41a74dee9ea42471ddc8df565d719",
+    "docs/pilot-case-recommendation-20261109/vectors.npz": "1e63627386738d351c873b1802ffc4c3dbdc744c37559dc3e5f31d98ad1ec0b7",
+    "docs/pilot-case-recommendation-20261109-v1_1/vectors.npz": "89eaabf80fd641a817f9c28568018fbfc51ea966a66044d08ac14655924a5e9f",
+    "docs/llm-catalog-retrieval-comparison-20261109/vectors.npz": "789e2cc415219e56a441a65a852f1cd9da02a3fd07c7e7cd3002416fba7be18b"
+  },
+  "snapshot_sha256": "d9b4524042983ee94f4659df5ac7c97b2cca44b504eb8c7fdb25c0098b2cadc8",
+  "budget_usd": 15,
+  "planned_reserved_upper_usd": 10.215016,
+  "max_calls": 109,
+  "models": {
+    "claude": "claude-sonnet-5-5",
+    "gemini": "gemini-3.1-pro-preview"
+  },
+  "rates": {
+    "claude": [
+      2,
+      10
+    ],
+    "gemini": [
+      2,
+      12
+    ]
+  },
+  "test15_read": false,
+  "new_training": false,
+  "systems": [
+    "B_Task",
+    "E_Previous",
+    "J_RepairOnly",
+    "F_StrictFit",
+    "G_WidenedFit",
+    "H_GlobalFit"
+  ],
+  "contrasts": [
+    [
+      "J_RepairOnly",
+      "E_Previous"
+    ],
+    [
+      "F_StrictFit",
+      "J_RepairOnly"
+    ],
+    [
+      "G_WidenedFit",
+      "F_StrictFit"
+    ],
+    [
+      "G_WidenedFit",
+      "B_Task"
+    ],
+    [
+      "G_WidenedFit",
+      "E_Previous"
+    ],
+    [
+      "G_WidenedFit",
+      "H_GlobalFit"
+    ]
+  ],
+  "fresh_questions": 12,
+  "development_questions": 60,
+  "retries": 0
+}

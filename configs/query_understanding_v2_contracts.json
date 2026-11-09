@@ -1,0 +1,25 @@
+{
+  "purpose": "Assistant-authored semantic contract checks before relevance evaluation, not human Gold",
+  "cases": [
+    {"id":"request_want","text":"도서관 대출 기록을 비교한 목록을 만들고 싶습니다.","requested":["대출 기록","목록"],"actions":["비교"],"excluded":[]},
+    {"id":"request_need","text":"도서관 대출 기록을 비교한 목록이 필요합니다.","requested":["대출 기록","목록"],"actions":["비교"],"excluded":[]},
+    {"id":"request_please","text":"도서관 대출 기록을 비교해 목록으로 정리해 주세요.","requested":["대출 기록","목록"],"actions":["비교","정리"],"excluded":[]},
+    {"id":"output_requirement","text":"결과는 근거와 출처가 있는 목록이어야 합니다.","requested":["근거","출처","목록"],"excluded":[]},
+    {"id":"mixed_comma","text":"결과는 후보 목록이어야 하며, 원인을 단정하지는 않아야 합니다.","requested":["목록"],"excluded":["원인을 단정"],"not_requested":["원인을 단정"]},
+    {"id":"mixed_no_comma","text":"결과는 후보 목록이어야 하며 원인을 단정하지 않습니다.","requested":["목록"],"excluded":["원인을 단정"],"not_requested":["원인을 단정"]},
+    {"id":"mixed_contrast","text":"검토 목록을 만들되 원인을 단정하지 마세요.","requested":["검토 목록"],"excluded":["원인을 단정"],"not_requested":["원인을 단정"]},
+    {"id":"guidance_only","text":"안내만 제공하고 장비 제어 명령은 실행하지 않습니다.","requested":["안내만 제공하고"],"excluded":["장비 제어"],"not_requested":["장비 제어"]},
+    {"id":"coordinated_negative","text":"계정을 차단하거나 권한을 회수하지 않습니다.","unknown":true,"excluded":["차단하거나","회수하지"]},
+    {"id":"negative_only","text":"자동 발송은 금지합니다.","unknown":true,"excluded":["자동 발송"]},
+    {"id":"unknown_only","text":"보고서 현황.","unknown":true,"excluded":[]},
+    {"id":"identifier_noun","text":"사업자 식별자와 주소를 비교해 업체를 묶고 싶습니다.","requested":["식별자"],"actions":["비교","묶"],"not_actions":["식별"],"excluded":[]},
+    {"id":"applicant_noun","text":"지원자 자료를 비교해 검토 목록으로 정리해 주세요.","requested":["지원자"],"actions":["비교","정리"],"not_actions":["지원"],"excluded":[]},
+    {"id":"real_identify_verb","text":"중복 업체를 식별하고 싶습니다.","actions":["식별"],"excluded":[]},
+    {"id":"approval_title","text":"변경 목록이 필요합니다. 최종 확정은 운영 팀장의 승인이 필요합니다.","requested":["변경 목록"],"approval":["승인"],"not_requested":["최종 확정"]},
+    {"id":"approval_mixed","text":"변경 목록이 필요하며 최종 반영은 담당자의 승인이 필요합니다.","requested":["변경 목록"],"approval":["승인"],"not_requested":["최종 반영"]},
+    {"id":"not_allowed","text":"후보를 표시해 주세요. 실제 주문을 바꾸면 안 됩니다.","requested":["후보"],"excluded":["실제 주문"],"not_requested":["실제 주문"]},
+    {"id":"literal_no_invented_prediction","text":"앞으로 지연될 가능성이 높은 주문을 표시하고 싶습니다.","actions":["표시"],"not_actions":["예측"],"excluded":[]},
+    {"id":"find_evidence","text":"누락된 서명을 찾아내고 싶습니다.","actions":["찾아내"],"excluded":[]},
+    {"id":"compare_provide","text":"기록을 대조해 의심 건을 찾아 근거로 제공하고 싶습니다.","actions":["대조","찾","제공"],"excluded":[]}
+  ]
+}

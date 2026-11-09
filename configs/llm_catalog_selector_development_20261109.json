@@ -1,0 +1,33 @@
+{
+  "purpose": "Assistant-authored development expectations fixed before this LLM run; not independent human Gold or retrieval labels",
+  "cases": [
+    {"id":"D01","group":"search","question":"사내 규정에서 출장비 지급 기준과 원문 출처를 검색해주세요.","allowed_selected":[["P01"]]},
+    {"id":"D02","group":"search","question":"우리 회사 업무지침 중 출장 때 얼마까지 쓸 수 있는지 나온 부분과 원문 위치를 알려주세요.","allowed_selected":[["P01"]]},
+    {"id":"D03","group":"extract","question":"PDF 청구서에서 고객명과 청구 금액을 추출해주세요.","allowed_selected":[["P02"]]},
+    {"id":"D04","group":"extract","question":"협력사가 보낸 상품 정보 파일에서 이름과 규격, 가격을 꺼내 항목별 표로 정리해주세요.","allowed_selected":[["P02"]]},
+    {"id":"D05","group":"compare","question":"청구서 금액을 계약 요율로 계산한 금액과 대조해 다른 항목을 알려주세요.","allowed_selected":[["P03"]]},
+    {"id":"D06","group":"compare","question":"접수한 지원서의 경력 기재를 직무별 필수 요건과 견주어 충족하지 못한 항목을 표시해주세요.","allowed_selected":[["P03"]]},
+    {"id":"D07","group":"service","question":"야간에 고객 문의가 누락됩니다. 이 시간에도 문의에 응답하고 싶습니다.","allowed_selected":[["P04"]]},
+    {"id":"D08","group":"service","question":"주말에는 상담원이 없어 고객이 오래 기다립니다. 들어오는 질문에 답해주고 싶습니다.","allowed_selected":[["P04"]]},
+    {"id":"D09","question":"청구서에서 금액을 추출하고 추출한 금액을 계약 기준과 대조해주세요.","allowed_selected":[["P02","P03"]]},
+    {"id":"D10","question":"사내 출장 규정을 검색해주세요. 별도로 직원이 제출한 영수증에서 날짜와 금액을 추출해주세요.","allowed_selected":[["P01","P02"]]},
+    {"id":"D11","question":"사내 출장 규정의 한도 조항을 검색하고, 영수증에서 금액을 추출한 다음 규정 한도와 대조해주세요.","allowed_selected":[["P01","P02","P03"]]},
+    {"id":"D12","question":"보험 청구서 PDF에서 가입자 정보를 뽑아주세요. 별도로 야간에 누락되는 고객 문의에 응답하고 싶습니다.","allowed_selected":[["P02","P04"]]},
+    {"id":"D13","question":"상담 대화록을 세 문장으로 요약해주세요.","allowed_selected":[[]],"require_unsupported":true},
+    {"id":"D14","question":"다음 달 상품 수요를 예측해주세요.","allowed_selected":[[]],"require_unsupported":true},
+    {"id":"D15","question":"문서 처리를 잘하고 싶습니다.","allowed_selected":[[]],"require_any_pending":true},
+    {"id":"D16","question":"이 청구서 내용이 맞는지 검증해주세요. 비교 기준이나 대조 자료는 아직 정하지 않았습니다.","allowed_selected":[[]],"require_pending":["P03"]},
+    {"id":"D17","question":"고객 문의에 답변하고 싶습니다. 대기나 응대 시간대에 관한 문제는 아직 제시하지 않았습니다.","allowed_selected":[[]],"require_pending":["P04"]},
+    {"id":"D18","question":"과거에는 문서를 검색했습니다. 지금 필요한 것은 다음 달 수요 예측입니다.","allowed_selected":[[]],"require_unsupported":true},
+    {"id":"D19","question":"청구서에서 항목을 추출하지 마세요. 이미 정리된 청구 금액을 계약 요율과 대조해주세요. 최종 수정은 담당자 승인 후에만 합니다.","allowed_selected":[["P03"]],"constraint_quotes":["추출하지 마세요","담당자 승인"]},
+    {"id":"D20","question":"고객 문의가 많아 대기가 깁니다. 지금 요청하는 작업은 상담 대화록 요약뿐이고 고객 응대는 하지 않습니다.","allowed_selected":[[]],"require_unsupported":true}
+  ],
+  "regressions": [
+    {"id":"R_IVQ010","source_query":"IVQ010","allowed_selected":[["P02"],["P02","P03"]],"ambiguity":"표준 항목이 누락 검사 기준으로 충분한지에 따라 P03은 선택 또는 보류 가능; P02는 필요"},
+    {"id":"R_IVQ015","source_query":"IVQ015","allowed_selected":[[],["P03"]],"ambiguity":"정책에 비춘 안내 오류 대조를 독립 작업으로 볼 수 있으나 교육 개선 자체는 목록 밖; P01·P04로 대신하지 않음"},
+    {"id":"R_IVQ020","source_query":"IVQ020","allowed_selected":[["P03"]]},
+    {"id":"R_IVQ029","source_query":"IVQ029","allowed_selected":[["P03"]]}
+  ],
+  "repeat_ids": ["D01","D03","D05","D07"],
+  "repeat_policy": "Repeat once with same question/prompt but reversed card presentation order; keep all outputs, no majority vote or replacement"
+}

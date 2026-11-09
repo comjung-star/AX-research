@@ -1,0 +1,75 @@
+{
+  "question": "청구서 금액을 계약 요율로 계산한 금액과 대조해 다른 항목을 알려주세요.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서에서 내용을 찾아 참조하는 요청이 아니라 금액 불일치 항목을 확인하는 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "대조만 요청했으며 원자료에서 항목을 추출·구조화하라는 요청은 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "청구서 금액을 계약 요율 기준 계산 금액과 대조해 불일치 항목을 확인하려는 요청입니다.",
+      "evidence": [
+        {
+          "quote": "대조해 다른 항목을 알려주세요",
+          "start": 23,
+          "end": 39,
+          "occurrence_starts": [
+            23
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "청구서 금액",
+          "start": 0,
+          "end": 6,
+          "occurrence_starts": [
+            0
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "계약 요율로 계산한 금액",
+          "start": 8,
+          "end": 21,
+          "occurrence_starts": [
+            8
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 용량·시간대 문제와 관련된 요청이 아닙니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

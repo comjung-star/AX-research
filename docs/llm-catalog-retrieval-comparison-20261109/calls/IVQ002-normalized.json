@@ -1,0 +1,87 @@
+{
+  "question": "조립 라인의 설비 정지 기록이 작업자 메모로만 남아 있어 정지 사유 분류가 제각각입니다. 지난 6개월 메모를 표준 사유 코드로 정리하고, 반복 정지 구간을 월별로 보고 싶습니다. 코드 체계 확정은 생산기술 팀장의 승인이 필요합니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "PARTIAL_MATCH",
+  "selected_ids": [
+    "P02"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾아 참조하려는 요청이 아닙니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "SELECTED",
+      "rationale": "자유서술 작업자 메모를 표준 사유 코드 항목으로 정리하려는 요청이라 정보 구조화에 해당합니다.",
+      "evidence": [
+        {
+          "quote": "지난 6개월 메모를 표준 사유 코드로 정리하고",
+          "start": 50,
+          "end": 75,
+          "occurrence_starts": [
+            50
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "작업자 메모로만 남아 있어",
+          "start": 17,
+          "end": 31,
+          "occurrence_starts": [
+            17
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "자료를 다른 자료나 명시 기준과 대조해 불일치·누락을 확인하는 요청이 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 응대 용량·시간대 문제가 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [
+    {
+      "quote": "반복 정지 구간을 월별로 보고 싶습니다",
+      "start": 77,
+      "end": 98,
+      "occurrence_starts": [
+        77
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "reason": "정리된 데이터를 월별로 집계해 반복 구간을 분석·보고하는 작업은 제공된 4개 관점 밖입니다."
+    }
+  ],
+  "constraints": [
+    {
+      "quote": "코드 체계 확정은 생산기술 팀장의 승인이 필요합니다.",
+      "start": 100,
+      "end": 129,
+      "occurrence_starts": [
+        100
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "human_approval"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

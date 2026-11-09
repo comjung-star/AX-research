@@ -1,0 +1,33 @@
+{
+  "purpose": "Omission-review hypotheses plus preserved basic retrieval; feasibility only, not full trained AX architecture.",
+  "selection": "One gpt-5.4 medium request/question cap6144; all4 cards classified MAIN/ADDITIONAL/NONE; additional requires concrete bridge/assumptions and original anchor; no forced count.",
+  "retrieval": "Basic: equal mean separate P/T/C BGE cosine all112, top5 preserved. Each MAIN and ADDITIONAL branch uses same existing local query+card definition vs Task, up to5 approved links. Catalog49records53links unchanged; no globalcut or strict application filter.",
+  "conditions": {
+    "A_BASE": "PTC topU",
+    "B_MAIN": "Basic5+all MAIN branches, fill from same PTC order untilU",
+    "C_REVIEW": "Basic5+all MAIN+all ADDITIONAL branches; U=distinct IDs of this union"
+  },
+  "fairness": "Exactly equal distinct case counts A/B/C perquestion; every variant includes basic5; no output from MAIN removed inB/C; control fill only changes B baseline slots.",
+  "fresh_questions": "8 synthetic source-blind separate OpenAI author request after freeze; six diverse business problems and two explicit target tasks; no actual dataset/card/old questions shown to author.",
+  "evaluation": "Separate stateless gpt-5.4 medium12288 calls; same frozen previous relevance rubric, entire112 judged perquestion in deterministic random batches28; evaluator receives no method,roles,ranks or selected cases.",
+  "primary_contrast": "C_REVIEW vs B_MAIN (incremental omission value); secondary C_REVIEW vs A_BASE. Relevantgrade>=2; macroP/R/F1,independently judged view coverage; useful gains and losses all reported; no arbitrary global nDCG.",
+  "uncertainty": "Question paired bootstrap10000 seed20261109;8 synthetic questions one model family, no human Gold. Complete positive questions only; any incomplete question explicitly listed. No significance/generalization claim.",
+  "stop": "One dev8 pass then freeze; one fresh8 run. No favorable-outcome reruns or question editing. Technical failure only at most one identical retry; API credit failures stop new groups.",
+  "budget_usd": 15,
+  "workers": 4,
+  "model": "gpt-5.4",
+  "effort": "medium",
+  "no_other_providers": true,
+  "no_Test15_or_training": true,
+  "source_groups": "112 registry IDs belong to83 source/leakage groups. Count independent groups separately; case IDs are not necessarily independent incidents.",
+  "author_settings": [
+    "public-service regulation handoff problem",
+    "trade document discrepancies",
+    "supplier product attribute consistency",
+    "supplier onboarding repeated evidence review",
+    "clinic referral information plus patient inquiries",
+    "expense settlement checks plus staff inquiries",
+    "physical image defect inspection only, explicitly exclude document search/chatbots",
+    "logistics route optimization only, not document search or inquiry automation"
+  ]
+}

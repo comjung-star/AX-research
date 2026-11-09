@@ -1,0 +1,106 @@
+{
+  "system": "한국어 기업 운영문제 질문 작성자입니다. 실제 자료·관점목록·기존질문·답·실험방법·점수는 받지 않습니다. 각 주제에 대해2~3문장의 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 증상형 주제는 AI해결책·수단을 미리 정하지 않고 실제 업무 어려움을 설명하세요. 명시 업무형은 주어진 업무만 분명히 요청하세요. 사례의 실제성과·기업명·수치를 만들지 말고 정답·관점ID를 쓰지 마세요. 지정된5개ID순서대로 질문5개만 반환하세요.",
+  "payload": {
+    "ids": [
+      "VQ011",
+      "VQ012",
+      "VQ013",
+      "VQ014",
+      "VQ015"
+    ],
+    "settings": [
+      "무역 거래 서류의 불일치를 늦게 발견하고 과거 검토근거를 찾기 어려운 증상",
+      "의료 의뢰정보가 불완전해 재확인과 예약안내 문의가 반복되는 운영 증상",
+      "온라인 주문상태 확인, 반품 사유정리, 고객 답변작성의 복합업무를 명시",
+      "설비 안전감사 관련 문서 정리와 기준 대조, 후속 조치 기록의 복합업무를 명시;물리 영상검사는 아님",
+      "출장 경비 증빙 검토와 예외기준 설명, 직원 문의 대응의 복합업무를 명시"
+    ]
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "questions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "VQ011",
+                "VQ012",
+                "VQ013",
+                "VQ014",
+                "VQ015"
+              ]
+            },
+            "question": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "question"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "questions"
+    ],
+    "additionalProperties": false
+  },
+  "body": {
+    "model": "gpt-5.4",
+    "instructions": "한국어 기업 운영문제 질문 작성자입니다. 실제 자료·관점목록·기존질문·답·실험방법·점수는 받지 않습니다. 각 주제에 대해2~3문장의 자연스러운 기업 AX 참고 사례 요청을 작성하세요. 증상형 주제는 AI해결책·수단을 미리 정하지 않고 실제 업무 어려움을 설명하세요. 명시 업무형은 주어진 업무만 분명히 요청하세요. 사례의 실제성과·기업명·수치를 만들지 말고 정답·관점ID를 쓰지 마세요. 지정된5개ID순서대로 질문5개만 반환하세요.",
+    "input": "{\"ids\": [\"VQ011\", \"VQ012\", \"VQ013\", \"VQ014\", \"VQ015\"], \"settings\": [\"무역 거래 서류의 불일치를 늦게 발견하고 과거 검토근거를 찾기 어려운 증상\", \"의료 의뢰정보가 불완전해 재확인과 예약안내 문의가 반복되는 운영 증상\", \"온라인 주문상태 확인, 반품 사유정리, 고객 답변작성의 복합업무를 명시\", \"설비 안전감사 관련 문서 정리와 기준 대조, 후속 조치 기록의 복합업무를 명시;물리 영상검사는 아님\", \"출장 경비 증빙 검토와 예외기준 설명, 직원 문의 대응의 복합업무를 명시\"]}",
+    "store": false,
+    "reasoning": {
+      "effort": "medium"
+    },
+    "max_output_tokens": 4096,
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "research_output",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "enum": [
+                      "VQ011",
+                      "VQ012",
+                      "VQ013",
+                      "VQ014",
+                      "VQ015"
+                    ]
+                  },
+                  "question": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "question"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "questions"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

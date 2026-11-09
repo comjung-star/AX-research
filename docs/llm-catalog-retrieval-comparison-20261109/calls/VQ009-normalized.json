@@ -1,0 +1,86 @@
+{
+  "question": "건물 관리팀은 층별 전력 사용량 급증의 원인을 찾기 위해 계량기 기록을 확인합니다. 시간대별 사용량과 설비 가동 기록을 비교해 비정상 소비 구간과 연관된 설비를 정리하고 싶습니다. 설비의 전원을 AI가 직접 차단하지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾으려는 요청이 아니라 계량기 기록과 설비 가동 기록을 분석하려는 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 항목을 꺼내 구조화하라는 요청은 없고, 두 기록을 비교하는 것이 핵심입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "시간대별 사용량을 설비 가동 기록과 비교해 비정상 구간과 연관 설비를 확인하려는 대조 작업입니다.",
+      "evidence": [
+        {
+          "quote": "시간대별 사용량과 설비 가동 기록을 비교해",
+          "start": 47,
+          "end": 70,
+          "occurrence_starts": [
+            47
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "시간대별 사용량",
+          "start": 47,
+          "end": 55,
+          "occurrence_starts": [
+            47
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "설비 가동 기록",
+          "start": 57,
+          "end": 65,
+          "occurrence_starts": [
+            57
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 응대 용량 문제와 관련이 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [
+    {
+      "quote": "설비의 전원을 AI가 직접 차단하지 않습니다",
+      "start": 101,
+      "end": 125,
+      "occurrence_starts": [
+        101
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

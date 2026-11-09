@@ -1,0 +1,98 @@
+{
+  "id": "resp_0353de4712325565016af074e9417087d0adc2010e6e779769",
+  "object": "response",
+  "created_at": 1794143465,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143468,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0353de4712325565016af074e9edcc87d0991281e1986a884b",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"분기마다 재무제표의 이상 징후를 점검하기 위함\",\"evidence\":[\"분기마다 재무제표를 보고 이상 징후를 점검합니다\"]},\"action\":{\"text\":\"비교해 확인할 항목을 요약\",\"evidence\":[\"3개년 재무제표와 업종 평균 지표를 비교해 매출채권 증가, 차입 증가 등 확인할 항목을 요약\"]},\"object\":{\"text\":\"매출채권 증가, 차입 증가 등 확인할 항목\",\"evidence\":[\"매출채권 증가, 차입 증가 등 확인할 항목\"]},\"input\":{\"text\":\"3개년 재무제표와 업종 평균 지표\",\"evidence\":[\"3개년 재무제표와 업종 평균 지표\"]},\"output\":{\"text\":\"확인할 항목 요약\",\"evidence\":[\"확인할 항목을 요약\"]},\"workflow\":{\"text\":\"분기마다 재무제표를 보고 이상 징후를 점검하고, 3개년 재무제표와 업종 평균 지표를 비교해 확인할 항목을 요약\",\"evidence\":[\"분기마다 재무제표를 보고 이상 징후를 점검합니다\",\"3개년 재무제표와 업종 평균 지표를 비교해 매출채권 증가, 차입 증가 등 확인할 항목을 요약\"]},\"constraints\":{\"text\":\"대상은 중소기업이며, 점검 주기는 분기마다\",\"evidence\":[\"중소기업 대상\",\"분기마다\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 271,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 344,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 615
+  },
+  "user": null,
+  "metadata": {}
+}

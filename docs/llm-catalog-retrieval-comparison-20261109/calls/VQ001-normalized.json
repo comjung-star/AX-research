@@ -1,0 +1,74 @@
+{
+  "question": "제조 공장 품질검사팀은 제품 표면 사진을 보고 균열과 긁힘을 찾습니다. 생산라인에서 촬영한 이미지를 분석해 결함 의심 위치를 표시하고 검사자가 확인할 목록을 만들고 싶습니다. AI가 불량 판정을 최종 확정하거나 설비를 자동 중지시키지는 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "UNSUPPORTED_BY_PILOT",
+  "selected_ids": [],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾는 요청이 아니라 생산라인 이미지를 분석하는 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "문서나 자유서술 같은 원자료에서 항목을 추출하는 요청이 아니라 제품 표면 이미지에서 결함 위치를 찾는 작업입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "물리 제품 사진의 균열·긁힘 검사는 P03 제외 대상이며 업무 문서나 데이터를 기준과 대조하는 요청도 아닙니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 문의량·시간대 문제가 질문에 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [
+    {
+      "quote": "생산라인에서 촬영한 이미지를 분석해 결함 의심 위치를 표시하고 검사자가 확인할 목록을 만들고 싶습니다.",
+      "start": 40,
+      "end": 97,
+      "occurrence_starts": [
+        40
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "reason": "제품 표면 이미지의 결함 탐지와 위치 표시는 제공된 4개 관점 밖의 작업입니다."
+    }
+  ],
+  "constraints": [
+    {
+      "quote": "AI가 불량 판정을 최종 확정하거나 설비를 자동 중지시키지는 않습니다.",
+      "start": 98,
+      "end": 137,
+      "occurrence_starts": [
+        98
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    },
+    {
+      "quote": "검사자가 확인할 목록을 만들고 싶습니다.",
+      "start": 75,
+      "end": 97,
+      "occurrence_starts": [
+        75
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "human_approval"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

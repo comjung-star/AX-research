@@ -1,0 +1,98 @@
+{
+  "id": "resp_09a488c52f7f0f20016af07493b16887d09f2072f3467aa04c",
+  "object": "response",
+  "created_at": 1794143379,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143384,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n\nAlso use the supplied source-grounded core structure as intermediate evidence.\nIf any core text conflicts with the original question, the original controls.\nMaintain BUSINESS, OPERATIONS and TECHNICAL roles while keeping the same\nbusiness purpose, action, object, input, output, sequence and restrictions.\nKeep explicit operation verbs where they fit the role. Do not substitute a\ndifferent action merely to make a role sound different. Across the three\nperspectives preserve the full core meaning. Avoid copying identical sentences\ninto all slots; focus BUSINESS on purpose/outcome, OPERATIONS on stated flow\nand conditions, TECHNICAL on input/action/object/output. Do not invent content\nfor differentiation. Unknown core fields provide no license to fill in facts.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_09a488c52f7f0f20016af07495551887d0928a44c74378c035",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"다음 주 인력 배치 조정 근거 마련\",\"description\":\"수도권 물류센터에서 오후 출고 마감 직전에 반복되는 피킹 지연에 대응해, 지연이 발생하는 시간대와 존을 찾아 다음 주 인력 배치 조정안의 근거를 만든다.\",\"keywords\":[\"수도권 물류센터\",\"피킹 지연\",\"다음 주\",\"인력 배치 조정\"],\"source_quote\":\"지연이 발생하는 시간대와 존을 찾아 다음 주 인력 배치 조정안의 근거를 만들고 싶습니다\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"지연 시간대와 존 확인\",\"description\":\"반복되는 피킹 지연에 대해 지연이 발생하는 시간대와 존을 찾는다. 별도의 후속 처리 절차는 명시되어 있지 않다.\",\"keywords\":[\"피킹 지연\",\"시간대\",\"존\"],\"source_quote\":\"지연이 발생하는 시간대와 존을 찾아\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"피킹 지연 발생 시간대와 존 분석\",\"description\":\"시간대별 주문 유입량, 작업자 배치표, 존별 피킹 소요시간 자료를 바탕으로 오후 출고 마감 직전의 피킹 지연이 발생하는 시간대와 존을 찾고, 다음 주 인력 배치 조정안의 근거를 만든다.\",\"keywords\":[\"시간대별 주문 유입량\",\"작업자 배치표\",\"존별 피킹 소요시간\",\"지연 시간대\",\"피킹 존\"],\"source_quote\":\"시간대별 주문 유입량, 작업자 배치표, 존별 피킹 소요시간 자료가 있습니다.\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 918,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 392,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1310
+  },
+  "user": null,
+  "metadata": {}
+}

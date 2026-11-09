@@ -1,0 +1,98 @@
+{
+  "id": "resp_02763b5592acc8ad016af0751534e887d0a5e74cf4b9c49370",
+  "object": "response",
+  "created_at": 1794143509,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143513,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_02763b5592acc8ad016af075160e8487d0913c35c4bfc03a99",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"첨부 서류 누락 여부를 확인하고 보완 요청 대상을 먼저 걸러내기\",\"evidence\":[\"첨부 서류 누락 여부를 일일이 확인합니다\",\"보완 요청 대상을 먼저 걸러내고 싶습니다\"]},\"action\":{\"text\":\"필수 서류 목록과 접수 서류를 대조해 누락 여부를 확인하고 대상자를 선별\",\"evidence\":[\"신청 유형별 필수 서류 목록과 접수 서류를 대조해 보완 요청 대상을 먼저 걸러내고 싶습니다\"]},\"object\":{\"text\":\"복지 급여 신청서의 첨부 서류 및 보완 요청 대상\",\"evidence\":[\"복지 급여 신청서를 검토하는 담당자\",\"첨부 서류 누락 여부\",\"보완 요청 대상\"]},\"input\":{\"text\":\"신청 유형별 필수 서류 목록과 접수 서류\",\"evidence\":[\"신청 유형별 필수 서류 목록과 접수 서류를 대조해\"]},\"output\":{\"text\":\"보완 요청 대상\",\"evidence\":[\"보완 요청 대상을 먼저 걸러내고 싶습니다\"]},\"workflow\":{\"text\":\"신청 유형별 필수 서류 목록과 접수 서류를 대조하여 누락 여부를 확인하고, 보완 요청 대상을 먼저 선별\",\"evidence\":[\"신청 유형별 필수 서류 목록과 접수 서류를 대조해 보완 요청 대상을 먼저 걸러내고 싶습니다\"]},\"constraints\":{\"text\":\"신청 유형별 필수 서류 목록에 따라 접수 서류를 대조\",\"evidence\":[\"신청 유형별 필수 서류 목록과 접수 서류를 대조해\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 261,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 369,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 630
+  },
+  "user": null,
+  "metadata": {}
+}

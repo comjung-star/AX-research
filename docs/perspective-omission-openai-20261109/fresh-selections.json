@@ -1,0 +1,742 @@
+{
+  "OQ001": {
+    "question": "공공서비스 관련 규정을 검토한 뒤 민원이나 신청 건을 어느 부서로 넘겨야 하는지 판단하는 과정에서, 해석이 조금만 달라도 담당자마다 처리 흐름이 달라지는 문제가 있습니다. 규정 확인, 예외사항 검토, 담당 부서 이관까지 한 흐름으로 운영해야 하는데 중간에 맥락이 자주 끊깁니다. 이런 업무 운영을 다루는 기업 AX 참고 사례를 알고 싶습니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "공공서비스 관련 규정을 검토한 뒤 민원이나 신청 건을 어느 부서로 넘겨야 하는지 판단하는 과정",
+        "bridge_reason": "규정과 처리 기준을 찾아 근거로 참조하는 부담이 직접 나타납니다. 규정 확인과 이관 판단 사이의 맥락 단절을 줄이기 위한 지식 검색·참조 사례가 우선적으로 맞습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "공공서비스 관련 규정을 검토한 뒤 민원이나 신청 건을 어느 부서로 넘겨야 하는지 판단하는 과정",
+          "start": 0,
+          "end": 52
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P02",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "중간에 맥락이 자주 끊깁니다.",
+        "bridge_reason": "만약 민원·신청 내용이나 예외사항을 사람이 문서에서 다시 정리해 다음 단계로 넘기는 과정이 있다면, 정보 추출·구조화 사례가 맥락 손실을 줄이는 보조 관점이 될 수 있습니다.",
+        "assumptions": [
+          "민원·신청 건의 핵심 정보가 자유서술·첨부 문서에 있고 이를 사람이 옮겨 적거나 재정리한다.",
+          "부서 이관 판단에 필요한 정보가 현재 일관된 구조 데이터로 유지되지 않는다."
+        ],
+        "missing_information": [
+          "민원·신청 건에서 수기 추출·입력 또는 재정리 단계가 있는지",
+          "이관 판단에 필요한 필드가 이미 구조화되어 있는지"
+        ],
+        "question_anchor": {
+          "quote": "중간에 맥락이 자주 끊깁니다.",
+          "start": 139,
+          "end": 155
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "해석이 조금만 달라도 담당자마다 처리 흐름이 달라지는 문제가 있습니다.",
+        "bridge_reason": "같은 신청·민원을 규정, 예외 기준과 대조해 일관되게 판단해야 하는 문제입니다. 기준 대조·검증 사례가 처리 편차와 누락을 줄이는 방향과 직접 연결됩니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "해석이 조금만 달라도 담당자마다 처리 흐름이 달라지는 문제가 있습니다.",
+          "start": 56,
+          "end": 95
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "해석이 조금만 달라도 담당자마다 처리 흐름이 달라지는 문제가 있습니다.",
+        "bridge_reason": "질문의 중심은 문의량이나 응대 용량 부족이 아니라 규정 해석의 일관성과 이관 판단 흐름입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "해석이 조금만 달라도 담당자마다 처리 흐름이 달라지는 문제가 있습니다.",
+          "start": 56,
+          "end": 95
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [
+      {
+        "quote": "규정 확인, 예외사항 검토, 담당 부서 이관까지 한 흐름으로 운영해야 하는데 중간에 맥락이 자주 끊깁니다.",
+        "start": 96,
+        "end": 155,
+        "reason": "단계 간 맥락 유지와 이관 흐름 운영 자체는 질문의 중요한 업무이지만, 제공된 관점들은 검색·추출·검증·응대용량 사례 중심이라 전체 워크플로 오케스트레이션을 직접 다루는 관점은 없습니다."
+      }
+    ],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "OQ002": {
+    "question": "무역 서류를 검토할 때 발주서, 선적서류, 인보이스 사이의 내용이 조금씩 어긋나서 확인과 정정 요청이 반복됩니다. 서류 대조뿐 아니라 거래 상대방과의 확인, 보완 요청, 후속 처리까지 함께 이어지는 업무를 운영하는 사례가 있으면 보고 싶습니다. 이런 상황과 유사한 기업 AX 참고 사례를 요청합니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "서류 대조뿐 아니라 거래 상대방과의 확인, 보완 요청, 후속 처리까지 함께 이어지는 업무",
+        "bridge_reason": "질문의 중심은 흩어진 지식 탐색보다 서류 간 내용 대조와 불일치 처리 운영입니다. 문서·정책 검색이 실제 병목이라는 근거는 보이지 않습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "내부 규정·계약조건·과거 처리이력 검색이 검토 지연의 핵심인지 여부"
+        ],
+        "question_anchor": {
+          "quote": "서류 대조뿐 아니라 거래 상대방과의 확인, 보완 요청, 후속 처리까지 함께 이어지는 업무",
+          "start": 64,
+          "end": 113
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "발주서, 선적서류, 인보이스 사이의 내용이 조금씩 어긋나서 확인과 정정 요청이 반복됩니다.",
+        "bridge_reason": "서류 간 어긋남을 비교·확인하려면 각 문서의 핵심 항목을 먼저 꺼내 구조화하는 단계가 함께 쓰이는 사례가 있어 보조 관점으로 유용할 수 있습니다.",
+        "assumptions": [
+          "각 무역 서류에서 품목·수량·금액·선적정보 등을 사람이 수기로 읽어 옮기거나 정리하는 부담이 있다.",
+          "반복되는 확인·정정 요청의 일부가 문서 필드 추출·정리의 비효율과 연결돼 있다."
+        ],
+        "missing_information": [
+          "실제로 수기 전사·입력 작업이 큰 비중인지",
+          "비교 전에 필요한 핵심 필드를 구조화해 사용하는지"
+        ],
+        "question_anchor": {
+          "quote": "발주서, 선적서류, 인보이스 사이의 내용이 조금씩 어긋나서 확인과 정정 요청이 반복됩니다.",
+          "start": 13,
+          "end": 63
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "발주서, 선적서류, 인보이스 사이의 내용이 조금씩 어긋나서 확인과 정정 요청이 반복됩니다.",
+        "bridge_reason": "여러 업무 문서를 서로 대조해 불일치·누락을 확인하고 보완 요청까지 이어지는 검토 업무가 질문에 직접 제시돼 있습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "어떤 불일치 유형을 중점적으로 보는지",
+          "보완 요청 이후 승인·보류·정정 반영 중 어디까지 운영 범위인지"
+        ],
+        "question_anchor": {
+          "quote": "발주서, 선적서류, 인보이스 사이의 내용이 조금씩 어긋나서 확인과 정정 요청이 반복됩니다.",
+          "start": 13,
+          "end": 63
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "거래 상대방과의 확인, 보완 요청, 후속 처리까지 함께 이어지는 업무",
+        "bridge_reason": "상대방과의 확인이 포함되지만, 문의 폭주나 응대용량 초과로 인한 대기·누락 문제가 핵심이라는 근거는 없습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "특정 시간대 문의 집중이나 처리 대기 문제가 실제로 큰지 여부"
+        ],
+        "question_anchor": {
+          "quote": "거래 상대방과의 확인, 보완 요청, 후속 처리까지 함께 이어지는 업무",
+          "start": 75,
+          "end": 113
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "OQ003": {
+    "question": "여러 공급처에서 받은 상품 속성 정보가 형식과 기준이 제각각이라, 등록 단계마다 담당자가 다시 맞추고 검증하는 일이 많습니다. 카테고리 기준 확인, 속성명 통일, 누락·충돌 점검까지 한꺼번에 얽혀 있는 업무를 안정적으로 운영한 기업 AX 사례가 궁금합니다. 비슷한 참고 사례를 소개해 주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "카테고리 기준 확인",
+        "bridge_reason": "기준 확인 과정에서 관련 정책·분류 기준을 찾아 참조하는 부담이 있을 수는 있지만, 질문만으로는 정보 탐색 자체가 주요 병목인지 분명하지 않습니다.",
+        "assumptions": [
+          "카테고리 기준이 문서나 시스템 여러 곳에 흩어져 있어 담당자가 근거를 찾는 시간이 많이 든다."
+        ],
+        "missing_information": [
+          "카테고리 기준이 여러 문서·시스템에 분산돼 있는지",
+          "담당자가 기준 근거를 찾는 시간이 실제 핵심 부담인지"
+        ],
+        "question_anchor": {
+          "quote": "카테고리 기준 확인",
+          "start": 71,
+          "end": 81
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "여러 공급처에서 받은 상품 속성 정보가 형식과 기준이 제각각이라, 등록 단계마다 담당자가 다시 맞추고 검증하는 일이 많습니다.",
+        "bridge_reason": "공급처별로 제각각인 상품 속성 정보를 등록용 데이터로 맞추는 일은 속성 추출·구조화·분류 사례와 직접 연결됩니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "여러 공급처에서 받은 상품 속성 정보가 형식과 기준이 제각각이라, 등록 단계마다 담당자가 다시 맞추고 검증하는 일이 많습니다.",
+          "start": 0,
+          "end": 70
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "카테고리 기준 확인, 속성명 통일, 누락·충돌 점검까지 한꺼번에 얽혀 있는 업무",
+        "bridge_reason": "기준 확인, 명칭 통일, 누락·충돌 점검은 등록 데이터와 기준을 대조하고 완전성을 검토하는 검증 업무와 직접 맞닿아 있습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "카테고리 기준 확인, 속성명 통일, 누락·충돌 점검까지 한꺼번에 얽혀 있는 업무",
+          "start": 71,
+          "end": 115
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "등록 단계마다 담당자가 다시 맞추고 검증하는 일이 많습니다.",
+        "bridge_reason": "질문의 중심은 상품 정보 등록·검증 부담이며, 문의량 급증이나 응대 대기·누락 문제는 제시되지 않았습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "등록 단계마다 담당자가 다시 맞추고 검증하는 일이 많습니다.",
+          "start": 37,
+          "end": 70
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "OQ004": {
+    "question": "협력사 온보딩 과정에서 제출 증빙이 비슷한데도 검토 이력이 잘 이어지지 않아 같은 자료를 여러 번 확인하는 일이 생깁니다. 자격요건 확인, 보완 요청, 내부 승인 연결까지 반복 검토 부담이 큰 업무를 다룬 기업 AX 참고 사례를 찾고 있습니다. 유사한 운영 사례가 있으면 알려 주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "검토 이력이 잘 이어지지 않아 같은 자료를 여러 번 확인하는 일이 생깁니다.",
+        "bridge_reason": "반복 확인의 일부 원인이 이전 검토 근거·이력 접근의 어려움이라면, 분산된 이력·정책·승인 근거를 찾아 참조하는 사례가 도움이 될 수 있습니다.",
+        "assumptions": [
+          "검토 이력이나 승인 근거가 여러 문서·시스템에 흩어져 있어 재참조가 어렵다.",
+          "반복 검토 부담의 일부가 정보 탐색·근거 확인 시간에서 발생한다."
+        ],
+        "missing_information": [
+          "검토 이력, 자격요건 기준, 승인 근거가 현재 어디에 저장되어 있는지",
+          "반복 확인이 기준 해석 문제인지, 과거 이력 검색 문제인지"
+        ],
+        "question_anchor": {
+          "quote": "검토 이력이 잘 이어지지 않아 같은 자료를 여러 번 확인하는 일이 생깁니다.",
+          "start": 26,
+          "end": 68
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "제출 증빙이 비슷한데도",
+        "bridge_reason": "증빙 문서가 있다는 점만으로는 문서에서 필드를 수기로 추출·구조화하는 부담이 핵심이라고 보기 어렵습니다. 질문의 중심은 반복 검증과 이력 연결입니다.",
+        "assumptions": [],
+        "missing_information": [
+          "증빙에서 정보를 수기로 추출·등록하는 과정이 실제 병목인지 여부"
+        ],
+        "question_anchor": {
+          "quote": "제출 증빙이 비슷한데도",
+          "start": 13,
+          "end": 25
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "자격요건 확인, 보완 요청, 내부 승인 연결까지 반복 검토 부담이 큰 업무",
+        "bridge_reason": "협력사 온보딩에서 제출 증빙을 자격요건·필수항목·이전 검토 상태와 대조하고, 보완 여부와 승인 연결을 확인하는 업무로 읽혀 검증·완전성 점검 사례와 직접 맞닿아 있습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "어떤 자격요건·필수항목·증빙 조합을 주로 대조하는지",
+          "보완 요청과 승인 단계에서 어떤 오류·누락 유형이 반복되는지"
+        ],
+        "question_anchor": {
+          "quote": "자격요건 확인, 보완 요청, 내부 승인 연결까지 반복 검토 부담이 큰 업무",
+          "start": 69,
+          "end": 110
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "보완 요청, 내부 승인 연결까지",
+        "bridge_reason": "보완 요청이 흐름에 포함되지만, 문의량 급증이나 응대 용량 부족으로 인한 대기·누락이 핵심 문제라는 근거는 없습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "실제 문제에 문의 폭주, 대기시간, 응대 채널 병목이 있는지 여부"
+        ],
+        "question_anchor": {
+          "quote": "보완 요청, 내부 승인 연결까지",
+          "start": 78,
+          "end": 95
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "OQ005": {
+    "question": "의원에서 상급기관 의뢰 정보를 정리하는 업무와 환자 문의 응대를 함께 처리하다 보면, 진료 관련 맥락과 안내 내용이 분리되어 전달되는 일이 있습니다. 의뢰서 확인, 필요한 정보 정리, 환자 문의 대응이 한 흐름으로 이어지는 운영 사례를 보고 싶습니다. 이런 복합 업무를 다룬 기업 AX 참고 사례를 요청합니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "진료 관련 맥락과 안내 내용이 분리되어 전달되는 일이 있습니다",
+        "bridge_reason": "의뢰 정보와 안내 근거가 여러 문서·시스템에 흩어져 있다면, 한 화면에서 근거를 찾아 함께 참조하는 사례가 도움이 될 수 있습니다.",
+        "assumptions": [
+          "진료 맥락과 안내 근거가 여러 문서·시스템에 분산돼 있어 응대 시 함께 찾기 어렵다"
+        ],
+        "missing_information": [
+          "실제로 여러 문서·시스템을 검색하며 근거를 찾는 업무인지",
+          "자주 참조하는 지침·이력·의뢰 기록이 분산돼 있는지"
+        ],
+        "question_anchor": {
+          "quote": "진료 관련 맥락과 안내 내용이 분리되어 전달되는 일이 있습니다",
+          "start": 48,
+          "end": 82
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "의뢰서 확인, 필요한 정보 정리, 환자 문의 대응",
+        "bridge_reason": "의뢰서에서 필요한 정보를 꺼내 구조화해 다음 문의 대응으로 넘기는 사례가 직접 연결됩니다.",
+        "assumptions": [],
+        "missing_information": [
+          "의뢰서의 형식(PDF·스캔·자유서술 등)",
+          "정리해야 할 핵심 필드와 분류 기준"
+        ],
+        "question_anchor": {
+          "quote": "의뢰서 확인, 필요한 정보 정리, 환자 문의 대응",
+          "start": 84,
+          "end": 111
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "의뢰서 확인, 필요한 정보 정리, 환자 문의 대응",
+        "bridge_reason": "의뢰서의 필수항목과 내용 완전성을 먼저 점검하는 사례는 맥락 누락 없이 안내를 이어가는 데 맞닿아 있습니다.",
+        "assumptions": [],
+        "missing_information": [
+          "의뢰서에서 확인해야 할 필수항목 기준",
+          "대조해야 할 다른 자료나 등록 기준"
+        ],
+        "question_anchor": {
+          "quote": "의뢰서 확인, 필요한 정보 정리, 환자 문의 대응",
+          "start": 84,
+          "end": 111
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "PENDING",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "환자 문의 응대",
+        "bridge_reason": "문의 응대에서 이전 맥락을 이어받거나 인계하는 운영 사례가 유용할 수 있지만, 현재 질문만으로는 응대 용량·대기 문제가 핵심인지 불분명합니다.",
+        "assumptions": [
+          "문의가 다회차이거나 인계가 있어 이전 맥락 유지가 중요하다",
+          "응대 누락·대기 같은 운영 부담이 실제로 존재한다"
+        ],
+        "missing_information": [
+          "문의량 급증, 시간대 공백, 인계 누락 등 응대 용량 문제가 있는지",
+          "핵심 문제가 응대량인지, 아니면 의뢰 확인과 안내의 맥락 연결인지"
+        ],
+        "question_anchor": {
+          "quote": "환자 문의 응대",
+          "start": 26,
+          "end": 34
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "한 흐름으로 이어지는 운영 사례",
+        "start": 113,
+        "end": 130
+      }
+    ],
+    "unsupported_work": [
+      {
+        "quote": "한 흐름으로 이어지는 운영 사례",
+        "start": 113,
+        "end": 130,
+        "reason": "제공된 관점들은 검색·추출·검증·응대 같은 세부 업무 분류에 가깝고, 이들을 하나의 운영 흐름으로 묶는 프로세스 오케스트레이션 자체를 직접 다루는 관점은 없습니다."
+      }
+    ],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "OQ006": {
+    "question": "경비 정산 검토를 하면서 직원 문의까지 함께 받다 보니, 증빙 확인과 규정 안내, 반려 사유 설명이 서로 엉키는 경우가 많습니다. 정산 검토, 예외 여부 확인, 직원 응대가 동시에 발생하는 업무를 운영한 기업 AX 참고 사례가 궁금합니다. 비슷한 사례가 있으면 소개해 주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "SELECTED",
+        "relation": "PROBLEM_HYPOTHESIS",
+        "anchor_quote": "규정 안내, 반려 사유 설명이 서로 엉키는 경우가 많습니다.",
+        "bridge_reason": "규정 안내와 반려 사유 설명이 함께 문제라면, 검토자가 근거 문서와 예외 기준을 빠르게 찾아 설명하는 사례가 보조적으로 도움이 될 수 있습니다.",
+        "assumptions": [
+          "규정·예외 기준이 여러 문서나 시스템에 흩어져 있다.",
+          "반려 사유 설명에 근거 문서나 정책 조항 참조가 필요하다."
+        ],
+        "missing_information": [
+          "실제로 참조하는 규정 문서가 분산돼 있는지",
+          "직원 응대 시 어떤 정책·이력 정보를 함께 찾아보는지"
+        ],
+        "question_anchor": {
+          "quote": "규정 안내, 반려 사유 설명이 서로 엉키는 경우가 많습니다.",
+          "start": 39,
+          "end": 72
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "ADDITIONAL"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "증빙 확인",
+        "bridge_reason": "증빙 문서는 언급됐지만, 질문의 중심은 비정형 자료를 수기로 추출·구조화하는 부담보다 정산 검토·예외 확인·직원 응대가 얽히는 운영 문제입니다.",
+        "assumptions": [],
+        "missing_information": [
+          "증빙에서 항목을 수기로 옮기거나 시스템에 등록하는 부담이 실제 핵심인지"
+        ],
+        "question_anchor": {
+          "quote": "증빙 확인",
+          "start": 32,
+          "end": 37
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "정산 검토, 예외 여부 확인, 직원 응대가 동시에 발생하는 업무",
+        "bridge_reason": "경비 정산 검토와 예외 여부 확인은 증빙·정책·기준을 대조하는 검증 업무와 직접 맞닿아 있어, 검토 누락과 판단 부담을 다룬 사례를 찾는 주된 관점입니다.",
+        "assumptions": [],
+        "missing_information": [
+          "어떤 규정 기준과 필수 확인 항목을 대조하는지",
+          "예외 승인 판단이 규칙 기반인지 개별 심사인지"
+        ],
+        "question_anchor": {
+          "quote": "정산 검토, 예외 여부 확인, 직원 응대가 동시에 발생하는 업무",
+          "start": 73,
+          "end": 108
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      },
+      {
+        "id": "P04",
+        "status": "SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "직원 문의까지 함께 받다 보니",
+        "bridge_reason": "직원 문의 응대가 실제 업무에 명시돼 있으므로, 검토 중 발생하는 안내·설명 문의를 분리하거나 흡수한 내부 응대 사례를 함께 보는 것이 직접적입니다.",
+        "assumptions": [],
+        "missing_information": [
+          "문의 채널이 이메일·메신저·포털 중 무엇인지",
+          "반복 문의 비중이 큰지, 개별 케이스 설명 비중이 큰지"
+        ],
+        "question_anchor": {
+          "quote": "직원 문의까지 함께 받다 보니",
+          "start": 14,
+          "end": 30
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "MAIN"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "condition",
+        "perspective_id": "ALL",
+        "quote": "정산 검토, 예외 여부 확인, 직원 응대가 동시에 발생하는 업무",
+        "start": 73,
+        "end": 108
+      }
+    ],
+    "unsupported_work": [],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "OQ007": {
+    "question": "문서 검색이나 챗봇은 제외하고, 물리적 이미지에서 불량이나 결함을 검사하는 업무만 대상으로 한 기업 AX 참고 사례를 찾고 있습니다. 제조나 검사 현장에서 실제로 이런 목표 업무를 다룬 사례가 있으면 알려 주세요.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "문서 검색이나 챗봇은 제외하고",
+        "bridge_reason": "질문에서 문서 검색을 명시적으로 제외했고, 목표 업무도 지식·문서 검색이 아니라 물리적 이미지 결함 검사입니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "문서 검색이나 챗봇은 제외하고",
+          "start": 0,
+          "end": 16
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "물리적 이미지에서 불량이나 결함을 검사하는 업무만",
+        "bridge_reason": "이 관점은 문서·자유서술 자료에서 정보를 추출·구조화하는 업무에 맞고, 질문의 목표는 이미지 기반 불량 판별이라 범위가 다릅니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "물리적 이미지에서 불량이나 결함을 검사하는 업무만",
+          "start": 18,
+          "end": 45
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "물리적 이미지에서 불량이나 결함을 검사하는 업무만",
+        "bridge_reason": "이 관점은 문서·등록 데이터의 기준 대조와 완전성 점검에 관한 것이며, 제공된 관점 정의에서도 물리 제품 영상검사는 제외됩니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "물리적 이미지에서 불량이나 결함을 검사하는 업무만",
+          "start": 18,
+          "end": 45
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "문서 검색이나 챗봇은 제외하고",
+        "bridge_reason": "질문에서 챗봇을 명시적으로 제외했고, 문의 응대량·대기 문제도 제시되지 않았습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "문서 검색이나 챗봇은 제외하고",
+          "start": 0,
+          "end": 16
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "exclude_view",
+        "perspective_id": "P01",
+        "quote": "문서 검색이나 챗봇은 제외하고",
+        "start": 0,
+        "end": 16
+      },
+      {
+        "kind": "exclude_view",
+        "perspective_id": "P04",
+        "quote": "문서 검색이나 챗봇은 제외하고",
+        "start": 0,
+        "end": 16
+      }
+    ],
+    "unsupported_work": [
+      {
+        "quote": "물리적 이미지에서 불량이나 결함을 검사하는 업무만",
+        "start": 18,
+        "end": 45,
+        "reason": "제공된 관점들은 문서/지식 검색, 문서 정보 추출·구조화, 문서·데이터 대조 검증, 문의 응대에 한정되어 있어 물리적 이미지 기반 불량·결함 검사는 다루지 않습니다."
+      },
+      {
+        "quote": "제조나 검사 현장에서 실제로 이런 목표 업무를 다룬 사례가 있으면 알려 주세요.",
+        "start": 75,
+        "end": 119,
+        "reason": "질문의 목표 업무는 제조·검사 현장의 비전 검사 사례 탐색이지만, 현재 관점 목록에는 해당 업무를 분류할 관점이 없습니다."
+      }
+    ],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  },
+  "OQ008": {
+    "question": "문서 검색이나 문의 자동화는 제외하고, 물류 경로 최적화 업무만을 대상으로 한 기업 AX 참고 사례를 요청합니다. 배차나 운송 계획처럼 실제 운영에서 경로를 조정하는 사례가 있으면 보고 싶습니다.",
+    "version": "problem-perspective-panels-pilot-v1-20261109",
+    "decisions": [
+      {
+        "id": "P01",
+        "status": "NOT_SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "문서 검색이나 문의 자동화는 제외하고",
+        "bridge_reason": "문서·지식 검색 관점은 질문에서 명시적으로 제외되었습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "문서 검색이나 문의 자동화는 제외하고",
+          "start": 0,
+          "end": 20
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P02",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "물류 경로 최적화 업무만을 대상으로 한 기업 AX 참고 사례",
+        "bridge_reason": "질문의 중심은 배차·운송 계획의 경로 최적화이며, 비정형 문서에서 정보를 추출·구조화하는 업무 부담은 제시되지 않았습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "물류 경로 최적화 업무만을 대상으로 한 기업 AX 참고 사례",
+          "start": 22,
+          "end": 55
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P03",
+        "status": "NOT_SELECTED",
+        "relation": "NONE",
+        "anchor_quote": "배차나 운송 계획처럼 실제 운영에서 경로를 조정하는 사례",
+        "bridge_reason": "이 요청은 운영 경로를 계산·조정하는 사례를 찾는 것이며, 자료를 기준과 대조해 검증하는 업무는 명시되지 않았습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "배차나 운송 계획처럼 실제 운영에서 경로를 조정하는 사례",
+          "start": 64,
+          "end": 95
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      },
+      {
+        "id": "P04",
+        "status": "NOT_SELECTED",
+        "relation": "QUERY_EXPLICIT",
+        "anchor_quote": "문서 검색이나 문의 자동화는 제외하고",
+        "bridge_reason": "문의 응대 자동화 관점은 질문에서 명시적으로 제외되었습니다.",
+        "assumptions": [],
+        "missing_information": [],
+        "question_anchor": {
+          "quote": "문서 검색이나 문의 자동화는 제외하고",
+          "start": 0,
+          "end": 20
+        },
+        "confirmed_problem_cause": false,
+        "search_role": "NONE"
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "exclude_view",
+        "perspective_id": "P01",
+        "quote": "문서 검색이나 문의 자동화는 제외하고",
+        "start": 0,
+        "end": 20
+      },
+      {
+        "kind": "exclude_view",
+        "perspective_id": "P04",
+        "quote": "문서 검색이나 문의 자동화는 제외하고",
+        "start": 0,
+        "end": 20
+      }
+    ],
+    "unsupported_work": [
+      {
+        "quote": "물류 경로 최적화 업무만을 대상으로 한 기업 AX 참고 사례를 요청합니다. 배차나 운송 계획처럼 실제 운영에서 경로를 조정하는 사례가 있으면 보고 싶습니다.",
+        "start": 22,
+        "end": 109,
+        "reason": "배차·운송 계획의 경로 최적화는 제공된 4개 관점(지식 검색, 정보 추출·구조화, 문서/기준 대조 검증, 문의 응대 자동화) 범위에 직접 대응하지 않습니다."
+      }
+    ],
+    "provenance": "ACTUAL_SINGLE_OPENAI_REQUEST_OMISSION_REVIEW",
+    "semantic_mapping_accuracy_verified": false
+  }
+}

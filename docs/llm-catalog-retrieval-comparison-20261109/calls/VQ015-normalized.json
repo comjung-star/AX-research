@@ -1,0 +1,84 @@
+{
+  "question": "물류 운영팀은 차량 위치와 도로 정체 정보를 보면서 배송 경로를 수동 조정합니다. 예정된 방문지, 도착 가능 시간, 차량 이동 정보를 고려해 운행 순서를 추천하고 싶습니다. 고객과 합의한 배송 제한 시간을 위반하거나 기사에게 자동 배차하지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "UNSUPPORTED_BY_PILOT",
+  "selected_ids": [],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용을 찾으려는 요청이 아니라 운행 순서 추천 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 항목을 꺼내거나 구조화하려는 요청이 아닙니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "자료나 기준을 대조해 불일치·누락을 확인하는 요청이 아닙니다. 배송 제한 시간은 위반하지 않을 조건으로만 언급되었습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 문의량·시간대 공백 문제가 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [
+    {
+      "quote": "예정된 방문지, 도착 가능 시간, 차량 이동 정보를 고려해 운행 순서를 추천하고 싶습니다",
+      "start": 46,
+      "end": 95,
+      "occurrence_starts": [
+        46
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "reason": "배송 경로·운행 순서 추천은 제공된 4개 관점(문서 검색, 정보 추출, 자료 대조, 고객 문의 응대)에 해당하지 않습니다."
+    }
+  ],
+  "constraints": [
+    {
+      "quote": "고객과 합의한 배송 제한 시간을 위반하거나",
+      "start": 97,
+      "end": 120,
+      "occurrence_starts": [
+        97
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    },
+    {
+      "quote": "기사에게 자동 배차하지 않습니다",
+      "start": 121,
+      "end": 138,
+      "occurrence_starts": [
+        121
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    },
+    {
+      "quote": "배송 경로를 수동 조정합니다",
+      "start": 29,
+      "end": 44,
+      "occurrence_starts": [
+        29
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "condition"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

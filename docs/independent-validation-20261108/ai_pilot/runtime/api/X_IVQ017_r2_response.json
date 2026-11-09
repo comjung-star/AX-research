@@ -1,0 +1,98 @@
+{
+  "id": "resp_0d67b21984531fbf016af074dee70487d0b40c6e2bd9cd1c3f",
+  "object": "response",
+  "created_at": 1794143454,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143458,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_0d67b21984531fbf016af074df997887d0bb8fecad76dda52a",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"제출 서류의 항목 불일치를 사전 점검\",\"evidence\":[\"제출 서류의 항목 불일치를 수작업으로 확인\",\"사전 점검 절차가 필요합니다\"]},\"action\":{\"text\":\"기재 정보를 비교해 불일치 항목을 심사자에게 알림\",\"evidence\":[\"기재 정보를 비교해 불일치 항목을 심사자에게 알려주는\"]},\"object\":{\"text\":\"신청서, 소득 증빙, 신분 서류의 기재 정보\",\"evidence\":[\"신청서, 소득 증빙, 신분 서류의 기재 정보\"]},\"input\":{\"text\":\"신청서, 소득 증빙, 신분 서류\",\"evidence\":[\"신청서, 소득 증빙, 신분 서류\"]},\"output\":{\"text\":\"불일치 항목\",\"evidence\":[\"불일치 항목을 심사자에게 알려주는\"]},\"workflow\":{\"text\":\"서류의 기재 정보를 비교하고 불일치 항목을 심사자에게 알림\",\"evidence\":[\"기재 정보를 비교해 불일치 항목을 심사자에게 알려주는\"]},\"constraints\":{\"text\":\"소액 대출 심사팀에서 제출 서류를 확인\",\"evidence\":[\"소액 대출 심사팀이 제출 서류의 항목 불일치를 수작업으로 확인\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 270,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 303,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 573
+  },
+  "user": null,
+  "metadata": {}
+}

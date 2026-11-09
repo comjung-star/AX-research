@@ -1,0 +1,98 @@
+{
+  "id": "resp_09136c8279d797eb016af0747ad6f487d09706b6da86cf6d2f",
+  "object": "response",
+  "created_at": 1794143354,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143359,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "Using only the original business problem, return exactly three\nperspective slots in this order: BUSINESS, OPERATIONS, TECHNICAL.\nBUSINESS: actual worker, problem, business purpose and requested work.\nOPERATIONS: explicit workflow, handoff, monitoring, incidents or maintenance.\nTECHNICAL: explicit input data, action, object and output. Name only systems\nor technologies explicitly stated in the source. Do not propose solutions.\nPreserve actors, functions, inputs, outputs, temporal scope and exclusions\nwhere relevant to the slot. Do not invent a function, technology or effect.\nFor supported slots use status PRESENT, a concise Korean title and description,\nkeywords and a short exact contiguous source_quote. Do not prepend category\nlabels to titles. For a slot with no relevant source information use status\nMISSING and empty title, description, source_quote and keywords. Keep the\noriginal distinction between requested work and excluded work. JSON only.\nApply MISSING only if every relevant element for that slot is absent.\nTECHNICAL is PRESENT if the source specifies any input, action, object or\noutput, even with no named tool or technology. OPERATIONS is PRESENT if any\nhandling step, recurring check, handoff, notification, or human decision is\nstated, including a simple flow. Describe only those stated elements. If a\nparticular field is unknown, omit it from search text. Do not add generic\nphrases such as 'technology is unspecified' to the search text. Preserve\npriorities and conditional restrictions at their original strength.\n\nAlso use the supplied source-grounded core structure as intermediate evidence.\nIf any core text conflicts with the original question, the original controls.\nMaintain BUSINESS, OPERATIONS and TECHNICAL roles while keeping the same\nbusiness purpose, action, object, input, output, sequence and restrictions.\nKeep explicit operation verbs where they fit the role. Do not substitute a\ndifferent action merely to make a role sound different. Across the three\nperspectives preserve the full core meaning. Avoid copying identical sentences\ninto all slots; focus BUSINESS on purpose/outcome, OPERATIONS on stated flow\nand conditions, TECHNICAL on input/action/object/output. Do not invent content\nfor differentiation. Unknown core fields provide no license to fill in facts.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_09136c8279d797eb016af0747baa5c87d09a2fe3b4bcfb03c4",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"perspectives\":[{\"id\":\"BUSINESS\",\"status\":\"PRESENT\",\"title\":\"불량 증가 시점의 공통 조건 정리\",\"description\":\"사출 성형 공장에서 최근 3개월간 특정 제품군의 불량률 변동을 살펴, 품질팀 주간회의에서 우선 점검할 후보 요인 목록을 마련한다. 원인을 단정하지 않는다.\",\"keywords\":[\"특정 제품군\",\"불량률 변동\",\"공통 조건\",\"후보 요인\",\"품질팀 주간회의\"],\"source_quote\":\"결과는 품질팀 주간회의에서 우선 점검할 후보 요인 목록이어야 하며, 원인을 단정하지는 않아야 합니다.\"},{\"id\":\"OPERATIONS\",\"status\":\"PRESENT\",\"title\":\"관련 기록과 이력을 함께 검토\",\"description\":\"최근 3개월간의 교대별 불량 기록, 금형 교체 이력, 원자재 로트 번호를 함께 보고 불량 증가 시점의 공통 조건을 정리한다. 결과는 품질팀 주간회의에서 우선 점검할 후보 요인 목록으로 제시하며, 원인을 단정하지 않는다.\",\"keywords\":[\"교대별 불량 기록\",\"금형 교체 이력\",\"원자재 로트 번호\",\"함께 검토\",\"주간회의\"],\"source_quote\":\"교대별 불량 기록, 금형 교체 이력, 원자재 로트 번호를 함께 보고 불량 증가 시점의 공통 조건을 정리하고 싶습니다.\"},{\"id\":\"TECHNICAL\",\"status\":\"PRESENT\",\"title\":\"불량 기록과 생산 이력 비교\",\"description\":\"최근 3개월간의 교대별 불량 기록, 금형 교체 이력, 원자재 로트 번호를 입력으로 함께 보고 특정 제품군의 불량 증가 시점과 공통 조건을 정리한다. 출력은 품질팀 주간회의에서 우선 점검할 후보 요인 목록이며, 원인을 단정하지 않는다.\",\"keywords\":[\"최근 3개월\",\"교대별 불량 기록\",\"금형 교체 이력\",\"원자재 로트 번호\",\"불량 증가 시점\",\"후보 요인 목록\"],\"source_quote\":\"교대별 불량 기록, 금형 교체 이력, 원자재 로트 번호를 함께 보고 불량 증가 시점의 공통 조건을 정리\"}]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1005,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 510,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1515
+  },
+  "user": null,
+  "metadata": {}
+}

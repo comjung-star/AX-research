@@ -1,0 +1,48 @@
+{
+  "version": "literal-action-recovery-v2-20261109",
+  "scope": "Only profiles whose existing action field is empty; frozen v1 is not modified",
+  "evidence": "Literal Task substrings only; no Problem/Context inheritance or inferred synonyms",
+  "limits": "Development-corpus-informed lexical coverage repair, not verified semantic role parsing or performance improvement",
+  "rules": [
+    {
+      "id": "ko_operation_nouns",
+      "pattern": "(?<![가-힣])(?P<action>응대|인계|안내|접수|반영|예지보전|조회|라우팅)(?=$|[\\s·,])",
+      "reason": "Korean operation nouns absent from the frozen semantic action lexicon; require token boundary"
+    },
+    {
+      "id": "en_initial_operation_verbs",
+      "pattern": "^\\s*(?P<action>resolve|discount|repair|reconcile|advise|explain|anonymi[sz]e|audit|prepare|coordinate|create|depalleti[sz]e)\\b",
+      "reason": "Initial operation verbs in imperative-style Task summaries; not arbitrary interior noun matches"
+    },
+    {
+      "id": "en_submit_after_and",
+      "pattern": "\\band\\s+(?P<action>submit)\\b",
+      "reason": "Preserve coordinated explicit operation in Prepare and submit"
+    },
+    {
+      "id": "en_give_advice",
+      "pattern": "^\\s*give\\b[^.;。；\\n]*?\\b(?P<action>advice)\\b",
+      "reason": "Extract literal advice only when licensed by initial Give phrase; do not invent Advise"
+    },
+    {
+      "id": "en_document_conversations",
+      "pattern": "^\\s*(?P<action>document)(?=\\s+(?:[\\w-]+\\s+)*conversations?\\b)",
+      "reason": "Restrict ambiguous Document to recording-conversation construction; Document retrieval is not document-as-verb"
+    },
+    {
+      "id": "en_book_leave",
+      "pattern": "^\\s*(?P<action>book)(?=\\s+(?:employee\\s+)?annual\\s+leave\\b)",
+      "reason": "Restrict ambiguous Book to explicit leave-booking construction; book titles are not operations"
+    },
+    {
+      "id": "en_screen_applicants",
+      "pattern": "^\\s*(?P<action>screen)(?=\\s+(?:and\\s+assess\\s+)?(?:applicants?|candidates?)\\b)",
+      "reason": "Restrict Screen to applicant-screening construction, not display-screen nouns"
+    },
+    {
+      "id": "en_assess_after_and",
+      "pattern": "\\band\\s+(?P<action>assess)(?=\\s+(?:applicants?|candidates?)\\b)",
+      "reason": "Preserve coordinated explicit assessment operation with applicant object"
+    }
+  ]
+}

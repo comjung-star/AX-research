@@ -1,0 +1,86 @@
+{
+  "question": "현장 기술자는 설비 경고 코드가 나타나면 긴 유지보수 매뉴얼에서 조치 절차를 찾아야 합니다. 코드와 장비 모델을 입력하면 관련 매뉴얼의 점검 순서를 찾아 원문 출처와 함께 안내하고 싶습니다. 안내만 제공하고 장비 제어 명령은 실행하지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P01"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "SELECTED",
+      "rationale": "경고 코드와 장비 모델로 기존 매뉴얼에서 점검 순서와 원문 출처를 찾아 안내하려는 요청이다.",
+      "evidence": [
+        {
+          "quote": "관련 매뉴얼의 점검 순서를 찾아 원문 출처와 함께 안내하고 싶습니다",
+          "start": 68,
+          "end": 105,
+          "occurrence_starts": [
+            68
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "긴 유지보수 매뉴얼에서 조치 절차를 찾아야 합니다",
+          "start": 23,
+          "end": 50,
+          "occurrence_starts": [
+            23
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 항목을 추출·구조화하려는 요청이 아니라 절차를 찾아 안내하는 요청이다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "자료나 기준과의 대조·누락 검사를 요청하지 않았다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 문의량·시간대 공백 문제가 없다. 대상은 현장 기술자다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [
+    {
+      "quote": "안내만 제공하고 장비 제어 명령은 실행하지 않습니다",
+      "start": 107,
+      "end": 135,
+      "occurrence_starts": [
+        107
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    },
+    {
+      "quote": "코드와 장비 모델을 입력하면",
+      "start": 52,
+      "end": 67,
+      "occurrence_starts": [
+        52
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "condition"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

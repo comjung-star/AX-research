@@ -1,0 +1,86 @@
+{
+  "question": "물류 회사는 화물의 도착 사진과 인수 증빙을 대조해 배송 완료 여부를 확인합니다. 배송 기록과 인수 서명 또는 증빙 사진의 존재 여부를 비교해 누락된 배송 증빙을 찾아내고 싶습니다. 고객에게 자동으로 손해배상 여부를 결정하지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용·출처·절차를 찾으려는 요청이 아니라 배송 증빙의 누락 확인 요청입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "배송 기록과 증빙의 존재 여부를 비교하라는 요청이며, 원자료에서 항목을 꺼내 구조화하라는 요청은 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "배송 기록과 인수 서명·증빙 사진의 존재 여부를 비교해 누락된 증빙을 찾는 대조·누락 검사입니다.",
+      "evidence": [
+        {
+          "quote": "배송 기록과 인수 서명 또는 증빙 사진의 존재 여부를 비교해 누락된 배송 증빙을 찾아내고 싶습니다",
+          "start": 46,
+          "end": 100,
+          "occurrence_starts": [
+            46
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "배송 기록과 인수 서명 또는 증빙 사진의 존재 여부",
+          "start": 46,
+          "end": 74,
+          "occurrence_starts": [
+            46
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "인수 서명 또는 증빙 사진",
+          "start": 53,
+          "end": 67,
+          "occurrence_starts": [
+            53
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 문의량·시간대 문제에 대한 근거가 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [
+    {
+      "quote": "고객에게 자동으로 손해배상 여부를 결정하지 않습니다",
+      "start": 102,
+      "end": 130,
+      "occurrence_starts": [
+        102
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

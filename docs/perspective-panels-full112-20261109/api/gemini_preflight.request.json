@@ -1,0 +1,56 @@
+{
+  "system": "Return exactly the requested JSON object.",
+  "payload": {
+    "instruction": "Set ok true."
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "ok"
+    ],
+    "additionalProperties": false
+  },
+  "body": {
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "Return exactly the requested JSON object."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "{\"instruction\": \"Set ok true.\"}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "maxOutputTokens": 512,
+      "responseMimeType": "application/json",
+      "responseJsonSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ok"
+        ],
+        "additionalProperties": false
+      },
+      "thinkingConfig": {
+        "thinkingLevel": "high"
+      }
+    }
+  }
+}

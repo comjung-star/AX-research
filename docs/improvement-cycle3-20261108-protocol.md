@@ -1,0 +1,7 @@
+# Cycle 3: existing bilingual vocabulary normalization
+
+Frozen before scoring. No translations, added vocabulary, learned parameters, new models, paid calls, or label changes. Reuse only the existing bilingual action-object grammar and domain patterns. Normalize Unicode NFKC before tokenization. Canonical function IDs require an actual action/object production and the existing purpose filter; case functions come only from executed Task evidence. Canonical domain IDs are lexical context, not assertions of execution.
+
+Six fixed diagnostics: repaired raw BM25, canonical-token-enriched BM25, raw single-query 50:50 Dense/BM25 score fusion, enriched single-query fusion, raw E-branch fusion, enriched E-branch fusion. Each Dense and Sparse score vector is min-max normalized over the same112 cases; an all-equal vector is zero. Branch fusion is 50% original score and 50% best E branch score, with every branch-local rank preserved. This fixed diagnostic asks whether explicit bilingual aliases help, not whether max fusion is the final architecture. No RRF or weight grid.
+
+Use the same three label versions, same112 candidate pool, same Top5 output, same query averaging and descriptive paired intervals as cycle2. Compare with E and Dense and include negative results. Compute bilingual-token coverage per query and case. Stored Dense scores are reused; this is not fresh embedding inference. A win on already inspected Validation remains exploratory.

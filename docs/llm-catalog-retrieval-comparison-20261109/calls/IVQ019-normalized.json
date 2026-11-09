@@ -1,0 +1,75 @@
+{
+  "question": "중소기업 대상 여신 담당자가 분기마다 재무제표를 보고 이상 징후를 점검합니다. 3개년 재무제표와 업종 평균 지표를 비교해 매출채권 증가, 차입 증가 등 확인할 항목을 요약해 주길 원합니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "MATCHED",
+  "selected_ids": [
+    "P03"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 내용·출처를 찾아 참조하는 요청이 아닙니다. 재무제표는 검토 대상 자료입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "NOT_SELECTED",
+      "rationale": "원자료에서 항목을 꺼내 구조화하라는 요청이 없습니다. 추출을 전제로 추정하지 않습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "SELECTED",
+      "rationale": "3개년 재무제표를 업종 평균 지표와 비교해 확인할 항목을 가려내는 요청입니다. 대상과 비교 자료가 모두 있습니다.",
+      "evidence": [
+        {
+          "quote": "3개년 재무제표와 업종 평균 지표를 비교해",
+          "start": 44,
+          "end": 67,
+          "occurrence_starts": [
+            44
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "3개년 재무제표",
+          "start": 44,
+          "end": 52,
+          "occurrence_starts": [
+            44
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        },
+        {
+          "quote": "업종 평균 지표",
+          "start": 54,
+          "end": 62,
+          "occurrence_starts": [
+            54
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "REFERENCE"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대나 문의량·시간대 공백에 관한 근거가 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [],
+  "constraints": [],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}

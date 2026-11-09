@@ -1,0 +1,60 @@
+{
+  "version": "pilot-case-profiles-v1-20261109",
+  "provenance": "Assistant interpretation of stored Problem/Task/Context; unknown means not stated, not unsupported in reality",
+  "cases": {
+    "AXALL_US_OMB_2025_02663": {"objects":["policy_document","knowledge_document"],"domains":["public"],"input_conditions":[],"known_fields":[]},
+    "AXV2N_0110": {"objects":["internal_knowledge","knowledge_document"],"domains":["finance"],"input_conditions":[],"known_fields":[]},
+    "AXV2P2_0010_01": {"objects":["technical_knowledge","knowledge_document"],"domains":["manufacturing"],"input_conditions":[],"known_fields":[]},
+    "AXALL_US_OMB_2025_01589": {"objects":["loan_document","document"],"domains":["finance","public"],"input_conditions":["pdf"],"known_fields":[]},
+    "AXV24_bc6444cc1b61": {"objects":["insurance_claim","billing_document","document"],"domains":["insurance"],"input_conditions":["pdf"],"known_fields":["가입자 정보"]},
+    "AXV2C_0080_01": {"objects":["trade_document","commercial_invoice","billing_document","document"],"domains":["finance"],"input_conditions":[],"known_fields":[]},
+    "AXV24_98092b8ca357": {"objects":["product_catalog","document"],"domains":["retail"],"input_conditions":[],"known_fields":["상품 속성"]},
+    "AXV24_28baf265c6cf": {"objects":["insurance_application","document"],"domains":["insurance"],"input_conditions":[],"known_fields":[]},
+    "AXALL_US_OMB_2025_01754": {"objects":["referral_record","document"],"domains":["public"],"input_conditions":[],"known_fields":["필수 항목"],"references":["required_fields"]},
+    "AXV2C_0006_02": {"objects":["customer_order","record"],"domains":["food"],"input_conditions":["pdf"],"known_fields":["가격"],"references":["price_check"]},
+    "AXV2H_0003_01": {"objects":["identity_report","document"],"domains":["professional_services"],"input_conditions":[],"known_fields":[],"references":["verification_criteria"]},
+    "AXV2P2_0011_01": {"objects":["freight_invoice","commercial_invoice","billing_document","document"],"domains":["logistics"],"input_conditions":["pdf"],"known_fields":["금액"],"references":["agreed_rates"]},
+    "AXV24_36c7ef329920": {"objects":["job_application","supporting_document","document"],"domains":["hr","professional_services"],"input_conditions":[],"known_fields":[],"references":["supporting_evidence"]},
+    "AXV24_df5d48fedff4": {"objects":["customer_inquiry"],"domains":["rv_service"],"input_conditions":["night","web","text"],"known_fields":[]},
+    "AXV2H_0001_01": {"objects":["customer_inquiry"],"domains":["saas"],"input_conditions":["night","outside_hours","written"],"known_fields":[]},
+    "AXV2P2_0060_01": {"objects":["customer_inquiry"],"domains":["airline"],"input_conditions":[],"known_fields":[]},
+    "AXV24_71def85d86bd": {"objects":["customer_inquiry"],"domains":["insurance","healthcare"],"input_conditions":["voice"],"known_fields":[]}
+  },
+  "object_rules": [
+    {"pattern":"보험.{0,4}청구서","value":"insurance_claim"},
+    {"pattern":"보험.{0,6}(?:신청|인수)","value":"insurance_application"},
+    {"pattern":"운송.{0,4}(?:청구서|송장)","value":"freight_invoice"},
+    {"pattern":"대출.{0,6}(?:문서|신청|PDF|서류)","value":"loan_document"},
+    {"pattern":"의뢰서|의뢰 자료|의뢰자료","value":"referral_record"},
+    {"pattern":"지원서|채용|지원자","value":"job_application"},
+    {"pattern":"신원조회|신원 보고서","value":"identity_report"},
+    {"pattern":"카탈로그|상품 속성","value":"product_catalog"},
+    {"pattern":"고객 주문|주문 기록|주문서","value":"customer_order"},
+    {"pattern":"규정|정책","value":"policy_document"},
+    {"pattern":"계약서|계약 조항|계약 내용","value":"contract_document"},
+    {"pattern":"사내 지식|내부 지식","value":"internal_knowledge"},
+    {"pattern":"매뉴얼","value":"manual_document"},
+    {"pattern":"기술 지식|조치 절차","value":"technical_knowledge"}
+  ],
+  "input_rules": [
+    {"pattern":"PDF|피디에프","value":"pdf"},
+    {"pattern":"야간|밤에|밤 시간","value":"night"},
+    {"pattern":"영업시간.{0,2}외|영업 시간.{0,2}외|퇴근.{0,2}후","value":"outside_hours"},
+    {"pattern":"24시간","value":"twenty_four_hours"},
+    {"pattern":"주말","value":"weekend"},
+    {"pattern":"음성|전화|통화","value":"voice"},
+    {"pattern":"문자","value":"text"},
+    {"pattern":"웹","value":"web"}
+  ],
+  "domain_rules": [
+    {"pattern":"보험","value":"insurance"},
+    {"pattern":"은행|금융","value":"finance"},
+    {"pattern":"병원|의료","value":"healthcare"},
+    {"pattern":"채용|인사","value":"hr"},
+    {"pattern":"물류|운송","value":"logistics"},
+    {"pattern":"공장|제조","value":"manufacturing"},
+    {"pattern":"공공|지자체|정부","value":"public"}
+  ],
+  "field_rules": ["가입자 정보","고객명","계좌번호","납기일","금액","주소","필수 항목","가격"],
+  "policy": {"default_max_candidates":20,"default_max_results":5,"unknown_required_input":"DEFER_NOT_RECOMMEND","unknown_read_only":"DEFER_NOT_RECOMMEND","same_tier_order":"frozen local BGE Task cosine","coverage_first":true,"score_is_probability":false}
+}

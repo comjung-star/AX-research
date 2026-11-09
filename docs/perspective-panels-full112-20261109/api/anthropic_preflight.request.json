@@ -1,0 +1,47 @@
+{
+  "system": "Return exactly the requested JSON object.",
+  "payload": {
+    "instruction": "Set ok true."
+  },
+  "schema": {
+    "type": "object",
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "ok"
+    ],
+    "additionalProperties": false
+  },
+  "body": {
+    "model": "claude-sonnet-5-5",
+    "system": "Return exactly the requested JSON object.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"instruction\": \"Set ok true.\"}"
+      }
+    ],
+    "max_tokens": 512,
+    "output_config": {
+      "effort": "high",
+      "format": {
+        "type": "json_schema",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ok": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "ok"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

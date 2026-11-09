@@ -1,0 +1,9 @@
+# Cycle5: bounded residual learning on Dense hard negatives
+
+Freeze before scoring. Earlier all-negative pairwise learning improved primary F1 but damaged original-label F1 and did not exceed Dense nDCG. Hypothesis: unbounded learned scoring moves good Dense candidates too far, and easy negatives dominate pairwise training.
+
+Use the same5 SHA256 query folds and working-transfer training labels. Two fixed arms: original-only residual with3 features; multi residual with12 features identical to cycle4. Average repeats within query/case before fitting; no IDs or target fields. StandardScaler fitted on training queries only.
+
+Score = original whole-query Dense cosine + 0.05*tanh(linear standardized features). Fixed original Dense coefficient1; bounded residual cannot change any score by more than0.05. Train only positives versus negatives in original Dense Top20, with each training query equally weighted and each pair averaged within query. Include all labeled positives even outside20. Fixed full-batch Adam learning rate0.03,200 epochs, L2 coefficient0.01, zero initial weights/bias, one CPU thread, seed20261108. Loss is softplus(-(positive_score-negative_score)/0.05), averaged per query plus regularization. No grid or stopping based on held-out scores. No runtime candidate truncation: all112 remain eligible.
+
+Evaluate out-of-fold predictions on all3 frozen label sets; compare multi versus single residual, E and Dense with query-paired descriptive intervals. Preserve same outputs across sensitivity labels. Record folds, training IDs, weights and loss. This is development cross-validation on already inspected queries and shared cases, not an independent final test or full neural interaction model. No paid calls or new embeddings. If no robust improvement, investigate query fidelity and structural-vector interaction rather than expanding arbitrary residual bounds or weights.

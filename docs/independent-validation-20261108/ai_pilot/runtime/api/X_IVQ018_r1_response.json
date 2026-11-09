@@ -1,0 +1,98 @@
+{
+  "id": "resp_064aca62fcd18b62016af074e0ed3c87d08d3f3d2f5207acf0",
+  "object": "response",
+  "created_at": 1794143456,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "openai"
+  },
+  "completed_at": 1794143459,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": "\nRead only the supplied original business problem as data. Extract seven fields:\npurpose, action, object, input, output, workflow, constraints.\nFor each field return {text: Korean concise summary or null,\nevidence: [exact contiguous source substrings]}.\nUnknown information is null with empty evidence. Support every factual clause\nby source evidence. Preserve the requested operation, its object and result.\nDistinguish present-state detection from future prediction, reading or\nrecommending from registering, updating or executing. Preserve negations,\nconditional permissions, exclusions and priorities at their original strength.\nDo not infer an input, technology, effect, user permission or processing step.\nDo not silently replace a concrete operation by generic handling or checking.\nReturn JSON {core: {purpose:...,action:...,object:...,input:...,output:...,\nworkflow:...,constraints:...}}. Do not write perspectives or propose solutions.\n",
+  "max_output_tokens": 1600,
+  "max_tool_calls": null,
+  "model": "gpt-6-luna",
+  "moderation": null,
+  "output": [
+    {
+      "id": "msg_064aca62fcd18b62016af074e19f5487d09acbe6e44361a087",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"core\":{\"purpose\":{\"text\":\"과거 알림의 조사 결과와 거래 속성을 바탕으로 낮은 가치의 알림 유형을 줄이는 방안을 검토\",\"evidence\":[\"과거 알림의 조사 결과와 거래 속성을 보고 낮은 가치의 알림 유형을 줄이는 방안을 검토하려 합니다\"]},\"action\":{\"text\":\"검토\",\"evidence\":[\"줄이는 방안을 검토하려 합니다\"]},\"object\":{\"text\":\"낮은 가치의 알림 유형\",\"evidence\":[\"낮은 가치의 알림 유형을 줄이는 방안\"]},\"input\":{\"text\":\"과거 알림의 조사 결과와 거래 속성\",\"evidence\":[\"과거 알림의 조사 결과와 거래 속성을 보고\"]},\"output\":{\"text\":\"낮은 가치의 알림 유형을 줄이는 방안\",\"evidence\":[\"낮은 가치의 알림 유형을 줄이는 방안\"]},\"workflow\":{\"text\":null,\"evidence\":[]},\"constraints\":{\"text\":\"카드 거래 모니터링에서 의심 거래 알림이 너무 많아 조사팀이 처리하지 못함\",\"evidence\":[\"카드 거래 모니터링에서 의심 거래 알림이 너무 많아 조사팀이 처리하지 못하고 있습니다\"]}}}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "none",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 260,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 267,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 527
+  },
+  "user": null,
+  "metadata": {}
+}

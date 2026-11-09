@@ -1,0 +1,55 @@
+{
+  "purpose": "Assistant-authored display fixtures, not new LLM responses or independent semantic Gold",
+  "examples": [
+    {
+      "id":"alternative_for_one_problem",
+      "question":"고객 문의 답변이 늦어져 대기가 길어집니다. 참고할 실제 사례를 보고 싶습니다.",
+      "selected":[
+        {"id":"P04","relation":"QUERY_EXPLICIT","anchor_quote":"고객 문의 답변이 늦어져 대기가 길어집니다","bridge_reason":"문의 응대 지연과 대기가 질문에 명시돼 있어 응대 용량·공백 대응 사례를 살펴봅니다.","assumptions":[]},
+        {"id":"P01","relation":"PROBLEM_HYPOTHESIS","anchor_quote":"고객 문의 답변이 늦어져","bridge_reason":"답변 근거를 찾는 시간이 지연 요인이라면 내부 지식 검색 사례가 참고가 될 수 있습니다.","assumptions":["직원이 답변 근거를 찾는 시간이 지연의 일부인지 아직 확인되지 않았습니다."]}
+      ]
+    },
+    {
+      "id":"shared_case_two_views",
+      "question":"의뢰 자료의 자유서술 항목을 구조화하고 필수 항목의 누락을 확인해주세요.",
+      "selected":[
+        {"id":"P02","relation":"QUERY_EXPLICIT","anchor_quote":"의뢰 자료의 자유서술 항목을 구조화","bridge_reason":"자유서술 자료를 업무 항목으로 구조화하는 방법을 참고합니다.","assumptions":[]},
+        {"id":"P03","relation":"QUERY_EXPLICIT","anchor_quote":"필수 항목의 누락을 확인","bridge_reason":"필수 항목과 자료를 대조해 누락을 확인하는 방법을 참고합니다.","assumptions":[]}
+      ]
+    },
+    {
+      "id":"separate_pdf_and_night",
+      "question":"보험 청구서 PDF에서 정보를 추출해주세요. 별도로 야간 고객 문의가 누락돼 문의에 응대하고 싶습니다.",
+      "selected":[
+        {"id":"P02","relation":"QUERY_EXPLICIT","anchor_quote":"보험 청구서 PDF에서 정보를 추출","bridge_reason":"원문 자료에서 항목을 꺼내 정리한 사례를 참고합니다.","assumptions":[]},
+        {"id":"P04","relation":"QUERY_EXPLICIT","anchor_quote":"야간 고객 문의가 누락돼 문의에 응대","bridge_reason":"응대 시간대 공백과 누락을 줄인 사례를 참고합니다.","assumptions":[]}
+      ],
+      "constraints":[
+        {"kind":"condition","perspective_id":"P02","quote":"보험 청구서 PDF"},
+        {"kind":"condition","perspective_id":"P04","quote":"야간 고객 문의"}
+      ]
+    },
+    {
+      "id":"four_views_no_global_five",
+      "question":"사내 규정을 검색하고 청구서 금액을 추출한 뒤 계약 기준과 대조해주세요. 야간 문의도 누락돼 고객 문의에 응답하고 싶습니다.",
+      "selected":[
+        {"id":"P01","relation":"QUERY_EXPLICIT","anchor_quote":"사내 규정을 검색","bridge_reason":"기존 지침에서 필요한 근거를 찾는 방법을 참고합니다.","assumptions":[]},
+        {"id":"P02","relation":"QUERY_EXPLICIT","anchor_quote":"청구서 금액을 추출","bridge_reason":"원자료의 금액을 항목화한 방법을 참고합니다.","assumptions":[]},
+        {"id":"P03","relation":"QUERY_EXPLICIT","anchor_quote":"계약 기준과 대조","bridge_reason":"자료를 기준과 대조하는 방법을 참고합니다.","assumptions":[]},
+        {"id":"P04","relation":"QUERY_EXPLICIT","anchor_quote":"야간 문의도 누락돼 고객 문의에 응답","bridge_reason":"야간 응대 공백에 대응한 방법을 참고합니다.","assumptions":[]}
+      ]
+    },
+    {
+      "id":"excluded_search",
+      "question":"고객 문의가 몰려 대기가 깁니다. 응대 사례를 보고 싶지만 문서 검색 관점은 제외해주세요.",
+      "selected":[{"id":"P04","relation":"QUERY_EXPLICIT","anchor_quote":"고객 문의가 몰려 대기가 깁니다","bridge_reason":"질문에 명시된 응대 용량 문제에 초점을 맞춥니다.","assumptions":[]}],
+      "constraints":[{"kind":"exclude_view","perspective_id":"P01","quote":"문서 검색 관점은 제외해주세요"}]
+    },
+    {
+      "id":"outside_catalog",
+      "question":"다음 달 상품 수요를 예측해주세요.",
+      "selected":[],
+      "unsupported_work":[{"quote":"다음 달 상품 수요를 예측해주세요","reason":"미래 수요 예측 관점은 이번 상세 검토한 네 관점의 범위 밖입니다."}]
+    }
+  ]
+}

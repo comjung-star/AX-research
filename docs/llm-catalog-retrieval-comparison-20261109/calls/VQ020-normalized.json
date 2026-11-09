@@ -1,0 +1,87 @@
+{
+  "question": "공공 민원 담당자는 접수된 민원의 관할 부서를 판단하기 위해 관련 내용을 읽습니다. 민원에서 요구하는 조치와 발생 장소를 파악해 담당 부서와 처리 유형을 제안하고 싶습니다. 민원의 해결 여부를 결정하거나 민원인에게 확정 답변을 발송하지 않습니다.",
+  "version": "llm-catalog-selector-v1-20261109",
+  "state": "PARTIAL_MATCH",
+  "selected_ids": [
+    "P02"
+  ],
+  "pending_ids": [],
+  "decisions": [
+    {
+      "id": "P01",
+      "status": "NOT_SELECTED",
+      "rationale": "기존 문서나 지식에서 근거를 찾으려는 요청이 아니라 민원 내용을 읽고 파악하는 작업입니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P02",
+      "status": "SELECTED",
+      "rationale": "자유서술 민원에서 요구 조치와 발생 장소를 꺼내 업무 항목으로 정리하려는 요청입니다.",
+      "evidence": [
+        {
+          "quote": "민원에서 요구하는 조치와 발생 장소를 파악해",
+          "start": 47,
+          "end": 71,
+          "occurrence_starts": [
+            47
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "WORK"
+        },
+        {
+          "quote": "접수된 민원",
+          "start": 11,
+          "end": 17,
+          "occurrence_starts": [
+            11
+          ],
+          "location_policy": "first exact occurrence; all occurrences retained",
+          "kind": "OBJECT"
+        }
+      ],
+      "missing_information": []
+    },
+    {
+      "id": "P03",
+      "status": "NOT_SELECTED",
+      "rationale": "민원을 다른 자료나 명시 기준과 대조해 불일치·누락을 확인하라는 요청이 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    },
+    {
+      "id": "P04",
+      "status": "NOT_SELECTED",
+      "rationale": "고객 문의 응대 요청이나 문의량·대기·시간대 공백의 근거가 없습니다.",
+      "evidence": [],
+      "missing_information": []
+    }
+  ],
+  "unsupported_work": [
+    {
+      "quote": "담당 부서와 처리 유형을 제안하고 싶습니다",
+      "start": 72,
+      "end": 95,
+      "occurrence_starts": [
+        72
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "reason": "관할 부서·처리 유형 판단과 제안은 제공된 4개 관점에 없는 분류·라우팅 작업입니다."
+    }
+  ],
+  "constraints": [
+    {
+      "quote": "민원의 해결 여부를 결정하거나 민원인에게 확정 답변을 발송하지 않습니다",
+      "start": 97,
+      "end": 136,
+      "occurrence_starts": [
+        97
+      ],
+      "location_policy": "first exact occurrence; all occurrences retained",
+      "kind": "excluded"
+    }
+  ],
+  "case_recommendations_generated": false,
+  "semantic_accuracy_certified": false,
+  "fine_tuning_performed": false
+}
