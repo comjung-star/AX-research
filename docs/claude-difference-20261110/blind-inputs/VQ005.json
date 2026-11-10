@@ -1,0 +1,93 @@
+{
+  "question_id": "VQ005",
+  "user_question": "보험 접수 업무에서 첨부서류를 보고 필요한 내용을 다른 화면이나 문서에 다시 옮겨 적는 과정이 많아 입력 오류와 재작업이 자주 발생합니다. 서류 확인과 정보 반영 사이에서 업무 부담이 커진 상황과 비슷한 기업 AX 참고 사례를 찾아보고 싶습니다.",
+  "cases": [
+    {
+      "case_id": "AXV24_8e0eaf8a5cb9",
+      "problem": "설비 수가 늘면서 본업이 따로 있는 직원들이 연간 약 1,550회의 안전감사를 수행하는 부담이 커졌다.",
+      "task": "설비 안전감사 문서 검토·보고 절차 지원",
+      "context": "재생에너지 설비를 포함한 자산의 내부 안전감사 업무.",
+      "implementation": "Google Cloud의 Claude 에이전트들이 감사 문서를 분석하고 과업을 나누며 결과 보고서를 작성하는 절차를 연결한다.",
+      "outcome": "공급사는 최대 2주 걸리던 감사 보고서 생성을 약 1시간으로 단축했다고 보고했다. 안전사고 감소의 인과근거는 아니다.",
+      "source_url": "https://claude.com/customers/aes",
+      "ai_status": "SOURCE_REVIEWED_AI_WORKFLOW",
+      "deployment_stage": "PRODUCTION",
+      "source_locators": [
+        {
+          "evidence_id": "EV_AXV24_8e0eaf8a5cb9",
+          "source_url": "https://claude.com/customers/aes",
+          "evidence_locator": "data/v2_4/main_cases_v2_4.json#case_id=AXV24_8e0eaf8a5cb9",
+          "access_status": "FETCHED",
+          "independent_fact_corroboration": false
+        }
+      ],
+      "evidence": {
+        "evidence_id": "EV_AXV24_8e0eaf8a5cb9",
+        "evidence_locator": "data/v2_4/main_cases_v2_4.json#case_id=AXV24_8e0eaf8a5cb9",
+        "field_anchors": {
+          "context_anchor": "원문 문단 3, 4; source_review_audit.json 참조",
+          "deployment_anchor": "원문 문단 15; source_review_audit.json 참조",
+          "implementation_anchor": "원문 문단 9, 10, 11, 12; source_review_audit.json 참조",
+          "outcome_anchor": "원문 문단 15; source_review_audit.json 참조",
+          "problem_anchor": "원문 문단 3, 4; source_review_audit.json 참조"
+        },
+        "source_row": null,
+        "source_record_id": "",
+        "source_url": "https://claude.com/customers/aes"
+      },
+      "source_group_id": "V25G_04e920a2c02aa9ab5cc0",
+      "source_access_note": "Stored structured summaries/anchors only; publisher page not newly fetched or independently corroborated."
+    },
+    {
+      "case_id": "AXALL_US_OMB_2025_01754",
+      "problem": "Required referral information arrives as free text and is tracked manually and inconsistently, leaving missing fields to be checked.",
+      "task": "Referral data structuring and completeness checks",
+      "context": "HHS Office of Refugee Resettlement intake staff reviewing referral records from CBP.",
+      "implementation": "AI parses referral text and flags required data fields; intake staff review missing information and request follow-up.",
+      "outcome": "UNKNOWN; 원천의 기대효과와 별도 관측 성과는 구분해야 합니다.",
+      "source_url": "https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory",
+      "ai_status": "SOURCE_CLASSIFIED_AI",
+      "deployment_stage": "DEPLOYED",
+      "source_locators": [
+        {
+          "evidence_id": "EV_AXALL_US_OMB_2025_01754",
+          "source_url": "https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory",
+          "evidence_locator": "data/v2_5/structured_row_audits.json#candidate_id=US_OMB_2025_01754",
+          "access_status": "NOT_A_NEW_WEB_CHECK",
+          "independent_fact_corroboration": false
+        }
+      ],
+      "evidence": {
+        "evidence_id": "EV_AXALL_US_OMB_2025_01754",
+        "evidence_locator": "data/v2_5/structured_row_audits.json#candidate_id=US_OMB_2025_01754",
+        "field_anchors": {
+          "context": {
+            "source_fields": [
+              "agency_name",
+              "agency_bureau",
+              "topic_area"
+            ]
+          },
+          "implementation": {
+            "source_field": "system_outputs"
+          },
+          "outcome": {
+            "observed_outcome_verified": false,
+            "source_field": "benefits"
+          },
+          "problem": {
+            "source_field": "problem_solved"
+          },
+          "task": {
+            "source_field": "use_case_name"
+          }
+        },
+        "source_row": 1754,
+        "source_record_id": "UNKNOWN",
+        "source_url": "https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory"
+      },
+      "source_group_id": "V25G_aa84b8ab2fd8e4c587ba",
+      "source_access_note": "Stored structured summaries/anchors only; publisher page not newly fetched or independently corroborated."
+    }
+  ]
+}
