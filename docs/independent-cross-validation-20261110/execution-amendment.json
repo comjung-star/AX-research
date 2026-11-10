@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-10T00:27:06.633228+00:00",
+  "reason": "User requires reuse of valid results and avoidance of duplicate grading. Whole-batch quote validation failed in8/23firstGemini rows;15rows individually valid. No performance/OpenAIlabels inspected.",
+  "changes": [
+    "Keep every individually valid first-attempt row and never overwrite/regrade it.",
+    "For each batch, at most one technical retry containing only failed/missing rows with identical per-pair facts, system prompt, schema, model and output cap. Batch membership changes, so this is not byte-identical full-request replay.",
+    "Continue to other untouched question batches after quote-format errors, retaining failed rows as MISSING_VALID_EVIDENCE, not0/ABSTAIN. Stop immediately on HTTP/auth/credit/quota/unknown-delivery/budget failure.",
+    "Original whole-batch stop/byte-identical recovery wording superseded only to honor valid-row reuse. No rubric, threshold, question, algorithm,rank,source facts or analysis/decision policy changes."
+  ],
+  "budget_cap_usd": 15.0,
+  "max_calls_per_provider": 40,
+  "max_accepted_judgments_per_pair": 1,
+  "min_gemini_interval_seconds": 60,
+  "self_sha256": "df1640ffe9f3b8e98584ca42a28a7f467fcedba718f8ca944609d3aa9f4ca6b4",
+  "frozen_original_runner_sha256": "ecbaf353bd8ac846d82b723efb7e65dbad7656c52b8b4991153d121ff46b8df9"
+}
