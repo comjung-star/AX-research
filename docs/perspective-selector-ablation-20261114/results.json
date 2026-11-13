@@ -1,0 +1,4793 @@
+{
+  "experiment": "frozen20-view-selector-vs-curated-pool",
+  "date": "2026-11-14",
+  "source_commit": "f76fb69e9684be0b7f537d22cb430b7e44dfd937",
+  "definitions": {
+    "A_BASE": "Original all-112 PTC topU",
+    "B_MAIN_ORIGINAL": "Original base5 + MAIN task branch + PTC fill",
+    "POOL_ONLY_PTC": "base5 + top PTC of union all 49 curated links + PTC fill",
+    "SELECTED_CARD_PTC": "base5 + selected MAIN cards per-view top5 by PTC + PTC fill",
+    "RANDOM_CARD_PTC": "mean of all choose(4,main_card_count) PTC view selections"
+  },
+  "corpus": {
+    "records": 112,
+    "questions": 20,
+    "label_pairs": 2240,
+    "cards": 4,
+    "curated_unique_cases": 49,
+    "curated_links": 53,
+    "mean_output_U": 12.7
+  },
+  "checks": {
+    "questions": 20,
+    "judgments": 2240,
+    "all_controls_equal_U": true,
+    "all_base5_preserved": true,
+    "all112_labeled": true
+  },
+  "summary": {
+    "A_BASE": {
+      "returned": 12.7,
+      "hits": 7.65,
+      "precision": 0.5475466529084949,
+      "recall": 0.24521348886786506,
+      "f1": 0.3106713593330466
+    },
+    "B_MAIN_ORIGINAL": {
+      "returned": 12.7,
+      "hits": 9.05,
+      "precision": 0.6452722095156306,
+      "recall": 0.28042265841883096,
+      "f1": 0.3621111355607837
+    },
+    "POOL_ONLY_PTC": {
+      "returned": 12.7,
+      "hits": 9,
+      "precision": 0.63871434851698,
+      "recall": 0.2803915350539278,
+      "f1": 0.36082891158025054
+    },
+    "SELECTED_CARD_PTC": {
+      "returned": 12.7,
+      "hits": 9.1,
+      "precision": 0.6468621217963323,
+      "recall": 0.28090658290275544,
+      "f1": 0.3628488537553708
+    },
+    "RANDOM_CARD_PTC": {
+      "returned": 12.7,
+      "hits": 8.179166666666669,
+      "precision": 0.5817604486765671,
+      "recall": 0.256888522196058,
+      "f1": 0.3279816848517298
+    }
+  },
+  "contrasts": {
+    "B_MAIN_ORIGINAL_minus_A_BASE": {
+      "mean_difference": 0.051439776227737086,
+      "paired_question_bootstrap95": [
+        0.027462559422752775,
+        0.07777029055719951
+      ],
+      "bootstrap_seed": 20261114,
+      "bootstrap_replicates": 20000,
+      "wins": 13,
+      "losses": 1,
+      "ties": 6
+    },
+    "POOL_ONLY_PTC_minus_A_BASE": {
+      "mean_difference": 0.050157552247203904,
+      "paired_question_bootstrap95": [
+        0.03130319892856488,
+        0.06972332849921588
+      ],
+      "bootstrap_seed": 20261114,
+      "bootstrap_replicates": 20000,
+      "wins": 14,
+      "losses": 0,
+      "ties": 6
+    },
+    "B_MAIN_ORIGINAL_minus_POOL_ONLY_PTC": {
+      "mean_difference": 0.0012822239805331912,
+      "paired_question_bootstrap95": [
+        -0.02375697321362768,
+        0.022462106156485553
+      ],
+      "bootstrap_seed": 20261114,
+      "bootstrap_replicates": 20000,
+      "wins": 8,
+      "losses": 4,
+      "ties": 8
+    },
+    "SELECTED_CARD_PTC_minus_RANDOM_CARD_PTC": {
+      "mean_difference": 0.034867168903641,
+      "paired_question_bootstrap95": [
+        0.020535483550934416,
+        0.04901364741705514
+      ],
+      "bootstrap_seed": 20261114,
+      "bootstrap_replicates": 20000,
+      "wins": 15,
+      "losses": 1,
+      "ties": 4
+    },
+    "SELECTED_CARD_PTC_minus_POOL_ONLY_PTC": {
+      "mean_difference": 0.002019942175120261,
+      "paired_question_bootstrap95": [
+        -0.022949124008446037,
+        0.022695444878543476
+      ],
+      "bootstrap_seed": 20261114,
+      "bootstrap_replicates": 20000,
+      "wins": 7,
+      "losses": 3,
+      "ties": 10
+    }
+  },
+  "per_question": {
+    "VQ001": {
+      "U": 18,
+      "main_cards": [
+        "P01",
+        "P04"
+      ],
+      "positive_total": 41,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 18,
+          "hits": 13,
+          "precision": 0.7222222222222222,
+          "recall": 0.3170731707317073,
+          "f1": 0.4406779661016949
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 18,
+          "hits": 14,
+          "precision": 0.7777777777777778,
+          "recall": 0.34146341463414637,
+          "f1": 0.4745762711864407
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 18,
+          "hits": 14,
+          "precision": 0.7777777777777778,
+          "recall": 0.34146341463414637,
+          "f1": 0.4745762711864407
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 18,
+          "hits": 14,
+          "precision": 0.7777777777777778,
+          "recall": 0.34146341463414637,
+          "f1": 0.4745762711864407
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 18,
+          "hits": 11.833333333333334,
+          "precision": 0.6574074074074074,
+          "recall": 0.2886178861788618,
+          "f1": 0.4011299435028249
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_df5d48fedff4",
+          "AXV2N_0121",
+          "AXV2N_0126",
+          "AXV2N_0111",
+          "AXV2N_0108",
+          "AXV2P2_0060_01",
+          "AXV2N_0105",
+          "AXV24_6c9a4a26411c",
+          "AXV2H_0002_01",
+          "AXV2H_0075_01",
+          "AXV2N_0133",
+          "AXV24_f6f7a1e65ea7",
+          "AXV2H_0081_01",
+          "AXV2C_0017_01",
+          "AXV2H_0001_01",
+          "AXV2H_0091_01",
+          "AXV2H_0003_01",
+          "AXV2C_0006_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_df5d48fedff4",
+          "AXV2N_0121",
+          "AXV2N_0126",
+          "AXV2N_0111",
+          "AXV2N_0108",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2P2_0010_01",
+          "AXV2N_0110",
+          "AXV2P2_0060_01",
+          "AXV2H_0090_01",
+          "AXV2H_0001_01",
+          "AXV2N_0105",
+          "AXV24_6c9a4a26411c",
+          "AXV2H_0002_01",
+          "AXV2H_0075_01",
+          "AXV24_f6f7a1e65ea7"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_df5d48fedff4",
+          "AXV2N_0121",
+          "AXV2N_0126",
+          "AXV2N_0111",
+          "AXV2N_0108",
+          "AXV2P2_0060_01",
+          "AXV2N_0133",
+          "AXV2C_0017_01",
+          "AXV2H_0001_01",
+          "AXV2H_0091_01",
+          "AXV2H_0003_01",
+          "AXV2C_0006_01",
+          "AXV2H_0090_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0016_01",
+          "AXV2H_0070_01",
+          "AXV24_f27ca1e6fb82",
+          "AXV24_71def85d86bd"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_df5d48fedff4",
+          "AXV2N_0121",
+          "AXV2N_0126",
+          "AXV2N_0111",
+          "AXV2N_0108",
+          "AXV2P2_0060_01",
+          "AXV2N_0133",
+          "AXV2C_0017_01",
+          "AXV2H_0001_01",
+          "AXV2H_0091_01",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2H_0071_01",
+          "AXV2N_0105",
+          "AXV24_6c9a4a26411c",
+          "AXV2H_0002_01",
+          "AXV2H_0075_01",
+          "AXV24_f6f7a1e65ea7"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0126",
+            "AXV2N_0111",
+            "AXV2N_0108",
+            "AXV2N_0133",
+            "AXV2H_0091_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_f27ca1e6fb82",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0071_01",
+            "AXV24_28baf265c6cf",
+            "AXV2P2_0060_01",
+            "AXV2N_0105",
+            "AXV24_6c9a4a26411c"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 11,
+            "precision": 0.6111111111111112,
+            "recall": 0.2682926829268293,
+            "f1": 0.3728813559322034
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0126",
+            "AXV2N_0111",
+            "AXV2N_0108",
+            "AXV2N_0133",
+            "AXV2H_0091_01",
+            "AXV2H_0003_01",
+            "AXV2C_0006_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_f27ca1e6fb82",
+            "AXV2C_0068_01",
+            "AXV2C_0068_03",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0071_01",
+            "AXV2P2_0060_01",
+            "AXV2N_0105",
+            "AXV24_6c9a4a26411c"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 13,
+            "precision": 0.7222222222222222,
+            "recall": 0.3170731707317073,
+            "f1": 0.4406779661016949
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0126",
+            "AXV2N_0111",
+            "AXV2N_0108",
+            "AXV2P2_0060_01",
+            "AXV2N_0133",
+            "AXV2C_0017_01",
+            "AXV2H_0001_01",
+            "AXV2H_0091_01",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0071_01",
+            "AXV2N_0105",
+            "AXV24_6c9a4a26411c",
+            "AXV2H_0002_01",
+            "AXV2H_0075_01",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 14,
+            "precision": 0.7777777777777778,
+            "recall": 0.34146341463414637,
+            "f1": 0.4745762711864407
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0126",
+            "AXV2N_0111",
+            "AXV2N_0108",
+            "AXV2H_0003_01",
+            "AXV2C_0006_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_06318a4a88a8",
+            "AXV2C_0068_01",
+            "AXV2C_0068_03",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0008_01",
+            "AXV24_28baf265c6cf",
+            "AXV2P2_0060_01",
+            "AXV2N_0105",
+            "AXV24_6c9a4a26411c",
+            "AXV2H_0002_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 9,
+            "precision": 0.5,
+            "recall": 0.21951219512195122,
+            "f1": 0.3050847457627119
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0126",
+            "AXV2N_0111",
+            "AXV2N_0108",
+            "AXV2P2_0060_01",
+            "AXV2C_0017_01",
+            "AXV2H_0001_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0008_01",
+            "AXV24_28baf265c6cf",
+            "AXV2N_0105",
+            "AXV24_6c9a4a26411c",
+            "AXV2H_0002_01",
+            "AXV2H_0075_01",
+            "AXV2N_0133"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 11,
+            "precision": 0.6111111111111112,
+            "recall": 0.2682926829268293,
+            "f1": 0.3728813559322034
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0126",
+            "AXV2N_0111",
+            "AXV2N_0108",
+            "AXV2P2_0060_01",
+            "AXV2C_0017_01",
+            "AXV2H_0001_01",
+            "AXV2H_0003_01",
+            "AXV2C_0006_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0068_01",
+            "AXV2C_0068_03",
+            "AXV2N_0105",
+            "AXV24_6c9a4a26411c",
+            "AXV2H_0002_01",
+            "AXV2H_0075_01",
+            "AXV2N_0133"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 13,
+            "precision": 0.7222222222222222,
+            "recall": 0.3170731707317073,
+            "f1": 0.4406779661016949
+          }
+        }
+      ]
+    },
+    "VQ002": {
+      "U": 18,
+      "main_cards": [
+        "P01",
+        "P04"
+      ],
+      "positive_total": 36,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 18,
+          "hits": 5,
+          "precision": 0.2777777777777778,
+          "recall": 0.1388888888888889,
+          "f1": 0.18518518518518517
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 18,
+          "hits": 10,
+          "precision": 0.5555555555555556,
+          "recall": 0.2777777777777778,
+          "f1": 0.37037037037037035
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 18,
+          "hits": 9,
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.3333333333333333
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 18,
+          "hits": 10,
+          "precision": 0.5555555555555556,
+          "recall": 0.2777777777777778,
+          "f1": 0.37037037037037035
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 18,
+          "hits": 7.833333333333333,
+          "precision": 0.4351851851851851,
+          "recall": 0.21759259259259256,
+          "f1": 0.29012345679012347
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2N_0126",
+          "AXV24_6c9a4a26411c",
+          "AXV2C_0006_01",
+          "AXV2N_0133",
+          "AXV24_36c7ef329920",
+          "AXV24_14dca9ee14fc",
+          "AXV2N_0111",
+          "AXV2H_0008_01",
+          "AXV2H_0003_01",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0134",
+          "AXV2N_0109",
+          "AXV24_06318a4a88a8",
+          "AXV24_f6f7a1e65ea7",
+          "AXV2C_0068_03",
+          "AXALL_US_OMB_2025_01754",
+          "AXALL_US_OMB_2025_01377",
+          "AXV24_28baf265c6cf"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2N_0126",
+          "AXV24_6c9a4a26411c",
+          "AXV2C_0006_01",
+          "AXV2N_0133",
+          "AXV24_36c7ef329920",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0110",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2P2_0010_01",
+          "AXV2H_0090_01",
+          "AXV2N_0124",
+          "AXV24_df5d48fedff4",
+          "AXV2C_0017_01",
+          "AXV2C_0016_01",
+          "AXV24_14dca9ee14fc",
+          "AXV2N_0111",
+          "AXV2H_0008_01",
+          "AXV2H_0003_01"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2N_0126",
+          "AXV24_6c9a4a26411c",
+          "AXV2C_0006_01",
+          "AXV2N_0133",
+          "AXV24_36c7ef329920",
+          "AXV2H_0008_01",
+          "AXV2H_0003_01",
+          "AXV24_f27ca1e6fb82",
+          "AXV24_06318a4a88a8",
+          "AXV2C_0068_03",
+          "AXALL_US_OMB_2025_01754",
+          "AXV24_28baf265c6cf",
+          "AXALL_US_OMB_2025_02663",
+          "AXV24_df5d48fedff4",
+          "AXV2N_0110",
+          "AXV2N_0121",
+          "AXV2N_0124",
+          "AXV24_7a64efedc8a2"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2N_0126",
+          "AXV24_6c9a4a26411c",
+          "AXV2C_0006_01",
+          "AXV2N_0133",
+          "AXV24_36c7ef329920",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_02663",
+          "AXV24_df5d48fedff4",
+          "AXV2N_0110",
+          "AXV2N_0121",
+          "AXV2N_0124",
+          "AXV2H_0090_01",
+          "AXV2C_0016_01",
+          "AXV2P2_0010_01",
+          "AXV24_14dca9ee14fc",
+          "AXV2N_0111",
+          "AXV2H_0008_01",
+          "AXV2H_0003_01"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_6c9a4a26411c",
+            "AXV2C_0006_01",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV2H_0008_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_28baf265c6cf",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0110",
+            "AXV24_7a64efedc8a2",
+            "AXV2P2_0010_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV2N_0134"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 8,
+            "precision": 0.4444444444444444,
+            "recall": 0.2222222222222222,
+            "f1": 0.2962962962962963
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_6c9a4a26411c",
+            "AXV2C_0006_01",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2C_0068_03",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0110",
+            "AXV2P2_0010_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2N_0111",
+            "AXV2H_0008_01",
+            "AXV2N_0134",
+            "AXV2N_0109",
+            "AXV24_06318a4a88a8"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 7,
+            "precision": 0.3888888888888889,
+            "recall": 0.19444444444444445,
+            "f1": 0.25925925925925924
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_6c9a4a26411c",
+            "AXV2C_0006_01",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0110",
+            "AXV2N_0121",
+            "AXV2N_0124",
+            "AXV2H_0090_01",
+            "AXV2C_0016_01",
+            "AXV2P2_0010_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2N_0111",
+            "AXV2H_0008_01",
+            "AXV2H_0003_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 10,
+            "precision": 0.5555555555555556,
+            "recall": 0.2777777777777778,
+            "f1": 0.37037037037037035
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_6c9a4a26411c",
+            "AXV2C_0006_01",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV2H_0008_01",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXV2C_0068_03",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_28baf265c6cf",
+            "AXV24_7a64efedc8a2",
+            "AXV24_14dca9ee14fc",
+            "AXV2N_0111",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0134",
+            "AXV2N_0109",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 6,
+            "precision": 0.3333333333333333,
+            "recall": 0.16666666666666666,
+            "f1": 0.2222222222222222
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_6c9a4a26411c",
+            "AXV2C_0006_01",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV2H_0008_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_28baf265c6cf",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0124",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0090_01",
+            "AXV2C_0016_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2N_0111",
+            "AXV2H_0003_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 8,
+            "precision": 0.4444444444444444,
+            "recall": 0.2222222222222222,
+            "f1": 0.2962962962962963
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_6c9a4a26411c",
+            "AXV2C_0006_01",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2C_0068_03",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2N_0124",
+            "AXV2H_0090_01",
+            "AXV2C_0016_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2N_0111",
+            "AXV2H_0008_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0134"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 8,
+            "precision": 0.4444444444444444,
+            "recall": 0.2222222222222222,
+            "f1": 0.2962962962962963
+          }
+        }
+      ]
+    },
+    "VQ003": {
+      "U": 13,
+      "main_cards": [
+        "P01"
+      ],
+      "positive_total": 39,
+      "random_option_count": 4,
+      "metrics": {
+        "A_BASE": {
+          "returned": 13,
+          "hits": 8,
+          "precision": 0.6153846153846154,
+          "recall": 0.20512820512820512,
+          "f1": 0.3076923076923077
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 13,
+          "hits": 10,
+          "precision": 0.7692307692307693,
+          "recall": 0.2564102564102564,
+          "f1": 0.38461538461538464
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 13,
+          "hits": 9,
+          "precision": 0.6923076923076923,
+          "recall": 0.23076923076923078,
+          "f1": 0.34615384615384615
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 13,
+          "hits": 10,
+          "precision": 0.7692307692307693,
+          "recall": 0.2564102564102564,
+          "f1": 0.38461538461538464
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 13,
+          "hits": 8.5,
+          "precision": 0.6538461538461539,
+          "recall": 0.21794871794871795,
+          "f1": 0.3269230769230769
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV2C_0068_03",
+          "AXV2H_0008_01",
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0133",
+          "AXV24_36c7ef329920",
+          "AXV2P2_0013_01",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0126",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2C_0006_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV2C_0068_03",
+          "AXV2H_0008_01",
+          "AXV2N_0133",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0110",
+          "AXV2P2_0010_01",
+          "AXV24_7a64efedc8a2",
+          "AXV24_36c7ef329920",
+          "AXV2P2_0013_01"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV2C_0068_03",
+          "AXV2H_0008_01",
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0133",
+          "AXV24_36c7ef329920",
+          "AXV2P2_0013_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2C_0006_01",
+          "AXV24_e9e5114a33fe"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV2C_0068_03",
+          "AXV2H_0008_01",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV24_f27ca1e6fb82",
+          "AXV2H_0091_01",
+          "AXV2N_0110",
+          "AXV24_7a64efedc8a2",
+          "AXV24_36c7ef329920",
+          "AXV2P2_0013_01"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01"
+          ],
+          "prediction": [
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2C_0068_03",
+            "AXV2H_0008_01",
+            "AXV2N_0133",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0091_01",
+            "AXV2N_0110",
+            "AXV24_7a64efedc8a2",
+            "AXV24_36c7ef329920",
+            "AXV2P2_0013_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 10,
+            "precision": 0.7692307692307693,
+            "recall": 0.2564102564102564,
+            "f1": 0.38461538461538464
+          }
+        },
+        {
+          "cards": [
+            "P02"
+          ],
+          "prediction": [
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2C_0068_03",
+            "AXV2H_0008_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV2P2_0013_01",
+            "AXV2N_0126"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 8,
+            "precision": 0.6153846153846154,
+            "recall": 0.20512820512820512,
+            "f1": 0.3076923076923077
+          }
+        },
+        {
+          "cards": [
+            "P03"
+          ],
+          "prediction": [
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2C_0068_03",
+            "AXV2H_0008_01",
+            "AXV24_36c7ef329920",
+            "AXV2P2_0013_01",
+            "AXV2C_0006_01",
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0133",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0126",
+            "AXALL_US_OMB_2025_02663"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 8,
+            "precision": 0.6153846153846154,
+            "recall": 0.20512820512820512,
+            "f1": 0.3076923076923077
+          }
+        },
+        {
+          "cards": [
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2C_0068_03",
+            "AXV2H_0008_01",
+            "AXV2H_0090_01",
+            "AXV2H_0091_01",
+            "AXV2P2_0060_01",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 8,
+            "precision": 0.6153846153846154,
+            "recall": 0.20512820512820512,
+            "f1": 0.3076923076923077
+          }
+        }
+      ]
+    },
+    "VQ004": {
+      "U": 12,
+      "main_cards": [
+        "P01",
+        "P03"
+      ],
+      "positive_total": 37,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 12,
+          "hits": 9,
+          "precision": 0.75,
+          "recall": 0.24324324324324326,
+          "f1": 0.3673469387755102
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 12,
+          "hits": 11,
+          "precision": 0.9166666666666666,
+          "recall": 0.2972972972972973,
+          "f1": 0.4489795918367347
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 12,
+          "hits": 10,
+          "precision": 0.8333333333333334,
+          "recall": 0.2702702702702703,
+          "f1": 0.40816326530612246
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 12,
+          "hits": 10,
+          "precision": 0.8333333333333334,
+          "recall": 0.2702702702702703,
+          "f1": 0.40816326530612246
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 12,
+          "hits": 8.666666666666666,
+          "precision": 0.7222222222222222,
+          "recall": 0.23423423423423426,
+          "f1": 0.3537414965986394
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_14dca9ee14fc",
+          "AXV2H_0003_01",
+          "AXV24_36c7ef329920",
+          "AXV2N_0111",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2N_0126",
+          "AXV2C_0006_01",
+          "AXV2C_0068_03",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0133"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_14dca9ee14fc",
+          "AXV2H_0003_01",
+          "AXV24_36c7ef329920",
+          "AXV2N_0111",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0110",
+          "AXV2P2_0010_01",
+          "AXV2C_0068_03",
+          "AXV24_8e0eaf8a5cb9",
+          "AXALL_US_OMB_2025_01754"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_14dca9ee14fc",
+          "AXV2H_0003_01",
+          "AXV24_36c7ef329920",
+          "AXV2N_0111",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0006_01",
+          "AXV2C_0068_03",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_00857"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_14dca9ee14fc",
+          "AXV2H_0003_01",
+          "AXV24_36c7ef329920",
+          "AXV2N_0111",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0006_01",
+          "AXV2C_0068_03",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0133",
+          "AXV2H_0091_01",
+          "AXV2N_0110"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXV2H_0003_01",
+            "AXV24_36c7ef329920",
+            "AXV2N_0111",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0133",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_01589"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.2702702702702703,
+            "f1": 0.40816326530612246
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXV2H_0003_01",
+            "AXV24_36c7ef329920",
+            "AXV2N_0111",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0006_01",
+            "AXV2C_0068_03",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0133",
+            "AXV2H_0091_01",
+            "AXV2N_0110"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.2702702702702703,
+            "f1": 0.40816326530612246
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXV2H_0003_01",
+            "AXV24_36c7ef329920",
+            "AXV2N_0111",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0133",
+            "AXV2H_0090_01",
+            "AXV2H_0091_01",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0110",
+            "AXV2N_0121"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 7,
+            "precision": 0.5833333333333334,
+            "recall": 0.1891891891891892,
+            "f1": 0.2857142857142857
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXV2H_0003_01",
+            "AXV24_36c7ef329920",
+            "AXV2N_0111",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0006_01",
+            "AXV2C_0068_03",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_01589"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.2702702702702703,
+            "f1": 0.40816326530612246
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXV2H_0003_01",
+            "AXV24_36c7ef329920",
+            "AXV2N_0111",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0090_01",
+            "AXV2H_0091_01"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 8,
+            "precision": 0.6666666666666666,
+            "recall": 0.21621621621621623,
+            "f1": 0.32653061224489793
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXV2H_0003_01",
+            "AXV24_36c7ef329920",
+            "AXV2N_0111",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0006_01",
+            "AXV2C_0068_03",
+            "AXV2H_0090_01",
+            "AXV2H_0091_01",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 7,
+            "precision": 0.5833333333333334,
+            "recall": 0.1891891891891892,
+            "f1": 0.2857142857142857
+          }
+        }
+      ]
+    },
+    "VQ005": {
+      "U": 11,
+      "main_cards": [
+        "P02"
+      ],
+      "positive_total": 33,
+      "random_option_count": 4,
+      "metrics": {
+        "A_BASE": {
+          "returned": 11,
+          "hits": 9,
+          "precision": 0.8181818181818182,
+          "recall": 0.2727272727272727,
+          "f1": 0.4090909090909091
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 11,
+          "hits": 10,
+          "precision": 0.9090909090909091,
+          "recall": 0.30303030303030304,
+          "f1": 0.45454545454545453
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 11,
+          "hits": 9,
+          "precision": 0.8181818181818182,
+          "recall": 0.2727272727272727,
+          "f1": 0.4090909090909091
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 11,
+          "hits": 9,
+          "precision": 0.8181818181818182,
+          "recall": 0.2727272727272727,
+          "f1": 0.4090909090909091
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 11,
+          "hits": 7.75,
+          "precision": 0.7045454545454546,
+          "recall": 0.23484848484848486,
+          "f1": 0.3522727272727273
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV24_28baf265c6cf",
+          "AXV24_06318a4a88a8",
+          "AXV24_7a64efedc8a2",
+          "AXV2C_0068_03",
+          "AXV2N_0133",
+          "AXV2H_0008_01",
+          "AXV24_8e0eaf8a5cb9"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV24_28baf265c6cf",
+          "AXV24_06318a4a88a8",
+          "AXV2H_0008_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV24_7a64efedc8a2",
+          "AXV2C_0068_03",
+          "AXV2N_0133"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV24_28baf265c6cf",
+          "AXV24_06318a4a88a8",
+          "AXV24_7a64efedc8a2",
+          "AXV2C_0068_03",
+          "AXV2N_0133",
+          "AXV2H_0008_01",
+          "AXV24_8e0eaf8a5cb9"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV24_28baf265c6cf",
+          "AXV24_06318a4a88a8",
+          "AXV24_7a64efedc8a2",
+          "AXV2H_0008_01",
+          "AXV2C_0068_03",
+          "AXV2N_0133",
+          "AXV24_8e0eaf8a5cb9"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01"
+          ],
+          "prediction": [
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_36c7ef329920",
+            "AXV24_28baf265c6cf",
+            "AXV2N_0133",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0091_01",
+            "AXV2H_0071_01",
+            "AXV24_06318a4a88a8"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 7,
+            "precision": 0.6363636363636364,
+            "recall": 0.21212121212121213,
+            "f1": 0.3181818181818182
+          }
+        },
+        {
+          "cards": [
+            "P02"
+          ],
+          "prediction": [
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_36c7ef329920",
+            "AXV24_28baf265c6cf",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0008_01",
+            "AXV2C_0068_03",
+            "AXV2N_0133",
+            "AXV24_8e0eaf8a5cb9"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 9,
+            "precision": 0.8181818181818182,
+            "recall": 0.2727272727272727,
+            "f1": 0.4090909090909091
+          }
+        },
+        {
+          "cards": [
+            "P03"
+          ],
+          "prediction": [
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_36c7ef329920",
+            "AXV24_28baf265c6cf",
+            "AXV2C_0068_03",
+            "AXV24_8e0eaf8a5cb9",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0133"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 9,
+            "precision": 0.8181818181818182,
+            "recall": 0.2727272727272727,
+            "f1": 0.4090909090909091
+          }
+        },
+        {
+          "cards": [
+            "P04"
+          ],
+          "prediction": [
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_36c7ef329920",
+            "AXV24_28baf265c6cf",
+            "AXV24_71def85d86bd",
+            "AXV24_df5d48fedff4",
+            "AXV2H_0090_01",
+            "AXV2N_0121",
+            "AXV2H_0091_01",
+            "AXV24_06318a4a88a8"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 6,
+            "precision": 0.5454545454545454,
+            "recall": 0.18181818181818182,
+            "f1": 0.2727272727272727
+          }
+        }
+      ]
+    },
+    "VQ006": {
+      "U": 11,
+      "main_cards": [
+        "P03"
+      ],
+      "positive_total": 36,
+      "random_option_count": 4,
+      "metrics": {
+        "A_BASE": {
+          "returned": 11,
+          "hits": 7,
+          "precision": 0.6363636363636364,
+          "recall": 0.19444444444444445,
+          "f1": 0.2978723404255319
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 11,
+          "hits": 8,
+          "precision": 0.7272727272727273,
+          "recall": 0.2222222222222222,
+          "f1": 0.3404255319148936
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 11,
+          "hits": 9,
+          "precision": 0.8181818181818182,
+          "recall": 0.25,
+          "f1": 0.3829787234042553
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 11,
+          "hits": 9,
+          "precision": 0.8181818181818182,
+          "recall": 0.25,
+          "f1": 0.3829787234042553
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 11,
+          "hits": 7.5,
+          "precision": 0.6818181818181819,
+          "recall": 0.20833333333333331,
+          "f1": 0.3191489361702128
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_14dca9ee14fc",
+          "AXALL_US_OMB_2025_01589",
+          "AXV2H_0008_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0068_01",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0126",
+          "AXV24_36c7ef329920",
+          "AXV2N_0133",
+          "AXV24_df5d48fedff4",
+          "AXV2N_0111"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_14dca9ee14fc",
+          "AXALL_US_OMB_2025_01589",
+          "AXV2H_0008_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0068_01",
+          "AXV24_36c7ef329920",
+          "AXV2C_0068_03",
+          "AXV24_efe56d53f5fd",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0126"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_14dca9ee14fc",
+          "AXALL_US_OMB_2025_01589",
+          "AXV2H_0008_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0068_01",
+          "AXV24_06318a4a88a8",
+          "AXV24_36c7ef329920",
+          "AXV2N_0133",
+          "AXV24_df5d48fedff4",
+          "AXV24_7a64efedc8a2",
+          "AXV2H_0003_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_14dca9ee14fc",
+          "AXALL_US_OMB_2025_01589",
+          "AXV2H_0008_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0068_01",
+          "AXV24_36c7ef329920",
+          "AXV2H_0003_01",
+          "AXV2C_0068_03",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0126",
+          "AXV2N_0133"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0068_01",
+            "AXV2N_0133",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV24_06318a4a88a8"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 7,
+            "precision": 0.6363636363636364,
+            "recall": 0.19444444444444445,
+            "f1": 0.2978723404255319
+          }
+        },
+        {
+          "cards": [
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0068_01",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0126",
+            "AXV24_36c7ef329920",
+            "AXV2N_0133",
+            "AXV24_df5d48fedff4"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 8,
+            "precision": 0.7272727272727273,
+            "recall": 0.2222222222222222,
+            "f1": 0.3404255319148936
+          }
+        },
+        {
+          "cards": [
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0068_01",
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2C_0068_03",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0126",
+            "AXV2N_0133"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 9,
+            "precision": 0.8181818181818182,
+            "recall": 0.25,
+            "f1": 0.3829787234042553
+          }
+        },
+        {
+          "cards": [
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_14dca9ee14fc",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0068_01",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV2P2_0060_01",
+            "AXV24_06318a4a88a8"
+          ],
+          "metrics": {
+            "returned": 11,
+            "hits": 6,
+            "precision": 0.5454545454545454,
+            "recall": 0.16666666666666666,
+            "f1": 0.2553191489361702
+          }
+        }
+      ]
+    },
+    "VQ007": {
+      "U": 12,
+      "main_cards": [
+        "P03"
+      ],
+      "positive_total": 36,
+      "random_option_count": 4,
+      "metrics": {
+        "A_BASE": {
+          "returned": 12,
+          "hits": 10,
+          "precision": 0.8333333333333334,
+          "recall": 0.2777777777777778,
+          "f1": 0.4166666666666667
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 12,
+          "hits": 10,
+          "precision": 0.8333333333333334,
+          "recall": 0.2777777777777778,
+          "f1": 0.4166666666666667
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 12,
+          "hits": 12,
+          "precision": 1,
+          "recall": 0.3333333333333333,
+          "f1": 0.5
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 12,
+          "hits": 10,
+          "precision": 0.8333333333333334,
+          "recall": 0.2777777777777778,
+          "f1": 0.4166666666666667
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 12,
+          "hits": 10.5,
+          "precision": 0.875,
+          "recall": 0.2916666666666667,
+          "f1": 0.4375
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXALL_US_OMB_2025_00857",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0133",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0103",
+          "AXV2P2_0011_01",
+          "AXV2C_0068_03"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXALL_US_OMB_2025_00857",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0133",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV2C_0068_03",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0103"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXALL_US_OMB_2025_00857",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0133",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0103",
+          "AXV2P2_0011_01",
+          "AXV2C_0068_03",
+          "AXALL_US_OMB_2025_01754",
+          "AXALL_US_OMB_2025_02663"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXALL_US_OMB_2025_00857",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0133",
+          "AXV2H_0003_01",
+          "AXV24_14dca9ee14fc",
+          "AXV24_36c7ef329920",
+          "AXV2N_0103",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV24_6c9a4a26411c",
+          "AXV2P2_0011_01",
+          "AXV2C_0068_03"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01"
+          ],
+          "prediction": [
+            "AXALL_US_OMB_2025_00857",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0133",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0071_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0091_01",
+            "AXV24_36c7ef329920",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 11,
+            "precision": 0.9166666666666666,
+            "recall": 0.3055555555555556,
+            "f1": 0.4583333333333333
+          }
+        },
+        {
+          "cards": [
+            "P02"
+          ],
+          "prediction": [
+            "AXALL_US_OMB_2025_00857",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0133",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_01589",
+            "AXV24_7a64efedc8a2",
+            "AXV24_28baf265c6cf",
+            "AXV24_36c7ef329920",
+            "AXV2N_0111"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.2777777777777778,
+            "f1": 0.4166666666666667
+          }
+        },
+        {
+          "cards": [
+            "P03"
+          ],
+          "prediction": [
+            "AXALL_US_OMB_2025_00857",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0133",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_36c7ef329920",
+            "AXV2N_0103",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111",
+            "AXV24_6c9a4a26411c",
+            "AXV2P2_0011_01",
+            "AXV2C_0068_03"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.2777777777777778,
+            "f1": 0.4166666666666667
+          }
+        },
+        {
+          "cards": [
+            "P04"
+          ],
+          "prediction": [
+            "AXALL_US_OMB_2025_00857",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0133",
+            "AXV2H_0003_01",
+            "AXV24_14dca9ee14fc",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV2H_0090_01",
+            "AXV24_71def85d86bd",
+            "AXV24_36c7ef329920",
+            "AXV24_06318a4a88a8"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 11,
+            "precision": 0.9166666666666666,
+            "recall": 0.3055555555555556,
+            "f1": 0.4583333333333333
+          }
+        }
+      ]
+    },
+    "VQ008": {
+      "U": 13,
+      "main_cards": [
+        "P03"
+      ],
+      "positive_total": 31,
+      "random_option_count": 4,
+      "metrics": {
+        "A_BASE": {
+          "returned": 13,
+          "hits": 3,
+          "precision": 0.23076923076923078,
+          "recall": 0.0967741935483871,
+          "f1": 0.13636363636363635
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 13,
+          "hits": 7,
+          "precision": 0.5384615384615384,
+          "recall": 0.22580645161290322,
+          "f1": 0.3181818181818182
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 13,
+          "hits": 5,
+          "precision": 0.38461538461538464,
+          "recall": 0.16129032258064516,
+          "f1": 0.22727272727272727
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 13,
+          "hits": 7,
+          "precision": 0.5384615384615384,
+          "recall": 0.22580645161290322,
+          "f1": 0.3181818181818182
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 13,
+          "hits": 5,
+          "precision": 0.38461538461538464,
+          "recall": 0.16129032258064516,
+          "f1": 0.22727272727272727
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2N_0126",
+          "AXV2N_0108",
+          "AXV24_df5d48fedff4",
+          "AXV2C_0006_02",
+          "AXV2P2_0048_01",
+          "AXV2N_0125",
+          "AXV2P2_0010_01",
+          "AXV24_98092b8ca357",
+          "AXV2H_0084_01",
+          "AXV24_a3975df095c3",
+          "AXV2N_0121",
+          "AXV2N_0106",
+          "AXV2C_0093_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2N_0126",
+          "AXV2N_0108",
+          "AXV24_df5d48fedff4",
+          "AXV2C_0006_02",
+          "AXV2P2_0048_01",
+          "AXV2C_0068_03",
+          "AXV24_36c7ef329920",
+          "AXALL_US_OMB_2025_01754",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_efe56d53f5fd",
+          "AXV2N_0125",
+          "AXV2P2_0010_01",
+          "AXV24_98092b8ca357"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2N_0126",
+          "AXV2N_0108",
+          "AXV24_df5d48fedff4",
+          "AXV2C_0006_02",
+          "AXV2P2_0048_01",
+          "AXV2P2_0010_01",
+          "AXV24_98092b8ca357",
+          "AXV2N_0121",
+          "AXV24_f27ca1e6fb82",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0133",
+          "AXV24_7a64efedc8a2",
+          "AXV2P2_0060_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2N_0126",
+          "AXV2N_0108",
+          "AXV24_df5d48fedff4",
+          "AXV2C_0006_02",
+          "AXV2P2_0048_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0068_01",
+          "AXV2C_0006_01",
+          "AXV2H_0003_01",
+          "AXV2N_0125",
+          "AXV2P2_0010_01",
+          "AXV24_98092b8ca357",
+          "AXV2H_0084_01"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV2N_0108",
+            "AXV24_df5d48fedff4",
+            "AXV2C_0006_02",
+            "AXV2P2_0048_01",
+            "AXV2P2_0010_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0133",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV2N_0125",
+            "AXV24_98092b8ca357",
+            "AXV2H_0084_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 4,
+            "precision": 0.3076923076923077,
+            "recall": 0.12903225806451613,
+            "f1": 0.18181818181818182
+          }
+        },
+        {
+          "cards": [
+            "P02"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV2N_0108",
+            "AXV24_df5d48fedff4",
+            "AXV2C_0006_02",
+            "AXV2P2_0048_01",
+            "AXV24_98092b8ca357",
+            "AXV24_06318a4a88a8",
+            "AXV24_7a64efedc8a2",
+            "AXV2P2_0012_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2N_0125",
+            "AXV2P2_0010_01",
+            "AXV2H_0084_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 6,
+            "precision": 0.46153846153846156,
+            "recall": 0.1935483870967742,
+            "f1": 0.2727272727272727
+          }
+        },
+        {
+          "cards": [
+            "P03"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV2N_0108",
+            "AXV24_df5d48fedff4",
+            "AXV2C_0006_02",
+            "AXV2P2_0048_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0068_01",
+            "AXV2C_0006_01",
+            "AXV2H_0003_01",
+            "AXV2N_0125",
+            "AXV2P2_0010_01",
+            "AXV24_98092b8ca357",
+            "AXV2H_0084_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 7,
+            "precision": 0.5384615384615384,
+            "recall": 0.22580645161290322,
+            "f1": 0.3181818181818182
+          }
+        },
+        {
+          "cards": [
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV2N_0108",
+            "AXV24_df5d48fedff4",
+            "AXV2C_0006_02",
+            "AXV2P2_0048_01",
+            "AXV2N_0121",
+            "AXV2P2_0060_01",
+            "AXV2C_0016_01",
+            "AXV2C_0017_01",
+            "AXV2N_0125",
+            "AXV2P2_0010_01",
+            "AXV24_98092b8ca357",
+            "AXV2H_0084_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 3,
+            "precision": 0.23076923076923078,
+            "recall": 0.0967741935483871,
+            "f1": 0.13636363636363635
+          }
+        }
+      ]
+    },
+    "VQ009": {
+      "U": 12,
+      "main_cards": [
+        "P03",
+        "P04"
+      ],
+      "positive_total": 49,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 12,
+          "hits": 8,
+          "precision": 0.6666666666666666,
+          "recall": 0.16326530612244897,
+          "f1": 0.26229508196721313
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 12,
+          "hits": 11,
+          "precision": 0.9166666666666666,
+          "recall": 0.22448979591836735,
+          "f1": 0.36065573770491804
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 12,
+          "hits": 10,
+          "precision": 0.8333333333333334,
+          "recall": 0.20408163265306123,
+          "f1": 0.32786885245901637
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 12,
+          "hits": 11,
+          "precision": 0.9166666666666666,
+          "recall": 0.22448979591836735,
+          "f1": 0.36065573770491804
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 12,
+          "hits": 10.166666666666666,
+          "precision": 0.8472222222222223,
+          "recall": 0.20748299319727892,
+          "f1": 0.3333333333333333
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_36c7ef329920",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV2C_0006_01",
+          "AXV2N_0111",
+          "AXV2P2_0100_01",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0126",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2H_0090_01",
+          "AXALL_US_OMB_2025_01589"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_36c7ef329920",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV2C_0006_01",
+          "AXV2N_0111",
+          "AXV2C_0068_03",
+          "AXV2P2_0100_01",
+          "AXV2H_0090_01",
+          "AXV2N_0124",
+          "AXV24_71def85d86bd",
+          "AXV2N_0121",
+          "AXV2P2_0060_01"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_36c7ef329920",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV2C_0006_01",
+          "AXV2N_0111",
+          "AXV2P2_0100_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2H_0090_01",
+          "AXALL_US_OMB_2025_01589",
+          "AXV2C_0068_03",
+          "AXV2H_0008_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_36c7ef329920",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV2C_0006_01",
+          "AXV2N_0111",
+          "AXV2P2_0100_01",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2H_0090_01",
+          "AXV24_71def85d86bd",
+          "AXV24_df5d48fedff4",
+          "AXV2N_0124",
+          "AXV2H_0070_01"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV2C_0006_01",
+            "AXV2N_0111",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0008_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV24_28baf265c6cf"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.20408163265306123,
+            "f1": 0.32786885245901637
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV2C_0006_01",
+            "AXV2N_0111",
+            "AXV2P2_0100_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV24_6c9a4a26411c"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.20408163265306123,
+            "f1": 0.32786885245901637
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV2C_0006_01",
+            "AXV2N_0111",
+            "AXV2H_0090_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_71def85d86bd",
+            "AXV24_f27ca1e6fb82",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0124",
+            "AXV2H_0070_01"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 11,
+            "precision": 0.9166666666666666,
+            "recall": 0.22448979591836735,
+            "f1": 0.36065573770491804
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV2C_0006_01",
+            "AXV2N_0111",
+            "AXV2P2_0100_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0008_01",
+            "AXV24_28baf265c6cf",
+            "AXV24_6c9a4a26411c"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 9,
+            "precision": 0.75,
+            "recall": 0.1836734693877551,
+            "f1": 0.29508196721311475
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV2C_0006_01",
+            "AXV2N_0111",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2H_0090_01",
+            "AXALL_US_OMB_2025_01589",
+            "AXV2H_0008_01",
+            "AXV24_71def85d86bd",
+            "AXV24_df5d48fedff4"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 10,
+            "precision": 0.8333333333333334,
+            "recall": 0.20408163265306123,
+            "f1": 0.32786885245901637
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_36c7ef329920",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV2C_0006_01",
+            "AXV2N_0111",
+            "AXV2P2_0100_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2H_0090_01",
+            "AXV24_71def85d86bd",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0124",
+            "AXV2H_0070_01"
+          ],
+          "metrics": {
+            "returned": 12,
+            "hits": 11,
+            "precision": 0.9166666666666666,
+            "recall": 0.22448979591836735,
+            "f1": 0.36065573770491804
+          }
+        }
+      ]
+    },
+    "VQ010": {
+      "U": 13,
+      "main_cards": [
+        "P01",
+        "P03"
+      ],
+      "positive_total": 39,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 13,
+          "hits": 9,
+          "precision": 0.6923076923076923,
+          "recall": 0.23076923076923078,
+          "f1": 0.34615384615384615
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 13,
+          "hits": 10,
+          "precision": 0.7692307692307693,
+          "recall": 0.2564102564102564,
+          "f1": 0.38461538461538464
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 13,
+          "hits": 9,
+          "precision": 0.6923076923076923,
+          "recall": 0.23076923076923078,
+          "f1": 0.34615384615384615
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 13,
+          "hits": 10,
+          "precision": 0.7692307692307693,
+          "recall": 0.2564102564102564,
+          "f1": 0.38461538461538464
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 13,
+          "hits": 9.333333333333334,
+          "precision": 0.7179487179487181,
+          "recall": 0.23931623931623933,
+          "f1": 0.35897435897435903
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_06318a4a88a8",
+          "AXV2N_0133",
+          "AXV2P2_0011_01",
+          "AXV24_7a64efedc8a2",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0103",
+          "AXV2H_0008_01",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_bc6444cc1b61",
+          "AXV2N_0134",
+          "AXV24_14dca9ee14fc",
+          "AXV2C_0068_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_06318a4a88a8",
+          "AXV2N_0133",
+          "AXV2P2_0011_01",
+          "AXV24_7a64efedc8a2",
+          "AXV24_e9e5114a33fe",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2H_0071_01",
+          "AXV2N_0110",
+          "AXV24_36c7ef329920",
+          "AXV2C_0068_03",
+          "AXV24_8e0eaf8a5cb9",
+          "AXALL_US_OMB_2025_00857"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_06318a4a88a8",
+          "AXV2N_0133",
+          "AXV2P2_0011_01",
+          "AXV24_7a64efedc8a2",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0103",
+          "AXV2H_0008_01",
+          "AXV2H_0003_01",
+          "AXV24_bc6444cc1b61",
+          "AXV2C_0068_01",
+          "AXV2C_0006_02",
+          "AXV24_df5d48fedff4",
+          "AXV2N_0121"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_06318a4a88a8",
+          "AXV2N_0133",
+          "AXV2P2_0011_01",
+          "AXV24_7a64efedc8a2",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0103",
+          "AXV2H_0003_01",
+          "AXV2C_0068_01",
+          "AXV24_f27ca1e6fb82",
+          "AXV2H_0091_01",
+          "AXV2H_0071_01",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2H_0008_01"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV2N_0133",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_e9e5114a33fe",
+            "AXV2H_0008_01",
+            "AXV24_bc6444cc1b61",
+            "AXV2P2_0012_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0091_01",
+            "AXV2H_0071_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0103"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 11,
+            "precision": 0.8461538461538461,
+            "recall": 0.28205128205128205,
+            "f1": 0.4230769230769231
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV2N_0133",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0103",
+            "AXV2H_0003_01",
+            "AXV2C_0068_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0091_01",
+            "AXV2H_0071_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0008_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 10,
+            "precision": 0.7692307692307693,
+            "recall": 0.2564102564102564,
+            "f1": 0.38461538461538464
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV2N_0133",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_e9e5114a33fe",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2P2_0060_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0091_01",
+            "AXV2H_0071_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0103"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 9,
+            "precision": 0.6923076923076923,
+            "recall": 0.23076923076923078,
+            "f1": 0.34615384615384615
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV2N_0133",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0103",
+            "AXV2H_0008_01",
+            "AXV2H_0003_01",
+            "AXV24_bc6444cc1b61",
+            "AXV2C_0068_01",
+            "AXV2P2_0012_01",
+            "AXV2N_0111",
+            "AXV2N_0134"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 9,
+            "precision": 0.6923076923076923,
+            "recall": 0.23076923076923078,
+            "f1": 0.34615384615384615
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV2N_0133",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_e9e5114a33fe",
+            "AXV2H_0008_01",
+            "AXV24_bc6444cc1b61",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2P2_0012_01",
+            "AXV2P2_0060_01",
+            "AXV2H_0091_01",
+            "AXV2H_0071_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 9,
+            "precision": 0.6923076923076923,
+            "recall": 0.23076923076923078,
+            "f1": 0.34615384615384615
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV2N_0133",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0103",
+            "AXV2H_0003_01",
+            "AXV2C_0068_01",
+            "AXV24_df5d48fedff4",
+            "AXV2N_0121",
+            "AXV2P2_0060_01",
+            "AXV2H_0091_01",
+            "AXV2H_0071_01"
+          ],
+          "metrics": {
+            "returned": 13,
+            "hits": 8,
+            "precision": 0.6153846153846154,
+            "recall": 0.20512820512820512,
+            "f1": 0.3076923076923077
+          }
+        }
+      ]
+    },
+    "VQ011": {
+      "U": 14,
+      "main_cards": [
+        "P01",
+        "P03"
+      ],
+      "positive_total": 38,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 14,
+          "hits": 10,
+          "precision": 0.7142857142857143,
+          "recall": 0.2631578947368421,
+          "f1": 0.38461538461538464
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 14,
+          "hits": 12,
+          "precision": 0.8571428571428571,
+          "recall": 0.3157894736842105,
+          "f1": 0.46153846153846156
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 14,
+          "hits": 12,
+          "precision": 0.8571428571428571,
+          "recall": 0.3157894736842105,
+          "f1": 0.46153846153846156
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 14,
+          "hits": 12,
+          "precision": 0.8571428571428571,
+          "recall": 0.3157894736842105,
+          "f1": 0.46153846153846156
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 14,
+          "hits": 10,
+          "precision": 0.7142857142857143,
+          "recall": 0.2631578947368421,
+          "f1": 0.3846153846153846
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2H_0008_01",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02663",
+          "AXV24_14dca9ee14fc",
+          "AXV24_f27ca1e6fb82",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0103",
+          "AXV2N_0134",
+          "AXV2C_0080_01",
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0126",
+          "AXV2N_0133"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2H_0008_01",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02663",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0133",
+          "AXV2H_0071_01",
+          "AXV2N_0110",
+          "AXV24_36c7ef329920",
+          "AXV2C_0068_03",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_efe56d53f5fd",
+          "AXALL_US_OMB_2025_01754"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2H_0008_01",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02663",
+          "AXV24_f27ca1e6fb82",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0103",
+          "AXV2C_0080_01",
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0133",
+          "AXV2P2_0012_01",
+          "AXV2P2_0013_01",
+          "AXV24_36c7ef329920"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2H_0008_01",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02663",
+          "AXV24_f27ca1e6fb82",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0103",
+          "AXV2N_0133",
+          "AXV2P2_0013_01",
+          "AXV24_36c7ef329920",
+          "AXV2H_0071_01",
+          "AXV2H_0091_01",
+          "AXV24_14dca9ee14fc"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV2H_0008_01",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV2C_0080_01",
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0133",
+            "AXV2P2_0012_01",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_e9e5114a33fe"
+          ],
+          "metrics": {
+            "returned": 14,
+            "hits": 12,
+            "precision": 0.8571428571428571,
+            "recall": 0.3157894736842105,
+            "f1": 0.46153846153846156
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV2H_0008_01",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0103",
+            "AXV2N_0133",
+            "AXV2P2_0013_01",
+            "AXV24_36c7ef329920",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV24_14dca9ee14fc"
+          ],
+          "metrics": {
+            "returned": 14,
+            "hits": 12,
+            "precision": 0.8571428571428571,
+            "recall": 0.3157894736842105,
+            "f1": 0.46153846153846156
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2H_0008_01",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0133",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV24_df5d48fedff4",
+            "AXV2P2_0060_01",
+            "AXV2C_0017_01",
+            "AXV2H_0091_01",
+            "AXV24_14dca9ee14fc"
+          ],
+          "metrics": {
+            "returned": 14,
+            "hits": 8,
+            "precision": 0.5714285714285714,
+            "recall": 0.21052631578947367,
+            "f1": 0.3076923076923077
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV2H_0008_01",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0103",
+            "AXV2C_0080_01",
+            "AXV24_7a64efedc8a2",
+            "AXV2P2_0012_01",
+            "AXV2P2_0013_01",
+            "AXV24_36c7ef329920",
+            "AXV24_14dca9ee14fc",
+            "AXV24_f27ca1e6fb82"
+          ],
+          "metrics": {
+            "returned": 14,
+            "hits": 12,
+            "precision": 0.8571428571428571,
+            "recall": 0.3157894736842105,
+            "f1": 0.46153846153846156
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2H_0008_01",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2C_0080_01",
+            "AXV24_7a64efedc8a2",
+            "AXV2P2_0012_01",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV24_df5d48fedff4",
+            "AXV2P2_0060_01",
+            "AXV2C_0017_01",
+            "AXV24_14dca9ee14fc"
+          ],
+          "metrics": {
+            "returned": 14,
+            "hits": 8,
+            "precision": 0.5714285714285714,
+            "recall": 0.21052631578947367,
+            "f1": 0.3076923076923077
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2H_0008_01",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0103",
+            "AXV2P2_0013_01",
+            "AXV24_36c7ef329920",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV24_df5d48fedff4",
+            "AXV2P2_0060_01",
+            "AXV2C_0017_01"
+          ],
+          "metrics": {
+            "returned": 14,
+            "hits": 8,
+            "precision": 0.5714285714285714,
+            "recall": 0.21052631578947367,
+            "f1": 0.3076923076923077
+          }
+        }
+      ]
+    },
+    "VQ012": {
+      "U": 16,
+      "main_cards": [
+        "P03",
+        "P04"
+      ],
+      "positive_total": 50,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 16,
+          "hits": 10,
+          "precision": 0.625,
+          "recall": 0.2,
+          "f1": 0.30303030303030304
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 16,
+          "hits": 12,
+          "precision": 0.75,
+          "recall": 0.24,
+          "f1": 0.36363636363636365
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 16,
+          "hits": 12,
+          "precision": 0.75,
+          "recall": 0.24,
+          "f1": 0.36363636363636365
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 16,
+          "hits": 13,
+          "precision": 0.8125,
+          "recall": 0.26,
+          "f1": 0.3939393939393939
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 16,
+          "hits": 11.833333333333334,
+          "precision": 0.7395833333333334,
+          "recall": 0.23666666666666666,
+          "f1": 0.35858585858585856
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV24_bc6444cc1b61",
+          "AXV24_71def85d86bd",
+          "AXV2N_0137",
+          "AXV24_f6f7a1e65ea7",
+          "AXALL_US_OMB_2025_01754",
+          "AXV24_14dca9ee14fc",
+          "AXV2H_0075_01",
+          "AXV2C_0016_01",
+          "AXV2N_0121",
+          "AXV2N_0133",
+          "AXV2P2_0060_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV2C_0068_03",
+          "AXV24_36c7ef329920",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_efe56d53f5fd",
+          "AXALL_US_OMB_2025_01754",
+          "AXV24_71def85d86bd",
+          "AXV2C_0017_01",
+          "AXV2P2_0060_01",
+          "AXV2N_0121",
+          "AXV24_bc6444cc1b61",
+          "AXV2N_0137"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV24_bc6444cc1b61",
+          "AXV24_71def85d86bd",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0016_01",
+          "AXV2N_0121",
+          "AXV2N_0133",
+          "AXV2P2_0060_01",
+          "AXV2H_0001_01",
+          "AXV24_f27ca1e6fb82",
+          "AXV2H_0003_01",
+          "AXV2P2_0012_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV24_71def85d86bd",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2C_0016_01",
+          "AXV2N_0121",
+          "AXV2P2_0060_01",
+          "AXV2H_0003_01",
+          "AXV2C_0068_01",
+          "AXV2C_0006_02",
+          "AXV2C_0006_01",
+          "AXV24_bc6444cc1b61",
+          "AXV2N_0137"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111",
+            "AXV24_bc6444cc1b61",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2N_0133",
+            "AXV24_f27ca1e6fb82",
+            "AXV2P2_0012_01",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_71def85d86bd",
+            "AXV2N_0137",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 11,
+            "precision": 0.6875,
+            "recall": 0.22,
+            "f1": 0.3333333333333333
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2N_0133",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0003_01",
+            "AXV2H_0071_01",
+            "AXV2C_0068_01",
+            "AXV2C_0006_02",
+            "AXV2C_0006_01",
+            "AXV2H_0091_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_bc6444cc1b61"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 12,
+            "precision": 0.75,
+            "recall": 0.24,
+            "f1": 0.36363636363636365
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111",
+            "AXV24_71def85d86bd",
+            "AXV2C_0016_01",
+            "AXV2N_0121",
+            "AXV2N_0133",
+            "AXV2P2_0060_01",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_bc6444cc1b61",
+            "AXV2N_0137"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 12,
+            "precision": 0.75,
+            "recall": 0.24,
+            "f1": 0.36363636363636365
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111",
+            "AXV24_bc6444cc1b61",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2H_0003_01",
+            "AXV2P2_0012_01",
+            "AXV2C_0068_01",
+            "AXV2C_0006_02",
+            "AXV2C_0006_01",
+            "AXV24_71def85d86bd",
+            "AXV2N_0137",
+            "AXV24_f6f7a1e65ea7",
+            "AXV24_14dca9ee14fc"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 12,
+            "precision": 0.75,
+            "recall": 0.24,
+            "f1": 0.36363636363636365
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111",
+            "AXV24_bc6444cc1b61",
+            "AXV24_71def85d86bd",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0016_01",
+            "AXV2N_0121",
+            "AXV2P2_0060_01",
+            "AXV2P2_0012_01",
+            "AXV2N_0137",
+            "AXV24_f6f7a1e65ea7",
+            "AXV24_14dca9ee14fc",
+            "AXV2H_0075_01"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 11,
+            "precision": 0.6875,
+            "recall": 0.22,
+            "f1": 0.3333333333333333
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_7a64efedc8a2",
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0111",
+            "AXV24_71def85d86bd",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2C_0016_01",
+            "AXV2N_0121",
+            "AXV2P2_0060_01",
+            "AXV2H_0003_01",
+            "AXV2C_0068_01",
+            "AXV2C_0006_02",
+            "AXV2C_0006_01",
+            "AXV24_bc6444cc1b61",
+            "AXV2N_0137"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 13,
+            "precision": 0.8125,
+            "recall": 0.26,
+            "f1": 0.3939393939393939
+          }
+        }
+      ]
+    },
+    "VQ013": {
+      "U": 19,
+      "main_cards": [
+        "P01",
+        "P02",
+        "P04"
+      ],
+      "positive_total": 52,
+      "random_option_count": 4,
+      "metrics": {
+        "A_BASE": {
+          "returned": 19,
+          "hits": 15,
+          "precision": 0.7894736842105263,
+          "recall": 0.28846153846153844,
+          "f1": 0.4225352112676056
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 19,
+          "hits": 17,
+          "precision": 0.8947368421052632,
+          "recall": 0.3269230769230769,
+          "f1": 0.4788732394366197
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 19,
+          "hits": 16,
+          "precision": 0.8421052631578947,
+          "recall": 0.3076923076923077,
+          "f1": 0.4507042253521127
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 19,
+          "hits": 18,
+          "precision": 0.9473684210526315,
+          "recall": 0.34615384615384615,
+          "f1": 0.5070422535211268
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 19,
+          "hits": 17.25,
+          "precision": 0.9078947368421053,
+          "recall": 0.3317307692307692,
+          "f1": 0.4859154929577465
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2N_0126",
+          "AXV24_918f26607568",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXV2C_0006_02",
+          "AXV24_f6f7a1e65ea7",
+          "AXV24_06318a4a88a8",
+          "AXV24_df5d48fedff4",
+          "AXV2N_0125",
+          "AXV24_6c9a4a26411c",
+          "AXV24_f27ca1e6fb82",
+          "AXV2H_0071_01",
+          "AXV2N_0108",
+          "AXV2H_0002_01",
+          "AXV24_36c7ef329920",
+          "AXV2N_0134",
+          "AXV2C_0068_01",
+          "AXV24_14dca9ee14fc",
+          "AXV2H_0070_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2N_0126",
+          "AXV24_918f26607568",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXV2C_0006_02",
+          "AXV24_f27ca1e6fb82",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2H_0071_01",
+          "AXV2P2_0010_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_01754",
+          "AXALL_US_OMB_2025_01589",
+          "AXV2H_0008_01",
+          "AXV24_7a64efedc8a2",
+          "AXV2P2_0060_01",
+          "AXV2N_0121",
+          "AXV2H_0070_01",
+          "AXV2H_0090_01",
+          "AXV2C_0017_01"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2N_0126",
+          "AXV24_918f26607568",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXV2C_0006_02",
+          "AXV24_06318a4a88a8",
+          "AXV24_df5d48fedff4",
+          "AXV24_f27ca1e6fb82",
+          "AXV2H_0071_01",
+          "AXV24_36c7ef329920",
+          "AXV2C_0068_01",
+          "AXV2H_0070_01",
+          "AXV2H_0003_01",
+          "AXV2C_0017_01",
+          "AXV2P2_0060_01",
+          "AXV2P2_0011_01",
+          "AXV2C_0016_01",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV2H_0001_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2N_0126",
+          "AXV24_918f26607568",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXV2C_0006_02",
+          "AXV24_06318a4a88a8",
+          "AXV24_df5d48fedff4",
+          "AXV24_f27ca1e6fb82",
+          "AXV2H_0071_01",
+          "AXV2H_0070_01",
+          "AXV2C_0017_01",
+          "AXV2P2_0060_01",
+          "AXV24_7a64efedc8a2",
+          "AXALL_US_OMB_2025_01754",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2P2_0012_01",
+          "AXV24_bc6444cc1b61",
+          "AXV2P2_0010_01",
+          "AXV24_f6f7a1e65ea7"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_918f26607568",
+            "AXV2N_0111",
+            "AXV2N_0133",
+            "AXV2C_0006_02",
+            "AXV24_06318a4a88a8",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0071_01",
+            "AXV24_36c7ef329920",
+            "AXV2C_0068_01",
+            "AXV2H_0003_01",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2P2_0012_01",
+            "AXV24_bc6444cc1b61",
+            "AXV2P2_0010_01",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 19,
+            "hits": 17,
+            "precision": 0.8947368421052632,
+            "recall": 0.3269230769230769,
+            "f1": 0.4788732394366197
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_918f26607568",
+            "AXV2N_0111",
+            "AXV2N_0133",
+            "AXV2C_0006_02",
+            "AXV24_06318a4a88a8",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0071_01",
+            "AXV2H_0070_01",
+            "AXV2C_0017_01",
+            "AXV2P2_0060_01",
+            "AXV24_7a64efedc8a2",
+            "AXALL_US_OMB_2025_01754",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2P2_0012_01",
+            "AXV24_bc6444cc1b61",
+            "AXV2P2_0010_01",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 19,
+            "hits": 18,
+            "precision": 0.9473684210526315,
+            "recall": 0.34615384615384615,
+            "f1": 0.5070422535211268
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_918f26607568",
+            "AXV2N_0111",
+            "AXV2N_0133",
+            "AXV2C_0006_02",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0071_01",
+            "AXV24_36c7ef329920",
+            "AXV2C_0068_01",
+            "AXV2H_0070_01",
+            "AXV2H_0003_01",
+            "AXV2C_0017_01",
+            "AXV2P2_0060_01",
+            "AXV2P2_0011_01",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2P2_0010_01",
+            "AXV24_f6f7a1e65ea7",
+            "AXV24_06318a4a88a8"
+          ],
+          "metrics": {
+            "returned": 19,
+            "hits": 17,
+            "precision": 0.8947368421052632,
+            "recall": 0.3269230769230769,
+            "f1": 0.4788732394366197
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_918f26607568",
+            "AXV2N_0111",
+            "AXV2N_0133",
+            "AXV2C_0006_02",
+            "AXV24_06318a4a88a8",
+            "AXV24_df5d48fedff4",
+            "AXV2H_0071_01",
+            "AXV24_36c7ef329920",
+            "AXV2C_0068_01",
+            "AXV2H_0070_01",
+            "AXV2H_0003_01",
+            "AXV2C_0017_01",
+            "AXV2P2_0060_01",
+            "AXV2P2_0011_01",
+            "AXV24_7a64efedc8a2",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2P2_0012_01",
+            "AXV24_bc6444cc1b61"
+          ],
+          "metrics": {
+            "returned": 19,
+            "hits": 17,
+            "precision": 0.8947368421052632,
+            "recall": 0.3269230769230769,
+            "f1": 0.4788732394366197
+          }
+        }
+      ]
+    },
+    "VQ014": {
+      "U": 16,
+      "main_cards": [
+        "P03"
+      ],
+      "positive_total": 43,
+      "random_option_count": 4,
+      "metrics": {
+        "A_BASE": {
+          "returned": 16,
+          "hits": 13,
+          "precision": 0.8125,
+          "recall": 0.3023255813953488,
+          "f1": 0.4406779661016949
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 16,
+          "hits": 13,
+          "precision": 0.8125,
+          "recall": 0.3023255813953488,
+          "f1": 0.4406779661016949
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 16,
+          "hits": 14,
+          "precision": 0.875,
+          "recall": 0.32558139534883723,
+          "f1": 0.4745762711864407
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 16,
+          "hits": 13,
+          "precision": 0.8125,
+          "recall": 0.3023255813953488,
+          "f1": 0.4406779661016949
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 16,
+          "hits": 11.75,
+          "precision": 0.734375,
+          "recall": 0.27325581395348836,
+          "f1": 0.3983050847457627
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_14dca9ee14fc",
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0111",
+          "AXV24_36c7ef329920",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0126",
+          "AXV2H_0008_01",
+          "AXV2C_0080_02",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0132",
+          "AXV24_7a64efedc8a2"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_14dca9ee14fc",
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXV24_36c7ef329920",
+          "AXV2C_0068_03",
+          "AXV2P2_0011_01",
+          "AXV2N_0111",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0126",
+          "AXV2H_0008_01",
+          "AXV2C_0080_02",
+          "AXV24_e9e5114a33fe"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_14dca9ee14fc",
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXV24_36c7ef329920",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2H_0008_01",
+          "AXV2C_0080_02",
+          "AXV24_e9e5114a33fe",
+          "AXV24_7a64efedc8a2",
+          "AXV2N_0121",
+          "AXV24_f27ca1e6fb82",
+          "AXV2H_0071_01",
+          "AXV2C_0068_03"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_14dca9ee14fc",
+          "AXV2P2_0012_01",
+          "AXV2H_0003_01",
+          "AXV24_06318a4a88a8",
+          "AXV24_36c7ef329920",
+          "AXV2C_0080_02",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0111",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2N_0126",
+          "AXV2H_0008_01",
+          "AXV2N_0132",
+          "AXV24_7a64efedc8a2"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01"
+          ],
+          "prediction": [
+            "AXV24_8e0eaf8a5cb9",
+            "AXV24_14dca9ee14fc",
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0133",
+            "AXALL_US_OMB_2025_02663",
+            "AXV24_f27ca1e6fb82",
+            "AXV2H_0071_01",
+            "AXV2H_0091_01",
+            "AXV2N_0111",
+            "AXV24_36c7ef329920",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0126",
+            "AXV2H_0008_01",
+            "AXV2C_0080_02"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 12,
+            "precision": 0.75,
+            "recall": 0.27906976744186046,
+            "f1": 0.4067796610169492
+          }
+        },
+        {
+          "cards": [
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_8e0eaf8a5cb9",
+            "AXV24_14dca9ee14fc",
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXV2H_0008_01",
+            "AXV24_7a64efedc8a2",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2N_0111",
+            "AXV24_36c7ef329920",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0133",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0126",
+            "AXV2C_0080_02",
+            "AXV24_e9e5114a33fe"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 13,
+            "precision": 0.8125,
+            "recall": 0.3023255813953488,
+            "f1": 0.4406779661016949
+          }
+        },
+        {
+          "cards": [
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_8e0eaf8a5cb9",
+            "AXV24_14dca9ee14fc",
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXV24_36c7ef329920",
+            "AXV2C_0080_02",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0111",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0133",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0126",
+            "AXV2H_0008_01",
+            "AXV2N_0132",
+            "AXV24_7a64efedc8a2"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 13,
+            "precision": 0.8125,
+            "recall": 0.3023255813953488,
+            "f1": 0.4406779661016949
+          }
+        },
+        {
+          "cards": [
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_8e0eaf8a5cb9",
+            "AXV24_14dca9ee14fc",
+            "AXV2P2_0012_01",
+            "AXV2H_0003_01",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV2C_0016_01",
+            "AXV24_71def85d86bd",
+            "AXV2H_0091_01",
+            "AXV2N_0111",
+            "AXV24_36c7ef329920",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0133",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2N_0126"
+          ],
+          "metrics": {
+            "returned": 16,
+            "hits": 9,
+            "precision": 0.5625,
+            "recall": 0.20930232558139536,
+            "f1": 0.3050847457627119
+          }
+        }
+      ]
+    },
+    "VQ015": {
+      "U": 18,
+      "main_cards": [
+        "P03",
+        "P04"
+      ],
+      "positive_total": 47,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 18,
+          "hits": 11,
+          "precision": 0.6111111111111112,
+          "recall": 0.23404255319148937,
+          "f1": 0.3384615384615385
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 18,
+          "hits": 14,
+          "precision": 0.7777777777777778,
+          "recall": 0.2978723404255319,
+          "f1": 0.4307692307692308
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 18,
+          "hits": 14,
+          "precision": 0.7777777777777778,
+          "recall": 0.2978723404255319,
+          "f1": 0.4307692307692308
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 18,
+          "hits": 14,
+          "precision": 0.7777777777777778,
+          "recall": 0.2978723404255319,
+          "f1": 0.4307692307692308
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 18,
+          "hits": 13.833333333333334,
+          "precision": 0.7685185185185185,
+          "recall": 0.29432624113475175,
+          "f1": 0.42564102564102574
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_06318a4a88a8",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV24_14dca9ee14fc",
+          "AXV24_bc6444cc1b61",
+          "AXV24_6c9a4a26411c",
+          "AXV24_df5d48fedff4",
+          "AXV24_36c7ef329920",
+          "AXV24_f6f7a1e65ea7",
+          "AXV2H_0008_01",
+          "AXV2P2_0011_01",
+          "AXV2N_0126",
+          "AXV2N_0103",
+          "AXV2P2_0060_01",
+          "AXV24_ec6533f5c076",
+          "AXV24_8e0eaf8a5cb9"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_06318a4a88a8",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV24_36c7ef329920",
+          "AXV2C_0068_03",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV2P2_0011_01",
+          "AXV2P2_0060_01",
+          "AXV2H_0090_01",
+          "AXV24_df5d48fedff4",
+          "AXV2N_0124",
+          "AXV24_71def85d86bd",
+          "AXV24_14dca9ee14fc",
+          "AXV24_bc6444cc1b61",
+          "AXV24_6c9a4a26411c",
+          "AXV24_f6f7a1e65ea7"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_06318a4a88a8",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV24_bc6444cc1b61",
+          "AXV24_df5d48fedff4",
+          "AXV24_36c7ef329920",
+          "AXV2H_0008_01",
+          "AXV2P2_0011_01",
+          "AXV2N_0103",
+          "AXV2P2_0060_01",
+          "AXV24_8e0eaf8a5cb9",
+          "AXV24_7a64efedc8a2",
+          "AXV24_71def85d86bd",
+          "AXV2H_0071_01",
+          "AXV2N_0124",
+          "AXV2P2_0012_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_06318a4a88a8",
+          "AXV24_e9e5114a33fe",
+          "AXV2N_0111",
+          "AXV2H_0003_01",
+          "AXV2N_0133",
+          "AXV24_df5d48fedff4",
+          "AXV24_36c7ef329920",
+          "AXV2P2_0011_01",
+          "AXV2N_0103",
+          "AXV2P2_0060_01",
+          "AXV24_71def85d86bd",
+          "AXV2H_0071_01",
+          "AXV2N_0124",
+          "AXV24_14dca9ee14fc",
+          "AXV24_bc6444cc1b61",
+          "AXV24_6c9a4a26411c",
+          "AXV24_f6f7a1e65ea7",
+          "AXV2H_0008_01"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV24_bc6444cc1b61",
+            "AXV2H_0008_01",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0071_01",
+            "AXV2P2_0012_01",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0091_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_6c9a4a26411c",
+            "AXV24_df5d48fedff4",
+            "AXV24_36c7ef329920",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 14,
+            "precision": 0.7777777777777778,
+            "recall": 0.2978723404255319,
+            "f1": 0.4307692307692308
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV24_36c7ef329920",
+            "AXV2P2_0011_01",
+            "AXV2N_0103",
+            "AXV2H_0071_01",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0091_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_bc6444cc1b61",
+            "AXV24_6c9a4a26411c",
+            "AXV24_df5d48fedff4",
+            "AXV24_f6f7a1e65ea7",
+            "AXV2H_0008_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 14,
+            "precision": 0.7777777777777778,
+            "recall": 0.2978723404255319,
+            "f1": 0.4307692307692308
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV24_df5d48fedff4",
+            "AXV2P2_0060_01",
+            "AXV24_71def85d86bd",
+            "AXV2H_0071_01",
+            "AXV2N_0124",
+            "AXV24_f27ca1e6fb82",
+            "AXALL_US_OMB_2025_02663",
+            "AXV2H_0091_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_bc6444cc1b61",
+            "AXV24_6c9a4a26411c",
+            "AXV24_36c7ef329920",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 15,
+            "precision": 0.8333333333333334,
+            "recall": 0.3191489361702128,
+            "f1": 0.46153846153846156
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV24_bc6444cc1b61",
+            "AXV24_36c7ef329920",
+            "AXV2H_0008_01",
+            "AXV2P2_0011_01",
+            "AXV2N_0103",
+            "AXV24_7a64efedc8a2",
+            "AXV2P2_0012_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_6c9a4a26411c",
+            "AXV24_df5d48fedff4",
+            "AXV24_f6f7a1e65ea7",
+            "AXV2N_0126",
+            "AXV2P2_0060_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 12,
+            "precision": 0.6666666666666666,
+            "recall": 0.2553191489361702,
+            "f1": 0.36923076923076925
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV24_bc6444cc1b61",
+            "AXV24_df5d48fedff4",
+            "AXV2H_0008_01",
+            "AXV2P2_0060_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_71def85d86bd",
+            "AXV2H_0071_01",
+            "AXV2N_0124",
+            "AXV2P2_0012_01",
+            "AXV24_14dca9ee14fc",
+            "AXV24_6c9a4a26411c",
+            "AXV24_36c7ef329920",
+            "AXV24_f6f7a1e65ea7"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 14,
+            "precision": 0.7777777777777778,
+            "recall": 0.2978723404255319,
+            "f1": 0.4307692307692308
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV24_e9e5114a33fe",
+            "AXV2N_0111",
+            "AXV2H_0003_01",
+            "AXV2N_0133",
+            "AXV24_df5d48fedff4",
+            "AXV24_36c7ef329920",
+            "AXV2P2_0011_01",
+            "AXV2N_0103",
+            "AXV2P2_0060_01",
+            "AXV24_71def85d86bd",
+            "AXV2H_0071_01",
+            "AXV2N_0124",
+            "AXV24_14dca9ee14fc",
+            "AXV24_bc6444cc1b61",
+            "AXV24_6c9a4a26411c",
+            "AXV24_f6f7a1e65ea7",
+            "AXV2H_0008_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 14,
+            "precision": 0.7777777777777778,
+            "recall": 0.2978723404255319,
+            "f1": 0.4307692307692308
+          }
+        }
+      ]
+    },
+    "VQ016": {
+      "U": 18,
+      "main_cards": [
+        "P01",
+        "P02"
+      ],
+      "positive_total": 30,
+      "random_option_count": 6,
+      "metrics": {
+        "A_BASE": {
+          "returned": 18,
+          "hits": 10,
+          "precision": 0.5555555555555556,
+          "recall": 0.3333333333333333,
+          "f1": 0.4166666666666667
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 18,
+          "hits": 9,
+          "precision": 0.5,
+          "recall": 0.3,
+          "f1": 0.375
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 18,
+          "hits": 13,
+          "precision": 0.7222222222222222,
+          "recall": 0.43333333333333335,
+          "f1": 0.5416666666666666
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 18,
+          "hits": 9,
+          "precision": 0.5,
+          "recall": 0.3,
+          "f1": 0.375
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 18,
+          "hits": 8.833333333333334,
+          "precision": 0.49074074074074076,
+          "recall": 0.29444444444444445,
+          "f1": 0.3680555555555555
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0108",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0121",
+          "AXV2H_0071_01",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0105",
+          "AXV2N_0130",
+          "AXV24_36c7ef329920",
+          "AXV2C_0016_01",
+          "AXV2H_0081_01",
+          "AXV2P2_0060_01",
+          "AXV2N_0134",
+          "AXV2H_0001_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0108",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXALL_US_OMB_2025_02663",
+          "AXV2H_0071_01",
+          "AXV2N_0110",
+          "AXV24_06318a4a88a8",
+          "AXV24_28baf265c6cf",
+          "AXALL_US_OMB_2025_01754",
+          "AXV2P2_0012_01",
+          "AXALL_US_OMB_2025_01589",
+          "AXV2N_0121",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0105",
+          "AXV2N_0130"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0108",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXV24_06318a4a88a8",
+          "AXV2N_0121",
+          "AXV2H_0071_01",
+          "AXV24_36c7ef329920",
+          "AXV2C_0016_01",
+          "AXV2P2_0060_01",
+          "AXV2H_0001_01",
+          "AXV2C_0017_01",
+          "AXV24_7a64efedc8a2",
+          "AXV2H_0090_01",
+          "AXV2P2_0010_01",
+          "AXV2H_0091_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2N_0126",
+          "AXV24_df5d48fedff4",
+          "AXV24_f27ca1e6fb82",
+          "AXV2N_0108",
+          "AXV2N_0111",
+          "AXV2N_0133",
+          "AXV24_06318a4a88a8",
+          "AXV2H_0071_01",
+          "AXV24_7a64efedc8a2",
+          "AXV2P2_0010_01",
+          "AXV2H_0091_01",
+          "AXV24_28baf265c6cf",
+          "AXV2P2_0012_01",
+          "AXV2H_0008_01",
+          "AXV2N_0121",
+          "AXV24_6c9a4a26411c",
+          "AXV2N_0105",
+          "AXV2N_0130"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [
+            "P01",
+            "P02"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0108",
+            "AXV2N_0111",
+            "AXV2N_0133",
+            "AXV24_06318a4a88a8",
+            "AXV2H_0071_01",
+            "AXV24_7a64efedc8a2",
+            "AXV2P2_0010_01",
+            "AXV2H_0091_01",
+            "AXV24_28baf265c6cf",
+            "AXV2P2_0012_01",
+            "AXV2H_0008_01",
+            "AXV2N_0121",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0105",
+            "AXV2N_0130"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 9,
+            "precision": 0.5,
+            "recall": 0.3,
+            "f1": 0.375
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P03"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0108",
+            "AXV2N_0111",
+            "AXV2N_0133",
+            "AXV2H_0071_01",
+            "AXV24_36c7ef329920",
+            "AXV2P2_0010_01",
+            "AXV2H_0091_01",
+            "AXV2H_0003_01",
+            "AXV24_8e0eaf8a5cb9",
+            "AXV2C_0006_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0121",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0105"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 9,
+            "precision": 0.5,
+            "recall": 0.3,
+            "f1": 0.375
+          }
+        },
+        {
+          "cards": [
+            "P01",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0108",
+            "AXV2N_0111",
+            "AXV2N_0133",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV2C_0016_01",
+            "AXV2P2_0060_01",
+            "AXV2P2_0010_01",
+            "AXV2H_0091_01",
+            "AXV24_06318a4a88a8",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0105",
+            "AXV2N_0130",
+            "AXV24_36c7ef329920",
+            "AXV2H_0081_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 11,
+            "precision": 0.6111111111111112,
+            "recall": 0.36666666666666664,
+            "f1": 0.4583333333333333
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P03"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0108",
+            "AXV2N_0111",
+            "AXV24_06318a4a88a8",
+            "AXV24_36c7ef329920",
+            "AXV24_7a64efedc8a2",
+            "AXV2H_0003_01",
+            "AXV24_8e0eaf8a5cb9",
+            "AXV24_28baf265c6cf",
+            "AXV2P2_0012_01",
+            "AXV2H_0008_01",
+            "AXV2C_0006_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2N_0133",
+            "AXV2N_0121",
+            "AXV2H_0071_01"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 6,
+            "precision": 0.3333333333333333,
+            "recall": 0.2,
+            "f1": 0.25
+          }
+        },
+        {
+          "cards": [
+            "P02",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0108",
+            "AXV2N_0111",
+            "AXV24_06318a4a88a8",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV2C_0016_01",
+            "AXV2P2_0060_01",
+            "AXV24_7a64efedc8a2",
+            "AXV24_28baf265c6cf",
+            "AXV2P2_0012_01",
+            "AXV2H_0008_01",
+            "AXV2N_0133",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0105",
+            "AXV2N_0130"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 9,
+            "precision": 0.5,
+            "recall": 0.3,
+            "f1": 0.375
+          }
+        },
+        {
+          "cards": [
+            "P03",
+            "P04"
+          ],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV24_df5d48fedff4",
+            "AXV24_f27ca1e6fb82",
+            "AXV2N_0108",
+            "AXV2N_0111",
+            "AXV2N_0121",
+            "AXV2H_0071_01",
+            "AXV24_36c7ef329920",
+            "AXV2C_0016_01",
+            "AXV2P2_0060_01",
+            "AXV2H_0003_01",
+            "AXV24_8e0eaf8a5cb9",
+            "AXV2C_0006_01",
+            "AXALL_US_OMB_2025_01754",
+            "AXV2N_0133",
+            "AXV24_06318a4a88a8",
+            "AXV24_6c9a4a26411c",
+            "AXV2N_0105"
+          ],
+          "metrics": {
+            "returned": 18,
+            "hits": 9,
+            "precision": 0.5,
+            "recall": 0.3,
+            "f1": 0.375
+          }
+        }
+      ]
+    },
+    "VQ017": {
+      "U": 5,
+      "main_cards": [],
+      "positive_total": 7,
+      "random_option_count": 1,
+      "metrics": {
+        "A_BASE": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.14285714285714285,
+          "f1": 0.16666666666666666
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.14285714285714285,
+          "f1": 0.16666666666666666
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.14285714285714285,
+          "f1": 0.16666666666666666
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.14285714285714285,
+          "f1": 0.16666666666666666
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.14285714285714285,
+          "f1": 0.16666666666666666
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXALL_US_OMB_2025_02640",
+          "AXV2C_0016_01",
+          "AXV2N_0126",
+          "AXV2C_0093_01",
+          "AXV2H_0003_01"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXALL_US_OMB_2025_02640",
+          "AXV2C_0016_01",
+          "AXV2N_0126",
+          "AXV2C_0093_01",
+          "AXV2H_0003_01"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXALL_US_OMB_2025_02640",
+          "AXV2C_0016_01",
+          "AXV2N_0126",
+          "AXV2C_0093_01",
+          "AXV2H_0003_01"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXALL_US_OMB_2025_02640",
+          "AXV2C_0016_01",
+          "AXV2N_0126",
+          "AXV2C_0093_01",
+          "AXV2H_0003_01"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [],
+          "prediction": [
+            "AXALL_US_OMB_2025_02640",
+            "AXV2C_0016_01",
+            "AXV2N_0126",
+            "AXV2C_0093_01",
+            "AXV2H_0003_01"
+          ],
+          "metrics": {
+            "returned": 5,
+            "hits": 1,
+            "precision": 0.2,
+            "recall": 0.14285714285714285,
+            "f1": 0.16666666666666666
+          }
+        }
+      ]
+    },
+    "VQ018": {
+      "U": 5,
+      "main_cards": [],
+      "positive_total": 2,
+      "random_option_count": 1,
+      "metrics": {
+        "A_BASE": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2N_0126",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2C_0094_01",
+          "AXV24_a3975df095c3"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2N_0126",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2C_0094_01",
+          "AXV24_a3975df095c3"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2N_0126",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2C_0094_01",
+          "AXV24_a3975df095c3"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2N_0126",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2C_0094_01",
+          "AXV24_a3975df095c3"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV2C_0094_02",
+            "AXV2N_0111",
+            "AXV2C_0094_01",
+            "AXV24_a3975df095c3"
+          ],
+          "metrics": {
+            "returned": 5,
+            "hits": 1,
+            "precision": 0.2,
+            "recall": 0.5,
+            "f1": 0.2857142857142857
+          }
+        }
+      ]
+    },
+    "VQ019": {
+      "U": 5,
+      "main_cards": [],
+      "positive_total": 2,
+      "random_option_count": 1,
+      "metrics": {
+        "A_BASE": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 5,
+          "hits": 1,
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV24_06318a4a88a8",
+          "AXV24_f27ca1e6fb82",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2N_0109"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV24_06318a4a88a8",
+          "AXV24_f27ca1e6fb82",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2N_0109"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV24_06318a4a88a8",
+          "AXV24_f27ca1e6fb82",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2N_0109"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV24_06318a4a88a8",
+          "AXV24_f27ca1e6fb82",
+          "AXV2C_0094_02",
+          "AXV2N_0111",
+          "AXV2N_0109"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [],
+          "prediction": [
+            "AXV24_06318a4a88a8",
+            "AXV24_f27ca1e6fb82",
+            "AXV2C_0094_02",
+            "AXV2N_0111",
+            "AXV2N_0109"
+          ],
+          "metrics": {
+            "returned": 5,
+            "hits": 1,
+            "precision": 0.2,
+            "recall": 0.5,
+            "f1": 0.2857142857142857
+          }
+        }
+      ]
+    },
+    "VQ020": {
+      "U": 5,
+      "main_cards": [],
+      "positive_total": 4,
+      "random_option_count": 1,
+      "metrics": {
+        "A_BASE": {
+          "returned": 5,
+          "hits": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "B_MAIN_ORIGINAL": {
+          "returned": 5,
+          "hits": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "POOL_ONLY_PTC": {
+          "returned": 5,
+          "hits": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "SELECTED_CARD_PTC": {
+          "returned": 5,
+          "hits": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "RANDOM_CARD_PTC": {
+          "returned": 5,
+          "hits": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        }
+      },
+      "predictions": {
+        "A_BASE": [
+          "AXV2N_0126",
+          "AXV2N_0133",
+          "AXV2C_0016_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02640"
+        ],
+        "B_MAIN_ORIGINAL": [
+          "AXV2N_0126",
+          "AXV2N_0133",
+          "AXV2C_0016_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02640"
+        ],
+        "POOL_ONLY_PTC": [
+          "AXV2N_0126",
+          "AXV2N_0133",
+          "AXV2C_0016_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02640"
+        ],
+        "SELECTED_CARD_PTC": [
+          "AXV2N_0126",
+          "AXV2N_0133",
+          "AXV2C_0016_01",
+          "AXV24_06318a4a88a8",
+          "AXALL_US_OMB_2025_02640"
+        ]
+      },
+      "random_options": [
+        {
+          "cards": [],
+          "prediction": [
+            "AXV2N_0126",
+            "AXV2N_0133",
+            "AXV2C_0016_01",
+            "AXV24_06318a4a88a8",
+            "AXALL_US_OMB_2025_02640"
+          ],
+          "metrics": {
+            "returned": 5,
+            "hits": 0,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Existing 20 synthetic questions reused; no sealed independent test",
+    "Same model family selected roles and judged full-112 relevance",
+    "Pool-only and original B use different scoring/selection, so B-vs-pool is not pure causal view effect",
+    "Random-vs-selected controls curated links, PTC scoring, same number of cards and U; does not exactly reproduce original B task scoring",
+    "No new human grading of ablated control candidates; no new case-source audit"
+  ],
+  "source_blobs": {
+    "docs/perspective-omission-validation20-20261110/rankings.json": "7bedb58ccaab12256d93e1128c6649690dae4f51",
+    "docs/perspective-omission-validation20-20261110/labels.json": "8db6e9e87ce989deb03b5948908d24a1a780c65f",
+    "docs/perspective-panels-full112-20261109/stage4/catalog-expanded.json": "b4f2f7dcf7e4add167ced88c1f5d1d1ed585c676",
+    "docs/perspective-omission-validation20-20261110/metrics.json": "f7d703a348329d3224b10df0debfaad5df80056a"
+  }
+}
