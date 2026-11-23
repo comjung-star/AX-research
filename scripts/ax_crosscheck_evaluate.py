@@ -42,7 +42,7 @@ def prepare(provider, model, key, original):
                                  "responseJsonSchema": schema},
         }
     return "https://api.deepseek.com/chat/completions", {"Authorization": f"Bearer {key}"}, {
-        "model": model, "max_tokens": cap, "response_format": {"type": "json_object"},
+        "model": model, "max_tokens": 32768, "response_format": {"type": "json_object"},
         "messages": [{"role": "system", "content": system},
                      {"role": "user", "content": data + "\n\nReturn JSON matching this output schema:\n" +
                       json.dumps(schema, ensure_ascii=False)}],
@@ -93,7 +93,7 @@ def main():
                "frozen_sha256": expected, "started_at": utc(), "github_run": os.environ.get("GITHUB_RUN_ID"),
                "github_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"), "body": body}
     try:
-        with urllib.request.urlopen(request, timeout=270) as response:
+        with urllib.request.urlopen(request, timeout=850) as response:
             receipt["headers"] = {k: v for k, v in response.headers.items()
                                   if "rate" in k.lower() or k.lower() in ("retry-after", "request-id", "x-request-id")}
             receipt["raw"] = json.load(response)
