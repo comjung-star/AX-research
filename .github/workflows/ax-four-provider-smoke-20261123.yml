@@ -1,0 +1,58 @@
+name: AX four-provider API connection smoke (no research data)
+on:
+  push:
+    branches:
+      - research/api-smoke-20261123
+    paths:
+      - .github/workflows/ax-four-provider-smoke-20261123.yml
+permissions:
+  contents: read
+jobs:
+  api-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      OPENAI_API_KEY: "${{ secrets.OPENAI_API_KEY }}"
+      ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"
+      GOOGLE_API_KEY: "${{ secrets.GOOGLE_API_KEY }}"
+      GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}"
+      DEEPSEEK_API_KEY: "${{ secrets.DEEPSEEK_API_KEY }}"
+    steps:
+      - name: Call each provider once with a harmless short prompt (no credentials or response text logged)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os, json, urllib.request, urllib.error, socket
+          from urllib.parse import urlsplit
+          try:
+              socket.getaddrinfo('api.openai.com',443)
+              print('RUNNER_NETWORK_DNS=OK')
+          except Exception as exc:
+              print('RUNNER_NETWORK_DNS=ERROR_'+type(exc).__name__)
+          payloads = [
+            ('OpenAI','OPENAI_API_KEY','https://api.openai.com/v1/responses','gpt-5.4',{'model':'gpt-5.4','input':'Reply with OK only.','max_output_tokens':128}),
+            ('Claude','ANTHROPIC_API_KEY','https://api.anthropic.com/v1/messages','claude-sonnet-5-5',{'model':'claude-sonnet-5-5','max_tokens':64,'messages':[{'role':'user','content':'Reply with OK only.'}]}),
+            ('Gemini','GEMINI_API_KEY','https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent','gemini-3.1-pro-preview',{'contents':[{'parts':[{'text':'Reply with OK only.'}]}],'generationConfig':{'maxOutputTokens':128}}),
+            ('DeepSeek','DEEPSEEK_API_KEY','https://api.deepseek.com/chat/completions','deepseek-v4-pro',{'model':'deepseek-v4-pro','messages':[{'role':'user','content':'Reply with OK only.'}],'max_tokens':64}),
+          ]
+          for name,secret,url,model,data in payloads:
+              key=os.getenv(secret,'')
+              if name=='Gemini': key=key or os.getenv('GOOGLE_API_KEY','')
+              if not key.strip():
+                  print(f'{name}: NOT_CONFIGURED')
+                  continue
+              try:
+                  headers={'Content-Type':'application/json'}
+                  if name in ('OpenAI','DeepSeek'): headers['Authorization']='Bearer '+key
+                  if name=='Claude': headers.update({'x-api-key':key,'anthropic-version':'2023-06-01'})
+                  if name=='Gemini': headers['x-goog-api-key']=key
+                  req=urllib.request.Request(url,data=json.dumps(data).encode(),headers=headers,method='POST')
+                  with urllib.request.urlopen(req,timeout=30) as resp:
+                      content=resp.read()
+                      result=json.loads(content)
+                      print(f'{name}: HTTP_{resp.status}_JSON_OK; MODEL_REQUESTED={model}; RETURNED_MODEL={str(result.get("model") or result.get("modelVersion") or "unspecified")[:85]}')
+              except urllib.error.HTTPError as exc:
+                  print(f'{name}: HTTP_{exc.code}; MODEL_REQUESTED={model}')
+              except Exception as exc:
+                  print(f'{name}: CONNECTION_ERROR_{type(exc).__name__}; MODEL_REQUESTED={model}')
+          PY
