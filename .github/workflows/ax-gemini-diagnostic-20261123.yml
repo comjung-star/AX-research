@@ -35,12 +35,15 @@ jobs:
                   try: err=json.loads(e.read()).get("error",{})
                   except Exception: err={}
                   status=err.get("status","UNKNOWN")
+                  msg=str(err.get("message","")).lower()
+                  hints=[w for w in ("quota","capacity","billing","limit","unavailable","resource") if w in msg]
                   details=err.get("details",[])
                   reasons=sorted(set(str(d.get("reason","")) for d in details if isinstance(d,dict) and d.get("reason")))
                   quotas=sorted(set(str(v.get("quotaMetric","")) for d in details if isinstance(d,dict) for v in d.get("violations",[]) if isinstance(v,dict) and v.get("quotaMetric")))
-                  print(f"GEMINI_{model}_{method}=HTTP_{e.code};STATUS={status};REASONS={reasons[:3]};QUOTA_METRICS={quotas[:3]}")
+                  print(f"GEMINI_{model}_{method}=HTTP_{e.code};STATUS={status};REASONS={reasons[:3]};QUOTA_METRICS={quotas[:3]};MESSAGE_HINTS={hints}")
               except Exception as e:
                   print(f"GEMINI_{model}_{method}=ERROR_{type(e).__name__}")
-          call("GET","gemini-3.1-pro-preview")
-          call("POST","gemini-2.5-flash",{"contents":[{"parts":[{"text":"Reply OK"}]}],"generationConfig":{"maxOutputTokens":128}})
+          call("GET","gemini-3.6-flash")
+          call("POST","gemini-3.6-flash",{"contents":[{"parts":[{"text":"Reply OK"}]}],"generationConfig":{"maxOutputTokens":512}})
+          call("POST","gemini-3.1-pro-preview",{"contents":[{"parts":[{"text":"Reply OK"}]}],"generationConfig":{"maxOutputTokens":512}})
           PY
