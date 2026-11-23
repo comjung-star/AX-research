@@ -1,0 +1,63 @@
+name: AX crosscheck DeepSeek pilot recovery
+on:
+  push:
+    branches: [research/four-llm-crosscheck-20261123]
+    paths: [.github/workflows/ax-crosscheck-deepseek-recovery.yml]
+permissions:
+  contents: read
+concurrency:
+  group: ax-crosscheck-pilot
+  cancel-in-progress: false
+jobs:
+  pilot:
+    if: github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        provider: [deepseek]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          cat > recipient.pem <<'CERT'
+          -----BEGIN CERTIFICATE-----
+          MIIEMzCCApugAwIBAgIUIe8uy/TteZEuQKwLuJwRy1+nljMwDQYJKoZIhvcNAQEL
+          BQAwKTEnMCUGA1UEAwweQVggQ3Jvc3NjaGVjayBSZXN1bHRzIDIwMjYxMTIzMB4X
+          DTI2MTEyMzEyNTc1OVoXDTM2MTEyMDEyNTc1OVowKTEnMCUGA1UEAwweQVggQ3Jv
+          c3NjaGVjayBSZXN1bHRzIDIwMjYxMTIzMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+          MIIBigKCAYEAypzikACA1MoGqWxDyXmU5Uz7dsdqUJz9OjuIyPflRv6UaHmzBc/m
+          wu1cK85/ttl8WhAnIym3514JKmWWVI27oO7kY04SBCIjVO6QXUSmmuTnpCrlJvKp
+          /VZArdeUXcFKRAjLzUQPxPmnay6A6k2unaKjLLkhzsCTFXkHiibB4W/uJCAWDnEv
+          fW9xs5j0Db3z1zZDiXkRvH6K/GqdzoMopylC8cJlVcXD+u4L3Kezi80SYgTO+d56
+          25apW2wsD7u0wD+qtxhqfDcxUSn3cfC87QGOYnpStDq8/cGCevzhbnwGp3DUOnKc
+          u09J5dtgW/qjevvmAKR86yHnFISbEredHHFah8gUQ0GY+ZvjaXFEXy8X675+xHJa
+          H9cQAcYeEqGBqDHmVqygbUbrUcN/V2csRYgDHGv/2xBGNSW55rm+JZZYi6tuh+cF
+          ImB7zNvgIscmqMc0dXtRxTuUZXJwmocS/ye03ezPQ6DC5NCf5NF84jpv2kEkSUxW
+          pLlZiH+d/krJAgMBAAGjUzBRMB0GA1UdDgQWBBSHEg9D+DIkv8YmWxRAhucXJ9hA
+          jjAfBgNVHSMEGDAWgBSHEg9D+DIkv8YmWxRAhucXJ9hAjjAPBgNVHRMBAf8EBTAD
+          AQH/MA0GCSqGSIb3DQEBCwUAA4IBgQCXP3Agwz2aif/R1aIYFkuqQm8sw56q+Jjn
+          S/FNH3nffknIgpmQbmWJJ/xpzYf5j4HWY3YHFDFUNsCB1Ro6lbIYk0+sc0RItwXH
+          K409t/2ObORlQxpGyJzoYyuddkvHvXDLIir3q7Y/fdeN3N8ekRR8/3Bq+dyfsrLC
+          NJTqmFbFQS2yprPPM1NMBz3m7OPoyJIS3WLtegIiKoCNRTI9dVwGNhEbyQwnuUYb
+          2jHq6MboTAApw6YJ4GtpqfEGMIPF1JmLyag/ziCTxb+KO98Oq2kL3T0WoW70TddD
+          vD3iWSgqs1QN8YvcSNbOU90gfvFQ/XndheRLWFhrFP5lO819Ah8ldgB7ok2bcjEA
+          55A3NVnmuNT/LECj18SYpN3jd16upV05Bx7rlPqTsWUo+SevN9n+AnuKBUJLvjqj
+          g21/h3MS/aMXgHbd0kwhgMw1vF5zOcJYRR78i5ypmrTiUHY2IG0UiCbxVTXiBJa2
+          Re0xBkAaNuuQaVyUobmYO6ShG1XMbtk=
+          -----END CERTIFICATE-----
+          CERT
+      - name: Evaluate one frozen batch
+        env:
+          ANTHROPIC_API_KEY: ${{ matrix.provider == 'claude' && secrets.ANTHROPIC_API_KEY || '' }}
+          GEMINI_API_KEY: ${{ matrix.provider == 'gemini' && secrets.GEMINI_API_KEY || '' }}
+          DEEPSEEK_API_KEY: ${{ matrix.provider == 'deepseek' && secrets.DEEPSEEK_API_KEY || '' }}
+        run: python scripts/ax_crosscheck_evaluate.py ${{ matrix.provider }} docs/perspective-omission-validation20-20261110/planned-requests/judge_VQ001_b00.json 2952afd56ccf6494439ae0df5e104b9dd21c199016cc18735b41018116ecf208 recipient.pem
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ax-pilot-recovery-${{ matrix.provider }}
+          path: '*-judge_VQ001_b00.cms'
+          retention-days: 14
+          if-no-files-found: error
