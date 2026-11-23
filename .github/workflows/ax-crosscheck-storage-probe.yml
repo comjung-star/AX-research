@@ -1,0 +1,11 @@
+name: AX crosscheck encrypted storage probe
+on:
+  push:
+    branches: [research/four-llm-crosscheck-20261123]
+    paths: [.github/workflows/ax-crosscheck-storage-probe.yml]
+permissions: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: openssl version
