@@ -1,4 +1,4 @@
-name: AX Gemini API diagnostic - model list and lightweight call
+name: AX Gemini 3.1 Pro paid-tier activation verification
 on:
   push:
     branches: [research/api-smoke-20261123]
@@ -12,7 +12,7 @@ jobs:
     env:
       GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}"
     steps:
-      - name: Validate key and compare model eligibility without exposing keys
+      - name: Verify Gemini 3.1 Pro paid-tier request without exposing keys
         shell: bash
         run: |
           python - <<'PY'
@@ -43,7 +43,6 @@ jobs:
                   print(f"GEMINI_{model}_{method}=HTTP_{e.code};STATUS={status};REASONS={reasons[:3]};QUOTA_METRICS={quotas[:3]};MESSAGE_HINTS={hints}")
               except Exception as e:
                   print(f"GEMINI_{model}_{method}=ERROR_{type(e).__name__}")
-          call("GET","gemini-3.6-flash")
-          call("POST","gemini-3.6-flash",{"contents":[{"parts":[{"text":"Reply OK"}]}],"generationConfig":{"maxOutputTokens":512}})
-          call("POST","gemini-3.1-pro-preview",{"contents":[{"parts":[{"text":"Reply OK"}]}],"generationConfig":{"maxOutputTokens":512}})
+          call("POST","gemini-3.1-pro-preview",{"contents":[{"parts":[{"text":"Reply OK"}]}],"generationConfig":{"maxOutputTokens":1024}})
           PY
+# One tiny Gemini 3.1 Pro request to verify tier activation after billing update.
