@@ -1,5 +1,6 @@
 name: AX four-provider API connection smoke (no research data)
 on:
+  workflow_dispatch:
   push:
     branches:
       - research/api-smoke-20261123
@@ -32,8 +33,8 @@ jobs:
           payloads = [
             ('OpenAI','OPENAI_API_KEY','https://api.openai.com/v1/responses','gpt-5.4',{'model':'gpt-5.4','input':'Reply with OK only.','max_output_tokens':128}),
             ('Claude','ANTHROPIC_API_KEY','https://api.anthropic.com/v1/messages','claude-sonnet-5-5',{'model':'claude-sonnet-5-5','max_tokens':64,'messages':[{'role':'user','content':'Reply with OK only.'}]}),
-            ('Gemini','GEMINI_API_KEY','https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent','gemini-3.1-pro-preview',{'contents':[{'parts':[{'text':'Reply with OK only.'}]}],'generationConfig':{'maxOutputTokens':128}}),
-            ('DeepSeek','DEEPSEEK_API_KEY','https://api.deepseek.com/chat/completions','deepseek-v4-pro',{'model':'deepseek-v4-pro','messages':[{'role':'user','content':'Reply with OK only.'}],'max_tokens':64}),
+            ('Gemini','GEMINI_API_KEY','https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent','gemini-3.1-pro-preview',{'contents':[{'parts':[{'text':'Reply with OK only.'}]}],'generationConfig':{'maxOutputTokens':512}}),
+            ('DeepSeek','DEEPSEEK_API_KEY','https://api.deepseek.com/chat/completions','deepseek-v4-pro',{'model':'deepseek-v4-pro','messages':[{'role':'user','content':'Reply with OK only.'}],'max_tokens':128}),
           ]
           for name,secret,url,model,data in payloads:
               key=os.getenv(secret,'')
@@ -56,3 +57,5 @@ jobs:
               except Exception as exc:
                   print(f'{name}: CONNECTION_ERROR_{type(exc).__name__}; MODEL_REQUESTED={model}')
           PY
+
+# Rerun after all provider secrets added; one request/provider, no research inputs.
