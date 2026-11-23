@@ -1,0 +1,46 @@
+name: AX Gemini API diagnostic - model list and lightweight call
+on:
+  push:
+    branches: [research/api-smoke-20261123]
+    paths: [.github/workflows/ax-gemini-diagnostic-20261123.yml]
+permissions:
+  contents: read
+jobs:
+  gemini:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}"
+    steps:
+      - name: Validate key and compare model eligibility without exposing keys
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.error
+          key=os.getenv("GEMINI_API_KEY","")
+          if not key:
+              print("GEMINI_KEY=NOT_CONFIGURED")
+              raise SystemExit(0)
+          base="https://generativelanguage.googleapis.com/v1beta/models/"
+          def call(method,model,body=None):
+              url=base+model+(":generateContent" if method=="POST" else "")
+              headers={"x-goog-api-key":key,"Content-Type":"application/json"}
+              payload=json.dumps(body).encode() if body else None
+              req=urllib.request.Request(url,data=payload,headers=headers,method=method)
+              try:
+                  with urllib.request.urlopen(req,timeout=30) as resp:
+                      data=json.loads(resp.read())
+                      print(f"GEMINI_{model}_{method}=HTTP_{resp.status};MODEL={data.get('name') or data.get('modelVersion') or 'not_reported'};TEXT_PRESENT={any('text' in part for cand in data.get('candidates',[]) for part in cand.get('content',{}).get('parts',[]))}")
+              except urllib.error.HTTPError as e:
+                  try: err=json.loads(e.read()).get("error",{})
+                  except Exception: err={}
+                  status=err.get("status","UNKNOWN")
+                  details=err.get("details",[])
+                  reasons=sorted(set(str(d.get("reason","")) for d in details if isinstance(d,dict) and d.get("reason")))
+                  quotas=sorted(set(str(v.get("quotaMetric","")) for d in details if isinstance(d,dict) for v in d.get("violations",[]) if isinstance(v,dict) and v.get("quotaMetric")))
+                  print(f"GEMINI_{model}_{method}=HTTP_{e.code};STATUS={status};REASONS={reasons[:3]};QUOTA_METRICS={quotas[:3]}")
+              except Exception as e:
+                  print(f"GEMINI_{model}_{method}=ERROR_{type(e).__name__}")
+          call("GET","gemini-3.1-pro-preview")
+          call("POST","gemini-2.5-flash",{"contents":[{"parts":[{"text":"Reply OK"}]}],"generationConfig":{"maxOutputTokens":128}})
+          PY
